@@ -1,0 +1,22 @@
+/* pages/xiaoyuan/xiaoyuan.wxss */
+
+.top{
+  background: #5454FF
+}
+.top-gradul-blue{
+  background: linear-gradient(to bottom,#5454FF,rgba(255, 255, 255, 255));
+}
+.text-limit{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-line-clamp:1;
+  -webkit-box-orient:vertical;
+}
+.xiaoyuan-text-content {
+  padding-top: 18rpx;
+	line-height: 0.05;
+}
+.btn-width{
+  width: 200rpx;
+}
