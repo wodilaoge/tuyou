@@ -1,5 +1,8 @@
+const app = getApp();
 Page({
   data: {
+    CustomBar: app.globalData.CustomBar,
+    TabCur: 0,
     cardCur: 0,
     swiperList: [{
       id: 0,
@@ -18,6 +21,13 @@ Page({
       type: 'image',
         url: '../../img/componentBg.png'
     }],
+  },
+  tabSelect(e) {
+    console.log(e);
+    this.setData({
+      TabCur: e.currentTarget.dataset.id,
+      scrollLeft: (e.currentTarget.dataset.id - 1) * 60
+    })
   },
   onLoad() {
     this.towerSwiper('swiperList');

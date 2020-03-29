@@ -8,58 +8,73 @@
     <view slot="content">校园活动</view>
   </cu-custom>
 </view>
-<view  class="top-gradul-blue">
-<swiper class="card-swiper {{'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
-    <swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
-      <view class="swiper-item">
-        <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
-      </view>
-    </swiper-item>
-  </swiper>
-</view>
-<view class="cu-card article no-card">
-  <view class="cu-item shadow">
-    <view class="title">
-      <view class="text-limit">无意者 烈火焚身;以正义的烈火拔出黑暗。我有自己的正义，见证至高的烈火吧。</view>
+
+
+<scroll-view scroll-x class="bg-blue nav text-center">
+  <view class="cu-item {{0==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="0"> 校园</view>
+  <view class="cu-item {{1==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="1"> 运动</view>
+  <view class="cu-item {{2==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="2"> 文娱</view>
+  <view class="cu-item {{3==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="3"> 爱好</view>
+  <view class="cu-item {{4==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="4"> 视频</view>
+  <view class="cu-item {{5==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="5"> 新闻</view>
+  <view class="cu-item {{6==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="6">
+    <text class="cuIcon-search"></text> 
+  </view>
+</scroll-view>
+<block wx:if="{{TabCur==0}}">
+  <view  class="top-gradul-blue">
+    <swiper class="card-swiper {{'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+        <swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
+          <view class="swiper-item">
+            <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+          </view>
+        </swiper-item>
+      </swiper>
     </view>
-    <view class="content">
-      <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="aspectFill"></image>
-      <view class="desc">
-        <view class="xiaoyuan-text-content text-gray"> 2020.03.14 周六 19：30</view>
-        <view class="xiaoyuan-text-content text-gray"> 杭州|浙大体育馆</view>
-        <button class="cu-btn round bg-red btn-width">参与活动</button>
+  <view class="cu-card article no-card">
+    <view class="cu-item shadow">
+     <view class="title">
+        <view class="text-limit">无意者 烈火焚身;以正义的烈火拔出黑暗。我有自己的正义，见证至高的烈火吧。</view>
+      </view>
+      <view class="content">
+        <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="aspectFill"></image>
+        <view class="desc">
+          <view class="xiaoyuan-text-content text-gray"> 2020.03.14 周六 19：30</view>
+          <view class="xiaoyuan-text-content text-gray"> 杭州|浙大体育馆</view>
+          <button class="cu-btn round bg-red btn-width">参与活动</button>
+        </view>
       </view>
     </view>
   </view>
-</view>
-<view class="cu-card article no-card">
-  <view class="cu-item shadow">
-    <view class="title">
-      <view class="text-limit">浙江工商大学20周年英雄联盟表演赛---------全明星5v5</view>
-    </view>
-    <view class="content">
-      <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg" mode="aspectFill"></image>
-      <view class="desc">
-        <view class="xiaoyuan-text-content text-gray"> 2020.03.14 周六 19：30</view>
-        <view class="xiaoyuan-text-content text-gray"> 杭州|浙工商剧院</view>
-        <button class="cu-btn round bg-grey btn-width">活动结束</button>
+  <view class="cu-card article no-card">
+    <view class="cu-item shadow">
+      <view class="title">
+        <view class="text-limit">浙江工商大学20周年英雄联盟表演赛---------全明星5v5</view>
+      </view>
+      <view class="content">
+       <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg" mode="aspectFill"></image>
+        <view class="desc">
+          <view class="xiaoyuan-text-content text-gray"> 2020.03.14 周六 19：30</view>
+          <view class="xiaoyuan-text-content text-gray"> 杭州|浙工商剧院</view>
+          <button class="cu-btn round bg-grey btn-width">活动结束</button>
+        </view>
       </view>
     </view>
   </view>
-</view>
   
-<view class="cu-card article no-card">
-  <view class="cu-item shadow">
-    <view class="title">
-      <view class="text-limit">活动2</view>
-    </view>
-    <view class="content">
-      <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg" mode="aspectFill"></image>
-      <view class="desc">
-        <view class="xiaoyuan-text-content text-gray"> 2020.03.14 周六 19：30</view>
-        <view class="xiaoyuan-text-content text-gray"> 杭州|浙工商剧院</view>
-        <button class="cu-btn round bg-grey btn-width">活动结束</button>
+  <view class="cu-card article no-card">
+    <view class="cu-item shadow">
+      <view class="title">
+        <view class="text-limit">活动2</view>
+      </view>
+      <view class="content">
+        <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg" mode="aspectFill"></image>
+        <view class="desc">
+          <view class="xiaoyuan-text-content text-gray"> 2020.03.14 周六 19：30</view>
+          <view class="xiaoyuan-text-content text-gray"> 杭州|浙工商剧院</view>
+          <button class="cu-btn round bg-grey btn-width">活动结束</button>
+        </view>
       </view>
     </view>
   </view>
-</view>
+</block>

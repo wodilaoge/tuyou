@@ -3831,7 +3831,7 @@ scroll-view.cu-steps .cu-item {
 }
 
 .text-bold {
-	font-weight: bold;
+	font-weight: bolder;
 }
 
 .text-center {
