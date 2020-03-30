@@ -5,11 +5,15 @@
 .top-gradul-blue{
   background: linear-gradient(to bottom,#5454FF,rgba(255, 255, 255, 255));
 }
-.text-limit{
+.title-limit{
+  font-size: 32rpx;
+	font-weight: 800;
+	color: var(--black);
+	line-height: 1.5;
   overflow:hidden;
   text-overflow:ellipsis;
   display:-webkit-box;
-  -webkit-line-clamp:1;
+  -webkit-line-clamp:2;
   -webkit-box-orient:vertical;
 }
 .xiaoyuan-text-content {

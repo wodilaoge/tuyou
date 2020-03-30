@@ -1,0 +1,22 @@
+<!--
+创建者：陈雨豪
+创建时间：20200329
+内容：活动详情页面-->
+<view class="top">
+    <cu-custom isBack="{{true}}" bgColor="bg-blue" >
+    <view slot="content">活动详情</view>
+  </cu-custom>
+</view>
+<view class="cu-card article no-card bg-blue">
+  <view class="cu-item shadow">
+    <view class="content margin-top">
+      <image  src="https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg" mode="aspectFill"></image> 
+      <view class="desc">
+        <view class="title-limit">浙江工商大学20周年英雄联盟表演赛---------全明星5v5</view>
+        <view class="xiangqing-text-content lines-white"> 2020.03.14 周六 19：30</view>
+        <view class="xiangqing-text-content lines-white"> 杭州|浙工商剧院</view>
+        <button class="cu-btn round lines-white btn-width margin-top">关注</button>
+      </view>
+    </view>
+  </view>
+</view>

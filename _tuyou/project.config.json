@@ -51,6 +51,13 @@
 					"pathName": "pages/xiaoyuan/xiaoyuan",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "活动详情",
+					"pathName": "pages/xiangqing/xiangqing",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

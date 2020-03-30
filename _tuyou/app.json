@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/xiaoyuan/xiaoyuan"
+    "pages/xiaoyuan/xiaoyuan",
+    "pages/xiangqing/xiangqing"
   ],
   "window": {
     "backgroundTextStyle": "light",

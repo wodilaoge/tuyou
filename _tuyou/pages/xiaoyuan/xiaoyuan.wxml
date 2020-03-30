@@ -1,6 +1,6 @@
 <!--
 创建者：陈雨豪
-创建时间：20200323
+创建时间：20200328
 内容：校园活动页面-->
 
 <view class="top">
@@ -31,14 +31,12 @@
         </swiper-item>
       </swiper>
     </view>
-  <view class="cu-card article no-card">
+  <view class="cu-card article no-card bg-white">
     <view class="cu-item shadow">
-     <view class="title">
-        <view class="text-limit">无意者 烈火焚身;以正义的烈火拔出黑暗。我有自己的正义，见证至高的烈火吧。</view>
-      </view>
       <view class="content">
         <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="aspectFill"></image>
         <view class="desc">
+        <view class="title-limit">无意者 烈火焚身;以正义的烈火拔出黑暗。我有自己的正义，见证至高的烈火吧。</view>
           <view class="xiaoyuan-text-content text-gray"> 2020.03.14 周六 19：30</view>
           <view class="xiaoyuan-text-content text-gray"> 杭州|浙大体育馆</view>
           <button class="cu-btn round bg-red btn-width">参与活动</button>
@@ -46,14 +44,12 @@
       </view>
     </view>
   </view>
-  <view class="cu-card article no-card">
+  <view class="cu-card article no-card bg-white">
     <view class="cu-item shadow">
-      <view class="title">
-        <view class="text-limit">浙江工商大学20周年英雄联盟表演赛---------全明星5v5</view>
-      </view>
       <view class="content">
        <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg" mode="aspectFill"></image>
         <view class="desc">
+          <view class="title-limit">浙江工商大学20周年英雄联盟表演赛---------全明星5v5</view>
           <view class="xiaoyuan-text-content text-gray"> 2020.03.14 周六 19：30</view>
           <view class="xiaoyuan-text-content text-gray"> 杭州|浙工商剧院</view>
           <button class="cu-btn round bg-grey btn-width">活动结束</button>
@@ -62,14 +58,12 @@
     </view>
   </view>
   
-  <view class="cu-card article no-card">
+  <view class="cu-card article no-card bg-white">
     <view class="cu-item shadow">
-      <view class="title">
-        <view class="text-limit">活动2</view>
-      </view>
       <view class="content">
         <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg" mode="aspectFill"></image>
         <view class="desc">
+          <view class="title-limit">活动2</view>
           <view class="xiaoyuan-text-content text-gray"> 2020.03.14 周六 19：30</view>
           <view class="xiaoyuan-text-content text-gray"> 杭州|浙工商剧院</view>
           <button class="cu-btn round bg-grey btn-width">活动结束</button>
