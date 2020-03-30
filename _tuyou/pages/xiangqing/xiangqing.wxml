@@ -1,6 +1,6 @@
 <!--
 创建者：陈雨豪
-创建时间：20200329
+创建时间：20200330
 内容：活动详情页面-->
 <view class="top">
     <cu-custom isBack="{{true}}" bgColor="bg-blue" >
@@ -20,3 +20,10 @@
     </view>
   </view>
 </view>
+<scroll-view scroll-x class="bg-blue nav text-center">
+  <view class="cu-item {{0==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="0"> 详情</view>
+  <view class="cu-item {{1==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="1"> 报名</view>
+  <view class="cu-item {{2==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="2"> 聊天</view>
+  <view class="cu-item {{4==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="4"> 视频</view>
+  <view class="cu-item {{5==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="5"> 投票</view>
+</scroll-view>

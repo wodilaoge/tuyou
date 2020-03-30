@@ -7,10 +7,10 @@
   font-size: 28rpx;
 }
 .title-limit{
-  font-size: 32rpx;
+  font-size: 30rpx;
 	font-weight: 800;
 	color: var(--white);
-	line-height: 1.5;
+	line-height: 2;
   overflow:hidden;
   text-overflow:ellipsis;
   display:-webkit-box;
@@ -19,5 +19,5 @@
 }
 .xiangqing-text-content {
   font-size: 30rpx;
-  padding-top: 25rpx;
+  padding-top: 20rpx;
 }

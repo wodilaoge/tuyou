@@ -1,16 +1,16 @@
-// pages/xiangqing/xiangqing.js
+const app = getApp();
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    CustomBar: app.globalData.CustomBar,
+    TabCur: 0,
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  tabSelect(e) {
+    console.log(e);
+    this.setData({
+      TabCur: e.currentTarget.dataset.id,
+      scrollLeft: (e.currentTarget.dataset.id - 1) * 60
+    })
+  },
   onLoad: function (options) {
 
   },
