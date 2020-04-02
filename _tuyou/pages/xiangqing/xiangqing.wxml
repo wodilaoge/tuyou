@@ -27,3 +27,120 @@
   <view class="cu-item {{4==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="4"> 视频</view>
   <view class="cu-item {{5==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="5"> 投票</view>
 </scroll-view>
+<!-- 详情子页面 -->
+<block wx:if="{{TabCur==0}}">
+<!-- 活动介绍 -->
+  <view class="content-white">
+    <view class="bg-blue">
+      <view class="cu-bar cu-bar-radius bg-white padding">
+        <text class="cu-bar-title">活动介绍</text>
+      </view>
+    </view>
+    <view class="padding">
+      <text class="xiangqing-text-content text-grey huodong-text" decode="{{true}}">[乐海方舟X刺猬现场]联合呈现；\n“我有点紧张”新秀（中国新说唱2019四强）全国巡演</text>
+      <image class="text-border-radius" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg" mode="aspectFill"></image> 
+    </view>
+    <view class="padding">
+      <text class="cuIcon-attention lg text-gray">\t23456</text>
+      <text class="cuIcon-appreciate lg text-gray text-right" decode="{{true}}">\t赞&emsp;23456</text>
+    </view>
+  </view>
+
+  <!-- 活动新闻 -->
+  <view class="bg-white padding huodong-margin-top">
+    <text class="cu-bar-title">活动新闻</text>
+  </view>
+  <view class="cu-card article no-card bg-white padding">
+    <view class="cu-item shadow">
+        <view class="content2">
+          <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="aspectFill"></image>
+          <view class="desc">
+            <view class="title-limit2">浙江工商大学20周年英雄联盟表演赛---------全明星5v5</view>
+            <button class="cu-btn btn-new bg-orange disabled">最新</button>
+            <view>
+              <text class="text-gery">2分钟前</text>
+              <text class="cuIcon-attention lg text-gray text-right" decode="{{true}}">\t23456</text>
+            </view>
+          </view>
+        </view>
+    </view>
+
+    <view class="cu-item shadow">
+        <view class="content2">
+          <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big21016.jpg" mode="aspectFill"></image>
+          <view class="desc">
+            <view class="title-limit2"> 詹姆斯成为史上最年轻34000分先生，湖人锁定季后赛</view>
+            <view>
+              <text class="text-gery">3-8</text>
+              <text class="cuIcon-attention lg text-gray text-right" decode="{{true}}">\t23456</text>
+            </view>
+          </view>
+        </view>
+    </view>
+
+  </view>
+
+  <!-- 评论 -->
+  <view class="cu-bar bg-white solid-bottom huodong-margin-top">
+    <view class='action'>
+      <text class='pinglun-title'></text> 评论108
+    </view>
+  </view>
+
+  <view class="cu-card case no-card">
+    <view class="cu-item shadow">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+          <view class="content flex-sub">
+              <view class=" flex justify-between">
+                <view>
+                  <text class="card-text-grey" decode="{{true}}">吴福嘉&emsp;</text>
+                  <button class="cu-btn btn-hot bg-orange disabled">热门</button>
+                </view>
+                <view class="text-gray text-sm">
+                  <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                  <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+                </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15  6 回复
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  
+  <view class="cu-card case no-card}">
+    <view class="cu-item shadow">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+          <view class="content flex-sub">
+              <view class=" flex justify-between">
+                <view>
+                  <text class="card-text-grey">福嘉</text>
+                </view>
+                <view class="text-gray text-sm">
+                  <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                  <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+                </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15  6 回复
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</block>
