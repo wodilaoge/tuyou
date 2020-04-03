@@ -14,7 +14,7 @@ page {
 	/* var属性兼容性 --> https://www.caniuse.com/#feat=css-variables */
 	/* 标准色 */
 	--red: #e54d42;
-	--orange: #FE6004;
+	--orange: #f37b1d;
 	--yellow: #fbbd08;
 	--olive: #8dc63f;
 	--green: #39b54a;
@@ -685,7 +685,7 @@ radio.white[checked] .wx-radio-input {
 	align-items: center;
 	justify-content: center;
 	box-sizing: border-box;
-	padding: 0;
+	padding: 0 30rpx;
 	font-size: 28rpx;
 	height: 64rpx;
 	line-height: 1;
@@ -2349,31 +2349,6 @@ button.icon.lg {
 	overflow: hidden;
 }
 
-.cu-card.article>.cu-item .content2 {
-	display: flex;
-	padding: 0 30rpx;
-}
-
-.cu-card.article>.cu-item .content2>image {
-	width: 200rpx;
-	height: 200rpx;
-	margin-right: 20rpx;
-	border-radius: 6rpx;
-}
-
-.cu-card.article>.cu-item .content2 .desc {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.cu-card.article>.cu-item .content2 .text-content {
-	font-size: 28rpx;
-	color: #888;
-	height: 4.8em;
-	overflow: hidden;
-}
 /* ==================
          表单
  ==================== */

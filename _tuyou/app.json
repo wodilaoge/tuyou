@@ -3,16 +3,17 @@
     "pages/index/index",
     "pages/xiaoyuan/xiaoyuan",
     "pages/xiangqing/xiangqing",
-    "pages/baoming/baoming"
+    "pages/baoming/baoming",
+    "pages/baoming_ok/baoming_ok"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#5454FF",
-    "backgroundColor":"#5454FF",
+    "backgroundColor": "#5454FF",
     "navigationBarTitleText": "ColorUI",
     "navigationStyle": "custom",
     "navigationBarTextStyle": "white",
-    "enablePullDownRefresh":true
+    "enablePullDownRefresh": true
   },
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom"
