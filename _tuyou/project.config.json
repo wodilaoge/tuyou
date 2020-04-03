@@ -60,7 +60,7 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "报名",
 					"pathName": "pages/baoming/baoming",
 					"query": "",

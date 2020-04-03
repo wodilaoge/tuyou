@@ -28,6 +28,10 @@
   <view class="cu-item {{5==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="5"> 投票</view>
 </scroll-view>
 <!-- 详情子页面 -->
+<!--
+创建者：陈雨豪
+创建时间：20200331
+内容：活动详情页面-->
 <block wx:if="{{TabCur==0}}">
 <!-- 活动介绍 -->
   <view class="content-white">
@@ -80,6 +84,12 @@
 
   </view>
 
+
+  <view class="huodong-margin-bottom">
+  <!--
+创建者：陈雨豪
+创建时间：20200401
+内容：活动详情页面-->
   <!-- 评论 -->
   <view class="cu-bar bg-white solid-bottom huodong-margin-top">
     <view class='action'>
@@ -87,7 +97,7 @@
     </view>
   </view>
 
-  <view class="cu-card case no-card">
+  <view class="cu-card case no-card ">
     <view class="cu-item shadow">
       <view class="cu-list menu-avatar">
         <view class="cu-item">
@@ -142,5 +152,17 @@
       </view>
     </view>
   </view>
-
+  </view>
+  <view class="box">
+			<view class="cu-bar input foot">
+				<view class="action">
+					<text class="cuIcon-sound text-grey"></text>
+				</view>
+				 <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10"></input>
+				<view class="action">
+					<text class="cuIcon-emojifill text-grey"></text>
+				</view>
+				<button class="cu-btn bg-green shadow-blur padding">发送</button>
+			</view>
+  </view>
 </block>

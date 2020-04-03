@@ -172,6 +172,9 @@ color: #999999;
 .huodong-margin-top{
   margin-top: 20rpx;
 }
+.huodong-margin-bottom{
+  margin-bottom: 90rpx;
+}
 .text-right{
   float:right;
 }
