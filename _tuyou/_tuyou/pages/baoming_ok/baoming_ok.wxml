@@ -1,0 +1,141 @@
+<!--pages/baoming_ok/baoming_ok.wxml-->
+<!--
+    创建者：朱娇龙
+    创建时间：20200401
+    创建内容：报名
+ -->
+<view class="top bg-blue">
+  <cu-custom isBack="{{true}}" bgColor="bg-blue">
+    <view slot="content">活动详情</view>
+  </cu-custom>
+</view>
+<view class="cu-card article no-card bg-blue">
+  <view class="cu-item shadow">
+    <view class="content margin-top">
+      <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg" mode="aspectFill"></image>
+      <view class="desc">
+        <view class="title-limit">浙江工商大学20周年英雄联盟表演赛---------全明星5v5</view>
+        <view class="baoming-text-content lines-white"> 2020.03.14 周六 19：30</view>
+        <view class="baoming-text-content lines-white"> 杭州|浙工商剧院</view>
+        <button class="cu-btn round lines-white btn-width margin-top">关注</button>
+      </view>
+    </view>
+  </view>
+</view>
+<scroll-view scroll-x class="bg-blue nav text-center">
+  <view class="cu-item {{0==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="0"> 详情</view>
+  <view class="cu-item {{1==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="1"> 报名</view>
+  <view class="cu-item {{2==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="2"> 聊天</view>
+  <view class="cu-item {{4==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="4"> 视频</view>
+  <view class="cu-item {{5==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="5"> 投票</view>
+</scroll-view>
+
+<view class="content-white">
+  <view class="bg-blue">
+    <view class="cu-bar bg-white solid-bottom">
+      <view class="action">
+        <text class="cu-bar-title">在线报名</text>
+      </view>
+    </view>
+  </view>
+
+  <view>
+    <image class="img-success " src="/img/img_success.png"></image>
+  </view>
+
+  <view class="flex justify-center">
+    <text class="baoming_text_ok">报名成功</text>
+  </view>
+  <view class="flex justify-center">
+    <text class="baoming_text_wait" >请耐心等待活动开始</text>
+  </view>
+  <view class="flex justify-center">
+    <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx">取消报名</button>
+  </view>
+
+  <view class="cu-bar bg-white solid-bottom">
+    <view class='action'>
+      <text class='cu-bar-title'>已报名21人</text> 
+    </view>
+  </view>
+
+<view class="grid col-6 padding-sm">
+  <view class="margin-tb-sm text-center" wx:for="{{AvatarList}}" wx:key>
+    <view class="cu-avatar-success round" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+  </view>
+</view>
+
+
+
+  <!-- 标签 -->
+  <view class="cu-bar bg-white solid-bottom">
+    <view class='action'>
+      <text class='pinglun-title'></text> 评论108
+    </view>
+  </view>
+
+  <view class="cu-card case {{isCard?'no-card':''}}">
+    <view class="cu-item shadow">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+          <view class="content flex-sub">
+              <view class=" flex justify-between">
+                <view>
+                  <text class="card-text-grey">吴福嘉</text>
+                  <text class="box-hot text-center   bg-orange">热门</text>
+                </view>
+                <view class="text-gray text-sm">
+                  <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                  <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+                </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15  6 回复
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  
+  <view class="cu-card case {{isCard?'no-card':''}}">
+    <view class="cu-item shadow">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+          <view class="content flex-sub">
+              <view class=" flex justify-between">
+                <view>
+                  <text class="card-text-grey">福嘉</text>
+                </view>
+                <view class="text-gray text-sm">
+                  <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                  <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+                </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15  6 回复
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  
+
+
+
+
+
+
+
+</view>

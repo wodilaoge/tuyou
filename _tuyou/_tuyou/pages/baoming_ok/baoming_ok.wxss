@@ -1,0 +1,74 @@
+/* pages/baoming_ok/baoming_ok.wxss */
+.content-white{
+  background-color: white;
+}
+
+.btn-width{
+  width: 134rpx;
+  font-size: 28rpx;
+}
+.cu-bar {
+	display: flex;
+	position: relative;
+	align-items: center;
+	min-height: 100rpx;
+	justify-content: space-between;
+  
+  border-top-left-radius: 30rpx;
+  border-top-right-radius: 30rpx;
+}
+.cu-bar .action {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	justify-content: center;
+	max-width: 100%;
+}
+.cu-bar-title{
+  font-size: 32rpx;
+  font-family: PingFang-SC-Bold;
+  color: #333333;
+  font-weight:bold;
+}
+.cu-avatar-success{
+	width: 88rpx;
+	height: 88rpx;
+
+	font-variant: small-caps;
+	margin: 0;
+	padding: 0;
+	display: inline-flex;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	background-color: #ccc;
+	color: var(--white);
+	white-space: nowrap;
+	position: relative;
+	background-size: cover;
+	background-position: center;
+	vertical-align: middle;
+	font-size: 1.5em;
+
+}
+.img-success{
+  margin-top: 30rpx;
+  margin-left: 203rpx;
+	width: 303rpx;
+	height: 333rpx;
+}
+.grid.col-6>view {
+	width: 16.667%;
+}
+.baoming_text_ok{
+  font-family: PingFang-SC-Medium;
+  font-size:36rpx;
+  color: #333333;
+  font-weight: normal;
+}
+.baoming_text_wait{
+  font-family: PingFang-SC-Medium;
+  font-size:28rpx;
+  color: #999999;
+  font-weight: normal;
+}
