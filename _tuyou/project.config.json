@@ -65,6 +65,20 @@
 					"pathName": "pages/baoming/baoming",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "评论列表",
+					"pathName": "pages/pinlunliebiao/pinlunliebiao",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "查看回复",
+					"pathName": "pages/chakanhuifu/chakanhuifu",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

@@ -1,0 +1,81 @@
+<!--
+创建者：陈雨豪
+创建时间：20200404
+内容：评论列表页面-->
+<view class="top">
+    <cu-custom isBack="{{true}}" bgColor="bg-blue" >
+    <view slot="content">查看回复</view>
+  </cu-custom>
+</view>
+<view class="cu-card case no-card bg-white">
+    <view class="cu-item shadow">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+          <view class="content flex-sub">
+              <view class=" flex justify-between">
+                <view>
+                  <text class="card-text-grey" decode="{{true}}">吴福嘉&emsp;</text>
+                </view>
+                <view class="text-gray text-sm">
+                  <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                  <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+                </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15   回复
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+</view>
+<!--回复-->
+  
+<view class="cu-card case">
+    <view class="cu-item shadow">
+      <view class="cu-list menu-avatar ">
+        <view class="cu-item">
+          <view class="content flex-sub bg-white padding">
+              <view class=" flex justify-between">
+                <view>
+                  <text class="card-text-grey" decode="{{true}}">福嘉&emsp;</text>
+                </view>
+                <view class="text-gray text-sm">
+                  <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                  <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+                </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15   6回复
+            </view>
+          </view>
+        </view>
+        <view class="cu-item">
+          <view class="content flex-sub bg-white padding">
+              <view class=" flex justify-between">
+                <view>
+                  <text class="card-text-grey" decode="{{true}}">福嘉&emsp;</text>
+                </view>
+                <view class="text-gray text-sm">
+                  <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                  <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+                </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15   6回复
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+</view>

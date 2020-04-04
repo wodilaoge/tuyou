@@ -1,0 +1,20 @@
+/* pages/pinlunliebiao/pinlunliebiao.wxss */
+.card-text-grey {
+	color: var(--grey);
+  font-size: 28rpx;
+}
+.btn-hot{
+   width: 50rpx;
+   height: 30rpx;
+   font-size: 23rpx;
+   border-radius: 20%;
+}
+.img-icon{
+	width: 40rpx;
+	height: 40rpx;
+}
+.card-text-content-time{
+font-size: 20rpx;
+font-weight:normal;
+color: #999999;
+}

@@ -92,7 +92,7 @@
     </view>
   </view>
 
-  <view class="cu-card case no-card ">
+  <view class="cu-card case no-card bg-white">
     <view class="cu-item shadow">
       <view class="cu-list menu-avatar">
         <view class="cu-item">
@@ -121,7 +121,7 @@
   </view>
 
   
-  <view class="cu-card case no-card}">
+  <view class="cu-card case no-card bg-white">
     <view class="cu-item shadow">
       <view class="cu-list menu-avatar">
         <view class="cu-item">
@@ -213,17 +213,16 @@
     </view>
   </view>
 
-  <view class="cu-card case {{isCard?'no-card':''}}">
+  <view class="cu-card case no-card ">
     <view class="cu-item shadow">
       <view class="cu-list menu-avatar">
         <view class="cu-item">
-          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);">
-          </view>
+          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
           <view class="content flex-sub">
               <view class=" flex justify-between">
                 <view>
-                  <text class="card-text-grey">吴福嘉</text>
-                  <text class="box-hot text-center   bg-orange">热门</text>
+                  <text class="card-text-grey" decode="{{true}}">吴福嘉&emsp;</text>
+                  <button class="cu-btn btn-hot bg-orange disabled">热门</button>
                 </view>
                 <view class="text-gray text-sm">
                   <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
@@ -243,12 +242,11 @@
   </view>
 
   
-  <view class="cu-card case {{isCard?'no-card':''}}">
+  <view class="cu-card case no-card}">
     <view class="cu-item shadow">
       <view class="cu-list menu-avatar">
         <view class="cu-item">
-          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);">
-          </view>
+          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
           <view class="content flex-sub">
               <view class=" flex justify-between">
                 <view>
@@ -258,18 +256,18 @@
                   <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
                   <text class="cuIcon-appreciate margin-lr-xs "></text> 1
                 </view>
-              </view>
-              <view class="card-text-content">
-                活动看着不错，我报名啦
-              </view>
-              <view class="card-text-content-time">
-                03-15 16:15  6 回复
-              </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15  6 回复
             </view>
           </view>
         </view>
       </view>
     </view>
+  </view>
   </view>
 
 </block>
