@@ -3,10 +3,9 @@
     "pages/index/index",
     "pages/xiaoyuan/xiaoyuan",
     "pages/xiangqing/xiangqing",
-    "pages/pinlunliebiao/pinlunliebiao",
-    "pages/chakanhuifu/chakanhuifu",
     "pages/baoming/baoming",
     "pages/baoming_ok/baoming_ok"
+   
   ],
   "window": {
     "backgroundTextStyle": "light",
