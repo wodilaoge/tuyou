@@ -173,8 +173,56 @@ color: #999999;
   margin-top: 20rpx;
 }
 .huodong-margin-bottom{
-  margin-bottom: 90rpx;
+  margin-bottom: 120rpx;
 }
 .text-right{
   float:right;
+}
+.img-icon{
+	width: 40rpx;
+	height: 40rpx;
+}
+
+/*完成报名-----------------------*/
+.cu-avatar-success{
+	width: 88rpx;
+	height: 88rpx;
+
+	font-variant: small-caps;
+	margin: 0;
+	padding: 0;
+	display: inline-flex;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	background-color: #ccc;
+	color: var(--white);
+	white-space: nowrap;
+	position: relative;
+	background-size: cover;
+	background-position: center;
+	vertical-align: middle;
+	font-size: 1.5em;
+
+}
+.img-success{
+  margin-top: 30rpx;
+  margin-left: 203rpx;
+	width: 303rpx;
+	height: 333rpx;
+}
+.grid.col-6>view {
+	width: 16.667%;
+}
+.baoming_text_ok{
+  font-family: PingFang-SC-Medium;
+  font-size:36rpx;
+  color: #333333;
+  font-weight: normal;
+}
+.baoming_text_wait{
+  font-family: PingFang-SC-Medium;
+  font-size:28rpx;
+  color: #999999;
+  font-weight: normal;
 }
