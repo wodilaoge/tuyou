@@ -226,3 +226,120 @@ color: #999999;
   color: #999999;
   font-weight: normal;
 }
+
+/* 视频 */
+.sp-avatar{
+  margin-left: 24rpx;
+	width: 64rpx;
+	height: 64rpx;
+}
+.sp-avatar-name{
+  font-family: PingFang-SC-Medium;
+  font-size:32rpx;
+  color: #333333;
+  font-weight: normal;
+  margin-left: 19rpx;
+}
+.sp-cu-bar{
+  
+	display: flex;
+	position: relative;
+	align-items: center;
+	min-height: 100rpx;
+}
+.sp-bofang-times{
+  width: 169rpx;
+  
+  font-family: PingFang-SC-Bold;
+  font-size:28rpx;
+  color: #333333;
+  font-weight: bold;
+  margin-left: 22rpx;
+}
+.sp-pinglun{
+  font-family: PingFang-SC-Bold;
+  font-size:28rpx;
+  color: #333333;
+  font-weight: bold;
+  margin-left: 28rpx;
+  width: 614rpx;
+}
+.sp-hotpinglun{
+  color: #999999;
+  font-size: 24rpx;
+  padding-left: 23rpx;
+}
+.sp-pinlun-content{
+  display: flex;
+  background-color: #F8F9FD;
+}
+.sp-pinglun-avatar{
+  width:42rpx;
+  height:42rpx;
+  margin-left:24rpx;
+}
+.sp-pinglun-name{
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  color: #333333;
+  font-weight: normal;
+  margin-left: 14rpx;
+
+}
+.sp-pinglun-neirong{
+  width: 524rpx;
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  color: #666666;
+  font-weight: normal;
+  margin-left: 21rpx;
+}
+.sp-quanbupinglun{
+  min-height: 100rpx;
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  color: #5454FF;
+  font-weight: normal;
+  margin-left: 29rpx;
+
+
+}
+
+/* 投票 */
+.tp-tptitle{
+  font-family: PingFang-SC-Bold;
+  font-size:32rpx;
+  color: #333333;
+  font-weight: bold;
+  margin-left: 24rpx;
+}
+.tp-tptitle-time{
+  width: 193rpx;
+  font-size: 32rpx;
+  font-family: PingFang-SC-Medium;
+  color: #FE6004;
+  font-weight: normal;
+  margin-left: 250rpx;
+}
+.tp-subtitle{
+font-size:32rpx;
+font-family:PingFang SC;
+color:rgba(84,84,255,1);
+padding-left: 24rpx;
+}
+.tp-checkbox{
+  zoom: 80%;
+  margin-left: 27rpx;
+}
+.tp-name{
+font-size:32rpx;
+font-family: PingFang-SC-Medium;
+color:#333333;
+padding-left: 24rpx;
+}
+.tp-piaoshhu{
+font-size:24rpx;
+font-family:PingFang SC;
+color:rgba(153,153,153,1);
+padding-right: 23rpx;
+}
