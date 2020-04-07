@@ -1,7 +1,7 @@
 const app = getApp();
 Page({
   data: {
-    list:[],
+    ActList:[],
     CustomBar: app.globalData.CustomBar,
     TabCur: 0,
     cardCur: 0,
@@ -31,14 +31,15 @@ Page({
     })
   },
   xuanran() {
-    var that = this;
     let url = app.globalData.URL + '/act/listCampusActivity';
     let data = {
       sid: '3b7b162c987f4583be9a7a7b340adbee'
     };
     app.wxRequest('GET', url, data, (res) => {
-      this.list=res.data
-      console.log(this.list)
+      console.log(res.data)
+      this.setData({
+        ActList: res.data
+      })
     }, (err) => {
       console.log(err.errMsg)
     });

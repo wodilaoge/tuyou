@@ -29,16 +29,16 @@
             <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
           </view>
         </swiper-item>
-      </swiper>
-    </view>
+    </swiper>
+  </view>
   <view class="cu-card article no-card bg-white">
     <view class="cu-item shadow">
-      <view class="content">
+      <view class="content" wx:for="{{ActList}}">
         <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="aspectFill"></image>
         <view class="desc">
-        <view class="title-limit">无意者 烈火焚身;以正义的烈火拔出黑暗。我有自己的正义，见证至高的烈火吧。</view>
-          <view class="xiaoyuan-text-content text-gray"> 2020.03.14 周六 19：30</view>
-          <view class="xiaoyuan-text-content text-gray"> 杭州|浙大体育馆</view>
+        <view class="title-limit">{{item.actname}}</view>
+          <view class="xiaoyuan-text-content text-gray"> {{item.fromtime}}</view>
+          <view class="xiaoyuan-text-content text-gray"> {{item.address}}</view>
           <button class="cu-btn round bg-red btn-width">参与活动</button>
         </view>
       </view>
@@ -71,4 +71,5 @@
       </view>
     </view>
   </view>
+  
 </block>
