@@ -1,5 +1,26 @@
 //app.js
 App({
+  globalData: {
+    URL: 'http://150.158.123.146:8081/tw',
+  },
+  wxRequest(method, url, data, callback, errFun) {
+    wx.request({
+      url: url,
+      method: method,
+      data: data,
+      header: {
+        'content-type': method == 'GET' ? 'application/json' : 'application/x-www-form-urlencoded',
+        'Accept': 'application/json'
+      },
+      dataType: 'json',
+      success: function (res) {
+        callback(res.data);
+      },
+      fail: function (err) {
+        errFun(res);
+      }
+    })
+  },
   onLaunch: function() {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
@@ -45,8 +66,5 @@ App({
         }
       }
     })
-  },
-  globalData: {
-    userInfo: null
   }
 })

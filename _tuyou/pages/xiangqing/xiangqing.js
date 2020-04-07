@@ -1,6 +1,8 @@
 const app = getApp();
 Page({
   data: {
+    list: '',
+
     CustomBar: app.globalData.CustomBar,
     TabCur: 0,
   },

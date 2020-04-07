@@ -1,6 +1,7 @@
 const app = getApp();
 Page({
   data: {
+    list:[],
     CustomBar: app.globalData.CustomBar,
     TabCur: 0,
     cardCur: 0,
@@ -29,9 +30,25 @@ Page({
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
   },
+  xuanran() {
+    var that = this;
+    let url = app.globalData.URL + '/act/listCampusActivity';
+    let data = {
+      sid: '3b7b162c987f4583be9a7a7b340adbee'
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.list=res.data
+      console.log(this.list)
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
   onLoad() {
     this.towerSwiper('swiperList');
     // 初始化towerSwiper 传已有的数组名即可
+  },
+  onShow(){
+    this.xuanran();
   },
   DotStyle(e) {
     this.setData({
