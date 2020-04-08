@@ -39,7 +39,7 @@
         <view class="title-limit">{{item.actname}}</view>
           <view class="xiaoyuan-text-content text-gray"> {{item.fromtime}}</view>
           <view class="xiaoyuan-text-content text-gray"> {{item.address}}</view>
-          <button class="cu-btn round bg-red btn-width">参与活动</button>
+          <button class="cu-btn round bg-orange btn-width">参与活动</button>
         </view>
       </view>
     </view>

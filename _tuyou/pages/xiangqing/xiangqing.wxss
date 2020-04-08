@@ -145,13 +145,13 @@
    width: 80rpx;
    height: 45rpx;
    font-size: 28rpx;
-   border-radius: 20%;
+   border-radius: 33.5rpx;
 }
 .btn-hot{
    width: 50rpx;
    height: 30rpx;
-   font-size: 23rpx;
-   border-radius: 20%;
+   font-size: 20rpx;
+   border-radius: 33.5rpx;
 }
 .card-text-content{
 font-family: PingFang-SC-Medium;
