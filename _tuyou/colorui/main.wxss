@@ -1997,13 +1997,13 @@ button.icon.lg {
 .nav .cu-item {
 	height: 90rpx;
 	display: inline-block;
-	line-height: 90rpx;
+	line-height: 83rpx;
 	margin: 0 10rpx;
 	padding: 0 20rpx;
 }
 .nav .tab_item_img{
   width: 40rpx;
-  height: 35rpx;
+  height: 40rpx;
   margin: -80rpx 0rpx -40rpx 5rpx;
 }
 
