@@ -21,11 +21,41 @@
   </view>
 </view>
 <scroll-view scroll-x class="bg-blue nav text-center">
-  <view class="cu-item {{0==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="0"> 详情</view>
-  <view class="cu-item {{1==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="1"> 报名</view>
-  <view class="cu-item {{2==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="2"> 聊天</view>
-  <view class="cu-item {{4==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="3"> 视频</view>
-  <view class="cu-item {{5==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="4"> 投票</view>
+  <view class="cu-item {{0==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="0"> 详情
+    <view  class="tab_item_img">
+      <block wx:if="{{TabCur==0}}">
+        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image> 
+      </block>
+    </view>
+  </view>
+  <view class="cu-item {{1==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="1"> 报名
+    <view  class="tab_item_img">
+      <block wx:if="{{TabCur==1}}">
+        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image> 
+      </block>
+    </view>
+  </view>
+  <view class="cu-item {{2==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="2"> 聊天
+    <view  class="tab_item_img">
+      <block wx:if="{{TabCur==2}}">
+        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image> 
+      </block>
+    </view>
+  </view>
+  <view class="cu-item {{3==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="3"> 视频
+    <view  class="tab_item_img">
+      <block wx:if="{{TabCur==3}}">
+        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image> 
+      </block>
+    </view>
+  </view>
+  <view class="cu-item {{4==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="4"> 投票
+    <view  class="tab_item_img">
+      <block wx:if="{{TabCur==4}}">
+        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image> 
+      </block>
+    </view>
+  </view>
 </scroll-view>
 <!--
 创建者：陈雨豪
@@ -152,13 +182,13 @@
     <view class="cu-bar input foot padding">
       <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
       <view class="action">
-        <image class="img-icon" src="/img/icon_talk.png"></image>
+        <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png"></image>
       </view>
       <view class="action">
-        <image class="img-icon" src="/img/icon_fabulous.png"></image>
+        <image class="img-icon" mode="aspectFit" style="margin-right:10rpx" src="/img/icon_fabulous.png"></image>
       </view>
       <view class="action">
-        <image class="img-icon" src="/img/icon_share.png"></image>
+        <image class="img-icon" mode="aspectFit" src="/img/icon_share.png"></image>
       </view>
     </view>
   </view>
@@ -365,7 +395,7 @@
     创建者：朱娇龙
     创建时间：20200405
     创建内容：重新恢复视频界面和投票界面-->
-<block wx:if="{{TabCur==4}}">
+<block wx:if="{{TabCur==4}}"> 
   <view class="content-white">
     <view class="bg-blue">
       <view class=" sp-cu-bar cu-bar-radius bg-white  ">
@@ -425,13 +455,5 @@
       <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx;margin-top:200rpx;">提交</button>
     </view>
   </view>
-
-
-
-
-
-
-
-
 
 </block>

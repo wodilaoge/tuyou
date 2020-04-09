@@ -10,13 +10,49 @@
 </view>
 
 
-<scroll-view scroll-x class="bg-blue nav text-center">
-  <view class="cu-item {{0==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="0"> 校园</view>
-  <view class="cu-item {{1==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="1"> 运动</view>
-  <view class="cu-item {{2==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="2"> 文娱</view>
-  <view class="cu-item {{3==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="3"> 爱好</view>
-  <view class="cu-item {{4==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="4"> 视频</view>
-  <view class="cu-item {{5==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="5"> 新闻</view>
+<scroll-view scroll-x class="bg-blue nav text-center"> 
+  <view class="cu-item {{0==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="0"> 校园
+    <view  class="tab_item_img">
+      <block wx:if="{{TabCur==0}}">
+        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image> 
+      </block>
+    </view>
+  </view>
+  <view class="cu-item {{1==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="1"> 运动
+    <view  class="tab_item_img">
+      <block wx:if="{{TabCur==1}}">
+        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image> 
+      </block>
+    </view>
+  </view>
+  <view class="cu-item {{2==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="2"> 文娱
+    <view  class="tab_item_img">
+      <block wx:if="{{TabCur==2}}">
+        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image> 
+      </block>
+    </view>
+  </view>
+  <view class="cu-item {{3==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="3"> 爱好
+    <view  class="tab_item_img">
+      <block wx:if="{{TabCur==3}}">
+        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image> 
+      </block>
+    </view>
+  </view>
+  <view class="cu-item {{4==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="4"> 视频
+    <view  class="tab_item_img">
+      <block wx:if="{{TabCur==4}}">
+        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image> 
+      </block>
+    </view>
+  </view>
+  <view class="cu-item {{5==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="5"> 新闻
+    <view  class="tab_item_img">
+      <block wx:if="{{TabCur==5}}">
+        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image> 
+      </block>
+    </view>
+  </view>
   <view class="cu-item {{6==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="6">
     <text class="cuIcon-search"></text> 
   </view>

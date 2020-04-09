@@ -1,4 +1,4 @@
-const app = getApp();
+const app = getApp(); 
 Page({
   data: {
     ActList:[],
@@ -18,11 +18,11 @@ Page({
       type: 'image',
         url: '../../img/BasicsBg.png'
     }, {
-      id: 3,
+      id: 4,
       type: 'image',
         url: '../../img/componentBg.png'
     }],
-  },
+  }, 
   tabSelect(e) {
     console.log(e);
     this.setData({

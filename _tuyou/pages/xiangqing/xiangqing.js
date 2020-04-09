@@ -1,8 +1,6 @@
 const app = getApp();
 Page({
   data: {
-    list: '',
-
     CustomBar: app.globalData.CustomBar,
     TabCur: 0,
   },
@@ -10,7 +8,6 @@ Page({
     console.log(e);
     this.setData({
       TabCur: e.currentTarget.dataset.id,
-      scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
   },
   onLoad: function (options) {

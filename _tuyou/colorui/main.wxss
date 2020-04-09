@@ -2001,9 +2001,10 @@ button.icon.lg {
 	margin: 0 10rpx;
 	padding: 0 20rpx;
 }
-
-.nav .cu-item.cur {
-	border-bottom: 4rpx solid;
+.nav .tab_item_img{
+  width: 40rpx;
+  height: 35rpx;
+  margin: -80rpx 0rpx -40rpx 5rpx;
 }
 
 /* ==================
@@ -3855,7 +3856,8 @@ scroll-view.cu-steps .cu-item {
 }
 
 .text-bold {
-	font-weight: bolder;
+	font-size: 30rpx;
+  font-weight: bolder;
 }
 
 .text-center {

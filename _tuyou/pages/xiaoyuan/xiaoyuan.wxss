@@ -5,6 +5,7 @@
 .top-gradul-blue{
   background: linear-gradient(to bottom,#5454FF,rgba(255, 255, 255, 255));
 }
+
 .title-limit{
   font-size: 32rpx;
 	font-weight: 800;
