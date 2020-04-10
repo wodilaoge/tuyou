@@ -59,7 +59,7 @@
 </scroll-view>
 <block wx:if="{{TabCur==0}}">
   <view  class="top-gradul-blue">
-    <swiper class="card-swiper {{'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+    <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
         <swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
           <view class="swiper-item">
             <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
@@ -75,7 +75,7 @@
         <view class="title-limit">{{item.actname}}</view>
           <view class="xiaoyuan-text-content text-gray"> {{item.fromtime}}</view>
           <view class="xiaoyuan-text-content text-gray"> {{item.address}}</view>
-          <button class="cu-btn round bg-orange btn-width">参与活动</button>
+          <button class="cu-btn round bg-orange btn-width" bindtap="canyuhuodong">参与活动</button>
         </view>
       </view>
     </view>

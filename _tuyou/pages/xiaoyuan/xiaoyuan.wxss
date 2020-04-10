@@ -7,10 +7,10 @@
 }
 
 .title-limit{
-  font-size: 32rpx;
+  font-size: 36rpx;
 	font-weight: 800;
 	color: var(--black);
-	line-height: 1.5;
+	line-height: 44rpx;
   overflow:hidden;
   text-overflow:ellipsis;
   display:-webkit-box;
@@ -18,9 +18,11 @@
   -webkit-box-orient:vertical;
 }
 .xiaoyuan-text-content {
-  padding-top: 18rpx;
-	line-height: 0.05;
+  padding-top: 21rpx;
+	line-height: 23rpx;
+  font-size: 24rpx;
 }
 .btn-width{
-  width: 200rpx;
+  width: 168rpx;
+  height: 54rpx;
 }
