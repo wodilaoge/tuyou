@@ -62,6 +62,12 @@ Page({
       cardCur: e.detail.current
     })
   },
+  canyuhuodong(e) {//参与活动按钮跳转
+    console.log(e);
+    wx.navigateTo({
+      url: '../../pages/xiangqing/xiangqing',
+    })
+  },
   // towerSwiper
   // 初始化towerSwiper
   towerSwiper(name) {

@@ -2255,7 +2255,7 @@ button.icon.lg {
 }
 
 .cu-card.case .image image {
-	width: 100%;
+	width: 192rpx;
 }
 
 .cu-card.case .image .cu-tag {
@@ -2330,8 +2330,8 @@ button.icon.lg {
 }
 
 .cu-card.article>.cu-item .content>image {
-	width: 240rpx;
-	height: 12em;
+	width: 192rpx;
+	height: 240rpx;
 	margin-right: 20rpx;
 	border-radius: 6rpx;
 }
