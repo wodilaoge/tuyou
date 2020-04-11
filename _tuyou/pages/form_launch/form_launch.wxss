@@ -1,12 +1,12 @@
 .cu-form-group .title {
-  min-width: calc(3em + 20rpx);
+  min-width: calc(4em + 30rpx);
 }
 .icon{
-  position: absolute;
+  position: relative;
   width: 46rpx;
   height: 46rpx;
-  bottom: 64rpx;
-  right: 36rpx;
+  /* top: 64rpx;
+  left: 36rpx; */
 }
 .input{
    text-align: right

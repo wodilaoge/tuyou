@@ -19,12 +19,12 @@
   	<view class="cu-form-group">
 		<view class="title">活动名称</view>
 		<input class="input text-grey" placeholder="春季篮球赛"></input>
-    	<text class="cuIcon-write text-orange"></text>
+    	<image class="icon" src="../../img/write.png"></image>
 	</view>
     	<view class="cu-form-group">
 		<view class="title ">活动口号</view>
 		<input class="input text-grey" placeholder="争夺XX三分王！敢挑战吗?"></input>
-    	<text class="cuIcon-write text-orange"></text>
+    	<image class="icon" src="../../img/write.png"></image>
 	</view>
   	<view class="cu-form-group">
 		<view class="title">地址</view>
@@ -71,7 +71,7 @@
   	<view class="cu-form-group">
 		<view class="title">参与人数上限</view>
 		<input class="input text-grey" placeholder="50"></input>
-     	<text class="cuIcon-write text-orange"></text>
+     		<image class="icon" src="../../img/write.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">组建聊天群</view>
@@ -94,6 +94,6 @@
 </view>
 </form>
 <view class="flex margin-top2">
-  <button class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="toForm_modify" >补充信息</button>
-  <button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="commit"  data-target="Modal">立即提交</button>
+  <button class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="toForm_modify" >取消活动</button>
+  <button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="commit"  data-target="Modal">补充信息</button>
 </view>

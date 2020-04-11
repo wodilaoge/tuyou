@@ -3,7 +3,7 @@ Page({
   data: {
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
-    group:0,
+    group: 0,
     index: null,
     picker: ['个人报名', '团体报名'],
     picker2: ['匿名参赛', '实名参赛'],
@@ -57,7 +57,7 @@ Page({
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], //从相册选择
       success: (res) => {
-        if(t==1){
+        if (t == 1) {
           if (this.data.imgList.length != 0) {
             this.setData({
               imgList: this.data.imgList.concat(res.tempFilePaths)
@@ -117,7 +117,7 @@ Page({
   },
   ViewImage(e) {
     var t = e.currentTarget.dataset.id
-    if(t==1){
+    if (t == 1) {
       wx.previewImage({
         urls: this.data.imgList,
         current: e.currentTarget.dataset.url
@@ -150,14 +150,14 @@ Page({
   },
   DelImg(e) {
     var t = e.currentTarget.dataset.id
-    if(t==1){
+    if (t == 1) {
       wx.showModal({
         title: '确定',
         content: '确定要删除这张照片？',
         cancelText: '取消',
         confirmText: '确认删除',
         success: res => {
-          if (res.confirm&&t==1) {
+          if (res.confirm && t == 1) {
             this.data.imgList.splice(e.currentTarget.dataset.index, 1);
             this.setData({
               imgList: this.data.imgList
@@ -251,12 +251,12 @@ Page({
       modalName: e.currentTarget.dataset.target
     })
   },
-  addicon:function(e){
-    var t=this.data.group
+  addicon: function (e) {
+    var t = this.data.group
     console.log(t)
     t++
     this.setData({
-      group:t
+      group: t
     })
   }
 })

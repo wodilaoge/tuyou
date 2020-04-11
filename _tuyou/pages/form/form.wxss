@@ -1,0 +1,16 @@
+/* pages/form/form.wxss */
+.cu-form-group .title {
+  min-width: calc(4em + 30rpx);
+}
+.pic{
+  position: relative;
+  width: 186.5rpx;
+  height: 260rpx;
+  top: 1070rpx;
+  margin-bottom: 10rpx;
+}
+.bk{
+  background-color: white;
+  width: 100%;
+  height: 100%;
+}
