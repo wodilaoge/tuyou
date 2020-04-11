@@ -1,0 +1,22 @@
+.cu-form-group .title {
+  min-width: calc(3em + 20rpx);
+}
+.icon{
+  position: absolute;
+  width: 46rpx;
+  height: 46rpx;
+  bottom: 64rpx;
+  right: 36rpx;
+}
+.input{
+   text-align: right
+}
+.checkicon{
+  transform: scale(0.5,0.5);
+}
+.margin-top2{
+  margin-top: 20rpx;
+}
+.margin-top3{
+  margin-top: 10rpx;
+}
