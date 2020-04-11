@@ -402,56 +402,68 @@
         <view class="tp-tptitle-time">1 天 01: 02 </view>
       </view>
     </view>
-    <view class="tp-subtitle margin">选出心目中的最佳主持人</view>
-    <view class="flex margin-top-sm justify-between ">
+    <view class="tp-subtitle ">选出心目中的最佳主持人</view>
+    <view class="flex margin-top-lg justify-between ">
       <view class="flex">
-        <checkbox class="tp-checkbox round orange " checked></checkbox>
-        <view class="tp-name ">李钥钥</view>
-      </view>
-      <view class="tp-piaoshhu ">144票(52.8%)</view>
-    </view>
-    <view class="flex margin-top-sm justify-between">
-      <view class="flex">
-        <checkbox class="tp-checkbox round orange"></checkbox>
-        <view class="tp-name ">李钥</view>
-      </view>
-      <view class="tp-piaoshhu">144票(52.8%)</view>
-    </view>
-    <view class="flex margin-top-sm justify-between">
-      <view class="flex">
-        <checkbox class="tp-checkbox round orange"></checkbox>
-        <view class="tp-name ">李</view>
-      </view>
-      <view class="tp-piaoshhu">144票(52.8%)</view>
-    </view>
-    <view class="tp-subtitle margin">选出心目中的最佳主持人</view>
-    <view class="flex margin-top-sm justify-between">
-      <view class="flex">
-        <checkbox class="tp-checkbox round orange " checked></checkbox>
-        <view class="tp-name ">李钥钥</view>
-      </view>
-      <view class="tp-piaoshhu ">144票(52.8%)</view>
-    </view>
-    <view class="flex margin-top-sm justify-between">
-      <view class="flex">
-        <checkbox class="tp-checkbox round orange"></checkbox>
+        <view style="margin-left:27rpx;">
+          <checkbox class="tp-checkbox round orange " checked></checkbox>
+        </view>
         <view class="tp-name ">李钥</view>
       </view>
       <view class="tp-piaoshhu ">144票(52.8%)</view>
     </view>
-    <view class="flex margin-top-sm justify-between">
+   <view class="flex margin-top-lg justify-between ">
       <view class="flex">
-        <checkbox class="tp-checkbox round orange"></checkbox>
+        <view style="margin-left:27rpx;">
+          <checkbox class="tp-checkbox round orange " ></checkbox>
+        </view>
+        <view class="tp-name ">李钥钥</view>
+      </view>
+      <view class="tp-piaoshhu ">144票(52.8%)</view>
+    </view>
+    <view class="flex margin-top-lg justify-between ">
+      <view class="flex">
+        <view style="margin-left:27rpx;">
+          <checkbox class="tp-checkbox round orange " ></checkbox>
+        </view>
         <view class="tp-name ">李</view>
       </view>
-      <view class="tp-piaoshhu">144票(52.8%)</view>
+      <view class="tp-piaoshhu ">144票(52.8%)</view>
+    </view>
+    <view class="tp-subtitle ">选出心目中的最佳主持人</view>
+    <view class="flex margin-top-lg justify-between ">
+      <view class="flex">
+        <view style="margin-left:27rpx;">
+          <checkbox class="tp-checkbox round orange " checked></checkbox>
+        </view>
+        <view class="tp-name ">李钥</view>
+      </view>
+      <view class="tp-piaoshhu ">144票(52.8%)</view>
+    </view>
+    <view class="flex margin-top-lg justify-between ">
+      <view class="flex">
+        <view style="margin-left:27rpx;">
+          <checkbox class="tp-checkbox round orange " ></checkbox>
+        </view>
+        <view class="tp-name ">李</view>
+      </view>
+      <view class="tp-piaoshhu ">144票(52.8%)</view>
+    </view>
+   <view class="flex margin-top-lg justify-between ">
+      <view class="flex">
+        <view style="margin-left:27rpx;">
+          <checkbox class="tp-checkbox round orange " ></checkbox>
+        </view>
+        <view class="tp-name ">李钥钥</view>
+      </view>
+      <view class="tp-piaoshhu ">144票(52.8%)</view>
     </view>
     <view style="height:30rpx;"></view>
   </view>
 
   <view class="" style="height:400rpx;">
     <view class="flex justify-center">
-      <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx;margin-top:200rpx;">提交</button>
+      <button class="cu-btn round bg-orange" style="width:400rpx;height:80rpx;margin-top:200rpx;">提交</button>
     </view>
   </view>
 

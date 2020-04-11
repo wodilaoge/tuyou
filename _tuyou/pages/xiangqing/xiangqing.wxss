@@ -70,6 +70,11 @@
   font-weight: bold;
 }
 
+.cu-card.article>.cu-item {
+  margin-top: 68rpx;
+  padding-bottom: 30rpx;
+}
+
 .form-text {
   text-align: right;
   background-color: #f8f9fd;
@@ -261,10 +266,11 @@
   font-weight: normal;
   padding-top: 20rpx;
 }
-.fenge-bg{
-height: 20rpx;
-background-color: #F8F9FD;
-margin-top: 67rpx;
+
+.fenge-bg {
+  height: 20rpx;
+  background-color: #f8f9fd;
+  margin-top: 67rpx;
 }
 
 /* 视频 */
@@ -358,7 +364,8 @@ margin-top: 67rpx;
   font-size: 32rpx;
   color: #333;
   font-weight: bold;
-  margin-left: 24rpx;
+  padding-left: 24rpx;
+  padding-top: 53rpx;
 }
 
 .tp-tptitle-time {
@@ -368,6 +375,7 @@ margin-top: 67rpx;
   color: #fe6004;
   font-weight: normal;
   margin-left: 250rpx;
+  padding-top: 53rpx;
 }
 
 .tp-subtitle {
@@ -375,18 +383,18 @@ margin-top: 67rpx;
   font-family: PingFang SC;
   color: rgba(84, 84, 255, 1);
   padding-left: 24rpx;
+  padding-top: 46rpx;
 }
 
-.tp-checkbox {
-  zoom: 80%;
-  margin-left: 27rpx;
+checkbox.tp-checkbox {
+  zoom: 65%;
 }
-
 .tp-name {
   font-size: 32rpx;
   font-family: PingFang-SC-Medium;
   color: #333;
-  padding-left: 24rpx;
+  margin-left: 24rpx;
+  width: 100rpx;
 }
 
 .tp-piaoshhu {
