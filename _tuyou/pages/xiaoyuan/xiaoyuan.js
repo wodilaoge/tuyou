@@ -62,7 +62,7 @@ Page({
       cardCur: e.detail.current
     })
   },
-  canyuhuodong(e) {//参与活动按钮跳转
+  baomingcanjia(e) {//报名参加按钮跳转
     console.log(e);
     wx.navigateTo({
       url: '../../pages/xiangqing/xiangqing',
