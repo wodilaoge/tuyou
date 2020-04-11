@@ -3,6 +3,10 @@
  孔启超
 4.11
 内容：发布入口 -->
+<cu-custom bgColor="bg-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">发布</view>
+</cu-custom>
 <view class="bk">
   <view>
     <image class="pic" src="../../img/form/activity.png" bindtap="toact"></image>

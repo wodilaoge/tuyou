@@ -1,5 +1,5 @@
 .cu-form-group .title {
-  min-width: calc(3em + 20rpx);
+  min-width: calc(4em + 30rpx);
 }
 .icon{
   position: relative;
