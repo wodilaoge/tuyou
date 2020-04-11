@@ -1,0 +1,9 @@
+<!--pages/form/form.wxml-->
+<view class="bk">
+  <view>
+    <image class="pic" src="../../img/form/activity.png" bindtap="toact"></image>
+    <image class="pic" src="../../img/form/video.png" bindtap="tovideo"></image>
+    <image class="pic" src="../../img/form/picture.png" bindtap="topic"></image>
+    <image class="pic" src="../../img/form/team.png" bindtap="toteam"></image>
+  </view>
+</view>

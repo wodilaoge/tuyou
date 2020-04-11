@@ -18,3 +18,8 @@
 .margin-top3{
   margin-top: 10rpx;
 }
+.text{
+  position: relative;
+  margin-top: -90rpx;
+  margin-right: 30rpx;
+}

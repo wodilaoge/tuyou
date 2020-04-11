@@ -24,6 +24,11 @@
 			</view>
 		</picker>
 	</view>
+  	<view class="cu-form-group">
+		<view class="title">观赛人数上限</view>
+		<input class="input text-grey" placeholder="50"></input>
+     <image class="icon" src="../../img/write.png"></image>
+	</view>
   <view class="cu-bar bg-white margin-top">
 		<view class="action">
 			个性规则（图片或文字）
@@ -34,34 +39,37 @@
 	</view>
 	<view class="cu-form-group">
 		<view class="grid col-4 grid-square flex-sub">
-			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-id="1" data-url="{{imgList[index]}}">
 				<image src='{{imgList[index]}}' mode='aspectFill'></image>
-				<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+				<view class="cu-tag bg-red" catchtap="DelImg" data-id='1' data-index="{{index}}">
 					<text class="cuIcon-close"></text>
 				</view>
 			</view>
-			<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+			<view class="solids" bindtap="ChooseImage" data-id='1' wx:if="{{imgList.length<4}}">
 				<text class="cuIcon-cameraadd"></text>
 			</view>
-		</view>
+		</view>    
 	</view>
+  <!-- <view>
+     <image class="icon" src="../../img/write.png"></image>
+    </view>   -->
 <view class="cu-bar bg-white margin-top">
 		<view class="action">
 			奖励（图片或文字）
 		</view>
 		<view class="action">
-			{{imgList.length}}/4
+			{{imgList2.length}}/4
 		</view>
 	</view>
 	<view class="cu-form-group">
 		<view class="grid col-4 grid-square flex-sub">
-			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
-				<image src='{{imgList[index]}}' mode='aspectFill'></image>
-				<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+			<view class="bg-img" wx:for="{{imgList2}}" wx:key="{{index}}" bindtap="ViewImage"  data-id='2' data-url="{{imgList2[index]}}">
+				<image src='{{imgList2[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="DelImg" data-id='2' data-index="{{index}}">
 					<text class="cuIcon-close"></text>
 				</view>
 			</view>
-			<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+			<view class="solids" bindtap="ChooseImage" data-id='2' wx:if="{{imgList2.length<4}}">
 				<text class="cuIcon-cameraadd"></text>
 			</view>
 		</view>
@@ -71,18 +79,18 @@
 			LOGO
 		</view>
 		<view class="action">
-			{{imgList.length}}/4
+			{{imgList3.length}}/4
 		</view>
 	</view>
 	<view class="cu-form-group">
 		<view class="grid col-4 grid-square flex-sub">
-			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
-				<image src='{{imgList[index]}}' mode='aspectFill'></image>
-				<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+			<view class="bg-img" wx:for="{{imgList3}}" wx:key="{{index}}" bindtap="ViewImage"  data-id='3' data-url="{{imgList3[index]}}">
+				<image src='{{imgList3[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="DelImg" data-id='3' data-index="{{index}}">
 					<text class="cuIcon-close"></text>
 				</view>
 			</view>
-			<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+			<view class="solids" bindtap="ChooseImage" data-id='3' wx:if="{{imgList3.length<4}}">
 				<text class="cuIcon-cameraadd"></text>
 			</view>
 		</view>
@@ -92,18 +100,18 @@
 			轮播图
 		</view>
 		<view class="action">
-			{{imgList.length}}/4
+			{{imgList4.length}}/4
 		</view>
 	</view>
 	<view class="cu-form-group">
 		<view class="grid col-4 grid-square flex-sub">
-			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
-				<image src='{{imgList[index]}}' mode='aspectFill'></image>
-				<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+			<view class="bg-img" wx:for="{{imgList4}}" wx:key="{{index}}" bindtap="ViewImage" data-id='4'  data-url="{{imgList4[index]}}">
+				<image src='{{imgList4[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="DelImg" data-id='4'data-index="{{index}}">
 					<text class="cuIcon-close"></text>
 				</view>
 			</view>
-			<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+			<view class="solids" bindtap="ChooseImage" data-id='4' wx:if="{{imgList4.length<4}}">
 				<text class="cuIcon-cameraadd"></text>
 			</view>
 		</view>
@@ -113,20 +121,18 @@
 	  	赞助商
 		</view>
 		<view class="action">
-			{{imgList.length}}/4
+			{{imgList5.length}}/4
 		</view>
 	</view>
-  
-  
 	<view class="cu-form-group">
 		<view class="grid col-4 grid-square flex-sub">
-			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
-				<image src='{{imgList[index]}}' mode='aspectFill'></image>
-				<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+			<view class="bg-img" wx:for="{{imgList5}}" wx:key="{{index}}" bindtap="ViewImage"  data-id='5' data-url="{{imgList5[index]}}">
+				<image src='{{imgList5[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="DelImg" data-id='5' data-index="{{index}}">
 					<text class="cuIcon-close"></text>
 				</view>
 			</view>
-			<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+			<view class="solids" bindtap="ChooseImage" data-id='5' wx:if="{{imgList5.length<4}}">
 				<text class="cuIcon-cameraadd"></text>
 			</view>
 		</view>
@@ -134,9 +140,33 @@
  
 <view class="cu-form-group margin-top">
 		<view class="title">分组信息</view>
-    	<text class="cuIcon-write text-orange"></text>
+    <image class="icon" src="../../img/add.png" bindtap="addicon"></image>
 	</view>
-
+<view class="cu-form-group" wx:if="{{group>=1}}">
+		<view class="title">分组1</view>
+    <input class="input text-grey" placeholder="1队"></input>
+    <image class="icon" src="../../img/write.png"></image>
+	</view>
+<view class="cu-form-group" wx:if="{{group>=2}}">
+		<view class="title">分组2</view>
+    <input class="input text-grey" placeholder="2队"></input>
+    <image class="icon" src="../../img/write.png"></image>
+	</view>
+  <view class="cu-form-group" wx:if="{{group>=3}}">
+		<view class="title">分组3</view>
+    <input class="input text-grey" placeholder="3队"></input>
+    <image class="icon" src="../../img/write.png"></image>
+	</view>
+  <view class="cu-form-group" wx:if="{{group>=4}}">
+		<view class="title">分组4</view>
+    <input class="input text-grey" placeholder="4队"></input>
+    <image class="icon" src="../../img/write.png"></image>
+	</view>
+  <view class="cu-form-group" wx:if="{{group>=5}}">
+		<view class="title">分组5</view>
+    <input class="input text-grey" placeholder="5队"></input>
+    <image class="icon" src="../../img/write.png"></image>
+	</view>
 <view class="text-center margin-top3">
 	<checkbox checked class="blue checkicon" ></checkbox>
 	<text class="text-grey">我已阅读并同意</text>

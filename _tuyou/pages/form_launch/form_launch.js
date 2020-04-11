@@ -204,12 +204,12 @@ Page({
   },
   toForm_modify: function (e) {
     wx.navigateTo({
-      url: "../../pages/form_modify/form_modify"
+      url: "../../pages/form_activity/form_activity"
     })
   },
   commit:function(e){
-    this.setData({
-      modalName: e.currentTarget.dataset.target
+    wx.navigateTo({
+      url: "../../pages/form_activity/form_activity"
     })
     
   }
