@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/xiaoyuan/xiaoyuan",
     "pages/index/index",
+    "pages/xiaoyuan/xiaoyuan",
     "pages/xiangqing/xiangqing",
     "pages/baoming/baoming",
     "pages/baoming_ok/baoming_ok",
