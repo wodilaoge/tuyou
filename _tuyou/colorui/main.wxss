@@ -1999,12 +1999,16 @@ button.icon.lg {
 	display: inline-block;
 	line-height: 83rpx;
 	margin: 0 10rpx;
-	padding: 0 15rpx;
+	padding: 0 18rpx;
 }
 .nav .tab_item_img{
   width: 40rpx;
   height: 40rpx;
   margin: -80rpx 0rpx -40rpx 5rpx;
+}
+
+.nav .cu-item.cur {
+	border-bottom: 4rpx solid;
 }
 
 /* ==================
