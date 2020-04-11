@@ -1999,7 +1999,7 @@ button.icon.lg {
 	display: inline-block;
 	line-height: 83rpx;
 	margin: 0 10rpx;
-	padding: 0 20rpx;
+	padding: 0 15rpx;
 }
 .nav .tab_item_img{
   width: 40rpx;
@@ -2313,6 +2313,7 @@ button.icon.lg {
 }
 
 .cu-card.article>.cu-item {
+  margin-top: 68rpx;
 	padding-bottom: 30rpx;
 }
 
