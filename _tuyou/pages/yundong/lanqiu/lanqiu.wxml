@@ -1,0 +1,5 @@
+<view class="cu-bar bg-white solid-bottom">
+  <view class="cu-avatar round margin-left" style="background-image:url(/img/sanfensai.png);"></view>
+  <text style="margin-left:-100rpx">三分赛</text>
+  <text class=" title-time">1 天 01: 02 </text>
+</view>

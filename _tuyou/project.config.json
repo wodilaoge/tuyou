@@ -24,7 +24,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.4.2",
-	"appid": "wxe20f2472c9326c3e",
+	"appid": "wx4e4a310bf1cbe5ab",
 	"projectname": "tuyou",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -64,9 +64,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 1,
 					"name": "活动详情",
-					"pathName": "pages/xiangqing/xiangqing",
+					"pathName": "pages/xiaoyuanxiangqing/xiaoyuanxiangqing",
 					"query": "",
 					"scene": null
 				},
@@ -88,6 +88,20 @@
 					"id": -1,
 					"name": "查看回复",
 					"pathName": "pages/chakanhuifu/chakanhuifu",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "篮球",
+					"pathName": "pages/yundong/lanqiu/lanqiu",
 					"query": "",
 					"scene": null
 				}

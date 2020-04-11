@@ -118,13 +118,13 @@
     <!-- 评论 -->
     <view class="cu-bar bg-white solid-bottom huodong-margin-top">
       <view class='action'>
-        <text class='pinglun-title'></text> 评论108
+        <text class='cu-bar-title'>评论108</text>
       </view>
     </view>
 
     <view class="cu-card case no-card bg-white">
       <view class="cu-item shadow">
-        <view class="cu-list menu-avatar">
+        <view class="cu-list menu-avatar" bindtap="pinluntiaozhuan">
           <view class="cu-item">
             <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
             <view class="content flex-sub">
@@ -146,20 +146,13 @@
               </view>
             </view>
           </view>
-        </view>
-      </view>
-    </view>
 
-
-    <view class="cu-card case no-card bg-white">
-      <view class="cu-item shadow">
-        <view class="cu-list menu-avatar">
           <view class="cu-item">
             <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
             <view class="content flex-sub">
               <view class=" flex justify-between">
                 <view>
-                  <text class="card-text-grey">福嘉</text>
+                  <text class="card-text-grey">吴福嘉</text>
                 </view>
                 <view class="text-gray text-sm">
                   <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
@@ -178,7 +171,8 @@
       </view>
     </view>
   </view>
-  <view class="box">
+
+  <view>
     <view class="cu-bar input foot padding">
       <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
       <view class="action">
@@ -399,7 +393,7 @@
     <view class="bg-blue">
       <view class=" sp-cu-bar cu-bar-radius bg-white  ">
         <view class="tp-tptitle">本次活动在线投票</view>
-        <view class="tp-tptitle-time">1 天 01: 02 </view>
+        <view class="title-time">1 天 01: 02 </view> 
       </view>
     </view>
     <view class="tp-subtitle ">选出心目中的最佳主持人</view>
@@ -412,10 +406,10 @@
       </view>
       <view class="tp-piaoshhu ">144票(52.8%)</view>
     </view>
-   <view class="flex margin-top-lg justify-between ">
+    <view class="flex margin-top-lg justify-between ">
       <view class="flex">
         <view style="margin-left:27rpx;">
-          <checkbox class="tp-checkbox round orange " ></checkbox>
+          <checkbox class="tp-checkbox round orange "></checkbox>
         </view>
         <view class="tp-name ">李钥钥</view>
       </view>
@@ -424,7 +418,7 @@
     <view class="flex margin-top-lg justify-between ">
       <view class="flex">
         <view style="margin-left:27rpx;">
-          <checkbox class="tp-checkbox round orange " ></checkbox>
+          <checkbox class="tp-checkbox round orange "></checkbox>
         </view>
         <view class="tp-name ">李</view>
       </view>
@@ -443,16 +437,16 @@
     <view class="flex margin-top-lg justify-between ">
       <view class="flex">
         <view style="margin-left:27rpx;">
-          <checkbox class="tp-checkbox round orange " ></checkbox>
+          <checkbox class="tp-checkbox round orange "></checkbox>
         </view>
         <view class="tp-name ">李</view>
       </view>
       <view class="tp-piaoshhu ">144票(52.8%)</view>
     </view>
-   <view class="flex margin-top-lg justify-between ">
+    <view class="flex margin-top-lg justify-between ">
       <view class="flex">
         <view style="margin-left:27rpx;">
-          <checkbox class="tp-checkbox round orange " ></checkbox>
+          <checkbox class="tp-checkbox round orange "></checkbox>
         </view>
         <view class="tp-name ">李钥钥</view>
       </view>

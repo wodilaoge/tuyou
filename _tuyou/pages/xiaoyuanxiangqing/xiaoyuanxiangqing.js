@@ -10,6 +10,12 @@ Page({
       TabCur: e.currentTarget.dataset.id,
     })
   },
+  pinluntiaozhuan(e) {//评论跳转
+    console.log(e);
+    wx.navigateTo({
+      url: '../../pages/pinlunliebiao/pinlunliebiao',
+    })
+  },
   onLoad: function (options) {
 
   },

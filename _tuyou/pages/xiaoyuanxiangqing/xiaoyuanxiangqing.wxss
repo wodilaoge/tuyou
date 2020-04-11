@@ -1,3 +1,7 @@
+page{/*页面布局*/
+  padding-bottom: 150rpx;
+}
+
 .basis-30 {
   flex-basis: 30%;
   flex-wrap: wrap；;
@@ -205,9 +209,6 @@
   margin-top: 20rpx;
 }
 
-.huodong-margin-bottom {
-  margin-bottom: 120rpx;
-}
 
 .text-right {
   float: right;
@@ -365,18 +366,8 @@
   color: #333;
   font-weight: bold;
   padding-left: 24rpx;
-  padding-top: 53rpx;
 }
 
-.tp-tptitle-time {
-  width: 193rpx;
-  font-size: 32rpx;
-  font-family: PingFang-SC-Medium;
-  color: #fe6004;
-  font-weight: normal;
-  margin-left: 250rpx;
-  padding-top: 53rpx;
-}
 
 .tp-subtitle {
   font-size: 32rpx;

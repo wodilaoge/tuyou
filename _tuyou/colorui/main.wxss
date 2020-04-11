@@ -2,7 +2,7 @@
   ColorUi for MP-weixin  v2.1.4 | by 文晓港 2019年4月25日19:15:42
   仅供学习交流，如作它用所承受的法律责任一概与作者无关
   使用ColorUi开发扩展与插件时，请注明基于ColorUi开发
-  
+   
   （QQ交流群：240787041）
 */
 
@@ -82,7 +82,7 @@ textarea,
 label,
 navigator,
 image {
-	box-sizing: border-box;
+	box-sizing: border-box; 
 }
 
 .round {
@@ -92,7 +92,14 @@ image {
 .radius {
 	border-radius: 6rpx;
 }
-
+.title-time {
+  width: 193rpx;
+  font-size: 32rpx;
+  font-family: PingFang-SC-Medium;
+  color: #fe6004;
+  font-weight: normal;
+  margin-left: 250rpx;
+}
 /* ==================
           图片
  ==================== */
@@ -2317,7 +2324,7 @@ button.icon.lg {
 }
 
 .cu-card.article>.cu-item {
-  margin-top: 68rpx;
+  margin-top: 40rpx;
 	padding-bottom: 30rpx;
 }
 
