@@ -1,4 +1,8 @@
 <!--pages/form/form.wxml-->
+<!--
+ 孔启超
+4.11
+内容：发布入口 -->
 <view class="bk">
   <view>
     <image class="pic" src="../../img/form/activity.png" bindtap="toact"></image>
