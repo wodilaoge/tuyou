@@ -5,6 +5,7 @@ Page({
     CustomBar: app.globalData.CustomBar,
     group:0,
     index: null,
+    number: 50,
     picker: ['个人报名', '团体报名'],
     picker2: ['匿名参赛', '实名参赛'],
     picker3: ['观看无需报名', '匿名报名观看', '实名报名观看'],
@@ -258,5 +259,11 @@ Page({
     this.setData({
       group:t
     })
-  }
+  },
+  prevNum() {
+    this.setData({ number: this.data.number + 1 });
+  },
+  nextNum() {
+    this.setData({ number: this.data.number - 1 });
+  },
 })

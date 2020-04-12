@@ -5,6 +5,7 @@ Page({
     CustomBar: app.globalData.CustomBar,
     group: 0,
     index: null,
+    number: 50,
     picker: ['浙江工商大学', '浙江财经大学','浙江大学','浙江工业大学','浙江计量大学','杭州师范大学'],
     picker2: ['匿名参赛', '实名参赛'],
     picker3: ['观看无需报名', '匿名报名观看', '实名报名观看'],
@@ -258,5 +259,11 @@ Page({
     this.setData({
       group: t
     })
-  }
+  }, 
+  prevNum() {
+    this.setData({ number: this.data.number + 1 });
+  },
+  nextNum() {
+    this.setData({ number: this.data.number - 1 });
+  },
 })

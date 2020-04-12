@@ -26,8 +26,15 @@
 	</view>
   	<view class="cu-form-group">
 		<view class="title">观赛人数上限</view>
-		<input class="input text-grey" placeholder="50"></input>
-     <image class="icon" src="../../img/write.png"></image>
+		<!-- <input class="input text-grey" placeholder="50"></input> --> 
+     <view class="tui-gallery-list">
+        <view class="tui-number-group">
+          <button class="tui-number-cell" bindtap="nextNum">-</button>
+          <input class="tui-number-cell" type="number" value='{{number}}'></input>
+          <button class="tui-number-cell" bindtap="prevNum">+</button>
+        </view>
+      </view>
+      <!-- <image class="icon" src="../../img/write.png"></image> -->
 	</view>
   <view class="cu-bar bg-white margin-top">
 		<view class="action">
