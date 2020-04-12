@@ -24,7 +24,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.4.2",
-	"appid": "wx4e4a310bf1cbe5ab",
+	"appid": "wxe20f2472c9326c3e",
 	"projectname": "tuyou",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -102,6 +102,48 @@
 					"id": -1,
 					"name": "篮球",
 					"pathName": "pages/yundong/lanqiu/lanqiu",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 7,
+					"name": "发布总页面",
+					"pathName": "pages/form/form",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发布活动填初步信息",
+					"pathName": "pages/form_launch/form_launch",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发布活动填详细信息",
+					"pathName": "pages/form_activity/form_activity",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发布视频",
+					"pathName": "pages/form_video/form_video",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发布图文",
+					"pathName": "pages/form_picture/form_picture",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "组团队",
+					"pathName": "pages/form_team/form_team",
 					"query": "",
 					"scene": null
 				}
