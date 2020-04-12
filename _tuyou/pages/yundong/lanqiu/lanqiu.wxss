@@ -1,3 +1,22 @@
-.background{
-  background:var(--white);
+.background {
+  background: var(--white);
+}
+
+.title-text-content {
+  color: black;
+  overflow: hidden;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  font-weight: normal;
+}
+
+.yibaoming-text-content {
+  overflow: hidden;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  font-weight: 900;
+}
+
+.yibaoming-margin-top {
+  margin-top: 47rpx;
 }

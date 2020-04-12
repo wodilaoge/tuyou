@@ -8,6 +8,7 @@
 }
 .card-text-content-time{
 font-size: 20rpx;
+line-height: 20rpx;
 font-weight:normal;
 color: #999999;
 }

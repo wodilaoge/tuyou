@@ -1,21 +1,16 @@
-const app = getApp();
+// pages/my/my.js
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    CustomBar: app.globalData.CustomBar,
-    TabCur: 0,
+
   },
-  tabSelect(e) {
-    console.log(e);
-    this.setData({
-      TabCur: e.currentTarget.dataset.id,
-    })
-  },
-  pinluntiaozhuan(e) {//评论跳转
-    console.log(e);
-    wx.navigateTo({
-      url: '/pages/pinlunliebiao/pinlunliebiao',
-    })
-  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
   onLoad: function (options) {
 
   },

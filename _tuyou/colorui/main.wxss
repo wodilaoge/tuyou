@@ -969,6 +969,11 @@ button.icon.lg {
 	font-size: 2em;
 }
 
+.cu-avatar.my {
+	width: 72rpx;
+	height: 72rpx;
+}
+
 .cu-avatar.xl {
 	width: 128rpx;
 	height: 128rpx;
@@ -987,7 +992,7 @@ button.icon.lg {
 }
 
 .cu-avatar-group .cu-avatar {
-	margin-left: -30rpx;
+	margin-left: -40rpx;
 	border: 4rpx solid var(--ghostWhite);
 	vertical-align: middle;
 }
@@ -2394,6 +2399,11 @@ button.icon.lg {
 	padding: 0 30rpx;
 }
 
+.cu-card.article>.cu-item .yundong-content .btn {
+	width: 175rpx;
+	height: 65rpx;
+}
+
 .cu-card.article>.cu-item .yundong-content>image {
 	width: 180rpx;
 	height: 180rpx;
@@ -2423,12 +2433,6 @@ button.icon.lg {
 	color: black;
   overflow: hidden;
   font-size: 24rpx;
-}
-
-.cu-card.article>.cu-item .yundong-content .title-text-content {
-	color: black;
-  overflow: hidden;
-  font-size: 28rpx;
 }
 
 .cu-card.article>.cu-item .yundong-content .icon-size{
