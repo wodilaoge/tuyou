@@ -1,1 +1,3 @@
-/* pages/yundong/lanqiu/lanqiu.wxss */
+.background{
+  background:var(--white);
+}

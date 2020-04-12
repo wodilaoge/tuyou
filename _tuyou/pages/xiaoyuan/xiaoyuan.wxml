@@ -88,7 +88,7 @@
           <view class="title-limit">浙江工商大学20周年英雄联盟表演赛---------全明星5v5</view>
           <view class="xiaoyuan-text-content text-gray"> 2020.03.14 周六 19：30</view>
           <view class="xiaoyuan-text-content text-gray"> 杭州|浙工商剧院</view>
-          <button class="cu-btn round bg-grey btn-width">活动结束</button>
+          <button class="cu-btn round bg-orange btn-width">报名参加</button>
         </view>
       </view>
     </view>
