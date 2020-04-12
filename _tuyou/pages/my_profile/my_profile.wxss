@@ -3,10 +3,19 @@
 }
 .icon{
   position: relative;
-  width: 46rpx;
-  height: 46rpx;
+  width: 40rpx;
+  height: 40rpx;
   /* top: 64rpx;
   left: 36rpx; */
+  right: -11rpx;
+}
+.icon2{
+  position: fixed;
+  width: 40rpx;
+  height: 40rpx;
+  /* top: 64rpx;
+  left: 36rpx; */
+  right: 20rpx;
 }
 .input{
    text-align: right
@@ -19,4 +28,7 @@
 }
 .margin-top3{
   margin-top: 10rpx;
+}
+.margin-r{
+  right: 70rpx;
 }

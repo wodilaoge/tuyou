@@ -1,0 +1,20 @@
+.cu-form-group .title {
+  min-width: calc(4em + 30rpx);
+}
+.icon{
+  position: relative;
+  width: 40rpx;
+  height: 40rpx;
+  /* top: 64rpx;
+  left: 36rpx; */
+  right: -11rpx;
+}
+.margin-l{
+  position: fixed;
+  left: 50rpx；
+}
+.page {
+  height: 100Vh;
+  width: 100vw;
+}
+

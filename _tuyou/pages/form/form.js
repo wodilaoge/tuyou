@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+      isshow:0
   },
   toact: function(e){
     wx.navigateTo({
@@ -27,4 +27,9 @@ Page({
       url: "../../pages/form_team/form_team"
     })
   },
+  setshow:function(e){//使发布4个按钮显示
+    this.setData({
+      isshow: this.data.isshow=!this.data.isshow
+    })
+  }
 })
