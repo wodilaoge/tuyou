@@ -1,6 +1,5 @@
-<<<<<<< HEAD
+
 /* pages/my/my.wxss */
-=======
 .cu-form-group .title {
   min-width: calc(4em + 30rpx);
 }
@@ -21,4 +20,3 @@
   width: 100vw;
 }
 
->>>>>>> 9423b9618235a325958c4763e74aebb0add9992d
