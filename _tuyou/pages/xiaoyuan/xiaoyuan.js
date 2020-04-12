@@ -55,7 +55,7 @@ Page({
   xuanran() {
     let url = app.globalData.URL + '/act/listCampusActivity';
     let data = {
-      sid: '3b7b162c987f4583be9a7a7b340adbee'
+      sid: '076002'
     };
     app.wxRequest('GET', url, data, (res) => {
       console.log(res.data)

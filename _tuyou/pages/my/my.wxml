@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-<!--pages/my/my.wxml-->
-<text>pages/my/my.wxml</text>
-=======
 <cu-custom bgColor="bg-blue" isBack="{{true}}">
 	<view slot="backText">返回</view>
 	<view slot="content">个人资料</view>
@@ -25,4 +21,3 @@
   <text class="text-black margin-l"></text>关注
 </view>
 </view>
->>>>>>> 9423b9618235a325958c4763e74aebb0add9992d

@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-/* pages/my_profile/my_profile.wxss */
-=======
+
 .cu-form-group .title {
   min-width: calc(4em + 30rpx);
 }
@@ -35,4 +33,3 @@
 .margin-r{
   right: 70rpx;
 }
->>>>>>> 9423b9618235a325958c4763e74aebb0add9992d

@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-<!--pages/my_profile/my_profile.wxml-->
-<text>pages/my_profile/my_profile.wxml</text>
-=======
 <!-- 
 孔启超 2020.4.11 
 内容：个人资料
@@ -124,4 +120,3 @@
   </view>
 </view>
 </form>
->>>>>>> 9423b9618235a325958c4763e74aebb0add9992d
