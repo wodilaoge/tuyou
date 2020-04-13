@@ -10,32 +10,28 @@ Page({
     xiaoyuanSwiperList: [{
       id: 0,
       type: 'image',
-      url: '../../img/BasicsBg.png'
+      url: '/img/BasicsBg.png'
     }, {
       id: 1,
       type: 'image',
-      url: '../../img/componentBg.png',
+        url: '/img/BasicsBg.png',
     }, {
       id: 2,
       type: 'image',
-      url: '../../img/BasicsBg.png'
-    }, {
-      id: 3,
-      type: 'image',
-      url: '../../img/componentBg.png'
+      url: '/img/BasicsBg.png'
     }],
     yundongSwiperList: [{
       id: 0,
       type: 'image',
-      url: '../../img/yundong.png'
+      url: '/img/yundong.png'
     }, {
       id: 1,
       type: 'image',
-      url: '../../img/yundong.png',
+      url: '/img/yundong.png',
     }, {
       id: 2,
       type: 'image',
-      url: '../../img/yundong.png'
+      url: '/img/yundong.png'
     }],
   },
   tabSelect(e) {

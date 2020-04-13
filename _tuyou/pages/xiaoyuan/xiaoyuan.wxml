@@ -59,7 +59,7 @@
 </scroll-view>
 <block wx:if="{{TabCur==0}}">
   <view class="top-gradul-blue">
-    <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+    <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#FE538F">
       <swiper-item wx:for="{{xiaoyuanSwiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
         <view class="swiper-item">
           <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
@@ -70,7 +70,7 @@
   <view class="cu-card article no-card bg-white">
     <view class="cu-item shadow">
       <view class="content" wx:for="{{ActList}}" bindtap="baomingcanjia">
-        <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="aspectFill"></image>
+        <image src="/img/huodong1.png" mode="aspectFill"></image>
         <view class="desc">
           <view class="title-limit">{{item.actname}}</view>
           <view class="xiaoyuan-text-content text-gray"> {{item.fromtime}}</view>
@@ -83,11 +83,11 @@
   <view class="cu-card article no-card bg-white">
     <view class="cu-item shadow" bindtap="baomingcanjia">
       <view class="content">
-        <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg" mode="aspectFill"></image>
+        <image src="/img/huodong2.png" mode="aspectFill"></image>
         <view class="desc">
-          <view class="title-limit">浙江工商大学20周年英雄联盟表演赛---------全明星5v5</view>
+          <view class="title-limit">浙江工业大学大学生钢琴汇报 演出</view>
           <view class="xiaoyuan-text-content text-gray"> 2020.03.14 周六 19：30</view>
-          <view class="xiaoyuan-text-content text-gray"> 杭州|浙工商剧院</view>
+          <view class="xiaoyuan-text-content text-gray"> 杭州 | 浙工商剧院</view>
           <button class="cu-btn round bg-orange btn-width">报名参加</button>
         </view>
       </view>
@@ -95,11 +95,11 @@
 
     <view class="cu-item shadow">
       <view class="content">
-        <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg" mode="aspectFill"></image>
+        <image src="/img/huodong3.png" mode="aspectFill"></image>
         <view class="desc">
-          <view class="title-limit">活动2</view>
+          <view class="title-limit">浙江科技大学大学生吉它汇报 演出</view>
           <view class="xiaoyuan-text-content text-gray"> 2020.03.14 周六 19：30</view>
-          <view class="xiaoyuan-text-content text-gray"> 杭州|浙工商剧院</view>
+          <view class="xiaoyuan-text-content text-gray"> 杭州 | 浙江科技大学体育馆</view>
           <button class="cu-btn round bg-grey btn-width">活动结束</button>
         </view>
       </view>

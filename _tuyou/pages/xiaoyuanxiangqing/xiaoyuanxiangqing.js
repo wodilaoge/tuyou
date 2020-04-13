@@ -16,6 +16,12 @@ Page({
       url: '/pages/pinlunliebiao/pinlunliebiao',
     })
   },
+  chakanhuifu(e) {//评论跳转
+    console.log(e);
+    wx.navigateTo({
+      url: '/pages/chakanhuifu/chakanhuifu',
+    })
+  },
   onLoad: function (options) {
 
   },
