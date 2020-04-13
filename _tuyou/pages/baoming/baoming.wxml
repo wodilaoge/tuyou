@@ -80,7 +80,7 @@
               <view class=" flex justify-between">
                 <view>
                   <text class="card-text-grey">吴福嘉</text>
-                  <text class="box-hot text-center   bg-orange">热门</text>
+                   <button class="cu-btn btn-hot bg-orange disabled">热门</button>
                 </view>
                 <view class="text-gray text-sm">
                   <text class="cuIcon-appreciate margin-lr-xs line"></text> 1

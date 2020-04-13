@@ -90,6 +90,12 @@
 					"pathName": "pages/chakanhuifu/chakanhuifu",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "资料",
+					"pathName": "pages/ziliao/ziliao",
+					"scene": null
 				}
 			]
 		}

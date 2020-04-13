@@ -21,7 +21,13 @@
   font-size: 30rpx;
   padding-top: 20rpx;
 }
-
+.btn-hot {
+  width: 50rpx;
+  height: 30rpx;
+  font-size: 20rpx;
+  border-radius: 33.5rpx;
+  margin-left: 30rpx;
+}
 .cuIcon{
   font-family: PingFang-SC-Bold;
   font-size: 16pt;
