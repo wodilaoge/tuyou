@@ -18,14 +18,8 @@
     "pages/pinlunliebiao/pinlunliebiao",
     "pages/baoming/baoming",
     "pages/baoming_ok/baoming_ok",
-<<<<<<< HEAD
-    "pages/form_activity/form_activity",
-    "pages/form_launch/form_launch",
-    "pages/form_modify/form_modify",
-    "pages/ziliao/ziliao"
-=======
+    "pages/ziliao/ziliao",
     "pages/chakanhuifu/chakanhuifu"
->>>>>>> 7bbbbb51b76d0305f1bcf2875dd429170c909fe4
   ],
   "window": {
     "backgroundTextStyle": "light",
