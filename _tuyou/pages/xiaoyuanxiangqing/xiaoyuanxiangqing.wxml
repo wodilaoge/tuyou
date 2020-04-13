@@ -13,10 +13,10 @@
       <image src="/img/huodong1.png" mode="aspectFill"></image>
       <view class="desc">
         <view class="title-limit">
-          浙江大学三周年典演出季 ——歌舞表演
+          {{detail.actname}}
         </view>
-        <view class="xiangqing-text-content lines-white"> 2020.03.14 周六 19：30</view>
-        <view class="xiangqing-text-content lines-white"> 杭州 | 浙工商剧院</view>
+        <view class="xiangqing-text-content lines-white"> {{detail.fromtime}}</view>
+        <view class="xiangqing-text-content lines-white"> 杭州 | {{detail.venue}}</view>
         <button class="cu-btn round line-white btn-width" style="margin-top:20rpx;">关注</button>
       </view>
     </view>

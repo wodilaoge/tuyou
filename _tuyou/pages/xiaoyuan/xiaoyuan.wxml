@@ -69,7 +69,7 @@
   </view>
   <view class="cu-card article no-card bg-white">
     <view class="cu-item shadow">
-      <view class="content" wx:for="{{ActList}}" bindtap="baomingcanjia">
+      <view class="content" wx:for="{{ActList}}" bindtap="baomingcanjia" id="{{item.id}}">
         <image src="/img/huodong1.png" mode="aspectFill"></image>
         <view class="desc">
           <view class="title-limit">{{item.actname}}</view>
