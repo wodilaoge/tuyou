@@ -3,11 +3,18 @@ Page({
   data: {
     CustomBar: app.globalData.CustomBar,
     TabCur: 0,
+    paimingCur:0
   },
   tabSelect(e) {
     console.log(e);
     this.setData({
       TabCur: e.currentTarget.dataset.id,
+    })
+  },
+  paimingSelect(e) {
+    console.log(e);
+    this.setData({
+      paimingCur: e.currentTarget.dataset.id,
     })
   },
   pinluntiaozhuan(e) {//评论跳转

@@ -24,7 +24,8 @@ page {
 	--mauve: #9c26b0;
 	--pink: #e03997;
 	--brown: #a5673f;
-	--grey: #8799a3;
+	--grey: #A4A9BC;
+  --grey2:#D8D9DF;
 	--black: #333333;
 	--darkGray: #666666;
 	--gray: #aaaaaa;
@@ -3637,6 +3638,11 @@ scroll-view.cu-steps .cu-item {
 	color: var(--white);
 }
 
+.bg-grey2 {
+	background-color: var(--grey2);
+	color: var(--white);
+}
+
 .bg-gray {
 	background-color: #f0f0f0;
 	color: var(--black);
@@ -4065,7 +4071,7 @@ scroll-view.cu-steps .cu-item {
 .text-grey,
 .line-grey,
 .lines-grey {
-	color: var(--grey);
+	color: #999999;
 }
 
 .text-gray,

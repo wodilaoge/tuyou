@@ -1,4 +1,5 @@
-page{/*页面布局*/
+page {
+  /*页面布局*/
   padding-bottom: 150rpx;
 }
 
@@ -173,7 +174,6 @@ page{/*页面布局*/
   margin-top: 20rpx;
 }
 
-
 .text-right {
   float: right;
 }
@@ -332,7 +332,6 @@ page{/*页面布局*/
   padding-left: 24rpx;
 }
 
-
 .tp-subtitle {
   font-size: 32rpx;
   font-family: PingFang SC;
@@ -344,6 +343,7 @@ page{/*页面布局*/
 checkbox.tp-checkbox {
   zoom: 65%;
 }
+
 .tp-name {
   font-size: 32rpx;
   font-family: PingFang-SC-Medium;
@@ -357,4 +357,42 @@ checkbox.tp-checkbox {
   font-family: PingFang SC;
   color: rgba(153, 153, 153, 1);
   padding-right: 23rpx;
+}
+
+.btn-paiming-left {
+  width: 200rpx;
+  height: 56rpx;
+  font-size: 28rpx;
+  border-top-left-radius: 30rpx;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 30rpx;
+  border-bottom-right-radius: 0;
+}
+
+.btn-paiming-right {
+  width: 200rpx;
+  height: 56rpx;
+  font-size: 28rpx;
+  border-top-left-radius: 0;
+  border-top-right-radius: 30rpx;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 30rpx;
+}
+
+.paiming-center {
+  align-items: center;
+  display: flex;
+  
+}
+
+.icon-paiming {
+  width: 44rpx;
+  height: 48rpx;
+  margin-right: 46rpx;
+}
+
+.baoming-name {
+  font-size: 32rpx;
+  font-weight: normal;
+  line-height: 32rpx;
 }
