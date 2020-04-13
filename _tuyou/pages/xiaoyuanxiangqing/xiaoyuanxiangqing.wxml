@@ -357,12 +357,12 @@
     <view class="sp-hotpinglun margin-top-xs">热门评论</view>
     <view class="margin-top-xs sp-pinlun-content">
       <image class="sp-pinglun-avatar round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg"></image>
-      <view class="sp-pinglun-name margin-top-xs">吴福嘉</view>
+      <view class="sp-pinglun-name ">吴福嘉</view>
       <view class="sp-pinglun-neirong">活动看着很不错，我报名啦</view>
     </view>
     <view class="margin-top-xs sp-pinlun-content">
       <image class="sp-pinglun-avatar round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg"></image>
-      <view class="sp-pinglun-name margin-top-xs">吴福嘉</view>
+      <view class="sp-pinglun-name ">吴福嘉</view>
       <view class="sp-pinglun-neirong">活动看着很不错，我报名啦活动看着很不错，我报名啦活动看着很不错，我报名啦</view>
     </view>
     <view class="sp-quanbupinglun margin">全部评论(66)</view>

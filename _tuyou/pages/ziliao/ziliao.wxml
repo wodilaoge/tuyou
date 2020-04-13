@@ -1,0 +1,522 @@
+<!--pages/ziliao/ziliao.wxml-->
+<view class="ziliao-back">
+  <cu-custom isBack="{{true}}" bgColor="bg-blue">
+    <view slot="content"></view>
+  </cu-custom>
+  <view class="flex">
+    <text class="ziliao-name">吴福佳</text>
+    <button class="cu-btn round lines-white " style="width:100rpx;height:42rpx;margin-left:197rpx;">关注</button>
+  </view>
+  <view class="flex" style="margin-top:47rpx;">
+    <image class="ziliao-avatar" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg">
+    </image>
+    <view>
+      <view class="flex">
+        <text class="duiming">飞鹰队</text>
+        <view class="weizhi ">前锋</view>
+      </view>
+      <view class="flex">
+        <text class="ziliao-ziliao">19岁 | 1.85米 | 80公斤</text>
+      </view>
+    </view>
+  </view>
+  <view class="flex" style="margin-top:41rpx;">
+    <text class="ziliao-shuzi" style="margin-left:112rpx;">8</text>
+    <text class="ziliao-shuzi" style="margin-left:228rpx;">8</text>
+    <text class="ziliao-shuzi" style="margin-left:228rpx;">8</text>
+  </view>
+  <view class="flex" style="margin-top:26rpx;">
+    <text class="ziliao-fensi" style="margin-left:95rpx;">粉丝</text>
+    <text class="ziliao-fensi" style="margin-left:197rpx;">好友</text>
+    <text class="ziliao-fensi" style="margin-left:203rpx;">点赞</text>
+  </view>
+</view>
+
+<scroll-view scroll-x class="bg-white nav">
+  <view class="cu-item {{0==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="0" style="margin-left:73rpx;" hover-class="bianse"> 资料
+    <view class="tab_item_img">
+      <block wx:if="{{TabCur==0}}">
+        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
+      </block>
+    </view>
+  </view>
+  <view class="cu-item {{1==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="1" style="margin-left:120rpx;"> 排名
+    <view class="tab_item_img">
+      <block wx:if="{{TabCur==1}}">
+        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
+      </block>
+    </view>
+  </view>
+  <view class="cu-item {{2==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="2" style="margin-left:120rpx;"> 粉丝
+    <view class="tab_item_img">
+      <block wx:if="{{TabCur==2}}">
+        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
+      </block>
+    </view>
+  </view>
+  <view class="cu-item {{3==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="3" style="margin-left:120rpx;"> 咨询
+    <view class="tab_item_img">
+      <block wx:if="{{TabCur==3}}">
+        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
+      </block>
+    </view>
+  </view>
+</scroll-view>
+
+<block wx:if="{{TabCur==0}}">
+
+  <view style="margin-top:20rpx;background-color:white;">
+    <view class="ziliao-content justify-between" style="height:73rpx;">
+      <view class="ziliao-content1">性别</view>
+      <view class="ziliao-content2">男</view>
+    </view>
+  </view>
+  <view style="margin-top:2rpx;background-color:white;">
+    <view class="ziliao-content justify-between" style="height:73rpx;">
+      <view class="ziliao-content1">国籍</view>
+      <view class="ziliao-content2">中国</view>
+    </view>
+  </view>
+  <view style="margin-top:2rpx;background-color:white;">
+    <view class="ziliao-content justify-between" style="height:73rpx;">
+      <view class="ziliao-content1">出生年月</view>
+      <view class="ziliao-content2">2000.01.14</view>
+    </view>
+  </view>
+  <view style="margin-top:2rpx;background-color:white;">
+    <view class="ziliao-content justify-between" style="height:73rpx;">
+      <view class="ziliao-content1">院校</view>
+      <view class="ziliao-content2">浙江工商大学</view>
+    </view>
+  </view>
+  <view style="margin-top:2rpx;background-color:white;">
+    <view class="ziliao-content justify-between" style="height:73rpx;">
+      <view class="ziliao-content1">入学年份</view>
+      <view class="ziliao-content2">1018.9</view>
+    </view>
+  </view>
+  <view style="margin-top:2rpx;background-color:white;">
+    <view class="ziliao-content justify-between" style="height:73rpx;">
+      <view class="ziliao-content1">毕业年份</view>
+      <view class="ziliao-content2">2022.6</view>
+    </view>
+  </view>
+  <view style="margin-top:2rpx;background-color:white;">
+    <view class="ziliao-content justify-between" style="height:73rpx;">
+      <view class="ziliao-content1">国特长籍</view>
+      <view class="ziliao-content2">篮球、足球</view>
+    </view>
+  </view>
+  <view style="margin-top:2rpx;background-color:white;">
+    <view class="ziliao-content justify-between" style="height:73rpx;">
+      <view class="ziliao-content1">爱好</view>
+      <view class="ziliao-content2">篮球</view>
+    </view>
+  </view>
+
+
+  <view class="pinglun-title">评论108</view>
+
+  <view class="cu-card case no-card ">
+    <view class="cu-item shadow">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+          <view class="content flex-sub">
+            <view class=" flex justify-between">
+              <view>
+                <text class="card-text-grey" decode="{{true}}">吴福嘉&emsp;</text>
+                <button class="cu-btn btn-hot bg-orange disabled">热门</button>
+              </view>
+              <view class="text-gray text-sm">
+                <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+              </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15 6 回复
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="cu-card case no-card}">
+    <view class="cu-item shadow">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item ">
+          <view class="cu-avatar round lg " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);padding-top:0;"></view>
+          <view class="content flex-sub">
+            <view class=" flex justify-between">
+              <view>
+                <text class="card-text-grey">福嘉</text>
+              </view>
+              <view class="text-gray text-sm">
+                <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+              </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦,
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15 6 回复
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view style="height:270rpx;"></view>
+
+  <view class="box">
+    <view class="cu-bar input foot padding">
+      <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
+      <view class="action">
+        <image class="img-icon" src="/img/icon_talk.png"></image>
+      </view>
+      <view class="action">
+        <image class="img-icon" src="/img/icon_fabulous.png"></image>
+      </view>
+      <view class="action">
+        <image class="img-icon" src="/img/icon_share.png"></image>
+      </view>
+    </view>
+  </view>
+
+</block>
+
+
+
+
+<block wx:if="{{TabCur==1}}">
+  <view class="align-center " style="padding-top:28rpx;height:109rpx;">
+    <button class="cu-btn btn-paiming bg-orange " style="margin-left:24rpx;">篮球</button>
+    <button class="cu-btn lines-orange btn-paiming round ">足球</button>
+    <button class="cu-btn lines-orange btn-paiming round">厨艺</button>
+    <button class="cu-btn lines-orange btn-paiming round " style="width:151rpx;">英雄联盟</button>
+  </view>
+  <view class="bg-white" style="height:259rpx;">
+    <view class="flex" style="height:42rpx;">
+      <view class="paiming-paiming" style="margin-left:24rpx;width:120rpx;">排名</view>
+      <view class="paiming-paiming" style="margin-left:2rpx;width:180rpx;">得分</view>
+      <view class="paiming-paiming" style="margin-left:2rpx;width:180rpx;">日期</view>
+      <view class="paiming-paiming" style="margin-left:2rpx;width:216rpx;">活动名称</view>
+    </view>
+    <view class="flex" style="margin-top:44rpx;">
+      <text class="paiming-fenshu" style="padding-left:76rpx;">5</text>
+      <text class="paiming-fenshu" style="margin-left:129rpx;">80</text>
+      <text class="paiming-riqi" style="margin-left:97rpx;">2020/3/11</text>
+      <text class="paiming-huodong" style="margin-left:67rpx;margin-top:-13rpx;">XX篮球春季 赛第一轮</text>
+    </view>
+    <view class="flex" style="margin-top:50rpx;">
+      <text class="paiming-fenshu" style="padding-left:76rpx;">5</text>
+      <text class="paiming-fenshu" style="margin-left:129rpx;">80</text>
+      <text class="paiming-riqi" style="margin-left:97rpx;">2020/3/11</text>
+      <text class="paiming-huodong" style="margin-left:67rpx;margin-top:-13rpx;">XX篮球春季 赛第一轮</text>
+    </view>
+  </view>
+
+  <view class="pinglun-title">评论108</view>
+
+  <view class="cu-card case no-card ">
+    <view class="cu-item shadow">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+          <view class="content flex-sub">
+            <view class=" flex justify-between">
+              <view>
+                <text class="card-text-grey" decode="{{true}}">吴福嘉&emsp;</text>
+                <button class="cu-btn btn-hot bg-orange disabled">热门</button>
+              </view>
+              <view class="text-gray text-sm">
+                <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+              </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15 6 回复
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="cu-card case no-card}">
+    <view class="cu-item shadow">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item ">
+          <view class="cu-avatar round lg " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);padding-top:0;"></view>
+          <view class="content flex-sub">
+            <view class=" flex justify-between">
+              <view>
+                <text class="card-text-grey">福嘉</text>
+              </view>
+              <view class="text-gray text-sm">
+                <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+              </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦,
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15 6 回复
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view style="height:270rpx;"></view>
+
+  <view class="box">
+    <view class="cu-bar input foot padding">
+      <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
+      <view class="action">
+        <image class="img-icon" src="/img/icon_talk.png"></image>
+      </view>
+      <view class="action">
+        <image class="img-icon" src="/img/icon_fabulous.png"></image>
+      </view>
+      <view class="action">
+        <image class="img-icon" src="/img/icon_share.png"></image>
+      </view>
+    </view>
+  </view>
+
+
+
+</block>
+
+
+<block wx:if="{{TabCur==2}}">
+  <view style="height:20rpx;"></view>
+  <view class="flex bg-white align-center" style="height:134rpx;">
+    <image class="round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg" style="margin-left:24rpx;width:72rpx;height:72rpx;"></image>
+    <text class="fensi-name">李曼曼</text>
+  </view>
+  <view class="flex bg-white align-center" style="height:134rpx;">
+    <image class="round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg" style="margin-left:24rpx;width:72rpx;height:72rpx;"></image>
+    <text class="fensi-name">李曼曼</text>
+  </view>
+  <view class="flex bg-white align-center" style="height:134rpx;">
+    <image class="round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg" style="margin-left:24rpx;width:72rpx;height:72rpx;"></image>
+    <text class="fensi-name">李曼曼</text>
+  </view>
+  <view class="flex bg-white align-center" style="height:134rpx;">
+    <image class="round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg" style="margin-left:24rpx;width:72rpx;height:72rpx;"></image>
+    <text class="fensi-name">李曼曼</text>
+  </view>
+  <view class="flex bg-white align-center" style="height:134rpx;">
+    <image class="round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg" style="margin-left:24rpx;width:72rpx;height:72rpx;"></image>
+    <text class="fensi-name">李曼曼</text>
+  </view>
+  <view class="flex bg-white align-center" style="height:134rpx;">
+    <image class="round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg" style="margin-left:24rpx;width:72rpx;height:72rpx;"></image>
+    <text class="fensi-name">李曼曼</text>
+  </view>
+  <view class="flex bg-white align-center" style="height:134rpx;">
+    <image class="round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg" style="margin-left:24rpx;width:72rpx;height:72rpx;"></image>
+    <text class="fensi-name">李曼曼</text>
+  </view>
+
+  <view class="pinglun-title">评论108</view>
+
+  <view class="cu-card case no-card ">
+    <view class="cu-item shadow">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+          <view class="content flex-sub">
+            <view class=" flex justify-between">
+              <view>
+                <text class="card-text-grey" decode="{{true}}">吴福嘉&emsp;</text>
+                <button class="cu-btn btn-hot bg-orange disabled">热门</button>
+              </view>
+              <view class="text-gray text-sm">
+                <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+              </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15 6 回复
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="cu-card case no-card}">
+    <view class="cu-item shadow">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item ">
+          <view class="cu-avatar round lg " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);padding-top:0;"></view>
+          <view class="content flex-sub">
+            <view class=" flex justify-between">
+              <view>
+                <text class="card-text-grey">福嘉</text>
+              </view>
+              <view class="text-gray text-sm">
+                <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+              </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦,
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15 6 回复
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view style="height:270rpx;"></view>
+
+  <view class="box">
+    <view class="cu-bar input foot padding">
+      <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
+      <view class="action">
+        <image class="img-icon" src="/img/icon_talk.png"></image>
+      </view>
+      <view class="action">
+        <image class="img-icon" src="/img/icon_fabulous.png"></image>
+      </view>
+      <view class="action">
+        <image class="img-icon" src="/img/icon_share.png"></image>
+      </view>
+    </view>
+  </view>
+
+
+</block>
+
+<block wx:if="{{TabCur==3}}">
+  <view style="height:20rpx;"></view>
+  <view class="zixun-xinwen ">活动新闻</view>
+  <view class="bg-white flex" style="padding-left:24rpx;padding-top:37rpx;">
+    <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg" style="height: 160rpx;width:160rpx;"></image>
+    <view style="margin-left:34rpx;">
+      <view class="xinwen-neirong">詹姆斯成为史上最年轻34000分先生，湖人锁定季</view>
+      <view class="zixun-zuire">最热</view>
+      <view class="flex justify-between " style="margin-top: 22rpx;width:531rpx;">
+        <view class="zixun-time">2分钟前</view>
+        <view class="zixun-right">
+          <view class="cuIcon-attention lg text-gray">\t23456</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="bg-white flex" style="padding-left:24rpx;padding-top:55rpx;height:250rpx;">
+    <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg" style="height: 160rpx;width:160rpx;"></image>
+    <view style="margin-left:34rpx;">
+      <view class="xinwen-neirong">勇士7人上双险胜76人；乐福27分5 篮板助骑士险胜掘金</view>
+      <view class="flex justify-between " style="margin-top: 22rpx;width:531rpx;">
+        <view class="zixun-time">2分钟前</view>
+        <view class="zixun-right">
+          <view class="cuIcon-attention lg text-gray">\t23456</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="pinglun-title">评论108</view>
+
+  <view class="cu-card case no-card ">
+    <view class="cu-item shadow">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+          <view class="content flex-sub">
+            <view class=" flex justify-between">
+              <view>
+                <text class="card-text-grey" decode="{{true}}">吴福嘉&emsp;</text>
+                <button class="cu-btn btn-hot bg-orange disabled">热门</button>
+              </view>
+              <view class="text-gray text-sm">
+                <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+              </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15 6 回复
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="cu-card case no-card}">
+    <view class="cu-item shadow">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item ">
+          <view class="cu-avatar round lg " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);padding-top:0;"></view>
+          <view class="content flex-sub">
+            <view class=" flex justify-between">
+              <view>
+                <text class="card-text-grey">福嘉</text>
+              </view>
+              <view class="text-gray text-sm">
+                <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+              </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦,
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15 6 回复
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view style="height:270rpx;"></view>
+
+  <view class="box">
+    <view class="cu-bar input foot padding">
+      <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
+      <view class="action">
+        <image class="img-icon" src="/img/icon_talk.png"></image>
+      </view>
+      <view class="action">
+        <image class="img-icon" src="/img/icon_fabulous.png"></image>
+      </view>
+      <view class="action">
+        <image class="img-icon" src="/img/icon_share.png"></image>
+      </view>
+    </view>
+  </view>
+
+
+</block>
