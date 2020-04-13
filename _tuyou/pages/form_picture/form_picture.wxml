@@ -3,101 +3,134 @@
    内容：发图文
  -->
 <cu-custom bgColor="bg-blue" isBack="{{true}}">
-	<view slot="backText">返回</view>
-	<view slot="content">发图文</view>
+  <view slot="backText">返回</view>
+  <view slot="content">发图文</view>
 </cu-custom>
 <form>
-    <view class="cu-form-group margin-top">
-		<view class="title">活动方式</view>
-		<picker bindchange="PickerChange" value="{{index}}" range="{{picker4}}">
-			<view class="picker text-blue">
-				{{index?picker[index]:'篮球'}}
-			</view>
-		</picker>
-	</view>
-  	<view class="cu-form-group margin-top">
-		<view class="title">标题</view>
-		<input class="input text-grey" placeholder="春季篮球赛"></input>
-    	<image class="icon" src="../../img/write.png"></image>
-	</view>
+  <view class="cu-form-group margin-top">
+    <view class="title">活动方式</view>
+    <picker bindchange="PickerChange" value="{{index}}" range="{{picker4}}">
+      <view class="picker text-blue">
+        {{index?picker[index]:'篮球'}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group margin-top">
+    <view class="title">标题</view>
+    <input class="input text-grey" placeholder="春季篮球赛"></input>
+    <image class="icon" src="../../img/write.png"></image>
+  </view>
   <view class="cu-form-group ">
     <text class="text">正文</text>
-		<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="春季篮球赛"></textarea>
-	</view>
-<view class="cu-form-group margin-top" >
-		<view class="title">笔名</view>
-		<input class="input text-grey" placeholder="胡小心"></input>
-    	<image class="icon" src="../../img/write.png"></image>
-	</view>
+    <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="春季篮球赛"></textarea>
+  </view>
+  <view class="cu-form-group margin-top">
+    <view class="title">笔名</view>
+    <input class="input text-grey" placeholder="胡小心"></input>
+    <image class="icon" src="../../img/write.png"></image>
+  </view>
   <view class="cu-bar bg-white margin-top">
-		<view class="action">
-			照片1
-		</view>
-		<view class="action">
-			{{imgList.length}}/4
-		</view>
-	</view>
-	<view class="cu-form-group">
-		<view class="grid col-4 grid-square flex-sub">
-			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-id="1" data-url="{{imgList[index]}}">
-				<image src='{{imgList[index]}}' mode='aspectFill'></image>
-				<view class="cu-tag bg-red" catchtap="DelImg" data-id='1' data-index="{{index}}">
-					<text class="cuIcon-close"></text>
-				</view>
-			</view>
-			<view class="solids" bindtap="ChooseImage" data-id='1' wx:if="{{imgList.length<4}}">
-				<text class="cuIcon-cameraadd"></text>
-			</view>
-		</view>    
-	</view>
-<view class="cu-bar bg-white margin-top">
-		<view class="action">
-		照片2
-		</view>
-		<view class="action">
-			{{imgList2.length}}/4
-		</view>
-	</view>
-	<view class="cu-form-group">
-		<view class="grid col-4 grid-square flex-sub">
-			<view class="bg-img" wx:for="{{imgList2}}" wx:key="{{index}}" bindtap="ViewImage"  data-id='2' data-url="{{imgList2[index]}}">
-				<image src='{{imgList2[index]}}' mode='aspectFill'></image>
-				<view class="cu-tag bg-red" catchtap="DelImg" data-id='2' data-index="{{index}}">
-					<text class="cuIcon-close"></text>
-				</view>
-			</view>
-			<view class="solids" bindtap="ChooseImage" data-id='2' wx:if="{{imgList2.length<4}}">
-				<text class="cuIcon-cameraadd"></text>
-			</view>
-		</view>
-	</view>
-<view class="cu-bar bg-white margin-top">
-		<view class="action">
-			照片3
-		</view>
-		<view class="action">
-			{{imgList3.length}}/4
-		</view>
-	</view>
-	<view class="cu-form-group">
-		<view class="grid col-4 grid-square flex-sub">
-			<view class="bg-img" wx:for="{{imgList3}}" wx:key="{{index}}" bindtap="ViewImage"  data-id='3' data-url="{{imgList3[index]}}">
-				<image src='{{imgList3[index]}}' mode='aspectFill'></image>
-				<view class="cu-tag bg-red" catchtap="DelImg" data-id='3' data-index="{{index}}">
-					<text class="cuIcon-close"></text>
-				</view>
-			</view>
-			<view class="solids" bindtap="ChooseImage" data-id='3' wx:if="{{imgList3.length<4}}">
-				<text class="cuIcon-cameraadd"></text>
-			</view>
-		</view>
-	</view>
-<view class="text-center margin-top3">
-	<checkbox checked class="blue checkicon" ></checkbox>
-	<text class="text-grey">我已阅读并同意</text>
-	<text class="text-blue">《同友活动申明》</text>
-</view>
+    <view class="action">
+      照片1
+    </view>
+    <view class="action">
+      {{imgList.length}}/9
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-id="1" data-url="{{imgList[index]}}">
+        <image src='{{imgList[index]}}' mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImg" data-id='1' data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" bindtap="ChooseImage" data-id='1' wx:if="{{imgList.length<4}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+  <view class="cu-form-group2">
+    <image class="icon" src="../../img/write.png"></image>
+    <input class="text-grey input" placeholder="" type='text' name="name" bindinput="name"></input>
+  </view>
+  <view class="container">
+    <!-- 分割线 -->
+    <view class="divLine">
+    </view>
+    <!-- 留白 -->
+    <view class="white"></view>
+  </view>
+  <view class="cu-bar bg-white margin-top">
+    <view class="action">
+      照片2
+    </view>
+    <view class="action">
+      {{imgList2.length}}/9
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{imgList2}}" wx:key="{{index}}" bindtap="ViewImage" data-id='2' data-url="{{imgList2[index]}}">
+        <image src='{{imgList2[index]}}' mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImg" data-id='2' data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" bindtap="ChooseImage" data-id='2' wx:if="{{imgList2.length<4}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+  <view class="cu-form-group2">
+    <image class="icon" src="../../img/write.png"></image>
+    <input class="text-grey input" placeholder="" type='text' name="name" bindinput="name"></input>
+  </view>
+  <view class="container">
+    <!-- 分割线 -->
+    <view class="divLine">
+    </view>
+    <!-- 留白 -->
+    <view class="white"></view>
+  </view>
+  <view class="cu-bar bg-white margin-top">
+    <view class="action">
+      照片3
+    </view>
+    <view class="action">
+      {{imgList3.length}}/9
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{imgList3}}" wx:key="{{index}}" bindtap="ViewImage" data-id='3' data-url="{{imgList3[index]}}">
+        <image src='{{imgList3[index]}}' mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImg" data-id='3' data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" bindtap="ChooseImage" data-id='3' wx:if="{{imgList3.length<4}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+  <view class="cu-form-group2">
+    <image class="icon" src="../../img/write.png"></image>
+    <input class="text-grey input" placeholder="" type='text' name="name" bindinput="name"></input>
+  </view>
+  <view class="container">
+    <!-- 分割线 -->
+    <view class="divLine">
+    </view>
+    <!-- 留白 -->
+    <view class="white"></view>
+  </view>
+  <view class="text-center margin-top3">
+    <checkbox checked class="blue checkicon"></checkbox>
+    <text class="text-grey">我已阅读并同意</text>
+    <text class="text-blue">《同友活动申明》</text>
+  </view>
 </form>
 <view class="padding flex flex-direction justify-between ">
- <button class="cu-btn bg-orange margin-tb-sm lg round" bindtap="commit"  data-target="Modal">提交</button>
+  <button class="cu-btn bg-orange margin-tb-sm lg round" bindtap="commit" data-target="Modal">提交</button>
 </view>
