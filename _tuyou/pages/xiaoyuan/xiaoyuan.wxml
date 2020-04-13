@@ -70,7 +70,7 @@
   <view class="cu-card article no-card bg-white">
     <view class="cu-item shadow">
       <view class="content" wx:for="{{ActList}}" bindtap="baomingcanjia">
-        <image src="/img/huodong1.png" mode="aspectFill"></image>
+        <image src="{{item.logo}}" mode="aspectFill"></image>
         <view class="desc">
           <view class="title-limit">{{item.actname}}</view>
           <view class="xiaoyuan-text-content text-gray"> {{item.fromtime}}</view>
