@@ -782,7 +782,7 @@
         <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
       </view>
       <view style="margin-left:1rpx;width:180rpx;height:42rpx;">
-        <input class="weui-input" style="margin-left:64rpx;" auto-focus placeholder="1" />
+        <input class="weui-input" style="margin-left:64rpx;" placeholder="1" />
       </view>
       <view style="margin-left:1rpx;width:180rpx;height:42rpx;">
         <input class="weui-input" style="margin-left:90rpx;" placeholder="90" />
