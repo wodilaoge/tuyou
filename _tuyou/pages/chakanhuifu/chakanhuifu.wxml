@@ -79,3 +79,9 @@
       </view>
     </view>
 </view>
+<view>
+  <view class="cu-bar input foot padding">
+    <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
+    <button class="cu-btn bg-orange shadow-blur padding">发送</button>
+  </view>
+</view>
