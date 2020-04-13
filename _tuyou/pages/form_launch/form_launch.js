@@ -4,17 +4,17 @@ Page({
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
     index: null,
-    name:'',
+    name: '',
     picker: ['个人报名', '团体报名'],
-    picker2:['匿名参赛','实名参赛'],
-    picker3: ['观看无需报名','匿名报名观看','实名报名观看'],
-    picker4: ['篮球', '足球', '排球','羽毛球','乒乓球','其他'],
+    picker2: ['匿名参赛', '实名参赛'],
+    picker3: ['观看无需报名', '匿名报名观看', '实名报名观看'],
+    picker4: ['篮球', '足球', '排球', '羽毛球', '乒乓球', '其他'],
     multiIndex: [0, 0, 0],
     time: '12:01',
     date: '2020.4.25 16:00',
-    date2:'2020.8.25 16:00',
+    date2: '2020.8.25 16:00',
     region: ['浙江省', '杭州市', '浙江大学'],
-    place:['浙江大学篮球场'],
+    place: ['浙江大学篮球场'],
     imgList: [],
     modalName: null,
     textareaAValue: '',
@@ -96,9 +96,9 @@ Page({
       textareaBValue: e.detail.value
     })
   },
-  name(e){
+  name(e) {
     this.setData({
-      name:e.detail.value
+      name: e.detail.value
     })
   },
   cancel: function (e) {
@@ -106,10 +106,10 @@ Page({
       url: "../../pages/form/form"
     })
   },
-  commit:function(e){
+  commit: function (e) {
     console.log(e.detail.value)
-    // wx.navigateTo({
-    //   url: "../../pages/form_activity/form_activity"
-    // })
+    wx.navigateTo({
+    url: "../../pages/form_activity/form_activity"
+    })
   }
 })

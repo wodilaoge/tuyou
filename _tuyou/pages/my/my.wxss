@@ -1,5 +1,4 @@
 
-/* pages/my/my.wxss */
 .cu-form-group .title {
   min-width: calc(4em + 30rpx);
 }
@@ -19,4 +18,3 @@
   height: 100Vh;
   width: 100vw;
 }
-
