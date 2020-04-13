@@ -7,15 +7,17 @@
     <view slot="content">活动详情</view>
   </cu-custom>
 </view>
-<view class="cu-card article no-card bg-blue" style="margin-top:-50rpx;">
+<view class="cu-card article no-card bg-blue" style="margin-top:-40rpx;">
   <view class="cu-item">
-    <view class="content">
+    <view class="xiangqing-content">
       <image src="/img/huodong1.png" mode="aspectFill"></image>
       <view class="desc">
-        <view class="title-limit">浙江工商大学20周年英雄联盟表演赛---------全明星5v5</view>
+        <view class="title-limit">
+          浙江大学三周年典演出季 ——歌舞表演
+        </view>
         <view class="xiangqing-text-content lines-white"> 2020.03.14 周六 19：30</view>
-        <view class="xiangqing-text-content lines-white"> 杭州|浙工商剧院</view>
-        <button class="cu-btn round lines-white btn-width margin-top">关注</button>
+        <view class="xiangqing-text-content lines-white"> 杭州 | 浙工商剧院</view>
+        <button class="cu-btn round line-white btn-width" style="margin-top:20rpx;">关注</button>
       </view>
     </view>
   </view>

@@ -7,34 +7,6 @@ page{/*页面布局*/
   flex-wrap: wrap；;
 }
 
-.btn-width {
-  width: 134rpx;
-  font-size: 28rpx;
-}
-
-.title-limit {
-  font-size: 30rpx;
-  font-weight: 800;
-  line-height: 2;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-
-
-
-.xiangqing-text-content {
-  font-size: 30rpx;
-  padding-top: 20rpx;
-}
-
-.cuIcon {
-  font-family: PingFang-SC-Bold;
-  font-size: 16pt;
-}
-
 .text-border-radius {
   border-radius: 30rpx;
 }
