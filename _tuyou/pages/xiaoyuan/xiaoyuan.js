@@ -54,7 +54,6 @@ Page({
       sid: '076002'
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res.data)
       this.setData({
         ActList: res.data
       })
@@ -80,10 +79,9 @@ Page({
       cardCur: e.detail.current
     })
   },
-  baomingcanjia(e) { //报名参加按钮跳转
-    console.log(e);
+  baomingcanjia(e) { //报名参加按钮跳转 带着活动id跳转
     wx.navigateTo({
-      url: '../../pages/xiaoyuanxiangqing/xiaoyuanxiangqing',
+      url: '../../pages/xiaoyuanxiangqing/xiaoyuanxiangqing?categoryId=' + e.currentTarget.id,
     })
   },
   // towerSwiper
