@@ -1,0 +1,13 @@
+<!--pages/form_address/form_address.wxml-->
+<view class="content" wx:for="{{city}}">
+  <view class="desc">
+    <view class="xiaoyuan-text-content text-gray"> {{item.code}}</view>
+    <view class="xiaoyuan-text-content text-gray"> {{item.name}}</view>
+  </view>
+</view>
+<view class="content" wx:for="{{provinceList}}">
+  <view class="desc">
+    <view class="xiaoyuan-text-content text-gray"> {{item.code}}</view>
+    <view class="xiaoyuan-text-content text-gray"> {{item.name}}</view>
+  </view>
+</view>
