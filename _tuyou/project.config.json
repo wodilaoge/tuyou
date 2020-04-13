@@ -130,6 +130,20 @@
 					"query": "",
 >>>>>>> 7bbbbb51b76d0305f1bcf2875dd429170c909fe4
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "校园",
+					"pathName": "pages/xiaoyuan/xiaoyuan",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "地址选择",
+					"pathName": "pages/form_address/form_address",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

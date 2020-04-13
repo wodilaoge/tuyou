@@ -5,6 +5,9 @@ Page({
     CustomBar: app.globalData.CustomBar,
     index: null,
     name: '',
+    provinceList:[],
+    city:[],
+    ActList:[],
     picker: ['个人报名', '团体报名'],
     picker2: ['匿名参赛', '实名参赛'],
     picker3: ['观看无需报名', '匿名报名观看', '实名报名观看'],
@@ -20,6 +23,7 @@ Page({
     textareaAValue: '',
     textareaBValue: ''
   },
+
   PickerChange(e) {
     console.log(e);
     this.setData({
@@ -111,5 +115,35 @@ Page({
     wx.navigateTo({
     url: "../../pages/form_activity/form_activity"
     })
-  }
+  },
+  city() {
+    let url = app.globalData.URL + '/config/getCity';
+    let data = {
+      pid: '00333'
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      // console.log(res.data)
+      this.setData({
+        city: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  province() {
+    let url = app.globalData.URL + '/config/getProvince';
+    let data = '';
+    app.wxRequest('GET', url, data, (res) => {
+      // console.log(res.data)
+      this.setData({
+        provinceList: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  onLoad(){
+    this.city();
+    this.province();
+  },
 })
