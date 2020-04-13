@@ -3,57 +3,13 @@ Page({
   data: {
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
+    group:0,
     index: null,
+    number: 50,
     picker: ['个人报名', '团体报名'],
     picker2: ['匿名参赛', '实名参赛'],
     picker3: ['观看无需报名', '匿名报名观看', '实名报名观看'],
     picker4: ['篮球', '足球', '排球', '羽毛球', '乒乓球', '其他'],
-    multiArray: [
-      ['无脊柱动物', '脊柱动物'],
-      ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物'],
-      ['猪肉绦虫', '吸血虫']
-    ],
-    objectMultiArray: [
-      [{
-        id: 0,
-        name: '无脊柱动物'
-      },
-      {
-        id: 1,
-        name: '脊柱动物'
-      }
-      ],
-      [{
-        id: 0,
-        name: '扁性动物'
-      },
-      {
-        id: 1,
-        name: '线形动物'
-      },
-      {
-        id: 2,
-        name: '环节动物'
-      },
-      {
-        id: 3,
-        name: '软体动物'
-      },
-      {
-        id: 3,
-        name: '节肢动物'
-      }
-      ],
-      [{
-        id: 0,
-        name: '猪肉绦虫'
-      },
-      {
-        id: 1,
-        name: '吸血虫'
-      }
-      ]
-    ],
     multiIndex: [0, 0, 0],
     time: '12:01',
     date: '2020.4.25 16:00',
@@ -61,6 +17,10 @@ Page({
     region: ['浙江省', '杭州市', '浙江大学'],
     place: ['浙江大学篮球场'],
     imgList: [],
+    imgList2: [],
+    imgList3: [],
+    imgList4: [],
+    imgList5: [],
     modalName: null,
     textareaAValue: '',
     textareaBValue: ''
@@ -75,67 +35,6 @@ Page({
     this.setData({
       multiIndex: e.detail.value
     })
-  },
-  MultiColumnChange(e) {
-    let data = {
-      multiArray: this.data.multiArray,
-      multiIndex: this.data.multiIndex
-    };
-    data.multiIndex[e.detail.column] = e.detail.value;
-    switch (e.detail.column) {
-      case 0:
-        switch (data.multiIndex[0]) {
-          case 0:
-            data.multiArray[1] = ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物'];
-            data.multiArray[2] = ['猪肉绦虫', '吸血虫'];
-            break;
-          case 1:
-            data.multiArray[1] = ['鱼', '两栖动物', '爬行动物'];
-            data.multiArray[2] = ['鲫鱼', '带鱼'];
-            break;
-        }
-        data.multiIndex[1] = 0;
-        data.multiIndex[2] = 0;
-        break;
-      case 1:
-        switch (data.multiIndex[0]) {
-          case 0:
-            switch (data.multiIndex[1]) {
-              case 0:
-                data.multiArray[2] = ['猪肉绦虫', '吸血虫'];
-                break;
-              case 1:
-                data.multiArray[2] = ['蛔虫'];
-                break;
-              case 2:
-                data.multiArray[2] = ['蚂蚁', '蚂蟥'];
-                break;
-              case 3:
-                data.multiArray[2] = ['河蚌', '蜗牛', '蛞蝓'];
-                break;
-              case 4:
-                data.multiArray[2] = ['昆虫', '甲壳动物', '蛛形动物', '多足动物'];
-                break;
-            }
-            break;
-          case 1:
-            switch (data.multiIndex[1]) {
-              case 0:
-                data.multiArray[2] = ['鲫鱼', '带鱼'];
-                break;
-              case 1:
-                data.multiArray[2] = ['青蛙', '娃娃鱼'];
-                break;
-              case 2:
-                data.multiArray[2] = ['蜥蜴', '龟', '壁虎'];
-                break;
-            }
-            break;
-        }
-        data.multiIndex[2] = 0;
-        break;
-    }
-    this.setData(data);
   },
   TimeChange(e) {
     this.setData({
@@ -152,45 +51,186 @@ Page({
       region: e.detail.value
     })
   },
-  ChooseImage() {
+  ChooseImage(e) {
+    var t = e.currentTarget.dataset.id
     wx.chooseImage({
       count: 4, //默认9
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], //从相册选择
       success: (res) => {
-        if (this.data.imgList.length != 0) {
-          this.setData({
-            imgList: this.data.imgList.concat(res.tempFilePaths)
-          })
-        } else {
-          this.setData({
-            imgList: res.tempFilePaths
-          })
+        if(t==1){
+          if (this.data.imgList.length != 0) {
+            this.setData({
+              imgList: this.data.imgList.concat(res.tempFilePaths)
+            })
+          } else {
+            this.setData({
+              imgList: res.tempFilePaths
+            })
+          }
+        }
+        if (t == 2) {
+          if (this.data.imgList2.length != 0) {
+            this.setData({
+              imgList2: this.data.imgList2.concat(res.tempFilePaths)
+            })
+          } else {
+            this.setData({
+              imgList2: res.tempFilePaths
+            })
+          }
+        }
+        if (t == 3) {
+          if (this.data.imgList3.length != 0) {
+            this.setData({
+              imgList3: this.data.imgList3.concat(res.tempFilePaths)
+            })
+          } else {
+            this.setData({
+              imgList3: res.tempFilePaths
+            })
+          }
+        }
+        if (t == 4) {
+          if (this.data.imgList4.length != 0) {
+            this.setData({
+              imgList4: this.data.imgList4.concat(res.tempFilePaths)
+            })
+          } else {
+            this.setData({
+              imgList4: res.tempFilePaths
+            })
+          }
+        }
+        if (t == 5) {
+          if (this.data.imgList5.length != 0) {
+            this.setData({
+              imgList5: this.data.imgList5.concat(res.tempFilePaths)
+            })
+          } else {
+            this.setData({
+              imgList5: res.tempFilePaths
+            })
+          }
         }
       }
     });
   },
   ViewImage(e) {
-    wx.previewImage({
-      urls: this.data.imgList,
-      current: e.currentTarget.dataset.url
-    });
+    var t = e.currentTarget.dataset.id
+    if(t==1){
+      wx.previewImage({
+        urls: this.data.imgList,
+        current: e.currentTarget.dataset.url
+      });
+    }
+    if (t == 2) {
+      wx.previewImage({
+        urls: this.data.imgList2,
+        current: e.currentTarget.dataset.url
+      });
+    }
+    if (t == 3) {
+      wx.previewImage({
+        urls: this.data.imgList3,
+        current: e.currentTarget.dataset.url
+      });
+    }
+    if (t == 4) {
+      wx.previewImage({
+        urls: this.data.imgList4,
+        current: e.currentTarget.dataset.url
+      });
+    }
+    if (t == 5) {
+      wx.previewImage({
+        urls: this.data.imgList5,
+        current: e.currentTarget.dataset.url
+      });
+    }
   },
   DelImg(e) {
-    wx.showModal({
-      title: '召唤师',
-      content: '确定要删除这段回忆吗？',
-      cancelText: '再看看',
-      confirmText: '再见',
-      success: res => {
-        if (res.confirm) {
-          this.data.imgList.splice(e.currentTarget.dataset.index, 1);
-          this.setData({
-            imgList: this.data.imgList
-          })
+    var t = e.currentTarget.dataset.id
+    if(t==1){
+      wx.showModal({
+        title: '确定',
+        content: '确定要删除这张照片？',
+        cancelText: '取消',
+        confirmText: '确认删除',
+        success: res => {
+          if (res.confirm&&t==1) {
+            this.data.imgList.splice(e.currentTarget.dataset.index, 1);
+            this.setData({
+              imgList: this.data.imgList
+            })
+          }
         }
-      }
-    })
+      })
+    }
+    if (t == 2) {
+      wx.showModal({
+        title: '确定',
+        content: '确定要删除这张照片？',
+        cancelText: '取消',
+        confirmText: '确认删除',
+        success: res => {
+          if (res.confirm && t == 2) {
+            this.data.imgList2.splice(e.currentTarget.dataset.index, 1);
+            this.setData({
+              imgList2: this.data.imgList2
+            })
+          }
+        }
+      })
+    }
+    if (t == 3) {
+      wx.showModal({
+        title: '确定',
+        content: '确定要删除这张照片？',
+        cancelText: '取消',
+        confirmText: '确认删除',
+        success: res => {
+          if (res.confirm && t == 3) {
+            this.data.imgList3.splice(e.currentTarget.dataset.index, 1);
+            this.setData({
+              imgList3: this.data.imgList3
+            })
+          }
+        }
+      })
+    }
+    if (t == 4) {
+      wx.showModal({
+        title: '确定',
+        content: '确定要删除这张照片？',
+        cancelText: '取消',
+        confirmText: '确认删除',
+        success: res => {
+          if (res.confirm && t == 4) {
+            this.data.imgList4.splice(e.currentTarget.dataset.index, 1);
+            this.setData({
+              imgList4: this.data.imgList4
+            })
+          }
+        }
+      })
+    }
+    if (t == 5) {
+      wx.showModal({
+        title: '确定',
+        content: '确定要删除这张照片？',
+        cancelText: '取消',
+        confirmText: '确认删除',
+        success: res => {
+          if (res.confirm && t == 5) {
+            this.data.imgList5.splice(e.currentTarget.dataset.index, 1);
+            this.setData({
+              imgList5: this.data.imgList5
+            })
+          }
+        }
+      })
+    }
   },
   textareaAInput(e) {
     this.setData({
@@ -211,6 +251,19 @@ Page({
     this.setData({
       modalName: e.currentTarget.dataset.target
     })
-
-  }
+  },
+  addicon:function(e){
+    var t=this.data.group
+    console.log(t)
+    t++
+    this.setData({
+      group:t
+    })
+  },
+  prevNum() {
+    this.setData({ number: this.data.number + 1 });
+  },
+  nextNum() {
+    this.setData({ number: this.data.number - 1 });
+  },
 })

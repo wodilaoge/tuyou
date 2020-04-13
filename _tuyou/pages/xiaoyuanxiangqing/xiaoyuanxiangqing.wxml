@@ -2,15 +2,15 @@
 创建者：陈雨豪
 创建时间：20200330
 内容：活动详情页面-->
-<view class="top">
+<view class="top bg-blue">
   <cu-custom isBack="{{true}}" bgColor="bg-blue">
     <view slot="content">活动详情</view>
   </cu-custom>
 </view>
-<view class="cu-card article no-card bg-blue">
-  <view class="cu-item shadow">
-    <view class="content margin-top">
-      <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg" mode="aspectFill"></image>
+<view class="cu-card article no-card bg-blue" style="margin-top:-50rpx;">
+  <view class="cu-item">
+    <view class="content">
+      <image src="/img/huodong1.png" mode="aspectFill"></image>
       <view class="desc">
         <view class="title-limit">浙江工商大学20周年英雄联盟表演赛---------全明星5v5</view>
         <view class="xiangqing-text-content lines-white"> 2020.03.14 周六 19：30</view>
@@ -21,35 +21,35 @@
   </view>
 </view>
 <scroll-view scroll-x class="bg-blue nav text-center">
-  <view class="cu-item {{0==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="0"> 详情
+  <view class="cu-item {{0==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="0"> 详情
     <view class="tab_item_img">
       <block wx:if="{{TabCur==0}}">
         <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
       </block>
     </view>
   </view>
-  <view class="cu-item {{1==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="1"> 报名
+  <view class="cu-item {{1==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="1"> 报名
     <view class="tab_item_img">
       <block wx:if="{{TabCur==1}}">
         <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
       </block>
     </view>
   </view>
-  <view class="cu-item {{2==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="2"> 聊天
+  <view class="cu-item {{2==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="2"> 聊天
     <view class="tab_item_img">
       <block wx:if="{{TabCur==2}}">
         <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
       </block>
     </view>
   </view>
-  <view class="cu-item {{3==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="3"> 视频
+  <view class="cu-item {{3==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="3"> 视频
     <view class="tab_item_img">
       <block wx:if="{{TabCur==3}}">
         <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
       </block>
     </view>
   </view>
-  <view class="cu-item {{4==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="4"> 投票
+  <view class="cu-item {{4==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="4"> 投票
     <view class="tab_item_img">
       <block wx:if="{{TabCur==4}}">
         <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
@@ -70,8 +70,8 @@
       </view>
     </view>
     <view class="padding">
-      <text class="xiangqing-text-content text-grey huodong-text" decode="{{true}}">[乐海方舟X刺猬现场]联合呈现；\n“我有点紧张”新秀（中国新说唱2019四强）全国巡演</text>
-      <image class="text-border-radius" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg" mode="aspectFill"></image>
+      <text class="xiangqing-text-content text-grey huodong-text" decode="{{true}}">[乐海方舟X刺猬现场]联合呈现；\n“我有点紧张”新秀（中国新说唱2019四强）全国巡演\n\n\n\n</text>
+      <image class="text-border-radius" src="/img/huodongxiangqing.png" mode="aspectFill"></image>
     </view>
     <view class="padding">
       <text class="cuIcon-attention lg text-gray">\t23456</text>
@@ -83,12 +83,14 @@
   <view class="bg-white padding huodong-margin-top">
     <text class="cu-bar-title">活动新闻</text>
   </view>
-  <view class="cu-card article no-card bg-white padding">
-    <view class="cu-item shadow">
+  <view class="cu-card article no-card bg-white">
+    <view class="cu-item shadow" style="margin-top:0rpx;">
       <view class="content2">
-        <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="aspectFill"></image>
+        <image src="/img/huodongxinwen1.png" mode="aspectFill"></image>
         <view class="desc">
-          <view class="title-limit2">浙江工商大学20周年英雄联盟表演赛---------全明星5v5</view>
+          <view class="title-limit2">
+            詹姆斯成为史上最年轻34000分 先生，湖人锁定季后赛
+          </view>
           <button class="cu-btn btn-new bg-orange disabled">最新</button>
           <view>
             <text class="text-gery">2分钟前</text>
@@ -100,9 +102,11 @@
 
     <view class="cu-item shadow">
       <view class="content2">
-        <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big21016.jpg" mode="aspectFill"></image>
+        <image src="/img/huodongxinwen2.png" mode="aspectFill"></image>
         <view class="desc">
-          <view class="title-limit2"> 詹姆斯成为史上最年轻34000分先生，湖人锁定季后赛</view>
+          <view class="title-limit2">
+            勇士7人上双险胜76人；乐福27分5 篮板助骑士险胜掘金
+          </view>
           <view>
             <text class="text-gery">3-8</text>
             <text class="cuIcon-attention lg text-gray text-right" decode="{{true}}">\t23456</text>
@@ -118,13 +122,13 @@
     <!-- 评论 -->
     <view class="cu-bar bg-white solid-bottom huodong-margin-top">
       <view class='action'>
-        <text class='pinglun-title'></text> 评论108
+        <text class='cu-bar-title'>评论108</text>
       </view>
     </view>
 
     <view class="cu-card case no-card bg-white">
       <view class="cu-item shadow">
-        <view class="cu-list menu-avatar">
+        <view class="cu-list menu-avatar" bindtap="chakanhuifu">
           <view class="cu-item">
             <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
             <view class="content flex-sub">
@@ -146,20 +150,13 @@
               </view>
             </view>
           </view>
-        </view>
-      </view>
-    </view>
 
-
-    <view class="cu-card case no-card bg-white">
-      <view class="cu-item shadow">
-        <view class="cu-list menu-avatar">
           <view class="cu-item">
             <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
             <view class="content flex-sub">
               <view class=" flex justify-between">
                 <view>
-                  <text class="card-text-grey">福嘉</text>
+                  <text class="card-text-grey">吴福嘉</text>
                 </view>
                 <view class="text-gray text-sm">
                   <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
@@ -178,11 +175,12 @@
       </view>
     </view>
   </view>
-  <view class="box">
+
+  <view>
     <view class="cu-bar input foot padding">
       <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
       <view class="action">
-        <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png"></image>
+        <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
       </view>
       <view class="action">
         <image class="img-icon" mode="aspectFit" style="margin-right:10rpx" src="/img/icon_fabulous.png"></image>
@@ -399,7 +397,7 @@
     <view class="bg-blue">
       <view class=" sp-cu-bar cu-bar-radius bg-white  ">
         <view class="tp-tptitle">本次活动在线投票</view>
-        <view class="tp-tptitle-time">1 天 01: 02 </view>
+        <view class="title-time">1 天 01: 02 </view>
       </view>
     </view>
     <view class="tp-subtitle ">选出心目中的最佳主持人</view>
@@ -412,10 +410,10 @@
       </view>
       <view class="tp-piaoshhu ">144票(52.8%)</view>
     </view>
-   <view class="flex margin-top-lg justify-between ">
+    <view class="flex margin-top-lg justify-between ">
       <view class="flex">
         <view style="margin-left:27rpx;">
-          <checkbox class="tp-checkbox round orange " ></checkbox>
+          <checkbox class="tp-checkbox round orange "></checkbox>
         </view>
         <view class="tp-name ">李钥钥</view>
       </view>
@@ -424,7 +422,7 @@
     <view class="flex margin-top-lg justify-between ">
       <view class="flex">
         <view style="margin-left:27rpx;">
-          <checkbox class="tp-checkbox round orange " ></checkbox>
+          <checkbox class="tp-checkbox round orange "></checkbox>
         </view>
         <view class="tp-name ">李</view>
       </view>
@@ -443,16 +441,16 @@
     <view class="flex margin-top-lg justify-between ">
       <view class="flex">
         <view style="margin-left:27rpx;">
-          <checkbox class="tp-checkbox round orange " ></checkbox>
+          <checkbox class="tp-checkbox round orange "></checkbox>
         </view>
         <view class="tp-name ">李</view>
       </view>
       <view class="tp-piaoshhu ">144票(52.8%)</view>
     </view>
-   <view class="flex margin-top-lg justify-between ">
+    <view class="flex margin-top-lg justify-between ">
       <view class="flex">
         <view style="margin-left:27rpx;">
-          <checkbox class="tp-checkbox round orange " ></checkbox>
+          <checkbox class="tp-checkbox round orange "></checkbox>
         </view>
         <view class="tp-name ">李钥钥</view>
       </view>

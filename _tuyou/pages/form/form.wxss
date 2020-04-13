@@ -1,0 +1,32 @@
+/* pages/form/form.wxss */
+.cu-form-group .title {
+  min-width: calc(4em + 30rpx);
+}
+.pic{
+  position: relative;
+  width: 185rpx;
+  height: 185rpx;
+  top: 800rpx;
+  margin-bottom: 10rpx;
+  left: 10rpx;
+}
+.word{
+  position: relative;
+  top: 800rpx;
+  margin-left: 50rpx;
+}
+.word2{
+  position: relative;
+  top: 800rpx;
+  margin-left: 100rpx;
+}
+.word3{
+  position: relative;
+  top: 800rpx;
+  margin-left: 100rpx;
+}
+.word4{
+  position: relative;
+  top: 800rpx;
+  margin-left: 110rpx;
+}

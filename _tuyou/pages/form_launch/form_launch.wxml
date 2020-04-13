@@ -2,7 +2,6 @@
 孔启超 2020.4.11 
 内容：发起活动
 -->
-
 <cu-custom bgColor="bg-blue" isBack="{{true}}">
 	<view slot="backText">返回</view>
 	<view slot="content">发起活动</view>
@@ -12,19 +11,19 @@
 		<view class="title">活动方式</view>
 		<picker bindchange="PickerChange" value="{{index}}" range="{{picker4}}">
 			<view class="picker text-blue">
-				{{index?picker[index]:'篮球'}}
+				{{index?picker4[index]:'篮球'}}
 			</view>
 		</picker>
 	</view>
   	<view class="cu-form-group">
 		<view class="title">活动名称</view>
-		<input class="input text-grey" placeholder="春季篮球赛"></input>
-    	<text class="cuIcon-write text-orange"></text>
+		<input class="input text-grey" placeholder="春季篮球赛" type='text' name="name" bindinput="name"></input>
+    	<image class="icon" src="../../img/write.png"></image>
 	</view>
     	<view class="cu-form-group">
 		<view class="title ">活动口号</view>
-		<input class="input text-grey" placeholder="争夺XX三分王！敢挑战吗?"></input>
-    	<text class="cuIcon-write text-orange"></text>
+		<input class="input text-grey" placeholder="争夺XX三分王！敢挑战吗?" name="activityslogan"></input>
+    	<image class="icon" src="../../img/write.png"></image>
 	</view>
   	<view class="cu-form-group">
 		<view class="title">地址</view>
@@ -71,29 +70,20 @@
   	<view class="cu-form-group">
 		<view class="title">参与人数上限</view>
 		<input class="input text-grey" placeholder="50"></input>
-     	<text class="cuIcon-write text-orange"></text>
+     		<image class="icon" src="../../img/write.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">组建聊天群</view>
 		<switch></switch>
 	</view>
-<!-- 	
-	<view class="cu-form-group">
-		<view class="title">多列选择</view>
-		<picker mode="multiSelector" bindchange="MultiChange" bindcolumnchange="MultiColumnChange" value="{{multiIndex}}"
-		 range="{{multiArray}}">
-			<view class="picker">
-				{{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}，{{multiArray[2][multiIndex[2]]}}
-			</view>
-		</picker>
-	</view> -->
 <view class="text-center margin-top3">
 	<checkbox checked class="blue checkicon" ></checkbox>
 	<text class="text-grey">我已阅读并同意</text>
 	<text class="text-blue">《同友活动申明》</text>
+  <view class="flex margin-top2">
+    <button class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="cancel" >取消活动</button>
+    <button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="commit"  data-target="Modal">补充信息</button>
+  </view>
+
 </view>
 </form>
-<view class="flex margin-top2">
-  <button class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="toForm_modify" >补充信息</button>
-  <button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="commit"  data-target="Modal">立即提交</button>
-</view>

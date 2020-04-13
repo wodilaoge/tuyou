@@ -7,7 +7,12 @@ Page({
   data: {
 
   },
-
+  chakanhuifu(e) { //查看回放跳转
+    console.log(e);
+    wx.navigateTo({
+      url: '../../pages/chakanhuifu/chakanhuifu',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

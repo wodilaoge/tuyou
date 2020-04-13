@@ -1,7 +1,7 @@
 //app.js
 App({
   globalData: {
-    URL: 'http://150.158.123.146:8081/tw',
+    URL: 'http://192.144.169.239:8080/kt',
   },
   wxRequest(method, url, data, callback, errFun) {
     wx.request({

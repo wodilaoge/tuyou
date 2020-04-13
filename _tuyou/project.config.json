@@ -24,7 +24,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.4.2",
-	"appid": "wxe20f2472c9326c3e",
+	"appid": "wx4e4a310bf1cbe5ab",
 	"projectname": "tuyou",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -64,9 +64,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 1,
 					"name": "活动详情",
-					"pathName": "pages/xiangqing/xiangqing",
+					"pathName": "pages/xiaoyuanxiangqing/xiaoyuanxiangqing",
 					"query": "",
 					"scene": null
 				},
@@ -93,8 +93,42 @@
 				},
 				{
 					"id": -1,
+<<<<<<< HEAD
 					"name": "资料",
 					"pathName": "pages/ziliao/ziliao",
+=======
+					"name": "首页",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "篮球",
+					"pathName": "pages/yundong/lanqiu/lanqiu",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 7,
+					"name": "发布总页面",
+					"pathName": "pages/form/form",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/my/my",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的个人信息",
+					"pathName": "pages/my_profile/my_profile",
+					"query": "",
+>>>>>>> 7bbbbb51b76d0305f1bcf2875dd429170c909fe4
 					"scene": null
 				}
 			]

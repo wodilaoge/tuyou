@@ -1,28 +1,39 @@
-const app = getApp(); 
+const app = getApp();
 Page({
   data: {
-    ActList:[],
+    ActList: [],
     CustomBar: app.globalData.CustomBar,
     TabCur: 0,
+
+    yundongCur: 'lanqiu', //运动内导航栏
     cardCur: 0,
-    swiperList: [{
+    xiaoyuanSwiperList: [{
       id: 0,
       type: 'image',
-      url: '../../img/BasicsBg.png'
+      url: '/img/BasicsBg.png'
     }, {
       id: 1,
       type: 'image',
-        url: '../../img/componentBg.png',
+        url: '/img/BasicsBg.png',
     }, {
       id: 2,
       type: 'image',
-        url: '../../img/BasicsBg.png'
-    }, {
-      id: 4,
-      type: 'image',
-        url: '../../img/componentBg.png'
+      url: '/img/BasicsBg.png'
     }],
-  }, 
+    yundongSwiperList: [{
+      id: 0,
+      type: 'image',
+      url: '/img/yundong.png'
+    }, {
+      id: 1,
+      type: 'image',
+      url: '/img/yundong.png',
+    }, {
+      id: 2,
+      type: 'image',
+      url: '/img/yundong.png'
+    }],
+  },
   tabSelect(e) {
     console.log(e);
     this.setData({
@@ -30,10 +41,17 @@ Page({
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
   },
+  yundongTabSelect(e) { //运动内导航栏1
+    console.log(e);
+    this.setData({
+      yundongCur: e.currentTarget.dataset.cur,
+      scrollLeft: (e.currentTarget.dataset.id - 1) * 60
+    })
+  },
   xuanran() {
     let url = app.globalData.URL + '/act/listCampusActivity';
     let data = {
-      sid: '3b7b162c987f4583be9a7a7b340adbee'
+      sid: '076002'
     };
     app.wxRequest('GET', url, data, (res) => {
       console.log(res.data)
@@ -45,10 +63,10 @@ Page({
     });
   },
   onLoad() {
-    this.towerSwiper('swiperList');
-    // 初始化towerSwiper 传已有的数组名即可
+    this.xuanran();
+    this.towerSwiper('xiaoyuanSwiperList');
   },
-  onShow(){
+  onShow() {
     this.xuanran();
   },
   DotStyle(e) {
@@ -62,10 +80,10 @@ Page({
       cardCur: e.detail.current
     })
   },
-  baomingcanjia(e) {//报名参加按钮跳转
+  baomingcanjia(e) { //报名参加按钮跳转
     console.log(e);
     wx.navigateTo({
-      url: '../../pages/xiangqing/xiangqing',
+      url: '../../pages/xiaoyuanxiangqing/xiaoyuanxiangqing',
     })
   },
   // towerSwiper

@@ -2,7 +2,7 @@
   ColorUi for MP-weixin  v2.1.4 | by 文晓港 2019年4月25日19:15:42
   仅供学习交流，如作它用所承受的法律责任一概与作者无关
   使用ColorUi开发扩展与插件时，请注明基于ColorUi开发
-  
+   
   （QQ交流群：240787041）
 */
 
@@ -82,7 +82,7 @@ textarea,
 label,
 navigator,
 image {
-	box-sizing: border-box;
+	box-sizing: border-box; 
 }
 
 .round {
@@ -92,7 +92,14 @@ image {
 .radius {
 	border-radius: 6rpx;
 }
-
+.title-time {
+  width: 193rpx;
+  font-size: 32rpx;
+  font-family: PingFang-SC-Medium;
+  color: #fe6004;
+  font-weight: normal;
+  margin-left: 250rpx;
+}
 /* ==================
           图片
  ==================== */
@@ -962,6 +969,11 @@ button.icon.lg {
 	font-size: 2em;
 }
 
+.cu-avatar.my {
+	width: 72rpx;
+	height: 72rpx;
+}
+
 .cu-avatar.xl {
 	width: 128rpx;
 	height: 128rpx;
@@ -980,7 +992,7 @@ button.icon.lg {
 }
 
 .cu-avatar-group .cu-avatar {
-	margin-left: -30rpx;
+	margin-left: -40rpx;
 	border: 4rpx solid var(--ghostWhite);
 	vertical-align: middle;
 }
@@ -1999,12 +2011,16 @@ button.icon.lg {
 	display: inline-block;
 	line-height: 83rpx;
 	margin: 0 10rpx;
-	padding: 0 15rpx;
+	padding: 0 18rpx;
 }
 .nav .tab_item_img{
   width: 40rpx;
   height: 40rpx;
   margin: -80rpx 0rpx -40rpx 5rpx;
+}
+
+.nav .cu-item.cur {
+	border-bottom: 4rpx solid;
 }
 
 /* ==================
@@ -2313,7 +2329,7 @@ button.icon.lg {
 }
 
 .cu-card.article>.cu-item {
-  margin-top: 68rpx;
+  margin-bottom: 20rpx;
 	padding-bottom: 30rpx;
 }
 
@@ -2375,6 +2391,72 @@ button.icon.lg {
 	color: #888;
 	height: 4.8em;
 	overflow: hidden;
+}
+
+.cu-card.article>.cu-item .content2 .title-limit2 {
+  font-size: 32rpx;
+  font-weight: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+
+.cu-card.article>.cu-item .yundong-content {
+	display: flex;
+	padding: 0 30rpx;
+}
+
+.cu-card.article>.cu-item .yundong-content .btn {
+	width: 175rpx;
+	height: 65rpx;
+}
+
+.cu-card.article>.cu-item .yundong-content>image {
+	width: 180rpx;
+	height: 180rpx;
+	margin-right: 20rpx;
+	border-radius: 6rpx;
+}
+
+.cu-card.article>.cu-item .yundong-content .desc {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.cu-card.article>.cu-item .yundong-content .title-limit {
+	font-size: 36rpx;
+	font-weight: bold;
+	color: var(--black);
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+}
+
+.cu-card.article>.cu-item .yundong-content .time-text-content {
+  margin-top: 18rpx;
+	color: black;
+  overflow: hidden;
+  font-size: 24rpx;
+}
+
+.cu-card.article>.cu-item .yundong-content .icon-size{
+  width: 20rpx;
+  height: 23rpx;
+}
+
+.cu-card.article>.cu-item .yundong-content .text-content {
+	color: #888;
+	overflow: hidden;
+  padding-top: 10rpx;
+  margin: 15rpx 0 0 0 ;
+	line-height: 23rpx;
+  font-size: 24rpx;
 }
 /* ==================
          表单
@@ -2573,9 +2655,9 @@ button.icon.lg {
  ==================== */
 swiper .a-swiper-dot {
 	display: inline-block;
-	width: 16rpx;
-	height: 16rpx;
-	background: rgba(0, 0, 0, .3);
+	width: 10rpx;
+	height: 10rpx;
+	background:#F0F0F0;
 	border-radius: 50%;
 	vertical-align: middle;
 }
@@ -2618,13 +2700,13 @@ swiper.round-dot .wx-swiper-dot.wx-swiper-dot-active::after {
 	right: 0;
 	bottom: 0;
 	margin: auto;
-	background-color: var(--white);
+	background-color: #FE538F;
 	border-radius: 20rpx;
 }
 
 swiper.round-dot .wx-swiper-dot.wx-swiper-dot-active {
-	width: 18rpx;
-	height: 18rpx;
+	width: 11.5rpx;
+	height: 11.5rpx;
 }
 
 .screen-swiper {
@@ -3857,8 +3939,8 @@ scroll-view.cu-steps .cu-item {
 }
 
 .text-bold {
-	font-size: 30rpx;
-  font-weight: bolder;
+	font-size: 32rpx;
+  font-weight: bold;
 }
 
 .text-center {
