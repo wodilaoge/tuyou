@@ -382,7 +382,6 @@ checkbox.tp-checkbox {
 .paiming-center {
   align-items: center;
   display: flex;
-  
 }
 
 .icon-paiming {
@@ -391,8 +390,21 @@ checkbox.tp-checkbox {
   margin-right: 46rpx;
 }
 
-.baoming-name {
+.paiming-name {
   font-size: 32rpx;
   font-weight: normal;
   line-height: 32rpx;
+}
+
+.xiaoyuanhuodong-shuju {
+  align-items: center;
+  display: flex;
+}
+
+.shuju-btn1 {
+  font-size: 32rpx;
+  width: 320rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  border: 2rpx solid; 
 }
