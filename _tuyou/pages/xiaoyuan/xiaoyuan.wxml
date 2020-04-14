@@ -68,9 +68,9 @@
     </swiper>
   </view>
   <view class="cu-card article no-card bg-white">
-    <view class="cu-item shadow">
-      <view class="content" wx:for="{{ActList}}" bindtap="baomingcanjia" id="{{item.id}}">
-        <image src="/img/huodong1.png" mode="aspectFill"></image>
+    <view class="cu-item shadow "  wx:for="{{ActList}}">
+      <view class="content margin-bottom" bindtap="baomingcanjia" id="{{item.id}}">
+        <image src="{{item.logo}}" mode="aspectFill"></image>
         <view class="desc">
           <view class="title-limit">{{item.actname}}</view>
           <view class="xiaoyuan-text-content text-gray"> {{item.fromtime}}</view>
@@ -78,11 +78,12 @@
           <button class="cu-btn round bg-orange btn-width">报名参加</button>
         </view>
       </view>
+      <view style="background-color: #F8F9FD;height:20rpx;"></view>
     </view>
   </view>
   <view class="cu-card article no-card bg-white">
     <view class="cu-item shadow" bindtap="baomingcanjia">
-      <view class="content">
+      <view class="content margin-bottom">
         <image src="/img/huodong2.png" mode="aspectFill"></image>
         <view class="desc">
           <view class="title-limit">浙江工业大学大学生钢琴汇报 演出</view>
@@ -91,10 +92,10 @@
           <button class="cu-btn round bg-orange btn-width">报名参加</button>
         </view>
       </view>
+      <view style="background-color: #F8F9FD;height:20rpx;"></view>
     </view>
-
-    <view class="cu-item shadow">
-      <view class="content">
+    <view class="cu-item shadow"  bindtap="baomingcanjia">
+      <view class="content margin-bottom">
         <image src="/img/huodong3.png" mode="aspectFill"></image>
         <view class="desc">
           <view class="title-limit">浙江科技大学大学生吉它汇报 演出</view>
@@ -103,6 +104,7 @@
           <button class="cu-btn round bg-grey btn-width">活动结束</button>
         </view>
       </view>
+      <view style="background-color: #F8F9FD;height:20rpx;"></view>
     </view>
   </view>
 
