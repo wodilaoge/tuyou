@@ -7,6 +7,7 @@ Page({
     categoryId:'',
     detail:[],//页面详细内容
     comment:[],
+    comment_detail:[],
     news:[],
     news_detail:[]
   },
@@ -56,7 +57,12 @@ Page({
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
         comment: res.data
-      })
+      });
+        
+      console.log(this.data.comment.list);
+      this.setData({
+        comment_detail: this.data.comment.list
+      });
     }, (err) => {
       console.log(err.errMsg)
     });

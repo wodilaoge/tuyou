@@ -39,6 +39,25 @@ Page({
       console.log(err.errMsg)
     });
   },
+  commit(){
+    let url = app.globalData.URL + '/act/updateActGroup';
+    let data = {
+         
+      id: 2875397771362304,
+        actid: "1760034971189248",
+          groupname: "分组1",
+            signupmax: 10
+    
+    };
+    app.wxRequest('POST', url, data, (res) => {
+      console.log(res.data)
+      this.setData({
+        city: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
   onLoad() {
     this.city();
     this.province();
