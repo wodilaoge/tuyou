@@ -54,6 +54,7 @@ Page({
       sid: '076002'
     };
     app.wxRequest('GET', url, data, (res) => {
+      console.log(res.data)
       this.setData({
         ActList: res.data
       })

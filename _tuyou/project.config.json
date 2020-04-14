@@ -93,8 +93,6 @@
 				},
 				{
 					"id": -1,
-					"name": "资料",
-					"pathName": "pages/ziliao/ziliao",
 					"name": "首页",
 					"pathName": "pages/index/index",
 					"query": "",
