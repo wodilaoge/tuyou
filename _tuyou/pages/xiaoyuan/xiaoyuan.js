@@ -55,6 +55,7 @@ Page({
     };
     app.wxRequest('GET', url, data, (res) => {
       console.log(res.data)
+      console.log(res)
       this.setData({
         ActList: res.data
       })
