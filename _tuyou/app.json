@@ -34,5 +34,11 @@
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom"
   },
+  "plugins": {
+    "wxparse": {
+      "version": "1.0.10",
+      "provider": "wx5d60c080635009b1"
+    }
+  },
   "sitemapLocation": "sitemap.json"
 }
