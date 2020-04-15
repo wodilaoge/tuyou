@@ -9,7 +9,7 @@
 <form>
   <view class="cu-form-group margin-top">
     <view class="title">活动方式</view>
-    <picker bindchange="PickerChange" value="{{index}}" range="{{picker2}}">
+    <picker bindchange="PickerChange2" value="{{index}}" range="{{picker2}}">
       <view class="picker text-blue">
         {{index?picker2[index]:'篮球'}}
       </view>
@@ -41,18 +41,18 @@
 
   <view class="cu-form-group">
     <view class="title">报名开始时间</view>
-    <picker mode="date" value="{{fromtime}}" start="2015.09.01" end="2020.09.01" bindchange="DateChange">
+    <picker mode="date" value="{{information.fromtime}}" start="2015.09.01" end="2020.09.01" bindchange="DateChange">
       <view class="picker text-grey">
-        {{fromtime}}
+        {{information.fromtime}}
       </view>
     </picker>
   </view>
 
   <view class="cu-form-group">
     <view class="title">报名截止时间</view>
-    <picker mode="date" value="{{signupdeadline}}" start="2015-09-01" end="2020-09-01" bindchange="DateChange2">
+    <picker mode="date" value="{{information.signupdeadline}}" start="2015-09-01" end="2020-09-01" bindchange="DateChange2">
       <view class="picker text-grey">
-        {{signupdeadline}}
+        {{information.signupdeadline}}
       </view>
     </picker>
   </view>
@@ -67,7 +67,7 @@
   </view>
   <view class="cu-form-group">
     <view class="title">参与人数上限</view>
-    <input class="input text-grey" value="{{entrylimit}}" bindinput="getentity"></input>
+    <input class="input text-grey" value="{{information.entrylimit}}" bindinput="getentity"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group">

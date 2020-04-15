@@ -3,39 +3,57 @@ Page({
   data: {
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
+    information:{
+      activity:'',
+      actname: '',
+      slogan: '',
+      univid: '003330106',
+      province: '00333',
+      city: '0033301',
+      venue: '',
+      fromtime: '2020.4.25 16:00',
+      signupdeadline: '2020.8.25 16:00',
+      way:'',
+      entrylimit: 50,
+      ischecked: false,
+    },
     index: 0,
     index2: 0,
-    actname: '',
-    slogan:'',
     place:'',
-    univid:'',
-    province:'',
-    city:'',
     address:'',
-    venue:'',
     creater:'',
     createralias:'',
-    ischecked:false,
     ischecked2: true,
     provinceList:[],
     city:[],
-    entrylimit:50,
     ActList:[],
     picker: ['个人报名', '团体报名'],
     picker2: ['篮球', '足球', '羽毛球', '乒乓球', '网球'],
     multiIndex: [0, 0, 0],
     time: '12:01',
-    fromtime: '2020.4.25 16:00',
-    signupdeadline: '2020.8.25 16:00',
     region: ['浙江省', '杭州市', '浙江大学'],
   },
 
-  PickerChange(e) {
-    console.log(e);
+  PickerChange(e) {//报名方式
+    let t='information.way'
+    this.setData({
+      index2:e.detail.value
+    })
+    let v = this.data.picker[this.data.index2]
+    this.setData({
+      [t]:v
+    });
+  },
+  PickerChange2(e) {//活动方式
+    let t = 'information.activity'
     this.setData({
       index: e.detail.value
+    })
+    let v = this.data.picker2[this.data.index2]
+    this.setData({
+      [t]: v
     });
-    console.log(this.data.picker2[this.data.index])
+    // console.log(this.data.picker2[this.data.index])
   },
   MultiChange(e) {
     this.setData({
@@ -48,13 +66,15 @@ Page({
     })
   },
   DateChange(e) {
+    let t ='information.fromtime'
     this.setData({
-      fromtime: e.detail.value
+      [t]: e.detail.value
     })
   },
   DateChange2(e) {
+    let t = 'information.signupdeadline'
     this.setData({
-      signupdeadline: e.detail.value
+      [t]: e.detail.value
     })
   },
   RegionChange: function (e) {
@@ -74,18 +94,21 @@ Page({
     })
   },
   getname(e) {
+    let t='information.actname'
     this.setData({
-      actname: e.detail.value
+    [t]:e.detail.value
     })
   },
   getslogan(e){
+    let t ='information.slogan'
     this.setData({
-      slogan: e.detail.value
+      [t]: e.detail.value
     })
   },
   getvenue(e){
+    let t ='information.venue'
     this.setData({
-      venue: e.detail.value
+      [t]: e.detail.value
     })
   },
   getentity(e){
@@ -99,7 +122,6 @@ Page({
     })
   },
   checked(e){
-    console.log(e)
     this.setData({
       ischecked2: !this.data.ischecked2
     })
@@ -111,8 +133,9 @@ Page({
   },
 
   commit: function (e) {
-    let name = this.data.picker2[this.data.index]
-    console.log(name)
+    wx.setStorage({//将活动信息存入缓存
+      key: "information",data: this.data.information
+    });
     wx.navigateTo({
     url: '../../pages/form_activity/form_activity'
     })
