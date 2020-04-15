@@ -4,35 +4,10 @@ Page({
     ActList: [],
     CustomBar: app.globalData.CustomBar,
     TabCur: 0,
-
+    bkData: [],
     yundongCur: 'lanqiu', //运动内导航栏
     cardCur: 0,
-    xiaoyuanSwiperList: [{
-      id: 0,
-      type: 'image',
-      url: '/img/BasicsBg.png'
-    }, {
-      id: 1,
-      type: 'image',
-        url: '/img/BasicsBg.png',
-    }, {
-      id: 2,
-      type: 'image',
-      url: '/img/BasicsBg.png'
-    }],
-    yundongSwiperList: [{
-      id: 0,
-      type: 'image',
-      url: '/img/yundong.png'
-    }, {
-      id: 1,
-      type: 'image',
-      url: '/img/yundong.png',
-    }, {
-      id: 2,
-      type: 'image',
-      url: '/img/yundong.png'
-    }],
+    xiaoyuanSwiperList: [],
   },
   tabSelect(e) {
     console.log(e);
@@ -49,22 +24,44 @@ Page({
     })
   },
   xuanran() {
-    let url = app.globalData.URL + '/act/listCampusActivity';
-    let data = {
-      sid: '076002'
-    };
-    app.wxRequest('GET', url, data, (res) => {
-      console.log(res.data)
-      console.log(res)
-      this.setData({
-        ActList: res.data
+    var self=this;
+    let url1 = app.globalData.URL + '/config/getSection';
+    app.wxRequest('GET', url1, [], (res) => {
+      self.setData({
+        bkData: res.data
       })
+      for (var i in res.data) {
+        let url = app.globalData.URL + '/act/listCampusActivity';
+        let url2 = app.globalData.URL + '/secrot/listSecrotation';
+        if (res.data[i].name == "校园活动") {
+          let data = {
+            sid: res.data[i].code
+          };
+          app.wxRequest('GET', url, data, (res) => {
+            this.setData({
+              ActList: res.data
+            })
+          }, (err) => {
+            console.log(err.errMsg)
+          });
+          app.wxRequest('GET', url2, data, (res) => {
+            this.setData({
+              xiaoyuanSwiperList: res.data
+            })
+          }, (err) => {
+            console.log(err.errMsg)
+          });
+        }
+      }
     }, (err) => {
       console.log(err.errMsg)
-    });
+      });
+
+    
+    
+    
   },
   onLoad() {
-    this.xuanran();
     this.towerSwiper('xiaoyuanSwiperList');
   },
   onShow() {

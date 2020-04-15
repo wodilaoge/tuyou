@@ -2330,7 +2330,6 @@ button.icon.lg {
 }
 
 .cu-card.article>.cu-item {
-  margin-bottom: 20rpx;
 }
 
 .cu-card.article>.cu-item .title {

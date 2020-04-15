@@ -77,10 +77,17 @@
 <block wx:if="{{TabCur==0}}">
   <!-- 活动介绍 -->
   <!-- 富文本渲染 使用htmlparse插件 -->
- 
-  <view class="content-white">
-     <view class="goods-text">
+  <view class="bg-blue">
+    <view class="cu-bar-radius bg-white cu-bar-title " style="height:30rpx;"> </view>
+  </view>
+  <view class="content-white padding">
+
+    <view class="goods-text">
       <wxparse data="{{ detail.imagetext }}"></wxparse>
+      <view class="margin-top">
+        <text class="cuIcon-attention lg text-gray">\t23456</text>
+        <text class="cuIcon-appreciate lg text-gray text-right" decode="{{true}}">\t赞&emsp;23456</text>
+      </view>
     </view>
   </view>
 
@@ -104,7 +111,7 @@
         </view>
       </view>
     </view>
-<!-- 静态页面 已取消
+    <!-- 静态页面 已取消
     <view class="cu-item shadow">
       <view class="content2">
         <image src="/img/huodongxinwen2.png" mode="aspectFill"></image>
@@ -433,14 +440,19 @@
 创建时间：20200413
 创建内容：排名-->
 <block wx:if="{{TabCur==4}}">
-  <view class="margin-top" style="margin-left:175rpx;">
-    <button class="cu-btn {{paimingCur==0?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-left" bindtap="paimingSelect" data-id="0">
-      个人排名
-    </button>
-    <button class="cu-btn  {{paimingCur==1?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-right" bindtap="paimingSelect" data-id="1">
-      团队排名
-    </button>
+  <view class="bg-blue">
+    <view class="cu-bar-radius cu-bar-title padding" style="background-color: #F8F9FD;">
+      <view class=" " style="margin-left:175rpx;">
+        <button class="cu-btn {{paimingCur==0?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-left" bindtap="paimingSelect" data-id="0">
+          个人排名
+        </button>
+        <button class="cu-btn  {{paimingCur==1?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-right" bindtap="paimingSelect" data-id="1">
+          团队排名
+        </button>
+      </view>
+    </view>
   </view>
+
   <block wx:if="{{paimingCur==0}}">
     <view class="bg-white padding paiming-center">
       <image class="icon-paiming" mode="aspectFit" src="/img/icon_one.png"></image>
