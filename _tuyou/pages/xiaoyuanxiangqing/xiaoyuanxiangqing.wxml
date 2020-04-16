@@ -95,7 +95,7 @@
   <view class="bg-white padding huodong-margin-top">
     <text class="cu-bar-title">活动新闻</text>
   </view>
-  <view class="cu-card article no-card bg-white" wx:for="{{news}}">
+  <view class="cu-card article no-card bg-white" wx:for="{{news.list}}">
     <view class="cu-item shadow" style="margin-top:0rpx;">
       <view class="content2">
         <image src="/img/huodongxinwen1.png" mode="aspectFill"></image>

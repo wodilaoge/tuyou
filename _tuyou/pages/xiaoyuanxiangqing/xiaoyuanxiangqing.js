@@ -70,7 +70,7 @@ Page({
   news() {//活动新闻
     let url = app.globalData.URL + '/news/listNews';
     let data = {
-      actid: this.data.categoryId
+      id: this.data.categoryId
     };
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
