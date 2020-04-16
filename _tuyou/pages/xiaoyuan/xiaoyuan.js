@@ -34,8 +34,8 @@ Page({
         bkData: res.data
       })
       for (var i in res.data) {
-        let url = app.globalData.URL + '/act/listCampusActivity';
-        let url2 = app.globalData.URL + '/secrot/listSecrotation';
+        var url = app.globalData.URL + '/act/listCampusActivity';
+        var url2 = app.globalData.URL + '/secrot/listSecrotation';
         if (res.data[i].name == "校园活动") {
           let data = {
             sid: res.data[i].code
