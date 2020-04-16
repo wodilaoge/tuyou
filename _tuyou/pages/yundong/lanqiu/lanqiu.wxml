@@ -13,7 +13,7 @@
             <view class="desc">
               <view class="title-limit">XX篮球春季赛第一轮</view>
               <view class="text-content">
-                <image class="icon-size" src="/img/icon_location.png" mode="heightFix"></image>
+                <image class="icon-size" src="../../../img/icon_location.png" mode="heightFix"></image>
                 <text decode="{{true}}">\t杭州市YY街ZZ号</text>
               </view>
               <view class="text-content">
@@ -21,14 +21,14 @@
                 <text decode="{{true}}">\t篮球馆</text>
               </view>
               <view class="time-text-content">
-                <image class="icon-size" src="/img/icon_time.png" mode="heightFix"></image>
+                <image class="icon-size" src="../../../img/icon_time.png" mode="heightFix"></image>
                 3月11日（周三）13:00开赛
               </view>
             </view>
           </view>
         </view>
         <view class="yundong-content title-text-content" style="margin-top:28rpx;">
-          <image style="margin-top:8rpx;" class="icon-size" src="/img/icon_title.png" mode="heightFix"></image>
+          <image style="margin-top:8rpx;" class="icon-size" src="../../../img/icon_title.png" mode="heightFix"></image>
           <text decode="{{true}}">争夺XX三分王！敢挑战吗？</text>
         </view>
         <view class="yundong-content yibaoming-margin-top">
@@ -64,7 +64,7 @@
             <view class="desc">
               <view class="title-limit">Cypher浙工大选拔赛（屏峰校区）</view>
               <view class="text-content">
-                <image class="icon-size" src="/img/icon_location.png" mode="heightFix"></image>
+                <image class="icon-size" src="../../../img/icon_location.png" mode="heightFix"></image>
                 <text decode="{{true}}">\t杭州市YY街ZZ号</text>
               </view>
               <view class="text-content">
@@ -72,14 +72,14 @@
                 <text decode="{{true}}">\t浙工大室外篮球场</text>
               </view>
               <view class="time-text-content">
-                <image class="icon-size" src="/img/icon_time.png" mode="heightFix"></image>
+                <image class="icon-size" src="../../../img/icon_time.png" mode="heightFix"></image>
                 3月11日（周三）13:00开赛
               </view>
             </view>
           </view>
         </view>
         <view class="yundong-content title-text-content" style="margin-top:28rpx;">
-          <image style="margin-top:8rpx;" class="icon-size" src="/img/icon_title.png" mode="heightFix"></image>
+          <image style="margin-top:8rpx;" class="icon-size" src="../../../img/icon_title.png" mode="heightFix"></image>
           <text decode="{{true}}">1V1最终晋级即可挑战导师，成为CypherKIDZI</text>
         </view>
         <view class="yundong-content yibaoming-margin-top">

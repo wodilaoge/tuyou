@@ -2442,7 +2442,7 @@ button.icon.lg {
 
 .cu-card.article>.cu-item .yundong-content {
 	display: flex;
-	margin-left: 30rpx;
+	padding: 0 30rpx;
 }
 
 .cu-card.article>.cu-item .yundong-content .btn {
@@ -2746,7 +2746,7 @@ swiper.round-dot .wx-swiper-dot.wx-swiper-dot-active {
 }
 
 .screen-swiper {
-	min-height: 320rpx;
+	min-height: 375rpx;
 }
 
 .screen-swiper image,
@@ -3139,11 +3139,7 @@ scroll-view.cu-steps .cu-item {
 	height: 0;
 	width: calc((100% - 80rpx)/5);
 }
-.grid.col-6.grid-square>view {
-	padding-bottom: calc((100% - 80rpx)/6);
-	height: 0;
-	width: calc((100% - 80rpx)/6);
-}
+
 .grid.col-2.grid-square>view:nth-child(2n),
 .grid.col-3.grid-square>view:nth-child(3n),
 .grid.col-4.grid-square>view:nth-child(4n),

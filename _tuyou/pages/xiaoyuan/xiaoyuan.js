@@ -8,19 +8,6 @@ Page({
     yundongCur: 'lanqiu', //运动内导航栏
     cardCur: 0,
     xiaoyuanSwiperList: [],
-    yundongSwiperList: [{
-      id: 0,
-      type: 'image',
-      url: '/img/yundong.png'
-    }, {
-      id: 1,
-      type: 'image',
-      url: '/img/yundong.png',
-    }, {
-      id: 2,
-      type: 'image',
-      url: '/img/yundong.png'
-    }],
   },
   tabSelect(e) {
     console.log(e);

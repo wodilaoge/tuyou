@@ -1,4 +1,3 @@
-// pages/yundongxiangqing/yundongxiangqing.js
 Page({
   data: {
     TabCur: 0,
@@ -9,7 +8,7 @@ Page({
     }, {
       id: 1,
       type: 'image',
-        url: '/img/yundongxiangqing.png',
+      url: '/img/yundongxiangqing.png',
     }],
   },
   tabSelect(e) {

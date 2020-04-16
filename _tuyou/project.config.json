@@ -143,7 +143,7 @@
 				{
 					"id": -1,
 					"name": "运动详情",
-					"pathName": "pages/form_activity/form_activity",
+					"pathName": "pages/yundongxiangqing/yundongxiangqing",
 					"scene": null
 				}
 			]

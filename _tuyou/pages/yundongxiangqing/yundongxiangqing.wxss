@@ -1,64 +1,64 @@
 page {
-  /*页面布局*/
-  padding-bottom: 150rpx;
-  letter-spacing:2rpx;
+/*页面布局*/
+padding-bottom: 150rpx;
+letter-spacing:2rpx;
 }
 .icon_add{
-  width: 58rpx;
-  height: 76rpx;
+width: 58rpx;
+height: 76rpx;
 }
 .yibaoming-text-content {
-  overflow: hidden;
-  font-size: 28rpx;
-  line-height: 28rpx;
-  font-weight: 900;
+overflow: hidden;
+font-size: 28rpx;
+line-height: 28rpx;
+font-weight: 900;
 }
 
 .title-text-content {
-  color: black;
-  overflow: visible;
-  font-size: 28rpx;
-  line-height: 28rpx;
-  font-weight: normal;
+color: black;
+overflow: visible;
+font-size: 28rpx;
+line-height: 28rpx;
+font-weight: normal;
 }
 
 .yibaoming-margin-top {
-  margin-top: 2rpx;
+margin-top: 2rpx;
 }
 
 .btn-guanzhu{
-  margin-left:178rpx;
-  width: 88rpx;
-  height: 48rpx;
+margin-left:178rpx;
+width: 88rpx;
+height: 48rpx;
 }
 
 .btn-baomingtiaozhan{
-  margin-left:300rpx;
-  width: 168rpx;
-  height: 54rpx;
+margin-left:300rpx;
+width: 168rpx;
+height: 54rpx;
 }
 
 .cu-bar-title {
-  font-size: 32rpx;
-  color: #333;
-  font-weight: bold;
+font-size: 32rpx;
+color: #333;
+font-weight: bold;
 }
 
 .text-guize {
-  font-size: 24rpx;
-  line-height: 48rpx;
-  font-weight: normal;
-  color: #999;
+font-size: 24rpx;
+line-height: 48rpx;
+font-weight: normal;
+color: #999;
 }
 
 .btn-hot {
-  width: 50rpx;
-  height: 30rpx;
-  font-size: 20rpx;
-  border-radius: 33.5rpx;
+width: 50rpx;
+height: 30rpx;
+font-size: 20rpx;
+border-radius: 33.5rpx;
 }
 
 .img-icon {
-  width: 40rpx;
-  height: 40rpx;
+width: 40rpx;
+height: 40rpx;
 }
