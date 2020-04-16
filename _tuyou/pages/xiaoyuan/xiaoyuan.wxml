@@ -67,6 +67,7 @@
       </swiper-item>
     </swiper>
   </view>
+  
   <view class="cu-card article no-card bg-white">
     <view class="cu-item shadow "  wx:for="{{ActList}}">
       <view class="content margin-bottom" bindtap="baomingcanjia" id="{{item.id}}">

@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "tabbar": "../../tabbarComponent/tabbar"
+  }
 }

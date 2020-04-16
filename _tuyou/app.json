@@ -1,7 +1,8 @@
 {
    
   "pages": [
-
+    "pages/index/index",
+    
     "pages/form/form",
     "pages/form_team/form_team",
     "pages/form_picture/form_picture",
@@ -13,7 +14,7 @@
 
     "pages/my/my",
     "pages/my_profile/my_profile",
-    "pages/index/index",
+
     "pages/xiaoyuan/xiaoyuan",
     "pages/xiaoyuanxiangqing/xiaoyuanxiangqing",
     "pages/yundongxiangqing/yundongxiangqing",
@@ -35,11 +36,43 @@
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom"
   },
+  "tabBar": {
+    "backgroundColor": "#ffffff",
+    "color": "#979795",
+    "selectedColor": "#1c1c1b",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "/img/tabbar/home-off.png",
+        "selectedIconPath": "/img/tabbar/home-on.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/xiaoyuan/xiaoyuan",
+        "iconPath": "/img/tabbar/activity-off.png",
+        "selectedIconPath": "/img/tabbar/activity-on.png",
+        "text": "活动"
+      },
+      {
+        "pagePath": "pages/form/form",
+        "iconPath": "/img/tabbar/launch-off.png",
+        "selectedIconPath": "/img/tabbar/launch-on.png",
+        "text": "发布"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "/img/tabbar/my-off.png",
+        "selectedIconPath": "/img/tabbar/my-off.png",
+        "text": "我的"
+      }
+    ]
+  },
   "plugins": {
     "wxparse": {
       "version": "1.0.10",
       "provider": "wx5d60c080635009b1"
     }
   },
+ 
   "sitemapLocation": "sitemap.json"
 }
