@@ -59,7 +59,7 @@ Page({
         comment: res.data
       });
         
-      console.log(this.data.comment.list);
+      console.log(res.data);
       this.setData({
         comment_detail: this.data.comment.list
       });
@@ -114,6 +114,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      categoryId: options.categoryId
+    })
+    this.detail()
+    this.comment()
+    this.news()
     this.news_detail()
   },
 

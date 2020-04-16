@@ -2,12 +2,14 @@ const app = getApp();
 Page({
   data: {
     ActList: [],
+    yundongList: [],
     CustomBar: app.globalData.CustomBar,
     TabCur: 0,
     bkData: [],
     yundongCur: 'lanqiu', //运动内导航栏
     cardCur: 0,
     xiaoyuanSwiperList: [],
+    yundongSwiperList: [],
   },
   tabSelect(e) {
     console.log(e);
@@ -27,6 +29,7 @@ Page({
     var self=this;
     let url1 = app.globalData.URL + '/config/getSection';
     app.wxRequest('GET', url1, [], (res) => {
+      console.log(res.data)
       self.setData({
         bkData: res.data
       })
@@ -41,12 +44,34 @@ Page({
             this.setData({
               ActList: res.data
             })
+            console.log(res.data)
           }, (err) => {
             console.log(err.errMsg)
           });
           app.wxRequest('GET', url2, data, (res) => {
             this.setData({
               xiaoyuanSwiperList: res.data
+            })
+          }, (err) => {
+            console.log(err.errMsg)
+          });
+          continue;
+        }
+        if (res.data[i].name == "运动") {
+          let data = {
+            sid: res.data[i].code
+          };
+          app.wxRequest('GET', url, data, (res) => {
+            this.setData({
+              yundongList: res.data
+            })
+            console.log(res.data)
+          }, (err) => {
+            console.log(err.errMsg)
+          });
+          app.wxRequest('GET', url2, data, (res) => {
+            this.setData({
+              yundongSwiperList: res.data
             })
           }, (err) => {
             console.log(err.errMsg)
