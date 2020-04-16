@@ -19,7 +19,6 @@ Page({
     })
   },
   yundongTabSelect(e) { //运动内导航栏1
-    console.log(e);
     this.setData({
       yundongCur: e.currentTarget.dataset.cur,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
@@ -29,7 +28,6 @@ Page({
     var self=this;
     let url1 = app.globalData.URL + '/config/getSection';
     app.wxRequest('GET', url1, [], (res) => {
-      console.log(res.data)
       self.setData({
         bkData: res.data
       })
@@ -41,10 +39,10 @@ Page({
             sid: res.data[i].code
           };
           app.wxRequest('GET', url, data, (res) => {
+            console.log(res.data)
             this.setData({
               ActList: res.data
             })
-            console.log(res.data)
           }, (err) => {
             console.log(err.errMsg)
           });
@@ -65,7 +63,6 @@ Page({
             this.setData({
               yundongList: res.data
             })
-            console.log(res.data)
           }, (err) => {
             console.log(err.errMsg)
           });

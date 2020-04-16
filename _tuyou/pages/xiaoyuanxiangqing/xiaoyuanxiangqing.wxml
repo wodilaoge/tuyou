@@ -134,7 +134,7 @@
       <!-- 评论 -->
       <view class="cu-bar bg-white solid-bottom huodong-margin-top">
         <view class='action'>
-          <text class='cu-bar-title'>评论{{comment.count}}</text>
+          <text class='cu-bar-title'>评论{{comment_detail.length}}</text>
         </view>
       </view>
 
