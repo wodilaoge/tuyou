@@ -1,6 +1,6 @@
 <!--
 创建者：陈雨豪
-创建时间：20200330
+创建时间：20200330 
 内容：活动详情页面-->
 
 <!-- 孔启超
@@ -103,7 +103,7 @@
           <view class="title-limit2">
             {{item.title}}
           </view>
-          <button class="cu-btn btn-new bg-orange disabled">最新</button>
+          <button class="cu-btn btn-new bg-orange disabled">最新</button> 
           <view>
             <text class="text-gery">2分钟前</text>
             <text class="cuIcon-attention lg text-gray text-right" decode="{{true}}">\t23456</text>

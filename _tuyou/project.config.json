@@ -139,6 +139,12 @@
 					"pathName": "pages/form_address/form_address",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "运动详情",
+					"pathName": "pages/yundongxiangqing/yundongxiangqing",
+					"scene": null
 				}
 			]
 		}

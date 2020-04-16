@@ -62,7 +62,7 @@
     <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#FE538F">
       <swiper-item wx:for="{{xiaoyuanSwiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
         <view class="swiper-item">
-          <image src="{{item.path}}" mode="aspectFill"></image>
+          <image src="{{item.path}}" mode="scaleToFill"></image>
         </view>
       </swiper-item>
     </swiper>

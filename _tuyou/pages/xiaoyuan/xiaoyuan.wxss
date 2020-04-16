@@ -1,4 +1,7 @@
 /* pages/xiaoyuan/xiaoyuan.wxss */
+page{
+  background-color: var(--white)
+}
 .top{
   background: #5454FF
 }

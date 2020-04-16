@@ -1,0 +1,176 @@
+<!-- 
+创建者：陈雨豪
+创建时间：20200416
+创建内容：运动详情-->
+
+<view class="top">
+  <cu-custom isBack="{{true}}" bgColor="bg-blue">
+    <view slot="content">运动详情</view>
+  </cu-custom>
+</view>
+<swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+  <swiper-item wx:for="{{swiperList}}" wx:key>
+    <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+    <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+  </swiper-item>
+</swiper>
+
+<scroll-view scroll-x class="bg-white nav text-center" style="height:80rpx;">
+  <view class="cu-item {{0==TabCur?'text-bold text-blue':''}}" bindtap="tabSelect" data-id="0"> 详情</view>
+  <view class="cu-item {{1==TabCur?'text-bold text-blue':''}}" bindtap="tabSelect" data-id="1"> 报名 </view>
+  <view class="cu-item {{2==TabCur?'text-bold text-blue':''}}" bindtap="tabSelect" data-id="2"> 视频</view>
+  <view class="cu-item {{3==TabCur?'text-bold text-blue':''}}" bindtap="tabSelect" data-id="3"> 照片 </view>
+  <view class="cu-item {{4==TabCur?'text-bold text-blue':''}}" bindtap="tabSelect" data-id="4"> 排名 </view>
+  <view class="cu-item {{5==TabCur?'text-bold text-blue':''}}" bindtap="tabSelect" data-id="5"> 数据</view>
+</scroll-view>
+
+<block wx:if="{{TabCur==0}}">
+  <view class="cu-bar bg-white solid-bottom margin-top">
+    <image class="cu-avatar lg" src="/img/sanfensai.png" mode="heightFix"></image>
+    <text style="margin-left:-80rpx">三分赛</text>
+    <text class=" title-time margin-right">1 天 01: 02 </text>
+  </view>
+
+  <view class="" style="margin-bottom:20rpx;">
+    <view class="cu-card article no-card">
+      <view class="cu-item" style="background: var(--white);">
+        <view class="shadow" style="background-color:#F8F9FD;padding:19rpx 0 19rpx 0;">
+          <view class="yundong-content">
+            <view class="desc padding-xs">
+              <view class="title-limit">XX篮球春季赛第一轮</view>
+              <view class="text-content">
+                <image class="icon-size" src="/img/icon_location.png" mode="heightFix"></image>
+                <text decode="{{true}}">\t杭州市YY街ZZ号</text>
+              </view>
+              <view class="text-content">
+                <image class="icon-size"></image>
+                <text decode="{{true}}">\t篮球馆</text>
+              </view>
+              <view class="time-text-content">
+                <image class="icon-size" src="/img/icon_time.png" mode="heightFix"></image>
+                3月11日（周三）13:00开赛
+              </view>
+            </view>
+            <view>
+              <image class="icon_add" src="/img/icon_add.png" mode="aspectFill" style="margin-top:52rpx;margin-right:83rpx;">
+              </image>
+              <view class="text-blue margin-top-xs" style="font-size: 24rpx;margin-left:-8rpx;">1.1Km</view>
+            </view>
+          </view>
+        </view>
+        <view class="yundong-content padding-xs" style="margin-bottom:18rpx;">
+          <image class="icon-size" style="margin-top:28rpx;" src="/img/icon_title.png" mode="heightFix"></image>
+          <text class="title-text-content" style="margin-top:28rpx;" decode="{{true}}">争夺XX三分王！敢挑战吗？</text>
+          <button class="cu-btn line-orange round btn-guanzhu margin-top-sm">关注</button>
+        </view>
+
+      </view>
+      <view class="bg-white">
+        <view class="yibaoming-margin-top  margin-left ">
+          <text class="yibaoming-text-content">已报名</text>
+          <text class="yibaoming-text-content" style="color:var(--blue)">21/24</text>
+          <text class="yibaoming-text-content">人</text>
+          <button class="cu-btn bg-orange round btn-baomingtiaozhan margin-top">报名挑战</button>
+        </view>
+        <view class="yundong-content bg-white">
+          <view class="padding-sm">
+            <view class="cu-avatar round lg margin-sm" wx:for="{{21}}" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{(index+1)%9}}.jpg);">
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+  <view class="bg-white padding">
+    <view class="cu-bar bg-white ">
+      <view class="cu-bar-title">活动介绍</view>
+    </view>
+    <view class="text-guize " style="width:625rpx;">
+      <view> 1.用户通过站内H5页面分享活动链接给自己的好友，好友点开链接即可参与砸蛋。</view>
+      <view> 2.每位用户可以分享砸蛋链接，每日不限次数。</view>
+      <view> 3.用户分享的链接限砸5次/天，一位用户限砸3次/天，每位用户限为同位好友砸1次。 </view>
+    </view>
+  </view>
+  <view class="bg-white padding margin-top">
+    <view class="cu-bar bg-white ">
+      <view class="cu-bar-title">奖品设置</view>
+    </view>
+    <image src="/img/jiangpin.png" mode="scaleToFill" style="width:700rpx;height:399rpx;"></image>
+  </view>
+  <view class="bg-white padding margin-top">
+    <view class="cu-bar bg-white ">
+      <view class="cu-bar-title">赞助商</view>
+    </view>
+    <image src="/img/zanzhushang.png" mode="scaleToFill" style="width:700rpx;height:200rpx;"></image>
+  </view>
+
+  <view class="cu-bar bg-white solid-bottom margin-top">
+      <view class='action'>
+        <text class='cu-bar-title'>评论108</text>
+      </view>
+    </view>
+
+    <view class="cu-card case no-card bg-white">
+      <view class="cu-item shadow">
+        <view class="cu-list menu-avatar" bindtap="chakanhuifu">
+          <view class="cu-item">
+            <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+            <view class="content flex-sub">
+              <view class=" flex justify-between">
+                <view>
+                  <text class="card-text-grey" decode="{{true}}">吴福嘉&emsp;</text>
+                  <button class="cu-btn btn-hot bg-orange disabled">热门</button>
+                </view>
+                <view class="text-gray text-sm">
+                  <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                  <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+                </view>
+              </view>
+              <view class="card-text-content">
+                活动看着不错，我报名啦
+              </view>
+              <view class="card-text-content-time">
+                03-15 16:15 6 回复
+              </view>
+            </view>
+          </view>
+
+          <view class="cu-item">
+            <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+            <view class="content flex-sub">
+              <view class=" flex justify-between">
+                <view>
+                  <text class="card-text-grey">吴福嘉</text>
+                </view>
+                <view class="text-gray text-sm">
+                  <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                  <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+                </view>
+              </view>
+              <view class="card-text-content">
+                活动看着不错，我报名啦
+              </view>
+              <view class="card-text-content-time">
+                03-15 16:15 6 回复
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view>
+    <view class="cu-bar input foot padding">
+      <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
+      <view class="action">
+        <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
+      </view>
+      <view class="action">
+        <image class="img-icon" mode="aspectFit" style="margin-right:10rpx" src="/img/icon_fabulous.png"></image>
+      </view>
+      <view class="action">
+        <image class="img-icon" mode="aspectFit" src="/img/icon_share.png"></image>
+      </view>
+    </view>
+  </view>
+</block>
