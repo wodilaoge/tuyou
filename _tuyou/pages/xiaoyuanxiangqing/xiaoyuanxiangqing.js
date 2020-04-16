@@ -12,25 +12,21 @@ Page({
     news_detail:[]
   },
   tabSelect(e) {
-    console.log(e);
     this.setData({
       TabCur: e.currentTarget.dataset.id,
     })
   },
   paimingSelect(e) {
-    console.log(e);
     this.setData({
       paimingCur: e.currentTarget.dataset.id,
     })
   },
   pinluntiaozhuan(e) {//评论跳转
-    console.log(e);
     wx.navigateTo({
-      url: '/pages/pinlunliebiao/pinlunliebiao',
+      url: '/pages/pinlunliebiao/pinlunliebiao?categoryId='+this.data.categoryId,
     })
   },
   chakanhuifu(e) {//评论跳转
-    console.log(e);
     wx.navigateTo({
       url: '/pages/chakanhuifu/chakanhuifu',
     })
@@ -58,8 +54,6 @@ Page({
       this.setData({
         comment: res.data
       });
-        
-      console.log(res.data);
       this.setData({
         comment_detail: this.data.comment.list
       });
@@ -68,7 +62,7 @@ Page({
     });
   },
   news() {//活动新闻
-    let url = app.globalData.URL + '/news/listNews';
+    let url = app.globalData.URL + '/news/listNews'; 
     let data = {
       id: this.data.categoryId
     };
@@ -100,7 +94,8 @@ Page({
     this.detail()
     this.comment()
     this.news()
-   
+    this.news_detail()
+
   },
 
   /**
@@ -113,14 +108,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    this.setData({
-      categoryId: options.categoryId
-    })
-    this.detail()
-    this.comment()
-    this.news()
-    this.news_detail()
+  onShow: function (options) {
   },
 
   /**
