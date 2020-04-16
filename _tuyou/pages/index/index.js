@@ -77,13 +77,13 @@ Page({
     });
   },
   toxiaoyuan: function (e) {
-    wx.navigateTo({
-      url: "../../pages/my_profile/my_profile"
+    wx.switchTab({
+      url: "../../pages/xiaoyuan/xiaoyuan"
     })
   },
   tosport: function (e) {
-    wx.navigateTo({
-      url: "../../pages/yundong/lanqiu/lanqiu"
+    wx.switchTab({
+      url: "../../pages/xiaoyuan/xiaoyuan"
     })
   },
   toact: function(e) {
