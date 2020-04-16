@@ -3,12 +3,12 @@
 const app = getApp()
 Page({
   data: {
+    ActList:[],
     PageCur: 'basics',
-    isshow:false,
-    SwiperList:[],
-    news:[
-    ],
-    tabbar: {}, 
+    isshow: false,
+    SwiperList: [],
+    news: [],
+    tabbar: {},
     swiperList: [{
       id: 0,
       type: 'image',
@@ -39,22 +39,31 @@ Page({
       path: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
     }]
 
-},
+  },
 
-
-NavChange(e) {
-  this.setData({
-    PageCur: e.currentTarget.dataset.cur
-  })
-},
-onShareAppMessage() {
-  return {
-    title: 'ColorUI-高颜值的小程序UI组件库',
-    imagepath: '/images/share.jpg',
-    path: '/pages/index/index'
-  }
-},
-  news() {//活动新闻
+  cardSwiper(e) {
+    this.setData({
+      cardCur: e.detail.current
+    })
+  },
+  NavChange(e) {
+    this.setData({
+      PageCur: e.currentTarget.dataset.cur
+    })
+  },
+  getinfo(){
+    var url = app.globalData.URL + '/act/listCampusActivity';
+    var data='';
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        ActList: res.data
+      })
+      console.log(res.data)
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  news() { //活动新闻
     let url = app.globalData.URL + '/news/listNews';
     let data = {
       actid: '1025873553653760'
@@ -67,86 +76,107 @@ onShareAppMessage() {
       console.log(err.errMsg)
     });
   },
-  toact: function (e) {
+  toxiaoyuan: function (e) {
+    wx.navigateTo({
+      url: "../../pages/my_profile/my_profile"
+    })
+  },
+  tosport: function (e) {
+    wx.navigateTo({
+      url: "../../pages/yundong/lanqiu/lanqiu"
+    })
+  },
+  toact: function(e) {
     wx.navigateTo({
       url: "../../pages/form_launch/form_launch"
     })
   },
-  tovideo: function (e) {
+  tovideo: function(e) {
     wx.navigateTo({
       url: "../../pages/form_video/form_video"
     })
   },
-  topic: function (e) {
+  topic: function(e) {
     wx.navigateTo({
       url: "../../pages/form_picture/form_picture"
     })
   },
-  toteam: function (e) {
+  toteam: function(e) {
     wx.navigateTo({
       url: "../../pages/form_team/form_team"
     })
   },
-  setshow: function (e) {//使发布4个按钮显示
+  setshow: function(e) { //使发布4个按钮显示
     this.setData({
       isshow: this.data.isshow = !this.data.isshow
     })
   },
   /**
- * 生命周期函数--监听页面加载
- */
-onLoad: function(options) {
-  this.news();
-  // app.editTabbar();
-  app.getSystemInfo();
-},
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
+    this.news();
+    this.getinfo();
+    // app.editTabbar();
+  },
 
-/**
- * 生命周期函数--监听页面初次渲染完成
- */
-onReady: function() {
-  // app.hideTabBar();
-},
+  onTabItemTap(item) {
+    console.log(item.index)
+    console.log(item.pagePath)
+    console.log(item.text)
+  },
+  toactivity: function (e)  {
+    console.log(e)
+    wx.navigateTo({
+      url: "../../pages/xiaoyuan/xiaoyuan"
+    })
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function() {
+    // app.hideTabBar();
+  },
 
-/**
- * 生命周期函数--监听页面显示
- */
-onShow: function() {
-  // app.hideTabBar(); 
-},
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {
+    // app.hideTabBar(); 
+  },
 
-/**
- * 生命周期函数--监听页面隐藏
- */
-onHide: function() {
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function() {
 
-},
+  },
 
-/**
- * 生命周期函数--监听页面卸载
- */
-onUnload: function() {
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function() {
 
-},
+  },
 
-/**
- * 页面相关事件处理函数--监听用户下拉动作
- */
-onPullDownRefresh: function() {
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {
 
-},
+  },
 
-/**
- * 页面上拉触底事件的处理函数
- */
-onReachBottom: function() {
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function() {
 
-},
+  },
 
-/**
- * 用户点击右上角分享
- */
-onShareAppMessage: function() {
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function() {
 
-}
+  }
 })
