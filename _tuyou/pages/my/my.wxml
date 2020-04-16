@@ -14,7 +14,7 @@
     </view>
   </view>
 <view class="padding">
-<view class="padding-xl round shadow-warp bg-blue margin-top ">
+<view class="padding-xl round shadow-warp bg-blue margin-top center">
 	<text class="text-black margin-l"></text>消息
   <text class="text-black margin-l"></text>活动
   <text class="text-black margin-l"></text>评论

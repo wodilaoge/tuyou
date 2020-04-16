@@ -1,0 +1,19 @@
+.top-gradul-blue{
+  background: linear-gradient(to bottom,#5454FF,rgba(255, 255, 255, 255));
+}
+.left{
+  position: relative;
+  font-size: 50rpx;
+  left: 40rpx;
+  line-height: 120rpx;
+  top:40rpx;
+}
+.bk{
+  background: #5454FF;
+}
+.btn-new {
+  width: 80rpx;
+  height: 45rpx;
+  font-size: 28rpx;
+  border-radius: 33.5rpx;
+}

@@ -11,7 +11,7 @@
   right: -11rpx;
 }
 .margin-l{
-  position: fixed;
+  position: relative;
   left: 50rpx；
 }
 .page {

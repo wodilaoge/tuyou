@@ -68,7 +68,7 @@ Page({
     });
   },
   news() {//活动新闻
-    let url = app.globalData.URL + '/news/listNewsByAct';
+    let url = app.globalData.URL + '/news/listNews';
     let data = {
       actid: this.data.categoryId
     };
