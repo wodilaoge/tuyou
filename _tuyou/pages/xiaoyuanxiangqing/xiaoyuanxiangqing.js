@@ -37,6 +37,7 @@ Page({
       id: this.data.categoryId
     };
     app.wxRequest('GET', url, data, (res) => {
+      console.log(res.data)
       this.setData({
         detail: res.data
       })

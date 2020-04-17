@@ -1,6 +1,9 @@
 Page({
   data: {
     TabCur: 0,
+    paimingCur: 0,
+    comment: [],
+    comment_detail: [],
     swiperList: [{
       id: 0,
       type: 'image',
@@ -17,7 +20,11 @@ Page({
       TabCur: e.currentTarget.dataset.id,
     })
   },
-
+  paimingSelect(e) {
+    this.setData({
+      paimingCur: e.currentTarget.dataset.id,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
