@@ -92,8 +92,8 @@
 内容：运动页面-->
 <block wx:if="{{TabCur==1}}">
   <view class="top-gradul-blue">
-    <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
-      <swiper-item wx:for="{{yundongSwiperList}}" wx:key>
+    <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#FE538F">
+      <swiper-item wx:for="{{yundongSwiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
         <view class="swiper-item">
           <image src="{{item.path}}" mode="scaleToFill"></image>
         </view>
