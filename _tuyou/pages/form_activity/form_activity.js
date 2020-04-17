@@ -5,11 +5,12 @@ Page({
     CustomBar: app.globalData.CustomBar,
     group:0,
     index: null,
+    index2:null,
     number: 50,
     picker: ['个人报名', '团体报名'],
     picker2: ['匿名参赛', '实名参赛'],
     picker3: ['观看无需报名', '匿名报名观看', '实名报名观看'],
-    picker4: ['篮球', '足球', '排球', '羽毛球', '乒乓球', '其他'],
+    groups:{},
     multiIndex: [0, 0, 0],
     time: '12:01',
     date: '2020.4.25 16:00',
@@ -23,7 +24,8 @@ Page({
     imgList5: [],
     modalName: null,
     textareaAValue: '',
-    textareaBValue: ''
+    textareaBValue: '',
+    info:{}
   },
   PickerChange(e) {
     console.log(e);
@@ -247,6 +249,11 @@ Page({
       url: "../../pages/form_modify/form_modify"
     })
   },
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
   commit: function (e) {
     this.setData({
       modalName: e.currentTarget.dataset.target
@@ -266,4 +273,30 @@ Page({
   nextNum() {
     this.setData({ number: this.data.number - 1 });
   },
+  num(e){
+    this.setData({
+      number:e.detail.value
+    })
+  },
+  onLoad: function (options) {
+    var t=wx.getStorageSync('information')
+    this.setData({
+      info: t
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
 })

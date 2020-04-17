@@ -144,7 +144,7 @@ Page({
   city() {
     let url = app.globalData.URL + '/config/getCity';
     let data = {
-      pid: '00333'
+      pid: '00301'
     };
     app.wxRequest('GET', url, data, (res) => {
       // console.log(res.data)

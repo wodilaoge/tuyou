@@ -18,9 +18,9 @@
   </view>
   <view class="cu-form-group">
     <view class="title">观众设置</view>
-    <picker bindchange="PickerChange" value="{{index}}" range="{{picker3}}">
+    <picker bindchange="PickerChange" value="{{index2}}" range="{{picker3}}">
       <view class="picker text-grey">
-        {{index?picker[index]:'观看无需报名'}}
+        {{index2?picker3[index2]:'观看无需报名'}}
       </view>
     </picker>
   </view>
@@ -30,7 +30,7 @@
     <view class="tui-gallery-list">
       <view class="tui-number-group">
         <button class="tui-number-cell" bindtap="nextNum">-</button>
-        <input class="tui-number-cell" type="number" value='{{number}}'></input>
+        <input class="tui-number-cell" bindinput="num" type="number" value='{{number}}'></input>
         <button class="tui-number-cell" bindtap="prevNum">+</button>
       </view>
     </view>
@@ -212,4 +212,18 @@
 </form>
 <view class="flex margin-top2">
   <button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="commit" data-target="Modal">立即提交</button>
+</view>
+
+<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">消息</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      提交成功
+    </view>
+  </view>
 </view>
