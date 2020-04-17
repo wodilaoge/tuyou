@@ -27,7 +27,7 @@ Page({
     provinceList:[],
     city:[],
     ActList:[],
-    picker: ['个人报名', '团体报名'],
+    picker: ['个人报名', '团体报名','个人团队均可报名'],
     picker2: ['篮球', '足球', '羽毛球', '乒乓球', '网球'],
     multiIndex: [0, 0, 0],
     time: '12:01',
@@ -35,14 +35,10 @@ Page({
   },
 
   PickerChange(e) {//报名方式
-    let t='information.way'
+    let t = 'information.way'
     this.setData({
-      index2:e.detail.value
+      [t]:e.detail.value
     })
-    let v = this.data.picker[this.data.index2]
-    this.setData({
-      [t]:v
-    });
   },
   PickerChange2(e) {//活动方式
     let t = 'information.activity'

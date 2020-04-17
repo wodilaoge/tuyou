@@ -12,13 +12,13 @@
     <view class="title">参赛设置</view>
     <picker bindchange="PickerChange" value="{{index}}" range="{{picker2}}">
       <view class="picker text-grey">
-        {{index?picker[index]:'匿名参赛'}}
+        {{index?picker2[index]:'匿名参赛'}}
       </view>
     </picker>
   </view>
   <view class="cu-form-group">
     <view class="title">观众设置</view>
-    <picker bindchange="PickerChange" value="{{index2}}" range="{{picker3}}">
+    <picker bindchange="PickerChange2" value="{{index2}}" range="{{picker3}}">
       <view class="picker text-grey">
         {{index2?picker3[index2]:'观看无需报名'}}
       </view>
