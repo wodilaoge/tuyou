@@ -1,26 +1,21 @@
 const app = getApp();
 Page({
   data: {
-    StatusBar: app.globalData.StatusBar,
-    CustomBar: app.globalData.CustomBar,
     actid: 1760034971189248,
     group: 0,
     index: 0,
     index2: 0,
-    opinion1:10,
-    opinion2:20,
-    opinion3:10,
+    opinion1: 10,
+    opinion2: 20,
+    opinion3: 10,
     number: 50,
     picker: ['个人报名', '团体报名'],
     picker2: ['匿名参赛', '实名参赛'],
     picker3: ['观看无需报名', '匿名报名观看', '实名报名观看'],
     groups: {},
-    multiIndex: [0, 0, 0],
     time: '12:01',
     date: '2020.4.25 16:00',
     date2: '2020.8.25 16:00',
-    region: ['浙江省', '杭州市', '浙江大学'],
-    place: ['浙江大学篮球场'],
     imgList: [],
     imgList2: [],
     imgList3: [],
@@ -35,7 +30,7 @@ Page({
       index: e.detail.value
     })
     this.setData({
-      opinion1: (parseInt(this.data.index)+1)*10
+      opinion1: (parseInt(this.data.index) + 1) * 10
     })
   },
   PickerChange2(e) {
@@ -277,6 +272,14 @@ Page({
       group: t
     })
   },
+  subicon: function(e) {
+    var t = this.data.group
+    console.log(t)
+    t--
+    this.setData({
+      group: t
+    })
+  },
   prevNum() {
     this.setData({
       number: this.data.number + 1
@@ -298,11 +301,11 @@ Page({
       info: t
     })
     this.setData({
-      opinion3: (parseInt(this.data.info.way)+1)*10
+      opinion3: (parseInt(this.data.info.way) + 1) * 10
     })
   },
   commit: function(e) {
-    var urls = app.globalData.URL + '/act/pubActivity';   
+    var urls = app.globalData.URL + '/act/pubActivity';
     wx.request({
       url: urls,
       method: "POST",
@@ -313,8 +316,7 @@ Page({
         acid1: "076002001",
         acid2: "076002001002",
         logo: "http://pic39.nipic.com/20140318/12838115_142809370123_2.jpg",
-        rotations: [
-          {
+        rotations: [{
             "id": 5075988962607104,
             "rotation": "http://pic39.nipic.com/20140318/12838115_142809370123_2.jpg"
           },
@@ -327,16 +329,13 @@ Page({
             "rotation": "http://pic39.nipic.com/20140318/12838115_142809370123_2.jpg"
           }
         ],
-        groups: [
-          {
-            "id": 5396745685041152,
-            "actid": 5069992122908672,
+        groups: [{
+            "id": '',
             "groupname": "分组1",
             "signupmax": 10
           },
           {
-            "id": 5396745706012672,
-            "actid": 5069992122908672,
+            "id": '',
             "groupname": "分组2",
             "signupmax": 10
           }
@@ -349,7 +348,6 @@ Page({
         slogan: this.data.info.slogan,
         entrylimit: this.data.opinion1,
         audiencelimit: this.data.opinion2,
-        ruleid: null,
         rule: null,
         rulepic: "http://pic39.nipic.com/20140318/12838115_142809370123_2.jpg",
         award: null,
@@ -367,8 +365,6 @@ Page({
         createralias: "昵称啊",
         createrhead: "http://pic39.nipic.com/20140318/12838115_142809370123_2.jpg",
         status: 10,
-        signupstatus: 20,
-        cancelreason: null
       },
       header: {
         "Content-Type": "application/json"
@@ -382,10 +378,12 @@ Page({
         })
       },
     })
-
     this.setData({
       modalName: e.currentTarget.dataset.target
     })
+  },
+  g1(){
+
   },
   tests: function(e) {
     var urls = app.globalData.URL + '/act/updateActIndRank';
@@ -394,8 +392,7 @@ Page({
       method: "POST",
       data: {
         actid: this.data.actid,
-        members: [
-          {
+        members: [{
             "mbrId": "1025873536876568",
             "mbrRank": 1,
             "mbrScore": 100
@@ -410,7 +407,7 @@ Page({
       header: {
         "Content-Type": "application/json"
       },
-      success: function (res) {
+      success: function(res) {
         console.log(res.data);
         wx.showToast({
           title: '提交成功！',
@@ -418,7 +415,7 @@ Page({
           duration: 2000
         })
       },
-      fail: function (err) {
+      fail: function(err) {
         errFun(res);
       }
     })
