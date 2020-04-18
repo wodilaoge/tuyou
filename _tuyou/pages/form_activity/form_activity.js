@@ -1,4 +1,5 @@
 const app = getApp();
+var upload = require("../../utils/upload.js");
 Page({
   data: {
     actid: 1760034971189248,
@@ -279,7 +280,6 @@ Page({
   },
   subicon: function(e) {
     var t = this.data.group
-    console.log(t)
     this.data.groups.splice(t - 1, 1)
     t--
     this.setData({
@@ -335,17 +335,7 @@ Page({
             "rotation": "http://pic39.nipic.com/20140318/12838115_142809370123_2.jpg"
           }
         ],
-        groups: [{
-            "id": '',
-            "groupname": "分组1",
-            "signupmax": 10
-          },
-          {
-            "id": '',
-            "groupname": "分组2",
-            "signupmax": 10
-          }
-        ],
+        groups: this.data.groups,
         fromtime: this.data.info.fromtime,
         totime: null,
         signupdeadline: this.data.info.signupdeadline,
@@ -479,41 +469,6 @@ Page({
         'groups[4].groupname': e.detail.value
       })
     }
-  },
-  tests: function(e) {
-    var urls = app.globalData.URL + '/act/updateActIndRank';
-    wx.request({
-      url: urls,
-      method: "POST",
-      data: {
-        actid: this.data.actid,
-        members: [{
-            "mbrId": "1025873536876568",
-            "mbrRank": 1,
-            "mbrScore": 100
-          },
-          {
-            "mbrId": "1025873536876569",
-            "mbrRank": 2,
-            "mbrScore": 90
-          }
-        ]
-      },
-      header: {
-        "Content-Type": "application/json"
-      },
-      success: function(res) {
-        console.log(res.data);
-        wx.showToast({
-          title: '提交成功！',
-          icon: 'success',
-          duration: 2000
-        })
-      },
-      fail: function(err) {
-        errFun(res);
-      }
-    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
