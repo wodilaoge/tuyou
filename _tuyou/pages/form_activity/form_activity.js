@@ -12,7 +12,7 @@ Page({
     picker: ['个人报名', '团体报名'],
     picker2: ['匿名参赛', '实名参赛'],
     picker3: ['观看无需报名', '匿名报名观看', '实名报名观看'],
-    groups: {},
+    groups: [],
     time: '12:01',
     date: '2020.4.25 16:00',
     date2: '2020.8.25 16:00',
@@ -266,15 +266,21 @@ Page({
 
   addicon: function(e) {
     var t = this.data.group
-    console.log(t)
-    t++
-    this.setData({
-      group: t
-    })
+    if (t > 4) {
+      wx.showToast({
+        title: '最多添加5个',
+      })
+    } else {
+      t++
+      this.setData({
+        group: t
+      })
+    }
   },
   subicon: function(e) {
     var t = this.data.group
     console.log(t)
+    this.data.groups.splice(t - 1, 1)
     t--
     this.setData({
       group: t
@@ -382,8 +388,97 @@ Page({
       modalName: e.currentTarget.dataset.target
     })
   },
-  g1(){
+  g1(e) {
+    var that = this;
+    var obj = {};
+    // console.log(this.data.groups.length)
+    if (this.data.groups.length == 0) {
+      obj.id = '';
+      obj.groupname = '';
+      obj.signupmax = 10;
+      let t = that.data.groups;
+      t.push(obj);
+      that.setData({
+        t
+      });
+    } else {
+      that.setData({
+        'groups[0].groupname': e.detail.value
+      })
+    }
 
+  },
+  g2(e) {
+    var that = this;
+    var obj = {};
+    if (this.data.groups.length == 1) {
+      obj.id = '';
+      obj.groupname = '';
+      obj.signupmax = 10;
+      let t = that.data.groups;
+      t.push(obj);
+      that.setData({
+        t
+      });
+    } else {
+      that.setData({
+        'groups[1].groupname': e.detail.value
+      })
+    }
+  },
+  g3(e) {
+    var that = this;
+    var obj = {};
+    if (this.data.groups.length == 2) {
+      obj.id = '';
+      obj.groupname = '';
+      obj.signupmax = 10;
+      let t = that.data.groups;
+      t.push(obj);
+      that.setData({
+        t
+      });
+    } else {
+      that.setData({
+        'groups[2].groupname': e.detail.value
+      })
+    }
+  },
+  g4(e) {
+    var that = this;
+    var obj = {};
+    if (this.data.groups.length == 3) {
+      obj.id = '';
+      obj.groupname = '';
+      obj.signupmax = 10;
+      let t = that.data.groups;
+      t.push(obj);
+      that.setData({
+        t
+      });
+    } else {
+      that.setData({
+        'groups[3].groupname': e.detail.value
+      })
+    }
+  },
+  g5(e) {
+    var that = this;
+    var obj = {};
+    if (this.data.groups.length == 4) {
+      obj.id = '';
+      obj.groupname = '';
+      obj.signupmax = 10;
+      let t = that.data.groups;
+      t.push(obj);
+      that.setData({
+        t
+      });
+    } else {
+      that.setData({
+        'groups[4].groupname': e.detail.value
+      })
+    }
   },
   tests: function(e) {
     var urls = app.globalData.URL + '/act/updateActIndRank';

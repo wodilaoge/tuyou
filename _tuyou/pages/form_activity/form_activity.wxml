@@ -188,25 +188,25 @@
   <view class="cu-form-group" wx:if="{{group>=2}}">
     <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
     <view class="title">分组2</view>
-    <input class="input text-grey" placeholder="2队"></input>
+    <input class="input text-grey" placeholder="2队" bindinput="g2"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group" wx:if="{{group>=3}}">
     <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
     <view class="title">分组3</view>
-    <input class="input text-grey" placeholder="3队"></input>
+    <input class="input text-grey" placeholder="3队" bindinput="g3"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group" wx:if="{{group>=4}}">
    <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
     <view class="title">分组4</view>
-    <input class="input text-grey" placeholder="4队"></input>
+    <input class="input text-grey" placeholder="4队" bindinput="g4"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group" wx:if="{{group>=5}}">
   <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
     <view class="title">分组5</view>
-    <input class="input text-grey" placeholder="5队"></input>
+    <input class="input text-grey" placeholder="5队" bindinput="g5"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="text-center margin-top3">
