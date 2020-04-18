@@ -23,7 +23,9 @@ Page({
     imgList4: [],
     imgList5: [],
     modalName: null,
-    info: {}
+    info: {},
+    tes:'',
+    webinfo:[]
   },
   PickerChange(e) {
     console.log(e);
@@ -80,6 +82,12 @@ Page({
               imgList: res.tempFilePaths
             })
           }
+          // console.log(imgList[0])
+          var returnurl = upload.uploadFile(this.data.imgList[0],'other')
+          var t=wx.getStorageSync('url');
+          this.setData({
+            tes:t
+          });
         }
         if (t == 2) {
           if (this.data.imgList2.length != 0) {
@@ -127,6 +135,7 @@ Page({
         }
       }
     });
+
   },
   ViewImage(e) {
     var t = e.currentTarget.dataset.id
@@ -301,15 +310,7 @@ Page({
       number: e.detail.value
     })
   },
-  onLoad: function(options) {
-    var t = wx.getStorageSync('information')
-    this.setData({
-      info: t
-    })
-    this.setData({
-      opinion3: (parseInt(this.data.info.way) + 1) * 10
-    })
-  },
+
   commit: function(e) {
     var urls = app.globalData.URL + '/act/pubActivity';
     wx.request({
@@ -473,13 +474,32 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
+  getuploadinfo(){
+    let url = app.globalData.URL + '/config/findCosParam';
+    let data='';
+    app.wxRequest('GET', url, data, (res) => {
+      // console.log(res.data)
+      this.setData({
+        webinfo: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  demo(web){
+    upload.uploadFile(web)
+  },
+  onLoad: function (options) {
+    var t = wx.getStorageSync('information');
+    this.getuploadinfo();//获取上传文件信息
+    this.setData({
+      info: t,
+      opinion3: (parseInt(this.data.info.way) + 1) * 10
+    })
+  },
   onReady: function() {
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function() {
 
   },
