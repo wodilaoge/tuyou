@@ -2,37 +2,14 @@ const app = getApp();
 Page({
   data: {
     ActList: [],
+    yundongList: [],
     CustomBar: app.globalData.CustomBar,
     TabCur: 0,
-
+    bkData: [],
     yundongCur: 'lanqiu', //运动内导航栏
     cardCur: 0,
-    xiaoyuanSwiperList: [{
-      id: 0,
-      type: 'image',
-      url: '/img/BasicsBg.png'
-    }, {
-      id: 1,
-      type: 'image',
-        url: '/img/BasicsBg.png',
-    }, {
-      id: 2,
-      type: 'image',
-      url: '/img/BasicsBg.png'
-    }],
-    yundongSwiperList: [{
-      id: 0,
-      type: 'image',
-      url: '/img/yundong.png'
-    }, {
-      id: 1,
-      type: 'image',
-      url: '/img/yundong.png',
-    }, {
-      id: 2,
-      type: 'image',
-      url: '/img/yundong.png'
-    }],
+    xiaoyuanSwiperList: [],
+    yundongSwiperList: [],
   },
   tabSelect(e) {
     console.log(e);
@@ -42,28 +19,71 @@ Page({
     })
   },
   yundongTabSelect(e) { //运动内导航栏1
-    console.log(e);
     this.setData({
       yundongCur: e.currentTarget.dataset.cur,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
   },
   xuanran() {
-    let url = app.globalData.URL + '/act/listCampusActivity';
-    let data = {
-      sid: '076002'
-    };
-    app.wxRequest('GET', url, data, (res) => {
-      console.log(res.data)
-      this.setData({
-        ActList: res.data
+    var self=this;
+    let url1 = app.globalData.URL + '/config/getSection';
+    app.wxRequest('GET', url1, [], (res) => {
+      self.setData({
+        bkData: res.data
       })
+      for (var i in res.data) {
+        var url = app.globalData.URL + '/act/listCampusActivity';
+        var url2 = app.globalData.URL + '/secrot/listSecrotation';
+        if (res.data[i].name == "校园活动") {
+          let data = {
+            sid: res.data[i].code
+          };
+          app.wxRequest('GET', url, data, (res) => {
+            console.log(res.data)
+            this.setData({
+              ActList: res.data
+            })
+          }, (err) => {
+            console.log(err.errMsg)
+          });
+          app.wxRequest('GET', url2, data, (res) => {
+            this.setData({
+              xiaoyuanSwiperList: res.data
+            })
+          }, (err) => {
+            console.log(err.errMsg)
+          });
+          continue;
+        }
+        if (res.data[i].name == "运动") {
+          let data = {
+            sid: res.data[i].code
+          };
+          app.wxRequest('GET', url, data, (res) => {
+            this.setData({
+              yundongList: res.data
+            })
+          }, (err) => {
+            console.log(err.errMsg)
+          });
+          app.wxRequest('GET', url2, data, (res) => {
+            this.setData({
+              yundongSwiperList: res.data
+            })
+          }, (err) => {
+            console.log(err.errMsg)
+          });
+        }
+      }
     }, (err) => {
       console.log(err.errMsg)
-    });
+      });
+
+    
+    
+    
   },
   onLoad() {
-    this.xuanran();
     this.towerSwiper('xiaoyuanSwiperList');
   },
   onShow() {
@@ -80,10 +100,9 @@ Page({
       cardCur: e.detail.current
     })
   },
-  baomingcanjia(e) { //报名参加按钮跳转
-    console.log(e);
+  baomingcanjia(e) { //报名参加按钮跳转 带着活动id跳转
     wx.navigateTo({
-      url: '../../pages/xiaoyuanxiangqing/xiaoyuanxiangqing',
+      url: '../../pages/xiaoyuanxiangqing/xiaoyuanxiangqing?categoryId=' + e.currentTarget.id,
     })
   },
   // towerSwiper

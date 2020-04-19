@@ -1,4 +1,4 @@
-/*
+/* 
   ColorUi for MP-weixin  v2.1.4 | by 文晓港 2019年4月25日19:15:42
   仅供学习交流，如作它用所承受的法律责任一概与作者无关
   使用ColorUi开发扩展与插件时，请注明基于ColorUi开发
@@ -13,7 +13,7 @@ page {
 	/* Color 可以自定义相关配色 */
 	/* var属性兼容性 --> https://www.caniuse.com/#feat=css-variables */
 	/* 标准色 */
-	--red: #e54d42;
+	--red: #E6162E;
 	--orange: #FE6004;
 	--yellow: #fbbd08;
 	--olive: #8dc63f;
@@ -24,7 +24,8 @@ page {
 	--mauve: #9c26b0;
 	--pink: #e03997;
 	--brown: #a5673f;
-	--grey: #8799a3;
+	--grey: #A4A9BC;
+  --grey2:#D8D9DF;
 	--black: #333333;
 	--darkGray: #666666;
 	--gray: #aaaaaa;
@@ -2329,8 +2330,6 @@ button.icon.lg {
 }
 
 .cu-card.article>.cu-item {
-  margin-bottom: 20rpx;
-	padding-bottom: 30rpx;
 }
 
 .cu-card.article>.cu-item .title {
@@ -2360,11 +2359,48 @@ button.icon.lg {
 	justify-content: space-between;
 }
 
-.cu-card.article>.cu-item .content .text-content {
-	font-size: 28rpx;
-	color: #888;
-	height: 4.8em;
-	overflow: hidden;
+
+
+.cu-card.article>.cu-item .xiangqing-content {
+	display: flex;
+	padding: 0 30rpx;
+}
+
+.cu-card.article>.cu-item .xiangqing-content>image {
+	width: 200rpx;
+	height: 240rpx;
+	margin-right: 20rpx;
+	border-radius: 6rpx;
+}
+
+.cu-card.article>.cu-item .xiangqing-content .desc {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.cu-card.article>.cu-item .xiangqing-content .desc>.title-limit {
+  font-size: 30rpx;
+  font-weight: bold;
+  line-height: 38rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.cu-card.article>.cu-item .xiangqing-content .desc>.xiangqing-text-content {
+	font-size: 24rpx;
+  margin-top: 20rpx;
+}
+
+.cu-card.article>.cu-item .xiangqing-content .desc>.btn-width {
+  width: 88rpx;
+  font-size: 20rpx;
+  font-weight: normal;
+  height: 40rpx;
 }
 
 .cu-card.article>.cu-item .content2 {
@@ -3600,6 +3636,11 @@ scroll-view.cu-steps .cu-item {
 	color: var(--white);
 }
 
+.bg-grey2 {
+	background-color: var(--grey2);
+	color: var(--white);
+}
+
 .bg-gray {
 	background-color: #f0f0f0;
 	color: var(--black);
@@ -4028,7 +4069,7 @@ scroll-view.cu-steps .cu-item {
 .text-grey,
 .line-grey,
 .lines-grey {
-	color: var(--grey);
+	color: #999999;
 }
 
 .text-gray,

@@ -18,3 +18,8 @@ font-size: 20rpx;
 font-weight:normal;
 color: #999999;
 }
+.cu-bar-title {
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
+}

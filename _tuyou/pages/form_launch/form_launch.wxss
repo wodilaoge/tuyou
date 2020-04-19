@@ -8,6 +8,15 @@
   /* top: 64rpx;
   left: 36rpx; */
 }
+.icon2{
+  position: fixed;
+  width: 40rpx;
+  height: 40rpx;
+  /* top: 64rpx;
+  left: 36rpx; */
+  margin-left: 10rpx;
+  right: 20rpx;
+}
 .input{
    text-align: right
 }

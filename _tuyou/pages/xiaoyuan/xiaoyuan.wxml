@@ -62,15 +62,16 @@
     <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#FE538F">
       <swiper-item wx:for="{{xiaoyuanSwiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
         <view class="swiper-item">
-          <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+          <image src="{{item.path}}" mode="scaleToFill"></image>
         </view>
       </swiper-item>
     </swiper>
   </view>
+  
   <view class="cu-card article no-card bg-white">
-    <view class="cu-item shadow">
-      <view class="content" wx:for="{{ActList}}" bindtap="baomingcanjia">
-        <image src="/img/huodong1.png" mode="aspectFill"></image>
+    <view class="cu-item shadow "  wx:for="{{ActList}}">
+      <view class="content margin-bottom" bindtap="baomingcanjia" id="{{item.id}}">
+        <image src="{{item.logo}}" mode="aspectFill"></image>
         <view class="desc">
           <view class="title-limit">{{item.actname}}</view>
           <view class="xiaoyuan-text-content text-gray"> {{item.fromtime}}</view>
@@ -78,33 +79,10 @@
           <button class="cu-btn round bg-orange btn-width">报名参加</button>
         </view>
       </view>
+      <view style="background-color: #F8F9FD;height:20rpx;"></view>
     </view>
   </view>
-  <view class="cu-card article no-card bg-white">
-    <view class="cu-item shadow" bindtap="baomingcanjia">
-      <view class="content">
-        <image src="/img/huodong2.png" mode="aspectFill"></image>
-        <view class="desc">
-          <view class="title-limit">浙江工业大学大学生钢琴汇报 演出</view>
-          <view class="xiaoyuan-text-content text-gray"> 2020.03.14 周六 19：30</view>
-          <view class="xiaoyuan-text-content text-gray"> 杭州 | 浙工商剧院</view>
-          <button class="cu-btn round bg-orange btn-width">报名参加</button>
-        </view>
-      </view>
-    </view>
-
-    <view class="cu-item shadow">
-      <view class="content">
-        <image src="/img/huodong3.png" mode="aspectFill"></image>
-        <view class="desc">
-          <view class="title-limit">浙江科技大学大学生吉它汇报 演出</view>
-          <view class="xiaoyuan-text-content text-gray"> 2020.03.14 周六 19：30</view>
-          <view class="xiaoyuan-text-content text-gray"> 杭州 | 浙江科技大学体育馆</view>
-          <button class="cu-btn round bg-grey btn-width">活动结束</button>
-        </view>
-      </view>
-    </view>
-  </view>
+  
 
 
 </block>
@@ -114,10 +92,10 @@
 内容：运动页面-->
 <block wx:if="{{TabCur==1}}">
   <view class="top-gradul-blue">
-    <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
-      <swiper-item wx:for="{{yundongSwiperList}}" wx:key>
+    <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#FE538F">
+      <swiper-item wx:for="{{yundongSwiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
         <view class="swiper-item">
-          <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+          <image src="{{item.path}}" mode="scaleToFill"></image>
         </view>
       </swiper-item>
     </swiper>

@@ -3,87 +3,110 @@
 内容：发起活动
 -->
 <cu-custom bgColor="bg-blue" isBack="{{true}}">
-	<view slot="backText">返回</view>
-	<view slot="content">发起活动</view>
+  <view slot="backText">返回</view>
+  <view slot="content">发起活动</view>
 </cu-custom>
 <form>
   <view class="cu-form-group margin-top">
-		<view class="title">活动方式</view>
-		<picker bindchange="PickerChange" value="{{index}}" range="{{picker4}}">
-			<view class="picker text-blue">
-				{{index?picker4[index]:'篮球'}}
-			</view>
-		</picker>
-	</view>
-  	<view class="cu-form-group">
-		<view class="title">活动名称</view>
-		<input class="input text-grey" placeholder="春季篮球赛" type='text' name="name" bindinput="name"></input>
-    	<image class="icon" src="../../img/write.png"></image>
-	</view>
-    	<view class="cu-form-group">
-		<view class="title ">活动口号</view>
-		<input class="input text-grey" placeholder="争夺XX三分王！敢挑战吗?" name="activityslogan"></input>
-    	<image class="icon" src="../../img/write.png"></image>
-	</view>
-  	<view class="cu-form-group">
-		<view class="title">地址</view>
-		<picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
-			<view class="picker text-grey">
-				{{region[0]}}{{region[1]}}{{region[2]}}
-			</view>
-		</picker>
-	</view>
-  	<view class="cu-form-group">
-		<view class="title">场馆</view>
-		<picker mode="place" bindchange="RegionChange" value="{{place}}" custom-item="{{customItem}}">
-			<view class="picker text-grey">
-				{{place[0]}}
-			</view>
-		</picker>
-	</view>
-  	<view class="cu-form-group">
-		<view class="title">报名开始时间</view>
-		<picker mode="date" value="{{date}}" start="2015.09.01" end="2020.09.01" bindchange="DateChange">
-			<view class="picker text-grey">
-				{{date}}
-			</view>
-		</picker>
-	</view>
-  
-  	<view class="cu-form-group">
-		<view class="title">报名截止时间</view>
-		<picker mode="date" value="{{date2}}" start="2015-09-01" end="2020-09-01" bindchange="DateChange">
-			<view class="picker text-grey">
-				{{date2}}
-			</view>
-		</picker>
-	</view>
-
-  <view class="cu-form-group margin-top">
-		<view class="title">报名方式</view>
-		<picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
-			<view class="picker text-grey">
-				{{index?picker[index]:'个人报名'}}
-			</view>
-		</picker>
-	</view>
-  	<view class="cu-form-group">
-		<view class="title">参与人数上限</view>
-		<input class="input text-grey" placeholder="50"></input>
-     		<image class="icon" src="../../img/write.png"></image>
-	</view>
+    <view class="title">活动方式</view>
+    <picker bindchange="PickerChange2" value="{{index}}" range="{{picker2}}">
+      <view class="picker text-blue">
+        {{index?picker2[index]:'篮球'}}
+      </view>
+    </picker>
+  </view>
   <view class="cu-form-group">
-		<view class="title">组建聊天群</view>
-		<switch></switch>
-	</view>
-<view class="text-center margin-top3">
-	<checkbox checked class="blue checkicon" ></checkbox>
-	<text class="text-grey">我已阅读并同意</text>
-	<text class="text-blue">《同友活动申明》</text>
-  <view class="flex margin-top2">
-    <button class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="cancel" >取消活动</button>
-    <button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="commit"  data-target="Modal">补充信息</button>
+    <view class="title">活动名称</view>
+    <input class="input text-grey" bindinput="getname" placeholder="春季篮球"></input>
+    <image class="icon" src="../../img/write.png"></image>
+  </view>
+  <view class="cu-form-group">
+    <view class="title ">活动口号</view>
+    <input class="input text-grey" placeholder="争夺XX三分王！敢挑战吗?" bindinput="getslogan"></input>
+    <image class="icon" src="../../img/write.png"></image>
+  </view>
+  <!-- <view class="cu-form-group">
+    <view class="title">地址</view>
+    <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+      <view class="picker text-grey">
+        {{region[0]}}{{region[1]}}{{region[2]}}
+      </view>
+    </picker>
+  </view> -->
+   <view class="cu-form-group margin-top">
+    <view class="title">省</view>
+    <picker bindchange="PickerPro" value="{{indexp}}" range="{{provinceList}}"  range-key="name">
+      <view class="picker text-grey">
+        {{indexp?provinceList[indexp].name:'浙江'}}
+      </view>
+    </picker>
+  </view>
+   <view class="cu-form-group">
+    <view class="title">市</view>
+    <picker bindchange="PickerCity" value="{{indexc}}" range="{{citys}}"  range-key="name">
+      <view class="picker text-grey">
+        {{indexc?citys[indexc].name:'杭州'}}
+      </view>
+    </picker>
+  </view> <view class="cu-form-group">
+    <view class="title">学校</view>
+    <picker bindchange="PickerSchool" value="{{indexs}}" range="{{school}}"  range-key="name">
+      <view class="picker text-grey">
+        {{indexs?school[indexs].name:'浙江大学'}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group">
+    <view class="title ">场馆</view>
+    <input class="input text-grey" placeholder="体育馆" bindinput="getvenue"></input>
+    <image class="icon" src="../../img/write.png"></image>
   </view>
 
-</view>
+  <view class="cu-form-group">
+    <view class="title">报名开始时间</view>
+    <picker mode="date" value="{{information.fromtime}}" start="2015.09.01" end="2020.09.01" bindchange="DateChange">
+      <view class="picker text-grey">
+        {{information.fromtime}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="cu-form-group">
+    <view class="title">报名截止时间</view>
+    <picker mode="date" value="{{information.signupdeadline}}" start="2015-09-01" end="2020-09-01" bindchange="DateChange2">
+      <view class="picker text-grey">
+        {{information.signupdeadline}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="cu-form-group margin-top">
+    <view class="title">报名方式</view>
+    <picker bindchange="PickerChange" value="{{index2}}" range="{{picker}}">
+      <view class="picker text-grey">
+        {{index2?picker[index2]:'个人报名'}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">参与人数上限</view>
+    <input class="input text-grey" value="{{information.entrylimit}}" bindinput="getentity"></input>
+    <image class="icon" src="../../img/write.png"></image>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">组建聊天群</view>
+    <switch bindchange="changeswitch"></switch>
+  </view>
+  <view class="text-center margin-top3">
+    <checkbox-group bindchange="checked">
+      <checkbox checked="{{ischecked2}}" class="blue checkicon"></checkbox>
+      <text class="text-grey">我已阅读并同意</text>
+      <text class="text-blue">《同友活动申明》</text>
+    </checkbox-group>
+    <view class="flex margin-top2">
+      <button class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="cancel">取消活动</button>
+      <button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="commit" data-target="Modal">补充信息</button>
+    </view>
+
+  </view>
 </form>

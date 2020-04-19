@@ -1,7 +1,6 @@
 {
-   
   "pages": [
-
+    "pages/index/index",
     "pages/form/form",
     "pages/form_team/form_team",
     "pages/form_picture/form_picture",
@@ -9,18 +8,22 @@
     "pages/form_launch/form_launch",
     "pages/form_activity/form_activity",
     "pages/form_modify/form_modify",
-
+    "pages/form_address/form_address",
     "pages/my/my",
     "pages/my_profile/my_profile",
-    "pages/index/index",
+    "pages/yundongxiangqing/yundongxiangqing",
     "pages/xiaoyuan/xiaoyuan",
     "pages/xiaoyuanxiangqing/xiaoyuanxiangqing",
     "pages/pinlunliebiao/pinlunliebiao",
     "pages/baoming/baoming",
     "pages/baoming_ok/baoming_ok",
+<<<<<<< HEAD
 
     "pages/ziliao/ziliao",
 
+=======
+    "pages/ziliao/ziliao",
+>>>>>>> 8aa4abb525d7b0c2d8c9878c607f47fb6037a0d9
     "pages/chakanhuifu/chakanhuifu"
   ],
   "window": {
@@ -34,6 +37,43 @@
   },
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom"
+  },
+  "tabBar": {
+    "backgroundColor": "#ffffff",
+    "color": "#979795",
+    "selectedColor": "#1c1c1b",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "/img/tabbar/home-off.png",
+        "selectedIconPath": "/img/tabbar/home-on.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/xiaoyuan/xiaoyuan",
+        "iconPath": "/img/tabbar/activity-off.png",
+        "selectedIconPath": "/img/tabbar/activity-on.png",
+        "text": "活动"
+      },
+      {
+        "pagePath": "pages/form/form",
+        "iconPath": "/img/tabbar/launch-off.png",
+        "selectedIconPath": "/img/tabbar/launch-on.png",
+        "text": "发布"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "/img/tabbar/my-off.png",
+        "selectedIconPath": "/img/tabbar/my-off.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "plugins": {
+    "wxparse": {
+      "version": "1.0.10",
+      "provider": "wx5d60c080635009b1"
+    }
   },
   "sitemapLocation": "sitemap.json"
 }

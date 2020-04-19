@@ -1,0 +1,18 @@
+<!--pages/form_address/form_address.wxml-->
+<cu-custom bgColor="bg-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">选择地址</view>
+</cu-custom>
+<!-- <button bindtap="commit">00</button> -->
+<view class="content" wx:for="{{city}}">
+  <view class="desc">
+    <view class="xiaoyuan-text-content text-gray"> {{item.code}}</view>
+    <view class="xiaoyuan-text-content text-gray"> {{item.name}}</view>
+  </view>
+</view>
+<view class="content" wx:for="{{provinceList}}">
+  <view class="desc">
+    <view class="xiaoyuan-text-content text-gray"> {{item.code}}</view>
+    <view class="xiaoyuan-text-content text-gray"> {{item.name}}</view>
+  </view>
+</view>

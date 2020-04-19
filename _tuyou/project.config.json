@@ -24,7 +24,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.4.2",
-	"appid": "wx4e4a310bf1cbe5ab",
+	"appid": "wx9732558588ac8aef",
 	"projectname": "tuyou",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -93,10 +93,6 @@
 				},
 				{
 					"id": -1,
-<<<<<<< HEAD
-					"name": "资料",
-					"pathName": "pages/ziliao/ziliao",
-=======
 					"name": "首页",
 					"pathName": "pages/index/index",
 					"query": "",
@@ -128,7 +124,33 @@
 					"name": "我的个人信息",
 					"pathName": "pages/my_profile/my_profile",
 					"query": "",
->>>>>>> 7bbbbb51b76d0305f1bcf2875dd429170c909fe4
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "校园",
+					"pathName": "pages/xiaoyuan/xiaoyuan",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发布报名",
+					"pathName": "pages/form_launch/form_launch",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "运动详情",
+					"pathName": "pages/yundongxiangqing/yundongxiangqing",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "补充信息",
+					"pathName": "pages/form_activity/form_activity",
 					"scene": null
 				}
 			]

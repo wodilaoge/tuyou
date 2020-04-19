@@ -1,29 +1,77 @@
 const app = getApp();
 Page({
   data: {
-    StatusBar: app.globalData.StatusBar,
-    CustomBar: app.globalData.CustomBar,
-    index: null,
-    name: '',
-    picker: ['个人报名', '团体报名'],
-    picker2: ['匿名参赛', '实名参赛'],
-    picker3: ['观看无需报名', '匿名报名观看', '实名报名观看'],
-    picker4: ['篮球', '足球', '排球', '羽毛球', '乒乓球', '其他'],
+    information: {
+      activity: '',
+      actname: '',
+      slogan: '',
+      univid: '003330106',
+      province: '00333',
+      city: '0033301',
+      venue: '',
+      fromtime: '2020.4.25 16:00',
+      signupdeadline: '2020.8.25 16:00',
+      way: '',
+      entrylimit: 50,
+      ischecked: false,
+    },
+    index: 0, //活动方式
+    indexp: 30, //省
+    indexc: 0, //市
+    indexs: 0, //学校
+    createralias: '',
+    ischecked2: true,
+    provinceList: [],
+    citys: [],
+    school: [],
+    picker: ['个人报名', '团体报名', '个人团队均可报名'],
+    picker2: ['篮球', '足球', '羽毛球', '乒乓球', '网球'],
     multiIndex: [0, 0, 0],
-    time: '12:01',
-    date: '2020.4.25 16:00',
-    date2: '2020.8.25 16:00',
     region: ['浙江省', '杭州市', '浙江大学'],
-    place: ['浙江大学篮球场'],
-    imgList: [],
-    modalName: null,
-    textareaAValue: '',
-    textareaBValue: ''
   },
-  PickerChange(e) {
-    console.log(e);
+
+  PickerChange(e) { //报名方式
+    let t = 'information.way'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
+  PickerChange2(e) { //活动方式
+    let t = 'information.activity'
     this.setData({
       index: e.detail.value
+    })
+    let v = this.data.picker2[this.data.index]
+    this.setData({
+      [t]: v
+    });
+  },
+  PickerPro(e) {
+    let t = 'information.province'
+    this.setData({
+      indexp: e.detail.value,
+      indexc: 0,
+      indexs: 0,
+      [t]: this.data.provinceList[this.data.indexp].code
+    })
+    this.city(this.data.information.province)
+  },
+  PickerCity(e) {
+    let t = 'information.city'
+    this.setData({
+      indexc: e.detail.value,
+      indexs: 0
+    })
+    this.setData({
+      [t]: this.data.citys[this.data.indexc].code
+    })
+    this.school(this.data.information.city)
+  },
+  PickerSchool(e){
+    let t = 'information.univid'
+    this.setData({
+      indexs: e.detail.value,
+      [t]: this.data.school[this.data.indexs].code
     })
   },
   MultiChange(e) {
@@ -37,55 +85,23 @@ Page({
     })
   },
   DateChange(e) {
+    let t = 'information.fromtime'
     this.setData({
-      date: e.detail.value
+      [t]: e.detail.value
     })
   },
-  RegionChange: function (e) {
+  DateChange2(e) {
+    let t = 'information.signupdeadline'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
+  RegionChange: function(e) {
     this.setData({
       region: e.detail.value
     })
   },
-  ChooseImage() {
-    wx.chooseImage({
-      count: 4, //默认9
-      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album'], //从相册选择
-      success: (res) => {
-        if (this.data.imgList.length != 0) {
-          this.setData({
-            imgList: this.data.imgList.concat(res.tempFilePaths)
-          })
-        } else {
-          this.setData({
-            imgList: res.tempFilePaths
-          })
-        }
-      }
-    });
-  },
-  ViewImage(e) {
-    wx.previewImage({
-      urls: this.data.imgList,
-      current: e.currentTarget.dataset.url
-    });
-  },
-  DelImg(e) {
-    wx.showModal({
-      title: '召唤师',
-      content: '确定要删除这段回忆吗？',
-      cancelText: '再看看',
-      confirmText: '再见',
-      success: res => {
-        if (res.confirm) {
-          this.data.imgList.splice(e.currentTarget.dataset.index, 1);
-          this.setData({
-            imgList: this.data.imgList
-          })
-        }
-      }
-    })
-  },
+
   textareaAInput(e) {
     this.setData({
       textareaAValue: e.detail.value
@@ -96,20 +112,92 @@ Page({
       textareaBValue: e.detail.value
     })
   },
-  name(e) {
+  getname(e) {
+    let t = 'information.actname'
     this.setData({
-      name: e.detail.value
+      [t]: e.detail.value
     })
   },
-  cancel: function (e) {
+  getslogan(e) {
+    let t = 'information.slogan'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
+  getvenue(e) {
+    let t = 'information.venue'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
+  getentity(e) {
+    this.setData({
+      entrylimit: e.detail.value
+    })
+  },
+  changeswitch(e) {
+    this.setData({
+      ischecked: !this.data.ischecked
+    })
+  },
+  checked(e) {
+    this.setData({
+      ischecked2: !this.data.ischecked2
+    })
+  },
+  cancel: function(e) {
     wx.navigateTo({
       url: "../../pages/form/form"
     })
   },
-  commit: function (e) {
-    console.log(e.detail.value)
+
+  commit: function(e) {
+    wx.setStorage({ //将活动信息存入缓存
+      key: "information",
+      data: this.data.information
+    });
     wx.navigateTo({
-    url: "../../pages/form_activity/form_activity"
+      url: '../../pages/form_activity/form_activity'
     })
-  }
+  },
+  school(pid){
+    let url = app.globalData.URL + '/config/getUniv';
+    let data = {
+      cid: pid
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        school: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  city(pid) {
+    let url = app.globalData.URL + '/config/getCity';
+    let data = {
+      pid: pid
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        citys: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  province() {
+    let url = app.globalData.URL + '/config/getProvince';
+    let data = '';
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        provinceList: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  onLoad() {
+    this.province();
+  },
 })

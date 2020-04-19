@@ -12,15 +12,15 @@
     <view class="title">参赛设置</view>
     <picker bindchange="PickerChange" value="{{index}}" range="{{picker2}}">
       <view class="picker text-grey">
-        {{index?picker[index]:'匿名参赛'}}
+        {{index?picker2[index]:'匿名参赛'}}
       </view>
     </picker>
   </view>
   <view class="cu-form-group">
     <view class="title">观众设置</view>
-    <picker bindchange="PickerChange" value="{{index}}" range="{{picker3}}">
+    <picker bindchange="PickerChange2" value="{{index2}}" range="{{picker3}}">
       <view class="picker text-grey">
-        {{index?picker[index]:'观看无需报名'}}
+        {{index2?picker3[index2]:'观看无需报名'}}
       </view>
     </picker>
   </view>
@@ -30,7 +30,7 @@
     <view class="tui-gallery-list">
       <view class="tui-number-group">
         <button class="tui-number-cell" bindtap="nextNum">-</button>
-        <input class="tui-number-cell" type="number" value='{{number}}'></input>
+        <input class="tui-number-cell" bindinput="num" type="number" value='{{number}}'></input>
         <button class="tui-number-cell" bindtap="prevNum">+</button>
       </view>
     </view>
@@ -106,7 +106,7 @@
       LOGO
     </view>
     <view class="action">
-      {{imgList3.length}}/4
+      {{imgList3.length}}/1
     </view>
   </view>
   <view class="cu-form-group">
@@ -180,28 +180,33 @@
     <image class="icon" src="../../img/add.png" bindtap="addicon"></image>
   </view>
   <view class="cu-form-group" wx:if="{{group>=1}}">
+    <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
     <view class="title">分组1</view>
-    <input class="input text-grey" placeholder="1队"></input>
+    <input class="input text-grey" placeholder="1队" bindinput="g1"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group" wx:if="{{group>=2}}">
+    <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
     <view class="title">分组2</view>
-    <input class="input text-grey" placeholder="2队"></input>
+    <input class="input text-grey" placeholder="2队" bindinput="g2"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group" wx:if="{{group>=3}}">
+    <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
     <view class="title">分组3</view>
-    <input class="input text-grey" placeholder="3队"></input>
+    <input class="input text-grey" placeholder="3队" bindinput="g3"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group" wx:if="{{group>=4}}">
+   <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
     <view class="title">分组4</view>
-    <input class="input text-grey" placeholder="4队"></input>
+    <input class="input text-grey" placeholder="4队" bindinput="g4"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group" wx:if="{{group>=5}}">
+  <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
     <view class="title">分组5</view>
-    <input class="input text-grey" placeholder="5队"></input>
+    <input class="input text-grey" placeholder="5队" bindinput="g5"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="text-center margin-top3">
@@ -212,4 +217,18 @@
 </form>
 <view class="flex margin-top2">
   <button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="commit" data-target="Modal">立即提交</button>
+</view>
+
+<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">消息</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      提交成功
+    </view>
+  </view>
 </view>

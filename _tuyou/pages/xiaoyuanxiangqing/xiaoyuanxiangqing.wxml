@@ -2,20 +2,26 @@
 创建者：陈雨豪
 创建时间：20200330
 内容：活动详情页面-->
+
+<!-- 孔启超
+4.14
+静态页面改成动态页面 -->
 <view class="top bg-blue">
   <cu-custom isBack="{{true}}" bgColor="bg-blue">
     <view slot="content">活动详情</view>
   </cu-custom>
 </view>
-<view class="cu-card article no-card bg-blue" style="margin-top:-50rpx;">
+<view class="cu-card article no-card bg-blue" style="margin-top:-40rpx;">
   <view class="cu-item">
-    <view class="content">
-      <image src="/img/huodong1.png" mode="aspectFill"></image>
+    <view class="xiangqing-content">
+      <image src="{{detail.logo}}" mode="aspectFill"></image>
       <view class="desc">
-        <view class="title-limit">浙江工商大学20周年英雄联盟表演赛---------全明星5v5</view>
-        <view class="xiangqing-text-content lines-white"> 2020.03.14 周六 19：30</view>
-        <view class="xiangqing-text-content lines-white"> 杭州|浙工商剧院</view>
-        <button class="cu-btn round lines-white btn-width margin-top">关注</button>
+        <view class="title-limit">
+          {{detail.actname}}
+        </view>
+        <view class="xiangqing-text-content lines-white"> {{detail.fromtime}}</view>
+        <view class="xiangqing-text-content lines-white"> 杭州 | {{detail.venue}}</view>
+        <button class="cu-btn round line-white btn-width" style="margin-top:20rpx;">关注</button>
       </view>
     </view>
   </view>
@@ -35,23 +41,30 @@
       </block>
     </view>
   </view>
-  <view class="cu-item {{2==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="2"> 聊天
+  <view class="cu-item {{2==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="2"> 视频
     <view class="tab_item_img">
       <block wx:if="{{TabCur==2}}">
         <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
       </block>
     </view>
   </view>
-  <view class="cu-item {{3==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="3"> 视频
+  <view class="cu-item {{3==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="3"> 投票
     <view class="tab_item_img">
       <block wx:if="{{TabCur==3}}">
         <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
       </block>
     </view>
   </view>
-  <view class="cu-item {{4==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="4"> 投票
+  <view class="cu-item {{4==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="4"> 排名
     <view class="tab_item_img">
       <block wx:if="{{TabCur==4}}">
+        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
+      </block>
+    </view>
+  </view>
+  <view class="cu-item {{5==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="5"> 数据
+    <view class="tab_item_img">
+      <block wx:if="{{TabCur==5}}">
         <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
       </block>
     </view>
@@ -63,19 +76,18 @@
 创建内容：详情子页面-->
 <block wx:if="{{TabCur==0}}">
   <!-- 活动介绍 -->
-  <view class="content-white">
-    <view class="bg-blue">
-      <view class="cu-bar cu-bar-radius bg-white padding">
-        <text class="cu-bar-title">活动介绍</text>
+  <!-- 富文本渲染 使用htmlparse插件 -->
+  <view class="bg-blue">
+    <view class="cu-bar-radius bg-white cu-bar-title " style="height:30rpx;"> </view>
+  </view>
+  <view class="content-white padding">
+
+    <view class="goods-text">
+      <wxparse data="{{ detail.imagetext }}"></wxparse>
+      <view class="margin-top">
+        <text class="cuIcon-attention lg text-gray">\t23456</text>
+        <text class="cuIcon-appreciate lg text-gray text-right" decode="{{true}}">\t赞&emsp;23456</text>
       </view>
-    </view>
-    <view class="padding">
-      <text class="xiangqing-text-content text-grey huodong-text" decode="{{true}}">[乐海方舟X刺猬现场]联合呈现；\n“我有点紧张”新秀（中国新说唱2019四强）全国巡演\n\n\n\n</text>
-      <image class="text-border-radius" src="/img/huodongxiangqing.png" mode="aspectFill"></image>
-    </view>
-    <view class="padding">
-      <text class="cuIcon-attention lg text-gray">\t23456</text>
-      <text class="cuIcon-appreciate lg text-gray text-right" decode="{{true}}">\t赞&emsp;23456</text>
     </view>
   </view>
 
@@ -83,13 +95,13 @@
   <view class="bg-white padding huodong-margin-top">
     <text class="cu-bar-title">活动新闻</text>
   </view>
-  <view class="cu-card article no-card bg-white">
+  <view class="cu-card article no-card bg-white" wx:for="{{news.list}}">
     <view class="cu-item shadow" style="margin-top:0rpx;">
       <view class="content2">
         <image src="/img/huodongxinwen1.png" mode="aspectFill"></image>
         <view class="desc">
           <view class="title-limit2">
-            詹姆斯成为史上最年轻34000分 先生，湖人锁定季后赛
+            {{item.title}}
           </view>
           <button class="cu-btn btn-new bg-orange disabled">最新</button>
           <view>
@@ -99,7 +111,7 @@
         </view>
       </view>
     </view>
-
+    <!-- 静态页面 已取消
     <view class="cu-item shadow">
       <view class="content2">
         <image src="/img/huodongxinwen2.png" mode="aspectFill"></image>
@@ -113,68 +125,48 @@
           </view>
         </view>
       </view>
-    </view>
+    </view> -->
 
   </view>
 
-
-  <view class="huodong-margin-bottom">
-    <!-- 评论 -->
-    <view class="cu-bar bg-white solid-bottom huodong-margin-top">
-      <view class='action'>
-        <text class='cu-bar-title'>评论108</text>
+  <block>
+    <view class="huodong-margin-bottom">
+      <!-- 评论 -->
+      <view class="cu-bar bg-white solid-bottom huodong-margin-top">
+        <view class='action'>
+          <text class='cu-bar-title'>评论{{comment_detail.length}}</text>
+        </view>
       </view>
-    </view>
 
-    <view class="cu-card case no-card bg-white">
-      <view class="cu-item shadow">
-        <view class="cu-list menu-avatar" bindtap="chakanhuifu">
-          <view class="cu-item">
-            <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
-            <view class="content flex-sub">
-              <view class=" flex justify-between">
-                <view>
-                  <text class="card-text-grey" decode="{{true}}">吴福嘉&emsp;</text>
-                  <button class="cu-btn btn-hot bg-orange disabled">热门</button>
+      <view class="cu-card case no-card bg-white">
+        <view class="cu-item shadow">
+          <view class="cu-list menu-avatar" bindtap="chakanhuifu">
+            <view class="cu-item" wx:for="{{comment.list}}">
+              <view class="cu-avatar round lg" style="background-image:url({{item.createrHead}});"></view>
+              <view class="content flex-sub">
+                <view class=" flex justify-between">
+                  <view>
+                    <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
+                    <button class="cu-btn btn-hot bg-orange disabled" wx:if="{{item.hot}}">热门</button>
+                  </view>
+                  <view class="text-gray text-sm">
+                    <text class="cuIcon-appreciate margin-lr-xs line"></text> {{item.praiseCnt}}
+                    <text class="cuIcon-appreciate margin-lr-xs "></text> {{item.degradeCnt}}
+                  </view>
                 </view>
-                <view class="text-gray text-sm">
-                  <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
-                  <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+                <view class="card-text-content">
+                  {{item.comment}}
                 </view>
-              </view>
-              <view class="card-text-content">
-                活动看着不错，我报名啦
-              </view>
-              <view class="card-text-content-time">
-                03-15 16:15 6 回复
-              </view>
-            </view>
-          </view>
-
-          <view class="cu-item">
-            <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
-            <view class="content flex-sub">
-              <view class=" flex justify-between">
-                <view>
-                  <text class="card-text-grey">吴福嘉</text>
+                <view class="card-text-content-time">
+                  {{item.strCreatetime}} {{item.replyCnt}} 回复
                 </view>
-                <view class="text-gray text-sm">
-                  <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
-                  <text class="cuIcon-appreciate margin-lr-xs "></text> 1
-                </view>
-              </view>
-              <view class="card-text-content">
-                活动看着不错，我报名啦
-              </view>
-              <view class="card-text-content-time">
-                03-15 16:15 6 回复
               </view>
             </view>
           </view>
         </view>
       </view>
     </view>
-  </view>
+  </block>
 
   <view>
     <view class="cu-bar input foot padding">
@@ -233,68 +225,44 @@
 
 
 
-    <!-- 标签 -->
-    <view class="cu-bar bg-white solid-bottom">
-      <view class='action'>
-        <text class='pinglun-title'></text> 评论108
-      </view>
-    </view>
+    <block>
+      <view class="huodong-margin-bottom">
+        <!-- 评论 -->
+        <view class="cu-bar bg-white solid-bottom huodong-margin-top">
+          <view class='action'>
+            <text class='cu-bar-title'>评论{{comment.count}}</text>
+          </view>
+        </view>
 
-    <view class="cu-card case no-card ">
-      <view class="cu-item shadow">
-        <view class="cu-list menu-avatar">
-          <view class="cu-item">
-            <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
-            <view class="content flex-sub">
-              <view class=" flex justify-between">
-                <view>
-                  <text class="card-text-grey" decode="{{true}}">吴福嘉&emsp;</text>
-                  <button class="cu-btn btn-hot bg-orange disabled">热门</button>
+        <view class="cu-card case no-card bg-white">
+          <view class="cu-item shadow">
+            <view class="cu-list menu-avatar" bindtap="chakanhuifu">
+              <view class="cu-item" wx:for="{{comment.list}}">
+                <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+                <view class="content flex-sub">
+                  <view class=" flex justify-between">
+                    <view>
+                      <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
+                      <button class="cu-btn btn-hot bg-orange disabled" wx:if="{{item.hot}}">热门</button>
+                    </view>
+                    <view class="text-gray text-sm">
+                      <text class="cuIcon-appreciate margin-lr-xs line"></text> {{item.praiseCnt}}
+                      <text class="cuIcon-appreciate margin-lr-xs "></text> {{item.degradeCnt}}
+                    </view>
+                  </view>
+                  <view class="card-text-content">
+                    {{item.comment}}
+                  </view>
+                  <view class="card-text-content-time">
+                    {{item.strCreatetime}} {{item.replyCnt}} 回复
+                  </view>
                 </view>
-                <view class="text-gray text-sm">
-                  <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
-                  <text class="cuIcon-appreciate margin-lr-xs "></text> 1
-                </view>
-              </view>
-              <view class="card-text-content">
-                活动看着不错，我报名啦
-              </view>
-              <view class="card-text-content-time">
-                03-15 16:15 6 回复
               </view>
             </view>
           </view>
         </view>
       </view>
-    </view>
-
-
-    <view class="cu-card case no-card}">
-      <view class="cu-item shadow">
-        <view class="cu-list menu-avatar">
-          <view class="cu-item">
-            <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
-            <view class="content flex-sub">
-              <view class=" flex justify-between">
-                <view>
-                  <text class="card-text-grey">福嘉</text>
-                </view>
-                <view class="text-gray text-sm">
-                  <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
-                  <text class="cuIcon-appreciate margin-lr-xs "></text> 1
-                </view>
-              </view>
-              <view class="card-text-content">
-                活动看着不错，我报名啦
-              </view>
-              <view class="card-text-content-time">
-                03-15 16:15 6 回复
-              </view>
-            </view>
-          </view>
-        </view>
-      </view>
-    </view>
+    </block>
   </view>
 
 </block>
@@ -304,7 +272,7 @@
     创建者：朱娇龙
     创建时间：20200405
     创建内容：重新恢复视频界面和投票界面-->
-<block wx:if="{{TabCur==3}}">
+<block wx:if="{{TabCur==2}}">
   <view class="content-white">
     <view class="bg-blue">
       <view class=" sp-cu-bar cu-bar-radius bg-white  ">
@@ -392,7 +360,7 @@
     创建者：朱娇龙
     创建时间：20200405
     创建内容：重新恢复视频界面和投票界面-->
-<block wx:if="{{TabCur==4}}">
+<block wx:if="{{TabCur==3}}">
   <view class="content-white">
     <view class="bg-blue">
       <view class=" sp-cu-bar cu-bar-radius bg-white  ">
@@ -465,4 +433,326 @@
     </view>
   </view>
 
+</block>
+
+<!--
+创建者：陈雨豪
+创建时间：20200413
+创建内容：排名-->
+<block wx:if="{{TabCur==4}}">
+  <view class="bg-blue">
+    <view class="cu-bar-radius cu-bar-title padding" style="background-color: #F8F9FD;">
+      <view class=" " style="margin-left:175rpx;">
+        <button class="cu-btn {{paimingCur==0?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-left" bindtap="paimingSelect" data-id="0">
+          个人排名
+        </button>
+        <button class="cu-btn  {{paimingCur==1?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-right" bindtap="paimingSelect" data-id="1">
+          团队排名
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <block wx:if="{{paimingCur==0}}">
+    <view class="bg-white padding paiming-center">
+      <image class="icon-paiming" mode="aspectFit" src="/img/icon_one.png"></image>
+      <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+      <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
+      <view class="paiming-name text-orange" style="margin-left:337rpx;">90分</view>
+    </view>
+    <view class="bg-white padding paiming-center">
+      <image class="icon-paiming" mode="aspectFit" src="/img/icon_two.png"></image>
+      <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+      <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
+      <view class="paiming-name text-orange" style="margin-left:337rpx;">90分</view>
+    </view>
+    <view class="bg-white padding paiming-center">
+      <image class="icon-paiming" mode="aspectFit" src="/img/icon_three.png"></image>
+      <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+      <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
+      <view class="paiming-name text-orange" style="margin-left:337rpx;">90分</view>
+    </view>
+
+
+    <view class="bg-white padding paiming-center">
+      <image class="icon-paiming" mode="aspectFit"></image>
+      <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+      <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
+      <view class="paiming-name text-orange" style="margin-left:337rpx;">90分</view>
+    </view>
+    <view class="bg-white padding paiming-center">
+      <image class="icon-paiming" mode="aspectFit"></image>
+      <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+      <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
+      <view class="paiming-name text-orange" style="margin-left:337rpx;">90分</view>
+    </view>
+    <view class="bg-white padding paiming-center">
+      <image class="icon-paiming" mode="aspectFit"></image>
+      <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+      <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
+      <view class="paiming-name text-orange" style="margin-left:337rpx;">90分</view>
+    </view>
+  </block>
+
+  <block wx:if="{{paimingCur==1}}">
+    <view class="bg-white padding paiming-center">
+      <image class="icon-paiming" mode="aspectFit" src="/img/icon_one.png"></image>
+      <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big81005.jpg);"></view>
+      <text class="paiming-name" decode="{{true}}">&ensp;飞虎队</text>
+      <view class="paiming-name text-orange" style="margin-left:337rpx;">90分</view>
+    </view>
+    <view class="bg-white padding paiming-center">
+      <image class="icon-paiming" mode="aspectFit" src="/img/icon_two.png"></image>
+      <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big81005.jpg);"></view>
+      <text class="paiming-name" decode="{{true}}">&ensp;飞虎队</text>
+      <view class="paiming-name text-orange" style="margin-left:337rpx;">90分</view>
+    </view>
+    <view class="bg-white padding paiming-center">
+      <image class="icon-paiming" mode="aspectFit" src="/img/icon_three.png"></image>
+      <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big81005.jpg);"></view>
+      <text class="paiming-name" decode="{{true}}">&ensp;飞虎队</text>
+      <view class="paiming-name text-orange" style="margin-left:337rpx;">90分</view>
+    </view>
+
+
+    <view class="bg-white padding paiming-center">
+      <image class="icon-paiming" mode="aspectFit"></image>
+      <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big81005.jpg);"></view>
+      <text class="paiming-name" decode="{{true}}">&ensp;飞虎队</text>
+      <view class="paiming-name text-orange" style="margin-left:337rpx;">90分</view>
+    </view>
+    <view class="bg-white padding paiming-center">
+      <image class="icon-paiming" mode="aspectFit"></image>
+      <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big81005.jpg);"></view>
+      <text class="paiming-name" decode="{{true}}">&ensp;飞虎队</text>
+      <view class="paiming-name text-orange" style="margin-left:337rpx;">90分</view>
+    </view>
+    <view class="bg-white padding paiming-center">
+      <image class="icon-paiming" mode="aspectFit"></image>
+      <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big81005.jpg);"></view>
+      <text class="paiming-name" decode="{{true}}">&ensp;飞虎队</text>
+      <view class="paiming-name text-orange" style="margin-left:337rpx;">90分</view>
+    </view>
+
+  </block>
+  <block>
+    <view class="huodong-margin-bottom">
+      <!-- 评论 -->
+      <view class="cu-bar bg-white solid-bottom huodong-margin-top">
+        <view class='action'>
+          <text class='cu-bar-title'>评论{{comment.count}}</text>
+        </view>
+      </view>
+
+      <view class="cu-card case no-card bg-white">
+        <view class="cu-item shadow">
+          <view class="cu-list menu-avatar" bindtap="chakanhuifu">
+            <view class="cu-item" wx:for="{{comment.list}}">
+              <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+              <view class="content flex-sub">
+                <view class=" flex justify-between">
+                  <view>
+                    <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
+                    <button class="cu-btn btn-hot bg-orange disabled" wx:if="{{item.hot}}">热门</button>
+                  </view>
+                  <view class="text-gray text-sm">
+                    <text class="cuIcon-appreciate margin-lr-xs line"></text> {{item.praiseCnt}}
+                    <text class="cuIcon-appreciate margin-lr-xs "></text> {{item.degradeCnt}}
+                  </view>
+                </view>
+                <view class="card-text-content">
+                  {{item.comment}}
+                </view>
+                <view class="card-text-content-time">
+                  {{item.strCreatetime}} {{item.replyCnt}} 回复
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <view class="box">
+    <view class="cu-bar input foot padding">
+      <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
+      <view class="action">
+        <image class="img-icon" src="/img/icon_talk.png"></image>
+      </view>
+      <view class="action">
+        <image class="img-icon" src="/img/icon_fabulous.png"></image>
+      </view>
+      <view class="action">
+        <image class="img-icon" src="/img/icon_share.png"></image>
+      </view>
+    </view>
+  </view>
+</block>
+<!--
+创建者：陈雨豪
+创建时间：20200413
+创建内容：数据-->
+<block wx:if="{{TabCur==5}}">
+  <view class="bg-blue">
+    <view class="cu-bar-radius bg-white cu-bar-title padding">活动数据录入</view>
+  </view>
+  <view class="margin-bottom">
+    <view class="padding-left bg-white xiaoyuanhuodong-shuju ">
+      <view class="bg-blue " style="width:300rpx;height:42rpx;">
+        <text style="margin-left:36rpx;">团队1/分组1
+      </text>
+      </view>
+      <view class="bg-blue" style="margin-left:1rpx;width:180rpx;height:42rpx;">
+        <text style="margin-left:65rpx;">排名
+      </text>
+      </view>
+      <view class="bg-blue" style="margin-left:1rpx;width:208rpx;height:42rpx;">
+        <text style="margin-left:81rpx;">得分
+      </text>
+      </view>
+    </view>
+
+    <view class="bg-white padding-lg xiaoyuanhuodong-shuju">
+      <view style="width:300rpx;height:42rpx;">
+        <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+        <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
+      </view>
+      <view style="margin-left:1rpx;width:180rpx;height:42rpx;">
+        <input class="weui-input" style="margin-left:64rpx;" auto-focus placeholder="1" />
+      </view>
+      <view style="margin-left:1rpx;width:180rpx;height:42rpx;">
+        <input class="weui-input" style="margin-left:90rpx;" placeholder="90" />
+      </view>
+    </view>
+
+    <view class="bg-white padding-lg xiaoyuanhuodong-shuju">
+      <view style="width:300rpx;height:42rpx;">
+        <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+        <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
+      </view>
+      <view style="margin-left:1rpx;width:180rpx;height:42rpx;">
+        <input class="weui-input" style="margin-left:64rpx;" placeholder="1" />
+      </view>
+      <view style="margin-left:1rpx;width:180rpx;height:42rpx;">
+        <input class="weui-input" style="margin-left:90rpx;" placeholder="90" />
+      </view>
+    </view>
+
+    <view class="bg-white padding-lg xiaoyuanhuodong-shuju">
+      <view style="width:300rpx;height:42rpx;">
+        <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+        <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
+      </view>
+      <view style="margin-left:1rpx;width:180rpx;height:42rpx;">
+        <input class="weui-input" style="margin-left:64rpx;" placeholder="1" />
+      </view>
+      <view style="margin-left:1rpx;width:180rpx;height:42rpx;">
+        <input class="weui-input" style="margin-left:90rpx;" placeholder="90" />
+      </view>
+    </view>
+
+    <view class="bg-white padding-lg xiaoyuanhuodong-shuju">
+      <view style="width:300rpx;height:42rpx;">
+        <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+        <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
+      </view>
+      <view style="margin-left:1rpx;width:180rpx;height:42rpx;">
+        <input class="weui-input" style="margin-left:64rpx;" placeholder="1" />
+      </view>
+      <view style="margin-left:1rpx;width:180rpx;height:42rpx;">
+        <input class="weui-input" style="margin-left:90rpx;" placeholder="90" />
+      </view>
+    </view>
+
+    <view class="bg-white padding-lg xiaoyuanhuodong-shuju">
+      <view style="width:300rpx;height:42rpx;">
+        <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+        <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
+      </view>
+      <view style="margin-left:1rpx;width:180rpx;height:42rpx;">
+        <input class="weui-input" style="margin-left:64rpx;" placeholder="1" />
+      </view>
+      <view style="margin-left:1rpx;width:180rpx;height:42rpx;">
+        <input class="weui-input" style="margin-left:90rpx;" placeholder="90" />
+      </view>
+    </view>
+
+    <view class="bg-white padding-lg xiaoyuanhuodong-shuju">
+      <view style="width:300rpx;height:42rpx;">
+        <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+        <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
+      </view>
+      <view style="margin-left:1rpx;width:180rpx;height:42rpx;">
+        <input class="weui-input" style="margin-left:64rpx;" placeholder="1" />
+      </view>
+      <view style="margin-left:1rpx;width:180rpx;height:42rpx;">
+        <input class="weui-input" style="margin-left:90rpx;" placeholder="90" />
+      </view>
+    </view>
+
+    <view class="bg-white padding-lg xiaoyuanhuodong-shuju">
+      <view style="width:300rpx;height:42rpx;">
+        <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+        <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
+      </view>
+      <view style="margin-left:1rpx;width:180rpx;height:42rpx;">
+        <input class="weui-input" style="margin-left:64rpx;" placeholder="1" />
+      </view>
+      <view style="margin-left:1rpx;width:180rpx;height:42rpx;">
+        <input class="weui-input" style="margin-left:90rpx;" placeholder="90" />
+      </view>
+    </view>
+  </view>
+
+  <view class="margin-bottom">
+    <view class="padding-left bg-white xiaoyuanhuodong-shuju">
+      <view class="bg-blue " style="width:300rpx;height:42rpx;">
+        <text style="margin-left:36rpx;">团队2/分组2
+      </text>
+      </view>
+      <view class="bg-blue" style="margin-left:1rpx;width:180rpx;height:42rpx;">
+        <text style="margin-left:65rpx;">排名
+      </text>
+      </view>
+      <view class="bg-blue" style="margin-left:1rpx;width:208rpx;height:42rpx;">
+        <text style="margin-left:81rpx;">得分
+      </text>
+      </view>
+    </view>
+
+    <view class="bg-white padding-lg xiaoyuanhuodong-shuju">
+      <view style="width:300rpx;height:42rpx;">
+        <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+        <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
+      </view>
+      <view style="margin-left:1rpx;width:180rpx;height:42rpx;">
+        <input class="weui-input" style="margin-left:64rpx;" placeholder="1" />
+      </view>
+      <view style="margin-left:1rpx;width:180rpx;height:42rpx;">
+        <input class="weui-input" style="margin-left:90rpx;" placeholder="90" />
+      </view>
+    </view>
+
+    <view class="bg-white padding-lg xiaoyuanhuodong-shuju">
+      <view style="width:300rpx;height:42rpx;">
+        <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+        <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
+      </view>
+      <view style="margin-left:1rpx;width:180rpx;height:42rpx;">
+        <input class="weui-input" style="margin-left:64rpx;" placeholder="1" />
+      </view>
+      <view style="margin-left:1rpx;width:180rpx;height:42rpx;">
+        <input class="weui-input" style="margin-left:90rpx;" placeholder="90" />
+      </view>
+    </view>
+  </view>
+
+  <view style="margin-top:140rpx;">
+    <view class="xiaoyuanhuodong-shuju" style="margin-left:39rpx;margin-bottom:44rpx;width: 668rpx; height: 80rpx;">
+      <button class="shuju-btn1 line-red">结束本场活动</button>
+      <button class="shuju-btn1 line-orange">提交</button>
+    </view>
+    <button class="shuju-btn1 bg-orange round" style="width: 668rpx; height: 80rpx;">提交并结束本场活动</button>
+  </view>
 </block>

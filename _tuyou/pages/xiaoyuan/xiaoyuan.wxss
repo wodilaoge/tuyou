@@ -18,7 +18,6 @@
   -webkit-box-orient:vertical;
 }
 .xiaoyuan-text-content {
-  padding-top: 21rpx;
 	line-height: 23rpx;
   font-size: 24rpx;
 }
