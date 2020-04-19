@@ -17,13 +17,7 @@
     "pages/pinlunliebiao/pinlunliebiao",
     "pages/baoming/baoming",
     "pages/baoming_ok/baoming_ok",
-<<<<<<< HEAD
-
     "pages/ziliao/ziliao",
-
-=======
-    "pages/ziliao/ziliao",
->>>>>>> 8aa4abb525d7b0c2d8c9878c607f47fb6037a0d9
     "pages/chakanhuifu/chakanhuifu"
   ],
   "window": {

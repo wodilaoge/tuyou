@@ -1,5 +1,6 @@
 const app = getApp();
 var upload = require("../../utils/upload.js");
+var util = require("../../utils/util.js");
 Page({
   data: {
     actid: 1760034971189248,
@@ -67,6 +68,7 @@ Page({
   },
   ChooseImage(e) {
     var t = e.currentTarget.dataset.id
+    var that=this
     wx.chooseImage({
       count: 4, //默认9
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
@@ -83,11 +85,10 @@ Page({
             })
           }
           // console.log(imgList[0])
-          var returnurl = upload.uploadFile(this.data.imgList[0],'other')
-          var t=wx.getStorageSync('url');
-          this.setData({
-            tes:t
-          });
+          upload.uploadFile(this.data.imgList[0],'other',that)
+          // var t=wx.getStorageSync('url');
+          console.log(this.data.tes)
+
         }
         if (t == 2) {
           if (this.data.imgList2.length != 0) {
@@ -475,16 +476,24 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   getuploadinfo(){
+    var that=this
     let url = app.globalData.URL + '/config/findCosParam';
     let data='';
-    app.wxRequest('GET', url, data, (res) => {
-      // console.log(res.data)
-      this.setData({
-        webinfo: res.data
+    util.gets(url, {}).then(function (res) {
+      var t=res.data
+      console.log('t', t)
+      that.setData({
+       webinfo: res.data
       })
-    }, (err) => {
-      console.log(err.errMsg)
-    });
+    })
+    // app.wxRequest('GET', url, data, (res) => {
+    //   // console.log(res.data)
+    //   this.setData({
+    //     webinfo: res.data
+    //   })
+    // }, (err) => {
+    //   console.log(err.errMsg)
+    // });
   },
   demo(web){
     upload.uploadFile(web)
