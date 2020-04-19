@@ -1,6 +1,6 @@
 Page({
   data: {
-    TabCur: 0,
+    TabCur: 1,
     paimingCur: 0,
     comment: [],
     SwiperList_zhaopian: [],

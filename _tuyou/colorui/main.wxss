@@ -26,6 +26,7 @@ page {
 	--brown: #a5673f;
 	--grey: #A4A9BC;
   --grey2:#D8D9DF;
+  --grey-input:#F8F9FD;
 	--black: #333333;
 	--darkGray: #666666;
 	--gray: #aaaaaa;
@@ -2507,14 +2508,12 @@ button.icon.lg {
 	justify-content: space-between;
 }
 
-.cu-form-group+.cu-form-group {
-	border-top: 1rpx solid #eee;
-}
 
 .cu-form-group .title {
 	text-align: justify;
 	padding-right: 30rpx;
-	font-size: 30rpx;
+	font-size: 32rpx;
+  font-weight: normal;
 	position: relative;
 	height: 60rpx;
 	line-height: 60rpx;
@@ -2525,6 +2524,7 @@ button.icon.lg {
 	font-size: 30rpx;
 	color: #555;
 	padding-right: 20rpx;
+  height: 72rpx;
 }
 
 .cu-form-group>text[class*="cuIcon-"] {
@@ -3638,6 +3638,11 @@ scroll-view.cu-steps .cu-item {
 
 .bg-grey2 {
 	background-color: var(--grey2);
+	color: var(--white);
+}
+
+.bg-grey-input {
+	background-color: var(--grey-input);
 	color: var(--white);
 }
 
