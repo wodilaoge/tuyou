@@ -175,9 +175,196 @@
   </view>
 </block>
 
+
 <block wx:if="{{TabCur==1}}"></block>
-<block wx:if="{{TabCur==2}}"></block>
-<block wx:if="{{TabCur==3}}"></block>
+
+
+<!--
+创建者：朱娇龙
+创建时间：20200418
+创建内容：视频-->
+<block wx:if="{{TabCur==2}}">
+  <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx;">强有力队活动视频</view>
+
+  <view class="content-white">
+    <view class=" sp-cu-bar cu-bar-radius bg-white  ">
+      <image class="sp-avatar round " src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg "></image>
+      <view class="sp-avatar-name">龙啸影像</view>
+      <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;margin-left:372rpx;">关注</button>
+    </view>
+
+    <view>
+      <video id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
+        danmu-list="{{danmuList}}" enable-danmu danmu-btn controls style="width:100%;"></video>
+    </view>
+    <view class="flex  margin-top">
+      <view class="sp-bofang-times">播放1245次</view>
+      <image src="/img/icon_like.png" style="width:44rpx;height:40rpx;margin-left:285rpx;"></image>
+      <view style="margin-left:16rpx;color:#333333;">122</view>
+      <image src="/img/icon_share_more.png" style="width:44rpx;height:40rpx;margin-left:54rpx;"></image>
+    </view>
+    <view class=" sp-pinglun margin-top">喜欢唱跳篮球？灰熊球迷活动，莫兰特带领大家一起尬舞</view>
+    <view class="sp-hotpinglun margin-top-xs">热门评论</view>
+    <view class="margin-top-xs sp-pinlun-content">
+      <image class="sp-pinglun-avatar round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg"></image>
+      <view class="sp-pinglun-name ">吴福嘉</view>
+      <view class="sp-pinglun-neirong">活动看着很不错，我报名啦</view>
+    </view>
+    <view class="margin-top-xs sp-pinlun-content">
+      <image class="sp-pinglun-avatar round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg"></image>
+      <view class="sp-pinglun-name ">吴福嘉</view>
+      <view class="sp-pinglun-neirong">活动看着很不错，我报名啦活动看着很不错，我报名啦活动看着很不错，我报名啦</view>
+    </view>
+    <view class="sp-quanbupinglun margin">全部评论(66)</view>
+
+
+    <view class=" sp-cu-bar cu-bar-radius bg-white  ">
+      <image class="sp-avatar round " src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg "></image>
+      <view class="sp-avatar-name">龙啸影像</view>
+      <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;margin-left:372rpx;">关注</button>
+    </view>
+    <view>
+      <video id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
+        danmu-list="{{danmuList}}" enable-danmu danmu-btn controls style="width:100%;"></video>
+    </view>
+    <view class="flex  margin-top">
+      <view class="sp-bofang-times">播放1245次</view>
+      <image src="/img/icon_like.png" style="width:44rpx;height:40rpx;margin-left:285rpx;"></image>
+      <view style="margin-left:16rpx;color:#333333;">122</view>
+      <image src="/img/icon_share.png" style="width:44rpx;height:40rpx;margin-left:54rpx;"></image>
+    </view>
+    <view class=" sp-pinglun margin-top">喜欢唱跳篮球？灰熊球迷活动，莫兰特带领大家一起尬舞</view>
+    <view class="sp-hotpinglun margin-top-xs">热门评论</view>
+    <view class="margin-top-xs sp-pinlun-content">
+      <image class="sp-pinglun-avatar round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg"></image>
+      <view class="sp-pinglun-name ">吴福嘉</view>
+      <view class="sp-pinglun-neirong">活动看着很不错，我报名啦</view>
+    </view>
+    <view class="margin-top-xs sp-pinlun-content">
+      <image class="sp-pinglun-avatar round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg"></image>
+      <view class="sp-pinglun-name ">吴福嘉</view>
+      <view class="sp-pinglun-neirong">活动看着很不错，我报名啦活动看着很不错，我报名啦活动看着很不错，我报名啦</view>
+    </view>
+    <view class="sp-quanbupinglun margin">全部评论(66)</view>
+
+    <view style="height:300rpx;"></view>
+
+    <view class="box">
+      <view class="cu-bar input foot padding">
+        <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
+        <view class="action">
+          <image class="img-icon" src="/img/icon_talk.png"></image>
+        </view>
+        <view class="action">
+          <image class="img-icon" src="/img/icon_fabulous.png"></image>
+        </view>
+        <view class="action">
+          <image class="img-icon" src="/img/icon_share.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</block>
+<!--
+创建者：朱娇龙
+创建时间：20200418
+创建内容：照片-->
+<block wx:if="{{TabCur==3}}">
+
+  <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx;">强有力队活动视频</view>
+
+  <view class="content-white">
+    <view class=" sp-cu-bar cu-bar-radius bg-white  ">
+      <image class="sp-avatar round " src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg "></image>
+      <view class="sp-avatar-name">龙啸影像</view>
+      <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;margin-left:372rpx;">关注</button>
+    </view>
+
+    <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="0" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#5454FF">
+      <swiper-item wx:for="{{swiperList_zhaopian}}" wx:key class="{{cardCur==index?'cur':''}}">
+        <view class="swiper-item">
+          <image src="{{item.path}}" mode="aspectFill">喜欢唱跳篮球？灰熊球迷活动，莫兰特带领大家一起尬舞</image>
+          <view class="zhaopian-tupian-pinglun">喜欢唱跳篮球？灰熊球迷活动，莫兰特带领大家一起尬舞</view>
+        </view>
+
+      </swiper-item>
+    </swiper>
+
+
+    <view class="flex  margin-top">
+      <view class="sp-hotpinglun margin-top-xs">热门评论</view>
+      <image src="/img/icon_like.png" style="width:44rpx;height:40rpx;margin-left:285rpx;"></image>
+      <view style="margin-left:16rpx;color:#333333;">122</view>
+      <image src="/img/icon_share_more.png" style="width:44rpx;height:40rpx;margin-left:54rpx;"></image>
+    </view>
+
+    
+    <view class="margin-top-xs sp-pinlun-content">
+      <image class="sp-pinglun-avatar round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg"></image>
+      <view class="sp-pinglun-name ">吴福嘉</view>
+      <view class="sp-pinglun-neirong">活动看着很不错，我报名啦</view>
+    </view>
+    <view class="margin-top-xs sp-pinlun-content">
+      <image class="sp-pinglun-avatar round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg"></image>
+      <view class="sp-pinglun-name ">吴福嘉</view>
+      <view class="sp-pinglun-neirong">活动看着很不错，我报名啦活动看着很不错，我报名啦活动看着很不错，我报名啦</view>
+    </view>
+    <view class="sp-quanbupinglun margin">全部评论(66)</view>
+
+
+    <view class=" sp-cu-bar cu-bar-radius bg-white  ">
+      <image class="sp-avatar round " src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg "></image>
+      <view class="sp-avatar-name">龙啸影像</view>
+      <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;margin-left:372rpx;">关注</button>
+    </view>
+
+    <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#5454FF" previous-margin="0rpx" next-margin="0rpx">
+      <swiper-item wx:for="{{swiperList_zhaopian}}" wx:key class="{{cardCur==index?'cur':''}}">
+        <view class="swiper-item">
+          <image src="{{item.path}}" mode="aspectFill"></image>
+        </view>
+      </swiper-item>
+    </swiper>
+
+    <view class="flex  margin-top">
+      <view class="sp-bofang-times">播放1245次</view>
+      <image src="/img/icon_like.png" style="width:44rpx;height:40rpx;margin-left:285rpx;"></image>
+      <view style="margin-left:16rpx;color:#333333;">122</view>
+      <image src="/img/icon_share.png" style="width:44rpx;height:40rpx;margin-left:54rpx;"></image>
+    </view>
+
+    <view class="sp-hotpinglun margin-top-xs">热门评论</view>
+    <view class="margin-top-xs sp-pinlun-content">
+      <image class="sp-pinglun-avatar round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg"></image>
+      <view class="sp-pinglun-name ">吴福嘉</view>
+      <view class="sp-pinglun-neirong">活动看着很不错，我报名啦</view>
+    </view>
+    <view class="margin-top-xs sp-pinlun-content">
+      <image class="sp-pinglun-avatar round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg"></image>
+      <view class="sp-pinglun-name ">吴福嘉</view>
+      <view class="sp-pinglun-neirong">活动看着很不错，我报名啦活动看着很不错，我报名啦活动看着很不错，我报名啦</view>
+    </view>
+    <view class="sp-quanbupinglun margin">全部评论(66)</view>
+
+    <view style="height:300rpx;"></view>
+
+    <view class="box">
+      <view class="cu-bar input foot padding">
+        <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
+        <view class="action">
+          <image class="img-icon" src="/img/icon_talk.png"></image>
+        </view>
+        <view class="action">
+          <image class="img-icon" src="/img/icon_fabulous.png"></image>
+        </view>
+        <view class="action">
+          <image class="img-icon" src="/img/icon_share.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
 
 <!--
 创建者：陈雨豪
