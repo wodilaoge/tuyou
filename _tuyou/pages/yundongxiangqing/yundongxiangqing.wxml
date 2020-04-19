@@ -161,7 +161,150 @@
   </view>
   <view>
     <view class="cu-bar input foot padding">
-      <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
+      <input class="solid-bottom bg-grey-input round padding-left" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
+      <view class="action">
+        <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
+      </view>
+      <view class="action">
+        <image class="img-icon" mode="aspectFit" style="margin-right:10rpx" src="/img/icon_fabulous.png"></image>
+      </view>
+      <view class="action">
+        <image class="img-icon" mode="aspectFit" src="/img/icon_share.png"></image>
+      </view>
+    </view>
+  </view>
+</block>
+<!--
+创建者：陈雨豪
+创建时间：20200418
+创建内容：报名-->
+<block wx:if="{{TabCur==1}}">
+  <view class="bg-white margin-top">
+    <view class="cu-bar bg-white padding">
+      <view class="cu-bar-title">报名</view>
+    </view>
+  </view>
+  <view class="bg-white">
+    <form>
+      <view class="cu-form-group">
+        <radio-group class="block" style="margin-left:160rpx;">
+          <view class="flex">
+            <view>
+              <checkbox class="round blue " style="zoom: 80%;" checked></checkbox>
+            </view>
+            <view class="tp-select ">报名参加</view>
+
+            <view style="margin-left:101rpx;">
+              <checkbox class="round blue " style="zoom: 80%;"></checkbox>
+            </view>
+            <view class="tp-select ">报名观看</view>
+          </view>
+        </radio-group>
+      </view>
+      <view class="cu-form-group">
+        <view class="title" style="margin-right:65rpx;">姓名 </view>
+        <input class="form-text" placeholder="李四"></input>
+      </view>
+      <view class="cu-form-group ">
+        <view class="title" style="margin-right:65rpx;">手机</view>
+        <input class="form-text" placeholder="请输入手机号"></input>
+      </view>
+      <view class="cu-form-group ">
+        <view class="title">选择分组</view>
+        <input class="form-text"></input>
+      </view>
+      <view class="cu-form-group ">
+        <view class="title">报名团队</view>
+        <input class="form-text"></input>
+      </view>
+    </form>
+  </view>
+  <view class="bg-white flex" style="align-items: center;justify-content: center;">
+    <checkbox class="blue " style="zoom: 40%;"></checkbox>
+    <view class="queren margin-left-sm" style="color:#999999;">
+      我已阅读并同意
+    </view>
+    <view class="queren" style="color:#5C7CFF;">
+      《同友活动声明》
+    </view>
+  </view>
+
+  <view class="bg-white flex padding" style="align-items: center;justify-content: center;">
+    <button class="cu-btn bg-orange round btn-bm margin-top">立即报名</button>
+  </view>
+
+  <view class="bg-white margin-top padding-top">
+    <view class="yibaoming-margin-top margin-left ">
+      <text class="yibaoming-text-content">已报名</text>
+      <text class="yibaoming-text-content" style="color:var(--blue)">21/24</text>
+      <text class="yibaoming-text-content">人</text>
+    </view>
+    <view class="yundong-content bg-white">
+      <view class="padding-sm">
+        <view class="cu-avatar round lg margin-sm" wx:for="{{21}}" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{(index+1)%9}}.jpg);">
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="cu-bar bg-white solid-bottom margin-top">
+    <view class='action'>
+      <text class='cu-bar-title'>评论108</text>
+    </view>
+  </view>
+
+  <view class="cu-card case no-card bg-white">
+    <view class="cu-item shadow">
+      <view class="cu-list menu-avatar" bindtap="chakanhuifu">
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+          <view class="content flex-sub">
+            <view class=" flex justify-between">
+              <view>
+                <text class="card-text-grey" decode="{{true}}">吴福嘉&emsp;</text>
+                <button class="cu-btn btn-hot bg-orange disabled">热门</button>
+              </view>
+              <view class="text-gray text-sm">
+                <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+              </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15 6 回复
+            </view>
+          </view>
+        </view>
+
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+          <view class="content flex-sub">
+            <view class=" flex justify-between">
+              <view>
+                <text class="card-text-grey">吴福嘉</text>
+              </view>
+              <view class="text-gray text-sm">
+                <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+              </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15 6 回复
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view>
+    <view class="cu-bar input foot padding">
+      <input class="solid-bottom bg-grey-input round padding-left" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
       <view class="action">
         <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
       </view>
@@ -175,9 +318,201 @@
   </view>
 </block>
 
+<<<<<<< HEAD
+
 <block wx:if="{{TabCur==1}}"></block>
+
+
+<!--
+创建者：朱娇龙
+创建时间：20200418
+创建内容：视频-->
+<block wx:if="{{TabCur==2}}">
+  <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx;">强有力队活动视频</view>
+
+  <view class="content-white">
+    <view class=" sp-cu-bar cu-bar-radius bg-white  ">
+      <image class="sp-avatar round " src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg "></image>
+      <view class="sp-avatar-name">龙啸影像</view>
+      <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;margin-left:372rpx;">关注</button>
+    </view>
+
+    <view>
+      <video id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
+        danmu-list="{{danmuList}}" enable-danmu danmu-btn controls style="width:100%;"></video>
+    </view>
+    <view class="flex  margin-top">
+      <view class="sp-bofang-times">播放1245次</view>
+      <image src="/img/icon_like.png" style="width:44rpx;height:40rpx;margin-left:285rpx;"></image>
+      <view style="margin-left:16rpx;color:#333333;">122</view>
+      <image src="/img/icon_share_more.png" style="width:44rpx;height:40rpx;margin-left:54rpx;"></image>
+    </view>
+    <view class=" sp-pinglun margin-top">喜欢唱跳篮球？灰熊球迷活动，莫兰特带领大家一起尬舞</view>
+    <view class="sp-hotpinglun margin-top-xs">热门评论</view>
+    <view class="margin-top-xs sp-pinlun-content">
+      <image class="sp-pinglun-avatar round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg"></image>
+      <view class="sp-pinglun-name ">吴福嘉</view>
+      <view class="sp-pinglun-neirong">活动看着很不错，我报名啦</view>
+    </view>
+    <view class="margin-top-xs sp-pinlun-content">
+      <image class="sp-pinglun-avatar round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg"></image>
+      <view class="sp-pinglun-name ">吴福嘉</view>
+      <view class="sp-pinglun-neirong">活动看着很不错，我报名啦活动看着很不错，我报名啦活动看着很不错，我报名啦</view>
+    </view>
+    <view class="sp-quanbupinglun margin">全部评论(66)</view>
+
+
+    <view class=" sp-cu-bar cu-bar-radius bg-white  ">
+      <image class="sp-avatar round " src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg "></image>
+      <view class="sp-avatar-name">龙啸影像</view>
+      <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;margin-left:372rpx;">关注</button>
+    </view>
+    <view>
+      <video id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
+        danmu-list="{{danmuList}}" enable-danmu danmu-btn controls style="width:100%;"></video>
+    </view>
+    <view class="flex  margin-top">
+      <view class="sp-bofang-times">播放1245次</view>
+      <image src="/img/icon_like.png" style="width:44rpx;height:40rpx;margin-left:285rpx;"></image>
+      <view style="margin-left:16rpx;color:#333333;">122</view>
+      <image src="/img/icon_share.png" style="width:44rpx;height:40rpx;margin-left:54rpx;"></image>
+    </view>
+    <view class=" sp-pinglun margin-top">喜欢唱跳篮球？灰熊球迷活动，莫兰特带领大家一起尬舞</view>
+    <view class="sp-hotpinglun margin-top-xs">热门评论</view>
+    <view class="margin-top-xs sp-pinlun-content">
+      <image class="sp-pinglun-avatar round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg"></image>
+      <view class="sp-pinglun-name ">吴福嘉</view>
+      <view class="sp-pinglun-neirong">活动看着很不错，我报名啦</view>
+    </view>
+    <view class="margin-top-xs sp-pinlun-content">
+      <image class="sp-pinglun-avatar round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg"></image>
+      <view class="sp-pinglun-name ">吴福嘉</view>
+      <view class="sp-pinglun-neirong">活动看着很不错，我报名啦活动看着很不错，我报名啦活动看着很不错，我报名啦</view>
+    </view>
+    <view class="sp-quanbupinglun margin">全部评论(66)</view>
+
+    <view style="height:300rpx;"></view>
+
+    <view class="box">
+      <view class="cu-bar input foot padding">
+        <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
+        <view class="action">
+          <image class="img-icon" src="/img/icon_talk.png"></image>
+        </view>
+        <view class="action">
+          <image class="img-icon" src="/img/icon_fabulous.png"></image>
+        </view>
+        <view class="action">
+          <image class="img-icon" src="/img/icon_share.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</block>
+<!--
+创建者：朱娇龙
+创建时间：20200418
+创建内容：照片-->
+<block wx:if="{{TabCur==3}}">
+
+  <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx;">强有力队活动视频</view>
+
+  <view class="content-white">
+    <view class=" sp-cu-bar cu-bar-radius bg-white  ">
+      <image class="sp-avatar round " src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg "></image>
+      <view class="sp-avatar-name">龙啸影像</view>
+      <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;margin-left:372rpx;">关注</button>
+    </view>
+
+    <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="0" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#5454FF">
+      <swiper-item wx:for="{{swiperList_zhaopian}}" wx:key class="{{cardCur==index?'cur':''}}">
+        <view class="swiper-item">
+          <image src="{{item.path}}" mode="aspectFill">喜欢唱跳篮球？灰熊球迷活动，莫兰特带领大家一起尬舞</image>
+          <view class="zhaopian-tupian-pinglun">喜欢唱跳篮球？灰熊球迷活动，莫兰特带领大家一起尬舞</view>
+        </view>
+
+      </swiper-item>
+    </swiper>
+
+
+    <view class="flex  margin-top">
+      <view class="sp-hotpinglun margin-top-xs">热门评论</view>
+      <image src="/img/icon_like.png" style="width:44rpx;height:40rpx;margin-left:285rpx;"></image>
+      <view style="margin-left:16rpx;color:#333333;">122</view>
+      <image src="/img/icon_share_more.png" style="width:44rpx;height:40rpx;margin-left:54rpx;"></image>
+    </view>
+
+    
+    <view class="margin-top-xs sp-pinlun-content">
+      <image class="sp-pinglun-avatar round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg"></image>
+      <view class="sp-pinglun-name ">吴福嘉</view>
+      <view class="sp-pinglun-neirong">活动看着很不错，我报名啦</view>
+    </view>
+    <view class="margin-top-xs sp-pinlun-content">
+      <image class="sp-pinglun-avatar round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg"></image>
+      <view class="sp-pinglun-name ">吴福嘉</view>
+      <view class="sp-pinglun-neirong">活动看着很不错，我报名啦活动看着很不错，我报名啦活动看着很不错，我报名啦</view>
+    </view>
+    <view class="sp-quanbupinglun margin">全部评论(66)</view>
+
+
+    <view class=" sp-cu-bar cu-bar-radius bg-white  ">
+      <image class="sp-avatar round " src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg "></image>
+      <view class="sp-avatar-name">龙啸影像</view>
+      <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;margin-left:372rpx;">关注</button>
+    </view>
+
+    <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#5454FF" previous-margin="0rpx" next-margin="0rpx">
+      <swiper-item wx:for="{{swiperList_zhaopian}}" wx:key class="{{cardCur==index?'cur':''}}">
+        <view class="swiper-item">
+          <image src="{{item.path}}" mode="aspectFill"></image>
+        </view>
+      </swiper-item>
+    </swiper>
+
+    <view class="flex  margin-top">
+      <view class="sp-bofang-times">播放1245次</view>
+      <image src="/img/icon_like.png" style="width:44rpx;height:40rpx;margin-left:285rpx;"></image>
+      <view style="margin-left:16rpx;color:#333333;">122</view>
+      <image src="/img/icon_share.png" style="width:44rpx;height:40rpx;margin-left:54rpx;"></image>
+    </view>
+
+    <view class="sp-hotpinglun margin-top-xs">热门评论</view>
+    <view class="margin-top-xs sp-pinlun-content">
+      <image class="sp-pinglun-avatar round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg"></image>
+      <view class="sp-pinglun-name ">吴福嘉</view>
+      <view class="sp-pinglun-neirong">活动看着很不错，我报名啦</view>
+    </view>
+    <view class="margin-top-xs sp-pinlun-content">
+      <image class="sp-pinglun-avatar round" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg"></image>
+      <view class="sp-pinglun-name ">吴福嘉</view>
+      <view class="sp-pinglun-neirong">活动看着很不错，我报名啦活动看着很不错，我报名啦活动看着很不错，我报名啦</view>
+    </view>
+    <view class="sp-quanbupinglun margin">全部评论(66)</view>
+
+    <view style="height:300rpx;"></view>
+
+    <view class="box">
+      <view class="cu-bar input foot padding">
+        <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
+        <view class="action">
+          <image class="img-icon" src="/img/icon_talk.png"></image>
+        </view>
+        <view class="action">
+          <image class="img-icon" src="/img/icon_fabulous.png"></image>
+        </view>
+        <view class="action">
+          <image class="img-icon" src="/img/icon_share.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+=======
 <block wx:if="{{TabCur==2}}"></block>
 <block wx:if="{{TabCur==3}}"></block>
+>>>>>>> 58db3e443fc1a17601ffc16099df5f75a12648e6
 
 <!--
 创建者：陈雨豪
