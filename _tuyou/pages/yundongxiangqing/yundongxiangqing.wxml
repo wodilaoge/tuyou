@@ -161,7 +161,150 @@
   </view>
   <view>
     <view class="cu-bar input foot padding">
-      <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
+      <input class="solid-bottom bg-grey-input round padding-left" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
+      <view class="action">
+        <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
+      </view>
+      <view class="action">
+        <image class="img-icon" mode="aspectFit" style="margin-right:10rpx" src="/img/icon_fabulous.png"></image>
+      </view>
+      <view class="action">
+        <image class="img-icon" mode="aspectFit" src="/img/icon_share.png"></image>
+      </view>
+    </view>
+  </view>
+</block>
+<!--
+创建者：陈雨豪
+创建时间：20200418
+创建内容：报名-->
+<block wx:if="{{TabCur==1}}">
+  <view class="bg-white margin-top">
+    <view class="cu-bar bg-white padding">
+      <view class="cu-bar-title">报名</view>
+    </view>
+  </view>
+  <view class="bg-white">
+    <form>
+      <view class="cu-form-group">
+        <radio-group class="block" style="margin-left:160rpx;">
+          <view class="flex">
+            <view>
+              <checkbox class="round blue " style="zoom: 80%;" checked></checkbox>
+            </view>
+            <view class="tp-select ">报名参加</view>
+
+            <view style="margin-left:101rpx;">
+              <checkbox class="round blue " style="zoom: 80%;"></checkbox>
+            </view>
+            <view class="tp-select ">报名观看</view>
+          </view>
+        </radio-group>
+      </view>
+      <view class="cu-form-group">
+        <view class="title" style="margin-right:65rpx;">姓名 </view>
+        <input class="form-text" placeholder="李四"></input>
+      </view>
+      <view class="cu-form-group ">
+        <view class="title" style="margin-right:65rpx;">手机</view>
+        <input class="form-text" placeholder="请输入手机号"></input>
+      </view>
+      <view class="cu-form-group ">
+        <view class="title">选择分组</view>
+        <input class="form-text"></input>
+      </view>
+      <view class="cu-form-group ">
+        <view class="title">报名团队</view>
+        <input class="form-text"></input>
+      </view>
+    </form>
+  </view>
+  <view class="bg-white flex" style="align-items: center;justify-content: center;">
+    <checkbox class="blue " style="zoom: 40%;"></checkbox>
+    <view class="queren margin-left-sm" style="color:#999999;">
+      我已阅读并同意
+    </view>
+    <view class="queren" style="color:#5C7CFF;">
+      《同友活动声明》
+    </view>
+  </view>
+
+  <view class="bg-white flex padding" style="align-items: center;justify-content: center;">
+    <button class="cu-btn bg-orange round btn-bm margin-top">立即报名</button>
+  </view>
+
+  <view class="bg-white margin-top padding-top">
+    <view class="yibaoming-margin-top margin-left ">
+      <text class="yibaoming-text-content">已报名</text>
+      <text class="yibaoming-text-content" style="color:var(--blue)">21/24</text>
+      <text class="yibaoming-text-content">人</text>
+    </view>
+    <view class="yundong-content bg-white">
+      <view class="padding-sm">
+        <view class="cu-avatar round lg margin-sm" wx:for="{{21}}" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{(index+1)%9}}.jpg);">
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="cu-bar bg-white solid-bottom margin-top">
+    <view class='action'>
+      <text class='cu-bar-title'>评论108</text>
+    </view>
+  </view>
+
+  <view class="cu-card case no-card bg-white">
+    <view class="cu-item shadow">
+      <view class="cu-list menu-avatar" bindtap="chakanhuifu">
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+          <view class="content flex-sub">
+            <view class=" flex justify-between">
+              <view>
+                <text class="card-text-grey" decode="{{true}}">吴福嘉&emsp;</text>
+                <button class="cu-btn btn-hot bg-orange disabled">热门</button>
+              </view>
+              <view class="text-gray text-sm">
+                <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+              </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15 6 回复
+            </view>
+          </view>
+        </view>
+
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+          <view class="content flex-sub">
+            <view class=" flex justify-between">
+              <view>
+                <text class="card-text-grey">吴福嘉</text>
+              </view>
+              <view class="text-gray text-sm">
+                <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+              </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15 6 回复
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view>
+    <view class="cu-bar input foot padding">
+      <input class="solid-bottom bg-grey-input round padding-left" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
       <view class="action">
         <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
       </view>
@@ -175,7 +318,6 @@
   </view>
 </block>
 
-<block wx:if="{{TabCur==1}}"></block>
 <block wx:if="{{TabCur==2}}"></block>
 <block wx:if="{{TabCur==3}}"></block>
 
