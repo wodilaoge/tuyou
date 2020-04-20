@@ -3,13 +3,9 @@ var CosAuth = require('./cos-auth.min');
 var Bucket = 'kt-1301681474';
 var Region = 'ap-shanghai';
 var ForcePathStyle = false; // 是否使用后缀式，涉及签名计算和域名白名单配置，后缀式说明看上文
-var urls='';
-var i=0;
-var unity;
-var paths;
-var uploadFile = function (path, wayto,t) {
-    paths=path;
-    unity=t;
+
+var uploadFile = function (path, wayto, t) {
+
     // 请求用到的参数
     var prefix = 'https://' + Bucket + '.cos.' + Region + '.myqcloud.com/';
     if (ForcePathStyle) {
@@ -90,16 +86,38 @@ var uploadFile = function (path, wayto,t) {
     }
     // 上传文件
     var uploadFile = function (filePath, way) {
-        var num=5;
         var that = t;
         var uuid = wxuuid();
         var Key = 'app/' + way + '/10.' + uuid;
+        var stoway;
+        var tmpway;
+        if (way == 'rule') {
+            tmpway = 'url1';
+            stoway = that.data.url1;
+        } else if (way == 'award') {
+            tmpway = 'url2';
+            stoway = that.data.url2;
+        } else if (way == 'logo') {
+            tmpway = 'url3';
+            stoway = that.data.url3;
+        } else if (way == 'rot') {
+            tmpway = 'url4';
+            stoway = that.data.url4;
+        } else if (way == 'spons') {
+            tmpway = 'url5';
+            stoway = that.data.url5;
+        }
         // 重要！指定上传的目录和文件名，注意：1、不同模块的图片上传到相应目录（比如other，具体看对照表）；2、待实现：文件名（filePath.substr(filePath.lastIndexOf('/') + 1)）需要替换成“编码.32位UUID”格式，编码标识移动端类型：10：微信小程序，20：安卓，30：苹果；3、如果一次上传多个图片，需要批量上传，待实现，注意看腾讯相应的demo；4、上传成功后，把完整的图片文件URL作为数据的一部分提交到后端接口（存数据库）。
         // console.log('log:' + filePath);
         var signPathname = '/';
         if (ForcePathStyle) {
             signPathname = '/' + Bucket + '/';
         }
+        wx.showModal({
+            title: '提示',
+            content: '正在上传',
+            showCancel: false
+        });
         getAuthorization({
             Method: 'POST',
             Pathname: signPathname
@@ -119,18 +137,19 @@ var uploadFile = function (path, wayto,t) {
                     var url = prefix + camSafeUrlEncode(Key).replace(/%2F/g, '/');
                     // console.log(res.statusCode);
                     console.log(url);
-                      console.log('success')
                     if (/^2\d\d$/.test('' + res.statusCode)) {
-                
-                        wx.showModal({
-                            title: '上传成功',
-                            content: url,
-                            showCancel: false
-                        });
-                        that.setData({
-                            tes: url
-                        })
-                        return urls;
+
+                        if (stoway) {
+                            that.setData({
+                                [tmpway]: stoway.concat(url)
+                            })
+                            console.log('1')
+                        } else {
+                            that.setData({
+                                [tmpway]: url
+                            })
+                            console.log('3')
+                        }
                     } else {
                         wx.showModal({
                             title: '上传失败',
@@ -145,16 +164,6 @@ var uploadFile = function (path, wayto,t) {
                         content: JSON.stringify(res),
                         showCancel: false
                     });
-                },
-                complete: function(res) {
-                    i++;
-                    if(i==3){
-                        console.log('complete')
-                    }
-                    else{
-                        console.log('t1',paths)
-                        uploadFile(paths,'other')
-                    }
                 }
             });
             requestTask.onProgressUpdate(function (res) {

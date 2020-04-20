@@ -23,10 +23,15 @@ Page({
     imgList3: [],
     imgList4: [],
     imgList5: [],
+    url1: [],
+    url2: [],
+    url3: [],
+    url4: [],
+    url5: [],
     modalName: null,
     info: {},
-    tes:'',
-    webinfo:[]
+    tes: '',
+    webinfo: []
   },
   PickerChange(e) {
     console.log(e);
@@ -61,14 +66,15 @@ Page({
       date: e.detail.value
     })
   },
-  RegionChange: function(e) {
+  RegionChange: function (e) {
     this.setData({
       region: e.detail.value
     })
   },
   ChooseImage(e) {
     var t = e.currentTarget.dataset.id
-    var that=this
+    var that = this
+
     wx.chooseImage({
       count: 4, //默认9
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
@@ -85,9 +91,10 @@ Page({
             })
           }
           // console.log(imgList[0])
-          upload.uploadFile(this.data.imgList[0],'other',that)
+
+          upload.uploadFile(this.data.imgList[this.data.imgList.length - 1], 'rule', that)
           // var t=wx.getStorageSync('url');
-          console.log(this.data.tes)
+
 
         }
         if (t == 2) {
@@ -100,6 +107,7 @@ Page({
               imgList2: res.tempFilePaths
             })
           }
+          upload.uploadFile(this.data.imgList2[this.data.imgList2.length - 1], 'award', that)
         }
         if (t == 3) {
           if (this.data.imgList3.length != 0) {
@@ -111,6 +119,7 @@ Page({
               imgList3: res.tempFilePaths
             })
           }
+          upload.uploadFile(this.data.imgList3[this.data.imgList3.length - 1], 'logo', that)
         }
         if (t == 4) {
           if (this.data.imgList4.length != 0) {
@@ -122,6 +131,7 @@ Page({
               imgList4: res.tempFilePaths
             })
           }
+          upload.uploadFile(this.data.imgList4[this.data.imgList4.length - 1], 'rot', that)
         }
         if (t == 5) {
           if (this.data.imgList5.length != 0) {
@@ -133,6 +143,7 @@ Page({
               imgList5: res.tempFilePaths
             })
           }
+          upload.uploadFile(this.data.imgList5[this.data.imgList5.length - 1], 'spons', that)
         }
       }
     });
@@ -182,8 +193,10 @@ Page({
         success: res => {
           if (res.confirm && t == 1) {
             this.data.imgList.splice(e.currentTarget.dataset.index, 1);
+            this.data.url1.splice(e.currentTarget.dataset.index, 1);
             this.setData({
-              imgList: this.data.imgList
+              imgList: this.data.imgList,
+              url1: this.data.url1
             })
           }
         }
@@ -198,8 +211,10 @@ Page({
         success: res => {
           if (res.confirm && t == 2) {
             this.data.imgList2.splice(e.currentTarget.dataset.index, 1);
+            this.data.url2.splice(e.currentTarget.dataset.index, 1);
             this.setData({
-              imgList2: this.data.imgList2
+              imgList2: this.data.imgList2,
+              url2: this.data.url2
             })
           }
         }
@@ -213,9 +228,11 @@ Page({
         confirmText: '确认删除',
         success: res => {
           if (res.confirm && t == 3) {
-            this.data.imgList3.splice(e.currentTarget.dataset.index, 1);
+            this.data.imgList3.splice(e.currentTarget.dataset.index, 1)
+            this.data.url3.splice(e.currentTarget.dataset.index, 1);
             this.setData({
-              imgList3: this.data.imgList3
+              imgList3: this.data.imgList3,
+              url3: this.data.url3
             })
           }
         }
@@ -230,8 +247,10 @@ Page({
         success: res => {
           if (res.confirm && t == 4) {
             this.data.imgList4.splice(e.currentTarget.dataset.index, 1);
+            this.data.url4.splice(e.currentTarget.dataset.index, 1);
             this.setData({
-              imgList4: this.data.imgList4
+              imgList4: this.data.imgList4,
+              url4: this.data.url4
             })
           }
         }
@@ -246,8 +265,10 @@ Page({
         success: res => {
           if (res.confirm && t == 5) {
             this.data.imgList5.splice(e.currentTarget.dataset.index, 1);
+            this.data.url5.splice(e.currentTarget.dataset.index, 1);
             this.setData({
-              imgList5: this.data.imgList5
+              imgList5: this.data.imgList5,
+              url5: this.data.url5
             })
           }
         }
@@ -264,7 +285,7 @@ Page({
       textareaBValue: e.detail.value
     })
   },
-  toForm_modify: function(e) {
+  toForm_modify: function (e) {
     wx.navigateTo({
       url: "../../pages/form_modify/form_modify"
     })
@@ -275,7 +296,7 @@ Page({
     })
   },
 
-  addicon: function(e) {
+  addicon: function (e) {
     var t = this.data.group
     if (t > 4) {
       wx.showToast({
@@ -288,7 +309,7 @@ Page({
       })
     }
   },
-  subicon: function(e) {
+  subicon: function (e) {
     var t = this.data.group
     this.data.groups.splice(t - 1, 1)
     t--
@@ -312,7 +333,7 @@ Page({
     })
   },
 
-  commit: function(e) {
+  commit: function (e) {
     var urls = app.globalData.URL + '/act/pubActivity';
     wx.request({
       url: urls,
@@ -367,7 +388,7 @@ Page({
       header: {
         "Content-Type": "application/json"
       },
-      success: function(res) {
+      success: function (res) {
         console.log(res.data);
         wx.showToast({
           title: '提交成功！',
@@ -475,15 +496,15 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  getuploadinfo(){
-    var that=this
+  getuploadinfo() {
+    var that = this
     let url = app.globalData.URL + '/config/findCosParam';
-    let data='';
+    let data = '';
     util.gets(url, {}).then(function (res) {
-      var t=res.data
+      var t = res.data
       console.log('t', t)
       that.setData({
-       webinfo: res.data
+        webinfo: res.data
       })
     })
     // app.wxRequest('GET', url, data, (res) => {
@@ -495,21 +516,21 @@ Page({
     //   console.log(err.errMsg)
     // });
   },
-  demo(web){
+  demo(web) {
     upload.uploadFile(web)
   },
   onLoad: function (options) {
     var t = wx.getStorageSync('information');
-    this.getuploadinfo();//获取上传文件信息
+    this.getuploadinfo(); //获取上传文件信息
     this.setData({
       info: t,
       opinion3: (parseInt(this.data.info.way) + 1) * 10
     })
   },
-  onReady: function() {
+  onReady: function () {
 
   },
-  onShow: function() {
+  onShow: function () {
 
   },
 

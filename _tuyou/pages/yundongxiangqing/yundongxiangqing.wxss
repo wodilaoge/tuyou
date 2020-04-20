@@ -116,71 +116,6 @@ page {
   border-bottom-right-radius: 30rpx;
 }
 
-<<<<<<< HEAD
-/* shipin */
-.shipin-title{
-  height: 100rpx;
-  text-align: center;
-  padding-top: 33rpx;
-font-size:32rpx;
-font-family:PingFang SC;
-font-weight:bold;
-color:rgba(51,51,51,1);
-background-color: white;
-}
-/* zhaopian */
-
-swiper.round-dot .wx-swiper-dot.wx-swiper-dot-active::after {
-	content: "";
-	position: relative;
-	width: 10rpx;
-	height: 10rpx;
-	top: 0rpx;
-	left: 0rpx;
-	right: 0;
-	bottom: 0;
-	margin: auto;
-	background-color: #5454FF;
-	border-radius: 20rpx;
-}
-.zhaopian-tupian-pinglun{
- width: 616rpx;
- padding-top: 21rpx;
- padding-left: 23rpx;
-font-size:28rpx;
-font-family:PingFang SC;
-font-weight:bold;
-color:rgba(51,51,51,1);
-}
-
-
-.card-swiper {
-	height:536rpx !important;
-}
-
-.card-swiper swiper-item {
-	width: 100% !important;
-	left: 0rpx;
-	box-sizing: border-box;
-	padding: 40rpx 0rpx 70rpx;
-	overflow: initial;
-}
-
-.card-swiper swiper-item .swiper-item {
-	width: 100%;
-	display: block;
-	height: 100%;
-	border-radius: 10rpx;
-	transform: scale(0.9);
-	transition: all 0.2s ease-in 0s;
-	overflow: hidden;
-}
-
-.card-swiper swiper-item.cur .swiper-item {
-	transform: none;
-	transition: all 0.2s ease-in 0s;
-}
-=======
 .tp-select {
   margin-left: 26rpx;
   color: #333;
@@ -204,4 +139,3 @@ color:rgba(51,51,51,1);
   height: 80rpx;
   font-size: 32rpx;
 }
->>>>>>> 58db3e443fc1a17601ffc16099df5f75a12648e6
