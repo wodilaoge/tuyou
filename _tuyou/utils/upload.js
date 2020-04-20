@@ -108,16 +108,10 @@ var uploadFile = function (path, wayto, t) {
             stoway = that.data.url5;
         }
         // 重要！指定上传的目录和文件名，注意：1、不同模块的图片上传到相应目录（比如other，具体看对照表）；2、待实现：文件名（filePath.substr(filePath.lastIndexOf('/') + 1)）需要替换成“编码.32位UUID”格式，编码标识移动端类型：10：微信小程序，20：安卓，30：苹果；3、如果一次上传多个图片，需要批量上传，待实现，注意看腾讯相应的demo；4、上传成功后，把完整的图片文件URL作为数据的一部分提交到后端接口（存数据库）。
-        // console.log('log:' + filePath);
         var signPathname = '/';
         if (ForcePathStyle) {
             signPathname = '/' + Bucket + '/';
         }
-        // wx.showModal({
-        //     title: '提示',
-        //     content: '正在上传',
-        //     showCancel: false
-        // });
         getAuthorization({
             Method: 'POST',
             Pathname: signPathname
@@ -135,8 +129,7 @@ var uploadFile = function (path, wayto, t) {
                 },
                 success: function (res) {
                     var url = prefix + camSafeUrlEncode(Key).replace(/%2F/g, '/');
-                    // console.log(res.statusCode);
-                    console.log(url);
+                    console.log('url',url);
                     if (/^2\d\d$/.test('' + res.statusCode)) {
 
                         if (stoway) {
@@ -144,13 +137,11 @@ var uploadFile = function (path, wayto, t) {
                                 [tmpway]: stoway.concat(url),
                                 loadModal: false
                             })
-                            console.log('1')
                         } else {
                             that.setData({
                                 [tmpway]: url,
                                 loadModal: false
                             })
-                            console.log('3')
                         }
                     } else {
                         wx.showModal({
@@ -173,19 +164,9 @@ var uploadFile = function (path, wayto, t) {
             });
         });
     };
-
+    // door main
     uploadFile(path, wayto)
 
-
-    // 选择文件
-    // wx.chooseImage({
-    //     count: 1, // 默认9
-    //     sizeType: ['original'], // 可以指定是原图还是压缩图，这里默认用原图
-    //     sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-    //     success: function (res) {
-    //         uploadFile(res.tempFiles[0].path);
-    //     }
-    // })
 };
 
 module.exports = {

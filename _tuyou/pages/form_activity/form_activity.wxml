@@ -41,7 +41,7 @@
       个性规则（图片或文字）
     </view>
     <view class="action">
-      {{imgList.length}}/4
+      {{imgList.length}}/1
     </view>
   </view>
   <view class="cu-form-group">
@@ -52,7 +52,7 @@
           <text class="cuIcon-close"></text>
         </view>
       </view>
-      <view class="solids" bindtap="ChooseImage" data-id='1' wx:if="{{imgList.length<4}}">
+      <view class="solids" bindtap="ChooseImage" data-id='1' wx:if="{{imgList.length<1}}">
         <text class="cuIcon-cameraadd"></text>
       </view>
     </view>
@@ -74,7 +74,7 @@
       奖励（图片或文字）
     </view>
     <view class="action">
-      {{imgList2.length}}/4
+      {{imgList2.length}}/1
     </view>
   </view>
   <view class="cu-form-group">
@@ -85,7 +85,7 @@
           <text class="cuIcon-close"></text>
         </view>
       </view>
-      <view class="solids" bindtap="ChooseImage" data-id='2' wx:if="{{imgList2.length<4}}">
+      <view class="solids" bindtap="ChooseImage" data-id='2' wx:if="{{imgList2.length<1}}">
         <text class="cuIcon-cameraadd"></text>
       </view>
     </view>
@@ -127,7 +127,7 @@
       轮播图
     </view>
     <view class="action">
-      {{imgList4.length}}/4
+      {{imgList4.length}}/5
     </view>
   </view>
   <view class="cu-form-group">
@@ -138,7 +138,7 @@
           <text class="cuIcon-close"></text>
         </view>
       </view>
-      <view class="solids" bindtap="ChooseImage" data-id='4' wx:if="{{imgList4.length<4}}">
+      <view class="solids" bindtap="ChooseImage" data-id='4' wx:if="{{imgList4.length<5}}">
         <text class="cuIcon-cameraadd"></text>
       </view>
     </view>
@@ -148,7 +148,7 @@
       赞助商
     </view>
     <view class="action">
-      {{imgList5.length}}/4
+      {{imgList5.length}}/1
     </view>
   </view>
   <view class="cu-form-group">
@@ -159,7 +159,7 @@
           <text class="cuIcon-close"></text>
         </view>
       </view>
-      <view class="solids" bindtap="ChooseImage" data-id='5' wx:if="{{imgList5.length<4}}">
+      <view class="solids" bindtap="ChooseImage" data-id='5' wx:if="{{imgList5.length<1}}">
         <text class="cuIcon-cameraadd"></text>
       </view>
     </view>
@@ -222,7 +222,6 @@
 <view class="flex margin-top2">
   <button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="commit" data-target="Modal">立即提交</button>
 </view>
-<button bindtap="loadModal">123</button>
 <view class="cu-modal {{modalName=='Modal'?'show':''}}">
   <view class="cu-dialog">
     <view class="cu-bar bg-white justify-end">

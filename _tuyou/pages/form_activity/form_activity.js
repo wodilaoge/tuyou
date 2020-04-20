@@ -305,15 +305,15 @@ Page({
     })
   },
   addicon: function (e) {
-    var t = this.data.group
-    if (t > 4) {
+    var tt = this.data.group
+    if (tt > 4) {
       wx.showToast({
         title: '最多添加5个',
       })
     } else {
-      t++
+      tt++
       this.setData({
-        group: t
+        group: tt
       })
     }
   },
@@ -343,6 +343,15 @@ Page({
 
   commit: function (e) {
     var urls = app.globalData.URL + '/act/pubActivity';
+    var rotation=[];
+    for(var i in this.data.url4){
+      var tmp = {};
+      tmp.id='';
+      tmp.rotation=i;
+      console.log(i);
+      rotation.push(tmp)
+    }
+    console.log(rotation)
     wx.request({
       url: urls,
       method: "POST",
@@ -352,20 +361,8 @@ Page({
         sid: "076003",
         acid1: "076002001",
         acid2: "076002001002",
-        logo: "http://pic39.nipic.com/20140318/12838115_142809370123_2.jpg",
-        rotations: [{
-            "id": 5075988962607104,
-            "rotation": "http://pic39.nipic.com/20140318/12838115_142809370123_2.jpg"
-          },
-          {
-            "id": 5075988970995712,
-            "rotation": "http://pic39.nipic.com/20140318/12838115_142809370123_2.jpg"
-          },
-          {
-            "id": 5075988979384320,
-            "rotation": "http://pic39.nipic.com/20140318/12838115_142809370123_2.jpg"
-          }
-        ],
+        logo: this.data.url3,
+        rotations: rotation,
         groups: this.data.groups,
         fromtime: this.data.info.fromtime,
         totime: null,
@@ -376,11 +373,11 @@ Page({
         entrylimit: this.data.opinion1,
         audiencelimit: this.data.opinion2,
         rule: null,
-        rulepic: "http://pic39.nipic.com/20140318/12838115_142809370123_2.jpg",
+        rulepic: this.data.url1,
         award: null,
-        awardpic: "http://pic39.nipic.com/20140318/12838115_142809370123_2.jpg",
+        awardpic: this.data.url2,
         sponsor: null,
-        sponsorpic: "http://pic39.nipic.com/20140318/12838115_142809370123_2.jpg",
+        sponsorpic: this.data.url5,
         signupway: this.data.opinion3,
         chatid: null,
         univid: this.data.info.univid,
