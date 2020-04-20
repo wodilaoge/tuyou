@@ -177,7 +177,6 @@
   </view>
     <view class='cu-load load-modal' wx:if="{{loadModal}}">
     <!-- <view class='cuIcon-emojifill text-orange'></view> -->
-    <image src='/images/logo.png' class='png' mode='aspectFit'></image>
     <view class='gray-text'>加载中...</view>
   </view>
   <view class="cu-form-group margin-top">
@@ -223,7 +222,7 @@
 <view class="flex margin-top2">
   <button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="commit" data-target="Modal">立即提交</button>
 </view>
-
+<button bindtap="loadModal">123</button>
 <view class="cu-modal {{modalName=='Modal'?'show':''}}">
   <view class="cu-dialog">
     <view class="cu-bar bg-white justify-end">

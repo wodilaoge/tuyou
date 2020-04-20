@@ -74,9 +74,8 @@ Page({
   ChooseImage(e) {
     var t = e.currentTarget.dataset.id
     var that = this
-
     wx.chooseImage({
-      count: 4, //默认9
+      count: 1, //默认9
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], //从相册选择
       success: (res) => {
@@ -90,12 +89,10 @@ Page({
               imgList: res.tempFilePaths
             })
           }
-          // console.log(imgList[0])
-
           upload.uploadFile(this.data.imgList[this.data.imgList.length - 1], 'rule', that)
-          // var t=wx.getStorageSync('url');
-
-
+          this.setData({
+            loadModal: true
+          })
         }
         if (t == 2) {
           if (this.data.imgList2.length != 0) {
@@ -108,6 +105,9 @@ Page({
             })
           }
           upload.uploadFile(this.data.imgList2[this.data.imgList2.length - 1], 'award', that)
+          this.setData({
+            loadModal: true
+          })
         }
         if (t == 3) {
           if (this.data.imgList3.length != 0) {
@@ -120,6 +120,9 @@ Page({
             })
           }
           upload.uploadFile(this.data.imgList3[this.data.imgList3.length - 1], 'logo', that)
+          this.setData({
+            loadModal: true
+          })
         }
         if (t == 4) {
           if (this.data.imgList4.length != 0) {
@@ -132,6 +135,9 @@ Page({
             })
           }
           upload.uploadFile(this.data.imgList4[this.data.imgList4.length - 1], 'rot', that)
+          this.setData({
+            loadModal: true
+          })
         }
         if (t == 5) {
           if (this.data.imgList5.length != 0) {
@@ -144,6 +150,9 @@ Page({
             })
           }
           upload.uploadFile(this.data.imgList5[this.data.imgList5.length - 1], 'spons', that)
+          this.setData({
+            loadModal: true
+          })
         }
       }
     });
@@ -295,7 +304,6 @@ Page({
       modalName: null
     })
   },
-
   addicon: function (e) {
     var t = this.data.group
     if (t > 4) {

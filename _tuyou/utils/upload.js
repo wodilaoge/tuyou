@@ -113,11 +113,11 @@ var uploadFile = function (path, wayto, t) {
         if (ForcePathStyle) {
             signPathname = '/' + Bucket + '/';
         }
-        wx.showModal({
-            title: '提示',
-            content: '正在上传',
-            showCancel: false
-        });
+        // wx.showModal({
+        //     title: '提示',
+        //     content: '正在上传',
+        //     showCancel: false
+        // });
         getAuthorization({
             Method: 'POST',
             Pathname: signPathname
@@ -141,12 +141,14 @@ var uploadFile = function (path, wayto, t) {
 
                         if (stoway) {
                             that.setData({
-                                [tmpway]: stoway.concat(url)
+                                [tmpway]: stoway.concat(url),
+                                loadModal: false
                             })
                             console.log('1')
                         } else {
                             that.setData({
-                                [tmpway]: url
+                                [tmpway]: url,
+                                loadModal: false
                             })
                             console.log('3')
                         }
