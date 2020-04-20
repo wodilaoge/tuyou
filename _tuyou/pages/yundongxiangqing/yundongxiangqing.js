@@ -1,8 +1,9 @@
 const app = getApp();
 Page({
   data: {
-    TabCur: 6,
+    TabCur: 1,
     paimingCur: 0,
+    isbaoming: 0,
     comment: [],
     SwiperList_zhaopian: [],
     comment_detail: [],
