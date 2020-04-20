@@ -3,7 +3,7 @@
 创建时间：20200330f
 内容：活动详情页面-->
 
-<!-- 孔启超
+<!-- 孔启超 
 4.14
 静态页面改成动态页面 -->
 <view class="top bg-blue">
@@ -98,7 +98,7 @@
   <view class="cu-card article no-card bg-white" wx:for="{{news.list}}">
     <view class="cu-item shadow" style="margin-top:0rpx;">
       <view class="content2">
-        <image src="/img/huodongxinwen1.png" mode="aspectFill"></image>
+        <image src="{{item.logo}}" mode="aspectFill"></image>
         <view class="desc">
           <view class="title-limit2">
             {{item.title}}

@@ -1,10 +1,13 @@
+const app = getApp();
 Page({
   data: {
-    TabCur: 1,
+    TabCur: 6,
     paimingCur: 0,
     comment: [],
     SwiperList_zhaopian: [],
     comment_detail: [],
+    news: [],
+    news_detail: [],
     swiperList: [{
       id: 0,
       type: 'image',
@@ -63,10 +66,39 @@ Page({
       paimingCur: e.currentTarget.dataset.id,
     })
   },
+  news() {//活动新闻
+    let url = app.globalData.URL + '/news/listNews';
+    let data = {
+      id: this.data.categoryId
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res.data)
+      this.setData({
+        news: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  news_detail() {//活动新闻
+    let url = app.globalData.URL + '/news/findNewsDetail';
+    let data = {
+      id: this.data.news.id
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        news_detail: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
+    this.news()
+    this.news_detail()
 
   },
 

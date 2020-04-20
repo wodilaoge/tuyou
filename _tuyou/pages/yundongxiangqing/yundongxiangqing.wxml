@@ -15,13 +15,14 @@
   </swiper-item>
 </swiper>
 
-<scroll-view scroll-x class="bg-white nav text-center" style="height:80rpx;">
-  <view class="cu-item {{0==TabCur?'text-bold text-blue':''}}" bindtap="tabSelect" data-id="0"> 详情</view>
-  <view class="cu-item {{1==TabCur?'text-bold text-blue':''}}" bindtap="tabSelect" data-id="1"> 报名 </view>
-  <view class="cu-item {{2==TabCur?'text-bold text-blue':''}}" bindtap="tabSelect" data-id="2"> 视频</view>
-  <view class="cu-item {{3==TabCur?'text-bold text-blue':''}}" bindtap="tabSelect" data-id="3"> 照片 </view>
-  <view class="cu-item {{4==TabCur?'text-bold text-blue':''}}" bindtap="tabSelect" data-id="4"> 排名 </view>
-  <view class="cu-item {{5==TabCur?'text-bold text-blue':''}}" bindtap="tabSelect" data-id="5"> 数据</view>
+<scroll-view scroll-x class="bg-white nav text-center">
+  <view class="cu-item {{0==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="0"> 详情</view>
+  <view class="cu-item {{1==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="1"> 报名 </view>
+  <view class="cu-item {{2==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="2"> 视频</view>
+  <view class="cu-item {{3==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="3"> 照片 </view>
+  <view class="cu-item {{4==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="4"> 排名 </view>
+  <view class="cu-item {{5==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="5"> 数据</view>
+  <view class="cu-item {{6==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="6"> 资讯</view>
 </scroll-view>
 
 <block wx:if="{{TabCur==0}}">
@@ -187,14 +188,14 @@
   <view class="bg-white">
     <form>
       <view class="cu-form-group">
-        <radio-group class="block" style="margin-left:160rpx;">
+        <radio-group class="block" style="margin-left:240rpx;">
           <view class="flex">
             <view>
               <checkbox class="round blue " style="zoom: 80%;" checked></checkbox>
             </view>
             <view class="tp-select ">报名参加</view>
 
-            <view style="margin-left:101rpx;">
+            <view style="margin-left:40rpx;">
               <checkbox class="round blue " style="zoom: 80%;"></checkbox>
             </view>
             <view class="tp-select ">报名观看</view>
@@ -476,8 +477,8 @@
 创建时间：20200417
 创建内容：数据-->
 <block wx:if="{{TabCur==5}}">
-  <view class="bg-blue">
-    <view class="cu-bar-radius bg-white cu-bar-title padding">活动数据录入</view>
+  <view>
+    <view class=" bg-white cu-bar-title padding">活动数据录入</view>
   </view>
   <view class="margin-bottom">
     <view class="padding-left bg-white yundong-shuju ">
@@ -636,5 +637,101 @@
       <button class="shuju-btn1 line-orange">提交</button>
     </view>
     <button class="shuju-btn1 bg-orange round" style="width: 668rpx; height: 80rpx;">提交并结束本场活动</button>
+  </view>
+</block>
+
+<!--
+创建者：陈雨豪
+创建时间：20200420
+创建内容：数据-->
+<block wx:if="{{TabCur==6}}">
+  <view class="bg-white padding huodong-margin-top">
+    <text class="cu-bar-title">活动新闻</text>
+  </view>
+  <view class="cu-card article no-card bg-white" wx:for="{{news.list}}">
+    <view class="cu-item shadow" style="margin-top:0rpx;">
+      <view class="content2">
+        <image src="{{item.logo}}" mode="aspectFill"></image>
+        <view class="desc">
+          <view class="title-limit2">
+            {{item.title}}
+          </view>
+          <button class="cu-btn btn-new bg-orange disabled">最新</button>
+          <view>
+            <text class="text-gery">2分钟前</text>
+            <text class="cuIcon-attention lg text-gray text-right" decode="{{true}}">\t23456</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="cu-bar bg-white solid-bottom margin-top">
+    <view class='action'>
+      <text class='cu-bar-title'>评论108</text>
+    </view>
+  </view>
+
+  <view class="cu-card case no-card bg-white">
+    <view class="cu-item shadow">
+      <view class="cu-list menu-avatar" bindtap="chakanhuifu">
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+          <view class="content flex-sub">
+            <view class=" flex justify-between">
+              <view>
+                <text class="card-text-grey" decode="{{true}}">吴福嘉&emsp;</text>
+                <button class="cu-btn btn-hot bg-orange disabled">热门</button>
+              </view>
+              <view class="text-gray text-sm">
+                <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+              </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15 6 回复
+            </view>
+          </view>
+        </view>
+
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+          <view class="content flex-sub">
+            <view class=" flex justify-between">
+              <view>
+                <text class="card-text-grey">吴福嘉</text>
+              </view>
+              <view class="text-gray text-sm">
+                <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+              </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15 6 回复
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view>
+    <view class="cu-bar input foot padding">
+      <input class="solid-bottom bg-grey-input round padding-left" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
+      <view class="action">
+        <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
+      </view>
+      <view class="action">
+        <image class="img-icon" mode="aspectFit" style="margin-right:10rpx" src="/img/icon_fabulous.png"></image>
+      </view>
+      <view class="action">
+        <image class="img-icon" mode="aspectFit" src="/img/icon_share.png"></image>
+      </view>
+    </view>
   </view>
 </block>
