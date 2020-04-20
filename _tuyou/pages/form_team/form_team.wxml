@@ -3,107 +3,136 @@
    内容：组团队
  -->
 <cu-custom bgColor="bg-blue" isBack="{{true}}">
-	<view slot="backText">返回</view>
-	<view slot="content">组团队</view>
+  <view slot="backText">返回</view>
+  <view slot="content">组团队</view>
 </cu-custom>
 <form>
-    <view class="cu-form-group margin-top">
-		<view class="title">活动方式</view>
-		<picker bindchange="PickerChange" value="{{index}}" range="{{picker4}}">
-			<view class="picker text-blue">
-				{{index?picker[index]:'篮球'}}
-			</view>
-		</picker>
-	</view>
-  	<view class="cu-form-group margin-top">
-		<view class="title">团队名称</view>
-		<input class="input text-grey" placeholder="春季篮球赛"></input>
-    	<image class="icon" src="../../img/write.png"></image>
-	</view>
+  <view class="cu-form-group margin-top">
+    <view class="title">活动方式</view>
+    <picker bindchange="PickerChange" value="{{index}}" range="{{picker4}}">
+      <view class="picker text-blue">
+        {{index?picker4[index]:'篮球'}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group margin-top">
+    <view class="title">团队名称</view>
+    <input class="input text-grey" bindinput="getname" placeholder="春季篮球赛"></input>
+    <image class="icon" src="../../img/write.png"></image>
+  </view>
   <view class="cu-form-group ">
     <text class="text">正文</text>
-		<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="春季篮球赛"></textarea>
-	</view>
-<view class="cu-form-group margin-top" >
-		<view class="title">队长</view>
-		<input class="input text-grey" placeholder="胡小心"></input>
-    	<image class="icon" src="../../img/write.png"></image>
-	</view>
-  <view class="cu-bar bg-white margin-top">
-		<view class="action">
-			队徽
-		</view>
-		<view class="action">
-			{{imgList.length}}/1
-		</view>
-	</view>
-	<view class="cu-form-group">
-		<view class="grid col-4 grid-square flex-sub">
-			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-id="1" data-url="{{imgList[index]}}">
-				<image src='{{imgList[index]}}' mode='aspectFill'></image>
-				<view class="cu-tag bg-red" catchtap="DelImg" data-id='1' data-index="{{index}}">
-					<text class="cuIcon-close"></text>
-				</view>
-			</view>
-			<view class="solids" bindtap="ChooseImage" data-id='1' wx:if="{{imgList.length<4}}">
-				<text class="cuIcon-cameraadd"></text>
-			</view>
-		</view>    
-	</view>
+    <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="春季篮球赛"></textarea>
+  </view>
   <view class="cu-form-group margin-top">
-		<view class="title">联系电话</view>
-		<input class="input text-grey" placeholder="春季篮球赛"></input>
-    	<image class="icon" src="../../img/write.png"></image>
-	</view>
+    <view class="title">队长</view>
+    <input class="input text-grey" bindinput="getcaptain" placeholder="胡小心"></input>
+    <image class="icon" src="../../img/write.png"></image>
+  </view>
+  <view class="cu-bar bg-white">
+    <view class="action">
+      队徽
+    </view>
+    <view class="action">
+      {{imgList.length}}/1
+    </view>
+  </view>
   <view class="cu-form-group">
-		<view class="title">团队签名</view>
-		<input class="input text-grey" placeholder="胡小心"></input>
-    	<image class="icon" src="../../img/write.png"></image>
-	</view>
-  <view class="cu-form-group margin-top">
-		<view class="title">地址</view>
-		<picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
-			<view class="picker">
-				{{index?picker[index]:'浙江工商大学'}}
-			</view>
-		</picker>
-	</view>
-    <view class="cu-form-group">
-		<view class="title">隶属机构</view>
-		<input class="input text-grey" placeholder=""></input>
-    	<image class="icon" src="../../img/write.png"></image>
-	</view>
-    <view class="cu-form-group">
-		<view class="title">人数上限</view>
-		 <view class="tui-gallery-list">
-        <view class="tui-number-group">
-          <button class="tui-number-cell" bindtap="nextNum">-</button>
-          <input class="tui-number-cell" type="number" value='{{number}}'></input>
-          <button class="tui-number-cell" bindtap="prevNum">+</button>
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-id="1" data-url="{{imgList[index]}}">
+        <image src='{{imgList[index]}}' mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImg" data-id='1' data-index="{{index}}">
+          <text class="cuIcon-close"></text>
         </view>
       </view>
-	</view>
-      <view class="cu-form-group margin-top">
-		<view class="title">Email</view>
-		<input class="input text-grey" placeholder=""></input>
-    	<image class="icon" src="../../img/write.png"></image>
-	</view>
-    <view class="cu-form-group">
-		<view class="title">网址</view>
-		<input class="input text-grey" placeholder=""></input>
-    	<image class="icon" src="../../img/write.png"></image>
-	</view>
-    <view class="cu-form-group ">
-		<view class="title">微信公众号</view>
-		<input class="input text-grey" placeholder="tuyou"></input>
-    	<image class="icon2" src="../../img/copy.png"></image>
-	</view>
-<view class="text-center margin-top3">
-	<checkbox checked class="blue checkicon" ></checkbox>
-	<text class="text-grey">我已阅读并同意</text>
-	<text class="text-blue">《同友活动申明》</text>
-</view>
+      <view class="solids" bindtap="ChooseImage" data-id='1' wx:if="{{imgList.length<1}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+  <view class="cu-form-group margin-top">
+    <view class="title">联系电话</view>
+    <input class="input text-grey" bindinput="getphone" placeholder="春季篮球赛"></input>
+    <image class="icon" src="../../img/write.png"></image>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">团队签名</view>
+    <input class="input text-grey" bindinput="gettdslogan" placeholder="胡小心"></input>
+    <image class="icon" src="../../img/write.png"></image>
+  </view>
+
+  <view class="cu-form-group margin-top">
+    <view class="title">省</view>
+    <picker bindchange="PickerPro" value="{{indexp}}" range="{{provinceList}}" range-key="name">
+      <view class="picker text-grey">
+        {{indexp?provinceList[indexp].name:'浙江'}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">市</view>
+    <picker bindchange="PickerCity" value="{{indexc}}" range="{{citys}}" range-key="name">
+      <view class="picker text-grey">
+        {{indexc?citys[indexc].name:'杭州'}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">学校</view>
+    <picker bindchange="PickerSchool" value="{{indexs}}" range="{{school}}" range-key="name">
+      <view class="picker text-grey">
+        {{indexs?school[indexs].name:'浙江大学'}}
+      </view>
+    </picker>
+  </view>
+  <view class='cu-load load-modal' wx:if="{{loadModal}}">
+    <!-- <view class='cuIcon-emojifill text-orange'></view> -->
+    <view class='gray-text'>加载中...</view>
+  </view>
+  <!-- <view class="cu-form-group margin-top">
+    <view class="title">地址</view>
+    <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+      <view class="picker">
+        {{index?picker[index]:'浙江工商大学'}}
+      </view>
+    </picker>
+  </view> -->
+  <!-- <view class="cu-form-group">
+    <view class="title">隶属机构</view>
+    <input class="input text-grey" placeholder=""></input>
+    <image class="icon" src="../../img/write.png"></image>
+  </view> -->
+  <view class="cu-form-group">
+    <view class="title">人数上限</view>
+    <view class="tui-gallery-list">
+      <view class="tui-number-group">
+        <button class="tui-number-cell" bindtap="nextNum">-</button>
+        <input class="tui-number-cell" type="number" bindinput="num" value='{{number}}'></input>
+        <button class="tui-number-cell" bindtap="prevNum">+</button>
+      </view>
+    </view>
+  </view>
+  <view class="cu-form-group margin-top">
+    <view class="title">Email</view>
+    <input class="input text-grey" bindinput="getemail" placeholder=""></input>
+    <image class="icon" src="../../img/write.png"></image>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">网址</view>
+    <input class="input text-grey" bindinput="getweb" placeholder=""></input>
+    <image class="icon" src="../../img/write.png"></image>
+  </view>
+  <view class="cu-form-group ">
+    <view class="title">微信公众号</view>
+    <input class="input text-grey" bindinput="getwx" placeholder="tuyou"></input>
+    <image class="icon2" src="../../img/copy.png"></image>
+  </view>
+  <view class="text-center margin-top3">
+    <checkbox checked class="blue checkicon"></checkbox>
+    <text class="text-grey">我已阅读并同意</text>
+    <text class="text-blue">《同友活动申明》</text>
+  </view>
 </form>
 <view class="padding flex flex-direction justify-between ">
- <button class="cu-btn bg-orange margin-tb-sm lg round" bindtap="commit"  data-target="Modal">提交</button>
+  <button class="cu-btn bg-orange margin-tb-sm lg round" bindtap="commit" data-target="Modal">提交</button>
 </view>

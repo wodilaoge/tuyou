@@ -348,10 +348,8 @@ Page({
       var tmp = {};
       tmp.id='';
       tmp.rotation=i;
-      console.log(i);
       rotation.push(tmp)
     }
-    console.log(rotation)
     wx.request({
       url: urls,
       method: "POST",
@@ -507,19 +505,10 @@ Page({
     let data = '';
     util.gets(url, {}).then(function (res) {
       var t = res.data
-      console.log('t', t)
       that.setData({
         webinfo: res.data
       })
     })
-    // app.wxRequest('GET', url, data, (res) => {
-    //   // console.log(res.data)
-    //   this.setData({
-    //     webinfo: res.data
-    //   })
-    // }, (err) => {
-    //   console.log(err.errMsg)
-    // });
   },
   demo(web) {
     upload.uploadFile(web)

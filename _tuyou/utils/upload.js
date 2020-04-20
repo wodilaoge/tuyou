@@ -106,6 +106,9 @@ var uploadFile = function (path, wayto, t) {
         } else if (way == 'spons') {
             tmpway = 'url5';
             stoway = that.data.url5;
+        } else if (way == 'other') {
+            tmpway = 'other';
+            stoway = that.data.other;
         }
         // 重要！指定上传的目录和文件名，注意：1、不同模块的图片上传到相应目录（比如other，具体看对照表）；2、待实现：文件名（filePath.substr(filePath.lastIndexOf('/') + 1)）需要替换成“编码.32位UUID”格式，编码标识移动端类型：10：微信小程序，20：安卓，30：苹果；3、如果一次上传多个图片，需要批量上传，待实现，注意看腾讯相应的demo；4、上传成功后，把完整的图片文件URL作为数据的一部分提交到后端接口（存数据库）。
         var signPathname = '/';

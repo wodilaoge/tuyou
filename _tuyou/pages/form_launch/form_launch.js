@@ -160,6 +160,7 @@ Page({
       url: '../../pages/form_activity/form_activity'
     })
   },
+  
   school(pid){
     let url = app.globalData.URL + '/config/getUniv';
     let data = {

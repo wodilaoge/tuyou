@@ -40,7 +40,6 @@ const gets = (url, data) => {
       data: data,
       header: {
         'content-type': 'application/json',
-        'token': wx.getStorageSync('token')
       },
       success: function (res) {//服务器返回数据
         if (res.statusCode == 200) {
