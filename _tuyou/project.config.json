@@ -153,6 +153,12 @@
 					"pathName": "pages/form_activity/form_activity",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "组团队",
+					"pathName": "pages/form_team/form_team",
+					"scene": null
 				}
 			]
 		}

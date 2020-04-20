@@ -70,7 +70,12 @@ var uploadFile = function (path, wayto, t) {
             });
         });
     };
-
+	var S4 = function () {
+        return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+    }
+    var getuuid = function () {
+        return (S4()+S4()+S4()+S4()+S4()+S4()+S4()+S4());
+    }
     //create uuid
     var wxuuid = function () {
         var s = [];
@@ -87,8 +92,8 @@ var uploadFile = function (path, wayto, t) {
     // 上传文件
     var uploadFile = function (filePath, way) {
         var that = t;
-        var uuid = wxuuid();
-        var Key = 'app/' + way + '/10.' + uuid;
+        var uuid = getuuid();
+      var Key = 'app/' + way + '/10.' + uuid + filePath.substr(filePath.lastIndexOf('.'));;
         var stoway;
         var tmpway;
         if (way == 'rule') {
@@ -132,18 +137,16 @@ var uploadFile = function (path, wayto, t) {
                 },
                 success: function (res) {
                     var url = prefix + camSafeUrlEncode(Key).replace(/%2F/g, '/');
-                    console.log('url',url);
+                    console.log('url', url);
                     if (/^2\d\d$/.test('' + res.statusCode)) {
 
                         if (stoway) {
                             that.setData({
-                                [tmpway]: stoway.concat(url),
-                                loadModal: false
+                                [tmpway]: stoway.concat(url)
                             })
                         } else {
                             that.setData({
-                                [tmpway]: url,
-                                loadModal: false
+                                [tmpway]: url
                             })
                         }
                     } else {
@@ -160,6 +163,11 @@ var uploadFile = function (path, wayto, t) {
                         content: JSON.stringify(res),
                         showCancel: false
                     });
+                },
+                complete: function () {
+                    that.setData({
+                        loadModal: false
+                    })
                 }
             });
             requestTask.onProgressUpdate(function (res) {
