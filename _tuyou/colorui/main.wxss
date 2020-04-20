@@ -972,8 +972,8 @@ button.icon.lg {
 }
 
 .cu-avatar.my {
-	width: 72rpx;
-	height: 72rpx;
+	width: 70rpx;
+	height: 70rpx;
 }
 
 .cu-avatar.xl {
@@ -989,7 +989,7 @@ button.icon.lg {
 .cu-avatar-group {
 	direction: rtl;
 	unicode-bidi: bidi-override;
-	padding: 0 10rpx 0 40rpx;
+	padding: 0 10rpx 0 25rpx;
 	display: inline-block;
 }
 
@@ -2015,15 +2015,15 @@ button.icon.lg {
 	margin: 0 10rpx;
 	padding: 0 18rpx;
 }
+.nav .cu-item.cur {
+	border-bottom: 4rpx solid;
+}
 .nav .tab_item_img{
   width: 40rpx;
   height: 40rpx;
   margin: -80rpx 0rpx -40rpx 5rpx;
 }
 
-.nav .cu-item.cur {
-	border-bottom: 4rpx solid;
-}
 
 /* ==================
          时间轴
