@@ -1,28 +1,34 @@
 const app = getApp();
+const VodUploader = require('../../utils/vod-wx-sdk-v2.js');
+var util = require("../../utils/util.js");
 Page({
   data: {
-    StatusBar: app.globalData.StatusBar,
-    CustomBar: app.globalData.CustomBar,
     group: 0,
+    videonum: 0,
     index: null,
-    picker: ['个人报名', '团体报名'],
-    picker2: ['匿名参赛', '实名参赛'],
-    picker3: ['观看无需报名', '匿名报名观看', '实名报名观看'],
     picker4: ['篮球', '足球', '排球', '羽毛球', '乒乓球', '其他'],
     multiIndex: [0, 0, 0],
-    time: '12:01',
-    date: '2020.4.25 16:00',
-    date2: '2020.8.25 16:00',
-    region: ['浙江省', '杭州市', '浙江大学'],
-    place: ['浙江大学篮球场'],
+    fileName: '',
+    title: '',
+    author: '',
+    notes: '',
+    videoFile: null,
+    coverFile: null,
     imgList: [],
-    imgList2: [],
-    imgList3: [],
-    imgList4: [],
-    imgList5: [],
+    fileId: '',
     modalName: null,
     textareaAValue: '',
     textareaBValue: ''
+  },
+  getname(e) {
+    this.setData({
+      title: e.detail.value
+    })
+  },
+  getauthor(e) {
+    this.setData({
+      author: e.detail.value
+    })
   },
   PickerChange(e) {
     console.log(e);
@@ -45,7 +51,7 @@ Page({
       date: e.detail.value
     })
   },
-  RegionChange: function (e) {
+  RegionChange: function(e) {
     this.setData({
       region: e.detail.value
     })
@@ -68,50 +74,6 @@ Page({
             })
           }
         }
-        if (t == 2) {
-          if (this.data.imgList2.length != 0) {
-            this.setData({
-              imgList2: this.data.imgList2.concat(res.tempFilePaths)
-            })
-          } else {
-            this.setData({
-              imgList2: res.tempFilePaths
-            })
-          }
-        }
-        if (t == 3) {
-          if (this.data.imgList3.length != 0) {
-            this.setData({
-              imgList3: this.data.imgList3.concat(res.tempFilePaths)
-            })
-          } else {
-            this.setData({
-              imgList3: res.tempFilePaths
-            })
-          }
-        }
-        if (t == 4) {
-          if (this.data.imgList4.length != 0) {
-            this.setData({
-              imgList4: this.data.imgList4.concat(res.tempFilePaths)
-            })
-          } else {
-            this.setData({
-              imgList4: res.tempFilePaths
-            })
-          }
-        }
-        if (t == 5) {
-          if (this.data.imgList5.length != 0) {
-            this.setData({
-              imgList5: this.data.imgList5.concat(res.tempFilePaths)
-            })
-          } else {
-            this.setData({
-              imgList5: res.tempFilePaths
-            })
-          }
-        }
       }
     });
   },
@@ -120,30 +82,6 @@ Page({
     if (t == 1) {
       wx.previewImage({
         urls: this.data.imgList,
-        current: e.currentTarget.dataset.url
-      });
-    }
-    if (t == 2) {
-      wx.previewImage({
-        urls: this.data.imgList2,
-        current: e.currentTarget.dataset.url
-      });
-    }
-    if (t == 3) {
-      wx.previewImage({
-        urls: this.data.imgList3,
-        current: e.currentTarget.dataset.url
-      });
-    }
-    if (t == 4) {
-      wx.previewImage({
-        urls: this.data.imgList4,
-        current: e.currentTarget.dataset.url
-      });
-    }
-    if (t == 5) {
-      wx.previewImage({
-        urls: this.data.imgList5,
         current: e.currentTarget.dataset.url
       });
     }
@@ -166,74 +104,10 @@ Page({
         }
       })
     }
-    if (t == 2) {
-      wx.showModal({
-        title: '确定',
-        content: '确定要删除这张照片？',
-        cancelText: '取消',
-        confirmText: '确认删除',
-        success: res => {
-          if (res.confirm && t == 2) {
-            this.data.imgList2.splice(e.currentTarget.dataset.index, 1);
-            this.setData({
-              imgList2: this.data.imgList2
-            })
-          }
-        }
-      })
-    }
-    if (t == 3) {
-      wx.showModal({
-        title: '确定',
-        content: '确定要删除这张照片？',
-        cancelText: '取消',
-        confirmText: '确认删除',
-        success: res => {
-          if (res.confirm && t == 3) {
-            this.data.imgList3.splice(e.currentTarget.dataset.index, 1);
-            this.setData({
-              imgList3: this.data.imgList3
-            })
-          }
-        }
-      })
-    }
-    if (t == 4) {
-      wx.showModal({
-        title: '确定',
-        content: '确定要删除这张照片？',
-        cancelText: '取消',
-        confirmText: '确认删除',
-        success: res => {
-          if (res.confirm && t == 4) {
-            this.data.imgList4.splice(e.currentTarget.dataset.index, 1);
-            this.setData({
-              imgList4: this.data.imgList4
-            })
-          }
-        }
-      })
-    }
-    if (t == 5) {
-      wx.showModal({
-        title: '确定',
-        content: '确定要删除这张照片？',
-        cancelText: '取消',
-        confirmText: '确认删除',
-        success: res => {
-          if (res.confirm && t == 5) {
-            this.data.imgList5.splice(e.currentTarget.dataset.index, 1);
-            this.setData({
-              imgList5: this.data.imgList5
-            })
-          }
-        }
-      })
-    }
   },
   textareaAInput(e) {
     this.setData({
-      textareaAValue: e.detail.value
+      notes: e.detail.value
     })
   },
   textareaBInput(e) {
@@ -241,22 +115,150 @@ Page({
       textareaBValue: e.detail.value
     })
   },
-  toForm_modify: function (e) {
+  toForm_modify: function(e) {
     wx.navigateTo({
       url: "../../pages/form_modify/form_modify"
     })
   },
-  commit: function (e) {
+  commit: function(e) {
+    let url = app.globalData.URL + '/video/updateActVideo';
+    var data = this.data
+    var data = {
+      id: null,
+      actid: '',
+      sid: null,
+      acid1: null,
+      acid2: null,
+      title: this.data.title,
+      author: this.data.author,
+      authorAlias: '',
+      authorHead: '',
+      fileId: this.data.fileId,
+      notes: this.data.notes,
+      status: '10',
+      univ: '003330106',
+      province: '00333',
+      city: '0033301',
+      creater: '1025873536876568',
+      mender: '1025873536876568'
+    }
+    util.post(url, data).then(function(res) {
+      if (!res.data.code) {
+        console.log('success!')
+        console.log(res)
+        wx.showToast({
+          title: '提交成功！',
+          icon: 'success',
+          duration: 2000
+        })
+        wx.navigateTo({
+          url: '/pages/form/form',
+        })
+      }
+      else{
+        console.log(res)
+        wx.showToast({
+          title: '提交失败！',
+          icon: 'success',
+          image: '/img/fail.png',
+          duration: 2000
+        })
+      }
+    }).catch(function(res) {
+      console.log(res)
+      wx.showToast({
+        title: '提交失败！',
+        icon: 'fail',
+        image:'../../img/fail.png',
+        duration: 2000
+      })
+    })
     this.setData({
       modalName: e.currentTarget.dataset.target
     })
   },
-  addicon: function (e) {
-    var t = this.data.group
-    console.log(t)
-    t++
+  getSignature: function(callback) {
+    wx.request({
+      url: 'http://192.144.169.239:8080/kt/config/getVodSignatureV2',
+      dataType: 'json',
+      success: function(res) {
+        console.log(`data`, res.data);
+        console.log(`data`, res.data.code);
+        console.log(`data`, res.data.data);
+        if (res.data && res.data.data) {
+          console.log(`signature：`, res.data.data.signature)
+          // callback(res.data.data.signature);
+          callback(res.data.data);
+        } else {
+          return '获取签名失败';
+        }
+      }
+    });
+  },
+  inputChange: function(evt) {
     this.setData({
-      group: t
+      fileName: evt.detail.value
     })
-  }
+  },
+
+  startUpload() {
+    const self = this;
+    VodUploader.start({
+
+      mediaFile: self.data.videoFile, //必填，把chooseVideo回调的参数(file)传进来
+      getSignature: self.getSignature, //必填，获取签名的函数
+
+      mediaName: self.data.fileName, //选填，视频名称，强烈推荐填写(如果不填，则默认为“来自微信小程序”)
+      coverFile: self.data.coverFile, // 选填，视频封面
+      success: function(result) {
+        console.log('success');
+        console.log(result);
+      },
+      error: function(result) {
+        console.log('error');
+        console.log(result);
+        wx.showModal({
+          title: '上传失败',
+          content: JSON.stringify(result),
+          showCancel: false
+        });
+      },
+      progress: function(result) {
+        console.log('progress');
+        console.log(result);
+        wx.showLoading({
+          title: '上传中 ' + result.percent * 100 + '%',
+        });
+      },
+      finish: function(result) {
+        console.log('finish');
+        console.log(result);
+        wx.hideLoading()
+        wx.showModal({
+          title: '上传成功',
+          // content: 'fileId:' + result.fileId + '\nvideoName:' + result.videoName,
+          showCancel: false
+        });
+        self.setData({
+          fileId: result.fileId,
+          videonum: 1
+        })
+      }
+    });
+  },
+  chooseVideo: function(e) {
+    const self = this;
+    wx.chooseVideo({
+      sourceType: ['album', 'camera'],
+      compressed: true,
+      maxDuration: 60,
+      success: function(file) {
+        self.setData({
+          videoFile: file
+        })
+        console.log(`add videoFile`, file)
+        self.startUpload();
+      }
+    })
+  },
 })
