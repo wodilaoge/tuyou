@@ -17,9 +17,9 @@
     "pages/pinlunliebiao/pinlunliebiao",
     "pages/baoming/baoming",
     "pages/baoming_ok/baoming_ok",
-
     "pages/ziliao/ziliao",
-    "pages/chakanhuifu/chakanhuifu"
+    "pages/chakanhuifu/chakanhuifu",
+    "pages/tuanduixinxi/tuanduixinxi"
   ],
   "window": {
     "backgroundTextStyle": "light",

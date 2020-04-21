@@ -158,6 +158,13 @@
 					"id": -1,
 					"name": "组团队",
 					"pathName": "pages/form_team/form_team",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "团队信息",
+					"pathName": "pages/tuanduixinxi/tuanduixinxi",
 					"scene": null
 				}
 			]
