@@ -1,13 +1,17 @@
 const app = getApp();
 const VodUploader = require('../../utils/vod-wx-sdk-v2.js');
-
+var util = require("../../utils/util.js");
 Page({
   data: {
     group: 0,
+    videonum: 0,
     index: null,
     picker4: ['篮球', '足球', '排球', '羽毛球', '乒乓球', '其他'],
     multiIndex: [0, 0, 0],
     fileName: '',
+    title: '',
+    author: '',
+    notes: '',
     videoFile: null,
     coverFile: null,
     imgList: [],
@@ -15,6 +19,16 @@ Page({
     modalName: null,
     textareaAValue: '',
     textareaBValue: ''
+  },
+  getname(e) {
+    this.setData({
+      title: e.detail.value
+    })
+  },
+  getauthor(e) {
+    this.setData({
+      author: e.detail.value
+    })
   },
   PickerChange(e) {
     console.log(e);
@@ -93,7 +107,7 @@ Page({
   },
   textareaAInput(e) {
     this.setData({
-      textareaAValue: e.detail.value
+      notes: e.detail.value
     })
   },
   textareaBInput(e) {
@@ -115,12 +129,12 @@ Page({
       sid: null,
       acid1: null,
       acid2: null,
-      title: '',
-      author: '',
+      title: this.data.title,
+      author: this.data.author,
       authorAlias: '',
       authorHead: '',
       fileId: this.data.fileId,
-      notes: '',
+      notes: this.data.notes,
       status: '10',
       univ: '003330106',
       province: '00333',
@@ -129,17 +143,33 @@ Page({
       mender: '1025873536876568'
     }
     util.post(url, data).then(function(res) {
-      console.log('success!')
-      wx.showToast({
-        title: '提交成功！',
-        icon: 'success',
-        duration: 2000
-      })
+      if (!res.data.code) {
+        console.log('success!')
+        console.log(res)
+        wx.showToast({
+          title: '提交成功！',
+          icon: 'success',
+          duration: 2000
+        })
+        wx.navigateTo({
+          url: '/pages/form/form',
+        })
+      }
+      else{
+        console.log(res)
+        wx.showToast({
+          title: '提交失败！',
+          icon: 'success',
+          image: '/img/fail.png',
+          duration: 2000
+        })
+      }
     }).catch(function(res) {
       console.log(res)
       wx.showToast({
         title: '提交失败！',
-        icon: 'success',
+        icon: 'fail',
+        image:'../../img/fail.png',
         duration: 2000
       })
     })
@@ -174,6 +204,7 @@ Page({
   startUpload() {
     const self = this;
     VodUploader.start({
+
       mediaFile: self.data.videoFile, //必填，把chooseVideo回调的参数(file)传进来
       getSignature: self.getSignature, //必填，获取签名的函数
 
@@ -209,7 +240,8 @@ Page({
           showCancel: false
         });
         self.setData({
-          fileId: result.fileId
+          fileId: result.fileId,
+          videonum: 1
         })
       }
     });
