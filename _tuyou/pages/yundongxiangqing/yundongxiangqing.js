@@ -1,7 +1,7 @@
 const app = getApp();
 Page({
   data: {
-    TabCur: 1,
+    TabCur: 0,
     paimingCur: 0,
     isbaoming: 0,
     comment: [],
