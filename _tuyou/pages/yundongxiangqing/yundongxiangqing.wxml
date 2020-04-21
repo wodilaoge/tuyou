@@ -22,6 +22,7 @@
   <view class="cu-item {{3==TabCur?'text-bold text-blue':''}}" bindtap="tabSelect" data-id="3"> 照片 </view>
   <view class="cu-item {{4==TabCur?'text-bold text-blue':''}}" bindtap="tabSelect" data-id="4"> 排名 </view>
   <view class="cu-item {{5==TabCur?'text-bold text-blue':''}}" bindtap="tabSelect" data-id="5"> 数据</view>
+  <view class="cu-item {{6==TabCur?'text-bold text-blue':''}}" bindtap="tabSelect" data-id="6"> 资讯</view>
 </scroll-view>
 
 <block wx:if="{{TabCur==0}}">
@@ -889,7 +890,7 @@
 <!--
 创建者：陈雨豪
 创建时间：20200420
-创建内容：数据-->
+创建内容：资讯-->
 <block wx:if="{{TabCur==6}}">
   <view class="bg-white padding huodong-margin-top">
     <text class="cu-bar-title">活动新闻</text>
