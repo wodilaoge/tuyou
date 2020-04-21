@@ -11,7 +11,7 @@
 		<view class="title">活动方式</view>
 		<picker bindchange="PickerChange" value="{{index}}" range="{{picker4}}">
 			<view class="picker text-blue">
-				{{index?picker[index]:'篮球'}}
+				{{index?picker4[index]:'篮球'}}
 			</view>
 		</picker>
 	</view>
@@ -30,12 +30,12 @@
 		<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="  春季篮球赛"></textarea>
 	</view>
 
-  <view class="cu-bar bg-white margin-top">
+  <!-- <view class="cu-bar bg-white margin-top">
 		<view class="action">
 			封面图
 		</view>
 		<view class="action">
-			{{imgList.length}}/4
+			{{imgList.length}}/1
 		</view>
 	</view>
 	<view class="cu-form-group">
@@ -46,28 +46,28 @@
 					<text class="cuIcon-close"></text>
 				</view>
 			</view>
-			<view class="solids" bindtap="ChooseImage" data-id='1' wx:if="{{imgList.length<4}}">
+			<view class="solids" bindtap="chooseCover" data-id='1' wx:if="{{imgList.length<1}}">
 				<text class="cuIcon-cameraadd"></text>
 			</view>
 		</view>    
-	</view>
+	</view> -->
 <view class="cu-bar bg-white margin-top">
 		<view class="action">
 		视频
 		</view>
 		<view class="action">
-			{{imgList2.length}}/4
+			{{fileId.length}}/1
 		</view>
 	</view>
 	<view class="cu-form-group">
 		<view class="grid col-4 grid-square flex-sub">
-			<view class="bg-img" wx:for="{{imgList2}}" wx:key="{{index}}" bindtap="ViewImage"  data-id='2' data-url="{{imgList2[index]}}">
-				<image src='{{imgList2[index]}}' mode='aspectFill'></image>
-				<view class="cu-tag bg-red" catchtap="DelImg" data-id='2' data-index="{{index}}">
+			<view class="bg-img" wx:for="{{videoFile.tempFilePath}}" wx:key="{{index}}" bindtap="ViewImage"  data-id='1' data-url="{{imgList[index]}}">
+				<image src='{{imgList[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="DelImg" data-id='1' data-index="{{index}}">
 					<text class="cuIcon-close"></text>
 				</view>
 			</view>
-			<view class="solids" bindtap="ChooseImage" data-id='2' wx:if="{{imgList2.length<4}}">
+			<view class="solids" bindtap="chooseVideo" data-id='1' wx:if="{{!fileId}}">
 				<text class="cuIcon-cameraadd"></text>
 			</view>
 		</view>
