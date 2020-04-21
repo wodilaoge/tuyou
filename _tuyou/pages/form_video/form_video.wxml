@@ -17,12 +17,12 @@
 	</view>
   	<view class="cu-form-group">
 		<view class="title">活动名称</view>
-		<input class="input text-grey" placeholder="春季篮球赛"></input>
+		<input class="input text-grey"bindinput="getname" placeholder="春季篮球赛"></input>
     	<image class="icon" src="../../img/write.png"></image>
 	</view>
     	<view class="cu-form-group">
 		<view class="title">作者</view>
-		<input class="input text-grey" placeholder="胡小心"></input>
+		<input class="input text-grey"bindinput="getauthor" placeholder="胡小心"></input>
     	<image class="icon" src="../../img/write.png"></image>
 	</view>
   <view class="cu-form-group margin-top">
@@ -56,18 +56,18 @@
 		视频
 		</view>
 		<view class="action">
-			{{fileId.length}}/1
+			{{videonum}}/1
 		</view>
 	</view>
 	<view class="cu-form-group">
 		<view class="grid col-4 grid-square flex-sub">
-			<view class="bg-img" wx:for="{{videoFile.tempFilePath}}" wx:key="{{index}}" bindtap="ViewImage"  data-id='1' data-url="{{imgList[index]}}">
-				<image src='{{imgList[index]}}' mode='aspectFill'></image>
+			<view class="bg-img"  wx:if="{{videonum}}" bindtap="ViewImage"  data-id='1'>
+					<text class="cuIcon-video"></text>
 				<view class="cu-tag bg-red" catchtap="DelImg" data-id='1' data-index="{{index}}">
 					<text class="cuIcon-close"></text>
 				</view>
 			</view>
-			<view class="solids" bindtap="chooseVideo" data-id='1' wx:if="{{!fileId}}">
+			<view class="solids" bindtap="chooseVideo" data-id='1' wx:if="{{videonum==0}}">
 				<text class="cuIcon-cameraadd"></text>
 			</view>
 		</view>
