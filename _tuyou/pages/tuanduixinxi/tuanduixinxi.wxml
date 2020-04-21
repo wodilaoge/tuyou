@@ -1,0 +1,29 @@
+<!--pages/tuanduixinxi/tuanduixinxi.wxml-->
+<!--
+创建者：朱娇龙
+创建时间：20200421
+创建内容：团队信息-->
+<view class="top ">
+  <cu-custom isBack="{{true}}" bgColor="bg-blue">
+    <view slot="content">团队信息</view>
+  </cu-custom>
+</view>
+<view style=" background-color:#5454FF;height:300rpx;">
+  <view class="flex" style="height:160rpx;padding-top:46rpx;">
+    <image style="padding-left:24rpx;height:160rpx;width:160rpx;" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg"></image>
+    <view style="margin-left:21rpx;">
+      <view class="flex ">
+        <view class="tdxx-duiming">强有力队</view>
+        <view class="tdxx-leibie margin-left-sm">运动-篮球</view>
+      </view>
+      <view class="tdxx-xuanyan">我们喜欢挑战，热爱生活，开会从中发现新的闪光点，我们就是这样勇往直前的队伍。</view>
+    </view>
+  </view>
+
+</view>
+<view class="bg-white" style="height:532rpx;">
+  <view class="tdxx-duizhang flex" >
+    <image style="width:80rpx;height:80rpx;border-radius:50%;margin-left:23rpx;margin-top:12rpx;" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg"></image>
+    <view class="tdxx-duizhnag-name">李曙(队长)</view>
+  </view>
+</view>

@@ -163,8 +163,13 @@
 				},
 				{
 					"id": -1,
+<<<<<<< HEAD
+					"name": "团队信息",
+					"pathName": "pages/tuanduixinxi/tuanduixinxi",
+=======
 					"name": "选择团队",
 					"pathName": "pages/xuanzetuandui1/xuanzetuandui1",
+>>>>>>> fdb2d3821d5b9ef561e80ab897e0b658a1ceacb5
 					"scene": null
 				}
 			]

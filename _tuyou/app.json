@@ -17,12 +17,16 @@
     "pages/pinlunliebiao/pinlunliebiao",
     "pages/baoming/baoming",
     "pages/baoming_ok/baoming_ok",
+<<<<<<< HEAD
+=======
 
     "pages/xuanzetuandui1/xuanzetuandui1",
     "pages/xuanzetuandui2/xuanzetuandui2",
 
+>>>>>>> fdb2d3821d5b9ef561e80ab897e0b658a1ceacb5
     "pages/ziliao/ziliao",
-    "pages/chakanhuifu/chakanhuifu"
+    "pages/chakanhuifu/chakanhuifu",
+    "pages/tuanduixinxi/tuanduixinxi"
   ],
   "window": {
     "backgroundTextStyle": "light",
