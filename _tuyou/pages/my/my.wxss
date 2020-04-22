@@ -24,14 +24,14 @@
 .text2 {
   position: relative;
   font-size: 50rpx;
-  
+  bottom: 50rpx;
 }
 .text-item {
   width: 25%;
   display: flex;
   padding: 5px;
-  box-sizing: border-box;
-  justify-content: center;
+  /* box-sizing: border-box; */
+  /* justify-content: center; */
   text-align: center;
   flex-direction: column;
 }
