@@ -2,13 +2,12 @@
 App({
   globalData: {
     URL: 'http://192.144.169.239:8080/kt',
-    systemInfo: null,//客户端设备信息
+    systemInfo: null, //客户端设备信息
     tabBar: {
       "backgroundColor": "#ffffff",
       "color": "#979795",
       "selectedColor": "#1c1c1b",
-      "list": [
-        {
+      "list": [{
           "pagePath": "/pages/index/index",
           "iconPath": "/img/tabbar/home-off.png",
           "selectedIconPath": "/img/tabbar/home-on.png",
@@ -32,19 +31,65 @@ App({
           "selectedIconPath": "/img/tabbar/my-off.png",
           "text": "我的"
         }
-      ]
-    }
+      ],
+    },
+    YundongList: [{
+      name: '篮球',
+    },
+    {
+      name: '足球',
+    },
+    {
+      name: '羽毛球',
+    },
+    {
+      name: '乒乓球',
+    },
+    {
+      name: '网球',
+    },
+    {
+      name: '台球',
+    },
+    {
+      name: '跑步',
+    },
+    {
+      name: '武术',
+    },
+    {
+      name: '格斗',
+    },
+    {
+      name: '户外',
+    },
+    {
+      name: '音乐',
+    },
+    {
+      name: '演唱',
+    },
+    {
+      name: '舞蹈',
+    },
+    {
+      name: '棋艺',
+    },
+    {
+      name: '电竞',
+    },
+    ]
   },
-  hideTabBar: function () {
+  hideTabBar: function() {
     wx.hideTabBar({
-      fail: function () {
-        setTimeout(function () {
+      fail: function() {
+        setTimeout(function() {
           wx.hideTabBar()
         }, 500)
       }
     });
   },
-  editTabbar: function () {
+  editTabbar: function() {
     let tabbar = this.globalData.tabBar;
     let currentPages = getCurrentPages();
     let _this = currentPages[currentPages.length - 1];
@@ -68,10 +113,10 @@ App({
         'Accept': 'application/json'
       },
       dataType: 'json',
-      success: function (res) {
+      success: function(res) {
         callback(res.data);
       },
-      fail: function (err) {
+      fail: function(err) {
         errFun(res);
       }
     })
@@ -115,10 +160,10 @@ App({
         this.globalData.StatusBar = e.statusBarHeight;
         let capsule = wx.getMenuButtonBoundingClientRect();
         if (capsule) {
-         	this.globalData.Custom = capsule;
-        	this.globalData.CustomBar = capsule.bottom + capsule.top - e.statusBarHeight;
+          this.globalData.Custom = capsule;
+          this.globalData.CustomBar = capsule.bottom + capsule.top - e.statusBarHeight;
         } else {
-        	this.globalData.CustomBar = e.statusBarHeight + 50;
+          this.globalData.CustomBar = e.statusBarHeight + 50;
         }
       }
     })

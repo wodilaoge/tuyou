@@ -1,1 +1,10 @@
-/* pages/xuanzetuandui2/xuanzetuandui2.wxss */
+.select-name{
+  font-size: 32rpx;
+  color: #333333;
+  font-weight: normal;
+}
+.select-title{
+  font-size: 32rpx;
+  color: #333333;
+  font-weight: bold;
+}

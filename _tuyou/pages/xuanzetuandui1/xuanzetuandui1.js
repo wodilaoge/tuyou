@@ -4,6 +4,7 @@ Page({
     TabCur: 0,
     VerticalNavTop: 0,
     MainCur: 0,
+    YundongList: app.globalData.YundongList ,
     list: [],
   },
   tabSelect(e) {
@@ -48,14 +49,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    let that = this;
     wx.showLoading({
       title: '加载中...',
       mask: true
     });
     let list = [{}];
-    for (let i = 0; i < 26; i++) {
+    for (let i in this.data.YundongList) {
       list[i] = {};
-      list[i].name = String.fromCharCode(65 + i);
+      list[i].name = this.data.YundongList[i].name;
       list[i].id = i;
     }
     this.setData({
