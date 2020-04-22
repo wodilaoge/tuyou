@@ -18,7 +18,8 @@ Page({
     imgList: [],
     modalName: null,
     textareaAValue: '',
-    textareaBValue: ''
+    textareaBValue: '',
+    userInfoAll:[]
   },
   PickerChange(e) {
     console.log(e);
@@ -74,5 +75,19 @@ Page({
     this.setData({
       textareaBValue: e.detail.value
     })
+  }, 
+  onLoad: function () {
+    this.setData({
+      userInfoAll: wx.getStorageSync('userInfo')
+    })
   },
+  getUserInfo(e){
+    this.setData({
+      userInfoAll:e.detail.userInfo
+    })
+    wx.setStorage({ //将活动信息存入缓存
+      key: "userInfo",
+      data: this.data.userInfoAll
+    });
+  }
 })
