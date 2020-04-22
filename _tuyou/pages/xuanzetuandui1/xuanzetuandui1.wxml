@@ -1,3 +1,8 @@
+<!-- 
+创建者：陈雨豪
+创建时间：20200421
+创建内容：选择团队1-->
+
 <view class="top">
   <cu-custom isBack="{{true}}" bgColor="bg-blue">
     <view slot="content">选择团队</view>
@@ -18,7 +23,7 @@
       </view>
       <view class="cu-list menu-avatar">
         <view class="cu-item">
-          <view class="cu-avatar avatar-round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);height:80rpx;width:80rpx;"></view>
+          <view class="cu-avatar avatar-round" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);height:80rpx;width:80rpx;"></view>
           <view class="content">
             <view class="text-bold">飞鹰队</view>
             <view class="text-orange text-sm flex">

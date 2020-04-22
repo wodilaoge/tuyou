@@ -162,11 +162,17 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "团队信息",
-					"pathName": "pages/tuanduixinxi/tuanduixinxi",
-					"name": "选择团队",
+					"id": 15,
+					"name": "选择团队1",
 					"pathName": "pages/xuanzetuandui1/xuanzetuandui1",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "选择团队2",
+					"pathName": "pages/xuanzetuandui2/xuanzetuandui2",
+					"query": "",
 					"scene": null
 				}
 			]
