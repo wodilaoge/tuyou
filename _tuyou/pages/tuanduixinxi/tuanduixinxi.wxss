@@ -25,16 +25,21 @@ color:#F8F9FD;
 line-height:36rpx;
 margin-top: 22rpx;
 }
+.tdxx-xinxi{
+  height: 648rpx;
+  background-color: white;
+}
 .tdxx-duizhang{
 width:702rpx;
 height:104rpx;
 background:rgba(255,255,255,1);
-box-shadow:1px 2px 9px 0px rgba(84,84,255,0.17);
-border-radius:52px;
+box-shadow:1rpx 2rpx 9rpx 0rpx rgba(84,84,255,0.17);
+border-radius:52rpx;
 margin-top: -24rpx;
 margin-left: 24rpx;
 align-items: center;
 display: flex;
+position: relative;
 }
 .tdxx-duizhnag-name{
 margin-left: 22rpx;
@@ -42,4 +47,74 @@ font-size:28rpx;
 font-family:PingFang SC;
 font-weight:500;
 color:rgba(51,51,51,1);
+}
+
+.tdxx-guanzhu{
+  margin-left: 18rpx;
+  width:80rpx;
+height:40rpx;
+border:2rpx solid rgba(236,93,9,1);
+border-radius:20rpx;
+
+font-size:24rpx;
+font-family:PingFang SC;
+font-weight:500;
+color:rgba(236,93,9,1);
+text-align: center;
+align-items: center;
+}
+.tdxx-img-icon {
+  width: 46rpx;
+  height: 44rpx;
+  /* display: flex;
+  float: right;
+  margin-right: 40rpx; */
+  margin-left: 265rpx;
+}
+.right{
+display: flex;
+float: right;
+}
+.tdxx-xinxi-title{
+  width: 205rpx;
+  margin-top: 32rpx;
+  font-size:28rpx;
+font-family:PingFang SC;
+font-weight:500;
+color:rgba(153,153,153,1);
+padding-left: 49rpx;
+}
+.tdxx-xinxi-neirong{
+   margin-top: 32rpx;
+  font-size:28rpx;
+font-family:PingFang SC;
+font-weight:500;
+color:#333333;
+width: 474rpx;
+}
+.tdxx-liebiao{
+font-size:28rpx;
+font-family:PingFang SC;
+font-weight:bold;
+color:rgba(51,51,51,1);
+}
+.tdxx-liebiao-num{
+  font-size:28rpx;
+font-family:PingFang SC;
+font-weight:bold;
+color:#5454FF;
+
+}
+.tdxx-avatar{
+ width: 88rpx;
+ height: 88rpx;
+ margin-top: 39rpx;
+ margin-left: 20rpx;
+ 	border-radius: 5000rpx;
+}
+.tdxx-group-avatar{
+  display: flex;
+ padding-left: 28rpx;
+ margin-top: -5rpx;
+ width: 600rpx;
 }
