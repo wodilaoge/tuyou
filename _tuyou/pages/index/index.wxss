@@ -1,6 +1,39 @@
 .top-gradul-blue {
   background: linear-gradient(to bottom, #5454ff, rgba(255, 255, 255, 255));
 }
+.goods-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  box-sizing: content-box;
+  padding: 24rpx;
+  background-color: #f2f2f2;
+}
+.menu-item {
+  width: 16.6%;
+  padding: 5px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.menu-name {
+  text-align: center;
+}
+.menu-name2 {
+  /* text-align: center; */
+  font-size: 25rpx;
+}
+.menu-img {
+  width: 150rpx;
+  height: 100rpx;
+  padding: 18rpx;
+  margin-left: 5rpx;
+}
+.menu {
+  display: flex; /*弹性布局*/
+  flex-wrap: wrap; /*允许换行*/
+}
 
 .left {
   position: relative;
@@ -79,12 +112,10 @@
 .yibaoming-margin-top {
   margin-top: 47rpx;
 }
-
 .text {
   position: relative;
   top: 100rpx;
 }
-
 .banner {
   padding: 20rpx;
   width: 220rpx;
@@ -94,18 +125,43 @@
   flex-direction: column;
   box-sizing: border-box;
 }
-.banner_basic{
+
+.banner_basic {
   padding: 5px;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
-.banner_img{
+
+.banner_img {
   width: 200rpx;
   height: 320rpx;
 }
-.banner_text{
+
+.banner_text {
   font-size: 28rpx;
   color: black;
+}
+.video{
+  background-color: white;
+}
+.video-list-info {
+  float: left;
+  padding: 22rpx;
+}
+
+.video-list-photo {
+  width: 333rpx;
+  height: 250rpx;
+  box-sizing: border-box;
+}
+
+.video_text {
+  display: block;
+  text-align: center;
+  color: black;
+}
+.hidden{
+  overflow-x:hidden;
 }

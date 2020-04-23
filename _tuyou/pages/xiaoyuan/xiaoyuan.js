@@ -78,12 +78,11 @@ Page({
     }, (err) => {
       console.log(err.errMsg)
       });
-
-    
-    
-    
   },
-  onLoad() {
+  onLoad: function () {
+    this.setData({//读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
+      TabCur: app.globalData.tabbar
+    })
     this.towerSwiper('xiaoyuanSwiperList');
   },
   onShow() {

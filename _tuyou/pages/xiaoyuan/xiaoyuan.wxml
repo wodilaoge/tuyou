@@ -8,8 +8,6 @@
     <view slot="content">校园活动</view>
   </cu-custom>
 </view>
-
-
 <scroll-view scroll-x class="bg-blue nav text-center">
   <view class="cu-item {{0==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="0"> 校园
     <view class="tab_item_img">
