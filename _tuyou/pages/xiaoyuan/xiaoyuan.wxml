@@ -67,9 +67,9 @@
       </swiper-item>
     </swiper>
   </view>
-  
+
   <view class="cu-card article no-card bg-white">
-    <view class="cu-item shadow "  wx:for="{{ActList}}">
+    <view class="cu-item shadow " wx:for="{{ActList}}">
       <view class="content margin-bottom" bindtap="baomingcanjia" id="{{item.id}}">
         <image src="{{item.logo}}" mode="aspectFill"></image>
         <view class="desc">
@@ -82,12 +82,12 @@
       <view style="background-color: #F8F9FD;height:20rpx;"></view>
     </view>
   </view>
-  
+
 
 
 </block>
 <!--
-创建者：陈雨豪
+创建者：陈雨豪 
 创建时间：20200411
 内容：运动页面-->
 <block wx:if="{{TabCur==1}}">
@@ -101,50 +101,13 @@
     </swiper>
   </view>
   <scroll-view scroll-x class="bg-white nav text-center">
-    <view class="cu-item" bindtap="yundongTabSelect" data-cur="lanqiu">
-      <block wx:if="{{yundongCur=='lanqiu'}}">
-        <button class="cu-btn btn-yundong-cur round bg-orange padding">篮球</button>
-      </block>
-      <block wx:else>
-        <button class="cu-btn btn-yundong-cur round bg-gery padding">篮球</button>
-      </block>
-    </view>
-    <view class="cu-item" bindtap="yundongTabSelect" data-cur="zuqiu">
-      <block wx:if="{{yundongCur=='zuqiu'}}">
-        <button class="cu-btn btn-yundong-cur round bg-orange padding">足球</button>
-      </block>
-      <block wx:else>
-        <button class="cu-btn btn-yundong-cur round bg-gery padding">足球</button>
-      </block>
-    </view>
-    <view class="cu-item" bindtap="yundongTabSelect" data-cur="yumaoqiu">
-      <block wx:if="{{yundongCur=='yumaoqiu'}}">
-        <button class="cu-btn btn-yundong-cur round bg-orange padding">羽毛球</button>
-      </block>
-      <block wx:else>
-        <button class="cu-btn btn-yundong-cur round bg-gery padding">羽毛球</button>
-      </block>
-    </view>
-    <view class="cu-item" bindtap="yundongTabSelect" data-cur="pingpangqiu">
-      <block wx:if="{{yundongCur=='pingpangqiu'}}">
-        <button class="cu-btn btn-yundong-cur round bg-orange padding">乒乓球</button>
-      </block>
-      <block wx:else>
-        <button class="cu-btn btn-yundong-cur round bg-gery padding">乒乓球</button>
-      </block>
-    </view>
-    <view class="cu-item" bindtap="yundongTabSelect" data-cur="wangqiu">
-      <block wx:if="{{yundongCur=='wangqiu'}}">
-        <button class="cu-btn btn-yundong-cur round bg-orange padding">网球</button>
-      </block>
-      <block wx:else>
-        <button class="cu-btn btn-yundong-cur round bg-gery padding">网球</button>
-      </block>
+    <view class="cu-item" bindtap="yundongTabSelect" data-cur="{{item.code}}" wx:for="{{yundongdalei}}" wx:key="code">
+      <button class="cu-btn btn-yundong-cur round {{yundongCur==item.code?'bg-orange':'bg-gery'}} padding">{{item.name}}</button>
     </view>
   </scroll-view>
   <view>
-    <block wx:if="{{yundongCur=='lanqiu'}}">
-      <lanqiu></lanqiu>
+    <block wx:if="{{yundongCur=='076002001'}}">
+      <lanqiu yundongList="{{yundongList}}"></lanqiu>
     </block>
   </view>
 </block>
