@@ -100,9 +100,14 @@ Page({
       cardCur: e.detail.current
     })
   },
-  baomingcanjia(e) { //报名参加按钮跳转 带着活动id跳转
+  baomingcanjia(e) { //报名参加按钮跳转 带着活动id跳转 校园活动
     wx.navigateTo({
       url: '../../pages/xiaoyuanxiangqing/xiaoyuanxiangqing?categoryId=' + e.currentTarget.id,
+    })
+  },
+  yundongxiangqing(e) { //报名参加按钮跳转 带着活动id跳转 运动
+    wx.navigateTo({
+      url: '../../pages/yundongxiangqing/yundongxiangqing?categoryId=' + e.currentTarget.id,
     })
   },
   // towerSwiper
