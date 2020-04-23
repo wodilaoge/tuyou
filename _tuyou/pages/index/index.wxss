@@ -4,7 +4,7 @@
 
 .left {
   position: relative;
-  font-size: 50rpx;
+  font-size: 70rpx;
   left: 40rpx;
   line-height: 120rpx;
   top: 40rpx;
@@ -79,10 +79,12 @@
 .yibaoming-margin-top {
   margin-top: 47rpx;
 }
-.text{
+
+.text {
   position: relative;
   top: 100rpx;
 }
+
 .banner {
   padding: 20rpx;
   width: 220rpx;
@@ -90,13 +92,20 @@
   display: flex;
   display: -webkit-box;
   flex-direction: column;
+  box-sizing: border-box;
 }
-
-.banner_Item {
-  border-radius: 20rpx;
+.banner_basic{
+  padding: 5px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.banner_img{
   width: 200rpx;
   height: 320rpx;
-  /* height: 400rpx; */
-  background-color: white;
-  margin-right: 10rpx;
+}
+.banner_text{
+  font-size: 28rpx;
+  color: black;
 }
