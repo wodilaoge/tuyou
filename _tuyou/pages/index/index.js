@@ -3,11 +3,12 @@
 const app = getApp()
 Page({
   data: {
-    ActList:[],
+    ActList: [],
     PageCur: 'basics',
     isshow: false,
     SwiperList: [],
     news: [],
+    sport: "1dwad ",
     tabbar: {},
     swiperList: [{
       id: 0,
@@ -37,10 +38,30 @@ Page({
       id: 6,
       type: 'image',
       path: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
-    }]
+    }],
+    "items": [{
+        "id": "1",
+        "imageUrl": "https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg",
+        "content": "南昌校区图书馆"
+      },
+      {
+        "id": "2",
+        "imageUrl": 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg',
+        "content": "抚州校区的西湖"
+      },
+      {
+        "id": "3",
+        "imageUrl": 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg',
+        "content": "新生军训"
+      },
+      {
+        "id": "4",
+        "imageUrl": 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg',
+        "content": "樱花广场"
+      },
+    ]
 
   },
-
   cardSwiper(e) {
     this.setData({
       cardCur: e.detail.current
@@ -51,17 +72,22 @@ Page({
       PageCur: e.currentTarget.dataset.cur
     })
   },
-  getinfo(){
+  getinfo() {
     var url = app.globalData.URL + '/act/listCampusActivity';
-    var data='';
+    var data = '';
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
         ActList: res.data
       })
-      console.log(res.data)
     }, (err) => {
       console.log(err.errMsg)
     });
+  },
+  jump(e){
+    app.globalData.tabbar = e.currentTarget.dataset.id;
+    wx.switchTab({
+      url: '/pages/xiaoyuan/xiaoyuan',
+    })
   },
   news() { //活动新闻
     let url = app.globalData.URL + '/news/listNews';
@@ -76,12 +102,12 @@ Page({
       console.log(err.errMsg)
     });
   },
-  toxiaoyuan: function (e) {
+  toxiaoyuan: function(e) {
     wx.switchTab({
-      url: "../../pages/xiaoyuan/xiaoyuan"
+      url: "/pages/xiaoyuan/xiaoyuan"
     })
   },
-  tosport: function (e) {
+  tosport: function(e) {
     wx.switchTab({
       url: "../../pages/xiaoyuan/xiaoyuan"
     })
@@ -120,12 +146,7 @@ Page({
     // app.editTabbar();
   },
 
-  onTabItemTap(item) {
-    console.log(item.index)
-    console.log(item.pagePath)
-    console.log(item.text)
-  },
-  toactivity: function (e)  {
+  toactivity: function(e) {
     console.log(e)
     wx.navigateTo({
       url: "../../pages/xiaoyuan/xiaoyuan"
