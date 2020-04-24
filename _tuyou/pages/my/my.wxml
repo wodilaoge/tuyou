@@ -1,7 +1,7 @@
 <cu-custom bgColor="bg-blue" isBack="{{false}}">
-  <view slot="content">个人资料</view>
+  <view slot="content">我的</view>
 </cu-custom>
-<view wx:if="{{userInfoAll}}">
+<view wx:if="{{!userInfoAll}}">
   <view class="cu-list menu-avatar">
     <view class="cu-item">
       <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
@@ -14,7 +14,7 @@
     </view>
   </view>
 </view>
-<button wx:else open-type="getUserInfo" bindgetwuserinfo="getUserInfo">授权</button>
+<!-- <button wx:else open-type="getUserInfo" bindgetwuserinfo="getUserInfo">授权</button> -->
 
 <view class="bg-white padding">
   <view class="padding-lg shadow-warp bg-blue  text1 ">
@@ -44,52 +44,56 @@
 
 <view class="menu bg-white">
   <navigator url="" class="menu-item">
-    <image src="/img/add.png" class="menu-img"></image>
-    <text class="menu-name">test</text>
+    <image src="/img/my/01.png" class="menu-img"></image>
+    <text class="menu-name">账号安全</text>
   </navigator>
   <navigator url="" class="menu-item">
-    <image src="/img/add.png" class="menu-img"></image>
-    <text class="menu-name">test</text>
+    <image src="/img/my/02.png" class="menu-img"></image>
+    <text class="menu-name">系统消息</text>
   </navigator>
   <navigator url="" class="menu-item">
-    <image src="/img/add.png" class="menu-img"></image>
-    <text class="menu-name">test</text>
+    <image src="/img/my/03.png" class="menu-img"></image>
+    <text class="menu-name">工作台</text>
   </navigator>
   <navigator url="" class="menu-item">
-    <image src="/img/add.png" class="menu-img"></image>
-    <text class="menu-name">test</text>
+    <image src="/img/my/04.png" class="menu-img"></image>
+    <text class="menu-name">活动</text>
   </navigator>
   <navigator url="" class="menu-item">
-    <image src="/img/add.png" class="menu-img"></image>
-    <text class="menu-name">test</text>
+    <image src="/img/my/05.png" class="menu-img"></image>
+    <text class="menu-name">团队</text>
   </navigator>
   <navigator url="" class="menu-item">
-    <image src="/img/add.png" class="menu-img"></image>
-    <text class="menu-name">test</text>
+    <image src="/img/my/06.png" class="menu-img"></image>
+    <text class="menu-name">排名</text>
   </navigator>
   <navigator url="" class="menu-item">
-    <image src="/img/add.png" class="menu-img"></image>
-    <text class="menu-name">test</text>
+    <image src="/img/my/07.png" class="menu-img"></image>
+    <text class="menu-name">关注</text>
   </navigator>
   <navigator url="" class="menu-item">
-    <image src="/img/add.png" class="menu-img"></image>
-    <text class="menu-name">test</text>
+    <image src="/img/my/08.png" class="menu-img"></image>
+    <text class="menu-name">粉丝</text>
   </navigator>
   <navigator url="" class="menu-item">
-    <image src="/img/add.png" class="menu-img"></image>
-    <text class="menu-name">test</text>
+    <image src="/img/my/09.png" class="menu-img"></image>
+    <text class="menu-name">兴趣</text>
   </navigator>
   <navigator url="" class="menu-item">
-    <image src="/img/add.png" class="menu-img"></image>
-    <text class="menu-name">test</text>
+    <image src="/img/my/10.png" class="menu-img"></image>
+    <text class="menu-name">讨论</text>
   </navigator>
   <navigator url="" class="menu-item">
-    <image src="/img/add.png" class="menu-img"></image>
-    <text class="menu-name">test</text>
+    <image src="/img/my/11.png" class="menu-img"></image>
+    <text class="menu-name">视频</text>
   </navigator>
   <navigator url="" class="menu-item">
-    <image src="/img/add.png" class="menu-img"></image>
-    <text class="menu-name">test</text>
+    <image src="/img/my/12.png" class="menu-img"></image>
+    <text class="menu-name">照片</text>
+  </navigator>
+  <navigator url="" class="menu-item">
+    <image src="/img/my/13.png" class="menu-img"></image>
+    <text class="menu-name">新闻</text>
   </navigator>
 </view>
 
@@ -100,19 +104,19 @@
 </view>
 <view class="menu bg-white">
   <navigator url="" class="menu-item">
-    <image src="/img/add.png" class="menu-img"></image>
-    <text class="menu-name">test</text>
+    <image src="/img/my/a.png" class="menu-img2"></image>
+    <text class="menu-name">反馈</text>
   </navigator>
   <navigator url="" class="menu-item">
-    <image src="/img/add.png" class="menu-img"></image>
-    <text class="menu-name">test</text>
+    <image src="/img/my/b.png" class="menu-img2"></image>
+    <text class="menu-name">客服</text>
   </navigator>
   <navigator url="" class="menu-item">
-    <image src="/img/add.png" class="menu-img"></image>
-    <text class="menu-name">test</text>
+    <image src="/img/my/c.png" class="menu-img2"></image>
+    <text class="menu-name">聊天设置</text>
   </navigator>
   <navigator url="" class="menu-item">
-    <image src="/img/add.png" class="menu-img"></image>
-    <text class="menu-name">test</text>
+    <image src="/img/my/d.png" class="menu-img2"></image>
+    <text class="menu-name">设置</text>
   </navigator>
 </view>
