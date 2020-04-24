@@ -71,7 +71,6 @@ Page({
           };
           var urldalei = app.globalData.URL + '/config/getActivityClass1';//查询大类
           app.wxRequest('GET', urldalei, data, (res) => {
-            console.log(res.data)
             this.setData({
               yundongdalei: res.data,
               yundongCur: res.data[0].code
