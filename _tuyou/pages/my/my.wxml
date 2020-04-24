@@ -1,5 +1,5 @@
 <cu-custom bgColor="bg-blue" isBack="{{false}}">
-  <view slot="content">个人资料</view>
+  <view slot="content">我的</view>
 </cu-custom>
 <view wx:if="{{!userInfoAll}}">
   <view class="cu-list menu-avatar">
