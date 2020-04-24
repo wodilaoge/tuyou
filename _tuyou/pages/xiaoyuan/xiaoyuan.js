@@ -14,7 +14,6 @@ Page({
     yundongSwiperList: [],
   },
   tabSelect(e) {
-    console.log(e);
     this.setData({
       TabCur: e.currentTarget.dataset.id,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
@@ -109,6 +108,9 @@ Page({
     this.towerSwiper('xiaoyuanSwiperList');
   },
   onShow() {
+    this.setData({//读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
+      TabCur: app.globalData.tabbar
+    })
     this.xuanran();
   },
   DotStyle(e) {
