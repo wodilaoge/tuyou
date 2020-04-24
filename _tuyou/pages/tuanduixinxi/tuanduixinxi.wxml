@@ -64,15 +64,120 @@
 </view>
 
 <view class="flex align-end margin-top-sm bg-white" style="height:59rpx;padding-left:24rpx;">
-  <view class="tdxx-liebiao">成员列表</view>
+  <view class="tdxx-liebiao" bindtap="test">成员列表</view>
   <view class="tdxx-liebiao-num margin-left-sm">(22)</view>
 </view>
+
 <view class="bg-white">
-  <view class="tdxx-group-avatar ">
-  <view class="tdxx-avatar" wx:for="{{10}}">
-  
- 
-    <image class="tdxx-avatar "  src="https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{(index+1)%9}}.jpg"></image>
+  <view class="tdxx-avatar-group ">
+    <block wx:for="{{21}}">
+      <view class="tdxx-avatar-content">
+        <image class="tdxx-avatar round " src="https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{(index+1)%9}}.jpg" bindtap="navziliao" duiyuanId="duiyuanid"></image>
+        <view class="tdxx-avatar-name">吴福佳</view>
+     
+      </view>
+    </block>
   </view>
-   </view>
 </view>
+<view class="bg-white" style="height:50rpx;"></view>
+<view class="flex align-end margin-top-sm bg-white" style="height:59rpx;padding-left:24rpx;">
+  <view class="tdxx-liebiao">历史活动</view>
+  <view class="tdxx-liebiao-num margin-left-sm">2</view>
+</view>
+<view class="bg-white" style="height:30rpx;"></view>
+ <view class="bg-white " style="height:259rpx;">
+    <view class="flex" style="height:42rpx;">
+      <view class="paiming-paiming" style="margin-left:24rpx;width:120rpx;">排名</view>
+      <view class="paiming-paiming" style="margin-left:2rpx;width:180rpx;">得分</view>
+      <view class="paiming-paiming" style="margin-left:2rpx;width:180rpx;">日期</view>
+      <view class="paiming-paiming" style="margin-left:2rpx;width:216rpx;">活动名称</view>
+    </view>
+    <view class="flex" style="margin-top:44rpx;">
+      <text class="paiming-fenshu" style="padding-left:76rpx;">5</text>
+      <text class="paiming-fenshu" style="margin-left:129rpx;">80</text>
+      <text class="paiming-riqi" style="margin-left:97rpx;">2020/3/11</text>
+      <text class="paiming-huodong" style="margin-left:67rpx;margin-top:-13rpx;">XX篮球春季 赛第一轮</text>
+    </view>
+    <view class="flex" style="margin-top:50rpx;">
+      <text class="paiming-fenshu" style="padding-left:76rpx;">5</text>
+      <text class="paiming-fenshu" style="margin-left:129rpx;">80</text>
+      <text class="paiming-riqi" style="margin-left:97rpx;">2020/3/11</text>
+      <text class="paiming-huodong" style="margin-left:67rpx;margin-top:-13rpx;">XX篮球春季 赛第一轮</text>
+    </view>
+  </view>
+
+  <view class="pinglun-title">评论108</view>
+
+  <view class="cu-card case no-card ">
+    <view class="cu-item shadow">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+          <view class="content flex-sub">
+            <view class=" flex justify-between">
+              <view>
+                <text class="card-text-grey" decode="{{true}}">吴福嘉&emsp;</text>
+                <button class="cu-btn btn-hot bg-orange disabled">热门</button>
+              </view>
+              <view class="text-gray text-sm">
+                <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+              </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15 6 回复
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="cu-card case no-card}">
+    <view class="cu-item shadow">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item ">
+          <view class="cu-avatar round lg " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);padding-top:0;"></view>
+          <view class="content flex-sub">
+            <view class=" flex justify-between">
+              <view>
+                <text class="card-text-grey">福嘉</text>
+              </view>
+              <view class="text-gray text-sm">
+                <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+              </view>
+            </view>
+            <view class="card-text-content">
+              活动看着不错，我报名啦,
+            </view>
+            <view class="card-text-content-time">
+              03-15 16:15 6 回复
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view style="height:270rpx;"></view>
+
+  <view class="box">
+    <view class="cu-bar input foot padding">
+      <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
+      <view class="action">
+        <image class="img-icon" src="/img/icon_talk.png"></image>
+      </view>
+      <view class="action">
+        <image class="img-icon" src="/img/icon_fabulous.png"></image>
+      </view>
+      <view class="action">
+        <image class="img-icon" src="/img/icon_share.png"></image>
+      </view>
+    </view>
+  </view>
+
