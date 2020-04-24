@@ -85,6 +85,7 @@ Page({
     this.setData({
       userInfoAll:e.detail.userInfo
     })
+
     wx.setStorage({ //将活动信息存入缓存
       key: "userInfo",
       data: this.data.userInfoAll
