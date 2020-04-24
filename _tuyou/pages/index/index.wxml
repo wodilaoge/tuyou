@@ -16,27 +16,27 @@
   <view class="menu bg-white">
     <view bindtap="jump" data-id="5" class="menu-item">
       <image src="/img/index/news.png" class="menu-img"></image>
-      <text class="menu-name">新闻</text>
+      <text class="menu-name text-bold">新闻</text>
     </view>
     <view bindtap="jump" data-id="0" class="menu-item">
       <image src="/img/index/activity.png" class="menu-img"></image>
-      <text class="menu-name2">校园活动</text>
+      <text class="menu-name text-bold">活动</text>
     </view>
     <view bindtap="jump" data-id="1" class="menu-item">
       <image src="/img/index/sport.png" class="menu-img"></image>
-      <text class="menu-name">运动</text>
+      <text class="menu-name text-bold">运动</text>
     </view>
     <view bindtap="jump" data-id="2" class="menu-item">
       <image src="/img/index/play.png" class="menu-img"></image>
-      <text class="menu-name">文娱</text>
+      <text class="menu-name text-bold">文娱</text>
     </view>
     <view bindtap="jump" data-id="3" class="menu-item">
       <image src="/img/index/hobby.png" class="menu-img"></image>
-      <text class="menu-name">爱好</text>
+      <text class="menu-name text-bold">爱好</text>
     </view>
     <view bindtap="jump" data-id="4" class="menu-item">
       <image src="/img/index/video.png" class="menu-img"></image>
-      <text class="menu-name">视频</text>
+      <text class="menu-name text-bold">视频</text>
     </view>
   </view>
 
