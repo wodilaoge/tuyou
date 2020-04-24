@@ -65,9 +65,9 @@
 				},
 				{
 					"id": 1,
-					"name": "活动详情",
+					"name": "校园活动详情",
 					"pathName": "pages/xiaoyuanxiangqing/xiaoyuanxiangqing",
-					"query": "",
+					"query": "categoryId=1025873553653760",
 					"scene": null
 				},
 				{

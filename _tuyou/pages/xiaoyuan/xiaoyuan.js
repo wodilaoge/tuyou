@@ -3,22 +3,28 @@ Page({
   data: {
     ActList: [],
     yundongList: [],
+    yundongdalei:[],
+    yundongid:'',
     CustomBar: app.globalData.CustomBar,
     TabCur: 0,
     bkData: [],
-    yundongCur: 'lanqiu', //运动内导航栏
+    yundongCur: '', //运动内导航栏
     cardCur: 0,
     xiaoyuanSwiperList: [],
     yundongSwiperList: [],
   },
   tabSelect(e) {
-    console.log(e);
     this.setData({
       TabCur: e.currentTarget.dataset.id,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
   },
   yundongTabSelect(e) { //运动内导航栏1
+    var url = app.globalData.URL + '/act/listActivity';
+    let data = {
+      sid: this.data.yundongid,
+      acid1: e.currentTarget.dataset.cur
+    };
     this.setData({
       yundongCur: e.currentTarget.dataset.cur,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
@@ -32,7 +38,7 @@ Page({
         bkData: res.data
       })
       for (var i in res.data) {
-        var url = app.globalData.URL + '/act/listCampusActivity';
+        var url = app.globalData.URL + '/act/listActivity';
         var url2 = app.globalData.URL + '/secrot/listSecrotation';
         if (res.data[i].name == "校园活动") {
           let data = {
@@ -56,16 +62,22 @@ Page({
           continue;
         }
         if (res.data[i].name == "运动") {
+          self.setData({
+            yundongid: res.data[i].code
+          })
           let data = {
             sid: res.data[i].code
           };
-          app.wxRequest('GET', url, data, (res) => {
+          var urldalei = app.globalData.URL + '/config/getActivityClass1';//查询大类
+          app.wxRequest('GET', urldalei, data, (res) => {
             this.setData({
-              yundongList: res.data
+              yundongdalei: res.data,
+              yundongCur: res.data[0].code
             })
           }, (err) => {
             console.log(err.errMsg)
           });
+
           app.wxRequest('GET', url2, data, (res) => {
             this.setData({
               yundongSwiperList: res.data
@@ -73,20 +85,31 @@ Page({
           }, (err) => {
             console.log(err.errMsg)
           });
+          app.wxRequest('GET', url, data, (res) => {
+            this.setData({
+              yundongList: res.data
+            })
+          }, (err) => {
+            console.log(err.errMsg)
+          });
+
+          
         }
       }
     }, (err) => {
       console.log(err.errMsg)
       });
-
-    
-    
-    
   },
-  onLoad() {
+  onLoad: function () {
+    this.setData({//读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
+      TabCur: app.globalData.tabbar
+    })
     this.towerSwiper('xiaoyuanSwiperList');
   },
   onShow() {
+    this.setData({//读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
+      TabCur: app.globalData.tabbar
+    })
     this.xuanran();
   },
   DotStyle(e) {
@@ -100,7 +123,7 @@ Page({
       cardCur: e.detail.current
     })
   },
-  baomingcanjia(e) { //报名参加按钮跳转 带着活动id跳转
+  baomingcanjia(e) { //报名参加按钮跳转 带着活动id跳转 校园活动
     wx.navigateTo({
       url: '../../pages/xiaoyuanxiangqing/xiaoyuanxiangqing?categoryId=' + e.currentTarget.id,
     })
