@@ -3,7 +3,7 @@
   width: 38px;
   height: 38px;
   bottom: 20px;
-  right: 20px;
+  right: 140px;
 }
 
 .activity_icon {
@@ -11,7 +11,7 @@
   width: 38px;
   height: 38px;
   bottom: 80px;
-  right: 20px;
+  right: 140px;
 }
 .activity_text {
   position: fixed;
@@ -26,12 +26,12 @@
   width: 38px;
   height: 38px;
   bottom: 140px;
-  right: 20px;
+  right: 140px;
 }
 .team_icon{
    position: fixed;
   width: 38px;
   height: 38px;
   bottom: 200px;
-  right: 20px;
+  right: 140px;
 }
