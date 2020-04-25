@@ -78,10 +78,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 3,
 					"name": "评论列表",
 					"pathName": "pages/pinlunliebiao/pinlunliebiao",
-					"query": "",
+					"query": "categoryId=1025873553653760&objtitle= 浙江大学三周年典演出季--歌舞表演",
 					"scene": null
 				},
 				{
@@ -186,6 +186,7 @@
 					"id": -1,
 					"name": "资料",
 					"pathName": "pages/ziliao/ziliao",
+					"query": "",
 					"scene": null
 				}
 			]

@@ -1,7 +1,7 @@
 //app.js
 App({
   globalData: {
-    tabbar:1,
+    tabbar:0,
     URL: 'http://192.144.169.239:8080/kt',
     systemInfo: null, //客户端设备信息
     tabBar: {
@@ -105,7 +105,7 @@ App({
       method: method,
       data: data,
       header: {
-        'content-type': method == 'GET' ? 'application/json' : 'application/x-www-form-urlencoded',
+        'content-type': 'application/json',
         'Accept': 'application/json'
       },
       dataType: 'json',
