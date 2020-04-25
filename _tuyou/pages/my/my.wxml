@@ -13,10 +13,7 @@
       </view>
     </view>
   </view>
-</view>
-<!-- 授权登录 -->
-<button wx:else open-type="getUserInfo" bindgetuserinfo='login' >点击登录</button>
-<view class="bg-white padding">
+  <view class="bg-white padding">
   <!-- <view style="background:url('/img/my/img_bar.png')" > -->
   <view class="text1 bk ">
     <!-- <image src="/img/my/img_bar.png" class="bkimg"></image> -->
@@ -36,9 +33,22 @@
       <text class="text"></text>8
       <text class="text2"></text>关注
     </view>
-
   </view>
 </view>
+</view>
+<!-- 授权登录 -->
+<view  wx:else class="bg-white">
+  <view class="white"></view>
+  <view class="solid-bottom padding  text-center ">
+    <button open-type="getUserInfo" bindgetuserinfo='login' class="text-tong tex-bold cu-btn bg-white">登录同友</button>
+  </view>
+  <view class="text-center margin-top3">
+    <checkbox checked class="blue checkicon"></checkbox>
+    <text class="text-grey">我已阅读并同意</text>
+    <text class="text-blue">《同友活动申明》</text>
+  </view>
+</view>
+
 <view class="cu-bar bg-white solid-bottom">
   <view class="action">
     <text class="text-black text-bold">常用工具</text>
