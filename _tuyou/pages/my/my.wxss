@@ -1,7 +1,10 @@
 .cu-form-group .title {
   min-width: calc(4em + 30rpx);
 }
-
+.bkimg{
+  width: 100%;
+  height: 180rpx;
+}
 .icon {
   position: relative;
   width: 40rpx;
@@ -21,21 +24,26 @@
   display: flex; /*弹性布局*/
   flex-wrap: wrap; /*允许换行*/
   box-sizing: border-box;
+  position: relative;
 }
 
 .text2 {
   position: relative;
   font-size: 50rpx;
   bottom: 50rpx;
+  left: 50rpx;
 }
 
 .text-item {
   width: 25%;
   display: flex;
+  position: relative;
   padding: 5px;
   /* box-sizing: border-box; *//* justify-content: center; */
   text-align: center;
   flex-direction: column;
+  color: white;
+  bottom: 150rpx;
 }
 
 .menu-item {

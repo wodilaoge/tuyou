@@ -82,6 +82,7 @@ Page({
     })
   },
   getUserInfo(e){
+    console.log(e)
     this.setData({
       userInfoAll:e.detail.userInfo
     })

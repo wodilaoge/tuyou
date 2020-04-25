@@ -1,6 +1,6 @@
 {
   "enablePullDownRefresh": false,
   "usingComponents": {
-    "tabbar": "../../tabbarComponent/tabbar"
+    "tabs": "/components/floattabbar/float"
   }
 }

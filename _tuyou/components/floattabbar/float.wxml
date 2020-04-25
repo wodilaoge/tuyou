@@ -1,0 +1,15 @@
+<view bindtap='adddetial'>
+  <image class="add_icon" src="/img/tabbar/add2.png"></image>
+</view>
+<view wx:if="{{isshow}}">
+  <view bindtap='toact'>
+    <image class="activity_icon" src="/img/form/activity2.png"></image>
+    <!-- <text class="activity_text">发活动</text> -->
+  </view>
+  <view bindtap='tovideo'>
+    <image class="video_icon" src="/img/form/video2.png"></image>
+  </view>
+  <view bindtap='toteam'>
+    <image class="team_icon" src="/img/form/team2.png"></image>
+  </view>
+</view>

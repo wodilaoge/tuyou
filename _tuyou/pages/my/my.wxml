@@ -14,10 +14,13 @@
     </view>
   </view>
 </view>
-<!-- <button wx:else open-type="getUserInfo" bindgetwuserinfo="getUserInfo">授权</button> -->
+<tabs></tabs>
+<!-- <button  open-type="getUserInfo" bindgetwuserinfo="getUserInfo">授权</button> -->
 
 <view class="bg-white padding">
-  <view class="padding-lg shadow-warp bg-blue  text1 ">
+  <!-- <view style="background:url('/img/my/img_bar.png')" > -->
+    <view class="text1 ">
+    <image src="/img/my/img_bar.png" mode="widthFix"></image>
     <view class="text-item">
       <text class="text"></text>8
       <text class="text2"></text>消息

@@ -1,0 +1,37 @@
+.add_icon {
+  position: fixed;
+  width: 38px;
+  height: 38px;
+  bottom: 20px;
+  right: 20px;
+}
+
+.activity_icon {
+  position: fixed;
+  width: 38px;
+  height: 38px;
+  bottom: 80px;
+  right: 20px;
+}
+.activity_text {
+  position: fixed;
+  width: 38px;
+  height: 38px;
+  bottom: 36px;
+  right: 17px;
+  color: black;
+}
+.video_icon{
+  position: fixed;
+  width: 38px;
+  height: 38px;
+  bottom: 140px;
+  right: 20px;
+}
+.team_icon{
+   position: fixed;
+  width: 38px;
+  height: 38px;
+  bottom: 200px;
+  right: 20px;
+}
