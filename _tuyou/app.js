@@ -8,31 +8,26 @@ App({
       "backgroundColor": "#ffffff",
       "color": "#979795",
       "selectedColor": "#1c1c1b",
-      "list": [{
-          "pagePath": "/pages/index/index",
+      "list": [
+        {
+          "pagePath": "pages/index/index",
           "iconPath": "/img/tabbar/home-off.png",
           "selectedIconPath": "/img/tabbar/home-on.png",
           "text": "首页"
         },
         {
-          "pagePath": "/pages/xiaoyuan/xiaoyuan",
+          "pagePath": "pages/xiaoyuan/xiaoyuan",
           "iconPath": "/img/tabbar/activity-off.png",
           "selectedIconPath": "/img/tabbar/activity-on.png",
           "text": "活动"
         },
         {
-          "pagePath": "/pages/form/form",
-          "iconPath": "/img/tabbar/launch-off.png",
-          "selectedIconPath": "/img/tabbar/launch-on.png",
-          "text": "发布"
-        },
-        {
-          "pagePath": "/pages/my/my",
+          "pagePath": "pages/my/my",
           "iconPath": "/img/tabbar/my-off.png",
-          "selectedIconPath": "/img/tabbar/my-off.png",
+          "selectedIconPath": "/img/tabbar/my-on.png",
           "text": "我的"
         }
-      ],
+      ]
     },
     YundongList: [{
       name: '篮球',
