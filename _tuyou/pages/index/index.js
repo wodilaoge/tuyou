@@ -73,7 +73,7 @@ Page({
     })
   },
   getinfo() {
-    var url = app.globalData.URL + '/act/listCampusActivity';
+    var url = app.globalData.URL + '/act/listActivity';
     var data = '';
     app.wxRequest('GET', url, data, (res) => {
       this.setData({

@@ -77,25 +77,25 @@
     <scroll-view scroll-x="true">
       <view class="banner" scroll-x="true">
         <view class="banner_basic ">
-          <image src="{{ActList[0].logo}}" class="banner_img"></image>
-          <text class="banner_text">"{{ActList[0].actname}}"</text>
-          <!-- <text >"{{ActList[0].fromtime}}"</text> -->
+          <image src="{{ActList.list[0].logo}}" class="banner_img"></image>
+          <text class="banner_text">"{{ActList.list[0].actname}}"</text>
+          <!-- <text >"{{ActList.list[0].fromtime}}"</text> -->
         </view>
         <view class="banner_basic ">
-          <image src="{{ActList[1].logo}}" class="banner_img"></image>
-          <text class="banner_text">"{{ActList[1].actname}}"</text>
+          <image src="{{ActList.list[1].logo}}" class="banner_img"></image>
+          <text class="banner_text">"{{ActList.list[1].actname}}"</text>
         </view>
         <view class="banner_basic ">
-          <image src="{{ActList[2].logo}}" class="banner_img"></image>
-          <text class="banner_text">"{{ActList[2].actname}}"</text>
+          <image src="{{ActList.list[2].logo}}" class="banner_img"></image>
+          <text class="banner_text">"{{ActList.list[2].actname}}"</text>
         </view>
         <view class="banner_basic ">
-          <image src="{{ActList[3].logo}}" class="banner_img"></image>
-          <text class="banner_text">"{{ActList[3].actname}}"</text>
+          <image src="{{ActList.list[3].logo}}" class="banner_img"></image>
+          <text class="banner_text">"{{ActList.list[3].actname}}"</text>
         </view>
         <view class="banner_basic ">
-          <image src="{{ActList[4].logo}}" class="banner_img"></image>
-          <text class="banner_text">"{{ActList[4].actname}}"</text>
+          <image src="{{ActList.list[4].logo}}" class="banner_img"></image>
+          <text class="banner_text">"{{ActList.list[4].actname}}"</text>
         </view>
       </view>
     </scroll-view>

@@ -4,6 +4,7 @@
   height: 38px;
   bottom: 10px;
   right: 140px;
+  /* justify-content: center; */
 }
 
 .activity_icon {
