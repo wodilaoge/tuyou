@@ -2,8 +2,7 @@
 创建者：陈雨豪
 创建时间：20200328
 内容：校园活动页面-->
-<!-- 发布栏 -->
-<tabs></tabs>
+
 
 <view class="top">
   <cu-custom isBack="{{true}}" bgColor="bg-blue">
@@ -111,3 +110,5 @@
     </block>
   </view>
 </block>
+<!-- 发布栏 -->
+<tabs></tabs>

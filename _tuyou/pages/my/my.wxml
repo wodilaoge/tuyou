@@ -14,7 +14,7 @@
     </view>
   </view>
 </view>
-<tabs></tabs>
+
 <!-- <button  open-type="getUserInfo" bindgetwuserinfo="getUserInfo">授权</button> -->
 
 <view class="bg-white padding">
@@ -124,3 +124,4 @@
     <text class="menu-name">设置</text>
   </navigator>
 </view>
+<tabs></tabs>

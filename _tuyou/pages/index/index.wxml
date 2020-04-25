@@ -1,4 +1,4 @@
-<tabs></tabs>
+
 <view class="hidden">
   <view class="bk">
     <view class="text-bold left text-white">同友</view>
@@ -294,3 +294,4 @@
     </navigator>
   </view>
 </view>
+<tabs></tabs>
