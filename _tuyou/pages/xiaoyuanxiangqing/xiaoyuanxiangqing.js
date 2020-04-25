@@ -23,7 +23,7 @@ Page({
   },
   pinluntiaozhuan(e) {//评论跳转
     wx.navigateTo({
-      url: '/pages/pinlunliebiao/pinlunliebiao?categoryId='+this.data.categoryId,
+      url: '/pages/pinlunliebiao/pinlunliebiao?categoryId=' + this.data.categoryId + '&objtitle=' + this.data.detail.actname,
     })
   },
   chakanhuifu(e) {//评论跳转
@@ -37,7 +37,6 @@ Page({
       id: this.data.categoryId
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res.data)
       this.setData({
         detail: res.data
       })

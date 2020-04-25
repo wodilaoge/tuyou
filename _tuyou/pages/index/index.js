@@ -1,11 +1,13 @@
 //index.js
 //获取应用实例
 const app = getApp()
+var util = require("../../utils/util.js");
 Page({
   data: {
     ActList: [],
     PageCur: 'basics',
     isshow: false,
+    sectioninfo:[],
     SwiperList: [],
     news: [],
     sport: "1dwad ",
@@ -72,8 +74,18 @@ Page({
       PageCur: e.currentTarget.dataset.cur
     })
   },
+  getuploadinfo() {
+    var that = this
+    let url = app.globalData.URL + '/config/getSections';
+    let data = '';
+    util.gets(url, {}).then(function (res) {
+      that.setData({
+        sectioninfo: res.data
+      })
+    })
+  },
   getinfo() {
-    var url = app.globalData.URL + '/act/listCampusActivity';
+    var url = app.globalData.URL + '/act/listActivity';
     var data = '';
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
@@ -143,6 +155,7 @@ Page({
   onLoad: function(options) {
     this.news();
     this.getinfo();
+    this.getuploadinfo();
     // app.editTabbar();
   },
 

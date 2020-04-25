@@ -130,7 +130,7 @@
   padding: 5px;
   box-sizing: border-box;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   flex-direction: column;
 }
 
@@ -152,7 +152,7 @@
 }
 
 .video-list-photo {
-  width: 333rpx;
+  width: 330rpx;
   height: 250rpx;
   box-sizing: border-box;
 }

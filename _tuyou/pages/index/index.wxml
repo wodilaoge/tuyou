@@ -1,3 +1,4 @@
+
 <view class="hidden">
   <view class="bk">
     <view class="text-bold left text-white">同友</view>
@@ -17,6 +18,7 @@
     <view bindtap="jump" data-id="5" class="menu-item">
       <image src="/img/index/news.png" class="menu-img"></image>
       <text class="menu-name text-bold">新闻</text>
+      <!-- {{sectioninfo.data[0].name}} -->
     </view>
     <view bindtap="jump" data-id="0" class="menu-item">
       <image src="/img/index/activity.png" class="menu-img"></image>
@@ -76,25 +78,25 @@
     <scroll-view scroll-x="true">
       <view class="banner" scroll-x="true">
         <view class="banner_basic ">
-          <image src="{{ActList[0].logo}}" class="banner_img"></image>
-          <text class="banner_text">"{{ActList[0].actname}}"</text>
-          <!-- <text >"{{ActList[0].fromtime}}"</text> -->
+          <image src="{{ActList.list[0].logo}}" class="banner_img"></image>
+          <text class="banner_text">"{{ActList.list[0].actname}}"</text>
+          <!-- <text >"{{ActList.list[0].fromtime}}"</text> -->
         </view>
         <view class="banner_basic ">
-          <image src="{{ActList[1].logo}}" class="banner_img"></image>
-          <text class="banner_text">"{{ActList[1].actname}}"</text>
+          <image src="{{ActList.list[1].logo}}" class="banner_img"></image>
+          <text class="banner_text">"{{ActList.list[1].actname}}"</text>
         </view>
         <view class="banner_basic ">
-          <image src="{{ActList[2].logo}}" class="banner_img"></image>
-          <text class="banner_text">"{{ActList[2].actname}}"</text>
+          <image src="{{ActList.list[2].logo}}" class="banner_img"></image>
+          <text class="banner_text">"{{ActList.list[2].actname}}"</text>
         </view>
         <view class="banner_basic ">
-          <image src="{{ActList[3].logo}}" class="banner_img"></image>
-          <text class="banner_text">"{{ActList[3].actname}}"</text>
+          <image src="{{ActList.list[3].logo}}" class="banner_img"></image>
+          <text class="banner_text">"{{ActList.list[3].actname}}"</text>
         </view>
         <view class="banner_basic ">
-          <image src="{{ActList[4].logo}}" class="banner_img"></image>
-          <text class="banner_text">"{{ActList[4].actname}}"</text>
+          <image src="{{ActList.list[4].logo}}" class="banner_img"></image>
+          <text class="banner_text">"{{ActList.list[4].actname}}"</text>
         </view>
       </view>
     </scroll-view>
@@ -293,3 +295,4 @@
     </navigator>
   </view>
 </view>
+<tabs></tabs>

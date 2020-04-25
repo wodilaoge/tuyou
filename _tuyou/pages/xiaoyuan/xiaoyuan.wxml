@@ -3,6 +3,7 @@
 创建时间：20200328
 内容：校园活动页面-->
 
+
 <view class="top">
   <cu-custom isBack="{{true}}" bgColor="bg-blue">
     <view slot="content">校园活动</view>
@@ -67,7 +68,7 @@
   </view>
 
   <view class="cu-card article no-card bg-white">
-    <view class="cu-item shadow " wx:for="{{ActList}}">
+    <view class="cu-item shadow " wx:for="{{ActList.list}}">
       <view class="content margin-bottom" bindtap="baomingcanjia" id="{{item.id}}">
         <image src="{{item.logo}}" mode="aspectFill"></image>
         <view class="desc">
@@ -109,3 +110,5 @@
     </block>
   </view>
 </block>
+<!-- 发布栏 -->
+<tabs></tabs>

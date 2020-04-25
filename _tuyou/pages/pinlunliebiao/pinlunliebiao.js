@@ -1,9 +1,17 @@
 const app = getApp();
 Page({
   data: {
+    option:[],
     categoryId: '',
+    objtitle:'',
     comment: [],
     comment_detail: [],
+    Input: '',
+  },
+  emailInput: function (e) {
+    this.setData({
+      Input: e.detail.value
+    });
   },
   chakanhuifu(e) { //查看回放跳转
     console.log(e);
@@ -22,7 +30,6 @@ Page({
       self.setData({
         comment: res.data
       });
-      console.log(res.data.list);
       self.setData({
         comment_detail: self.data.comment.list
       });
@@ -30,13 +37,40 @@ Page({
       console.log(err.errMsg)
     });
   },
+  fasong() { //发送按钮
+    var self = this;
+    let url = app.globalData.URL + '/comm/addComment';
+    let data = {
+      pid: null,
+      objtype: 30,
+      objid: self.data.categoryId,
+      objtitle: self.data.objtitle,
+      comment: self.data.Input,
+      creater: "1025873536876561",
+      createrAlias:"张三",
+      createrHead: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg"
+    };
+    app.wxRequest('POST', url, data, (res) => {
+      self.onLoad(self.data.option);
+      wx.showToast({
+        title: '评论成功！', // 标题
+        icon: 'success',  // 图标类型，默认success
+        duration: 1500  // 提示窗停留时间，默认1500ms
+      })
+
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (option) {
     var self = this;
     self.setData({
-      categoryId: options.categoryId
+      option: option,
+      categoryId: option.categoryId,
+      objtitle: option.objtitle
     })
     self.comment();
   },

@@ -32,7 +32,7 @@ Page({
   },
   xuanran() {
     var self=this;
-    let url1 = app.globalData.URL + '/config/getSection';
+    let url1 = app.globalData.URL + '/config/getSections';
     app.wxRequest('GET', url1, [], (res) => {
       self.setData({
         bkData: res.data

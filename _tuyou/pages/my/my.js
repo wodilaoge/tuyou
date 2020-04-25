@@ -1,25 +1,12 @@
 const app = getApp();
+var util = require("../../utils/util.js");
 Page({
   data: {
-    StatusBar: app.globalData.StatusBar,
-    CustomBar: app.globalData.CustomBar,
     index: null,
     name: '',
-    picker: ['男', '女'],
-    picker2: ['匿名参赛', '实名参赛'],
-    picker3: ['观看无需报名', '匿名报名观看', '实名报名观看'],
-    picker4: ['篮球', '足球', '排球', '羽毛球', '乒乓球', '其他'],
-    multiIndex: [0, 0, 0],
-    time: '12:01',
-    date: '2000.1.1',
-    date2: '2020.8.25',
-    region: ['浙江省', '杭州市', '浙江大学'],
-    place: ['浙江大学篮球场'],
-    imgList: [],
-    modalName: null,
-    textareaAValue: '',
-    textareaBValue: '',
-    userInfoAll:[]
+    userInfoAll: [],
+    webinfo: [],
+    isagree: true
   },
   PickerChange(e) {
     console.log(e);
@@ -42,7 +29,7 @@ Page({
       date: e.detail.value
     })
   },
-  RegionChange: function (e) {
+  RegionChange: function(e) {
     this.setData({
       region: e.detail.value
     })
@@ -75,20 +62,58 @@ Page({
     this.setData({
       textareaBValue: e.detail.value
     })
-  }, 
-  onLoad: function () {
+  },
+  onLoad: function() {
     this.setData({
       userInfoAll: wx.getStorageSync('userInfo')
     })
   },
-  getUserInfo(e){
-    this.setData({
-      userInfoAll:e.detail.userInfo
+  login(e) {
+    if (!this.data.isagree) {
+      wx.showToast({
+        title: '请先勾选！',
+      })
+    } else {
+      var that = this
+      this.setData({
+        userInfoAll: e.detail.userInfo
+      })
+      wx.login({
+        success: function(res) {
+          console.log(res);
+          let url = app.globalData.URL + '/auth/wcAnonLogin';
+          let data = {
+            code: res.code
+          };
+          util.post(url, data).then(function(res) {
+            console.log('id', res)
+            that.setData({
+              webinfo: res.data
+            })
+          })
+        }
+      })
+      wx.showToast({
+        title: '登录成功！',
+      })
+      that.lg()
+    }
+  },
+  lg() {
+    wx.getUserInfo({
+      success: function(res) {
+        var userinfo = res.userInfo
+        console.log(userinfo);
+        wx.setStorage({ //将活动信息存入缓存
+          key: "userInfo",
+          data: userinfo
+        });
+      }
     })
-
-    wx.setStorage({ //将活动信息存入缓存
-      key: "userInfo",
-      data: this.data.userInfoAll
-    });
+  },
+  isagree(e) {
+    this.setData({
+      isagree: !this.data.isagree
+    })
   }
 })

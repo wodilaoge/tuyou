@@ -1,4 +1,9 @@
-/* pages/pinlunliebiao/pinlunliebiao.wxss */
+page {
+  /*页面布局*/
+  padding-bottom: 150rpx;
+  letter-spacing:2rpx;
+}
+
 .card-text-grey {
 	color: var(--grey);
   font-size: 28rpx;

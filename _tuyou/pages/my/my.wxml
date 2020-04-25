@@ -1,7 +1,7 @@
 <cu-custom bgColor="bg-blue" isBack="{{false}}">
   <view slot="content">我的</view>
 </cu-custom>
-<view wx:if="{{!userInfoAll}}">
+<view wx:if="{{userInfoAll}}">
   <view class="cu-list menu-avatar">
     <view class="cu-item">
       <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
@@ -13,11 +13,10 @@
       </view>
     </view>
   </view>
-</view>
-<!-- <button wx:else open-type="getUserInfo" bindgetwuserinfo="getUserInfo">授权</button> -->
-
-<view class="bg-white padding">
-  <view class="padding-lg shadow-warp bg-blue  text1 ">
+  <view class="bg-white padding">
+  <!-- <view style="background:url('/img/my/img_bar.png')" > -->
+  <view class="text1 bk ">
+    <!-- <image src="/img/my/img_bar.png" class="bkimg"></image> -->
     <view class="text-item">
       <text class="text"></text>8
       <text class="text2"></text>消息
@@ -36,6 +35,21 @@
     </view>
   </view>
 </view>
+</view>
+<!-- 授权登录 -->
+<view  wx:else class="bg-white">
+  <view class="white"></view>
+  <view class="solid-bottom padding  text-center ">
+    <button disabled="{{!isagree}}" open-type="getUserInfo" bindgetuserinfo='login' class="text-tong tex-bold cu-btn bg-white">登录同友</button>
+    <!-- <button bindtap="login" class="text-tong tex-bold cu-btn bg-white">登录同友</button> -->
+  </view>
+  <view class="text-center margin-top3">
+    <checkbox checked="{{isagree}}" class="blue checkicon" bindtap="isagree"></checkbox>
+    <text class="text-grey">我已阅读并同意</text>
+    <text class="text-blue">《同友活动申明》</text>
+  </view>
+</view>
+
 <view class="cu-bar bg-white solid-bottom">
   <view class="action">
     <text class="text-black text-bold">常用工具</text>
@@ -120,3 +134,4 @@
     <text class="menu-name">设置</text>
   </navigator>
 </view>
+<tabs></tabs>
