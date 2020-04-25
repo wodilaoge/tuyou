@@ -4,31 +4,6 @@ App({
     tabbar:0,
     URL: 'http://192.144.169.239:8080/kt',
     systemInfo: null, //客户端设备信息
-    tabBar: {
-      "backgroundColor": "#ffffff",
-      "color": "#979795",
-      "selectedColor": "#1c1c1b",
-      "list": [
-        {
-          "pagePath": "pages/index/index",
-          "iconPath": "/img/tabbar/home-off.png",
-          "selectedIconPath": "/img/tabbar/home-on.png",
-          "text": "首页"
-        },
-        {
-          "pagePath": "pages/xiaoyuan/xiaoyuan",
-          "iconPath": "/img/tabbar/activity-off.png",
-          "selectedIconPath": "/img/tabbar/activity-on.png",
-          "text": "活动"
-        },
-        {
-          "pagePath": "pages/my/my",
-          "iconPath": "/img/tabbar/my-off.png",
-          "selectedIconPath": "/img/tabbar/my-on.png",
-          "text": "我的"
-        }
-      ]
-    },
     YundongList: [{
       name: '篮球',
     },
@@ -75,29 +50,6 @@ App({
       name: '电竞',
     },
     ]
-  },
-  hideTabBar: function() {
-    wx.hideTabBar({
-      fail: function() {
-        setTimeout(function() {
-          wx.hideTabBar()
-        }, 500)
-      }
-    });
-  },
-  editTabbar: function() {
-    let tabbar = this.globalData.tabBar;
-    let currentPages = getCurrentPages();
-    let _this = currentPages[currentPages.length - 1];
-    let pagePath = _this.route;
-    (pagePath.indexOf('/') != 0) && (pagePath = '/' + pagePath);
-    for (let i in tabbar.list) {
-      tabbar.list[i].selected = false;
-      (tabbar.list[i].pagePath == pagePath) && (tabbar.list[i].selected = true);
-    }
-    _this.setData({
-      tabbar: tabbar
-    });
   },
   wxRequest(method, url, data, callback, errFun) {
     wx.request({
