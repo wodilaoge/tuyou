@@ -8,6 +8,8 @@ Page({
   data: {
     CustomBar: app.globalData.CustomBar,
     TabCur: 0,
+    duiyuanID:'',
+    duiyuanDeatil:[],
   },
 
   tabSelect(e) {
@@ -16,11 +18,34 @@ Page({
       TabCur: e.currentTarget.dataset.id,
     })
   },
+
+  getDuiyuan() {
+    let url = app.globalData.URL + '/appuser/findUserByID';
+    let data = {
+      id: this.data.duiyuanID,
+
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res.data)
+      this.setData({
+        duiyuanDeatil: res.data,
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options)
+    this.setData({
+      duiyuanID:options.id
+    })
+    console.log(this.data.duiyuanID)
+    this.getDuiyuan()
   },
 
   /**

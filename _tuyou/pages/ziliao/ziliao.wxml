@@ -4,11 +4,11 @@
     <view slot="content"></view>
   </cu-custom>
   <view class="flex">
-    <text class="ziliao-name">吴福佳</text>
+    <text class="ziliao-name">{{duiyuanDeatil.name}}</text>
     <button class="cu-btn round lines-white " style="width:100rpx;height:42rpx;margin-left:197rpx;">关注</button>
   </view>
   <view class="flex" style="margin-top:47rpx;">
-    <image class="ziliao-avatar" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg">
+    <image class="ziliao-avatar" src="{{duiyuanDeatil.head}}">
     </image>
     <view>
       <view class="flex">

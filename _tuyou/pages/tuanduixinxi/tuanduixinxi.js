@@ -8,8 +8,12 @@ Page({
   data: {
     tdxxId:'6793995262885888',
     tdxxDeatil:[],
-    duiyuanID:''
-
+    duiyuanID:'123456',
+    testData:[],
+    duizhangID:'',
+    duiyuanid: '',
+    duizhangDeatil:[],
+    listmemberdeatil:[],
   },
 
 
@@ -22,7 +26,26 @@ Page({
     app.wxRequest('GET', url, data, (res) => {
       console.log(res.data)
       this.setData({
-      tdxxDeatil:res.data
+      tdxxDeatil:res.data,
+      duizhangID:res.data.lid
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+
+    
+  },
+
+  getDuizhang (){
+    let url = app.globalData.URL + '/appuser/findUserByID';
+    let data = {
+      id: this.data.duizhangID,
+     
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res.data)
+      this.setData({
+        duizhangDeatil: res.data,
       })
     }, (err) => {
       console.log(err.errMsg)
@@ -31,12 +54,16 @@ Page({
 
   navziliao: function (e) {
     console.log(e)
-    wx.navigateTo({
-      url: '/pages/ziliao/ziliao'
+    this.setData({
+      duiyuanid:this.data.listmemberdeatil[0].uid
     })
+    wx.navigateTo({
+      url: '/pages/ziliao/ziliao?id=' + this.data.duiyuanid
+    })
+
   },
 
-  test: function () {
+  getListMember: function () {
     let url = app.globalData.URL + '/team/listMember';
     let data = {
       id: this.data.tdxxId
@@ -44,7 +71,7 @@ Page({
     app.wxRequest('GET', url, data, (res) => {
       console.log(res.data)
       this.setData({
-       
+        listmemberdeatil:res.data
       })
     }, (err) => {
       console.log(err.errMsg)
@@ -57,7 +84,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getXinxi()
+    this.getXinxi();
+    this.getDuizhang();
+    this.getListMember();
   },
 
   /**

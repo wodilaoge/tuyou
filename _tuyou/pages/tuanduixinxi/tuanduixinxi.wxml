@@ -10,13 +10,13 @@
 </view>
 <view style=" background-color:#5454FF;height:300rpx;">
   <view class="flex" style="height:160rpx;padding-top:46rpx;">
-    <image style="padding-left:24rpx;height:160rpx;width:160rpx;" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg"></image>
+    <image style="padding-left:24rpx;height:160rpx;width:160rpx;" src="{{tdxxDeatil.logo}}"></image>
     <view style="margin-left:21rpx;">
       <view class="flex ">
-        <view class="tdxx-duiming">强有力队</view>
+        <view class="tdxx-duiming ">{{tdxxDeatil.name}}</view>
         <view class="tdxx-leibie margin-left-sm">运动-篮球</view>
       </view>
-      <view class="tdxx-xuanyan">我们喜欢挑战，热爱生活，开会从中发现新的闪光点，我们就是这样勇往直前的队伍。</view>
+      <view class="tdxx-xuanyan">{{tdxxDeatil.slogan}}</view>
     </view>
   </view>
 
@@ -25,46 +25,44 @@
 <view class="tdxx-xinxi">
   <view class="tdxx-duizhang flex">
     <image style="width:80rpx;height:80rpx;border-radius:50%;margin-left:23rpx;margin-top:12rpx;" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg"></image>
-    <view class="tdxx-duizhnag-name">李曙(队长)</view>
+    <view class="tdxx-duizhnag-name ">{{tdxxDeatil.leader}}(队长)</view>
     <view class="tdxx-guanzhu align-center">关注</view>
-    <view class="right">
-      <image class="tdxx-img-icon" mode="aspectFit" src="/img/icon_add_friends.png" bindtap="pinluntiaozhuan"></image>
-    </view>
+    <image class="tdxx-img-icon" mode="aspectFit" src="/img/icon_add_friends.png" ></image>
   </view>
 
   <view class="flex">
     <view class="tdxx-xinxi-title">联系电话</view>
-    <view class="tdxx-xinxi-neirong">18205701206</view>
+    <view class="tdxx-xinxi-neirong">{{tdxxDeatil.linktel}}</view>
     <image class="tdxx-img-icon" mode="aspectFit" src="/img/icon_dial.png" bindtap="pinluntiaozhuan" style="width:37rpx;height:36rpx;margin-left:-273rpx;margin-top:32rpx;"></image>
   </view>
   <view class="flex">
     <view class="tdxx-xinxi-title">团队介绍</view>
-    <view class="tdxx-xinxi-neirong">我们是来自于营销协会充满活力集创造 力，行动力与凝聚力聚于一身的队员</view>
+    <view class="tdxx-xinxi-neirong">{{tdxxDeatil.summary}}</view>
   </view>
   <view class="flex">
     <view class="tdxx-xinxi-title">地区</view>
-    <view class="tdxx-xinxi-neirong">浙江省杭州市</view>
+    <view class="tdxx-xinxi-neirong">{{tdxxDeatil.city}}</view>
   </view>
   <view class="flex">
     <view class="tdxx-xinxi-title">隶属机构</view>
-    <view class="tdxx-xinxi-neirong">浙江大学篮球社</view>
+    <view class="tdxx-xinxi-neirong">{{tdxxDeatil.superior}}</view>
   </view>
   <view class="flex">
     <view class="tdxx-xinxi-title">Email</view>
-    <view class="tdxx-xinxi-neirong">12345@163.com</view>
+    <view class="tdxx-xinxi-neirong">{{tdxxDeatil.email}}</view>
   </view>
   <view class="flex">
     <view class="tdxx-xinxi-title">网址</view>
-    <view class="tdxx-xinxi-neirong" style="color:#5454FF;">www.zas.com</view>
+    <view class="tdxx-xinxi-neirong" style="color:#5454FF;">{{tdxxDeatil.website}}</view>
   </view>
   <view class="flex">
     <view class="tdxx-xinxi-title">微信公众号</view>
-    <view class="tdxx-xinxi-neirong" style="color:#EC5D09;">强有力队</view>
+    <view class="tdxx-xinxi-neirong" style="color:#EC5D09;">{{tdxxDeatil.wcoa}}</view>
   </view>
 </view>
 
 <view class="flex align-end margin-top-sm bg-white" style="height:59rpx;padding-left:24rpx;">
-  <view class="tdxx-liebiao" bindtap="test">成员列表</view>
+  <view class="tdxx-liebiao" >成员列表</view>
   <view class="tdxx-liebiao-num margin-left-sm">(22)</view>
 </view>
 
@@ -72,7 +70,7 @@
   <view class="tdxx-avatar-group ">
     <block wx:for="{{21}}">
       <view class="tdxx-avatar-content">
-        <image class="tdxx-avatar round " src="https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{(index+1)%9}}.jpg" bindtap="navziliao" duiyuanId="duiyuanid"></image>
+        <image class="tdxx-avatar round " src="https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{(index+1)%9}}.jpg" bindtap="navziliao" id="index"></image>
         <view class="tdxx-avatar-name">吴福佳</view>
      
       </view>
@@ -181,3 +179,4 @@
     </view>
   </view>
 
+  
