@@ -18,6 +18,7 @@
     <view bindtap="jump" data-id="5" class="menu-item">
       <image src="/img/index/news.png" class="menu-img"></image>
       <text class="menu-name text-bold">新闻</text>
+      <!-- {{sectioninfo.data[0].name}} -->
     </view>
     <view bindtap="jump" data-id="0" class="menu-item">
       <image src="/img/index/activity.png" class="menu-img"></image>
