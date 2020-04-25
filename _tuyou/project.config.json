@@ -85,10 +85,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 4,
 					"name": "查看回复",
 					"pathName": "pages/chakanhuifu/chakanhuifu",
-					"query": "",
+					"query": "id=10427837156687872",
 					"scene": null
 				},
 				{

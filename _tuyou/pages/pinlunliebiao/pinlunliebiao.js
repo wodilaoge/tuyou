@@ -1,22 +1,22 @@
 const app = getApp();
 Page({
   data: {
-    option:[],
+    option: [],
     categoryId: '',
-    objtitle:'',
+    objtitle: '',
     comment: [],
     comment_detail: [],
     Input: '',
   },
-  emailInput: function (e) {
+  emailInput: function(e) {
     this.setData({
       Input: e.detail.value
     });
   },
-  chakanhuifu(e) { //查看回放跳转
+  chakanhuifu: function(e) { //查看回放跳转
     console.log(e);
     wx.navigateTo({
-      url: '../../pages/chakanhuifu/chakanhuifu',
+      url: '/pages/chakanhuifu/chakanhuifu?id=' + e.currentTarget.dataset.id + '&objtitle=' + e.currentTarget.dataset.objtitle,
     })
   },
   comment() { //评论
@@ -27,6 +27,7 @@ Page({
       objtype: 30
     };
     app.wxRequest('GET', url, data, (res) => {
+      console.log(res.data.list);
       self.setData({
         comment: res.data
       });
@@ -47,15 +48,15 @@ Page({
       objtitle: self.data.objtitle,
       comment: self.data.Input,
       creater: "1025873536876561",
-      createrAlias:"张三",
-      createrHead: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg"
+      createrAlias: "用户12138",
+      createrHead: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10005.jpg"
     };
     app.wxRequest('POST', url, data, (res) => {
       self.onLoad(self.data.option);
       wx.showToast({
         title: '评论成功！', // 标题
-        icon: 'success',  // 图标类型，默认success
-        duration: 1500  // 提示窗停留时间，默认1500ms
+        icon: 'success', // 图标类型，默认success
+        duration: 1500 // 提示窗停留时间，默认1500ms
       })
 
     }, (err) => {
@@ -65,7 +66,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (option) {
+  onLoad: function(option) {
     var self = this;
     self.setData({
       option: option,
@@ -85,8 +86,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function (options) {
-  },
+  onShow: function(options) {},
 
   /**
    * 生命周期函数--监听页面隐藏

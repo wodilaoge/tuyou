@@ -1,17 +1,38 @@
-// pages/chakanhuifu/chakanhuifu.js
+const app = getApp();
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    option:[],
+    id:'',
+    huifudata: [],
+    comment: []
+  },
+  comment() { //获取父评论
+    var self = this;
+    let url = app.globalData.URL + '/comm/listComm';
+    let data = {
+      id: self.data.id,
+      objtype: 30
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res.data);
+      self.setData({
+        comment: res.data
+      });
+    }, (err) => {
+      console.log(err.errMsg)
+    });
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-
+  onLoad: function(option) {
+    var self = this;
+    self.setData({
+      option: option,
+      id: option.id,
+      objtitle: option.objtitle
+    })
+    self.comment();
   },
 
   /**
