@@ -11,8 +11,9 @@
   width: 38px;
   height: 38px;
   bottom: 80px;
-  right: 140px;
+  right: 200px;
 }
+
 .activity_text {
   position: fixed;
   width: 38px;
@@ -21,17 +22,19 @@
   right: 17px;
   color: black;
 }
-.video_icon{
+
+.video_icon {
   position: fixed;
   width: 38px;
   height: 38px;
-  bottom: 140px;
+  bottom: 80px;
   right: 140px;
 }
-.team_icon{
-   position: fixed;
+
+.team_icon {
+  position: fixed;
   width: 38px;
   height: 38px;
-  bottom: 200px;
-  right: 140px;
+  bottom: 80px;
+  right: 80px;
 }
