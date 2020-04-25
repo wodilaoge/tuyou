@@ -2,7 +2,7 @@
   position: fixed;
   width: 38px;
   height: 38px;
-  bottom: 20px;
+  bottom: 10px;
   right: 140px;
 }
 
@@ -10,7 +10,7 @@
   position: fixed;
   width: 38px;
   height: 38px;
-  bottom: 80px;
+  bottom: 60px;
   right: 200px;
 }
 
@@ -27,7 +27,7 @@
   position: fixed;
   width: 38px;
   height: 38px;
-  bottom: 80px;
+  bottom: 60px;
   right: 140px;
 }
 
@@ -35,6 +35,6 @@
   position: fixed;
   width: 38px;
   height: 38px;
-  bottom: 80px;
+  bottom: 60px;
   right: 80px;
 }

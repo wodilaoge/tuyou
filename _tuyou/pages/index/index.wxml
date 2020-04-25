@@ -1,3 +1,4 @@
+<tabs></tabs>
 <view class="hidden">
   <view class="bk">
     <view class="text-bold left text-white">同友</view>
@@ -12,7 +13,7 @@
       </swiper-item>
     </swiper>
   </view>
-<tabs></tabs>
+
   <view class="menu bg-white">
     <view bindtap="jump" data-id="5" class="menu-item">
       <image src="/img/index/news.png" class="menu-img"></image>
