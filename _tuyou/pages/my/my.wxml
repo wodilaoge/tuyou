@@ -19,8 +19,8 @@
 
 <view class="bg-white padding">
   <!-- <view style="background:url('/img/my/img_bar.png')" > -->
-    <view class="text1 ">
-    <image src="/img/my/img_bar.png" mode="widthFix"></image>
+  <view class="text1 bk ">
+    <!-- <image src="/img/my/img_bar.png" class="bkimg"></image> -->
     <view class="text-item">
       <text class="text"></text>8
       <text class="text2"></text>消息
@@ -37,6 +37,7 @@
       <text class="text"></text>8
       <text class="text2"></text>关注
     </view>
+
   </view>
 </view>
 <view class="cu-bar bg-white solid-bottom">

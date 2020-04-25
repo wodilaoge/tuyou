@@ -152,7 +152,7 @@
 }
 
 .video-list-photo {
-  width: 333rpx;
+  width: 330rpx;
   height: 250rpx;
   box-sizing: border-box;
 }
