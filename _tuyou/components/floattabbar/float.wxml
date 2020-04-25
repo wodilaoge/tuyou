@@ -1,15 +1,15 @@
-<cover-view bindtap='adddetial'>
-  <cover-image class="add_icon" src="/img/tabbar/add2.png"></cover-image>
-</cover-view>
-<cover-view wx:if="{{isshow}}">
-  <cover-view bindtap='toact'>
-    <cover-image class="activity_icon" src="/img/form/activity2.png"></cover-image>
+<view bindtap='adddetial'>
+  <image class="add_icon" src="/img/tabbar/add2.png"></image>
+</view>
+<view wx:if="{{isshow}}">
+  <view bindtap='toact'>
+    <image class="activity_icon" src="/img/form/activity2.png"></image>
     <!-- <text class="activity_text">发活动</text> -->
-  </cover-view>
-  <cover-view bindtap='tovideo'>
-    <cover-image class="video_icon" src="/img/form/video2.png"></cover-image>
-  </cover-view>
-  <cover-view bindtap='toteam'>
-    <cover-image class="team_icon" src="/img/form/team2.png"></cover-image>
-  </cover-view>
-</cover-view>
+  </view>
+  <view bindtap='tovideo'>
+    <image class="video_icon" src="/img/form/video2.png"></image>
+  </view>
+  <view bindtap='toteam'>
+    <image class="team_icon" src="/img/form/team2.png"></image>
+  </view>
+</view>
