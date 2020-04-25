@@ -40,10 +40,11 @@
 <view  wx:else class="bg-white">
   <view class="white"></view>
   <view class="solid-bottom padding  text-center ">
-    <button open-type="getUserInfo" bindgetuserinfo='login' class="text-tong tex-bold cu-btn bg-white">登录同友</button>
+    <button disabled="{{!isagree}}" open-type="getUserInfo" bindgetuserinfo='login' class="text-tong tex-bold cu-btn bg-white">登录同友</button>
+    <!-- <button bindtap="login" class="text-tong tex-bold cu-btn bg-white">登录同友</button> -->
   </view>
   <view class="text-center margin-top3">
-    <checkbox checked class="blue checkicon"></checkbox>
+    <checkbox checked="{{isagree}}" class="blue checkicon" bindtap="isagree"></checkbox>
     <text class="text-grey">我已阅读并同意</text>
     <text class="text-blue">《同友活动申明》</text>
   </view>

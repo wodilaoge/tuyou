@@ -5,7 +5,8 @@ Page({
     index: null,
     name: '',
     userInfoAll: [],
-    webinfo:[]
+    webinfo: [],
+    isagree: true
   },
   PickerChange(e) {
     console.log(e);
@@ -68,30 +69,39 @@ Page({
     })
   },
   login(e) {
-    var that = this
-    this.setData({
-      userInfoAll: e.detail.userInfo
-    })
-    wx.login({
-      success: function(res) {
-        console.log(res);
-        let url = app.globalData.URL + '/auth/wcAnonLogin';
-        let data = {
-          code:res.code
-        };
-        util.post(url, data).then(function(res) {
-          console.log('id',res)
-          that.setData({
-            webinfo: res.data
+    if (!this.data.isagree) {
+      wx.showToast({
+        title: '请先勾选！',
+      })
+    } else {
+      var that = this
+      this.setData({
+        userInfoAll: e.detail.userInfo
+      })
+      wx.login({
+        success: function(res) {
+          console.log(res);
+          let url = app.globalData.URL + '/auth/wcAnonLogin';
+          let data = {
+            code: res.code
+          };
+          util.post(url, data).then(function(res) {
+            console.log('id', res)
+            that.setData({
+              webinfo: res.data
+            })
           })
-        })
-      }
-    })
-    that.lg()
+        }
+      })
+      wx.showToast({
+        title: '登录成功！',
+      })
+      that.lg()
+    }
   },
-  lg(){
+  lg() {
     wx.getUserInfo({
-      success:function(res){
+      success: function(res) {
         var userinfo = res.userInfo
         console.log(userinfo);
         wx.setStorage({ //将活动信息存入缓存
@@ -99,6 +109,11 @@ Page({
           data: userinfo
         });
       }
+    })
+  },
+  isagree(e) {
+    this.setData({
+      isagree: !this.data.isagree
     })
   }
 })
