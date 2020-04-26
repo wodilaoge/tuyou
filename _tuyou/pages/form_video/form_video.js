@@ -135,7 +135,7 @@ Page({
       author: this.data.author,
       authorAlias: '',
       authorHead: '',
-      fileId: this.data.fileId,
+      fileId: this.data.video,
       notes: this.data.notes,
       status: '10',
       univ: '003330106',
@@ -263,7 +263,6 @@ Page({
     })
   },
   chooseVideo2(e) {
-    console.log('sda')
     var that = this
     wx.chooseVideo({
       success: (res) => {
