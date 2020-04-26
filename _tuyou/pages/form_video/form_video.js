@@ -1,10 +1,12 @@
 const app = getApp();
 const VodUploader = require('../../utils/vod-wx-sdk-v2.js');
+var upload = require("../../utils/upload.js");
 var util = require("../../utils/util.js");
 Page({
   data: {
     group: 0,
     videonum: 0,
+    video: [],
     index: null,
     picker4: ['篮球', '足球', '排球', '羽毛球', '乒乓球', '其他'],
     multiIndex: [0, 0, 0],
@@ -154,8 +156,7 @@ Page({
         wx.navigateTo({
           url: '/pages/form/form',
         })
-      }
-      else{
+      } else {
         console.log(res)
         wx.showToast({
           title: '提交失败！',
@@ -169,7 +170,7 @@ Page({
       wx.showToast({
         title: '提交失败！',
         icon: 'fail',
-        image:'../../img/fail.png',
+        image: '../../img/fail.png',
         duration: 2000
       })
     })
@@ -261,4 +262,20 @@ Page({
       }
     })
   },
+  chooseVideo2(e) {
+    console.log('sda')
+    var that = this
+    wx.chooseVideo({
+      success: (res) => {
+        console.log(res.tempFilePath)
+        this.setData({
+          imgList: res.tempFilePath
+        })
+        upload.uploadFile(this.data.imgList, 'video', that)
+        this.setData({
+          loadModal: true
+        })
+      }
+    });
+  }
 })
