@@ -91,28 +91,28 @@ Page({
                 //   key: "userInfo",
                 //   data: userinfo
                 // });
-                // let url = app.globalData.URL + '/auth/wclogin';
-                // let data = {
-                //   code: code,
-                //   nickname: userinfo.nickName,
-                //   head: userinfo.avatarUrl
-                // };
-                // util.post(url, data).then(function(res) {
-                //   console.log('id', res)
-                //   if (res.code == 0) {
-                //     that.setData({
-                //       userInfoAll: res.data
-                //     })
-                //     wx.showToast({
-                //       title: '登录成功！',
-                //     })
-                //   }
-                //   else{
-                //     wx.showToast({
-                //       title: '登录失败！',
-                //     })
-                //   }
-                // })
+                let url = app.globalData.URL + '/auth/wclogin';
+                let data = {
+                  code: code,
+                  nickname: userinfo.nickName,
+                  head: userinfo.avatarUrl
+                };
+                util.post(url, data).then(function(res) {
+                  console.log('id', res)
+                  if (res.code == 0) {
+                    that.setData({
+                      userInfoAll: res.data
+                    })
+                    wx.showToast({
+                      title: '登录成功！',
+                    })
+                  }
+                  else{
+                    wx.showToast({
+                      title: '登录失败！',
+                    })
+                  }
+                })
               }
             })
           }
