@@ -6,7 +6,6 @@ Page({
   data: {
     group: 0,
     videonum: 0,
-    video: [],
     index: null,
     picker4: ['篮球', '足球', '排球', '羽毛球', '乒乓球', '其他'],
     multiIndex: [0, 0, 0],
@@ -14,10 +13,10 @@ Page({
     title: '',
     author: '',
     notes: '',
+    video:'',
     videoFile: null,
     coverFile: null,
     imgList: [],
-    fileId: '',
     modalName: null,
     textareaAValue: '',
     textareaBValue: ''
@@ -133,7 +132,7 @@ Page({
       acid1: null,
       acid2: null,
       title: this.data.title,
-      author: this.data.author,
+      author: user.id,
       authorAlias: user.nickname,
       authorHead: user.head,
       fileId: this.data.video,
@@ -142,7 +141,7 @@ Page({
       univ: '003330106',
       province: '00333',
       city: '0033301',
-      creater: user.id,
+      creater: '1025873536876568',
       mender: ''
     }
     util.post_token(url, data).then(function(res) {
