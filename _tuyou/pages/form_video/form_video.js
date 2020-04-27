@@ -147,15 +147,16 @@ Page({
     }
     util.post_token(url, data).then(function(res) {
       if (!res.data.code) {
-        console.log('success!')
-        console.log(res)
         wx.showToast({
-          title: '提交成功！',
-          icon: 'success',
-          duration: 2000
-        })
-        wx.navigateTo({
-          url: '/pages/form/form',
+          title: '提交成功',
+          duration: 2000,
+          success: function () {
+            setTimeout(function () {
+              wx.reLaunch({
+                url: '/pages/index/index',
+              })
+            }, 2000);
+          }
         })
       } else {
         console.log(res)

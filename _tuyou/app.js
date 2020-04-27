@@ -53,24 +53,33 @@ App({
   },
   wxRequest(method, url, data, callback, errFun) {
     var user = wx.getStorageSync('userInfo')
-    user='Bearer '+user.token;
-    wx.request({
-      url: url,
-      method: method,
-      data: data,
-      header: {
-        'content-type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': user,
-      },
-      dataType: 'json',
-      success: function(res) {
-        callback(res.data);
-      },
-      fail: function(err) {
-        errFun(res);
-      }
-    })
+    if (user == null) {
+      wx.showToast({
+        title: '请重新登录',
+        icon: 'success',
+        image: '/img/fail.png',
+        duration: 2000
+      })
+    } else {
+      user = 'Bearer ' + user.token;
+      wx.request({
+        url: url,
+        method: method,
+        data: data,
+        header: {
+          'content-type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': user,
+        },
+        dataType: 'json',
+        success: function(res) {
+          callback(res.data);
+        },
+        fail: function(err) {
+          errFun(res);
+        }
+      })
+    }
   },
   onLaunch: function() {
     // 展示本地存储能力

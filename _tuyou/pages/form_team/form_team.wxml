@@ -102,6 +102,11 @@
     <input class="input text-grey" placeholder=""></input>
     <image class="icon" src="../../img/write.png"></image>
   </view> -->
+   <view class="cu-form-group">
+    <view class="title">隶属机构</view>
+    <input class="input text-grey" bindinput="getsuperior" placeholder=""></input>
+    <image class="icon" src="../../img/write.png"></image>
+  </view>
   <view class="cu-form-group">
     <view class="title">人数上限</view>
     <view class="tui-gallery-list">

@@ -398,14 +398,20 @@ Page({
         console.log(res.data);
         if (res.code==0) {
           wx.showToast({
-            title: '提交成功！',
-            icon: 'success',
-            duration: 2000
+            title: '提交成功',
+            duration: 2000,
+            success: function () {
+              setTimeout(function () {
+                wx.reLaunch({
+                  url: '/pages/index/index',
+                })
+              }, 2000);
+            }
           })
         }
         else{
           wx.showToast({
-            title: res.code,
+            title: '提交失败!',
             image:'/img/fail.png',
             icon: 'success',
             duration: 2000

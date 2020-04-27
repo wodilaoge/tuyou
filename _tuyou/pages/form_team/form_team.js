@@ -15,6 +15,7 @@ Page({
     province: '',
     city: '',
     univid: '',
+    superior: '',
     rssort: '',
     email: '',
     website: '',
@@ -124,6 +125,11 @@ Page({
       region: e.detail.value
     })
   },
+  getsuperior(e) {
+    this.setData({
+      superior: e.detail.value
+    })
+  },
   getname(e) {
     this.setData({
       name: e.detail.value
@@ -227,32 +233,50 @@ Page({
   },
   commit: function(e) {
     var user = wx.getStorageSync('userInfo')
-    let url = app.globalData.URL + '/hd/addTd';
-    var data=this.data
+    let url = app.globalData.URL + '/team/updateTeam';
+    var data = this.data
     var data = {
+      id: '',
       sid: "076003",
       acid1: "076002001",
-      team:data.name,
-      tdsummary:data.article,
-      logo:data.other[0],
-      linktel:data.linktel,
-      tdslogan:data.tdslogan,
-      province:data.province,
-      city:data.city,
-      univid:data.univid,
-      rssort:data.number,
-      email:data.email,
-      website:data.website,
-      wcoa:data.wcoa
+      team: data.name,
+      summary: data.article,
+      logo: data.other[0],
+      linktel: data.linktel,
+      slogan: data.tdslogan,
+      province: data.province,
+      city: data.city,
+      univ: data.univid,
+      superior: data.superior,
+      rssort: data.number,
+      email: data.email,
+      website: data.website,
+      wcoa: data.wcoa,
+      creater: user.id
     }
     util.post_token(url, data).then(function(res) {
-      console.log('success!')
-      wx.showToast({
-        title: '提交成功！',
-        icon: 'success',
-        duration: 2000
-      })
-    }).catch(function (res) {
+      console.log(res.data)
+      if (res.data.code == 0) {
+        wx.showToast({ 
+          title: '提交成功',
+           duration: 2000,
+           success: function() { 
+            setTimeout(function() { 
+              wx.reLaunch({
+                url: '/pages/index/index',
+              }) 
+            }, 2000); 
+          }
+        })
+      } else {
+        wx.showToast({
+          title: '提交失败!',
+          image: '/img/fail.png',
+          icon: 'success',
+          duration: 2000
+        })
+      }
+    }).catch(function(res) {
       console.log(res)
       wx.showToast({
         title: '提交失败！',
