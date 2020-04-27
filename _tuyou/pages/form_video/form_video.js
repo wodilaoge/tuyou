@@ -123,6 +123,7 @@ Page({
     })
   },
   commit: function(e) {
+    var user = wx.getStorageSync('userInfo')
     let url = app.globalData.URL + '/video/updateActVideo';
     var data = this.data
     var data = {
@@ -133,18 +134,18 @@ Page({
       acid2: null,
       title: this.data.title,
       author: this.data.author,
-      authorAlias: '',
-      authorHead: '',
+      authorAlias: user.nickname,
+      authorHead: user.head,
       fileId: this.data.video,
       notes: this.data.notes,
       status: '10',
       univ: '003330106',
       province: '00333',
       city: '0033301',
-      creater: '1025873536876568',
-      mender: '1025873536876568'
+      creater: user.id,
+      mender: ''
     }
-    util.post(url, data).then(function(res) {
+    util.post_token(url, data).then(function(res) {
       if (!res.data.code) {
         console.log('success!')
         console.log(res)

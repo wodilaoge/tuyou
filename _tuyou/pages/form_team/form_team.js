@@ -226,6 +226,7 @@ Page({
     })
   },
   commit: function(e) {
+    var user = wx.getStorageSync('userInfo')
     let url = app.globalData.URL + '/hd/addTd';
     var data=this.data
     var data = {
@@ -244,7 +245,7 @@ Page({
       website:data.website,
       wcoa:data.wcoa
     }
-    util.post(url, data).then(function(res) {
+    util.post_token(url, data).then(function(res) {
       console.log('success!')
       wx.showToast({
         title: '提交成功！',

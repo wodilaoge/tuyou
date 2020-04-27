@@ -87,10 +87,6 @@ Page({
               success: function(res) {
                 var userinfo = res.userInfo
                 console.log(userinfo);
-                // wx.setStorage({ //将活动信息存入缓存
-                //   key: "userInfo",
-                //   data: userinfo
-                // });
                 let url = app.globalData.URL + '/auth/wclogin';
                 let data = {
                   code: code,
@@ -99,15 +95,18 @@ Page({
                 };
                 util.post(url, data).then(function(res) {
                   console.log('id', res)
-                  if (res.code == 0) {
+                  if (res.data.code == 0) {
                     that.setData({
-                      userInfoAll: res.data
+                      userInfoAll: res.data.data
                     })
+                    wx.setStorage({ //将用户信息存入缓存 名称为userinfo
+                      key: "userInfo",
+                      data: res.data.data
+                    });
                     wx.showToast({
                       title: '登录成功！',
                     })
-                  }
-                  else{
+                  } else {
                     wx.showToast({
                       title: '登录失败！',
                     })
