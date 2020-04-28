@@ -13,7 +13,7 @@ Page({
     title: '',
     author: '',
     notes: '',
-    video:'',
+    video: '',
     videoFile: null,
     coverFile: null,
     imgList: [],
@@ -57,27 +57,6 @@ Page({
       region: e.detail.value
     })
   },
-  ChooseImage(e) {
-    var t = e.currentTarget.dataset.id
-    wx.chooseImage({
-      count: 4, //默认9
-      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album'], //从相册选择
-      success: (res) => {
-        if (t == 1) {
-          if (this.data.imgList.length != 0) {
-            this.setData({
-              imgList: this.data.imgList.concat(res.tempFilePaths)
-            })
-          } else {
-            this.setData({
-              imgList: res.tempFilePaths
-            })
-          }
-        }
-      }
-    });
-  },
   ViewImage(e) {
     var t = e.currentTarget.dataset.id
     if (t == 1) {
@@ -89,22 +68,21 @@ Page({
   },
   DelImg(e) {
     var t = e.currentTarget.dataset.id
-    if (t == 1) {
-      wx.showModal({
-        title: '确定',
-        content: '确定要删除这张照片？',
-        cancelText: '取消',
-        confirmText: '确认删除',
-        success: res => {
-          if (res.confirm && t == 1) {
-            this.data.imgList.splice(e.currentTarget.dataset.index, 1);
-            this.setData({
-              imgList: this.data.imgList
-            })
-          }
+    wx.showModal({
+      title: '确定',
+      content: '确定要删除这张照片？',
+      cancelText: '取消',
+      confirmText: '确认删除',
+      success: res => {
+        if (res.confirm && t == 1) {
+          this.setData({
+            videonum:0,
+            video:''
+          })
         }
-      })
-    }
+      }
+    })
+
   },
   textareaAInput(e) {
     this.setData({
@@ -149,8 +127,8 @@ Page({
         wx.showToast({
           title: '提交成功',
           duration: 2000,
-          success: function () {
-            setTimeout(function () {
+          success: function() {
+            setTimeout(function() {
               wx.reLaunch({
                 url: '/pages/index/index',
               })
@@ -269,11 +247,12 @@ Page({
       success: (res) => {
         console.log(res.tempFilePath)
         this.setData({
-          imgList: res.tempFilePath
+          imgList: res.tempFilePath,
+          videonum: 1
         })
         upload.uploadFile(this.data.imgList, 'video', that)
         this.setData({
-          loadModal: true
+          loadModal: true,
         })
       }
     });

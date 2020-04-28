@@ -74,7 +74,7 @@
   </view>
   <view class='cu-load load-modal' wx:if="{{loadModal}}">
     <!-- <view class='cuIcon-emojifill text-orange'></view> -->
-    <view class='gray-text'>加载中...</view>
+    <view class='gray-text'>上传中...</view>
   </view>
   <view class="text-center margin-top3">
     <checkbox checked class="blue checkicon"></checkbox>
