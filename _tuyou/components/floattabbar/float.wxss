@@ -1,24 +1,25 @@
+/* 1px= 2rpx */
 .add_icon {
   position: fixed;
-  width: 40px;
-  height: 40px;
-  bottom: 10px;
-  right: 45vw;
+  width: 76rpx;
+  height: 76rpx;
+  bottom: 30rpx;
+  right: 336rpx;
   /* justify-content: center; */
 }
 
 .activity_icon {
   position: fixed;
-  width: 40px;
-  height: 40px;
-  bottom: 60px;
-  right: 65vw;
+  width: 76rpx;
+  height: 76rpx;
+  bottom: 152rpx;
+  right: 456rpx;
 }
 
 .activity_text {
   position: fixed;
-  width: 40px;
-  height: 40px;
+  width: 76rpx;
+  height: 76rpx;
   bottom: 36px;
   right: 17px;
   color: black;
@@ -26,16 +27,16 @@
 
 .video_icon {
   position: fixed;
-  width: 40px;
-  height: 40px;
-  bottom: 60px;
-  right: 45vw;
+  width: 76rpx;
+  height: 76rpx;
+  bottom: 152rpx;
+  right: 336rpx;/* 280rpx */
 }
 
 .team_icon {
   position: fixed;
-  width: 40px;
-  height: 40px;
-  bottom: 60px;
-  right: 25vw;
+  width: 76rpx;
+  height: 76rpx;
+  bottom: 152rpx;
+  right: 216rpx;
 }
