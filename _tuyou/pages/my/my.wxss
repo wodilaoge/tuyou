@@ -1,6 +1,14 @@
 .cu-form-group .title {
   min-width: calc(4em + 30rpx);
 }
+.right{
+  position: relative;
+  left: 30rpx;
+}
+.right2{
+  position: relative;
+  left: 20rpx;
+}
 .white{
   height: 20rpx;
   background-color: white;
