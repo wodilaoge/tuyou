@@ -12,6 +12,7 @@ Page({
     cardCur: 0,
     xiaoyuanSwiperList: [],
     yundongSwiperList: [],
+    
   },
   tabSelect(e) {
     this.setData({
@@ -34,6 +35,7 @@ Page({
     var self=this;
     let url1 = app.globalData.URL + '/config/getSections';
     app.wxRequest('GET', url1, [], (res) => {
+      console.log(res.data)
       self.setData({
         bkData: res.data
       })

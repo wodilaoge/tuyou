@@ -8,7 +8,7 @@ Page({
     comment_detail: [],
     Input: '',
   },
-  emailInput: function(e) {
+  emailInput: function(e) {//input输入
     this.setData({
       Input: e.detail.value
     });
@@ -38,6 +38,18 @@ Page({
       console.log(err.errMsg)
     });
   },
+  pd_fasong() {
+    if (this.data.Input == "") {
+      wx.showToast({
+        title: '请输入回复内容', // 标题
+        icon: 'none', 
+        duration: 1500 // 提示窗停留时间，默认1500ms
+      })
+    }
+    else {
+      this.fasong()
+    }
+  },
   fasong() { //发送按钮
     var self = this;
     let url = app.globalData.URL + '/comm/addComment';
@@ -58,10 +70,12 @@ Page({
         icon: 'success', // 图标类型，默认success
         duration: 1500 // 提示窗停留时间，默认1500ms
       })
-
     }, (err) => {
       console.log(err.errMsg)
     });
+    self.setData({
+      Input: ''
+    })
   },
   /**
    * 生命周期函数--监听页面加载
