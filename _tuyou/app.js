@@ -1,73 +1,85 @@
 //app.js
 App({
   globalData: {
-    tabbar:0,
+    tabbar: 0,
     URL: 'http://192.144.169.239:8080/kt',
     systemInfo: null, //客户端设备信息
     YundongList: [{
-      name: '篮球',
-    },
-    {
-      name: '足球',
-    },
-    {
-      name: '羽毛球',
-    },
-    {
-      name: '乒乓球',
-    },
-    {
-      name: '网球',
-    },
-    {
-      name: '台球',
-    },
-    {
-      name: '跑步',
-    },
-    {
-      name: '武术',
-    },
-    {
-      name: '格斗',
-    },
-    {
-      name: '户外',
-    },
-    {
-      name: '音乐',
-    },
-    {
-      name: '演唱',
-    },
-    {
-      name: '舞蹈',
-    },
-    {
-      name: '棋艺',
-    },
-    {
-      name: '电竞',
-    },
+        name: '篮球',
+      },
+      {
+        name: '足球',
+      },
+      {
+        name: '羽毛球',
+      },
+      {
+        name: '乒乓球',
+      },
+      {
+        name: '网球',
+      },
+      {
+        name: '台球',
+      },
+      {
+        name: '跑步',
+      },
+      {
+        name: '武术',
+      },
+      {
+        name: '格斗',
+      },
+      {
+        name: '户外',
+      },
+      {
+        name: '音乐',
+      },
+      {
+        name: '演唱',
+      },
+      {
+        name: '舞蹈',
+      },
+      {
+        name: '棋艺',
+      },
+      {
+        name: '电竞',
+      },
     ]
   },
   wxRequest(method, url, data, callback, errFun) {
-    wx.request({
-      url: url,
-      method: method,
-      data: data,
-      header: {
-        'content-type': 'application/json',
-        'Accept': 'application/json'
-      },
-      dataType: 'json',
-      success: function(res) {
-        callback(res.data);
-      },
-      fail: function(err) {
-        errFun(res);
-      }
-    })
+    var user = wx.getStorageSync('userInfo')
+    if (user == null) {
+      wx.showToast({
+        title: '请重新登录',
+        icon: 'success',
+        image: '/img/fail.png',
+        duration: 2000
+      })
+    } else {
+      user = 'Bearer ' + user.token;
+      wx.request({
+        url: url,
+        method: method,
+        data: data,
+        header: {
+          'content-type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': user,
+        },
+        dataType: 'json',
+        success: function(res) {
+          callback(res.data);
+        },
+        fail: function(err) {
+          errFun(res);
+        }
+      })
+    }
   },
   onLaunch: function() {
     // 展示本地存储能力

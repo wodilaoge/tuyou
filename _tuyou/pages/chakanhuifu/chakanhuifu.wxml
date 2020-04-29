@@ -11,11 +11,11 @@
     <view class="cu-item shadow">
       <view class="cu-list menu-avatar">
         <view class="cu-item">
-          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+          <view class="cu-avatar round lg" style="background-image:url({{comment.createrHead}});"></view>
           <view class="content flex-sub">
               <view class=" flex justify-between">
                 <view>
-                  <text class="card-text-grey" decode="{{true}}">吴福嘉&emsp;</text>
+                  <text class="card-text-grey" decode="{{true}}">{{comment.createrAlias}}&emsp;</text>
                 </view>
                 <view class="text-gray text-sm">
                   <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
@@ -23,10 +23,10 @@
                 </view>
             </view>
             <view class="card-text-content">
-              活动看着不错，我报名啦
+              {{comment.comment}}
             </view>
             <view class="card-text-content-time">
-              03-15 16:15   回复
+              {{comment.strCreatetime}} {{comment.replyCnt}} 回复
             </view>
           </view>
         </view>
@@ -38,11 +38,11 @@
 <view class="cu-card case">
     <view class="cu-item shadow">
       <view class="cu-list menu-avatar ">
-        <view class="cu-item">
+        <view class="cu-item" wx:for="{{list.list}}">
           <view class="content flex-sub bg-white padding">
               <view class=" flex justify-between">
                 <view>
-                  <text class="card-text-grey" decode="{{true}}">福嘉&emsp;</text>
+                  <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
                 </view>
                 <view class="text-gray text-sm">
                   <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
@@ -50,29 +50,10 @@
                 </view>
             </view>
             <view class="card-text-content">
-              活动看着不错，我报名啦
+              {{item.comment}}
             </view>
             <view class="card-text-content-time">
-              03-15 16:15   6回复
-            </view>
-          </view>
-        </view>
-        <view class="cu-item">
-          <view class="content flex-sub bg-white padding">
-              <view class=" flex justify-between">
-                <view>
-                  <text class="card-text-grey" decode="{{true}}">福嘉&emsp;</text>
-                </view>
-                <view class="text-gray text-sm">
-                  <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
-                  <text class="cuIcon-appreciate margin-lr-xs "></text> 1
-                </view>
-            </view>
-            <view class="card-text-content">
-              活动看着不错，我报名啦
-            </view>
-            <view class="card-text-content-time">
-              03-15 16:15   6回复
+              {{item.strCreatetime}} {{item.replyCnt}} 回复
             </view>
           </view>
         </view>
@@ -81,7 +62,7 @@
 </view>
 <view>
   <view class="cu-bar input foot padding">
-    <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
-    <button class="cu-btn bg-orange shadow-blur padding">发送</button>
+    <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" value="{{Input}}" placeholder='来说点什么吧！' bindinput="emailInput"></input>
+    <button class="cu-btn bg-orange shadow-blur padding" bindtap="pd_fasong">发送</button>
   </view>
 </view>

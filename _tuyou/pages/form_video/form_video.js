@@ -1,5 +1,6 @@
 const app = getApp();
 const VodUploader = require('../../utils/vod-wx-sdk-v2.js');
+var upload = require("../../utils/upload.js");
 var util = require("../../utils/util.js");
 Page({
   data: {
@@ -12,10 +13,10 @@ Page({
     title: '',
     author: '',
     notes: '',
+    video: '',
     videoFile: null,
     coverFile: null,
     imgList: [],
-    fileId: '',
     modalName: null,
     textareaAValue: '',
     textareaBValue: ''
@@ -56,27 +57,6 @@ Page({
       region: e.detail.value
     })
   },
-  ChooseImage(e) {
-    var t = e.currentTarget.dataset.id
-    wx.chooseImage({
-      count: 4, //默认9
-      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album'], //从相册选择
-      success: (res) => {
-        if (t == 1) {
-          if (this.data.imgList.length != 0) {
-            this.setData({
-              imgList: this.data.imgList.concat(res.tempFilePaths)
-            })
-          } else {
-            this.setData({
-              imgList: res.tempFilePaths
-            })
-          }
-        }
-      }
-    });
-  },
   ViewImage(e) {
     var t = e.currentTarget.dataset.id
     if (t == 1) {
@@ -88,22 +68,21 @@ Page({
   },
   DelImg(e) {
     var t = e.currentTarget.dataset.id
-    if (t == 1) {
-      wx.showModal({
-        title: '确定',
-        content: '确定要删除这张照片？',
-        cancelText: '取消',
-        confirmText: '确认删除',
-        success: res => {
-          if (res.confirm && t == 1) {
-            this.data.imgList.splice(e.currentTarget.dataset.index, 1);
-            this.setData({
-              imgList: this.data.imgList
-            })
-          }
+    wx.showModal({
+      title: '确定',
+      content: '确定要删除这张照片？',
+      cancelText: '取消',
+      confirmText: '确认删除',
+      success: res => {
+        if (res.confirm && t == 1) {
+          this.setData({
+            videonum:0,
+            video:''
+          })
         }
-      })
-    }
+      }
+    })
+
   },
   textareaAInput(e) {
     this.setData({
@@ -121,6 +100,7 @@ Page({
     })
   },
   commit: function(e) {
+    var user = wx.getStorageSync('userInfo')
     let url = app.globalData.URL + '/video/updateActVideo';
     var data = this.data
     var data = {
@@ -130,32 +110,32 @@ Page({
       acid1: null,
       acid2: null,
       title: this.data.title,
-      author: this.data.author,
-      authorAlias: '',
-      authorHead: '',
-      fileId: this.data.fileId,
+      author: user.id,
+      authorAlias: user.nickname,
+      authorHead: user.head,
+      fileId: this.data.video,
       notes: this.data.notes,
       status: '10',
       univ: '003330106',
       province: '00333',
       city: '0033301',
       creater: '1025873536876568',
-      mender: '1025873536876568'
+      mender: ''
     }
-    util.post(url, data).then(function(res) {
+    util.post_token(url, data).then(function(res) {
       if (!res.data.code) {
-        console.log('success!')
-        console.log(res)
         wx.showToast({
-          title: '提交成功！',
-          icon: 'success',
-          duration: 2000
+          title: '提交成功',
+          duration: 2000,
+          success: function() {
+            setTimeout(function() {
+              wx.reLaunch({
+                url: '/pages/index/index',
+              })
+            }, 2000);
+          }
         })
-        wx.navigateTo({
-          url: '/pages/form/form',
-        })
-      }
-      else{
+      } else {
         console.log(res)
         wx.showToast({
           title: '提交失败！',
@@ -169,7 +149,7 @@ Page({
       wx.showToast({
         title: '提交失败！',
         icon: 'fail',
-        image:'../../img/fail.png',
+        image: '../../img/fail.png',
         duration: 2000
       })
     })
@@ -261,4 +241,20 @@ Page({
       }
     })
   },
+  chooseVideo2(e) {
+    var that = this
+    wx.chooseVideo({
+      success: (res) => {
+        console.log(res.tempFilePath)
+        this.setData({
+          imgList: res.tempFilePath,
+          videonum: 1
+        })
+        upload.uploadFile(this.data.imgList, 'video', that)
+        this.setData({
+          loadModal: true,
+        })
+      }
+    });
+  }
 })

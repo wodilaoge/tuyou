@@ -15,10 +15,10 @@
 </view>
 <view class="cu-card case no-card bg-white" >
   <view class="cu-item shadow">
-    <view class="cu-list menu-avatar" bindtap="chakanhuifu">
+    <view class="cu-list menu-avatar">
       <view class="cu-item" wx:for="{{comment.list}}">
         <view class="cu-avatar round lg" style="background-image:url({{item.createrHead}});"></view>
-        <view class="content flex-sub">
+        <view class="content flex-sub"  bindtap="chakanhuifu" data-id="{{item.id}}" data-objtitle="{{item.objtitle}}">
           <view class=" flex justify-between">
             <view>
               <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
@@ -42,7 +42,7 @@
 </view>
 <view>
   <view class="cu-bar input foot padding">
-    <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！' bindinput="emailInput"></input>
-    <button class="cu-btn bg-orange shadow-blur padding" bindtap="fasong">发送</button>
+    <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" value="{{Input}}" placeholder='来说点什么吧！' bindinput="emailInput"></input>
+    <button class="cu-btn bg-orange shadow-blur padding" bindtap="pd_fasong">发送</button>
   </view>
 </view>

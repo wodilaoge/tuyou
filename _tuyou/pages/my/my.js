@@ -75,28 +75,48 @@ Page({
       })
     } else {
       var that = this
-      this.setData({
-        userInfoAll: e.detail.userInfo
-      })
+      // this.setData({
+      //   userInfoAll: e.detail.userInfo
+      // })
       wx.login({
         success: function(res) {
           console.log(res);
-          let url = app.globalData.URL + '/auth/wcAnonLogin';
-          let data = {
-            code: res.code
-          };
-          util.post(url, data).then(function(res) {
-            console.log('id', res)
-            that.setData({
-              webinfo: res.data
+          var code = res.code
+          if (res.code) {
+            wx.getUserInfo({
+              success: function(res) {
+                var userinfo = res.userInfo
+                console.log(userinfo);
+                let url = app.globalData.URL + '/auth/wclogin';
+                let data = {
+                  code: code,
+                  nickname: userinfo.nickName,
+                  head: userinfo.avatarUrl
+                };
+                util.post(url, data).then(function(res) {
+                  console.log('id', res)
+                  if (res.data.code == 0) {
+                    that.setData({
+                      userInfoAll: res.data.data
+                    })
+                    wx.setStorage({ //将用户信息存入缓存 名称为userinfo
+                      key: "userInfo",
+                      data: res.data.data
+                    });
+                    wx.showToast({
+                      title: '登录成功！',
+                    })
+                  } else {
+                    wx.showToast({
+                      title: '登录失败！',
+                    })
+                  }
+                })
+              }
             })
-          })
+          }
         }
       })
-      wx.showToast({
-        title: '登录成功！',
-      })
-      that.lg()
     }
   },
   lg() {
@@ -108,6 +128,7 @@ Page({
           key: "userInfo",
           data: userinfo
         });
+
       }
     })
   },

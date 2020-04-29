@@ -12,35 +12,7 @@ Page({
     news: [],
     sport: "1dwad ",
     tabbar: {},
-    swiperList: [{
-      id: 0,
-      type: 'image',
-      path: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
-    }, {
-      id: 1,
-      type: 'image',
-      path: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
-    }, {
-      id: 2,
-      type: 'image',
-      path: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
-    }, {
-      id: 3,
-      type: 'image',
-      path: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
-    }, {
-      id: 4,
-      type: 'image',
-      path: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big25011.jpg'
-    }, {
-      id: 5,
-      type: 'image',
-      path: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21016.jpg'
-    }, {
-      id: 6,
-      type: 'image',
-      path: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
-    }],
+    swiperList: [],
     "items": [{
         "id": "1",
         "imageUrl": "https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg",
@@ -77,10 +49,19 @@ Page({
   getuploadinfo() {
     var that = this
     let url = app.globalData.URL + '/config/getSections';
+    var url2 = app.globalData.URL + '/secrot/listSecrotation';
     let data = '';
+    let data2 = {
+      sid:'076002'
+    };
     util.gets(url, {}).then(function (res) {
       that.setData({
         sectioninfo: res.data
+      })
+    })
+    util.gets(url2,data2).then(function (res) {
+      that.setData({
+        swiperList: res.data.data
       })
     })
   },
@@ -176,6 +157,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    this.getinfo();
     // app.hideTabBar(); 
   },
 

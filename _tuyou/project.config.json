@@ -24,8 +24,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.4.2",
-	"appid": "wx9732558588ac8aef",
-	"projectname": "tuyou",
+	"appid": "wxe28bb23826f3d9d8",
+	"projectname": "_tuyou",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -85,10 +85,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 4,
 					"name": "查看回复",
 					"pathName": "pages/chakanhuifu/chakanhuifu",
-					"query": "",
+					"query": "id=10427837156687872",
 					"scene": null
 				},
 				{

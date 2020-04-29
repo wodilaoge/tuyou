@@ -66,7 +66,7 @@ Page({
       date: e.detail.value
     })
   },
-  RegionChange: function (e) {
+  RegionChange: function(e) {
     this.setData({
       region: e.detail.value
     })
@@ -294,7 +294,7 @@ Page({
       textareaBValue: e.detail.value
     })
   },
-  toForm_modify: function (e) {
+  toForm_modify: function(e) {
     wx.navigateTo({
       url: "../../pages/form_modify/form_modify"
     })
@@ -304,7 +304,7 @@ Page({
       modalName: null
     })
   },
-  addicon: function (e) {
+  addicon: function(e) {
     var tt = this.data.group
     if (tt > 4) {
       wx.showToast({
@@ -317,7 +317,7 @@ Page({
       })
     }
   },
-  subicon: function (e) {
+  subicon: function(e) {
     var t = this.data.group
     this.data.groups.splice(t - 1, 1)
     t--
@@ -341,13 +341,15 @@ Page({
     })
   },
 
-  commit: function (e) {
+  commit: function(e) {
+    var user = wx.getStorageSync('userInfo')
+    user = 'Bearer ' + user.token;
     var urls = app.globalData.URL + '/act/pubActivity';
-    var rotation=[];
-    for(var i in this.data.url4){
+    var rotation = [];
+    for (var i in this.data.url4) {
       var tmp = {};
-      tmp.id='';
-      tmp.rotation=i;
+      tmp.id = '';
+      tmp.rotation = i;
       rotation.push(tmp)
     }
     wx.request({
@@ -383,21 +385,38 @@ Page({
         city: this.data.info.city,
         address: "学林街XX号",
         venue: this.data.info.venue,
-        creater: 1025873536876568,
-        createralias: "昵称啊",
-        createrhead: "http://pic39.nipic.com/20140318/12838115_142809370123_2.jpg",
+        creater: user.id,
+        createralias: user.nickname,
+        createrhead: user.head,
         status: 10,
       },
       header: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        'Authorization': user
       },
-      success: function (res) {
+      success: function(res) {
         console.log(res.data);
-        wx.showToast({
-          title: '提交成功！',
-          icon: 'success',
-          duration: 2000
-        })
+        if (res.code==0) {
+          wx.showToast({
+            title: '提交成功',
+            duration: 2000,
+            success: function () {
+              setTimeout(function () {
+                wx.reLaunch({
+                  url: '/pages/index/index',
+                })
+              }, 2000);
+            }
+          })
+        }
+        else{
+          wx.showToast({
+            title: '提交失败!',
+            image:'/img/fail.png',
+            icon: 'success',
+            duration: 2000
+          })
+        }
       },
     })
     this.setData({
@@ -503,7 +522,7 @@ Page({
     var that = this
     let url = app.globalData.URL + '/config/findCosParam';
     let data = '';
-    util.gets(url, {}).then(function (res) {
+    util.gets(url, {}).then(function(res) {
       var t = res.data
       that.setData({
         webinfo: res.data
@@ -513,7 +532,7 @@ Page({
   demo(web) {
     upload.uploadFile(web)
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     var t = wx.getStorageSync('information');
     this.getuploadinfo(); //获取上传文件信息
     this.setData({
@@ -521,10 +540,10 @@ Page({
       opinion3: (parseInt(this.data.info.way) + 1) * 10
     })
   },
-  onReady: function () {
+  onReady: function() {
 
   },
-  onShow: function () {
+  onShow: function() {
 
   },
 

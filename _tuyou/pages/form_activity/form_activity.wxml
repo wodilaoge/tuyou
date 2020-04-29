@@ -222,7 +222,7 @@
 <view class="flex margin-top2">
   <button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="commit" data-target="Modal">立即提交</button>
 </view>
-<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+<!-- <view class="cu-modal {{modalName=='Modal'?'show':''}}">
   <view class="cu-dialog">
     <view class="cu-bar bg-white justify-end">
       <view class="content">消息</view>
@@ -234,4 +234,4 @@
       提交成功
     </view>
   </view>
-</view>
+</view> -->

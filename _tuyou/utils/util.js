@@ -32,7 +32,36 @@ const post = (url, data) => {
   });
   return promise;
 }
+const post_token = (url, data) => {
+  var user = wx.getStorageSync('userInfo')
+  user = 'Bearer ' + user.token;
+  var promise = new Promise((resolve, reject) => {
+    //网络请求
+    wx.request({
+      url: url,
+      data: data,
+      method: 'POST',
+      header: {
+        "Content-Type": "application/json",
+        'Authorization': user
+      },
+      success: function (res) {//服务器返回数据
+        if (res.statusCode == 200) {
+          resolve(res);
+        } else {//返回错误提示信息
+          reject(res.data);
+        }
+      },
+      error: function (e) {
+        reject('网络出错');
+      }
+    })
+  });
+  return promise;
+}
 const gets = (url, data) => {
+  var user = wx.getStorageSync('userInfo')
+  user = 'Bearer ' + user.token;
   var promise = new Promise((resolve, reject) => {
     //网络请求
     wx.request({
@@ -40,6 +69,7 @@ const gets = (url, data) => {
       data: data,
       header: {
         'content-type': 'application/json',
+        'Authorization': user
       },
       success: function (res) {//服务器返回数据
         if (res.statusCode == 200) {
@@ -63,5 +93,6 @@ const formatNumber = n => {
 module.exports = {
   formatTime: formatTime,
   gets,
-  post
+  post,
+  post_token
 }
