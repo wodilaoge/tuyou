@@ -56,10 +56,16 @@ App({
     var user = wx.getStorageSync('userInfo')
     if (user == null) {
       wx.showToast({
-        title: '请重新登录',
-        icon: 'success',
-        image: '/img/fail.png',
-        duration: 2000
+        title: '登录失败！',
+        image:'/img/fail.png',
+        duration: 500,
+        success: function () {
+          setTimeout(function () {
+            wx.reLaunch({
+              url: '/pages/index/index',
+            })
+          }, 1000);
+        }
       })
     } else {
       user = 'Bearer ' + user.token;
