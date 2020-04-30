@@ -391,8 +391,8 @@
 
   <view class="content-white">
     <view class=" sp-cu-bar cu-bar-radius bg-white  ">
-      <image class="sp-avatar round " src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg "></image>
-      <view class="sp-avatar-name">龙啸影像</view>
+      <image class="sp-avatar round " src="{{shipin_deatile.authorHead}} "></image>
+      <view class="sp-avatar-name">{{shipin_deatile.authorAlias}}</view>
       <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;margin-left:372rpx;">关注</button>
     </view>
 
@@ -401,7 +401,7 @@
         danmu-list="{{danmuList}}" enable-danmu danmu-btn controls style="width:100%;"></video>
     </view>
     <view class="flex  margin-top">
-      <view class="sp-bofang-times">播放1245次</view>
+      <view class="sp-bofang-times">播放{{shipin_deatile.playCnt}}次</view>
       <image src="/img/icon_like.png" style="width:44rpx;height:40rpx;margin-left:285rpx;"></image>
       <view style="margin-left:16rpx;color:#333333;">122</view>
       <image src="/img/icon_share_more.png" style="width:44rpx;height:40rpx;margin-left:54rpx;"></image>
