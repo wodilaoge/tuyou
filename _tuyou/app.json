@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/login/login",
     "pages/index/index",
     "pages/form/form",
     "pages/form_team/form_team",
@@ -23,7 +24,8 @@
 
     "pages/ziliao/ziliao",
     "pages/chakanhuifu/chakanhuifu",
-    "pages/tuanduixinxi/tuanduixinxi"
+    "pages/tuanduixinxi/tuanduixinxi",
+   
   ],
   "window": {
     "backgroundTextStyle": "light",
