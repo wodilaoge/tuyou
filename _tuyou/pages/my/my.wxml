@@ -3,7 +3,7 @@
 </cu-custom>
 <view wx:if="{{userInfoAll}}">
   <view class="white"></view>
-  <view class="cu-list menu-avatar">
+  <view class="cu-list menu-avatar" bindtap="toUserInfo">
     <view class="cu-item">
       <view class="cu-avatar round xl" style="background-image:url({{userInfoAll.head}})"></view>
       <view class="content ">
@@ -58,7 +58,7 @@
 </view>
 
 <view class="menu bg-white">
-  <navigator url="" class="menu-item">
+  <navigator url="/pages/my_security/my_security" class="menu-item">
     <image src="/img/my/01.png" class="menu-img"></image>
     <text class="menu-name">账号安全</text>
   </navigator>

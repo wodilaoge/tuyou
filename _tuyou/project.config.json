@@ -106,23 +106,9 @@
 					"scene": null
 				},
 				{
-					"id": 7,
-					"name": "发布总页面",
-					"pathName": "pages/form/form",
-					"query": "",
-					"scene": null
-				},
-				{
 					"id": -1,
 					"name": "我的",
 					"pathName": "pages/my/my",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的个人信息",
-					"pathName": "pages/my_profile/my_profile",
 					"query": "",
 					"scene": null
 				},
@@ -191,8 +177,9 @@
 				},
 				{
 					"id": -1,
-					"name": "login",
-					"pathName": "pages/login/login",
+					"name": "security",
+					"pathName": "pages/my_security/my_security",
+					"query": "",
 					"scene": null
 				}
 			]
