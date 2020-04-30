@@ -77,24 +77,24 @@
   <view class="bg-white">
     <scroll-view scroll-x="true">
       <view class="banner" scroll-x="true">
-        <view class="banner_basic ">
+        <view class="banner_basic" bindtap="todetail" id="{{ActList.list[0].id}}">
           <image src="{{ActList.list[0].logo}}" class="banner_img"></image>
           <text class="banner_text">"{{ActList.list[0].actname}}"</text>
           <!-- <text >"{{ActList.list[0].fromtime}}"</text> -->
         </view>
-        <view class="banner_basic ">
+        <view class="banner_basic " bindtap="todetail" id="{{ActList.list[1].id}}">
           <image src="{{ActList.list[1].logo}}" class="banner_img"></image>
           <text class="banner_text">"{{ActList.list[1].actname}}"</text>
         </view>
-        <view class="banner_basic ">
+        <view class="banner_basic "bindtap="todetail" id="{{ActList.list[2].id}}">
           <image src="{{ActList.list[2].logo}}" class="banner_img"></image>
           <text class="banner_text">"{{ActList.list[2].actname}}"</text>
         </view>
-        <view class="banner_basic ">
+        <view class="banner_basic "bindtap="todetail" id="{{ActList.list[3].id}}">
           <image src="{{ActList.list[3].logo}}" class="banner_img"></image>
           <text class="banner_text">"{{ActList.list[3].actname}}"</text>
         </view>
-        <view class="banner_basic ">
+        <view class="banner_basic "bindtap="todetail" id="{{ActList.list[4].id}}">
           <image src="{{ActList.list[4].logo}}" class="banner_img"></image>
           <text class="banner_text">"{{ActList.list[4].actname}}"</text>
         </view>
@@ -114,7 +114,7 @@
     <text style="margin-left:-80rpx" class="text-lg">三分赛</text>
     <text class=" title-time">1 天 01: 02 </text>
   </view>
-  <view class="background" style="margin-bottom:20rpx;" bindtap="baomingcanjia">
+  <view class="background" style="margin-bottom:20rpx;" bindtap="todetail">
     <view class="cu-card article ">
       <view class="cu-item">
         <view class="shadow" style="background-color:#F8F9FD;padding:19rpx 0 19rpx 0;">
@@ -181,7 +181,7 @@
     <text style="margin-left:-80rpx" class="text-lg">吉他</text>
     <text class=" title-time">1 天 01: 02 </text>
   </view>
-  <view class="background" style="margin-bottom:20rpx;" bindtap="baomingcanjia">
+  <view class="background" style="margin-bottom:20rpx;" bindtap="todetail">
     <view class="cu-card article ">
       <view class="cu-item">
         <view class="yundong-content title-text-content">
@@ -235,7 +235,7 @@
     <text style="margin-left:-80rpx" class="text-lg">英雄联盟</text>
     <text class=" title-time">1 天 01: 02 </text>
   </view>
-  <view class="background" style="margin-bottom:20rpx;" bindtap="baomingcanjia">
+  <view class="background" style="margin-bottom:20rpx;" bindtap="todetail">
     <view class="cu-card article ">
       <view class="cu-item">
         <view class="yundong-content title-text-content">

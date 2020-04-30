@@ -18,14 +18,14 @@ const post = (url, data) => {
       header: {
         "Content-Type": "application/json"
       },
-      success: function (res) {//服务器返回数据
+      success: function(res) { //服务器返回数据
         if (res.statusCode == 200) {
           resolve(res);
-        } else {//返回错误提示信息
+        } else { //返回错误提示信息
           reject(res.data);
         }
       },
-      error: function (e) {
+      error: function(e) {
         reject('网络出错');
       }
     })
@@ -45,14 +45,14 @@ const post_token = (url, data) => {
         "Content-Type": "application/json",
         'Authorization': user
       },
-      success: function (res) {//服务器返回数据
+      success: function(res) { //服务器返回数据
         if (res.statusCode == 200) {
           resolve(res);
-        } else {//返回错误提示信息
+        } else { //返回错误提示信息
           reject(res.data);
         }
       },
-      error: function (e) {
+      error: function(e) {
         reject('网络出错');
       }
     })
@@ -61,29 +61,44 @@ const post_token = (url, data) => {
 }
 const gets = (url, data) => {
   var user = wx.getStorageSync('userInfo')
-  user = 'Bearer ' + user.token;
-  var promise = new Promise((resolve, reject) => {
-    //网络请求
-    wx.request({
-      url: url,
-      data: data,
-      header: {
-        'content-type': 'application/json',
-        'Authorization': user
-      },
-      success: function (res) {//服务器返回数据
-        if (res.statusCode == 200) {
-          resolve(res);
-        } else {//返回错误提示信息
-          reject(res.data);
-        }
-      },
-      error: function (e) {
-        reject('网络出错');
+  if (user == null) {
+    wx.showToast({
+      title: '登录失败！',
+      image: '/img/fail.png',
+      duration: 500,
+      success: function() {
+        setTimeout(function() {
+          wx.reLaunch({
+            url: '/pages/index/index',
+          })
+        }, 1000);
       }
     })
-  });
-  return promise;
+  } else {
+    user = 'Bearer ' + user.token;
+    var promise = new Promise((resolve, reject) => {
+      //网络请求
+      wx.request({
+        url: url,
+        data: data,
+        header: {
+          'content-type': 'application/json',
+          'Authorization': user
+        },
+        success: function(res) { //服务器返回数据
+          if (res.statusCode == 200) {
+            resolve(res);
+          } else { //返回错误提示信息
+            reject(res.data);
+          }
+        },
+        error: function(e) {
+          reject('网络出错');
+        }
+      })
+    });
+    return promise;
+  }
 }
 const formatNumber = n => {
   n = n.toString()

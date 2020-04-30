@@ -7,6 +7,7 @@ Page({
     comment: [],
     list: [],
     Input: '',
+    user: [],
   },
   emailInput: function(e) { //input输入
     this.setData({
@@ -61,9 +62,9 @@ Page({
       objid: self.data.comment.objid,
       objtitle: "",
       comment: self.data.Input,
-      creater: "1025873536876561",
-      createrAlias: "用户12138",
-      createrHead: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10005.jpg"
+      creater: self.data.user.id,
+      createrAlias: self.data.user.nickname,
+      createrHead: self.data.user.head
     };
     app.wxRequest('POST', url, data, (res) => {
       self.onLoad(self.data.option);
@@ -87,6 +88,7 @@ Page({
     self.setData({
       option: option,
       id: option.id,
+      user: wx.getStorageSync('userInfo')
     })
     self.comment();
   },

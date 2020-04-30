@@ -53,14 +53,9 @@ Page({
     });
   },
 
-  textareaAInput(e) {
-    this.setData({
-      textareaAValue: e.detail.value
-    })
-  },
-  textareaBInput(e) {
-    this.setData({
-      textareaBValue: e.detail.value
+  toUserInfo(e){
+    wx.navigateTo({
+      url: '/pages/my_profile/my_profile',
     })
   },
   onLoad: function() {

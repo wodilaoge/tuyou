@@ -9,7 +9,8 @@ Page({
     comment:[],
     comment_detail:[],
     news:[],
-    news_detail:[]
+    news_detail:[],
+    likecount:0,
   },
   tabSelect(e) {
     this.setData({
@@ -46,6 +47,7 @@ Page({
   },
   comment() {//评论
     let url = app.globalData.URL + '/comm/listCommByObj';
+    let url2 = app.globalData.URL + '/applaud/countByObj';//点赞数
     let data = {
       objid: this.data.categoryId,
       objtype: 30
@@ -56,6 +58,13 @@ Page({
       });
       this.setData({
         comment_detail: this.data.comment.list
+      });
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+    app.wxRequest('GET', url2, data, (res) => {
+      this.setData({
+        likecount: res.data
       });
     }, (err) => {
       console.log(err.errMsg)
