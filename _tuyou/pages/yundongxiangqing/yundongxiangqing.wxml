@@ -387,7 +387,7 @@
 创建时间：20200418
 创建内容：视频-->
 <block wx:if="{{TabCur==2}}">
-  <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx;">强有力队活动视频</view>
+  <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx;">{{shipin_deatile.title}}</view>
 
   <view class="content-white">
     <view class=" sp-cu-bar cu-bar-radius bg-white  ">

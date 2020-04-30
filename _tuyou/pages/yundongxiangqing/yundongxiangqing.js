@@ -9,6 +9,7 @@ Page({
     comment_detail: [],
     news: [],
     news_detail: [],
+    shipin_detail: [],
     swiperList: [{
       id: 0,
       type: 'image',
@@ -94,12 +95,27 @@ Page({
       console.log(err.errMsg)
     });
   },
+  getShipin() {//视频
+    let url = app.globalData.URL + '/video/findActVideo';
+    let data = {
+      id: this.data.news.id
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res)
+      this.setData({
+        shipin_detail: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.news()
     this.news_detail()
+    this.getShipin()
 
   },
 
