@@ -86,7 +86,21 @@ const gets = (url, data) => {
           'Authorization': user
         },
         success: function(res) { //服务器返回数据
-          if (res.statusCode == 200) {
+          if (res.data.code == '109') {
+            wx.showToast({
+              title: '请重新登录！',
+              image: '/img/fail.png',
+              duration: 500,
+              success: function () {
+                setTimeout(function () {
+                  wx.reLaunch({
+                    url: '/pages/index/index',
+                  })
+                }, 1000);
+              }
+            })
+          }
+          else if (res.statusCode == 200) {
             resolve(res);
           } else { //返回错误提示信息
             reject(res.data);
