@@ -80,6 +80,20 @@ App({
         },
         dataType: 'json',
         success: function(res) {
+          if(res.data.code=='109'){
+            wx.showToast({
+              title: '请重新登录！',
+              image: '/img/fail.png',
+              duration: 500,
+              success: function () {
+                setTimeout(function () {
+                  wx.reLaunch({
+                    url: '/pages/index/index',
+                  })
+                }, 1000);
+              }
+            })
+          }
           callback(res.data);
         },
         fail: function(err) {
