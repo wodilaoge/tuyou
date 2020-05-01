@@ -62,11 +62,11 @@
     <image src="/img/my/01.png" class="menu-img"></image>
     <text class="menu-name">账号安全</text>
   </navigator>
-  <navigator url="" class="menu-item">
+  <navigator url="/pages/my_system_message/my_system_message" class="menu-item">
     <image src="/img/my/02.png" class="menu-img"></image>
     <text class="menu-name">系统消息</text>
   </navigator>
-  <navigator url="" class="menu-item">
+  <navigator url="/pages/my_workplate/my_workplate" class="menu-item">
     <image src="/img/my/03.png" class="menu-img"></image>
     <text class="menu-name">工作台</text>
   </navigator>
@@ -122,10 +122,7 @@
     <image src="/img/my/a.png" class="menu-img2"></image>
     <text class="menu-name">反馈</text>
   </navigator>
-  <navigator url="" class="menu-item">
-    <image src="/img/my/b.png" class="menu-img2"></image>
-    <text class="menu-name">客服</text>
-  </navigator>
+
   <navigator url="" class="menu-item">
     <image src="/img/my/c.png" class="menu-img2"></image>
     <text class="menu-name">聊天设置</text>

@@ -2,7 +2,7 @@
 App({
   globalData: {
     tabbar: 0,
-    userInfo:"",
+    userInfo: "",
     URL: 'http://192.144.169.239:8080/kt',
     systemInfo: null, //客户端设备信息，
     YundongList: [{
@@ -57,10 +57,10 @@ App({
     if (user == null) {
       wx.showToast({
         title: '登录失败！',
-        image:'/img/fail.png',
+        image: '/img/fail.png',
         duration: 500,
-        success: function () {
-          setTimeout(function () {
+        success: function() {
+          setTimeout(function() {
             wx.reLaunch({
               url: '/pages/index/index',
             })
@@ -80,17 +80,15 @@ App({
         },
         dataType: 'json',
         success: function(res) {
-          if(res.data.code=='109'){
+          if (res.data.code == '109') {
             wx.showToast({
               title: '请重新登录！',
               image: '/img/fail.png',
               duration: 500,
-              success: function () {
-                setTimeout(function () {
-                  wx.reLaunch({
-                    url: '/pages/index/index',
-                  })
-                }, 1000);
+              success: function() {
+                wx.reLaunch({
+                  url: '/pages/index/index',
+                })
               }
             })
           }
