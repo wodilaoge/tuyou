@@ -14,6 +14,8 @@
     "pages/my/my",
     "pages/my_profile/my_profile",
     "pages/my_security/my_security",
+    "pages/my_system_message/my_system_message",
+    "pages/my_workplate/my_workplate",
 
     "pages/yundongxiangqing/yundongxiangqing",
     "pages/xiaoyuan/xiaoyuan",

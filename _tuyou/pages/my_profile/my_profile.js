@@ -1,4 +1,5 @@
-const app = getApp();
+const app = getApp()
+var util = require("../../utils/util.js");
 Page({
   data: {
     StatusBar: app.globalData.StatusBar,

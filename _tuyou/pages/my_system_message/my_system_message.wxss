@@ -1,0 +1,20 @@
+/* pages/my_system_message/my_system_message.wxss */
+
+.message{
+  flex: display;
+  align-items: center;
+  justify-content: center;
+}
+.text{
+  height: 80rpx;
+  position: relative;
+  top: 10rpx;
+}
+.detail{
+  width: 88%;
+  position: relative;
+  left:6%;
+  padding-top: 50rpx;
+  padding-bottom: 50rpx;
+  border-radius: 15rpx;
+}

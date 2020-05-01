@@ -175,13 +175,6 @@
 					"pathName": "pages/ziliao/ziliao",
 					"query": "",
 					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "security",
-					"pathName": "pages/my_security/my_security",
-					"query": "",
-					"scene": null
 				}
 			]
 		}

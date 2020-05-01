@@ -1,0 +1,13 @@
+<!--pages/my_system_message/my_system_message.wxml-->
+<cu-custom bgColor="bg-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">系统消息</view>
+</cu-custom>
+<view wx:for="{{messages}}" class="message text-center">
+  <view class="padding">
+    <text class="text text-grey">{{item.time}}</text>
+  </view>
+  <view class="bg-white  padding detail text-center">
+    <text class="text-bold">{{item.message}}</text>
+  </view>
+</view>

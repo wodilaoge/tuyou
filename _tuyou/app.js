@@ -91,6 +91,9 @@ App({
                     url: '/pages/index/index',
                   })
                 }, 1000);
+                wx.reLaunch({
+                  url: '/pages/index/index',
+                })
               }
             })
           }
