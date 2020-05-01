@@ -1,4 +1,5 @@
 const app = getApp();
+var util = require("../../utils/util.js");
 Page({
   data: {
     option: [],
@@ -8,6 +9,8 @@ Page({
     list: [],
     Input: '',
     user: [],
+    likecount: 0,
+    ifzan: false,
   },
   emailInput: function(e) { //input输入
     this.setData({
@@ -17,27 +20,101 @@ Page({
   comment() { //获取父评论以及回复
     var self = this;
     let url = app.globalData.URL + '/comm/listComm';
-    let url2 = app.globalData.URL + '/comm/listCommReply';
+    let url2 = app.globalData.URL + '/comm/listCommReply'; //回复列表
     let data = {
       id: self.data.id,
       objtype: 30
     };
-    app.wxRequest('GET', url, data, (res) => {
-      console.log(res.data);
+    util.gets(url, data).then(function(res) {
       self.setData({
-        comment: res.data
+        comment: res.data.data
       });
-    }, (err) => {
-      console.log(err.errMsg)
     });
     data = {
       id: self.data.id,
       objtype: 10
     };
-    app.wxRequest('GET', url2, data, (res) => {
+    util.gets(url2, data).then(function(res) {
+      var list = res.data.data
+      for (let i in list.list) {
+        let url2 = app.globalData.URL + '/applaud/findApplaud'; //点赞情况
+        data = {
+          objtype: 10,
+          objid: list.list[i].id,
+          uid: self.data.user.id,
+        };
+        util.gets(url2, data).then(function(res) {
+          list.list[i].status = res.data.data
+        });
+        url2 = app.globalData.URL + '/applaud/countByObj'; //点赞数
+        data = {
+          objid: list.list[i].id,
+          objtype: 10
+        };
+        util.gets(url2, data).then(function(res) {
+          list.list[i].praiseCnt = res.data.data
+        });
+      }
       self.setData({
-        list: res.data
+        list: list
       });
+    });
+
+  },
+  ifzan() { //是否点赞
+    self = this;
+    let url = app.globalData.URL + '/applaud/findApplaud';
+    let url2 = app.globalData.URL + '/applaud/countByObj'; //点赞数
+    let data = {
+      objtype: 30,
+      objid: self.data.id,
+      uid: self.data.user.id,
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      self.setData({
+        ifzan: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+    data = {
+      objid: this.data.id,
+      objtype: 30
+    };
+    app.wxRequest('GET', url2, data, (res) => {
+      this.setData({
+        likecount: res.data
+      });
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  zan() { //父评论点赞或取消
+    self = this;
+    let url = app.globalData.URL + '/applaud/updateApplaud';
+    if (self.data.ifzan)
+      var data = {
+        objtype: 30,
+        objid: self.data.id,
+        objtitle: '',
+        creater: self.data.user.id,
+        status: 0,
+      };
+    else
+      var data = {
+        objtype: 30,
+        objid: self.data.id,
+        objtitle: '',
+        creater: self.data.user.id,
+        status: 1,
+      };
+    app.wxRequest('POST', url, data, (res) => {
+      wx.showToast({
+        title: '操作成功！', // 标题
+        icon: 'success', // 图标类型，默认success
+        duration: 1500 // 提示窗停留时间，默认1500ms
+      })
+      self.onLoad(self.data.option)
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -90,6 +167,7 @@ Page({
       id: option.id,
       user: wx.getStorageSync('userInfo')
     })
+    self.ifzan()
     self.comment();
   },
 

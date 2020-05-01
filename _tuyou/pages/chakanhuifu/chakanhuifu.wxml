@@ -18,7 +18,7 @@
                   <text class="card-text-grey" decode="{{true}}">{{comment.createrAlias}}&emsp;</text>
                 </view>
                 <view class="text-gray text-sm">
-                  <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                  <text class="{{false==ifzan?'cuIcon-appreciate':'cuIcon-appreciatefill'}} margin-lr-xs line"  bindtap="zan"></text> {{likecount}}
                   <text class="cuIcon-appreciate margin-lr-xs "></text> 1
                 </view>
             </view>
@@ -37,7 +37,7 @@
   
 <view class="cu-card case">
     <view class="cu-item shadow">
-      <view class="cu-list menu-avatar ">
+      <view class="cu-list menu-avatar">
         <view class="cu-item" wx:for="{{list.list}}">
           <view class="content flex-sub bg-white padding">
               <view class=" flex justify-between">
@@ -45,7 +45,7 @@
                   <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
                 </view>
                 <view class="text-gray text-sm">
-                  <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
+                  <text class="{{false==item.status?'cuIcon-appreciate':'cuIcon-appreciatefill'}} margin-lr-xs line">{{item.praiseCnt}}</text> 
                   <text class="cuIcon-appreciate margin-lr-xs "></text> 1
                 </view>
             </view>
