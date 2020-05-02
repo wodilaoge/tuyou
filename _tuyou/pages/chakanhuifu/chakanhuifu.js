@@ -11,6 +11,7 @@ Page({
     user: [],
     likecount: 0,
     ifzan: false,
+    loading: true,
   },
   emailInput: function(e) { //input输入
     this.setData({
@@ -53,13 +54,17 @@ Page({
         };
         util.gets(url2, data).then(function(res) {
           list.list[i].praiseCnt = res.data.data
+          if (i == list.list.length - 1)
+            self.setData({
+              list: list,
+              loading: false
+            });
+        });
+        self.setData({
+          list: list,
         });
       }
-      self.setData({
-        list: list
-      });
     });
-
   },
   ifzan() { //是否点赞
     self = this;
@@ -119,6 +124,36 @@ Page({
       console.log(err.errMsg)
     });
   },
+  zan_list(e) { //回复点赞或取消
+    self = this;
+    let url = app.globalData.URL + '/applaud/updateApplaud';
+    if (self.data.ifzan)
+      var data = {
+        objtype: 10,
+        objid: e.currentTarget.dataset.objtitle,
+        objtitle: '',
+        creater: self.data.user.id,
+        status: 0,
+      };
+    else
+      var data = {
+        objtype: 10,
+        objid: e.currentTarget.dataset.objtitle,
+        objtitle: '',
+        creater: self.data.user.id,
+        status: 1,
+      };
+    app.wxRequest('POST', url, data, (res) => {
+      wx.showToast({
+        title: '操作成功！', // 标题
+        icon: 'success', // 图标类型，默认success
+        duration: 1500 // 提示窗停留时间，默认1500ms
+      })
+      self.onLoad(self.data.option)
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
   pd_fasong() {
     if (this.data.Input == "") {
       wx.showToast({
@@ -157,18 +192,32 @@ Page({
       Input: ''
     })
   },
+  TBcontroll() {
+    new Promise(function(resolve, reject) {
+      while (self.data.loading == false) {
+      }
+      resolve();
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(option) {
+  onLoad: async function(option) {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    });
     var self = this;
     self.setData({
       option: option,
       id: option.id,
-      user: wx.getStorageSync('userInfo')
+      user: wx.getStorageSync('userInfo'),
+      loading: true
     })
     self.ifzan()
     self.comment();
+    await self.TBcontroll();
+    wx.hideLoading()
   },
 
   /**

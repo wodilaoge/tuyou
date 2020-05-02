@@ -1,26 +1,27 @@
 <!--
 创建者：陈雨豪
 创建时间：20200404
-内容：评论列表页面-->
+内容：评论列表页面 -->
 <view class="top">
-    <cu-custom isBack="{{true}}" bgColor="bg-blue" >
+  <cu-custom isBack="{{true}}" bgColor="bg-blue">
     <view slot="content">查看回复</view>
   </cu-custom>
 </view>
-<view class="cu-card case no-card bg-white">
+<view hidden="{{loading}}">
+  <view class="cu-card case no-card bg-white">
     <view class="cu-item shadow">
       <view class="cu-list menu-avatar">
         <view class="cu-item">
           <view class="cu-avatar round lg" style="background-image:url({{comment.createrHead}});"></view>
           <view class="content flex-sub">
-              <view class=" flex justify-between">
-                <view>
-                  <text class="card-text-grey" decode="{{true}}">{{comment.createrAlias}}&emsp;</text>
-                </view>
-                <view class="text-gray text-sm">
-                  <text class="{{false==ifzan?'cuIcon-appreciate':'cuIcon-appreciatefill'}} margin-lr-xs line"  bindtap="zan"></text> {{likecount}}
-                  <text class="cuIcon-appreciate margin-lr-xs "></text> 1
-                </view>
+            <view class=" flex justify-between">
+              <view>
+                <text class="card-text-grey" decode="{{true}}">{{comment.createrAlias}}&emsp;</text>
+              </view>
+              <view class="text-gray text-sm">
+                <text class="{{false==ifzan?'cuIcon-appreciate':'cuIcon-appreciatefill'}} margin-lr-xs line" bindtap="zan"></text> {{likecount}}
+                <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+              </view>
             </view>
             <view class="card-text-content">
               {{comment.comment}}
@@ -32,22 +33,22 @@
         </view>
       </view>
     </view>
-</view>
-<!--回复-->
-  
-<view class="cu-card case">
+  </view>
+  <!--回复-->
+
+  <view class="cu-card case">
     <view class="cu-item shadow">
       <view class="cu-list menu-avatar">
         <view class="cu-item" wx:for="{{list.list}}">
           <view class="content flex-sub bg-white padding">
-              <view class=" flex justify-between">
-                <view>
-                  <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
-                </view>
-                <view class="text-gray text-sm">
-                  <text class="{{false==item.status?'cuIcon-appreciate':'cuIcon-appreciatefill'}} margin-lr-xs line">{{item.praiseCnt}}</text> 
-                  <text class="cuIcon-appreciate margin-lr-xs "></text> 1
-                </view>
+            <view class=" flex justify-between">
+              <view>
+                <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
+              </view>
+              <view class="text-gray text-sm">
+                <text class="{{false==item.status?'cuIcon-appreciate':'cuIcon-appreciatefill'}} margin-lr-xs line" bindtap="zan_list" data-objtitle="{{item.id}}">{{item.praiseCnt}}</text>
+                <text class="cuIcon-appreciate margin-lr-xs "></text> 1
+              </view>
             </view>
             <view class="card-text-content">
               {{item.comment}}
@@ -59,10 +60,11 @@
         </view>
       </view>
     </view>
-</view>
-<view>
-  <view class="cu-bar input foot padding">
-    <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" value="{{Input}}" placeholder='来说点什么吧！' bindinput="emailInput"></input>
-    <button class="cu-btn bg-orange shadow-blur padding" bindtap="pd_fasong">发送</button>
+  </view>
+  <view>
+    <view class="cu-bar input foot padding">
+      <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" value="{{Input}}" placeholder='来说点什么吧！' bindinput="emailInput"></input>
+      <button class="cu-btn bg-orange shadow-blur padding" bindtap="pd_fasong">发送</button>
+    </view>
   </view>
 </view>
