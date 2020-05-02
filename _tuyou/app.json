@@ -1,8 +1,7 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/login/login",
-
+    "pages/index/index",
     "pages/form_team/form_team",
     "pages/form_picture/form_picture",
     "pages/form_video/form_video",
@@ -10,27 +9,23 @@
     "pages/form_activity/form_activity",
     "pages/form_modify/form_modify",
     "pages/form_address/form_address",
-
     "pages/my/my",
     "pages/my_profile/my_profile",
     "pages/my_security/my_security",
     "pages/my_system_message/my_system_message",
     "pages/my_workplate/my_workplate",
-
+    "pages/my_activity/my_activity",
     "pages/yundongxiangqing/yundongxiangqing",
     "pages/xiaoyuan/xiaoyuan",
     "pages/xiaoyuanxiangqing/xiaoyuanxiangqing",
     "pages/pinlunliebiao/pinlunliebiao",
     "pages/baoming/baoming",
     "pages/baoming_ok/baoming_ok",
-
     "pages/xuanzetuandui1/xuanzetuandui1",
     "pages/xuanzetuandui2/xuanzetuandui2",
-
     "pages/ziliao/ziliao",
     "pages/chakanhuifu/chakanhuifu",
     "pages/tuanduixinxi/tuanduixinxi"
-   
   ],
   "window": {
     "backgroundTextStyle": "light",

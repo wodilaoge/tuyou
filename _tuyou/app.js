@@ -62,7 +62,7 @@ App({
         success: function() {
           setTimeout(function() {
             wx.reLaunch({
-              url: '/pages/index/index',
+              url: '/pages/login/login',
             })
           }, 1000);
         }
@@ -80,23 +80,18 @@ App({
         },
         dataType: 'json',
         success: function(res) {
-          if (res.data.code == '109') {
-            wx.showToast({
-              title: '请重新登录！',
-              image: '/img/fail.png',
-              duration: 500,
-              success: function() {
-                setTimeout(function() {
-                  wx.reLaunch({
-                    url: '/pages/index/index',
-                  })
-                }, 1000);
-                wx.reLaunch({
-                  url: '/pages/index/index',
-                })
-              }
-            })
-          }
+          // if (res.data.code == '109') {
+          //   wx.showToast({
+          //     title: '请重新登录！',
+          //     image: '/img/fail.png',
+          //     duration: 500,
+          //     success: function() {
+          //       wx.reLaunch({
+          //         url: '/pages/login/login',
+          //       })
+          //     }
+          //   })
+          // }
           callback(res.data);
         },
         fail: function(err) {
@@ -121,7 +116,6 @@ App({
           //   success: res => {
           //     // 可以将 res 发送给后台解码出 unionId
           //     this.globalData.userInfo = res.userInfo
-
           //     // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
           //     // 所以此处加入 callback 以防止这种情况
           //     if (this.userInfoReadyCallback) {
