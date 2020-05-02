@@ -67,11 +67,9 @@ const gets = (url, data) => {
       image: '/img/fail.png',
       duration: 500,
       success: function() {
-        setTimeout(function() {
-          wx.reLaunch({
-            url: '/pages/login/login',
-          })
-        }, 1000);
+        wx.redirectTo({
+          url: '/pages/login/login',
+        })
       }
     })
   } else {
@@ -91,16 +89,13 @@ const gets = (url, data) => {
               title: '请重新登录！',
               image: '/img/fail.png',
               duration: 500,
-              success: function () {
-                setTimeout(function () {
-                  wx.reLaunch({
-                    url: '/pages/login/login',
-                  })
-                }, 1000);
+              success: function() {
+                wx.redirectTo({
+                  url: '/pages/login/login',
+                })
               }
             })
-          }
-          else if (res.statusCode == 200) {
+          } else if (res.statusCode == 200) {
             resolve(res);
           } else { //返回错误提示信息
             reject(res.data);

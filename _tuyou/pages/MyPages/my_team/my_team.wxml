@@ -1,0 +1,71 @@
+<cu-custom bgColor="bg-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">团队</view>
+</cu-custom>
+<view class="menu bg-white ">
+  <view class="menu-item flex-sub cu-item {{options=='1'?'text-orange cur':''}} " bindtap="select1">
+    <text class="menu-name text-lg">8</text>
+    <text class="menu-name text-lg">参与</text>
+    <view class="{{options=='1'?'orange cur':''}}"></view>
+  </view>
+  <view class="menu-item {{options=='2'?'text-orange cur':''}}" bindtap="select2">
+    <text class="menu-name text-lg">8</text>
+    <text class="menu-name text-lg">发起</text>
+    <view class="{{options=='2'?'orange cur':''}}"></view>
+  </view>
+  <view class="menu-item {{options=='3'?'text-orange cur':''}}" bindtap="select3">
+    <text class="menu-name text-lg">8</text>
+    <text class="menu-name text-lg">关注</text>
+    <view class="{{options=='3'?'orange cur':''}}"></view>
+  </view>
+</view>
+<view class="VerticalBox">
+  <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:calc(100vh - 375rpx)">
+    <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{AllActivity}}" wx:key bindtap='tabSelect' data-id="{{index}}">
+      {{item.name}}
+    </view>
+  </scroll-view>
+  <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(100vh - 375rpx)" scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain">
+    <view class="padding-top padding-lr" wx:for="{{AllActivity}}" wx:key id="main-{{index}}">
+      <view class='cu-bar solid-bottom bg-white'>
+        <view class='action'>
+          <text class='cuIcon-title text-green'></text> {{item.name}} </view>
+      </view>
+      <view class="cu-list menu-avatar">
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+          <view class="content">
+            <view class="text-black text-bold">飞鹰队</view>
+            <view class="text-gray text-sm flex">
+              <text class="text-cut">
+										<text class=" text-red  margin-right-xs"></text> 人数 32 活动数 8
+              </text>
+            </view>
+          </view>
+        </view>
+
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/img/champion/Taric.png);">
+            <view class="cu-tag badge">99+</view>
+          </view>
+          <view class="content">
+            <view class="text-grey">
+              <text class="text-cut">飞鹰队</text>
+            </view>
+            <view class="text-gray text-sm flex">
+              <text class="text-cut">
+									 人数 32 活动数 8
+									</text>
+            </view>
+          </view>
+          <view class="action">
+            <view class="text-grey text-xs">22:20</view>
+            <view class="cuIcon-notice_forbid_fill text-gray"></view>
+          </view>
+        </view>
+
+      </view>
+
+    </view>
+  </scroll-view>
+</view>

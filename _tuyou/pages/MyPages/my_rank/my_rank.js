@@ -1,17 +1,22 @@
-// pages/my_activity/my_activity.js
+// pages/MyPages/my_rank/my_rank.js
 const app = getApp();
-var util = require("../../utils/util.js");
+var util = require("../../../utils/util.js");
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    swip: ['活动审核', '新闻审核', '图片审核', '视频审核'],
-    options:1,
-    TabCur:0,
-    AllActivity:[],
+    color: 1,
+    options: 1,
+    TabCur: 0,
+    AllActivity: [],
     scrollLeft: 0
+  },
+  changebutton(e) {
+    this.setData({
+      color: !this.data.color
+    })
   },
   tabSelect(e) {
     this.setData({
@@ -19,28 +24,8 @@ Page({
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  select1(){
-    this.setData({
-      options: 1
-    })
-  },
-
-  select2() {
-    this.setData({
-      options: 2
-    })
-  },
-  select3() {
-    this.setData({
-      options: 3
-    })
-  },
-
   onLoad: function (options) {
-    var that=this
+    var that = this
     let url = app.globalData.URL + '/config/findAllActivityClass1';
     let data = '';
     util.gets(url, {}).then(function (res) {

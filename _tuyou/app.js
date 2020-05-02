@@ -80,18 +80,18 @@ App({
         },
         dataType: 'json',
         success: function(res) {
-          // if (res.data.code == '109') {
-          //   wx.showToast({
-          //     title: '请重新登录！',
-          //     image: '/img/fail.png',
-          //     duration: 500,
-          //     success: function() {
-          //       wx.reLaunch({
-          //         url: '/pages/login/login',
-          //       })
-          //     }
-          //   })
-          // }
+          if (res.data.code == '109') {
+            wx.showToast({
+              title: '请重新登录！',
+              image: '/img/fail.png',
+              duration: 500,
+              success: function() {
+                wx.redirectTo({
+                  url: '/pages/login/login',
+                })
+              }
+            })
+          }
           callback(res.data);
         },
         fail: function(err) {

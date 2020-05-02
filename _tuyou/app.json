@@ -1,7 +1,7 @@
 {
-  "pages": [
-    "pages/login/login",
+  "pages":[
     "pages/index/index",
+    "pages/login/login",
     "pages/form_team/form_team",
     "pages/form_picture/form_picture",
     "pages/form_video/form_video",
@@ -9,12 +9,14 @@
     "pages/form_activity/form_activity",
     "pages/form_modify/form_modify",
     "pages/form_address/form_address",
-    "pages/my/my",
-    "pages/my_profile/my_profile",
-    "pages/my_security/my_security",
-    "pages/my_system_message/my_system_message",
-    "pages/my_workplate/my_workplate",
-    "pages/my_activity/my_activity",
+    "pages/MyPages/my/my",
+    "pages/MyPages/my_profile/my_profile",
+    "pages/MyPages/my_security/my_security",
+    "pages/MyPages/my_system_message/my_system_message",
+    "pages/MyPages/my_workplate/my_workplate",
+    "pages/MyPages/my_activity/my_activity",
+    "pages/MyPages/my_team/my_team",
+    "pages/MyPages/my_rank/my_rank",
     "pages/yundongxiangqing/yundongxiangqing",
     "pages/xiaoyuan/xiaoyuan",
     "pages/xiaoyuanxiangqing/xiaoyuanxiangqing",
@@ -57,7 +59,7 @@
         "text": "活动"
       },
       {
-        "pagePath": "pages/my/my",
+        "pagePath": "pages/MyPages/my/my",
         "iconPath": "/img/tabbar/my-off.png",
         "selectedIconPath": "/img/tabbar/my-on.png",
         "text": "我的"

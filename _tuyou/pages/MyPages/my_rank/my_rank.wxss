@@ -1,0 +1,70 @@
+/* pages/my_workplate/my_workplate.wxss */
+
+.buttons {
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.options {
+  position: relative;
+  top: -20rpx;
+}
+
+.button-left {
+  width: 200rpx;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.button-right {
+  width: 200rpx;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.icon {
+  position: relative;
+  width: 40rpx;
+  height: 40rpx;
+  /* top: 64rpx;
+  left: 36rpx; */
+  right: -600rpx;
+}
+
+.margins {
+  position: relative;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  top: 10rpx;
+}
+
+.height {
+  height: 55rpx;
+  margin: 3rpx;
+  font-size: 32rpx;
+}
+
+.height2 {
+  height: 80rpx;
+  margin: 3rpx;
+  font-size: 32rpx;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 15rpx;
+}
+
+.pic {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.icon2 {
+  position: relative;
+  width: 40rpx;
+  height: 40rpx;
+  right: -540rpx;
+}
