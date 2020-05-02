@@ -69,7 +69,7 @@ const gets = (url, data) => {
       success: function() {
         setTimeout(function() {
           wx.reLaunch({
-            url: '/pages/index/index',
+            url: '/pages/login/login',
           })
         }, 1000);
       }
@@ -94,7 +94,7 @@ const gets = (url, data) => {
               success: function () {
                 setTimeout(function () {
                   wx.reLaunch({
-                    url: '/pages/index/index',
+                    url: '/pages/login/login',
                   })
                 }, 1000);
               }
