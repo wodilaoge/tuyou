@@ -61,7 +61,7 @@ App({
         duration: 500,
         success: function() {
           setTimeout(function() {
-            wx.reLaunch({
+            wx.redirectTo({
               url: '/pages/login/login',
             })
           }, 1000);
