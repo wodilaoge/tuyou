@@ -7,10 +7,50 @@
   <button class="cu-btn round bg-{{color?'orange':'gray'}} text-center text-{{color?'white':'grey'}}  button-left" bindtap="changebutton">个人排名</button>
   <button class="cu-btn round bg-{{color?'gray':'orange'}}  text-center text-{{color?'grey':'white'}} button-right" bindtap="changebutton">团队排名</button>
 </view>
-<view class="margin-top">
-  <scroll-view scroll-x class="bg-white nav" scroll-with-animation scroll-left="{{scrollLeft}}">
-    <view class="cu-item {{index==TabCur?'text-blue cur':''}} text-lg" wx:for="{{AllActivity}}" wx:key bindtap="tabSelect" data-id="{{index}}">
-      {{item.name}}
-    </view>
-  </scroll-view>
+
+<scroll-view scroll-x class="bg-white nav" scroll-with-animation scroll-left="{{scrollLeft}}">
+  <view class="cu-item {{index==TabCur?'text-blue cur':''}} text-lg" wx:for="{{AllActivity}}" wx:key bindtap="tabSelect" data-id="{{index}}">
+    {{item.name}}
+  </view>
+</scroll-view>
+<view class="bg-white">
+  <view class="flex bg-white margins">
+    <view class="flex-sub bg-blue text-center height ">排名</view>
+    <view class="flex-twice bg-blue text-center height">得分</view>
+    <view class="flex-twice bg-blue text-center height">日期</view>
+    <view class="flex-treble bg-blue text-center height ">活动名称</view>
+  </view>
+</view>
+
+<view class="bg-white">
+  <view class="flex bg-white margins">
+    <view class="flex-sub bg-white  text-center height2 ">5</view>
+    <view class="flex-twice bg-white text-center height2">80</view>
+    <view class="flex-twice bg-white text-center height2">2020/3/31</view>
+    <view class="flex-treble bg-white text-center height2 ">XXXX活动名称</view>
+  </view>
+</view>
+<view class="bg-white">
+  <view class="flex bg-white margins">
+    <view class="flex-sub bg-white  text-center height2 ">5</view>
+    <view class="flex-twice bg-white text-center height2">80</view>
+    <view class="flex-twice bg-white text-center height2">2020/3/31</view>
+    <view class="flex-treble bg-white text-center height2 ">XXXX活动名称</view>
+  </view>
+</view>
+<view class="bg-white">
+  <view class="flex bg-white margins">
+    <view class="flex-sub bg-white  text-center height2 ">5</view>
+    <view class="flex-twice bg-white text-center height2">80</view>
+    <view class="flex-twice bg-white text-center height2">2020/3/31</view>
+    <view class="flex-treble bg-white text-center height2 ">XXXX活动名称</view>
+  </view>
+</view>
+<view class="bg-white">
+  <view class="flex bg-white margins">
+    <view class="flex-sub bg-white  text-center height2 ">5</view>
+    <view class="flex-twice bg-white text-center height2">80</view>
+    <view class="flex-twice bg-white text-center height2">2020/3/31</view>
+    <view class="flex-treble bg-white text-center height2 ">XXXX活动名称</view>
+  </view>
 </view>

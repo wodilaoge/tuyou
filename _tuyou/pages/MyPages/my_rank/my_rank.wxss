@@ -7,10 +7,12 @@
   align-items: center;
   justify-content: center;
 }
-.options{
+
+.options {
   position: relative;
   top: -20rpx;
 }
+
 .button-left {
   width: 200rpx;
   border-bottom-right-radius: 10px;
@@ -30,6 +32,29 @@
   /* top: 64rpx;
   left: 36rpx; */
   right: -600rpx;
+}
+
+.margins {
+  position: relative;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  top: 10rpx;
+}
+
+.height {
+  height: 55rpx;
+  margin: 3rpx;
+  font-size: 32rpx;
+}
+
+.height2 {
+  height: 80rpx;
+  margin: 3rpx;
+  font-size: 32rpx;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 15rpx;
 }
 
 .pic {
