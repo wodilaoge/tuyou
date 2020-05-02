@@ -70,7 +70,7 @@
     <image src="/img/my/03.png" class="menu-img"></image>
     <text class="menu-name">工作台</text>
   </navigator>
-  <navigator url="" class="menu-item">
+  <navigator url="/pages/my_activity/my_activity" class="menu-item">
     <image src="/img/my/04.png" class="menu-img"></image>
     <text class="menu-name">活动</text>
   </navigator>
