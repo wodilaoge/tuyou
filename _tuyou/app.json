@@ -1,7 +1,7 @@
 {
-  "pages": [
-    "pages/login/login",
+  "pages":[
     "pages/index/index",
+    "pages/login/login",
     "pages/form_team/form_team",
     "pages/form_picture/form_picture",
     "pages/form_video/form_video",
@@ -15,6 +15,7 @@
     "pages/my_system_message/my_system_message",
     "pages/my_workplate/my_workplate",
     "pages/my_activity/my_activity",
+    "pages/my_team/my_team",
     "pages/yundongxiangqing/yundongxiangqing",
     "pages/xiaoyuan/xiaoyuan",
     "pages/xiaoyuanxiangqing/xiaoyuanxiangqing",

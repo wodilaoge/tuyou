@@ -1,0 +1,86 @@
+
+.menu-item {
+  width: 33%;
+  padding: 5px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.orange{
+  width: 88%;
+  justify-content: center;
+  height: 8rpx;
+  background-color: #F96300;
+  border-radius: 20rpx;
+  position: relative;
+  top: 16rpx;
+  left: 10rpx;
+}
+.menu {
+  display: flex; /*弹性布局*/
+  flex-wrap: wrap; /*允许换行*/
+  padding-bottom: 10rpx;
+}
+
+.menu-name {
+  text-align: center;
+  font-weight: bold;
+}
+.icon {
+  position: relative;
+  width: 40rpx;
+  height: 40rpx;
+  /* top: 64rpx;
+  left: 36rpx; */
+  right: -600rpx;
+}
+
+.pic {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.icon2 {
+  position: relative;
+  width: 40rpx;
+  height: 40rpx;
+  right: -540rpx;
+}
+
+.VerticalNav.nav {
+  width: 200rpx;
+  white-space: initial;
+}
+
+.VerticalNav.nav .cu-item {
+  width: 100%;
+  text-align: center;
+  background-color: #fff;
+  margin: 0;
+  border: none;
+  height: 50px;
+  position: relative;
+}
+
+.VerticalNav.nav .cu-item.cur {
+  background-color: #f1f1f1;
+}
+.VerticalNav.nav .cu-item.cur::after {
+  content: "";
+  width: 8rpx;
+  height: 30rpx;
+  border-radius: 10rpx 0 0 10rpx;
+  position: absolute;
+  background-color: currentColor;
+  top: 0;
+  right: 0rpx;
+  bottom: 0;
+  margin: auto;
+}
+.VerticalBox{
+  display: flex;
+}
+.VerticalMain{
+  background-color: #f1f1f1;
+}
