@@ -8,9 +8,17 @@ Page({
    */
   data: {
     swip: ['活动审核', '新闻审核', '图片审核', '视频审核'],
-    options:1
+    options:1,
+    TabCur:0,
+    AllActivity:[],
+    scrollLeft: 0
   },
-
+  tabSelect(e) {
+    this.setData({
+      TabCur: e.currentTarget.dataset.id,
+      scrollLeft: (e.currentTarget.dataset.id - 1) * 60
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -31,8 +39,15 @@ Page({
     })
   },
 
-    onLoad: function (options) {
-
+  onLoad: function (options) {
+    var that=this
+    let url = app.globalData.URL + '/config/findAllActivityClass1';
+    let data = '';
+    util.gets(url, {}).then(function (res) {
+      that.setData({
+        AllActivity: res.data.data
+      })
+    })
   },
 
   /**
