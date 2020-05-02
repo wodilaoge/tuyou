@@ -46,7 +46,7 @@
                 <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
               </view>
               <view class="text-gray text-sm">
-                <text class="{{false==item.status?'cuIcon-appreciate':'cuIcon-appreciatefill'}} margin-lr-xs line" bindtap="zan_list" data-objtitle="{{item.id}}">{{item.praiseCnt}}</text>
+                <text class="{{false==item.status?'cuIcon-appreciate':'cuIcon-appreciatefill'}} margin-lr-xs line" bindtap="zan_list" data-objtitle="{{item.id}}" data-ifzan="{{item.status}}">{{item.praiseCnt}}</text>
                 <text class="cuIcon-appreciate margin-lr-xs "></text> 1
               </view>
             </view>

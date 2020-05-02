@@ -1,4 +1,5 @@
 const app = getApp();
+var util = require("../../utils/util.js");
 Page({
   data: {
     option: [],
@@ -7,9 +8,10 @@ Page({
     comment: [],
     comment_detail: [],
     Input: '',
-    user:[],
+    user: [],
+    loading: true,
   },
-  emailInput: function(e) {//input输入
+  emailInput: function(e) { //input输入
     this.setData({
       Input: e.detail.value
     });
@@ -35,6 +37,24 @@ Page({
       self.setData({
         comment_detail: self.data.comment.list
       });
+      let list = self.data.comment_detail
+      for (let i in list) {
+        let url2 = app.globalData.URL + '/applaud/countByObj'; //点赞数
+        data = {
+          objid: list[i].id,
+          objtype: 30
+        };
+        util.gets(url2, data).then(function(res) {
+          list[i].praiseCnt = res.data.data
+          if (i == list.length - 1) {
+            console.log(list)
+            self.setData({
+              comment_detail: list,
+              loading: false
+            });
+          }
+        });
+      }
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -43,11 +63,10 @@ Page({
     if (this.data.Input == "") {
       wx.showToast({
         title: '请输入回复内容', // 标题
-        icon: 'none', 
+        icon: 'none',
         duration: 1500 // 提示窗停留时间，默认1500ms
       })
-    }
-    else {
+    } else {
       this.fasong()
     }
   },
@@ -78,10 +97,25 @@ Page({
       Input: ''
     })
   },
+  TBcontroll() { //同步控制
+    var self = this;
+    new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        while (self.data.loading == true) {
+          console.log("wait")
+        }
+      }, 10000) 
+      resolve();
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(option) {
+  onLoad: async function(option) {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    });
     var self = this;
     self.setData({
       option: option,
@@ -90,12 +124,14 @@ Page({
       user: wx.getStorageSync('userInfo')
     })
     self.comment();
+    await self.TBcontroll();
+    wx.hideLoading()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: async function () {
 
   },
 

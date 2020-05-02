@@ -16,7 +16,7 @@
 <view class="cu-card case no-card bg-white" >
   <view class="cu-item shadow">
     <view class="cu-list menu-avatar">
-      <view class="cu-item" wx:for="{{comment.list}}">
+      <view class="cu-item" wx:for="{{comment_detail}}">
         <view class="cu-avatar round lg" style="background-image:url({{item.createrHead}});"></view>
         <view class="content flex-sub"  bindtap="chakanhuifu" data-id="{{item.id}}" data-objtitle="{{item.objtitle}}">
           <view class=" flex justify-between">

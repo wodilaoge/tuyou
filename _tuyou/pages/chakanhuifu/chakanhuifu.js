@@ -4,7 +4,6 @@ Page({
   data: {
     option: [],
     id: '',
-    huifudata: [],
     comment: [],
     list: [],
     Input: '',
@@ -127,13 +126,13 @@ Page({
   zan_list(e) { //回复点赞或取消
     self = this;
     let url = app.globalData.URL + '/applaud/updateApplaud';
-    if (self.data.ifzan)
+    if (e.currentTarget.dataset.objtitle)
       var data = {
         objtype: 10,
         objid: e.currentTarget.dataset.objtitle,
         objtitle: '',
         creater: self.data.user.id,
-        status: 0,
+        status: 1,
       };
     else
       var data = {
@@ -141,7 +140,7 @@ Page({
         objid: e.currentTarget.dataset.objtitle,
         objtitle: '',
         creater: self.data.user.id,
-        status: 1,
+        status: 0,
       };
     app.wxRequest('POST', url, data, (res) => {
       wx.showToast({
@@ -192,17 +191,20 @@ Page({
       Input: ''
     })
   },
-  TBcontroll() {
+  TBcontroll() {//同步控制
+    var self = this;
     new Promise(function(resolve, reject) {
-      while (self.data.loading == false) {
-      }
-      resolve();
+      setTimeout(function () {
+        while (self.data.loading == true) {
+          console.log("wait")
+        }
+      }, 1000) 
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: async function(option) {
+  onLoad:  function(option) {
     wx.showLoading({
       title: '加载中...',
       mask: true
@@ -216,14 +218,14 @@ Page({
     })
     self.ifzan()
     self.comment();
-    await self.TBcontroll();
-    wx.hideLoading()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: async function () {
+    await self.TBcontroll();
+    wx.hideLoading()
 
   },
 
