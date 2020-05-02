@@ -31,23 +31,23 @@
 }
 
 .tdxx-xinxi {
-  height: 648rpx;
+  height: 100rpx;
   background-color: white;
 }
 
 .tdxx-duizhang {
   width: 702rpx;
-  height: 104rpx;
+  height: 100rpx;
   background: rgba(255, 255, 255, 1);
   box-shadow: 1rpx 2rpx 9rpx 0rpx rgba(84, 84, 255, 0.17);
   border-radius: 52rpx;
   margin-top: -24rpx;
   margin-left: 24rpx;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   display: flex;
   position: absolute;
-  background-color: ;
+  
   
 }
 
@@ -74,12 +74,10 @@
 }
 
 .tdxx-img-icon {
-    display: flex;
+  display: flex;
   float: right;
-   flex-flow: row-reverse;
   width: 46rpx;
   height: 44rpx;
- 
   margin-right: 40rpx;
   /* margin-left: 265rpx; */
   

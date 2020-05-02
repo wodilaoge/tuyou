@@ -3,13 +3,17 @@ Page({
   data: {
     TabCur: 0,
     paimingCur: 0,
+    huodongID:'5069992122908672',
     isbaoming: 0,
     comment: [],
     SwiperList_zhaopian: [],
     comment_detail: [],
     news: [],
     news_detail: [],
+    shipin: [],
     shipin_detail: [],
+    zhaopian: [],
+    zhaopian_detail: [],
     swiperList: [{
       id: 0,
       type: 'image',
@@ -96,18 +100,33 @@ Page({
     });
   },
   getShipin() {//视频
-    let url = app.globalData.URL + '/video/findActVideo';
+    let url = app.globalData.URL + '/video/listActVideo';
     let data = {
-      id: this.data.news.id
+      id: this.data.huodongID
     };
     app.wxRequest('GET', url, data, (res) => {
       console.log(res)
       this.setData({
-        shipin_detail: res.data
+        shipin: res.data
       })
     }, (err) => {
       console.log(err.errMsg)
     });
+  },
+  getZhaopian() {//照片
+    let url = app.globalData.URL + '/photo/listActPhoto';
+    let data = {
+      id: this.data.huodongID
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res.data)
+      this.setData({
+       zhaopian: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+    console.log(this.data.zhaopian)
   },
   /**
    * 生命周期函数--监听页面加载
@@ -116,7 +135,7 @@ Page({
     this.news()
     this.news_detail()
     this.getShipin()
-
+    this.getZhaopian()
   },
 
   /**

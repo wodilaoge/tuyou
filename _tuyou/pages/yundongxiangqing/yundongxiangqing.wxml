@@ -387,12 +387,12 @@
 创建时间：20200418
 创建内容：视频-->
 <block wx:if="{{TabCur==2}}">
-  <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx;">{{shipin_deatile.title}}</view>
+  <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx;">{{shipin.list[0].title}}</view>
 
   <view class="content-white">
     <view class=" sp-cu-bar cu-bar-radius bg-white  ">
-      <image class="sp-avatar round " src="{{shipin_deatile.authorHead}} "></image>
-      <view class="sp-avatar-name">{{shipin_deatile.authorAlias}}</view>
+      <image class="sp-avatar round " src="{{shipin.list[0].authorHead}} "></image>
+      <view class="sp-avatar-name">{{shipin.list[0].authorAlias}}</view>
       <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;margin-left:372rpx;">关注</button>
     </view>
 
@@ -475,7 +475,7 @@
 创建内容：照片-->
 <block wx:if="{{TabCur==3}}">
 
-  <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx;">强有力队活动视频</view>
+  <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx;">{{zhaopian[0].title}}</view>
 
   <view class="content-white">
     <view class=" sp-cu-bar cu-bar-radius bg-white  ">
