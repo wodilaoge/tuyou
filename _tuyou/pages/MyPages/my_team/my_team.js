@@ -64,11 +64,11 @@ Page({
   },
   VerticalMain(e) {
     let that = this;
-    let list = this.data.list;
+    let list = this.data.AllActivity;
     let tabHeight = 0;
     if (this.data.load) {
       for (let i = 0; i < list.length; i++) {
-        let view = wx.createSelectorQuery().select("#main-" + list[i].id);
+        let view = wx.createSelectorQuery().select("#main-" + list[i].code);
         view.fields({
           size: true
         }, data => {
