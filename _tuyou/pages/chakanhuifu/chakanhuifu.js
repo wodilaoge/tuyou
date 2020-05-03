@@ -36,6 +36,11 @@ Page({
     };
     util.gets(url2, data).then(function(res) {
       var list = res.data.data
+      if (list.list.length == 0)
+        self.setData({
+          list: list,
+          loading: false
+        });
       for (let i in list.list) {
         let url2 = app.globalData.URL + '/applaud/findApplaud'; //点赞情况
         data = {
@@ -58,9 +63,6 @@ Page({
               list: list,
               loading: false
             });
-        });
-        self.setData({
-          list: list,
         });
       }
     });
@@ -113,12 +115,21 @@ Page({
         status: 1,
       };
     app.wxRequest('POST', url, data, (res) => {
+      if (self.data.ifzan)
+        self.setData({
+          ifzan: false,
+          likecount: self.data.likecount - 1
+        })
+      else
+        self.setData({
+          ifzan: true,
+          likecount: self.data.likecount + 1
+        })
       wx.showToast({
         title: '操作成功！', // 标题
         icon: 'success', // 图标类型，默认success
         duration: 1500 // 提示窗停留时间，默认1500ms
       })
-      self.onLoad(self.data.option)
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -126,29 +137,45 @@ Page({
   zan_list(e) { //回复点赞或取消
     self = this;
     let url = app.globalData.URL + '/applaud/updateApplaud';
-    if (e.currentTarget.dataset.objtitle)
+    if (e.currentTarget.dataset.ifzan)
       var data = {
         objtype: 10,
-        objid: e.currentTarget.dataset.objtitle,
-        objtitle: '',
-        creater: self.data.user.id,
-        status: 1,
-      };
-    else
-      var data = {
-        objtype: 10,
-        objid: e.currentTarget.dataset.objtitle,
+        objid: e.currentTarget.dataset.objid,
         objtitle: '',
         creater: self.data.user.id,
         status: 0,
       };
+    else
+      var data = {
+        objtype: 10,
+        objid: e.currentTarget.dataset.objid,
+        objtitle: '',
+        creater: self.data.user.id,
+        status: 1,
+      };
     app.wxRequest('POST', url, data, (res) => {
+      var list = self.data.list
+      console.log(list)
+      if (self.data.list.list[e.currentTarget.dataset.index].status) {
+        list.list[e.currentTarget.dataset.index].status = false
+        list.list[e.currentTarget.dataset.index].praiseCnt = list.list[e.currentTarget.dataset.index].praiseCnt - 1
+        console.log(list)
+        self.setData({
+          list: list,
+        })
+      } else {
+        list.list[e.currentTarget.dataset.index].status = true
+        list.list[e.currentTarget.dataset.index].praiseCnt = list.list[e.currentTarget.dataset.index].praiseCnt + 1
+        console.log(list)
+        self.setData({
+          list: list,
+        })
+      }
       wx.showToast({
         title: '操作成功！', // 标题
         icon: 'success', // 图标类型，默认success
         duration: 1500 // 提示窗停留时间，默认1500ms
       })
-      self.onLoad(self.data.option)
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -191,20 +218,20 @@ Page({
       Input: ''
     })
   },
-  TBcontroll() {//同步控制
+  TBcontroll() { //同步控制
     var self = this;
     new Promise(function(resolve, reject) {
-      setTimeout(function () {
+      setTimeout(function() {
         while (self.data.loading == true) {
           console.log("wait")
         }
-      }, 1000) 
+      }, 1000)
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad:  function(option) {
+  onLoad: async function(option) {
     wx.showLoading({
       title: '加载中...',
       mask: true
@@ -218,14 +245,14 @@ Page({
     })
     self.ifzan()
     self.comment();
+    await self.TBcontroll();
+    wx.hideLoading()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: async function () {
-    await self.TBcontroll();
-    wx.hideLoading()
+  onReady: function() {
 
   },
 
