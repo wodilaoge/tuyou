@@ -178,39 +178,59 @@
   <view class="content-white">
     <view class="bg-blue">
       <view class="cu-bar cu-bar-radius bg-white padding">
-        <text class="cu-bar-title">活动介绍</text>
+        <text class="cu-bar-title">在线报名</text>
       </view>
     </view>
+    <block wx:if="{{isbaoming==0}}">
+      <form>
+        <view class="cu-form-group margin-top">
+          <view class="title">姓名 </view>
+          <input class="form-text" placeholder="李四"></input>
+        </view>
+        <view class="cu-form-group form-margin-top">
+          <view class="title">手机</view>
+          <input class="form-text" placeholder="请输入手机号"></input>
+        </view>
+        <view class="cu-form-group align-start">
+          <view class="title2">备注</view>
+          <textarea class="form-text2" maxlength="-1"  bindinput="textareaBInput" placeholder=" 多行输入" placeholder-class="mlt"></textarea>
+        </view>
+      </form>
 
-    <view>
-      <image class="img-success " src="/img/img_success.png"></image>
-    </view>
 
-    <view class="flex justify-center">
-      <text class="baoming_text_ok">报名成功</text>
-    </view>
-    <view class="flex justify-center">
-      <text class="baoming_text_wait">请耐心等待活动开始</text>
-    </view>
-    <view class="flex justify-center padding-lg">
-      <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx">取消报名</button>
-    </view>
-    <view class="fenge-bg"></view>
-    <view class="cu-bar bg-white solid-bottom">
-      <view class='action'>
-        <text class='cu-bar-title'>已报名21人</text>
+      <view class="cu-form-group-yuedu margin-top">
+        <checkbox class="yuedu-logo blue" checked></checkbox>
+        <view class="yuedu1">我已阅读并同意</view>
+        <view class="yuedu2">《同友活动声明》</view>
       </view>
-    </view>
+      <view class="button-pos1">
+        <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx">开始报名</button>
+      </view>
+    </block>
 
+    <block wx:if="{{isbaoming==1}}">
+      <view>
+        <image class="img-success " src="/img/img_success.png"></image>
+      </view>
 
-    <view class="grid col-6 padding-sm">
-      <view class="margin-tb-sm text-center" wx:for="{{AvatarList}}" wx:key>
-        <view class="cu-avatar-success round" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);">
+      <view class="flex justify-center">
+        <text class="baoming_text_ok">报名成功</text>
+      </view>
+      <view class="flex justify-center">
+        <text class="baoming_text_wait">请耐心等待活动开始</text>
+      </view>
+      <view class="flex justify-center padding-lg">
+        <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx">取消报名</button>
+      </view>
+      <view class="fenge-bg"></view>
+      <view class="cu-bar bg-white solid-bottom">
+        <view class='action'>
+          <text class='cu-bar-title'>已报名21人</text>
         </view>
       </view>
-    </view>
 
 
+    </block>
 
     <block>
       <view class="huodong-margin-bottom">
@@ -251,7 +271,6 @@
       </view>
     </block>
   </view>
-
 </block>
 
 

@@ -15,6 +15,7 @@ Page({
     likecount: 0,
     ifzan: false,
     loading: true,
+    isbaoming: 0,
     user: [],
   },
   tabSelect(e) {

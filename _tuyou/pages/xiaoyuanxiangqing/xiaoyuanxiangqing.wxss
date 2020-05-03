@@ -55,6 +55,8 @@ page {
   text-align: right;
   background-color: #f8f9fd;
   border-radius: 36rpx;
+  font-size: 32rpx;
+  line-height: 32rpx;
 }
 
 .content-white {
@@ -106,6 +108,12 @@ page {
   text-align: left;
   background-color: #f8f9fd;
   border-radius: 36rpx;
+  font-size: 32rpx;
+  line-height: 32rpx;
+}
+
+.mlt{
+  margin-left: 10000rpx;
 }
 
 .cu-form-group-yuedu {
