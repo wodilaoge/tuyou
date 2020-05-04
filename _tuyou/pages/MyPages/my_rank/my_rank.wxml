@@ -13,44 +13,43 @@
     {{item.name}}
   </view>
 </scroll-view>
-<view class="bg-white">
-  <view class="flex bg-white margins">
-    <view class="flex-sub bg-blue text-center height ">排名</view>
-    <view class="flex-twice bg-blue text-center height">得分</view>
-    <view class="flex-twice bg-blue text-center height">日期</view>
-    <view class="flex-treble bg-blue text-center height ">活动名称</view>
+<block wx:if="{{color}}">
+  <view class="bg-white">
+    <view class="flex bg-white margins">
+      <view class="flex-sub bg-blue text-center height ">排名</view>
+      <view class="flex-twice bg-blue text-center height">得分</view>
+      <view class="flex-twice bg-blue text-center height">日期</view>
+      <view class="flex-treble bg-blue text-center height ">活动名称</view>
+    </view>
   </view>
-</view>
 
-<view class="bg-white">
-  <view class="flex bg-white margins">
-    <view class="flex-sub bg-white  text-center height2 ">5</view>
-    <view class="flex-twice bg-white text-center height2">80</view>
-    <view class="flex-twice bg-white text-center height2">2020/3/31</view>
-    <view class="flex-treble bg-white text-center height2 ">XXXX活动名称</view>
+  <view class="bg-white" wx:for="{{messages}}">
+    <view class="flex bg-white margins">
+      <view class="flex-sub bg-white  text-center height2 ">{{item.rank}}</view>
+      <view class="flex-twice bg-white text-center height2">{{item.score}}</view>
+      <view class="flex-twice bg-white text-center height2">{{item.date}}</view>
+      <view class="flex-treble bg-white text-center height2 ">{{item.name}}</view>
+    </view>
   </view>
-</view>
-<view class="bg-white">
-  <view class="flex bg-white margins">
-    <view class="flex-sub bg-white  text-center height2 ">5</view>
-    <view class="flex-twice bg-white text-center height2">80</view>
-    <view class="flex-twice bg-white text-center height2">2020/3/31</view>
-    <view class="flex-treble bg-white text-center height2 ">XXXX活动名称</view>
+</block>
+<block wx:else>
+  <view class="bg-white">
+    <view class="flex bg-white margins">
+      <view class="flex-twice bg-blue text-center height ">团队名称</view>
+      <view class="flex-sub bg-blue text-center height ">排名</view>
+      <view class="flex-twice bg-blue text-center height">得分</view>
+      <view class="flex-twice bg-blue text-center height">日期</view>
+      <view class="flex-treble bg-blue text-center height ">活动名称</view>
+    </view>
   </view>
-</view>
-<view class="bg-white">
-  <view class="flex bg-white margins">
-    <view class="flex-sub bg-white  text-center height2 ">5</view>
-    <view class="flex-twice bg-white text-center height2">80</view>
-    <view class="flex-twice bg-white text-center height2">2020/3/31</view>
-    <view class="flex-treble bg-white text-center height2 ">XXXX活动名称</view>
+
+  <view class="bg-white" wx:for="{{messages}}">
+    <view class="flex bg-white margins">
+      <view class="flex-twice bg-white  text-center height2 ">{{item.union}}</view>
+      <view class="flex-sub bg-white  text-center height2 ">{{item.rank}}</view>
+      <view class="flex-twice bg-white text-center height2">{{item.score}}</view>
+      <view class="flex-twice bg-white text-center height2">{{item.date}}</view>
+      <view class="flex-treble bg-white text-center height2 ">{{item.name}}</view>
+    </view>
   </view>
-</view>
-<view class="bg-white">
-  <view class="flex bg-white margins">
-    <view class="flex-sub bg-white  text-center height2 ">5</view>
-    <view class="flex-twice bg-white text-center height2">80</view>
-    <view class="flex-twice bg-white text-center height2">2020/3/31</view>
-    <view class="flex-treble bg-white text-center height2 ">XXXX活动名称</view>
-  </view>
-</view>
+</block>
