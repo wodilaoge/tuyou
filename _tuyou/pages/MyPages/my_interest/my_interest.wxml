@@ -3,9 +3,9 @@
   <view slot="content">兴趣</view>
 </cu-custom>
 <view wx:for="{{lists}}" class="padding-top">
-  <view class="bg-white detail" bindtap="choose" data-id="{{index}}">
-    <view class="text-bold text-black title">{{item.title}}</view>
+  <view class="bg-{{lists[index].is==true?'blue':'white'}} detail" bindtap="choose" data-id="{{index}}">
+    <view class="text-bold text-{{lists[index].is==true?'white':'black'}} title">{{item.title}}</view>
     <text class="cuIcon-round text-xl text-blue circle"></text>
-    <view class="text-bold text-grey content">{{item.content}}</view>
+    <view class="text-{{lists[index].is==true?'white':'grey'}} content">{{item.content}}</view>
   </view>
 </view>
