@@ -1,4 +1,11 @@
-<cu-custom bgColor="bg-blue" isBack="{{true}}">
-  <view slot="backText">返回</view>
-  <view slot="content">讨论</view>
-</cu-custom>
+ <view class="cu-bar bg-blue search width" >
+     <view class="action down">
+      <text class="cuIcon-back"></text>
+    </view>
+    <view class="text down">
+      讨论
+    </view>
+    <view class="action down">
+      <text class="cuIcon-search"></text>
+    </view>
+  </view>

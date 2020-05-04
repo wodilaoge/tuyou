@@ -178,8 +178,8 @@
 				},
 				{
 					"id": 17,
-					"name": "pages/MyPages/my_interest/my_interest",
-					"pathName": "pages/MyPages/my_interest/my_interest",
+					"name": "pages/MyPages/my_discuss/my_discuss",
+					"pathName": "pages/MyPages/my_discuss/my_discuss",
 					"query": "",
 					"scene": null
 				}
