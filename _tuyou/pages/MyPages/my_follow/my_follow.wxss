@@ -1,0 +1,4 @@
+/* pages/MyPages/my_follow/my_follow.wxss */
+.height{
+  width: 170rpx;
+}

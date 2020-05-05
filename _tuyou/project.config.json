@@ -107,9 +107,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 7,
 					"name": "我的",
-					"pathName": "pages/my/my",
+					"pathName": "pages/MyPages/my/my",
 					"query": "",
 					"scene": null
 				},
@@ -173,6 +173,13 @@
 					"id": -1,
 					"name": "资料",
 					"pathName": "pages/ziliao/ziliao",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 17,
+					"name": "pages/MyPages/my_discuss/my_discuss",
+					"pathName": "pages/MyPages/my_discuss/my_discuss",
 					"query": "",
 					"scene": null
 				}

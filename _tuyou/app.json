@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/login/login",
     "pages/form_team/form_team",
@@ -17,6 +17,14 @@
     "pages/MyPages/my_activity/my_activity",
     "pages/MyPages/my_team/my_team",
     "pages/MyPages/my_rank/my_rank",
+    "pages/MyPages/my_follow/my_follow",
+    "pages/MyPages/my_fans/my_fans",
+    "pages/MyPages/my_interest/my_interest",
+    "pages/MyPages/my_discuss/my_discuss",
+    "pages/MyPages/my_video/my_video",
+    "pages/MyPages/my_pic/my_pic",
+    "pages/MyPages/my_news/my_news",
+
     "pages/yundongxiangqing/yundongxiangqing",
     "pages/xiaoyuan/xiaoyuan",
     "pages/xiaoyuanxiangqing/xiaoyuanxiangqing",

@@ -1,0 +1,11 @@
+ <view class="cu-bar bg-blue search width" >
+     <view class="action down">
+      <text class="cuIcon-back"></text>
+    </view>
+    <view class="text down">
+      讨论
+    </view>
+    <view class="action down">
+      <text class="cuIcon-search"></text>
+    </view>
+  </view>

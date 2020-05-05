@@ -1,0 +1,10 @@
+.width{
+  height: 150rpx;
+}
+.down{
+  position: relative;
+  top: 15rpx;
+}
+.text{
+  font-size: 35rpx;
+}
