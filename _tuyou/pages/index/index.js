@@ -8,6 +8,8 @@ Page({
     PageCur: 'basics',
     isshow: false,
     sectioninfo:[],
+    huodongID: '5069992122908672',
+    shipin: [],
     SwiperList: [],
     news: [],
     sport: "1dwad ",
@@ -95,6 +97,20 @@ Page({
       console.log(err.errMsg)
     });
   },
+  getShipin() {//视频
+    let url = app.globalData.URL + '/video/listActVideo';
+    let data = {
+      arctid: this.data.huodongID
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res)
+      this.setData({
+        shipin: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
   toxiaoyuan: function(e) {
     wx.switchTab({
       url: "/pages/xiaoyuan/xiaoyuan"
@@ -138,6 +154,7 @@ Page({
     this.getinfo();
     this.getuploadinfo();
     // app.editTabbar();
+    this.getShipin();
   },
   todetail(e) { //报名参加按钮跳转 带着活动id跳转 校园活动
     wx.navigateTo({

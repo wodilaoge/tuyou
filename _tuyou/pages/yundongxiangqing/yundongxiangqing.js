@@ -102,7 +102,7 @@ Page({
   getShipin() {//视频
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
-      id: this.data.huodongID
+      arctid: this.data.huodongID
     };
     app.wxRequest('GET', url, data, (res) => {
       console.log(res)
@@ -116,10 +116,10 @@ Page({
   getZhaopian() {//照片
     let url = app.globalData.URL + '/photo/listActPhoto';
     let data = {
-      id: this.data.huodongID
+      arctid: this.data.huodongID
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res.data)
+      console.log(res)
       this.setData({
        zhaopian: res.data
       })
