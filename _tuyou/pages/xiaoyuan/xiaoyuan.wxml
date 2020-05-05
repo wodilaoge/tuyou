@@ -59,7 +59,7 @@
 <block wx:if="{{TabCur==0}}">
   <view class="top-gradul-blue">
     <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#FE538F">
-      <swiper-item wx:for="{{xiaoyuanSwiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
+      <swiper-item wx:for="{{xiaoyuanSwiperList}}" wx:key>
         <view class="swiper-item">
           <image src="{{item.path}}" mode="scaleToFill"></image>
         </view>
@@ -92,7 +92,7 @@
 <block wx:if="{{TabCur==1}}">
   <view class="top-gradul-blue">
     <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#FE538F">
-      <swiper-item wx:for="{{yundongSwiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
+      <swiper-item wx:for="{{yundongSwiperList}}" wx:key>
         <view class="swiper-item">
           <image src="{{item.path}}" mode="scaleToFill"></image>
         </view>
@@ -105,14 +105,17 @@
     </view>
   </scroll-view>
   <view>
-      <lanqiu yundongList="{{yundongList}}" yundongCur="{{yundongCur}}"></lanqiu>
+      <yundong yundongList="{{yundongList}}" yundongCur="{{yundongCur}}"></yundong>
   </view>
 </block>
-
+<!--
+创建者：陈雨豪 
+创建时间：20200505
+内容：文娱页面-->
 <block wx:if="{{TabCur==2}}">
   <view class="top-gradul-blue">
     <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#FE538F">
-      <swiper-item wx:for="{{yundongSwiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
+      <swiper-item wx:for="{{yundongSwiperList}}" wx:key>
         <view class="swiper-item">
           <image src="{{item.path}}" mode="scaleToFill"></image>
         </view>
@@ -120,19 +123,22 @@
     </swiper>
   </view>
   <scroll-view scroll-x class="bg-white nav text-center">
-    <view class="cu-item" bindtap="yundongTabSelect" data-cur="{{item.code}}" wx:for="{{yundongdalei}}" wx:key="code">
-      <button class="cu-btn btn-yundong-cur round {{yundongCur==item.code?'bg-orange':'bg-gery'}} padding">{{item.name}}</button>
+    <view class="cu-item" bindtap="wenyuTabSelect" data-cur="{{item.code}}" wx:for="{{wenyudalei}}" wx:key="code">
+      <button class="cu-btn btn-yundong-cur round {{wenyuCur==item.code?'bg-orange':'bg-gery'}} padding">{{item.name}}</button>
     </view>
   </scroll-view>
   <view>
-      <lanqiu yundongList="{{yundongList}}" yundongCur="{{yundongCur}}"></lanqiu>
+      <wenyu yundongList="{{yundongList}}" yundongCur="{{yundongCur}}"></wenyu>
   </view>
 </block>
-
+<!--
+创建者：陈雨豪 
+创建时间：20200505
+内容：爱好页面-->
 <block wx:if="{{TabCur==3}}">
   <view class="top-gradul-blue">
     <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#FE538F">
-      <swiper-item wx:for="{{yundongSwiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
+      <swiper-item wx:for="{{yundongSwiperList}}" wx:key>
         <view class="swiper-item">
           <image src="{{item.path}}" mode="scaleToFill"></image>
         </view>
@@ -140,12 +146,12 @@
     </swiper>
   </view>
   <scroll-view scroll-x class="bg-white nav text-center">
-    <view class="cu-item" bindtap="yundongTabSelect" data-cur="{{item.code}}" wx:for="{{yundongdalei}}" wx:key="code">
-      <button class="cu-btn btn-yundong-cur round {{yundongCur==item.code?'bg-orange':'bg-gery'}} padding">{{item.name}}</button>
+    <view class="cu-item" bindtap="aihaoTabSelect" data-cur="{{item.code}}" wx:for="{{aihaodalei}}" wx:key="code">
+      <button class="cu-btn btn-yundong-cur round {{aihaoCur==item.code?'bg-orange':'bg-gery'}} padding">{{item.name}}</button>
     </view>
   </scroll-view>
   <view>
-      <lanqiu yundongList="{{yundongList}}" yundongCur="{{yundongCur}}"></lanqiu>
+      <aihao yundongList="{{yundongList}}" yundongCur="{{yundongCur}}"></aihao>
   </view>
 </block>
 <!-- 发布栏 -->
