@@ -2,9 +2,9 @@ const app = getApp();
 var util = require("../../utils/util.js");
 Page({
   data: {
-    options:[],
+    options: [],
     CustomBar: app.globalData.CustomBar,
-    TabCur: 0,
+    TabCur: 1,
     paimingCur: 0,
     categoryId: '',
     detail: [], //页面详细内容
@@ -15,7 +15,10 @@ Page({
     likecount: 0,
     ifzan: false,
     loading: true,
-    isbaoming: 0,
+    baomingCur: 0,
+    signupway: false,
+    isbaominggeren: 0,
+    isbaomingtuandui: 0,
     user: [],
   },
   tabSelect(e) {
@@ -28,15 +31,19 @@ Page({
       paimingCur: e.currentTarget.dataset.id,
     })
   },
+  baomingSelect(e) {
+    this.setData({
+      baomingCur: e.currentTarget.dataset.id,
+    })
+  },
   pinluntiaozhuan(e) { //评论跳转
     wx.navigateTo({
       url: '/pages/pinlunliebiao/pinlunliebiao?categoryId=' + this.data.categoryId + '&objtitle=' + this.data.detail.actname,
     })
   },
   chakanhuifu: function(e) { //查看回放跳转
-    console.log(e);
     wx.navigateTo({
-      url: '/pages/chakanhuifu/chakanhuifu?id=' + e.currentTarget.dataset.id ,
+      url: '/pages/chakanhuifu/chakanhuifu?id=' + e.currentTarget.dataset.id,
     })
   },
   detail() { //页面项目信息
@@ -76,7 +83,7 @@ Page({
           objid: list[i].id,
           uid: self.data.user.id,
         };
-        util.gets(url2, data).then(function (res) {
+        util.gets(url2, data).then(function(res) {
           list[i]['ifzan'] = res.data.data
         });
         url2 = app.globalData.URL + '/applaud/countByObj'; //点赞数
@@ -84,7 +91,7 @@ Page({
           objid: list[i].id,
           objtype: 30
         };
-        util.gets(url2, data).then(function (res) {
+        util.gets(url2, data).then(function(res) {
           list[i].praiseCnt = res.data.data
           if (i == list.length - 1) {
             self.setData({
@@ -134,7 +141,6 @@ Page({
       uid: self.data.user.id,
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res.data)
       self.setData({
         ifzan: res.data
       })
@@ -170,7 +176,7 @@ Page({
         objid: self.data.categoryId,
         objtitle: self.data.detail.actname,
         creater: self.data.user.id,
-        status:1,
+        status: 1,
       };
     app.wxRequest('POST', url, data, (res) => {
       wx.showToast({
@@ -228,16 +234,16 @@ Page({
   },
   TBcontroll() { //同步控制
     var self = this;
-    new Promise(function (resolve, reject) {
-      setTimeout(function () {
+    return new Promise(function(resolve, reject) {
+      setTimeout(function() {
         while (self.data.loading == true) {
           console.log("wait")
         }
+        resolve();
       }, 1000)
-      resolve();
     })
   },
-  onLoad: async function (options) { //读取活动对应id
+  onLoad: async function(options) { //读取活动对应id
     wx.showLoading({
       title: '加载中...',
       mask: true
@@ -252,7 +258,23 @@ Page({
     this.news()
     this.news_detail()
     this.ifzan()
-    //await self.TBcontroll();
+    await this.TBcontroll();
+    console.log(this.data.detail)
+    if (this.data.detail.signupway == "30")
+      this.setData({
+        signupway: false,
+        baomingCur: 0
+      })
+    else if (this.data.detail.signupway == "10")
+      this.setData({
+        signupway: true,
+        baomingCur: 0
+      })
+    else if (this.data.detail.signupway == "20")
+      this.setData({
+        signupway: true,
+        baomingCur: 1
+      })
     wx.hideLoading()
   },
   /**

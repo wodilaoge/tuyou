@@ -6,11 +6,11 @@ Component({
   
   properties: {
     yundongList: Object,
-
+    yundongCur:String
   },
 
   attached: function () {
-    console.log(this.properties.yundongList);
+    console.log(this.properties.yundongCur);
   },
   /**
    * 组件的初始数据

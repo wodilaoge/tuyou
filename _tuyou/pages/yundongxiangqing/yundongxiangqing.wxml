@@ -224,7 +224,7 @@
       </form>
     </view>
     <view class="bg-white flex" style="align-items: center;justify-content: center;">
-      <checkbox class="blue " style="zoom: 40%;"></checkbox>
+      <checkbox class="blue " style="zoom: 40%;" checked></checkbox>
       <view class="queren margin-left-sm" style="color:#999999;">
         我已阅读并同意
       </view>

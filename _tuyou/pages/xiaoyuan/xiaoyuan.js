@@ -1,8 +1,9 @@
 const app = getApp();
+var util = require("../../utils/util.js");
 Page({
   data: {
     ActList: [],
-    yundongList: [],
+    yundongList: [], 
     yundongdalei:[],
     yundongid:'',
     CustomBar: app.globalData.CustomBar,
@@ -30,6 +31,7 @@ Page({
       yundongCur: e.currentTarget.dataset.cur,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
+
   },
   xuanran() {
     var self=this;
@@ -55,7 +57,7 @@ Page({
             console.log(err.errMsg)
           });
           app.wxRequest('GET', url2, data, (res) => {
-            this.setData({
+            self.setData({
               xiaoyuanSwiperList: res.data
             })
           }, (err) => {
@@ -70,15 +72,6 @@ Page({
           let data = {
             sid: res.data[i].code
           };
-          var urldalei = app.globalData.URL + '/config/getActivityClass1';//查询大类
-          app.wxRequest('GET', urldalei, data, (res) => {
-            this.setData({
-              yundongdalei: res.data,
-              yundongCur: res.data[0].code
-            })
-          }, (err) => {
-            console.log(err.errMsg)
-          });
 
           app.wxRequest('GET', url2, data, (res) => {
             this.setData({
@@ -87,15 +80,26 @@ Page({
           }, (err) => {
             console.log(err.errMsg)
           });
-          app.wxRequest('GET', url, data, (res) => {
-            this.setData({
-              yundongList: res.data
+          var urldalei = app.globalData.URL + '/config/getActivityClass1';//查询大类
+          util.gets(urldalei, data).then(function (res) {
+            self.setData({
+              yundongdalei: res.data.data,
+              yundongCur: res.data.data[0].code
             })
-          }, (err) => {
-            console.log(err.errMsg)
-          });
-
-          
+          }).then(function (){
+            data = {
+              sid: self.data.yundongid,
+              acid1: self.data.yundongCur
+            }
+            console.log(data)
+            app.wxRequest('GET', url, data, (res) => {
+              self.setData({
+                yundongList: res.data
+              })
+            }, (err) => {
+              console.log(err.errMsg)
+            });
+          })
         }
       }
     }, (err) => {

@@ -423,3 +423,9 @@ checkbox.tp-checkbox {
   border-radius: 40rpx;
   border: 2rpx solid; 
 }
+
+.btn-bm {
+  width: 320rpx;
+  height: 80rpx;
+  font-size: 32rpx;
+}

@@ -174,6 +174,10 @@
     创建者：朱娇龙
     创建时间：20200401
     创建内容：报名-->
+<!--
+    创建者：陈雨豪
+    创建时间：20200505
+    创建内容：报名修改与接口-->
 <block wx:if="{{TabCur==1}}">
   <view class="content-white">
     <view class="bg-blue">
@@ -181,55 +185,182 @@
         <text class="cu-bar-title">在线报名</text>
       </view>
     </view>
-    <block wx:if="{{isbaoming==0}}">
-      <form>
-        <view class="cu-form-group margin-top">
-          <view class="title">姓名 </view>
-          <input class="form-text" placeholder="李四"></input>
-        </view>
-        <view class="cu-form-group form-margin-top">
-          <view class="title">手机</view>
-          <input class="form-text" placeholder="请输入手机号"></input>
-        </view>
-        <view class="cu-form-group align-start">
-          <view class="title2">备注</view>
-          <textarea class="form-text2" maxlength="-1"  bindinput="textareaBInput" placeholder=" 多行输入" placeholder-class="mlt"></textarea>
-        </view>
-      </form>
+    <view class=" padding " style="margin-left:175rpx;" hidden="{{signupway}}">
+      <button class="cu-btn {{baomingCur==0?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-left" bindtap="baomingSelect" data-id="0">
+        个人报名
+      </button>
+      <button class="cu-btn  {{baomingCur==1?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-right" bindtap="baomingSelect" data-id="1">
+        团队报名
+      </button>
+    </view>
+    <block wx:if="{{baomingCur==0}}">
+      <block wx:if="{{isbaominggeren==0}}">
+        <form>
+          <view class="cu-form-group margin-top">
+            <view class="title">姓名 </view>
+            <input class="form-text" placeholder="李四"></input>
+          </view>
+          <view class="cu-form-group form-margin-top">
+            <view class="title">手机</view>
+            <input class="form-text" placeholder="请输入手机号"></input>
+          </view>
+          <view class="cu-form-group align-start">
+            <view class="title2">备注</view>
+            <textarea class="form-text2" maxlength="-1" bindinput="textareaBInput" placeholder=" 多行输入" placeholder-class="mlt"></textarea>
+          </view>
+        </form>
 
 
-      <view class="cu-form-group-yuedu margin-top">
-        <checkbox class="yuedu-logo blue" checked></checkbox>
-        <view class="yuedu1">我已阅读并同意</view>
-        <view class="yuedu2">《同友活动声明》</view>
-      </view>
-      <view class="button-pos1">
-        <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx">开始报名</button>
-      </view>
+        <view class="cu-form-group-yuedu margin-top">
+          <checkbox class="yuedu-logo blue" checked></checkbox>
+          <view class="yuedu1 margin-left-sm">我已阅读并同意</view>
+          <view class="yuedu2">《同友活动声明》</view>
+        </view>
+        <view class="button-pos1">
+          <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx">开始报名</button>
+        </view>
+      </block>
+
+      <block wx:if="{{isbaominggeren==1}}">
+        <view>
+          <image class="img-success " src="/img/img_success.png"></image>
+        </view>
+
+        <view class="flex justify-center">
+          <text class="baoming_text_ok">报名成功</text>
+        </view>
+        <view class="flex justify-center">
+          <text class="baoming_text_wait">请耐心等待活动开始</text>
+        </view>
+        <view class="flex justify-center padding-lg">
+          <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx">取消报名</button>
+        </view>
+        <view class="fenge-bg"></view>
+        <view class="cu-bar bg-white solid-bottom">
+          <view class='action'>
+            <text class='cu-bar-title'>已报名21人</text>
+          </view>
+        </view>
+      </block>
     </block>
+    <block wx:if="{{baomingCur==1}}">
+      <block wx:if="{{isbaomingtuandui==0}}">
+        <view class="bg-white">
+          <form>
+            <view class="cu-form-group">
+              <radio-group class="block" style="margin-left:240rpx;">
+                <view class="flex">
+                  <view>
+                    <checkbox class="round blue " style="zoom: 80%;" checked></checkbox>
+                  </view>
+                  <view class="tp-select ">报名参加</view>
 
-    <block wx:if="{{isbaoming==1}}">
-      <view>
-        <image class="img-success " src="/img/img_success.png"></image>
-      </view>
-
-      <view class="flex justify-center">
-        <text class="baoming_text_ok">报名成功</text>
-      </view>
-      <view class="flex justify-center">
-        <text class="baoming_text_wait">请耐心等待活动开始</text>
-      </view>
-      <view class="flex justify-center padding-lg">
-        <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx">取消报名</button>
-      </view>
-      <view class="fenge-bg"></view>
-      <view class="cu-bar bg-white solid-bottom">
-        <view class='action'>
-          <text class='cu-bar-title'>已报名21人</text>
+                  <view style="margin-left:40rpx;">
+                    <checkbox class="round blue " style="zoom: 80%;"></checkbox>
+                  </view>
+                  <view class="tp-select">报名观看</view>
+                </view>
+              </radio-group>
+            </view>
+            <view class="cu-form-group">
+              <view class="title" style="margin-right:65rpx;">姓名 </view>
+              <input class="form-text" placeholder="李四"></input>
+            </view>
+            <view class="cu-form-group ">
+              <view class="title" style="margin-right:65rpx;">手机</view>
+              <input class="form-text" placeholder="请输入手机号"></input>
+            </view>
+            <view class="cu-form-group ">
+              <view class="title">选择分组</view>
+              <input class="form-text"></input>
+            </view>
+            <view class="cu-form-group ">
+              <view class="title">报名团队</view>
+              <input class="form-text"></input>
+            </view>
+          </form>
         </view>
-      </view>
+        <view class="bg-white flex" style="align-items: center;justify-content: center;">
+          <checkbox class="blue yuedu-logo" checked></checkbox>
+          <view class="queren margin-left-sm" style="color:#999999;">
+            我已阅读并同意
+          </view>
+          <view class="queren" style="color:#5C7CFF;">
+            《同友活动声明》
+          </view>
+        </view>
 
+        <view class="bg-white flex padding" style="align-items: center;justify-content: center;">
+          <button class="cu-btn bg-orange round btn-bm margin-top">立即报名</button>
+        </view>
 
+        <view class="bg-white margin-top padding-top">
+          <view class="yibaoming-margin-top margin-left ">
+            <text class="yibaoming-text-content">已报名</text>
+            <text class="yibaoming-text-content" style="color:var(--blue)">21/24</text>
+            <text class="yibaoming-text-content">人</text>
+          </view>
+          <view class="yundong-content bg-white">
+            <view class="padding-sm">
+              <view class="cu-avatar round lg margin-sm" wx:for="{{21}}" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{(index+1)%9}}.jpg);">
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <block wx:if="{{isbaomingtuandui==1}}">
+        <view class=" bg-white wodebaoming-center padding">
+          <view>
+            <image class="margin-bottom-xs" src="/img/wodebaoming.png" mode="aspectFit" style="height:200rpx;width:200rpx;"></image>
+          </view>
+          <view class="queren margin-bottom-xs" style="color:#999999">
+            2020.3.18 13:00:00
+          </view>
+          <view class="text-28">
+            成功报名参赛/观看Lorem Ipsum
+          </view>
+        </view>
+
+        <view class="bg-white margin-top">
+          <view class="cu-bar bg-white padding">
+            <view class="yibaoming-text-content">已报名n人</view>
+          </view>
+        </view>
+        <view class="bg-white">
+          <view class="cu-bar bg-white padding">
+            <view class="yibaoming-text-content">分组1</view>
+          </view>
+          <view class="padding yundong-sp-center">
+            <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
+            <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+            <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
+            <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="margin-left:auto;"></image>
+          </view>
+          <view class="bg-white padding yundong-sp-center">
+            <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
+            <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+            <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
+            <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="margin-left:auto;"></image>
+          </view>
+        </view>
+        <view class="bg-white margin-top-xs">
+          <view class="cu-bar bg-white padding">
+            <view class="yibaoming-text-content">分组2</view>
+          </view>
+          <view class="padding yundong-sp-center">
+            <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
+            <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+            <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
+            <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="margin-left:auto;"></image>
+          </view>
+          <view class="bg-white padding yundong-sp-center">
+            <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
+            <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+            <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
+            <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="margin-left:auto;"></image>
+          </view>
+        </view>
+      </block>
     </block>
 
     <block>
@@ -237,15 +368,15 @@
         <!-- 评论 -->
         <view class="cu-bar bg-white solid-bottom huodong-margin-top">
           <view class='action'>
-            <text class='cu-bar-title'>评论{{comment.count}}</text>
+            <text class='cu-bar-title'>评论{{comment_detail.length}}</text>
           </view>
         </view>
 
         <view class="cu-card case no-card bg-white">
           <view class="cu-item shadow">
-            <view class="cu-list menu-avatar" bindtap="chakanhuifu">
-              <view class="cu-item" wx:for="{{comment.list}}">
-                <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+            <view class="cu-list menu-avatar">
+              <view class="cu-item" wx:for="{{comment_detail}}" wx:for-index="index">
+                <view class="cu-avatar round lg" style="background-image:url({{item.createrHead}});"></view>
                 <view class="content flex-sub">
                   <view class=" flex justify-between">
                     <view>
@@ -253,15 +384,17 @@
                       <button class="cu-btn btn-hot bg-orange disabled" wx:if="{{item.hot}}">热门</button>
                     </view>
                     <view class="text-gray text-sm">
-                      <text class="cuIcon-appreciate margin-lr-xs line"></text> {{item.praiseCnt}}
+                      <text class="{{false==item.ifzan?'cuIcon-appreciate':'cuIcon-appreciatefill'}} margin-lr-xs line" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}'></text> {{item.praiseCnt}}
                       <text class="cuIcon-appreciate margin-lr-xs "></text> {{item.degradeCnt}}
                     </view>
                   </view>
-                  <view class="card-text-content">
-                    {{item.comment}}
-                  </view>
-                  <view class="card-text-content-time">
-                    {{item.strCreatetime}} {{item.replyCnt}} 回复
+                  <view bindtap="chakanhuifu" data-id="{{item.id}}">
+                    <view class="card-text-content">
+                      {{item.comment}}
+                    </view>
+                    <view class="card-text-content-time">
+                      {{item.strCreatetime}} {{item.replyCnt}} 回复
+                    </view>
                   </view>
                 </view>
               </view>
@@ -552,8 +685,8 @@
 
       <view class="cu-card case no-card bg-white">
         <view class="cu-item shadow">
-          <view class="cu-list menu-avatar" bindtap="chakanhuifu">
-            <view class="cu-item" wx:for="{{comment.list}}">
+          <view class="cu-list menu-avatar">
+            <view class="cu-item" wx:for="{{comment_detail}}" wx:for-index="index">
               <view class="cu-avatar round lg" style="background-image:url({{item.createrHead}});"></view>
               <view class="content flex-sub">
                 <view class=" flex justify-between">
@@ -562,15 +695,17 @@
                     <button class="cu-btn btn-hot bg-orange disabled" wx:if="{{item.hot}}">热门</button>
                   </view>
                   <view class="text-gray text-sm">
-                    <text class="cuIcon-appreciate margin-lr-xs line"></text> {{item.praiseCnt}}
+                    <text class="{{false==item.ifzan?'cuIcon-appreciate':'cuIcon-appreciatefill'}} margin-lr-xs line" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}'></text> {{item.praiseCnt}}
                     <text class="cuIcon-appreciate margin-lr-xs "></text> {{item.degradeCnt}}
                   </view>
                 </view>
-                <view class="card-text-content">
-                  {{item.comment}}
-                </view>
-                <view class="card-text-content-time">
-                  {{item.strCreatetime}} {{item.replyCnt}} 回复
+                <view bindtap="chakanhuifu" data-id="{{item.id}}">
+                  <view class="card-text-content">
+                    {{item.comment}}
+                  </view>
+                  <view class="card-text-content-time">
+                    {{item.strCreatetime}} {{item.replyCnt}} 回复
+                  </view>
                 </view>
               </view>
             </view>
