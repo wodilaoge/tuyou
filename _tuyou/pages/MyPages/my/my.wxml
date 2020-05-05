@@ -18,22 +18,22 @@
     <!-- <view style="background:url('/img/my/img_bar.png')" > -->
     <view class="text1 bk ">
       <!-- <image src="/img/my/img_bar.png" class="bkimg"></image> -->
-      <view class="text-item">
+      <navigator class="text-item" url="/pages/MyPages/my_system_message/my_system_message" hover-class="btn-hover">
         <text class="text"></text>8
         <text class="text2"></text>消息
-      </view>
-      <view class="text-item">
+      </navigator >
+      <navigator class="text-item" url="/pages/MyPages/my_activity/my_activity"  hover-class="btn-hover">
         <text class="text"></text>8
         <text class="text2"></text>活动
-      </view>
-      <view class="text-item">
+      </navigator>
+      <navigator class="text-item" url="/pages/MyPages/my_discuss/my_discuss" hover-class="btn-hover" >
         <text class="text"></text>103
         <text class="text2"></text>评论
-      </view>
-      <view class="text-item">
+      </navigator>
+      <navigator class="text-item" url="/pages/MyPages/my_follow/my_follow"  hover-class="btn-hover">
         <text class="text"></text>8
         <text class="text2"></text>关注
-      </view>
+      </navigator>
     </view>
   </view>
 </view>
