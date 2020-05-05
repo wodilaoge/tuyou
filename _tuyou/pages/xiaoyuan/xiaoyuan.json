@@ -1,6 +1,8 @@
 {
   "usingComponents": {
-    "lanqiu": "/pages/yundong/lanqiu/lanqiu",
+    "yundong": "/pages/components/lanqiu/lanqiu",
+    "wenyu": "/pages/components/wenyu/wenyu",
+    "aihao": "/pages/components/aihao/aihao",
     "tabs": "/components/floattabbar/float"
   }
 }

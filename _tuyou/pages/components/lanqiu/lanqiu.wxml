@@ -1,6 +1,6 @@
 <view wx:for="{{yundongList.list}}">
   <view class="cu-bar bg-white solid-bottom">
-    <image class="cu-avatar round lg margin-left" src="{{item.createrhead}}" mode="heightFix"></image>
+    <image class="cu-avatar round my margin-left" src="{{item.createrhead}}" mode="heightFix"></image>
     <text style="margin-left:-100rpx">三分赛</text>
     <text class=" title-time">1 天 01: 02 </text>
   </view>
