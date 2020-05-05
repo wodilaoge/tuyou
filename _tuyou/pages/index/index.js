@@ -8,8 +8,6 @@ Page({
     PageCur: 'basics',
     isshow: false,
     sectioninfo:[],
-    huodongID: '5069992122908672',
-    shipin: [],
     SwiperList: [],
     news: [],
     sport: "1dwad ",
@@ -92,20 +90,6 @@ Page({
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
         news: res.data
-      })
-    }, (err) => {
-      console.log(err.errMsg)
-    });
-  },
-  getShipin() {//视频
-    let url = app.globalData.URL + '/video/listActVideo';
-    let data = {
-      arctid: this.data.huodongID
-    };
-    app.wxRequest('GET', url, data, (res) => {
-      console.log(res)
-      this.setData({
-        shipin: res.data
       })
     }, (err) => {
       console.log(err.errMsg)

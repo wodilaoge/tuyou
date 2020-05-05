@@ -1,4 +1,5 @@
 /* pages/xiaoyuan/xiaoyuan.wxss */
+@import "../yundongxiangqing/yundongxiangqing.wxss";
 .top{
   background: #5454FF
 }
