@@ -1,1 +1,17 @@
-/* pages/MyPages/my_news/my_news.wxss */
+.text {
+  font-size: 35rpx;
+}
+.width {
+  height: 150rpx;
+}
+
+.down {
+  position: relative;
+  top: 15rpx;
+}
+.btn-new {
+  width: 80rpx;
+  height: 45rpx;
+  font-size: 28rpx;
+  border-radius: 33.5rpx;
+}

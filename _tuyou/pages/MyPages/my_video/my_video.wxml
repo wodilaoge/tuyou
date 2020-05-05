@@ -2,3 +2,8 @@
   <view slot="backText">返回</view>
   <view slot="content">视频</view>
 </cu-custom>
+<view class="grid col-5 pad bg-white">
+  <view class="margin-tb-sm " wx:for="{{Lists}}" wx:key bindtap="tabSelect" data-id="{{index}}">
+    <button class="cu-btn  round bg-{{index==TabCur?'orange':'grey'}} width">{{item}}</button>
+  </view>
+</view>

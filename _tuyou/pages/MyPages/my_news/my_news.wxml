@@ -1,5 +1,33 @@
-<!--pages/MyPages/my_news/my_news.wxml-->
-<cu-custom bgColor="bg-blue" isBack="{{true}}">
-  <view slot="backText">返回</view>
-  <view slot="content">新闻</view>
-</cu-custom>
+<view class="cu-bar bg-blue search width">
+  <view class="action down" bindtap="back">
+    <text class="cuIcon-back" bindtap="back"></text>
+  </view>
+  <view class="text down">
+    新闻
+  </view>
+  <view class="action down">
+    <text class="cuIcon-search"></text>
+  </view>
+</view>
+<view class="solid-bottom text-xl padding text-center bg-white">
+  <text class="text-black text-bold text-center ">我发布的新闻</text>
+</view>
+
+<view class="cu-card article no-card bg-white" wx:for="{{news.list}}">
+  <view class="cu-item shadow" style="margin-top:0rpx;">
+    <view class="content2">
+      <image src="/img/huodongxinwen1.png" mode="aspectFill"></image>
+      <view class="desc">
+        <view class="title-limit2">
+          {{item.title}}
+        </view>
+        <button class="cu-btn btn-new bg-orange disabled">最新</button>
+        <view>
+          <text class="text-gery">2分钟前</text>
+          <text class="cuIcon-attention lg text-gray text-right" decode="{{true}}">\t23456</text>
+        </view>
+      </view>
+    </view>
+    <view class="white"></view>
+  </view>
+</view>

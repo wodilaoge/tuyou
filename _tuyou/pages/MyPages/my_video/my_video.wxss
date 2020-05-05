@@ -1,1 +1,8 @@
-/* pages/MyPages/my_video/my_video.wxss */
+.width {
+  width: 130rpx;
+}
+
+.pad {
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}

@@ -1,10 +1,62 @@
-.width{
+.width {
   height: 150rpx;
 }
-.down{
+
+.down {
   position: relative;
   top: 15rpx;
 }
-.text{
+
+.text {
   font-size: 35rpx;
+}
+
+.xl {
+  position: relative;
+  font-size: 42rpx;
+  left: 15rpx;
+  bottom:16rpx;
+}
+
+.text-head {
+  display: flex;
+  flex-flow: row;
+  position: relative;
+}
+
+.-right {
+  position: relative;
+  align-items: center;
+}
+
+.-left {
+  flex: 1; /* 重要 */
+  align-items: center;
+}
+
+.font-break {
+  word-break: break-all;
+  margin-top: 2rpx;
+}
+
+.text-set {
+  display: flex;
+  flex-direction: row;
+}
+
+.detail {
+  width: 88%;
+  position: relative;
+  left: 6%;
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+  border-radius: 15rpx;
+  background-color: #f8f9fd;
+}
+
+.pic {
+  position: relative;
+  height: 60rpx;
+  width: 60rpx;
+  left: 20rpx;
 }

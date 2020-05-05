@@ -1,11 +1,24 @@
- <view class="cu-bar bg-blue search width" >
-     <view class="action down">
-      <text class="cuIcon-back"></text>
-    </view>
-    <view class="text down">
-      讨论
-    </view>
-    <view class="action down">
-      <text class="cuIcon-search"></text>
+<view class="cu-bar bg-blue search width">
+  <view class="action down" bindtap="back">
+    <text class="cuIcon-back" bindtap="back"></text>
+  </view>
+  <view class="text down">
+    讨论
+  </view>
+  <view class="action down">
+    <text class="cuIcon-search"></text>
+  </view>
+</view>
+<view wx:for="{{info}}">
+  <view class="text-head bg-white padding">
+    <view class="-left text-bold text-black text-lg">{{item.head}}</view>
+    <view class="-right ">{{item.date}}</view>
+  </view>
+  <view class="font-break bg-white padding text-lg">{{item.detail}}</view>
+  <view class="bg-white padding">
+    <view class="detail ">
+      <image src="{{item.pic}}" class="pic"></image>
+      <text class="text-blue xl text-bold text-left"> {{item.name}}</text>
     </view>
   </view>
+</view>
