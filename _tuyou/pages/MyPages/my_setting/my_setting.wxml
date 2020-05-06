@@ -2,7 +2,7 @@
   <view slot="backText">返回</view>
   <view slot="content">设置</view>
 </cu-custom>
-<view class="cu-form-group">
+<view class="cu-form-group" bindtap="tomessage">
   <view class="title">推送通知</view>
   <image class="icon" src="/img/array.png"></image>
 </view>

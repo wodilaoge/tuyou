@@ -178,8 +178,8 @@
 				},
 				{
 					"id": 17,
-					"name": "pages/MyPages/my_blacklist/my_blacklist",
-					"pathName": "pages/MyPages/my_blacklist/my_blacklist",
+					"name": "pages/MyPages/my_messagemind/my_messagemind",
+					"pathName": "pages/MyPages/my_messagemind/my_messagemind",
 					"query": "",
 					"scene": null
 				}

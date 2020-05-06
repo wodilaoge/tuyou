@@ -1,2 +1,24 @@
-<!--pages/MyPages/my_messagemind/my_messagemind.wxml-->
-<text>pages/MyPages/my_messagemind/my_messagemind.wxml</text>
+<cu-custom bgColor="bg-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">消息通知</view>
+</cu-custom>
+<view class="cu-form-group">
+  <view class="title">勿扰模式</view>
+  <switch class="orange"></switch>
+</view>
+<view class="cu-form-group">
+  <view class="title">开始时间</view>
+  <picker mode="time" value="{{time1}}" start="00:00" end="24:00" bindchange="TimeChange">
+    <view class="picker">
+      {{time1}}
+    </view>
+  </picker>
+</view>
+<view class="cu-form-group">
+  <view class="title">结束时间</view>
+  <picker mode="time" value="{{time2}}" start="00:00" end="24:00" bindchange="TimeChange2">
+    <view class="picker">
+      {{time2}}
+    </view>
+  </picker>
+</view>
