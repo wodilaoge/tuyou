@@ -29,6 +29,8 @@ Page({
     shipinSwiperList: [],
     huodongID: '5069992122908672',
     shipin: [],
+    news: [],
+    news_detail: [],
     shipindalei2: [
       {
         "code": "1",
@@ -58,6 +60,33 @@ Page({
       TabCur: e.currentTarget.dataset.id,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
+  },
+  news() {//活动新闻
+    let url = app.globalData.URL + '/news/listNews';
+    let data = {
+      id: this.data.categoryId
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res.data)
+      this.setData({
+        news: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  news_detail() {//活动新闻
+    let url = app.globalData.URL + '/news/findNewsDetail';
+    let data = {
+      id: this.data.news.id
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        news_detail: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
   },
   yundongTabSelect(e) { //运动内导航栏1
     var url = app.globalData.URL + '/act/listActivity';
@@ -267,8 +296,10 @@ Page({
     this.setData({ //读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
       TabCur: app.globalData.tabbar
     })
-    this.towerSwiper('xiaoyuanSwiperList');
+    this.towerSwiper('xiaoyuanSwiperList')
     this.getShipin()
+    this.news()
+    this.news_detail()
   },
   onShow() {
     this.setData({ //读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData

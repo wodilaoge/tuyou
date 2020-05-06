@@ -105,7 +105,7 @@
     </view>
   </scroll-view>
   <view>
-      <yundong yundongList="{{yundongList}}" yundongCur="{{yundongCur}}"></yundong>
+    <yundong yundongList="{{yundongList}}" yundongCur="{{yundongCur}}"></yundong>
   </view>
 </block>
 <!--
@@ -128,7 +128,7 @@
     </view>
   </scroll-view>
   <view>
-      <wenyu yundongList="{{yundongList}}" yundongCur="{{yundongCur}}"></wenyu>
+    <wenyu yundongList="{{yundongList}}" yundongCur="{{yundongCur}}"></wenyu>
   </view>
 </block>
 <!--
@@ -151,7 +151,7 @@
     </view>
   </scroll-view>
   <view>
-      <aihao yundongList="{{yundongList}}" yundongCur="{{yundongCur}}"></aihao>
+    <aihao yundongList="{{yundongList}}" yundongCur="{{yundongCur}}"></aihao>
   </view>
 </block>
 <!-- 发布栏 -->
@@ -160,13 +160,13 @@
 创建者：朱娇龙
 创建时间：20200505
 内容：视频页面-->
-<block wx:if="{{TabCur==4}}" >
+<block wx:if="{{TabCur==4}}">
   <scroll-view scroll-x class="bg-white nav text-center">
     <view class="cu-item" bindtap="shipinTabSelect" data-cur="{{item.code}}" wx:for="{{shipindalei}}" wx:key="code">
       <button class="cu-btn btn-yundong-cur round {{shipinCur==item.code?'bg-orange':'bg-gery'}} padding">{{item.name}}</button>
     </view>
   </scroll-view>
-   <scroll-view scroll-x class="bg-white nav text-center">
+  <scroll-view scroll-x class="bg-white nav text-center">
     <view class="cu-item" bindtap="yundongTabSelect" data-cur="{{item.code}}" wx:for="{{shipindalei2}}" wx:key="code">
       <button class="cu-btn btn-yundong-cur round {{yundongCur==item.code?'bg-orange':'bg-gery'}} padding">{{item.name}}</button>
     </view>
@@ -205,6 +205,35 @@
       </view>
       <view class="sp-quanbupinglun margin">全部评论({{shipin.list[index].commCnt}})</view>
     </view>
+  </view>
+</block>
+
+<!--
+创建者：朱娇龙
+创建时间：20200505
+内容：新闻页面-->
+<block wx:if="{{TabCur==5}}">
+  <view class="cu-card article no-card bg-white" wx:for="{{news.list}}">
+    <view class="cu-item shadow" style="margin-top:0rpx;">
+      <view class="content2">
+        <image src="{{item.logo}}" mode="aspectFill"></image>
+        <view class="desc">
+          <view class="title-limit2">
+            {{item.title}}
+          </view>
+          <button class="cu-btn btn-new bg-orange disabled">最新</button>
+          <view>
+            <text class="text-gery">2分钟前</text>
+            <text class="cuIcon-attention lg text-gray text-right" decode="{{true}}">\t23456</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="xinwen-liubai">
+    <image class="xinwen-liubai-img justify-center" src="../../img/download.png"></image>
+    <view style="margin-top:54rpx;padding-left:293rpx;">你已经到底了哟</view>
   </view>
 </block>
 <tabs></tabs>

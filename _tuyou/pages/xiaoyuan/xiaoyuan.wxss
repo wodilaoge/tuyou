@@ -1,5 +1,6 @@
 /* pages/xiaoyuan/xiaoyuan.wxss */
 @import "../yundongxiangqing/yundongxiangqing.wxss";
+@import "../index/index.wxss";
 .top{
   background: #5454FF
 }
@@ -30,4 +31,17 @@
 .btn-yundong-cur{
   width: 100rpx;
   height: 40rpx;
+}
+.xinwen-liubai{
+height: 500rpx;
+font-size:28rpx;
+font-family:PingFang SC;
+font-weight:500;
+color:rgba(164,169,188,1);
+}
+.xinwen-liubai-img{
+  height:200rpx;
+  width:148rpx;
+  padding-top:94rpx;
+  margin-left: 313rpx;
 }
