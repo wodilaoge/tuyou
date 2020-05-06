@@ -1,0 +1,13 @@
+<cu-custom bgColor="bg-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">黑名单</view>
+</cu-custom>
+
+<view class="cu-list menu-avatar">
+  <view class="cu-item" wx:for="{{fans}}">
+    <image class="cu-avatar round lg" src="{{item.image}}"></image>
+    <view class="text-black content">{{item.name}}</view>
+    <button class="cu-btn round lines-orange height" bindtap="showModal" data-target="menuModal">取消</button>
+    <button class="cu-btn round bg-orange height2 " bindtap="showModal" data-target="menuModal">删除</button>
+  </view>
+</view>

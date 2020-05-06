@@ -24,6 +24,10 @@
     "pages/MyPages/my_video/my_video",
     "pages/MyPages/my_pic/my_pic",
     "pages/MyPages/my_news/my_news",
+    "pages/MyPages/my_feedback/my_feedback",
+    "pages/MyPages/my_setting/my_setting",
+    "pages/MyPages/my_blacklist/my_blacklist",
+    "pages/MyPages/my_messagemind/my_messagemind",
 
     "pages/yundongxiangqing/yundongxiangqing",
     "pages/xiaoyuan/xiaoyuan",

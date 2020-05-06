@@ -118,16 +118,11 @@
   </view>
 </view>
 <view class="menu bg-white">
-  <navigator url="" class="menu-item">
+  <navigator url="/pages/MyPages/my_feedback/my_feedback" class="menu-item">
     <image src="/img/my/a.png" class="menu-img2"></image>
     <text class="menu-name">反馈</text>
   </navigator>
-
-  <navigator url="" class="menu-item">
-    <image src="/img/my/c.png" class="menu-img2"></image>
-    <text class="menu-name">聊天设置</text>
-  </navigator>
-  <navigator url="" class="menu-item">
+  <navigator url="/pages/MyPages/my_setting/my_setting" class="menu-item">
     <image src="/img/my/d.png" class="menu-img2"></image>
     <text class="menu-name">设置</text>
   </navigator>

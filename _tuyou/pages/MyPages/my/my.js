@@ -55,7 +55,7 @@ Page({
 
   toUserInfo(e){
     wx.navigateTo({
-      url: '/pages/my_profile/my_profile',
+      url: '/pages/MyPages/my_profile/my_profile',
     })
   },
   onLoad: function() {

@@ -1,0 +1,8 @@
+.icon{
+  position: relative;
+  width: 40rpx;
+  height: 40rpx;
+  /* top: 64rpx;
+  left: 36rpx; */
+  right: -11rpx;
+}

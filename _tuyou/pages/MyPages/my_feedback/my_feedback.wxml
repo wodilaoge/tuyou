@@ -1,0 +1,17 @@
+<cu-custom bgColor="bg-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">建议与反馈</view>
+</cu-custom>
+<view class="message padding-sm">
+  <view class="bg-white padding detail ">
+    <view class="text-bold ">您好！</view>
+    <view class="text-bold ">1.请截图出问题的界面发送“图片”给我们</view>
+    <view class="text-bold ">2.请描述问题和留下你的QQ或微信号方便沟通</view>
+  </view> 
+</view>
+<view class="cu-bar foot input {{InputBottom!=0?'cur':''}}" style="bottom:{{InputBottom}}px">
+  <input class="solid-bottom inputs" bindfocus="InputFocus" bindblur="InputBlur" adjust-position="{{false}}" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder="说说您的问题"></input>
+
+  <image src="/img/my/icon_journal.png" class="pic"></image>
+  <button class="cu-btn bg-blue shadow width">发送</button>
+</view>

@@ -1,0 +1,40 @@
+<cu-custom bgColor="bg-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">设置</view>
+</cu-custom>
+<view class="cu-form-group">
+  <view class="title">推送通知</view>
+  <image class="icon" src="/img/array.png"></image>
+</view>
+<view class="cu-form-group" bindtap="toblack">
+  <view class="title">黑名单</view>
+  <image class="icon" src="/img/array.png"></image>
+</view>
+<view class="cu-form-group">
+  <view class="title">图片设置</view>
+  <image class="icon" src="/img/array.png"></image>
+</view>
+<view class="cu-form-group">
+  <view class="title">视频设置</view>
+  <image class="icon" src="/img/array.png"></image>
+</view>
+<view class="cu-form-group">
+  <view class="title">清除缓存</view>
+  <switch></switch>
+</view>
+<view class="cu-form-group margin-top">
+  <view class="title">检查更新</view>
+  <switch></switch>
+</view>
+<view class="cu-form-group">
+  <view class="title">赏一个五星好评</view>
+  <image class="icon" src="/img/array.png"></image>
+</view>
+<view class="cu-form-group">
+  <view class="title">分享给好友</view>
+  <image class="icon" src="/img/array.png"></image>
+</view>
+<view class="cu-form-group">
+  <view class="title">关于同友</view>
+  <image class="icon" src="/img/array.png"></image>
+</view>

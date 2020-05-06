@@ -1,0 +1,28 @@
+.width{
+  width: 100rpx;
+}
+.inputs{
+  background-color: #F8F9FD;
+  border-radius: 30rpx;
+  height: 400rpx;
+  padding-left: 30rpx;
+}
+.message{
+  flex: display;
+  align-items: center;
+  justify-content: center;
+}
+.pic{
+  height: 60rpx;
+  width: 70rpx;
+  padding: 5rpx;
+  /* padding-right: 10rpx; */
+}
+.detail{
+  width: 88%;
+  position: relative;
+  left:6%;
+  padding-top: 50rpx;
+  padding-bottom: 50rpx;
+  border-radius: 15rpx;
+}

@@ -11,12 +11,12 @@
 		<view class="title">头像</view>
     <view class="cu-avatar xl round margin-r" bindtap="ChooseImage"  style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big25002.jpg);"></view>
     
-    	<image class="icon2" src="../../img/array.png"></image>
+    	<image class="icon2" src="/img/array.png"></image>
 	</view>
   	<view class="cu-form-group">
 		<view class="title">昵称</view>
 		<input class="input text-grey" placeholder="冷言冷语" type='text' name="name" bindinput="name"></input>
-    	<image class="icon" src="../../img/array.png"></image>
+    	<image class="icon" src="/img/array.png"></image>
 	</view>
    <view class="cu-form-group">
 		<view class="title">性别</view>
@@ -29,22 +29,22 @@
   <view class="cu-form-group">
 		<view class="title">姓名</view>
 		<input class="input text-grey" placeholder="张宁" type='text' name="name" bindinput="name"></input>
-    	<image class="icon" src="../../img/array.png"></image>
+    	<image class="icon" src="/img/array.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">手机号码</view>
 		<input class="input text-grey" placeholder="130000000" type='text' name="name" bindinput="name"></input>
-    	<image class="icon" src="../../img/array.png"></image>
+    	<image class="icon" src="/img/array.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">证件类型</view>
 		<input class="input text-grey" placeholder="身份证" type='text' name="name" bindinput="name"></input>
-    	<image class="icon" src="../../img/array.png"></image>
+    	<image class="icon" src="/img/array.png"></image>
 	</view>
     <view class="cu-form-group">
 		<view class="title">证件号码</view>
 		<input class="input text-grey" placeholder="331000000" type='text' name="name" bindinput="name"></input>
-    	<image class="icon" src="../../img/array.png"></image>
+    	<image class="icon" src="/img/array.png"></image>
 	</view>
   	<view class="cu-form-group">
 		<view class="title">出生日期</view>
@@ -57,57 +57,57 @@
   <view class="cu-form-group">
 		<view class="title">国籍</view>
 		<input class="input text-grey" placeholder="中国" type='text' name="name" bindinput="name"></input>
-    	<image class="icon" src="../../img/array.png"></image>
+    	<image class="icon" src="/img/array.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">院校</view>
 		<input class="input text-grey" placeholder="浙江大学" type='text' name="name" bindinput="name"></input>
-    	<image class="icon" src="../../img/array.png"></image>
+    	<image class="icon" src="/img/array.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">专业</view>
 		<input class="input text-grey" placeholder="计算机" type='text' name="name" bindinput="name"></input>
-    	<image class="icon" src="../../img/array.png"></image>
+    	<image class="icon" src="/img/array.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">学生证号</view>
 		<input class="input text-grey" placeholder="181219" type='text' name="name" bindinput="name"></input>
-    	<image class="icon" src="../../img/array.png"></image>
+    	<image class="icon" src="/img/array.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">身高</view>
 		<input class="input text-grey" placeholder="170" type='text' name="name" bindinput="name"></input>
-    	<image class="icon" src="../../img/array.png"></image>
+    	<image class="icon" src="/img/array.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">体重</view>
 		<input class="input text-grey" placeholder="50KG" type='text' name="name" bindinput="name"></input>
-    	<image class="icon" src="../../img/array.png"></image>
+    	<image class="icon" src="/img/array.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">活动角色</view>
 		<input class="input text-grey" placeholder="前锋" type='text' name="name" bindinput="name"></input>
-    	<image class="icon" src="../../img/array.png"></image>
+    	<image class="icon" src="/img/array.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">特产</view>
 		<input class="input text-grey" placeholder="游戏" type='text' name="name" bindinput="name"></input>
-    	<image class="icon" src="../../img/array.png"></image>
+    	<image class="icon" src="/img/array.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">爱好</view>
 		<input class="input text-grey" placeholder="爬山、游泳" type='text' name="name" bindinput="name"></input>
-    	<image class="icon" src="../../img/array.png"></image>
+    	<image class="icon" src="/img/array.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">个性签名</view>
 		<input class="input text-grey" placeholder="加油！！" type='text' name="name" bindinput="name"></input>
-    	<image class="icon" src="../../img/array.png"></image>
+    	<image class="icon" src="/img/array.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">工作单位</view>
 		<input class="input text-grey" placeholder="暂无" type='text' name="name" bindinput="name"></input>
-    	<image class="icon" src="../../img/array.png"></image>
+    	<image class="icon" src="/img/array.png"></image>
 	</view>
 
 <view class="text-center margin-top3">
