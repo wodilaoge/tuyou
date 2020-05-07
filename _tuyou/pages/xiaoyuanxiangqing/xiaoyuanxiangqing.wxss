@@ -47,7 +47,7 @@ page {
 }
 
 .cu-card.article>.cu-item {
-  margin-top: 68rpx;
+  margin-top: 20rpx;
   padding-bottom: 30rpx;
 }
 
@@ -428,4 +428,9 @@ checkbox.tp-checkbox {
   width: 320rpx;
   height: 80rpx;
   font-size: 32rpx;
+}
+.btn-shouji {
+  width: 100rpx;
+  height: 60rpx;
+  font-size: 24rpx;
 }
