@@ -4,6 +4,8 @@ Page({
   data: {
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
+    userInfoAll:[],
+    userinfo:[],
     index: null,
     name: '',
     picker: ['男', '女'],
@@ -110,5 +112,20 @@ Page({
     // wx.navigateTo({
     //   url: "../../pages/form_activity/form_activity"
     // })
+  },
+  onLoad: function () {
+    var that=this;
+    let url = app.globalData.URL + '/appuser/findUserByID';
+    this.setData({
+      userInfoAll: wx.getStorageSync('userInfo')
+    })
+    let data={
+      'id':this.data.userInfoAll.id
+    }
+    util.gets(url, data).then(function (res) {
+      that.setData({
+        userinfo: res.data.data
+      })
+    })
   }
 })

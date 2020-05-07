@@ -52,6 +52,7 @@ Page({
                           })
                         }, 1000);
                       }
+                      
                     })
                   } else {
                     wx.showToast({
