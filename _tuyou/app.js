@@ -80,7 +80,7 @@ App({
         },
         dataType: 'json',
         success: function(res) {
-          if (res.data.code != '0') {
+          if (res.data.code == '109') {
             wx.showToast({
               title: '请重新登录！',
               image: '/img/fail.png',
