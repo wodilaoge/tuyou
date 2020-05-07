@@ -96,7 +96,7 @@
   </navigator>
   <navigator url="/pages/MyPages/my_discuss/my_discuss" class="menu-item">
     <image src="/img/my/10.png" class="menu-img"></image>
-    <text class="menu-name">讨论</text>
+    <text class="menu-name">评论</text>
   </navigator>
   <navigator url="/pages/MyPages/my_video/my_video" class="menu-item">
     <image src="/img/my/11.png" class="menu-img"></image>
