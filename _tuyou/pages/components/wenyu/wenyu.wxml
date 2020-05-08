@@ -8,16 +8,15 @@
     <view class="cu-card article ">
       <view class="cu-item">
         <view class="yundong-content title-text-content" style="margin-top:28rpx;">
-          <image style="margin-top:8rpx;" class="icon-size" src="../../../img/icon_title.png" mode="heightFix"></image>
+          <image class="icon-size" src="/img/icon_title.png" mode="heightFix"></image>
           <text decode="{{true}}">传说中的XX吉他王子！你认识吗？</text>
         </view>
         <view class="shadow" style="background-color:#F8F9FD;padding:19rpx 0 19rpx 0;">
           <view class="yundong-content">
-            <image src="/img/bujiangjiu.png" mode="aspectFill"></image>
             <view class="desc">
               <view class="title-limit">XX吉他演奏会</view>
               <view class="text-content">
-                <image class="icon-size" src="../../../img/icon_location.png" mode="heightFix"></image>
+                <image class="icon-size" src="/img/icon_location.png" mode="heightFix"></image>
                 <text decode="{{true}}">\t杭州市YY街ZZ号</text>
               </view>
               <view class="text-content">
@@ -25,10 +24,11 @@
                 <text decode="{{true}}">\t文艺馆</text>
               </view>
               <view class="time-text-content">
-                <image class="icon-size" src="../../../img/icon_time.png" mode="heightFix"></image>
+                <image class="icon-size" src="/img/icon_time.png" mode="heightFix"></image>
                 3月11日（周三）13:00开演
               </view>
             </view>
+            <image src="/img/bujiangjiu.png" mode="aspectFill"></image>
           </view>
         </view>
         <view class="yundong-content yibaoming-margin-top">
@@ -58,13 +58,16 @@
   <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing"> 
     <view class="cu-card article ">
       <view class="cu-item">
+        <view class="yundong-content title-text-content" style="margin-top:28rpx;">
+          <image class="icon-size" src="/img/icon_title.png" mode="heightFix"></image>
+          <text decode="{{true}}">集美们，0元看电影你敢信？</text>
+        </view>
         <view class="shadow" style="background-color:#F8F9FD;padding:19rpx 0 19rpx 0;">
           <view class="yundong-content">
-            <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="aspectFill"></image>
             <view class="desc">
               <view class="title-limit">集美们，0元看电影你敢信？</view>
               <view class="text-content">
-                <image class="icon-size" src="../../../img/icon_location.png" mode="heightFix"></image>
+                <image class="icon-size" src="/img/icon_location.png" mode="heightFix"></image>
                 <text decode="{{true}}">\t杭州市YY街ZZ号</text>
               </view>
               <view class="text-content">
@@ -72,15 +75,12 @@
                 <text decode="{{true}}">\t电影院</text>
               </view>
               <view class="time-text-content">
-                <image class="icon-size" src="../../../img/icon_time.png" mode="heightFix"></image>
+                <image class="icon-size" src="/img/icon_time.png" mode="heightFix"></image>
                 3月11日（周三）13:00开演
               </view>
             </view>
+            <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="aspectFill"></image>
           </view>
-        </view>
-        <view class="yundong-content title-text-content" style="margin-top:28rpx;">
-          <image style="margin-top:8rpx;" class="icon-size" src="../../../img/icon_title.png" mode="heightFix"></image>
-          <text decode="{{true}}">集美们，0元看电影你敢信？</text>
         </view>
         <view class="yundong-content yibaoming-margin-top">
           <text class="yibaoming-text-content">已报名</text>
