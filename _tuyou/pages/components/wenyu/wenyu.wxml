@@ -7,6 +7,10 @@
   <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing">
     <view class="cu-card article ">
       <view class="cu-item">
+        <view class="yundong-content title-text-content" style="margin-top:28rpx;">
+          <image style="margin-top:8rpx;" class="icon-size" src="../../../img/icon_title.png" mode="heightFix"></image>
+          <text decode="{{true}}">传说中的XX吉他王子！你认识吗？</text>
+        </view>
         <view class="shadow" style="background-color:#F8F9FD;padding:19rpx 0 19rpx 0;">
           <view class="yundong-content">
             <image src="/img/bujiangjiu.png" mode="aspectFill"></image>
@@ -26,10 +30,6 @@
               </view>
             </view>
           </view>
-        </view>
-        <view class="yundong-content title-text-content" style="margin-top:28rpx;">
-          <image style="margin-top:8rpx;" class="icon-size" src="../../../img/icon_title.png" mode="heightFix"></image>
-          <text decode="{{true}}">传说中的XX吉他王子！你认识吗？</text>
         </view>
         <view class="yundong-content yibaoming-margin-top">
           <text class="yibaoming-text-content">已报名</text>

@@ -15,12 +15,36 @@ Page({
     likecount: 0,
     ifzan: false,
     loading: true,
-    baomingCur: 0,
     signupway: false,
+    user: [],
+    canjiaorguankan: 10,
+    huodongfenzu: [],
+    fenzuhide: false,
+    fenzuindex: 0,
+    xingmingInput: '',
     isbaominggeren: 0,
     isbaomingtuandui: 0,
-    user: [],
+    baomingCur: 0,
   },
+  //报名
+  xingmingInput: function(e) { //input输入
+    this.setData({
+      xingmingInput: e.detail.value
+    });
+  },
+  bindPickerChange: function(e) {
+    this.setData({
+      fenzuindex: e.detail.id
+    })
+  },
+  bindRadioChange: function(e) {
+    console.log(e)
+    this.setData({
+      canjiaorguankan: e.currentTarget.dataset.id
+    })
+  },
+
+  //
   tabSelect(e) {
     this.setData({
       TabCur: e.currentTarget.dataset.id,
@@ -32,9 +56,16 @@ Page({
     })
   },
   baomingSelect(e) {
-    this.setData({
-      baomingCur: e.currentTarget.dataset.id,
-    })
+    if (e.currentTarget.dataset.id == 0)
+      this.setData({
+        baomingCur: e.currentTarget.dataset.id,
+        canjiaorguankan: 10,
+      })
+    else
+      this.setData({
+        baomingCur: e.currentTarget.dataset.id,
+        canjiaorguankan: 20,
+      })
   },
   pinluntiaozhuan(e) { //评论跳转
     wx.navigateTo({
@@ -190,7 +221,7 @@ Page({
     });
   },
   zan_list(e) { //评论点赞或取消
-    self = this;
+    var self = this;
     let url = app.globalData.URL + '/applaud/updateApplaud';
     if (e.currentTarget.dataset.ifzan)
       var data = {
@@ -232,6 +263,108 @@ Page({
       console.log(err.errMsg)
     });
   },
+  fenzu() {
+    var self = this;
+    let url = app.globalData.URL + '/act/listActGroup';
+    let data = {
+      actid: self.data.categoryId,
+      signup: true
+    }
+    util.gets(url, data).then(function(res) {
+      self.setData({
+        huodongfenzu: res.data.data
+      })
+    }).then(function() {
+      if (self.data.huodongfenzu.length == 0)
+        self.setData({
+          fenzuhide: true
+        })
+    })
+  },
+  baomingzhuangtai() {
+    var self = this
+    let url = app.globalData.URL + '/act/findActSignupTeamStatus'
+    let data = {
+      actid: self.data.categoryId,
+      lid: self.data.user.id
+    }
+    util.gets(url, data).then(function(res) {
+      if (res.data.data.status == 10)
+        self.setData({
+          isbaomingtuandui: 1
+        })
+    })
+    url = app.globalData.URL + '/act/addActSignupInd'
+    data = {
+      actid: self.data.categoryId,
+      uid: self.data.user.id
+    }
+    util.gets(url, data).then(function(res) {
+      if (res.data.data == null) {} else if (res.data.data.status == 10)
+        self.setData({
+          isbaominggeren: 1
+        })
+    })
+  },
+  lijibaoming() {
+    var self = this
+    if (self.data.xingmingInput == '')
+      wx.showToast({
+        title: '请填写姓名！',
+        image: '/img/fail.png',
+        duration: 1000,
+      })
+    else {
+      let url = app.globalData.URL + '/act/addActSignupInd'
+      let data
+      if (self.data.baomingCur == 0) {
+        if (self.data.fenzuhide)
+          data = {
+            actid: self.data.categoryId,
+            groupid: "",
+            mbrId: self.data.user.id,
+            mbrAlias: self.data.user.nickname,
+            mbrName: self.data.xingmingInput,
+            signupType: self.data.canjiaorguankan,
+            status:10,
+            creater: self.data.user.id
+          }
+        else
+          data = {
+            actid: self.data.categoryId,
+            groupid: self.data.categoryId,
+            mbrId: self.data.huodongfenzu[self.data.huodongindex].id,
+            mbrAlias: self.data.user.nickname,
+            mbrHead: self.data.user.head,
+            mbrName: self.data.xingmingInput,
+            signupType: self.data.canjiaorguankan,
+            status: 10,
+            creater: self.data.user.id
+          }
+        console.log(data)
+        util.post_token(url, data).then(function (res) {
+          console.log(res)
+          if (res.data.code == 0) { 
+            wx.showToast({
+              title: '报名成功！', // 标题
+              icon: 'success', // 图标类型，默认success
+              duration: 1500 // 提示窗停留时间，默认1500ms
+            })
+            self.setData({
+              isbaominggeren: 1
+            })
+          } 
+          else
+            wx.showToast({
+              title: '报名失败！',
+              image: '/img/fail.png',
+              duration: 1000,
+            })
+        }) 
+      }
+    }
+
+  },
   TBcontroll() { //同步控制
     var self = this;
     return new Promise(function(resolve, reject) {
@@ -240,26 +373,27 @@ Page({
           console.log("wait")
         }
         resolve();
-      }, 1000)
+      }, 1500)
     })
   },
   onLoad: async function(options) { //读取活动对应id
-    wx.showLoading({
-      title: '加载中...',
-      mask: true
-    });
     this.setData({
       categoryId: options.categoryId,
       user: wx.getStorageSync('userInfo'),
       options: options
     })
+    this.fenzu()
+    this.baomingzhuangtai()
     this.detail()
     this.comment()
+    this.ifzan()
     this.news()
     this.news_detail()
-    this.ifzan()
-    await this.TBcontroll();
-    console.log(this.data.detail)
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    });
+    await this.TBcontroll()
     if (this.data.detail.signupway == "30")
       this.setData({
         signupway: false,

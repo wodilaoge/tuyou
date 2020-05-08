@@ -11,7 +11,7 @@
     <view slot="content">活动详情</view>
   </cu-custom>
 </view>
-<view class="cu-card article no-card bg-blue" style="margin-top:-40rpx;">
+<view class="cu-card article no-card bg-blue">
   <view class="cu-item">
     <view class="xiangqing-content">
       <image src="{{detail.logo}}" mode="aspectFill"></image>
@@ -195,30 +195,72 @@
     </view>
     <block wx:if="{{baomingCur==0}}">
       <block wx:if="{{isbaominggeren==0}}">
-        <form>
-          <view class="cu-form-group margin-top">
-            <view class="title">姓名 </view>
-            <input class="form-text" placeholder="李四"></input>
+        <view class="bg-white">
+          <form>
+            <view class="cu-form-group">
+              <radio-group class="block" style="margin-left:240rpx;" >
+                <view class="flex">
+                  <view>
+                    <checkbox class="round blue " style="zoom: 80%;" data-id="10" bindtap='bindRadioChange' checked></checkbox>
+                  </view>
+                  <view class="tp-select ">报名参加</view>
+                  <view style="margin-left:40rpx;">
+                    <checkbox class="round blue " style="zoom: 80%;" data-id="30" bindtap='bindRadioChange'></checkbox>
+                  </view>
+                  <view class="tp-select">报名观看</view>
+                </view>
+              </radio-group>
+            </view>
+            <view class="cu-form-group">
+              <view class="title" style="margin-right:65rpx;">姓名 </view>
+              <input class="form-text" placeholder="李四" bindinput="xingmingInput" value="{{xingmingInput}}"></input>
+            </view>
+            <view class="cu-form-group ">
+              <view class="title" style="margin-right:65rpx;">手机</view>
+              <input class="form-text" placeholder="请输入手机号"></input>
+              <view class="bg-white flex padding" style="align-items: center;justify-content: center;">
+                <button class="cu-btn bg-orange round btn-shouji">更换</button>
+              </view>
+            </view>
+            <view class="cu-form-group " hidden="{{fenzuhide}}">
+              <view class="title">选择分组</view>
+                <picker bindchange="bindPickerChange"  range="{{huodongfenzu.groupname}}">
+                  <view class="picker">
+                    {{huodongfenzu[fenzuindex].groupname}}
+                  </view>
+                </picker>
+            </view>
+          </form>
+        </view>
+        <view class="bg-white flex" style="align-items: center;justify-content: center;">
+          <checkbox class="blue yuedu-logo" checked></checkbox>
+          <view class="queren margin-left-sm" style="color:#999999;">
+            我已阅读并同意
           </view>
-          <view class="cu-form-group form-margin-top">
-            <view class="title">手机</view>
-            <input class="form-text" placeholder="请输入手机号"></input>
+          <view class="queren" style="color:#5C7CFF;">
+            《同友活动声明》
           </view>
-          <view class="cu-form-group align-start">
-            <view class="title2">备注</view>
-            <textarea class="form-text2" maxlength="-1" bindinput="textareaBInput" placeholder=" 多行输入" placeholder-class="mlt"></textarea>
+        </view>
+
+        <view class="bg-white flex padding" style="align-items: center;justify-content: center;">
+          <button class="cu-btn bg-orange round btn-bm margin-top" bindtap="lijibaoming">立即报名</button>
+        </view>
+
+        <view class="bg-white margin-top padding-top">
+          <view class="yibaoming-margin-top margin-left ">
+            <text class="yibaoming-text-content">已报名</text>
+            <text class="yibaoming-text-content" style="color:var(--blue)">21/24</text>
+            <text class="yibaoming-text-content">人</text>
           </view>
-        </form>
+          <view class="yundong-content bg-white">
+            <view class="padding-sm">
+              <view class="cu-avatar round lg margin-sm" wx:for="{{21}}" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{(index+1)%9}}.jpg);">
+              </view>
+            </view>
+          </view>
+        </view>
 
 
-        <view class="cu-form-group-yuedu margin-top">
-          <checkbox class="yuedu-logo blue" checked></checkbox>
-          <view class="yuedu1 margin-left-sm">我已阅读并同意</view>
-          <view class="yuedu2">《同友活动声明》</view>
-        </view>
-        <view class="button-pos1">
-          <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx">开始报名</button>
-        </view>
       </block>
 
       <block wx:if="{{isbaominggeren==1}}">
@@ -251,12 +293,12 @@
               <radio-group class="block" style="margin-left:240rpx;">
                 <view class="flex">
                   <view>
-                    <checkbox class="round blue " style="zoom: 80%;" checked></checkbox>
+                    <checkbox class="round blue " style="zoom: 80%;" checked data-id="20" bindtap='bindRadioChange'></checkbox>
                   </view>
                   <view class="tp-select ">报名参加</view>
 
                   <view style="margin-left:40rpx;">
-                    <checkbox class="round blue " style="zoom: 80%;"></checkbox>
+                    <checkbox class="round blue " style="zoom: 80%;" data-id="40" bindtap='bindRadioChange'></checkbox>
                   </view>
                   <view class="tp-select">报名观看</view>
                 </view>
@@ -291,7 +333,7 @@
         </view>
 
         <view class="bg-white flex padding" style="align-items: center;justify-content: center;">
-          <button class="cu-btn bg-orange round btn-bm margin-top">立即报名</button>
+          <button class="cu-btn bg-orange round btn-bm margin-top" bindtap="lijibaoming">立即报名</button>
         </view>
 
         <view class="bg-white margin-top padding-top">
@@ -363,9 +405,9 @@
       </block>
     </block>
 
+    <!-- 评论 -->
     <block>
       <view class="huodong-margin-bottom">
-        <!-- 评论 -->
         <view class="cu-bar bg-white solid-bottom huodong-margin-top">
           <view class='action'>
             <text class='cu-bar-title'>评论{{comment_detail.length}}</text>
