@@ -318,9 +318,14 @@ Page({
       cardCur: e.detail.current
     })
   },
+  xiaoyuanxiangqing(e) { //其他位置跳转
+    wx.navigateTo({
+      url: '../../pages/xiaoyuanxiangqing/xiaoyuanxiangqing?TabCur=0&categoryId=' + e.currentTarget.id ,
+    }) 
+  },
   baomingcanjia(e) { //报名参加按钮跳转 带着活动id跳转 校园活动
     wx.navigateTo({
-      url: '../../pages/xiaoyuanxiangqing/xiaoyuanxiangqing?categoryId=' + e.currentTarget.id,
+      url: '../../pages/xiaoyuanxiangqing/xiaoyuanxiangqing?TabCur=1&categoryId=' + e.currentTarget.id,
     })
   },
   // towerSwiper

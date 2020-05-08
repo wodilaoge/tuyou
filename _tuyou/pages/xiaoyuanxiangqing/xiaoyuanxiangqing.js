@@ -4,7 +4,7 @@ Page({
   data: {
     options: [],
     CustomBar: app.globalData.CustomBar,
-    TabCur: 1,
+    TabCur: 0,
     paimingCur: 0,
     categoryId: '',
     detail: [], //页面详细内容
@@ -424,6 +424,7 @@ Page({
     this.setData({
       categoryId: options.categoryId,
       user: wx.getStorageSync('userInfo'),
+      TabCur: options.TabCur,
       options: options
     })
     this.fenzu()
