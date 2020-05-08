@@ -62,10 +62,6 @@
     <image src="/img/my/01.png" class="menu-img"></image>
     <text class="menu-name">账号安全</text>
   </navigator>
-  <navigator url="/pages/MyPages/my_system_message/my_system_message" class="menu-item">
-    <image src="/img/my/02.png" class="menu-img"></image>
-    <text class="menu-name">系统消息</text>
-  </navigator>
   <navigator url="/pages/MyPages/my_workplate/my_workplate" class="menu-item">
     <image src="/img/my/03.png" class="menu-img"></image>
     <text class="menu-name">工作台</text>
@@ -118,10 +114,7 @@
   </view>
 </view>
 <view class="menu bg-white">
-  <navigator url="/pages/MyPages/my_feedback/my_feedback" class="menu-item">
-    <image src="/img/my/a.png" class="menu-img2"></image>
-    <text class="menu-name">反馈</text>
-  </navigator>
+
   <navigator url="/pages/MyPages/my_setting/my_setting" class="menu-item">
     <image src="/img/my/d.png" class="menu-img2"></image>
     <text class="menu-name">设置</text>

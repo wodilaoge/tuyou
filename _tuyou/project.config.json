@@ -182,6 +182,12 @@
 					"pathName": "pages/MyPages/my_messagemind/my_messagemind",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发布活动",
+					"pathName": "pages/form_launch/form_launch",
+					"scene": null
 				}
 			]
 		}

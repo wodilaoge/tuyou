@@ -10,6 +10,7 @@ Page({
     color: 1,
     options: 1,
     TabCur: 0,
+    myrank:[],
     AllActivity: [],
     scrollLeft: 0,
     messages: [{
@@ -56,12 +57,23 @@ Page({
   onLoad: function(options) {
     var that = this
     let url = app.globalData.URL + '/config/findAllActivityClass1';
-    let data = '';
     util.gets(url, {}).then(function(res) {
       that.setData({
         AllActivity: res.data.data
       })
     })
+    let url2 = app.globalData.URL + '/act/listMyRank';
+    let t =wx.getStorageSync('userinfo');
+    let data={
+      'uid':t.id
+    }
+    util.gets(url2, data).then(function (res) {
+      console.log(res.data)
+      that.setData({
+        myrank: res.data.data
+      })
+    })
+    
   },
 
   /**

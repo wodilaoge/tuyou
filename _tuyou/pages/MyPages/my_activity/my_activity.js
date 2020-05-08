@@ -43,18 +43,22 @@ Page({
     var that=this
     let url = app.globalData.URL + '/config/findAllActivityClass1';
     let url2 = app.globalData.URL + '/act/listMyActivity';
-    let data = '';
+    
     util.gets(url, {}).then(function (res) {
       that.setData({
         AllActivity: res.data.data
       })
     })
-
-    // util.gets(url2, {}).then(function (res) {
-    //   that.setData({
-    //     MyActivity: res.data.data
-    //   })
-    // })
+    let data = {
+      'type':10,
+      'acid1':'076002001'
+    };
+    util.gets(url2, data).then(function (res) {
+      console.log('res',res.data)
+      that.setData({
+        MyActivity: res.data.data
+      })
+    })
   },
 
 })
