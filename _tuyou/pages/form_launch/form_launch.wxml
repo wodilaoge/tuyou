@@ -8,10 +8,26 @@
 </cu-custom>
 <form>
   <view class="cu-form-group margin-top">
-    <view class="title">活动方式</view>
-    <picker bindchange="PickerChange2" value="{{index}}" range="{{picker2}}">
+    <view class="title">活动板块</view>
+    <picker bindchange="PickerChangebig" value="{{indexbig}}" range="{{pickerbig}}" range-key="{{'name'}}">
       <view class="picker text-blue">
-        {{index?picker2[index]:'篮球'}}
+        {{indexbig?pickerbig[indexbig].name:'运动'}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group ">
+    <view class="title">活动大类</view>
+    <picker bindchange="PickerChange2" value="{{index}}" range="{{picker2}}" range-key="{{'name'}}">
+      <view class="picker text-blue">
+        {{index?picker2[index].name:'篮球'}}
+      </view>
+    </picker>
+  </view>
+    <view class="cu-form-group ">
+    <view class="title">活动小类</view>
+    <picker bindchange="PickerChangetiny" value="{{indextiny}}" range="{{pickertiny}}" range-key="{{'name'}}">
+      <view class="picker text-blue">
+        {{indextiny?pickertiny[indextiny].name:'三分赛'}}
       </view>
     </picker>
   </view>

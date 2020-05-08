@@ -1,9 +1,13 @@
 const app = getApp();
+var util = require("../../utils/util.js");
 Page({
   data: {
     information: {
-      activity: '',
       actname: '',
+      sid:'',
+      acid1: '',
+      acid2: '',
+      cid:'',
       slogan: '',
       univid: '003330106',
       province: '00333',
@@ -16,6 +20,8 @@ Page({
       ischecked: false,
     },
     index: 0, //活动方式
+    indexbig:0,
+    indextiny:0,
     indexp: 30, //省
     indexc: 0, //市
     indexs: 0, //学校
@@ -25,6 +31,8 @@ Page({
     citys: [],
     school: [],
     picker: ['个人报名', '团体报名', '个人团队均可报名'],
+    pickertiny:[],
+    pickerbig:[],
     picker2: ['篮球', '足球', '羽毛球', '乒乓球', '网球'],
     multiIndex: [0, 0, 0],
     region: ['浙江省', '杭州市', '浙江大学'],
@@ -36,12 +44,34 @@ Page({
       [t]: e.detail.value
     })
   },
-  PickerChange2(e) { //活动方式
-    let t = 'information.activity'
+  PickerChange2(e) { //活动大类
+    let t = 'information.acid1'
     this.setData({
       index: e.detail.value
     })
-    let v = this.data.picker2[this.data.index]
+    let v = this.data.picker2[this.data.index].code
+    this.setData({
+      [t]: v
+    });
+    this.getthird(this.data.information.acid1)
+  },
+  PickerChangebig(e) { //活动板块
+    let t = 'information.sid'
+    this.setData({
+      indexbig: e.detail.value
+    })
+    let v = this.data.pickerbig[this.data.indexbig].code
+    this.setData({
+      [t]: v
+    });
+    this.gettwo(this.data.information.sid)
+  },
+  PickerChangetiny(e) { //活动小类
+    let t = 'information.acid2'
+    this.setData({
+      indextiny: e.detail.value
+    })
+    let v = this.data.pickertiny[this.data.indextiny].code
     this.setData({
       [t]: v
     });
@@ -198,7 +228,39 @@ Page({
       console.log(err.errMsg)
     });
   },
+  gettwo(code){
+    var that = this
+    let url = app.globalData.URL + '/config/getActivityClass1';
+    let data = {
+      'sid': code
+    };
+    util.gets(url, data).then(function (res) {
+      that.setData({
+        picker2: res.data.data
+      })
+    })
+  },
+  getthird(code){
+    var that = this
+    let url = app.globalData.URL + '/config/getActivityClass2';
+    let data = {
+      'cid': code
+    };
+    util.gets(url, data).then(function (res) {
+      that.setData({
+        pickertiny: res.data.data
+      })
+    })
+  },
   onLoad() {
     this.province();
+    var that = this
+    let url = app.globalData.URL + '/config/getActivitySection';
+
+    util.gets(url, {}).then(function (res) {
+      that.setData({
+        pickerbig: res.data.data
+      })
+    })
   },
 })
