@@ -149,10 +149,10 @@
 					"scene": null
 				},
 				{
-					"id": 15,
+					"id": 13,
 					"name": "选择团队1",
 					"pathName": "pages/xuanzetuandui1/xuanzetuandui1",
-					"query": "",
+					"query": "lid=11878394752925696",
 					"scene": null
 				},
 				{

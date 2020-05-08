@@ -17,6 +17,7 @@ Page({
     loading: true,
     signupway: false,
     user: [],
+    //报名
     canjiaorguankan: 10,
     huodongfenzu: [],
     fenzuhide: false,
@@ -25,6 +26,8 @@ Page({
     isbaominggeren: 0,
     isbaomingtuandui: 0,
     baomingCur: 0,
+    tuanduiSelect: [],
+    members:[],
   },
   //报名
   xingmingInput: function(e) { //input输入
@@ -41,6 +44,11 @@ Page({
     console.log(e)
     this.setData({
       canjiaorguankan: e.currentTarget.dataset.id
+    })
+  },
+  xuanzetuandui() {
+    wx.navigateTo({
+      url: '/pages/xuanzetuandui1/xuanzetuandui1?lid=' + this.data.user.id,
     })
   },
 
@@ -315,25 +323,27 @@ Page({
         duration: 1000,
       })
     else {
-      let url = app.globalData.URL + '/act/addActSignupInd'
+      let url
       let data
       if (self.data.baomingCur == 0) {
+        url = app.globalData.URL + '/act/addActSignupInd'
         if (self.data.fenzuhide)
           data = {
             actid: self.data.categoryId,
             groupid: "",
             mbrId: self.data.user.id,
             mbrAlias: self.data.user.nickname,
+            mbrHead: self.data.user.head,
             mbrName: self.data.xingmingInput,
             signupType: self.data.canjiaorguankan,
-            status:10,
+            status: 10,
             creater: self.data.user.id
           }
         else
           data = {
             actid: self.data.categoryId,
-            groupid: self.data.categoryId,
-            mbrId: self.data.huodongfenzu[self.data.huodongindex].id,
+            groupid: self.data.huodongfenzu[self.data.huodongindex].id,
+            mbrId: self.data.user.id,
             mbrAlias: self.data.user.nickname,
             mbrHead: self.data.user.head,
             mbrName: self.data.xingmingInput,
@@ -342,9 +352,9 @@ Page({
             creater: self.data.user.id
           }
         console.log(data)
-        util.post_token(url, data).then(function (res) {
+        util.post_token(url, data).then(function(res) {
           console.log(res)
-          if (res.data.code == 0) { 
+          if (res.data.code == 0) {
             wx.showToast({
               title: '报名成功！', // 标题
               icon: 'success', // 图标类型，默认success
@@ -353,14 +363,48 @@ Page({
             self.setData({
               isbaominggeren: 1
             })
-          } 
-          else
+          } else
             wx.showToast({
               title: '报名失败！',
               image: '/img/fail.png',
               duration: 1000,
             })
-        }) 
+        })
+      } else {
+        console.log(1)
+        if (self.data.tuanduiSelect.length == 0)
+          wx.showToast({
+            title: '请选择团队！',
+            image: '/img/fail.png',
+            duration: 1000,
+          })
+        else {
+          url = app.globalData.URL + '/act/addActSignupTeam'
+          if (self.data.fenzuhide)
+            data = {
+              actid: self.data.categoryId,
+              groupid: "",
+              tid: self.data.tuanduiSelect.id,
+              team: self.data.tuanduiSelect.name,
+              teamLogo: self.data.tuanduiSelect.logo,
+              lid: self.data.user.id,
+              signupType: self.data.canjiaorguankan,
+              creater: self.data.user.id,
+              members: self.data.members,
+            }
+          else
+            data = {
+              actid: self.data.categoryId,
+              groupid: self.data.huodongfenzu[self.data.huodongindex].id,
+              tid: self.data.tuanduiSelect.id,
+              team: self.data.tuanduiSelect.name,
+              teamLogo: self.data.tuanduiSelect.logo,
+              lid: self.data.user.id,
+              signupType: self.data.canjiaorguankan,
+              creater: self.data.user.id,
+              members: self.data.members,
+            }
+        }
       }
     }
 

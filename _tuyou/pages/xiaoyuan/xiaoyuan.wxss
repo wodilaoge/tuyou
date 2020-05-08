@@ -1,6 +1,9 @@
 /* pages/xiaoyuan/xiaoyuan.wxss */
 @import "../yundongxiangqing/yundongxiangqing.wxss";
 @import "../index/index.wxss";
+page{
+  padding-bottom: 0rpx;
+}
 .top{
   background: #5454FF
 }

@@ -6,6 +6,8 @@ Page({
     MainCur: 0,
     YundongList: app.globalData.YundongList ,
     list: [],
+    teams:[],
+    lid:'',
   },
   tabSelect(e) {
     this.setData({
@@ -15,7 +17,7 @@ Page({
     })
   },
   VerticalMain(e) {
-    let that = this;
+    let self = this;
     let list = this.data.list;
     let tabHeight = 0;
     if (this.data.load) {
@@ -29,7 +31,7 @@ Page({
           list[i].bottom = tabHeight;
         }).exec();
       }
-      that.setData({
+      self.setData({
         load: false,
         list: list
       })
@@ -37,7 +39,7 @@ Page({
     let scrollTop = e.detail.scrollTop + 20;
     for (let i = 0; i < list.length; i++) {
       if (scrollTop > list[i].top && scrollTop < list[i].bottom) {
-        that.setData({
+        self.setData({
           VerticalNavTop: (list[i].id - 1) * 50,
           TabCur: list[i].id
         })
@@ -45,15 +47,32 @@ Page({
       }
     }
   },
+  getteams(){
+    var self=this
+    let url = app.globalData.URL + '/team/listByLeader'
+    let data={
+      lid:self.data.lid
+    }
+    app.wxRequest('GET', url, data, (res) => {
+      self.setData({
+        teams: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    let that = this;
+    let self = this;
     wx.showLoading({
       title: '加载中...',
       mask: true
     });
+    self.setData({
+      lid: options.lid
+    })
     let list = [{}];
     for (let i in this.data.YundongList) {
       list[i] = {};
