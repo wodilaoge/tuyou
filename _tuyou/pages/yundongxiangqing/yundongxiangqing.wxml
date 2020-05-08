@@ -33,7 +33,7 @@
   </view>
 
   <view style="margin-bottom:20rpx;">
-    <view class="cu-card article no-card" style="margin-top:-70rpx;">
+    <view class="cu-card article no-card" style="margin-top:-20rpx;">
       <view class="cu-item bg-white">
         <view class="shadow" style="background-color:#F8F9FD;">
           <view class="yundong-content">

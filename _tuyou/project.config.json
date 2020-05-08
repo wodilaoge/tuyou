@@ -182,13 +182,6 @@
 					"pathName": "pages/MyPages/my_messagemind/my_messagemind",
 					"query": "",
 					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "报名",
-					"pathName": "pages/components/baoming/baoming",
-					"query": "",
-					"scene": null
 				}
 			]
 		}

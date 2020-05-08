@@ -126,7 +126,7 @@ App({
         } else {
           // 未授权，跳转到授权页面
           console.log('no')
-          wx.reLaunch({
+          wx.redirectTo({
             url: '/pages/login/login',
           })
         }

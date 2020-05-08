@@ -324,7 +324,6 @@ Page({
             groupid: "",
             mbrId: self.data.user.id,
             mbrAlias: self.data.user.nickname,
-            mbrHead: self.data.user.head,
             mbrName: self.data.xingmingInput,
             signupType: self.data.canjiaorguankan,
             status:10,
@@ -343,7 +342,7 @@ Page({
             creater: self.data.user.id
           }
         console.log(data)
-        util.post(url, data).then(function (res) {
+        util.post_token(url, data).then(function (res) {
           console.log(res)
           if (res.data.code == 0) { 
             wx.showToast({
@@ -361,7 +360,7 @@ Page({
               image: '/img/fail.png',
               duration: 1000,
             })
-        })  
+        }) 
       }
     }
 
