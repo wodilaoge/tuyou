@@ -24,12 +24,12 @@ Component({
   methods: {
     yundongxiangqing(e) { //报名参加按钮跳转 带着活动id跳转
       wx.navigateTo({
-        url: '../../pages/yundongxiangqing/yundongxiangqing?categoryId=' + e.currentTarget.id,
+        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.id,
       })
     },
-    yundongxiangqing_baoming(e) { //报名参加按钮跳转 带着活动id跳转 运动
+    baomingtiaozhan(e) { //报名参加按钮跳转 带着活动id跳转 运动
       wx.navigateTo({
-        url: '../../pages/yundongxiangqing/yundongxiangqing?categoryId=' + e.currentTarget.id +'&TabCur=1',
+        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=1&categoryId=' + e.currentTarget.id,
       })
     },
   }

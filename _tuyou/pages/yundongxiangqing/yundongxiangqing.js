@@ -1,6 +1,7 @@
 const app = getApp();
 Page({
   data: {
+    options:[],
     TabCur: 0,
     paimingCur: 0,
     huodongID:'5069992122908672',
@@ -14,6 +15,7 @@ Page({
     shipin_detail: [],
     zhaopian: [],
     zhaopian_detail: [],
+    user:[],
     swiperList: [{
       id: 0,
       type: 'image',
@@ -132,6 +134,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      categoryId: options.categoryId,
+      user: wx.getStorageSync('userInfo'),
+      TabCur: options.TabCur,
+      options: options
+    })
     this.news()
     this.news_detail()
     this.getShipin()

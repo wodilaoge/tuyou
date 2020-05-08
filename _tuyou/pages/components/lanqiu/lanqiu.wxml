@@ -7,7 +7,7 @@
   <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing">
     <view class="cu-card article ">
       <view class="cu-item">
-        <view class="shadow" style="background-color:#F8F9FD;padding:19rpx 0 19rpx 0;">
+        <view class="shadow"  style="background-color:#F8F9FD;padding:19rpx 0 19rpx 0;">
           <view class="yundong-content">
             <image src="{{item.logo}}" mode="aspectFill"></image>
             <view class="desc">
@@ -40,118 +40,10 @@
           <view class="cu-avatar-group"> 
             <view class="cu-avatar round my" wx:for="{{5}}" wx:key style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{index+1}}.jpg);"></view>
           </view>
-          <button class="cu-btn bg-orange round btn" style="margin-left:66rpx;margin-top:-30rpx;" bindtap="yundongxiangqing">报名挑战</button>
+          <button class="cu-btn bg-orange round btn" style="margin-left:66rpx;margin-top:-30rpx;" bindtap="baomingtiaozhan">报名挑战</button>
           <button class="cu-btn line-orange round btn" style="margin-left:30rpx;margin-top:-30rpx;">群聊（8）</button>
         </view>
       </view>
-
-
     </view>
   </view>
 </view>
-
-
-<!-- 
-<view>
-  <view class="cu-bar bg-white solid-bottom">
-    <image class="cu-avatar lg margin-left" src="/img/sanfensai.png" mode="heightFix"></image>
-    <text style="margin-left:-100rpx">三分赛</text>
-    <text class=" title-time">1 天 01: 02 </text>
-  </view>
-  <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing">
-    <view class="cu-card article ">
-      <view class="cu-item">
-        <view class="shadow" style="background-color:#F8F9FD;padding:19rpx 0 19rpx 0;">
-          <view class="yundong-content">
-            <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="aspectFill"></image>
-            <view class="desc">
-              <view class="title-limit">XX篮球春季赛第一轮</view>
-              <view class="text-content">
-                <image class="icon-size" src="../../../img/icon_location.png" mode="heightFix"></image>
-                <text decode="{{true}}">\t杭州市YY街ZZ号</text>
-              </view>
-              <view class="text-content">
-                <image class="icon-size"></image>
-                <text decode="{{true}}">\t篮球馆</text>
-              </view>
-              <view class="time-text-content">
-                <image class="icon-size" src="../../../img/icon_time.png" mode="heightFix"></image>
-                3月11日（周三）13:00开赛
-              </view>
-            </view>
-          </view>
-        </view>
-        <view class="yundong-content title-text-content" style="margin-top:28rpx;">
-          <image style="margin-top:8rpx;" class="icon-size" src="../../../img/icon_title.png" mode="heightFix"></image>
-          <text decode="{{true}}">争夺XX三分王！敢挑战吗？</text>
-        </view>
-        <view class="yundong-content yibaoming-margin-top">
-          <text class="yibaoming-text-content">已报名</text>
-          <text class="yibaoming-text-content" style="color:var(--blue)">21/24</text>
-          <text class="yibaoming-text-content">人</text>
-        </view>
-        <view class="yundong-content margin-top">
-          <view class="cu-avatar-group"> 
-            <view class="cu-avatar round my" wx:for="{{5}}" wx:key style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{index+1}}.jpg);"></view>
-          </view>
-          <button class="cu-btn bg-orange round btn" style="margin-left:66rpx;margin-top:-30rpx;" bindtap="yundongxiangqing">报名挑战</button>
-          <button class="cu-btn line-orange round btn" style="margin-left:30rpx;margin-top:-30rpx;">群聊（8）</button>
-        </view>
-      </view>
-
-
-    </view>
-  </view>
-
-
-  <view class="cu-bar bg-white solid-bottom">
-    <image class="cu-avatar lg margin-left" src="/img/3v3.png" mode="heightFix"></image>
-    <text style="margin-left:-100rpx">3V3</text>
-    <text class=" title-time">1 天 01: 02 </text>
-  </view>
-  <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing"> 
-    <view class="cu-card article ">
-      <view class="cu-item">
-        <view class="shadow" style="background-color:#F8F9FD;padding:19rpx 0 19rpx 0;">
-          <view class="yundong-content">
-            <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="aspectFill"></image>
-            <view class="desc">
-              <view class="title-limit">Cypher浙工大选拔赛（屏峰校区）</view>
-              <view class="text-content">
-                <image class="icon-size" src="../../../img/icon_location.png" mode="heightFix"></image>
-                <text decode="{{true}}">\t杭州市YY街ZZ号</text>
-              </view>
-              <view class="text-content">
-                <image class="icon-size"></image>
-                <text decode="{{true}}">\t浙工大室外篮球场</text>
-              </view>
-              <view class="time-text-content">
-                <image class="icon-size" src="../../../img/icon_time.png" mode="heightFix"></image>
-                3月11日（周三）13:00开赛
-              </view>
-            </view>
-          </view>
-        </view>
-        <view class="yundong-content title-text-content" style="margin-top:28rpx;">
-          <image style="margin-top:8rpx;" class="icon-size" src="../../../img/icon_title.png" mode="heightFix"></image>
-          <text decode="{{true}}">1V1最终晋级即可挑战导师，成为CypherKIDZI</text>
-        </view>
-        <view class="yundong-content yibaoming-margin-top">
-          <text class="yibaoming-text-content">已报名</text>
-          <text class="yibaoming-text-content" style="color:var(--blue)">21/24</text>
-          <text class="yibaoming-text-content">人</text>
-        </view>
-        <view class="yundong-content margin-top">
-          <view class="cu-avatar-group">
-            <view class="cu-avatar round my" wx:for="{{5}}" wx:key style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{index+1}}.jpg);"></view>
-          </view>
-          <button class="cu-btn bg-orange round btn" style="margin-left:66rpx;margin-top:-30rpx;">取消报名</button>
-          <button class="cu-btn line-orange round btn" style="margin-left:30rpx;margin-top:-30rpx;">群聊（8）</button>
-        </view>
-      </view>
-
-
-    </view>
-  </view>
-</view>
--->
