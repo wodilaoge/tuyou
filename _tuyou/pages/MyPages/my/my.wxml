@@ -18,10 +18,7 @@
     <!-- <view style="background:url('/img/my/img_bar.png')" > -->
     <view class="text1 bk ">
       <!-- <image src="/img/my/img_bar.png" class="bkimg"></image> -->
-      <navigator class="text-item" url="/pages/MyPages/my_system_message/my_system_message" hover-class="btn-hover">
-        <text class="text"></text>8
-        <text class="text2"></text>消息
-      </navigator >
+
       <navigator class="text-item" url="/pages/MyPages/my_activity/my_activity"  hover-class="btn-hover">
         <text class="text"></text>8
         <text class="text2"></text>活动
