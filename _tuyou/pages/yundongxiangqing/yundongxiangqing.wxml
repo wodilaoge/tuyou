@@ -28,7 +28,7 @@
 <block wx:if="{{TabCur==0}}">
   <view class="cu-bar bg-white solid-bottom margin-top-sm">
     <image class="cu-avatar round my" src="{{detail.createrhead}}" mode="heightFix"></image>
-    <text style="margin-left:-100rpx">{{detail.actname}}</text>
+    <text style="margin-left:-100rpx">三分赛</text>
     <text class=" title-time margin-right">1 天 01: 02 </text>
   </view>
 
