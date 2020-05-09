@@ -27,8 +27,8 @@
 
 <block wx:if="{{TabCur==0}}">
   <view class="cu-bar bg-white solid-bottom margin-top-sm">
-    <image class="cu-avatar lg" src="/img/sanfensai.png" mode="heightFix"></image>
-    <text style="margin-left:-80rpx">三分赛</text>
+    <image class="cu-avatar round my" src="{{detail.createrhead}}" mode="heightFix"></image>
+    <text style="margin-left:-80rpx">{{detail.actname}}</text>
     <text class=" title-time margin-right">1 天 01: 02 </text>
   </view>
 
@@ -38,14 +38,14 @@
         <view class="shadow" style="background-color:#F8F9FD;">
           <view class="yundong-content">
             <view class="desc padding-xs">
-              <view class="title-limit">XX篮球春季赛第一轮</view>
+              <view class="title-limit">{{detail.actname}}</view>
               <view class="text-content">
                 <image class="icon-size" src="/img/icon_location.png" mode="heightFix"></image>
-                <text decode="{{true}}">\t杭州市YY街ZZ号</text>
+                <text decode="{{true}}">\t{{detail.city}}{{detail.address}}</text>
               </view>
               <view class="text-content">
                 <image class="icon-size"></image>
-                <text decode="{{true}}">\t篮球馆</text>
+                <text decode="{{true}}">\t{{detail.venue}}</text>
               </view>
               <view class="time-text-content">
                 <image class="icon-size" src="/img/icon_time.png" mode="heightFix"></image>
@@ -61,7 +61,7 @@
         </view>
         <view class="yundong-content padding-xs" style="margin-bottom:18rpx;">
           <image class="icon-size" style="margin-top:28rpx;" src="/img/icon_title.png" mode="heightFix"></image>
-          <text class="title-text-content" style="margin-top:28rpx;" decode="{{true}}">争夺XX三分王！敢挑战吗？</text>
+          <text class="title-text-content" style="margin-top:28rpx;" decode="{{true}}">{{slogan}}</text>
           <button class="cu-btn line-orange round btn-guanzhu margin-top-sm">关注</button>
         </view>
 
@@ -69,7 +69,7 @@
       <view class="bg-white">
         <view class="yibaoming-margin-top margin-left ">
           <text class="yibaoming-text-content">已报名</text>
-          <text class="yibaoming-text-content" style="color:var(--blue)">21/24</text>
+          <text class="yibaoming-text-content" style="color:var(--blue)">21/{{item.signupmax}}</text>
           <text class="yibaoming-text-content">人</text>
           <button class="cu-btn bg-orange round btn-baomingtiaozhan margin-top">报名挑战</button>
         </view>
@@ -88,9 +88,11 @@
       <view class="cu-bar-title">活动介绍</view>
     </view>
     <view class="text-guize " style="width:625rpx;">
-      <view> 1.用户通过站内H5页面分享活动链接给自己的好友，好友点开链接即可参与砸蛋。</view>
-      <view> 2.每位用户可以分享砸蛋链接，每日不限次数。</view>
-      <view> 3.用户分享的链接限砸5次/天，一位用户限砸3次/天，每位用户限为同位好友砸1次。 </view>
+      <wxparse data="{{ detail.imagetext }}"></wxparse>
+      <view class="margin-top">
+        <text class="cuIcon-attention lg text-gray">\t23456</text>
+        <text class="cuIcon-appreciate lg text-gray text-right" decode="{{true}}">\t赞&emsp;{{likecount}}</text>
+      </view>
     </view>
   </view>
   <view class="bg-white padding margin-top">
@@ -106,68 +108,54 @@
     <image src="/img/zanzhushang.png" mode="scaleToFill" style="width:700rpx;height:200rpx;"></image>
   </view>
 
-  <view class="cu-bar bg-white solid-bottom margin-top">
-    <view class='action'>
-      <text class='cu-bar-title'>评论108</text>
-    </view>
-  </view>
-
-  <view class="cu-card case no-card bg-white">
-    <view class="cu-item shadow">
-      <view class="cu-list menu-avatar" bindtap="chakanhuifu">
-        <view class="cu-item">
-          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
-          <view class="content flex-sub">
-            <view class=" flex justify-between">
-              <view>
-                <text class="card-text-grey" decode="{{true}}">吴福嘉&emsp;</text>
-                <button class="cu-btn btn-hot bg-orange disabled">热门</button>
-              </view>
-              <view class="text-gray text-sm">
-                <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
-                <text class="cuIcon-appreciate margin-lr-xs "></text> 1
-              </view>
-            </view>
-            <view class="card-text-content">
-              活动看着不错，我报名啦
-            </view>
-            <view class="card-text-content-time">
-              03-15 16:15 6 回复
-            </view>
-          </view>
+  <block>
+    <view class="huodong-margin-bottom">
+      <!-- 评论 -->
+      <view class="cu-bar bg-white solid-bottom huodong-margin-top">
+        <view class='action'>
+          <text class='cu-bar-title'>评论{{comment_detail.length}}</text>
         </view>
+      </view>
 
-        <view class="cu-item">
-          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
-          <view class="content flex-sub">
-            <view class=" flex justify-between">
-              <view>
-                <text class="card-text-grey">吴福嘉</text>
+      <view class="cu-card case no-card bg-white">
+        <view class="cu-item shadow">
+          <view class="cu-list menu-avatar">
+            <view class="cu-item" wx:for="{{comment_detail}}" wx:for-index="index">
+              <view class="cu-avatar round lg" style="background-image:url({{item.createrHead}});"></view>
+              <view class="content flex-sub">
+                <view class=" flex justify-between">
+                  <view>
+                    <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
+                    <button class="cu-btn btn-hot bg-orange disabled" wx:if="{{item.hot}}">热门</button>
+                  </view>
+                  <view class="text-gray text-sm">
+                    <text class="{{false==item.ifzan?'cuIcon-appreciate':'cuIcon-appreciatefill'}} margin-lr-xs line" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}'></text> {{item.praiseCnt}}
+                    <text class="cuIcon-appreciate margin-lr-xs "></text> {{item.degradeCnt}}
+                  </view>
+                </view>
+                <view bindtap="chakanhuifu" data-id="{{item.id}}">
+                  <view class="card-text-content">
+                    {{item.comment}}
+                  </view>
+                  <view class="card-text-content-time">
+                    {{item.strCreatetime}} {{item.replyCnt}} 回复
+                  </view>
+                </view>
               </view>
-              <view class="text-gray text-sm">
-                <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
-                <text class="cuIcon-appreciate margin-lr-xs "></text> 1
-              </view>
-            </view>
-            <view class="card-text-content">
-              活动看着不错，我报名啦
-            </view>
-            <view class="card-text-content-time">
-              03-15 16:15 6 回复
             </view>
           </view>
         </view>
       </view>
     </view>
-  </view>
+  </block>
   <view>
     <view class="cu-bar input foot padding">
-      <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
+      <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！' bindtap="pinluntiaozhuan"></input>
       <view class="action">
         <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
       </view>
       <view class="action">
-        <image class="img-icon" mode="aspectFit" style="margin-right:10rpx" src="/img/icon_fabulous.png"></image>
+        <image class="img-icon" mode="aspectFit" style="margin-right:10rpx" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
       </view>
       <view class="action">
         <image class="img-icon" mode="aspectFit" src="/img/icon_share.png"></image>

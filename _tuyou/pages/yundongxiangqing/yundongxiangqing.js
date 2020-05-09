@@ -4,11 +4,16 @@ Page({
     options:[],
     TabCur: 0,
     paimingCur: 0,
-    isbaoming: 0,
-    comment: [],
+
     SwiperList_zhaopian: [],
     detail:[],
+    slogan: '',
+    comment: [],
     comment_detail: [],
+
+    likecount: 0,
+    ifzan: false,
+    isbaoming: 0,
     news: [],
     news_detail: [],
     shipin: [],
@@ -64,7 +69,6 @@ Page({
   },
   
   tabSelect(e) {
-    console.log(e);
     this.setData({
       TabCur: e.currentTarget.dataset.id,
     })
@@ -80,7 +84,6 @@ Page({
       id: this.data.categoryId
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res.data)
       this.setData({
         news: res.data
       })
@@ -107,7 +110,6 @@ Page({
       arctid: this.data.categoryId
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res)
       this.setData({
         shipin: res.data
       })
@@ -121,14 +123,12 @@ Page({
       arctid: this.data.categoryId
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res)
       this.setData({
        zhaopian: res.data
       })
     }, (err) => {
       console.log(err.errMsg)
     });
-    console.log(this.data.zhaopian)
   },
 
   detail() { //页面项目信息
@@ -144,17 +144,64 @@ Page({
       console.log(err.errMsg)
     });
   },
+  comment() { //评论
+    let url = app.globalData.URL + '/comm/listCommByObj';
+    let data = {
+      objid: this.data.categoryId,
+      objtype: 30
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        comment: res.data
+      });
+      let list = self.data.comment.list
+      if (list.length == 0)
+        self.setData({
+          loading: false,
+          comment_detail: list
+        });
+      for (let i in list) {
+        let url2 = app.globalData.URL + '/applaud/findApplaud'; //点赞情况
 
+        data = {
+          objtype: 30,
+          objid: list[i].id,
+          uid: self.data.user.id,
+        };
+        util.gets(url2, data).then(function (res) {
+          list[i]['ifzan'] = res.data.data
+        });
+        url2 = app.globalData.URL + '/applaud/countByObj'; //点赞数
+        data = {
+          objid: list[i].id,
+          objtype: 30
+        };
+        util.gets(url2, data).then(function (res) {
+          list[i].praiseCnt = res.data.data
+          if (i == list.length - 1) {
+            self.setData({
+              comment_detail: list,
+              loading: false
+            });
+          }
+        });
+      }
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.setData({
+      slogan: options.slogan,
       categoryId: options.categoryId,
       user: wx.getStorageSync('userInfo'),
       TabCur: options.TabCur,
       options: options
     })
+    this.comment()
     this.detail()
     this.news()
     this.news_detail()

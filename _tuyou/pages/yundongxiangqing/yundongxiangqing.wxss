@@ -49,10 +49,11 @@ page {
 }
 
 .text-guize {
-  font-size: 24rpx;
-  line-height: 48rpx;
-  font-weight: normal;
-  color: #999;
+  padding: 0 10rpx;
+  font-size:28rpx;
+  color:#666666;
+  line-height: 56rpx;
+  margin-bottom: 30rpx;
 }
 
 .btn-hot {
