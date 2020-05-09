@@ -4,7 +4,7 @@
     <text style="margin-left:-100rpx">三分赛</text>
     <text class=" title-time">1 天 01: 02 </text>
   </view>
-  <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing">
+  <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-id="{{item.id}}">
     <view class="cu-card article ">
       <view class="cu-item">
         <view class="shadow"  style="background-color:#F8F9FD;padding:19rpx 0 19rpx 0;">
@@ -13,7 +13,7 @@
             <view class="desc">
               <view class="title-limit">{{item.actname}}</view>
               <view class="text-content">
-                <image class="icon-size" src="../../../img/icon_location.png" mode="heightFix"></image>
+                <image class="icon-size" src="/img/icon_location.png" mode="heightFix"></image>
                 <text decode="{{true}}">\t{{item.city}}{{item.address}}</text>
               </view>
               <view class="text-content">

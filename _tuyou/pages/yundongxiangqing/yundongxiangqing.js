@@ -4,10 +4,10 @@ Page({
     options:[],
     TabCur: 0,
     paimingCur: 0,
-    huodongID:'5069992122908672',
     isbaoming: 0,
     comment: [],
     SwiperList_zhaopian: [],
+    detail:[],
     comment_detail: [],
     news: [],
     news_detail: [],
@@ -104,7 +104,7 @@ Page({
   getShipin() {//视频
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
-      arctid: this.data.huodongID
+      arctid: this.data.categoryId
     };
     app.wxRequest('GET', url, data, (res) => {
       console.log(res)
@@ -118,7 +118,7 @@ Page({
   getZhaopian() {//照片
     let url = app.globalData.URL + '/photo/listActPhoto';
     let data = {
-      arctid: this.data.huodongID
+      arctid: this.data.categoryId
     };
     app.wxRequest('GET', url, data, (res) => {
       console.log(res)
@@ -130,6 +130,21 @@ Page({
     });
     console.log(this.data.zhaopian)
   },
+
+  detail() { //页面项目信息
+    let url = app.globalData.URL + '/act/findCampusActivity';
+    let data = {
+      id: this.data.categoryId
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        detail: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -140,12 +155,12 @@ Page({
       TabCur: options.TabCur,
       options: options
     })
+    this.detail()
     this.news()
     this.news_detail()
     this.getShipin()
     this.getZhaopian()
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -10,7 +10,6 @@ Component({
   },
 
   attached: function () {
-    console.log(this.properties.yundongCur);
   },
   /**
    * 组件的初始数据
@@ -22,14 +21,14 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    yundongxiangqing(e) { //报名参加按钮跳转 带着活动id跳转
+    yundongxiangqing(e) {
       wx.navigateTo({
-        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.id,
+        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.id,
       })
     },
-    baomingtiaozhan(e) { //报名参加按钮跳转 带着活动id跳转 运动
+    baomingtiaozhan(e) {
       wx.navigateTo({
-        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=1&categoryId=' + e.currentTarget.id,
+        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=1&categoryId=' + e.currentTarget.dataset.id,
       })
     },
   }

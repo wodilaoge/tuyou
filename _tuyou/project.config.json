@@ -128,10 +128,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 10,
 					"name": "运动详情",
 					"pathName": "pages/yundongxiangqing/yundongxiangqing",
-					"query": "",
+					"query": "categoryId= 15182256549134336",
 					"scene": null
 				},
 				{
@@ -187,6 +187,7 @@
 					"id": -1,
 					"name": "发布活动",
 					"pathName": "pages/form_launch/form_launch",
+					"query": "",
 					"scene": null
 				}
 			]

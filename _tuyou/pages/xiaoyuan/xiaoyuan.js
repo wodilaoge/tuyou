@@ -2,6 +2,33 @@ const app = getApp();
 var util = require("../../utils/util.js");
 Page({
   data: {
+    bt:'校园活动',
+    btdata:[
+      {
+        id:0,
+        name:"校园活动"
+      },
+      {
+        id: 1,
+        name: "运动"
+      },
+      {
+        id: 2,
+        name: "文娱"
+      },
+      {
+        id: 3,
+        name: "爱好"
+      },
+      {
+        id: 4,
+        name: "新闻"
+      },
+      {
+        id: 5,
+        name: "视频"
+      },
+    ],
     ActList: [],
     yundongList: [],
     wenyuList: [],
@@ -58,7 +85,8 @@ Page({
   tabSelect(e) {
     this.setData({
       TabCur: e.currentTarget.dataset.id,
-      scrollLeft: (e.currentTarget.dataset.id - 1) * 60
+      scrollLeft: (e.currentTarget.dataset.id - 1) * 60,
+      bt: this.data.btdata[e.currentTarget.dataset.id].name
     })
   },
   news() {//活动新闻
