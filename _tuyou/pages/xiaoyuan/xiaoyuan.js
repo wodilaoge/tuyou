@@ -2,17 +2,11 @@ const app = getApp();
 var util = require("../../utils/util.js");
 Page({
   data: {
-<<<<<<< HEAD
     bt: '校园活动',
+
     btdata: [{
         id: 0,
         name: "校园活动"
-=======
-    btdata:[
-      {
-        id:0,
-        name:"校园活动"
->>>>>>> 9f39735025021f2105b78c3d623857c6571437c2
       },
       {
         id: 1,
@@ -60,11 +54,12 @@ Page({
     wenyuSwiperList: [],
     aihaoSwiperList: [],
     shipinSwiperList: [],
-    huodongID: '5069992122908672',
     shipin: [],
     news: [],
     news_detail: [],
-
+    video_id: 'video_0', ///用于切换视频
+    bofang_if_id: 'video_0', /////用数字来表示匹配
+    bofang_pid: '1', ///1表示有一个播放，0表示无播放
   },
   tabSelect(e) {
     this.setData({
@@ -230,10 +225,10 @@ Page({
           }, (err) => {
             console.log(err.errMsg)
           });
-//////////////////
+          //////////////////
 
 
-//////////////////
+          //////////////////
           var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
           util.gets(urldalei, data).then(function(res) {
             console.log(res)
@@ -299,10 +294,10 @@ Page({
     })
   },
 
-  getShipin() {//视频
+  getShipin() { //视频
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
-     
+
     };
     app.wxRequest('GET', url, data, (res) => {
       console.log(res)
@@ -312,6 +307,39 @@ Page({
     }, (err) => {
       console.log(err.errMsg)
     });
+  },
+  video_change: function(e) { ////视频切换
+    console.log(e)
+    if (this.data.bofang_if_id != e.currentTarget.id) { ///相等表示点击和播放不匹配
+      if (this.data.bofang_pid == '0') {
+        this.setData({
+          bofang_pid: '1'
+        })
+      }
+
+      var now_id = e.currentTarget.id;
+      var prev_id = this.data.video_id;
+      this.setData({
+        video_id: now_id,
+        bofang_if_id: now_id
+      })
+      wx.createVideoContext(prev_id).pause();
+      wx.createVideoContext(now_id).play();
+
+
+    } else { //////////当点击同一个，一次播放一次暂停
+      if (this.data.bofang_pid == '1') {
+        wx.createVideoContext(e.currentTarget.id).pause();
+        this.setData({
+          bofang_pid: '0'
+        })
+      } else {
+        wx.createVideoContext(e.currentTarget.id).play();
+        this.setData({
+          bofang_pid: '1'
+        })
+      }
+    }
   },
   onLoad: function() {
     this.setData({ //读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
