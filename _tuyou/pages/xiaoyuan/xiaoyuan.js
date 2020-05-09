@@ -2,11 +2,10 @@ const app = getApp();
 var util = require("../../utils/util.js");
 Page({
   data: {
-    bt:'校园活动',
-    btdata:[
-      {
-        id:0,
-        name:"校园活动"
+    bt: '校园活动',
+    btdata: [{
+        id: 0,
+        name: "校园活动"
       },
       {
         id: 1,
@@ -33,7 +32,7 @@ Page({
     yundongList: [],
     wenyuList: [],
     aihaoList: [],
-    shhipinList: [],
+    shipinList: [],
     yundongdalei: [],
     shipindalei: [],
     wenyudalei: [],
@@ -48,7 +47,7 @@ Page({
     yundongCur: '', //运动内导航栏
     wenyuCur: '', //文娱内导航栏
     aihaoCur: '', //爱好内导航栏
-    shipinCur: '',//视频内导航栏
+    shipinCur: '', //视频内导航栏
     xiaoyuanSwiperList: [],
     yundongSwiperList: [],
     wenyuSwiperList: [],
@@ -58,29 +57,7 @@ Page({
     shipin: [],
     news: [],
     news_detail: [],
-    shipindalei2: [
-      {
-        "code": "1",
-        "name": "全部",
-      },
-      {
-        "code": "2",
-        "name": "校园",
-      },
-      {
-        "code": "3",
-        "name": "聚会",
-      },
-      {
-        "code": "4",
-        "name": "装扮",
-      },
-      {
-        "code": "5",
-        "name": "摄影",
-      },
-    ],
-    
+
   },
   tabSelect(e) {
     this.setData({
@@ -89,7 +66,7 @@ Page({
       bt: this.data.btdata[e.currentTarget.dataset.id].name
     })
   },
-  news() {//活动新闻
+  news() { //活动新闻
     let url = app.globalData.URL + '/news/listNews';
     let data = {
       id: this.data.categoryId
@@ -103,7 +80,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-  news_detail() {//活动新闻
+  news_detail() { //活动新闻
     let url = app.globalData.URL + '/news/findNewsDetail';
     let data = {
       id: this.data.news.id
@@ -150,6 +127,7 @@ Page({
     })
   },
   shipinTabSelect(e) { //视频内导航栏
+    console.log(e)
     var url = app.globalData.URL + '/act/listActivity';
     let data = {
       sid: this.data.shipinid,
@@ -168,7 +146,8 @@ Page({
       self.setData({
         bkData: res.data.data
       })
-
+      console.log(res)
+      console.log(res.data.data)
       for (var i in res.data.data) {
         var url = app.globalData.URL + '/act/listActivity';
         var url2 = app.globalData.URL + '/secrot/listSecrotation';
@@ -208,6 +187,7 @@ Page({
           }, (err) => {
             console.log(err.errMsg)
           });
+
           var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
           util.gets(urldalei, data).then(function(res) {
             self.setData({
@@ -237,33 +217,39 @@ Page({
           let data = {
             sid: res.data.data[i].code
           };
-
           app.wxRequest('GET', url2, data, (res) => {
             self.setData({
-             shipinSwiperList: res.data
+              shipinSwiperList: res.data
             })
           }, (err) => {
             console.log(err.errMsg)
           });
+//////////////////
+
+
+//////////////////
           var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
-          util.gets(urldalei, data).then(function (res) {
+          util.gets(urldalei, data).then(function(res) {
+            console.log(res)
             self.setData({
-             shipindalei: res.data.data,
-             shipinCur: res.data.data[0].code
+              shipindalei: res.data.data,
+              // shipinCur: res.data.data[0].code
             })
-          }).then(function () {
+          }).then(function() {
             data = {
               sid: self.data.shipinid,
               acid1: self.data.shipinCur
             }
             console.log(data)
             app.wxRequest('GET', url, data, (res) => {
+              console.log(res)
               self.setData({
                 shipinList: res.data
               })
             }, (err) => {
               console.log(err.errMsg)
             });
+
           })
           continue;
         }
@@ -283,12 +269,12 @@ Page({
             console.log(err.errMsg)
           });
           var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
-          util.gets(urldalei, data).then(function (res) {
+          util.gets(urldalei, data).then(function(res) {
             self.setData({
               wenyudalei: res.data.data,
               wenyuCur: res.data.data[0].code
             })
-          }).then(function () {
+          }).then(function() {
             data = {
               sid: self.data.wenyuid,
               acid1: self.data.wenyuCur
@@ -306,10 +292,11 @@ Page({
       }
     })
   },
+
   getShipin() {//视频
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
-      arctid: this.data.huodongID
+     
     };
     app.wxRequest('GET', url, data, (res) => {
       console.log(res)
@@ -325,15 +312,16 @@ Page({
       TabCur: app.globalData.tabbar
     })
     this.towerSwiper('xiaoyuanSwiperList')
-    this.getShipin()
-    this.news()
-    this.news_detail()
   },
   onShow() {
     this.setData({ //读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
       TabCur: app.globalData.tabbar
     })
     this.xuanran();
+    this.getShipin();
+
+    this.news()
+    this.news_detail()
   },
   DotStyle(e) {
     this.setData({
@@ -348,8 +336,8 @@ Page({
   },
   xiaoyuanxiangqing(e) { //其他位置跳转
     wx.navigateTo({
-      url: '../../pages/xiaoyuanxiangqing/xiaoyuanxiangqing?TabCur=0&categoryId=' + e.currentTarget.id ,
-    }) 
+      url: '../../pages/xiaoyuanxiangqing/xiaoyuanxiangqing?TabCur=0&categoryId=' + e.currentTarget.id,
+    })
   },
   baomingcanjia(e) { //报名参加按钮跳转 带着活动id跳转 校园活动
     wx.navigateTo({
