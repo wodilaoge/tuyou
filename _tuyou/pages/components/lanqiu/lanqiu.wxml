@@ -1,8 +1,8 @@
 <view wx:for="{{yundongList.list}}">
   <view class="cu-bar bg-white solid-bottom">
     <image class="cu-avatar round my margin-left" src="{{item.createrhead}}" mode="heightFix"></image>
-    <text style="margin-left:-100rpx">三分赛</text>
-    <text class=" title-time">1 天 01: 02 </text>
+    <text style="">三分赛</text>
+    <text class=" title-time margin-right">1 天 01: 02 </text>
   </view>
   <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-yundong="{{item}}">
     <view class="cu-card article ">
@@ -21,14 +21,14 @@
                 <text decode="{{true}}">\t{{item.venue}}</text>
               </view>
               <view class="time-text-content">
-                <image class="icon-size" src="../../../img/icon_time.png" mode="heightFix"></image>
+                <image class="icon-size" src="/img/icon_time.png" mode="heightFix"></image>
                 3月11日（周三）13:00开赛
               </view>
             </view>
           </view>
         </view>
         <view class="yundong-content title-text-content" style="margin-top:28rpx;">
-          <image  class="icon-size" src="../../../img/icon_title.png" mode="heightFix"></image>
+          <image  class="icon-size" src="/img/icon_title.png" mode="heightFix"></image>
           <text decode="{{true}}">{{item.slogan}}</text>
         </view>
         <view class="yundong-content yibaoming-margin-top">
@@ -38,7 +38,7 @@
         </view>
         <view class="yundong-content margin-top">
           <view class="cu-avatar-group"> 
-            <view class="cu-avatar round my" wx:for="{{5}}" wx:key style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{index+1}}.jpg);"></view>
+            <view class="cu-avatar round my" wx:for="{{6}}" wx:key style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{index+1}}.jpg);"></view>
           </view>
           <button class="cu-btn bg-orange round btn" style="margin-left:66rpx;margin-top:-30rpx;" bindtap="baomingtiaozhan">报名挑战</button>
           <button class="cu-btn line-orange round btn" style="margin-left:30rpx;margin-top:-30rpx;">群聊（8）</button>

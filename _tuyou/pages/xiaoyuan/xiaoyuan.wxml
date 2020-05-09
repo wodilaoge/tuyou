@@ -6,7 +6,7 @@
 
 <view class="top">
   <cu-custom isBack="{{true}}" bgColor="bg-blue">
-    <view slot="content">{{bt}}</view>
+    <view slot="content">{{btdata[TabCur].name}}</view>
   </cu-custom>
 </view>
 <scroll-view scroll-x class="bg-blue nav text-center">
