@@ -59,10 +59,6 @@
     <image src="/img/my/01.png" class="menu-img"></image>
     <text class="menu-name">账号安全</text>
   </navigator>
-  <navigator url="/pages/MyPages/my_workplate/my_workplate" class="menu-item">
-    <image src="/img/my/03.png" class="menu-img"></image>
-    <text class="menu-name">工作台</text>
-  </navigator>
   <navigator url="/pages/MyPages/my_activity/my_activity" class="menu-item">
     <image src="/img/my/04.png" class="menu-img"></image>
     <text class="menu-name">活动</text>
