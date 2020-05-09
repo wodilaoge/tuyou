@@ -62,7 +62,7 @@
         <view class="yundong-content padding-xs" style="margin-bottom:18rpx;">
           <image class="icon-size" style="margin-top:28rpx;" src="/img/icon_title.png" mode="heightFix"></image>
           <text class="title-text-content" style="margin-top:28rpx;" decode="{{true}}">{{slogan}}</text>
-          <button class="cu-btn line-orange round btn-guanzhu margin-top-sm">关注</button>
+          <button class="cu-btn line-orange round btn-guanzhu">关注</button>
         </view>
 
       </view>

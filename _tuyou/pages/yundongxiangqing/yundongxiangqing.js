@@ -243,6 +243,7 @@ Page({
         status: 1,
       };
     app.wxRequest('POST', url, data, (res) => {
+      console.log(res)
       if (self.data.ifzan)
         self.setData({
           ifzan: false,

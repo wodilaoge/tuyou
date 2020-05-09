@@ -31,7 +31,8 @@ page {
 }
 
 .btn-guanzhu {
-  margin-left: 178rpx;
+  margin-left: auto;
+  margin-top: 10rpx;
   width: 88rpx;
   height: 48rpx;
 }
