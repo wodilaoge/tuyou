@@ -28,7 +28,7 @@
 <block wx:if="{{TabCur==0}}">
   <view class="cu-bar bg-white solid-bottom margin-top-sm">
     <image class="cu-avatar round my" src="{{detail.createrhead}}" mode="heightFix"></image>
-    <text style="margin-left:-80rpx">{{detail.actname}}</text>
+    <text style="margin-left:-100rpx">{{detail.actname}}</text>
     <text class=" title-time margin-right">1 天 01: 02 </text>
   </view>
 
@@ -69,7 +69,7 @@
       <view class="bg-white">
         <view class="yibaoming-margin-top margin-left ">
           <text class="yibaoming-text-content">已报名</text>
-          <text class="yibaoming-text-content" style="color:var(--blue)">21/{{item.signupmax}}</text>
+          <text class="yibaoming-text-content" style="color:var(--blue)">21/{{detail.signupmax}}</text>
           <text class="yibaoming-text-content">人</text>
           <button class="cu-btn bg-orange round btn-baomingtiaozhan margin-top">报名挑战</button>
         </view>

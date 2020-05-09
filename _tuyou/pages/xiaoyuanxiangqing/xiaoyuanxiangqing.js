@@ -27,7 +27,7 @@ Page({
     isbaomingtuandui: 0,
     baomingCur: 0,
     tuanduiSelect: [],
-    members:[],
+    members: [],
   },
   //报名
   xingmingInput: function(e) { //input输入
@@ -218,12 +218,21 @@ Page({
         status: 1,
       };
     app.wxRequest('POST', url, data, (res) => {
-      wx.showToast({
-        title: '操作成功！', // 标题
-        icon: 'success', // 图标类型，默认success
-        duration: 1500 // 提示窗停留时间，默认1500ms
-      })
-      self.onLoad(self.data.options)
+      if (self.data.ifzan)
+        self.setData({
+          ifzan: false,
+          likecount: self.data.likecount - 1
+        })
+      else
+        self.setData({
+          ifzan: true,
+          likecount: self.data.likecount + 1
+        })
+        wx.showToast({
+          title: '操作成功！', // 标题
+          icon: 'success', // 图标类型，默认success
+          duration: 500 // 提示窗停留时间，默认1500ms
+        })
     }, (err) => {
       console.log(err.errMsg)
     });
