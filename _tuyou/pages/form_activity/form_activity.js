@@ -396,7 +396,7 @@ Page({
       },
       success: function(res) {
         console.log(res.data);
-        if (res.code==0) {
+        if (res.data.code==0) {
           wx.showToast({
             title: '提交成功',
             duration: 2000,
