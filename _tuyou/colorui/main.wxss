@@ -994,7 +994,7 @@ button.icon.lg {
 }
 
 .cu-avatar-group .cu-avatar {
-	margin-left: -40rpx;
+	margin-left: -50rpx;
 	border: 4rpx solid var(--ghostWhite);
 	vertical-align: middle;
 }

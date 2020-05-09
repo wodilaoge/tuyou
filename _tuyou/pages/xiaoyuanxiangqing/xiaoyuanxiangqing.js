@@ -27,7 +27,7 @@ Page({
     isbaomingtuandui: 0,
     baomingCur: 0,
     tuanduiSelect: [],
-    members:[],
+    members: [],
   },
   //报名
   xingmingInput: function(e) { //input输入
@@ -218,12 +218,21 @@ Page({
         status: 1,
       };
     app.wxRequest('POST', url, data, (res) => {
+      if (self.data.ifzan)
+        self.setData({
+          ifzan: false,
+          likecount: self.data.likecount - 1
+        })
+      else
+        self.setData({
+          ifzan: true,
+          likecount: self.data.likecount + 1
+        })
       wx.showToast({
         title: '操作成功！', // 标题
         icon: 'success', // 图标类型，默认success
-        duration: 1500 // 提示窗停留时间，默认1500ms
+        duration: 500 // 提示窗停留时间，默认1500ms
       })
-      self.onLoad(self.data.options)
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -271,7 +280,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-  fenzu() {
+  fenzu() { //分组和报名
     var self = this;
     let url = app.globalData.URL + '/act/listActGroup';
     let data = {
@@ -297,12 +306,12 @@ Page({
       lid: self.data.user.id
     }
     util.gets(url, data).then(function(res) {
-      if (res.data.data.status == 10)
+      if (res.data.data == null) { } else if (res.data.data.status == 10)
         self.setData({
           isbaomingtuandui: 1
         })
     })
-    url = app.globalData.URL + '/act/addActSignupInd'
+    url = app.globalData.URL + '/act/findActSignupIndStatus'
     data = {
       actid: self.data.categoryId,
       uid: self.data.user.id
