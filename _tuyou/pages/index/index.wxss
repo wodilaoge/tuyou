@@ -1,8 +1,7 @@
-
-
 .top-gradul-blue {
   background: linear-gradient(to bottom, #5454ff, rgba(255, 255, 255, 255));
 }
+
 .goods-container {
   display: flex;
   justify-content: space-between;
@@ -11,6 +10,7 @@
   padding: 24rpx;
   background-color: #f2f2f2;
 }
+
 .menu-item {
   width: 16.6%;
   padding: 5px;
@@ -19,32 +19,48 @@
   justify-content: center;
   flex-direction: column;
 }
+
 .menu-name {
   text-align: center;
 }
+
 .menu-name2 {
   /* text-align: center; */
   font-size: 25rpx;
 }
+
 .menu-img {
   width: 150rpx;
   height: 100rpx;
   padding: 18rpx;
   margin-left: 5rpx;
 }
+
 .menu {
   display: flex; /*弹性布局*/
   flex-wrap: wrap; /*允许换行*/
 }
-
+.imgdown{
+  position: relative;
+  height: 20rpx;
+  width: 20rpx;
+    left: 55rpx;
+  top: 115rpx;
+}
 .left {
   position: relative;
   font-size: 70rpx;
-  left: 40rpx;
+  left: 35rpx;
   line-height: 150rpx;
   top: 50rpx;
 }
-
+.left2 {
+  position: relative;
+  font-size: 33rpx;
+  left: 50rpx;
+  line-height: 150rpx;
+  top: 50rpx;
+}
 .icon {
   position: relative;
   width: 40rpx;
@@ -63,6 +79,9 @@
 
 .bk {
   background: #5454ff;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /*允许换行*/
 }
 
 .pic {
@@ -114,10 +133,12 @@
 .yibaoming-margin-top {
   margin-top: 47rpx;
 }
+
 .text {
   position: relative;
   top: 100rpx;
 }
+
 .banner {
   padding: 20rpx;
   width: 220rpx;
@@ -145,9 +166,11 @@
   font-size: 28rpx;
   color: black;
 }
-.video{
+
+.video {
   background-color: white;
 }
+
 .video-list-info {
   float: left;
   padding: 22rpx;
@@ -164,6 +187,7 @@
   text-align: center;
   color: black;
 }
-.hidden{
-  overflow-x:hidden;
+
+.hidden {
+  overflow-x: hidden;
 }
