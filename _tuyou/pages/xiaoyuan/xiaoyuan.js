@@ -2,7 +2,6 @@ const app = getApp();
 var util = require("../../utils/util.js");
 Page({
   data: {
-    bt:'校园活动',
     btdata:[
       {
         id:0,
@@ -85,8 +84,7 @@ Page({
   tabSelect(e) {
     this.setData({
       TabCur: e.currentTarget.dataset.id,
-      scrollLeft: (e.currentTarget.dataset.id - 1) * 60,
-      bt: this.data.btdata[e.currentTarget.dataset.id].name
+      scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
   },
   news() {//活动新闻
