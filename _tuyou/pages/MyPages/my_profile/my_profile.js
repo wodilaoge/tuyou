@@ -4,8 +4,8 @@ Page({
   data: {
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
-    userInfoAll:[],
-    userinfo:[],
+    userInfoAll: [],
+    userinfo: [],
     index: null,
     name: '',
     picker: ['男', '女'],
@@ -19,14 +19,45 @@ Page({
     region: ['浙江省', '杭州市', '浙江大学'],
     place: ['浙江大学篮球场'],
     imgList: [],
+    provinceList: [],
+    citys: [],
+    school: [],
+    indexp: 30, //省
+    indexc: 0, //市
+    indexs: 0, //学校
     modalName: null,
     textareaAValue: '',
     textareaBValue: ''
   },
+  getnick(e) {
+    let t = 'userinfo.nickname'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
+  getname(e) {
+    let t = 'userinfo.name'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
+  getphone(e) {
+    let t = 'userinfo.mobile'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
+  getidno(e) {
+    let t = 'userinfo.idno'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
   PickerChange(e) {
     console.log(e);
+    let t = 'userinfo.sex'
     this.setData({
-      index: e.detail.value
+      [t]: e.detail.value
     })
   },
   MultiChange(e) {
@@ -39,15 +70,148 @@ Page({
       time: e.detail.value
     })
   },
-  DateChange(e) {
+  getphone(e) {
+    let t = 'userinfo.mobile'
     this.setData({
-      date: e.detail.value
+      [t]: e.detail.value
+    })
+  },
+  DateChange(e) {
+    let t = 'userinfo.birthday'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
+  getunivshort(e) {
+    let t = 'userinfo.univshort'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
+  getmajor(e) {
+    let t = 'userinfo.major'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
+  getnationality(e) {
+    let t = 'userinfo.nationality'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
+  getstudentno(e) {
+    let t = 'userinfo.studentno'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
+  getheight(e) {
+    let t = 'userinfo.height'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
+  getweight(e) {
+    let t = 'userinfo.weight'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
+  getactrole(e) {
+    let t = 'userinfo.actrole'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
+  getspeciality(e) {
+    let t = 'userinfo.speciality'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
+  getslogan(e) {
+    let t = 'userinfo.slogan'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
+  getworkunit(e) {
+    let t = 'userinfo.workunit'
+    this.setData({
+      [t]: e.detail.value
     })
   },
   RegionChange: function (e) {
     this.setData({
       region: e.detail.value
     })
+  },
+
+  PickerPro(e) {
+    let t = 'userinfo.province'
+    this.setData({
+      indexp: e.detail.value,
+      indexc: 0,
+      indexs: 0,
+      [t]: this.data.provinceList[this.data.indexp].code
+    })
+    this.city(this.data.userinfo.province)
+  },
+  PickerCity(e) {
+    let t = 'userinfo.city'
+    this.setData({
+      indexc: e.detail.value,
+      indexs: 0
+    })
+    this.setData({
+      [t]: this.data.citys[this.data.indexc].code
+    })
+    this.school(this.data.userinfo.city)
+  },
+  PickerSchool(e) {
+    let t = 'userinfo.univ'
+    this.setData({
+      indexs: e.detail.value,
+      [t]: this.data.school[this.data.indexs].code
+    })
+  },
+  school(pid) {
+    let url = app.globalData.URL + '/config/getUniv';
+    let data = {
+      cid: pid
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        school: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  city(pid) {
+    let url = app.globalData.URL + '/config/getCity';
+    let data = {
+      pid: pid
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        citys: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  province() {
+    let url = app.globalData.URL + '/config/getProvince';
+    let data = '';
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        provinceList: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
   },
   ChooseImage() {
     wx.chooseImage({
@@ -99,28 +263,86 @@ Page({
       textareaBValue: e.detail.value
     })
   },
-  name(e) {
-    this.setData({
-      name: e.detail.value
-    })
-  },
+
   cancel: function (e) {
- 
+
   },
   commit: function (e) {
     console.log(e.detail.value)
     // wx.navigateTo({
     //   url: "../../pages/form_activity/form_activity"
     // })
+    var user = wx.getStorageSync('userInfo')
+    let url = app.globalData.URL + '/appuser/updateMyInfo';
+    var tmp = this.data.userinfo
+    var data = {
+      id:tmp.id,
+      head:tmp.head,
+      nickname: tmp.nickname,
+      name: tmp.name,
+      sex: tmp.sex,
+      email: tmp.email,
+      idtype: tmp.idtype,
+      idno: tmp.idno,
+      birthday: tmp.birthday,
+      nationality: tmp.nationality,
+      province: tmp.province,
+      city: tmp.city,
+      univ: tmp.univ,
+      univname: tmp.univname,
+      univshort: tmp.univshort,
+      major: tmp.major,
+      studentno: tmp.studentno,
+      enrolyear: tmp.enrolyear,
+      graduateyear: tmp.graduateyear,
+      height: tmp.height,
+      weight: tmp.weight,
+      actrole: tmp.actrole,
+      speciality: tmp.speciality,
+      slogan: tmp.slogan,
+      workunit: tmp.workunit,
+      creater: ""
+    }
+    util.post_token(url, data).then(function (res) {
+      console.log(res.data)
+      if (res.data.code == 0) {
+        wx.showToast({
+          title: '修改成功',
+          duration: 2000,
+          success: function () {
+            setTimeout(function () {
+              wx.reLaunch({
+                url: '/pages/index/index',
+              })
+            }, 2000);
+          }
+        })
+      } else {
+        wx.showToast({
+          title: '提交失败!',
+          image: '/img/fail.png',
+          icon: 'success',
+          duration: 2000
+        })
+      }
+    }).catch(function (res) {
+      console.log(res)
+      wx.showToast({
+        title: '提交失败！',
+        icon: 'success',
+        duration: 2000
+      })
+    })
   },
   onLoad: function () {
-    var that=this;
+    this.province();
+    var that = this;
     let url = app.globalData.URL + '/appuser/findUserByID';
     this.setData({
       userInfoAll: wx.getStorageSync('userInfo')
     })
-    let data={
-      'id':this.data.userInfoAll.id
+    let data = {
+      'id': this.data.userInfoAll.id
     }
     util.gets(url, data).then(function (res) {
       that.setData({
