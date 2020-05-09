@@ -21,11 +21,11 @@ Page({
       },
       {
         id: 4,
-        name: "新闻"
+        name: "视频"
       },
       {
         id: 5,
-        name: "视频"
+        name: "新闻"
       },
     ],
     ActList: [],

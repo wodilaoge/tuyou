@@ -1,7 +1,7 @@
 <view>
   <view class="cu-bar bg-white solid-bottom">
     <image class="cu-avatar my margin-left" src="/img/jita.png" mode="heightFix"></image>
-    <text style="margin-left:-100rpx">吉他</text>
+    <text>吉他</text>
     <text class=" title-time margin-right">1 天 01: 02 </text>
   </view>
   <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing">
