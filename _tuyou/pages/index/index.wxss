@@ -40,7 +40,7 @@
 .left {
   position: relative;
   font-size: 70rpx;
-  left: 40rpx;
+  left: 35rpx;
   line-height: 150rpx;
   top: 50rpx;
 }
