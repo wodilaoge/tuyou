@@ -40,13 +40,15 @@
   display: flex; /*弹性布局*/
   flex-wrap: wrap; /*允许换行*/
 }
-.imgdown{
+
+.imgdown {
   position: relative;
   height: 20rpx;
   width: 20rpx;
-    left: 55rpx;
-  top: 115rpx;
+  left: 55rpx;
+  top: 130rpx;
 }
+
 .left {
   position: relative;
   font-size: 70rpx;
@@ -54,13 +56,15 @@
   line-height: 150rpx;
   top: 50rpx;
 }
+
 .left2 {
   position: relative;
   font-size: 33rpx;
   left: 50rpx;
   line-height: 150rpx;
-  top: 50rpx;
+  top: 65rpx;
 }
+
 .icon {
   position: relative;
   width: 40rpx;
