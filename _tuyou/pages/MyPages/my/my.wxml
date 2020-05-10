@@ -95,10 +95,10 @@
     <image src="/img/my/12.png" class="menu-img"></image>
     <text class="menu-name">照片</text>
   </navigator>
-  <navigator url="/pages/MyPages/my_news/my_news" class="menu-item">
+  <!-- <navigator url="/pages/MyPages/my_news/my_news" class="menu-item">
     <image src="/img/my/13.png" class="menu-img"></image>
     <text class="menu-name">新闻</text>
-  </navigator>
+  </navigator> -->
 </view>
 
 <view class="cu-bar bg-white solid-bottom margin-top">

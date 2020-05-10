@@ -12,7 +12,7 @@
 }
 
 .menu-item {
-  width: 16.6%;
+  width: 20%;
   padding: 5px;
   box-sizing: border-box;
   display: flex;
@@ -30,8 +30,8 @@
 }
 
 .menu-img {
-  width: 150rpx;
-  height: 100rpx;
+  width: 120rpx;
+  height: 120rpx;
   padding: 18rpx;
   margin-left: 5rpx;
 }

@@ -21,11 +21,10 @@
   </view>
 
   <view class="menu bg-white">
-    <view bindtap="jump" data-id="5" class="menu-item">
+    <!-- <view bindtap="jump" data-id="5" class="menu-item">
       <image src="/img/index/news.png" class="menu-img"></image>
       <text class="menu-name text-bold">新闻</text>
-      <!-- {{sectioninfo.data[0].name}} -->
-    </view>
+    </view> -->
     <view bindtap="jump" data-id="0" class="menu-item">
       <image src="/img/index/activity.png" class="menu-img"></image>
       <text class="menu-name text-bold">活动</text>
@@ -48,7 +47,7 @@
     </view>
   </view>
 
-  <view class="bg-white padding margin-top ">
+  <!-- <view class="bg-white padding margin-top ">
     <view bindtap="jump" data-id="5">
       <text class="cu-bar-title text-bold text-black">新闻</text>
       <image class="icon" src="../../img/array.png"></image>
@@ -71,7 +70,7 @@
       </view>
       <view class="white"></view>
     </view>
-  </view>
+  </view> -->
 
   <view class="bg-white padding margin-top ">
     <view bindtap="jump" data-id="{{0}}">

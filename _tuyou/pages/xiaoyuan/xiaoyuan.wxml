@@ -45,13 +45,13 @@
       </block>
     </view>
   </view>
-  <view class="cu-item {{5==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="5"> 新闻
+  <!-- <view class="cu-item {{5==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="5"> 新闻
     <view class="tab_item_img">
       <block wx:if="{{TabCur==5}}">
         <image class="tab_item_img" mode="aspectFit" src="/img/img_selection.png"></image>
       </block>
     </view>
-  </view>
+  </view> -->
   <view class="cu-item {{6==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="6">
     <text class="cuIcon-search"></text>
   </view>
