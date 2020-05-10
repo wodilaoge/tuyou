@@ -169,6 +169,7 @@
 .banner_text {
   font-size: 28rpx;
   color: black;
+  font-weight: bold;
 }
 
 .video {
