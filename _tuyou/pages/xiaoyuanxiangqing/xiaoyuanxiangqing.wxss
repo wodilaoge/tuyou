@@ -254,7 +254,17 @@ page {
 }
 
 /* 视频 */
-
+.shipin-title {
+  display: flex;
+  height: 100rpx;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: rgba(51, 51, 51, 1);
+  background-color: white;
+}
 .sp-avatar {
   margin-left: 24rpx;
   width: 64rpx;
@@ -267,6 +277,7 @@ page {
   color: #333;
   font-weight: normal;
   margin-left: 19rpx;
+  width: 500rpx;
 }
 
 .sp-cu-bar {
