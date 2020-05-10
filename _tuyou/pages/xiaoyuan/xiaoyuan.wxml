@@ -128,7 +128,7 @@
     </view>
   </scroll-view>
   <view>
-    <wenyu yundongList="{{yundongList}}" yundongCur="{{yundongCur}}"></wenyu>
+    <wenyu wenyuList="{{wenyuList}}" wenyuCur="{{wenyuCur}}"></wenyu>
   </view>
 </block>
 <!--
@@ -151,7 +151,7 @@
     </view>
   </scroll-view>
   <view>
-    <aihao yundongList="{{yundongList}}" yundongCur="{{yundongCur}}"></aihao>
+    <aihao aihaoList="{{aihaoList}}" aihaoCur="{{aihaoCur}}"></aihao>
   </view>
 </block>
 <!-- 发布栏 -->

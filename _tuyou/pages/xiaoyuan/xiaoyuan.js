@@ -175,7 +175,6 @@ Page({
             sid: res.data.data[i].code
           };
           app.wxRequest('GET', url, data, (res) => {
-            console.log(res.data)
             self.setData({
               ActList: res.data
             })
@@ -217,7 +216,6 @@ Page({
               sid: self.data.yundongid,
               acid1: self.data.yundongCur
             }
-            console.log(data)
             app.wxRequest('GET', url, data, (res) => {
               self.setData({
                 yundongList: res.data
@@ -227,6 +225,76 @@ Page({
             });
           })
           continue;
+        }
+        if (res.data.data[i].name == "文娱") {
+          self.setData({
+            wenyuid: res.data.data[i].code
+          })
+          let data = {
+            sid: res.data.data[i].code
+          };
+
+          app.wxRequest('GET', url2, data, (res) => {
+            self.setData({
+              wenyuSwiperList: res.data
+            })
+          }, (err) => {
+            console.log(err.errMsg)
+          });
+
+          var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
+          util.gets(urldalei, data).then(function (res) {
+            self.setData({
+              wenyudalei: res.data.data,
+              wenyuCur: res.data.data[0].code
+            })
+          }).then(function () {
+            data = {
+              sid: self.data.wenyuid
+            }
+            app.wxRequest('GET', url, data, (res) => {
+              self.setData({
+                wenyuList: res.data
+              })
+            }, (err) => {
+              console.log(err.errMsg)
+            });
+          })
+        }
+        if (res.data.data[i].name == "爱好") {
+          self.setData({
+            aihaoid: res.data.data[i].code
+          })
+          let data = {
+            sid: res.data.data[i].code
+          };
+
+          app.wxRequest('GET', url2, data, (res) => {
+            self.setData({
+              aihaoList: res.data
+            })
+          }, (err) => {
+            console.log(err.errMsg)
+          });
+
+          var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
+          util.gets(urldalei, data).then(function (res) {
+            self.setData({
+              aihaodalei: res.data.data,
+              aihaoCur: res.data.data[0].code
+            })
+          }).then(function () {
+            data = {
+              sid: self.data.aihaoid
+            }
+            app.wxRequest('GET', url, data, (res) => {
+              self.setData({
+                aihaoList: res.data
+              })
+            }, (err) => {
+              console.log(err.errMsg)
+            });
+          })
         }
         if (res.data.data[i].name == "视频") {
           self.setData({
@@ -265,42 +333,6 @@ Page({
           })
           continue;
         }
-        if (res.data.data[i].name == "文娱") {
-          self.setData({
-            wenyuid: res.data.data[i].code
-          })
-          let data = {
-            sid: res.data.data[i].code
-          };
-
-          app.wxRequest('GET', url2, data, (res) => {
-            self.setData({
-              wenyuSwiperList: res.data
-            })
-          }, (err) => {
-            console.log(err.errMsg)
-          });
-          var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
-          util.gets(urldalei, data).then(function (res) {
-            self.setData({
-              wenyudalei: res.data.data,
-              wenyuCur: res.data.data[0].code
-            })
-          }).then(function () {
-            data = {
-              sid: self.data.wenyuid,
-              acid1: self.data.wenyuCur
-            }
-            console.log(data)
-            app.wxRequest('GET', url, data, (res) => {
-              self.setData({
-                wenyuList: res.data
-              })
-            }, (err) => {
-              console.log(err.errMsg)
-            });
-          })
-        }
       }
     })
   },
@@ -310,7 +342,6 @@ Page({
       arctid: this.data.huodongID
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res)
       this.setData({
         shipin: res.data
       })
