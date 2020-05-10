@@ -174,13 +174,14 @@
         <view class=" sp-cu-bar cu-bar-radius bg-white  ">
           <image class="sp-avatar round " src="{{shipin.list[0].authorHead}} "></image>
           <view class="sp-avatar-name">{{shipin.list[0].authorAlias}}</view>
-          <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;margin-left:372rpx;">关注</button>
+          <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;">关注</button>
         </view>
 
-        <view>
-          <video id="video_{{index}}"  src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400 "
-            danmu-list="{{danmuList}} " enable-danmu danmu-btn autoplay="true " controls style="width:100%;" 
-            bindtap="video_change"></video>
+        <view >
+          <video id="video_{{index}}"  src="{{shipin.list[0].fileId}}"
+             autoplay="true " controls style="width:100%;" 
+            bindtap="video_change">
+            </video>
         </view>
         <view class="flex margin-top ">
           <view class="sp-bofang-times ">播放{{shipin.list[0].playCnt}}次</view>
@@ -210,12 +211,11 @@
         <view class=" sp-cu-bar cu-bar-radius bg-white ">
           <image class="sp-avatar round " src="{{shipin.list[index].authorHead}} "></image>
           <view class="sp-avatar-name ">{{shipin.list[index].authorAlias}}</view>
-          <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;margin-left:372rpx; ">关注</button>
+          <button class="cu-btn round lines-orange  " style="width:120rpx;height:48rpx;">关注</button>
         </view>
 
-        <view>
-          <video id="video_{{index}}" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400 "
-            danmu-list="{{danmuList}} " enable-danmu danmu-btn controls style="width:100%; " bindtap="video_change"></video>
+        <view style="width:100%;">
+          <video id="video_{{index}}" src="{{shipin.list[index].fileId}}" controls style="width:100%;"bindtap="video_change"></video>
         </view>
         <view class="flex margin-top ">
           <view class="sp-bofang-times ">播放{{shipin.list[index].playCnt}}次</view>
