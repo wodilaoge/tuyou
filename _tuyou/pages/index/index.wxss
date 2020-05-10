@@ -165,7 +165,13 @@
   width: 200rpx;
   height: 320rpx;
 }
-
+.name-img{
+  position: relative;
+  left: 30rpx;
+  top: 93rpx;
+  height: 70rpx;
+  width: 190rpx;
+}
 .banner_text {
   font-size: 28rpx;
   color: black;

@@ -1,0 +1,32 @@
+
+.menu-item {
+  width: 33%;
+  padding: 5px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.menu-name {
+  text-align: center;
+}
+
+.menu-name2 {
+  /* text-align: center; */
+  font-size: 25rpx;
+}
+
+.menu-img {
+  width: 222rpx;
+  height: 222rpx;
+  padding: 20rpx;
+  margin-left: 5rpx;
+}
+
+.menu {
+  position: fixed;
+  bottom: 0;
+  display: flex; /*弹性布局*/
+  flex-wrap: wrap; /*允许换行*/
+}

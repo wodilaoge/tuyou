@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/login/login",
+    "pages/form/form",
     "pages/form_team/form_team",
     "pages/form_picture/form_picture",
     "pages/form_video/form_video",
@@ -28,7 +29,6 @@
     "pages/MyPages/my_setting/my_setting",
     "pages/MyPages/my_blacklist/my_blacklist",
     "pages/MyPages/my_messagemind/my_messagemind",
-
     "pages/yundongxiangqing/yundongxiangqing",
     "pages/xiaoyuan/xiaoyuan",
     "pages/xiaoyuanxiangqing/xiaoyuanxiangqing",
@@ -69,6 +69,12 @@
         "iconPath": "/img/tabbar/activity-off.png",
         "selectedIconPath": "/img/tabbar/activity-on.png",
         "text": "活动"
+      },
+      {
+        "pagePath": "pages/form/form",
+        "iconPath": "/img/tabbar/add2.png",
+        "selectedIconPath": "/img/tabbar/add2.png",
+        "text": "发布"
       },
       {
         "pagePath": "pages/MyPages/my/my",

@@ -189,6 +189,19 @@
 					"pathName": "pages/form_launch/form_launch",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/form_picture/form_picture",
+					"pathName": "pages/form_picture/form_picture",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/form/form",
+					"pathName": "pages/form/form",
+					"scene": null
 				}
 			]
 		}

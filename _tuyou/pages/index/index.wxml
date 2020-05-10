@@ -1,6 +1,8 @@
 <view class="hidden">
   <view class="bk">
-      <view class="text-bold left text-white">友点乐</view>
+      <!-- <view class="text-bold left text-white">友点乐</view>
+       -->
+       <image src="/img/index/name.png" class="name-img"></image>
           <picker bindchange="PickerSchool" value="{{indexs}}" range="{{school}}"  range-key="name">
       <view class="text-bold left2 picker text-white">
         {{indexs?school[indexs].name:'浙大'}}
@@ -300,4 +302,4 @@
     </navigator>
   </view>
 </view>
-<tabs></tabs>
+<!-- <tabs></tabs> -->
