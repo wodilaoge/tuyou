@@ -5,14 +5,14 @@
     <text class=" title-time margin-right">1 天 01: 02 </text>
   </view>
   <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-yundong="{{item}}">
-    <view class="cu-card article ">
+    <view class="cu-card article no-card">
       <view class="cu-item">
         <view class="yundong-content title-text-content" style="margin-top:28rpx;">
-          <image class="icon-size" src="/img/icon_title.png" mode="heightFix"></image>
+          <image class="icon-size" src="/img/icon_title.png" mode="heightFix" style=""></image>
           <text decode="{{true}}"> {{item.slogan}}</text>
         </view>
-        <view class="shadow" style="background-color:#F8F9FD;padding:19rpx 0 19rpx 0;">
-          <image src="{{item.logo}}" mode="aspectFill" style="height:200rpx"></image>
+        <view class="shadow" style="background-color:var(--white);">
+          <image class="padding-left" src="{{item.logo}}" mode="aspectFill" style="height:200rpx;width:699rpx;"></image>
           <view class="yundong-content">
             <view class="desc">
               <view class="title-limit">{{item.actname}}</view>

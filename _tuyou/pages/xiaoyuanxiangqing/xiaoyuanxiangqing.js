@@ -23,6 +23,7 @@ Page({
     fenzuhide: false,
     fenzuindex: 0,
     xingmingInput: '',
+    isguanzhu:false,
     isbaominggeren: 0,
     isbaomingtuandui: 0,
     baomingCur: 0,
@@ -174,6 +175,60 @@ Page({
       console.log(err.errMsg)
     });
   },
+  ifguanzhu() { //是否关注
+    self = this;
+    let url = app.globalData.URL + '/follow/findFollow';
+    let data = {
+      objtype: 30,
+      objid: self.data.categoryId,
+      uid: self.data.user.id,
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      self.setData({
+        isguanzhu: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  guanzhu() { //活动关注或取消关注
+    self = this;
+    let url = app.globalData.URL + '/follow/updateFollow';
+    if (self.data.isguanzhu)
+      var data = {
+        objtype: 30,
+        objid: self.data.categoryId,
+        objtitle: self.data.detail.actname,
+        creater: self.data.user.id,
+        status: 0,
+      };
+    else
+      var data = {
+        objtype: 30,
+        objid: self.data.categoryId,
+        objtitle: self.data.detail.actname,
+        creater: self.data.user.id,
+        status: 1,
+      };
+    app.wxRequest('POST', url, data, (res) => {
+      if (self.data.ifzan)
+        self.setData({
+          isguanzhu: false
+        })
+      else
+        self.setData({
+          isguanzhu: true
+        })
+      wx.showToast({
+        title: '操作成功！', // 标题
+        icon: 'success', // 图标类型，默认success
+        duration: 500 // 提示窗停留时间，默认1500ms
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  ////////////////////////////
   ifzan() { //是否点赞
     self = this;
     let url = app.globalData.URL + '/applaud/findApplaud';
@@ -444,6 +499,7 @@ Page({
     this.baomingzhuangtai()
     this.detail()
     this.comment()
+    this.ifguanzhu()
     this.ifzan()
     this.news()
     this.news_detail()

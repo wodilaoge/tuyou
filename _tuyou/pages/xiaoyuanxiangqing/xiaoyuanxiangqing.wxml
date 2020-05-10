@@ -21,7 +21,12 @@
         </view>
         <view class="xiangqing-text-content lines-white"> {{detail.fromtime}}</view>
         <view class="xiangqing-text-content lines-white"> 杭州 | {{detail.venue}}</view>
-        <button class="cu-btn round line-white btn-width" style="margin-top:20rpx;">关注</button>
+        <block wx:if="{{isguanzhu==false}}">
+          <button class="cu-btn round line-white btn-width" style="margin-top:20rpx;" bindtap="guanzhu">关注</button>
+        </block>
+        <block wx:if="{{isguanzhu==true}}">
+          <button class="cu-btn round line-white btn-width" style="margin-top:20rpx;" bindtap="guanzhu">已关注</button>
+        </block>
       </view>
     </view>
   </view>
@@ -30,35 +35,35 @@
   <view class="cu-item {{0==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="0"> 详情
     <view class="tab_item_img">
       <block wx:if="{{TabCur==0}}">
-        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
+        <image class="tab_item_img" mode="aspectFit" src="/img/img_selection.png"></image>
       </block>
     </view>
   </view>
   <view class="cu-item {{1==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="1"> 报名
     <view class="tab_item_img">
       <block wx:if="{{TabCur==1}}">
-        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
+        <image class="tab_item_img" mode="aspectFit" src="/img/img_selection.png"></image>
       </block>
     </view>
   </view>
   <view class="cu-item {{2==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="2"> 视频
     <view class="tab_item_img">
       <block wx:if="{{TabCur==2}}">
-        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
+        <image class="tab_item_img" mode="aspectFit" src="/img/img_selection.png"></image>
       </block>
     </view>
   </view>
   <view class="cu-item {{3==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="3"> 投票
     <view class="tab_item_img">
       <block wx:if="{{TabCur==3}}">
-        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
+        <image class="tab_item_img" mode="aspectFit" src="/img/img_selection.png"></image>
       </block>
     </view>
   </view>
   <view class="cu-item {{4==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="4"> 排名
     <view class="tab_item_img">
       <block wx:if="{{TabCur==4}}">
-        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
+        <image class="tab_item_img" mode="aspectFit" src="/img/img_selection.png"></image>
       </block>
     </view>
   </view>
@@ -477,10 +482,8 @@
           <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;">关注</button>
         </view>
 
-        <view >
-          <video id="video_{{index}}"  src="{{shipin.list[0].fileId}}"
-             autoplay="true " controls style="width:100%;" 
-            bindtap="video_change"></video>
+        <view>
+          <video id="video_{{index}}" src="{{shipin.list[0].fileId}}" autoplay="true " controls style="width:100%;" bindtap="video_change"></video>
         </view>
         <view class="flex margin-top ">
           <view class="sp-bofang-times ">播放{{shipin.list[0].playCnt}}次</view>
@@ -514,7 +517,7 @@
         </view>
 
         <view style="width:100%;">
-          <video id="video_{{index}}" src="{{shipin.list[index].fileId}}" controls style="width:100%;"bindtap="video_change"></video>
+          <video id="video_{{index}}" src="{{shipin.list[index].fileId}}" controls style="width:100%;" bindtap="video_change"></video>
         </view>
         <view class="flex margin-top ">
           <view class="sp-bofang-times ">播放{{shipin.list[index].playCnt}}次</view>
