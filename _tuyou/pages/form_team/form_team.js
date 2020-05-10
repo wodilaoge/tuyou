@@ -236,10 +236,10 @@ Page({
     let url = app.globalData.URL + '/team/updateTeam';
     var data = this.data
     var data = {
-      id: '',
+      lid: user.id,
       sid: "076003",
       acid1: "076002001",
-      team: data.name,
+      name: data.name,
       summary: data.article,
       logo: data.other[0],
       linktel: data.linktel,
@@ -252,7 +252,6 @@ Page({
       email: data.email,
       website: data.website,
       wcoa: data.wcoa,
-      creater: user.id
     }
     util.post_token(url, data).then(function(res) {
       console.log(res.data)
