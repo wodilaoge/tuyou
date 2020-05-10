@@ -96,29 +96,6 @@
     </view>
   </view>
 
-  <!-- 活动新闻 -->
-  <!-- <view class="bg-white padding huodong-margin-top">
-    <text class="cu-bar-title">活动新闻</text>
-  </view>
-  <view class="cu-card article no-card bg-white" wx:for="{{news.list}}">
-    <view class="cu-item shadow" style="margin-top:0rpx;">
-      <view class="content2">
-        <image src="{{item.logo}}" mode="aspectFill"></image>
-        <view class="desc">
-          <view class="title-limit2">
-            {{item.title}}
-          </view>
-          <button class="cu-btn btn-new bg-orange disabled">最新</button>
-          <view>
-            <text class="text-gery">2分钟前</text>
-            <text class="cuIcon-attention lg text-gray text-right" decode="{{true}}">\t23456</text>
-          </view>
-        </view>
-      </view>
-    </view>
-
-  </view> -->
-
   <block>
     <view class="huodong-margin-bottom">
       <!-- 评论 -->

@@ -62,7 +62,12 @@
         <view class="yundong-content padding-xs" style="margin-bottom:18rpx;">
           <image class="icon-size" style="margin-top:28rpx;" src="/img/icon_title.png" mode="heightFix"></image>
           <text class="title-text-content" style="margin-top:28rpx;" decode="{{true}}">{{slogan}}</text>
-          <button class="cu-btn line-orange round btn-guanzhu">关注</button>
+          <block wx:if="{{isguanzhu==false}}">
+            <button class="cu-btn line-orange round btn-guanzhu" bindtap="guanzhu">关注</button>
+          </block>
+          <block wx:if="{{isguanzhu==true}}">
+            <button class="cu-btn line-orange round btn-guanzhu" bindtap="guanzhu">已关注</button>
+          </block>
         </view>
 
       </view>
@@ -170,132 +175,236 @@
 创建时间：20200418
 创建内容：报名-->
 <block wx:if="{{TabCur==1}}">
-  <block wx:if="{{isbaoming==0}}">
-    <view class="bg-white margin-top">
-      <view class="cu-bar bg-white padding">
-        <view class="cu-bar-title">报名</view>
-      </view>
+  <view class="bg-white margin-top">
+    <view class="cu-bar bg-white padding">
+      <view class="cu-bar-title">报名</view>
     </view>
-    <view class="bg-white">
-      <form>
-        <view class="cu-form-group">
-          <radio-group class="block" style="margin-left:240rpx;">
-            <view class="flex">
-              <view>
-                <checkbox class="round blue " style="zoom: 80%;" checked></checkbox>
+  </view>
+  <view class=" padding " style="margin-left:175rpx;" hidden="{{signupway}}">
+    <button class="cu-btn {{baomingCur==0?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-left" bindtap="baomingSelect" data-id="0">
+      个人报名
+    </button>
+    <button class="cu-btn  {{baomingCur==1?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-right" bindtap="baomingSelect" data-id="1">
+      团队报名
+    </button>
+  </view>
+  <block wx:if="{{baomingCur==0}}">
+    <block wx:if="{{isbaominggeren==0}}">
+      <view class="bg-white">
+        <form>
+          <view class="cu-form-group">
+            <radio-group class="block" style="margin-left:240rpx;">
+              <view class="flex">
+                <view>
+                  <checkbox class="round blue " style="zoom: 80%;" data-id="10" bindtap='bindRadioChange' checked></checkbox>
+                </view>
+                <view class="tp-select ">报名参加</view>
+                <view style="margin-left:40rpx;">
+                  <checkbox class="round blue " style="zoom: 80%;" data-id="30" bindtap='bindRadioChange'></checkbox>
+                </view>
+                <view class="tp-select">报名观看</view>
               </view>
-              <view class="tp-select ">报名参加</view>
-
-              <view style="margin-left:40rpx;">
-                <checkbox class="round blue " style="zoom: 80%;"></checkbox>
-              </view>
-              <view class="tp-select ">报名观看</view>
+            </radio-group>
+          </view>
+          <view class="cu-form-group">
+            <view class="title" style="margin-right:65rpx;">姓名 </view>
+            <input class="form-text" placeholder="李四" bindinput="xingmingInput" value="{{xingmingInput}}"></input>
+          </view>
+          <view class="cu-form-group ">
+            <view class="title" style="margin-right:65rpx;">手机</view>
+            <input class="form-text" placeholder="请输入手机号"></input>
+            <view class="bg-white flex padding" style="align-items: center;justify-content: center;">
+              <button class="cu-btn bg-orange round btn-shouji">更换</button>
             </view>
-          </radio-group>
-        </view>
-        <view class="cu-form-group">
-          <view class="title" style="margin-right:65rpx;">姓名 </view>
-          <input class="form-text" placeholder="李四"></input>
-        </view>
-        <view class="cu-form-group ">
-          <view class="title" style="margin-right:65rpx;">手机</view>
-          <input class="form-text" placeholder="请输入手机号"></input>
-        </view>
-        <view class="cu-form-group ">
-          <view class="title">选择分组</view>
-          <input class="form-text"></input>
-        </view>
-        <view class="cu-form-group ">
-          <view class="title">报名团队</view>
-          <input class="form-text"></input>
-        </view>
-      </form>
-    </view>
-    <view class="bg-white flex" style="align-items: center;justify-content: center;">
-      <checkbox class="blue " style="zoom: 40%;" checked></checkbox>
-      <view class="queren margin-left-sm" style="color:#999999;">
-        我已阅读并同意
+          </view>
+          <view class="cu-form-group " hidden="{{fenzuhide}}">
+            <view class="title">选择分组</view>
+            <picker bindchange="bindPickerChange" range="{{huodongfenzu.groupname}}">
+              <view class="picker">
+                {{huodongfenzu[fenzuindex].groupname}}
+              </view>
+            </picker>
+          </view>
+        </form>
       </view>
-      <view class="queren" style="color:#5C7CFF;">
-        《同友活动声明》
+      <view class="bg-white flex" style="align-items: center;justify-content: center;">
+        <checkbox class="blue yuedu-logo" checked></checkbox>
+        <view class="queren margin-left-sm" style="color:#999999;">
+          我已阅读并同意
+        </view>
+        <view class="queren" style="color:#5C7CFF;">
+          《同友活动声明》
+        </view>
       </view>
-    </view>
 
-    <view class="bg-white flex padding" style="align-items: center;justify-content: center;">
-      <button class="cu-btn bg-orange round btn-bm margin-top">立即报名</button>
-    </view>
-
-    <view class="bg-white margin-top padding-top">
-      <view class="yibaoming-margin-top margin-left ">
-        <text class="yibaoming-text-content">已报名</text>
-        <text class="yibaoming-text-content" style="color:var(--blue)">21/24</text>
-        <text class="yibaoming-text-content">人</text>
+      <view class="bg-white flex padding" style="align-items: center;justify-content: center;">
+        <button class="cu-btn bg-orange round btn-bm margin-top" bindtap="lijibaoming">立即报名</button>
       </view>
-      <view class="yundong-content bg-white">
-        <view class="padding-sm">
-          <view class="cu-avatar round lg margin-sm" wx:for="{{21}}" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{(index+1)%9}}.jpg);">
+
+      <view class="bg-white margin-top padding-top">
+        <view class="yibaoming-margin-top margin-left ">
+          <text class="yibaoming-text-content">已报名</text>
+          <text class="yibaoming-text-content" style="color:var(--blue)">21/24</text>
+          <text class="yibaoming-text-content">人</text>
+        </view>
+        <view class="yundong-content bg-white">
+          <view class="padding-sm">
+            <view class="cu-avatar round lg margin-sm" wx:for="{{21}}" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{(index+1)%9}}.jpg);">
+            </view>
           </view>
         </view>
       </view>
-    </view>
-  </block>
-  <block wx:if="{{isbaoming==1}}">
-    <view class="bg-white margin-top">
-      <view class="cu-bar bg-white padding">
-        <view class="yibaoming-text-content">我的报名</view>
-      </view>
-    </view>
-    <view class=" bg-white wodebaoming-center padding">
-      <view>
-        <image class="margin-bottom-xs" src="/img/wodebaoming.png" mode="aspectFit" style="height:200rpx;width:200rpx;"></image>
-      </view>
-      <view class="queren margin-bottom-xs" style="color:#999999">
-        2020.3.18 13:00:00
-      </view>
-      <view class="text-28">
-        成功报名参赛/观看Lorem Ipsum
-      </view>
-    </view>
 
-    <view class="bg-white margin-top">
-      <view class="cu-bar bg-white padding">
-        <view class="yibaoming-text-content">已报名n人</view>
+
+    </block>
+
+    <block wx:if="{{isbaominggeren==1}}">
+      <view>
+        <image class="img-success " src="/img/img_success.png"></image>
       </view>
-    </view>
-    <view class="bg-white">
-      <view class="cu-bar bg-white padding">
-        <view class="yibaoming-text-content">分组1</view>
+
+      <view class="flex justify-center">
+        <text class="baoming_text_ok">报名成功</text>
       </view>
-      <view class="padding yundong-sp-center">
-        <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
-        <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
-        <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
-        <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="margin-left:auto;"></image>
+      <view class="flex justify-center">
+        <text class="baoming_text_wait">请耐心等待活动开始</text>
       </view>
-      <view class="bg-white padding yundong-sp-center">
-        <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
-        <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
-        <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
-        <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="margin-left:auto;"></image>
+      <view class="flex justify-center padding-lg">
+        <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx">取消报名</button>
       </view>
-    </view>
-    <view class="bg-white margin-top-xs">
-      <view class="cu-bar bg-white padding">
-        <view class="yibaoming-text-content">分组2</view>
+      <view class="fenge-bg"></view>
+      <view class="cu-bar bg-white solid-bottom">
+        <view class='action'>
+          <text class='cu-bar-title'>已报名21人</text>
+        </view>
       </view>
-      <view class="padding yundong-sp-center">
-        <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
-        <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
-        <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
-        <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="margin-left:auto;"></image>
+    </block>
+  </block>
+  <block wx:if="{{baomingCur==1}}">
+    <block wx:if="{{isbaomingtuandui==0}}">
+      <view class="bg-white">
+        <form>
+          <view class="cu-form-group">
+            <radio-group class="block" style="margin-left:240rpx;">
+              <view class="flex">
+                <view>
+                  <checkbox class="round blue " style="zoom: 80%;" checked data-id="20" bindtap='bindRadioChange'></checkbox>
+                </view>
+                <view class="tp-select ">报名参加</view>
+
+                <view style="margin-left:40rpx;">
+                  <checkbox class="round blue " style="zoom: 80%;" data-id="40" bindtap='bindRadioChange'></checkbox>
+                </view>
+                <view class="tp-select">报名观看</view>
+              </view>
+            </radio-group>
+          </view>
+          <view class="cu-form-group">
+            <view class="title" style="margin-right:65rpx;">姓名 </view>
+            <input class="form-text" placeholder="李四" bindinput="xingmingInput" value="{{xingmingInput}}"></input>
+          </view>
+          <view class="cu-form-group ">
+            <view class="title" style="margin-right:65rpx;">手机</view>
+            <input class="form-text" placeholder="请输入手机号"></input>
+            <view class="bg-white flex padding" style="align-items: center;justify-content: center;">
+              <button class="cu-btn bg-orange round btn-shouji">更换</button>
+            </view>
+          </view>
+          <view class="cu-form-group " hidden="{{fenzuhide}}">
+            <view class="title">选择分组</view>
+            <picker bindchange="bindPickerChange" range="{{huodongfenzu.groupname}}">
+              <view class="picker">
+                {{huodongfenzu[fenzuindex].groupname}}
+              </view>
+            </picker>
+          </view>
+          <view class="cu-form-group ">
+            <view class="title">报名团队</view>
+            <input class="form-text" placeholder='点击选择团队' bindtap="xuanzetuandui" value="{{tuanduiSelect}}" disable></input>
+          </view>
+        </form>
       </view>
-      <view class="bg-white padding yundong-sp-center">
-        <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
-        <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
-        <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
-        <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="margin-left:auto;"></image>
+      <view class="bg-white flex" style="align-items: center;justify-content: center;">
+        <checkbox class="blue yuedu-logo" checked></checkbox>
+        <view class="queren margin-left-sm" style="color:#999999;">
+          我已阅读并同意
+        </view>
+        <view class="queren" style="color:#5C7CFF;">
+          《同友活动声明》
+        </view>
       </view>
-    </view>
+
+      <view class="bg-white flex padding" style="align-items: center;justify-content: center;">
+        <button class="cu-btn bg-orange round btn-bm margin-top" bindtap="lijibaoming">立即报名</button>
+      </view>
+
+      <view class="bg-white margin-top padding-top">
+        <view class="yibaoming-margin-top margin-left ">
+          <text class="yibaoming-text-content">已报名</text>
+          <text class="yibaoming-text-content" style="color:var(--blue)">21/24</text>
+          <text class="yibaoming-text-content">人</text>
+        </view>
+        <view class="yundong-content bg-white">
+          <view class="padding-sm">
+            <view class="cu-avatar round lg margin-sm" wx:for="{{21}}" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{(index+1)%9}}.jpg);">
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{isbaomingtuandui==1}}">
+      <view class=" bg-white wodebaoming-center padding">
+        <view>
+          <image class="margin-bottom-xs" src="/img/wodebaoming.png" mode="aspectFit" style="height:200rpx;width:200rpx;"></image>
+        </view>
+        <view class="queren margin-bottom-xs" style="color:#999999">
+          2020.3.18 13:00:00
+        </view>
+        <view class="text-28">
+          成功报名参赛/观看Lorem Ipsum
+        </view>
+      </view>
+
+      <view class="bg-white margin-top">
+        <view class="cu-bar bg-white padding">
+          <view class="yibaoming-text-content">已报名n人</view>
+        </view>
+      </view>
+      <view class="bg-white">
+        <view class="cu-bar bg-white padding">
+          <view class="yibaoming-text-content">分组1</view>
+        </view>
+        <view class="padding yundong-sp-center">
+          <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
+          <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+          <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
+          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="margin-left:auto;"></image>
+        </view>
+        <view class="bg-white padding yundong-sp-center">
+          <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
+          <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+          <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
+          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="margin-left:auto;"></image>
+        </view>
+      </view>
+      <view class="bg-white margin-top-xs">
+        <view class="cu-bar bg-white padding">
+          <view class="yibaoming-text-content">分组2</view>
+        </view>
+        <view class="padding yundong-sp-center">
+          <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
+          <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+          <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
+          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="margin-left:auto;"></image>
+        </view>
+        <view class="bg-white padding yundong-sp-center">
+          <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
+          <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+          <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
+          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="margin-left:auto;"></image>
+        </view>
+      </view>
+    </block>
   </block>
 
   <view class="cu-bar bg-white solid-bottom margin-top">
@@ -391,10 +500,8 @@
           <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;">关注</button>
         </view>
 
-        <view >
-          <video id="video_{{index}}"  src="{{shipin.list[0].fileId}}"
-             autoplay="true " controls style="width:100%;" 
-            bindtap="video_change"></video>
+        <view>
+          <video id="video_{{index}}" src="{{shipin.list[0].fileId}}" autoplay="true " controls style="width:100%;" bindtap="video_change"></video>
         </view>
         <view class="flex margin-top ">
           <view class="sp-bofang-times ">播放{{shipin.list[0].playCnt}}次</view>
@@ -428,7 +535,7 @@
         </view>
 
         <view style="width:100%;">
-          <video id="video_{{index}}" src="{{shipin.list[index].fileId}}" controls style="width:100%;"bindtap="video_change"></video>
+          <video id="video_{{index}}" src="{{shipin.list[index].fileId}}" controls style="width:100%;" bindtap="video_change"></video>
         </view>
         <view class="flex margin-top ">
           <view class="sp-bofang-times ">播放{{shipin.list[index].playCnt}}次</view>

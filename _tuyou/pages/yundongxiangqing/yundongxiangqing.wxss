@@ -33,7 +33,7 @@ page {
 .btn-guanzhu {
   margin-left: auto;
   margin-top: 10rpx;
-  width: 88rpx;
+  width: 122rpx;
   height: 48rpx;
 }
 
