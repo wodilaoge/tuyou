@@ -92,7 +92,7 @@
   </view>
 
   <!-- 活动新闻 -->
-  <view class="bg-white padding huodong-margin-top">
+  <!-- <view class="bg-white padding huodong-margin-top">
     <text class="cu-bar-title">活动新闻</text>
   </view>
   <view class="cu-card article no-card bg-white" wx:for="{{news.list}}">
@@ -112,7 +112,7 @@
       </view>
     </view>
 
-  </view>
+  </view> -->
 
   <block>
     <view class="huodong-margin-bottom">
