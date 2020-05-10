@@ -30,3 +30,6 @@
   display: flex; /*弹性布局*/
   flex-wrap: wrap; /*允许换行*/
 }
+page{
+  background-color: white;
+}
