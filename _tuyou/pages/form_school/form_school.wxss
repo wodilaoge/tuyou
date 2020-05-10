@@ -1,0 +1,49 @@
+.bk {
+  background-color: #5454ff;
+}
+.input{
+  color: white
+}
+.item3{
+  position: relative;
+  left: 30rpx;
+}
+.img {
+
+  height:220rpx;
+  width: 50rpx;
+  left: 55rpx;
+  top: 30rpx;
+  /* top:50rpx; */
+}
+.paddings{
+  padding: 15rpx;
+}
+.item2{
+  position: relative;
+  left: 70rpx;
+}
+.item {
+  position: relative;
+  left: 90rpx;
+}
+
+.page.show {
+  overflow: hidden;
+}
+
+.switch-sex::after {
+  content: "\e716";
+}
+
+.switch-sex::before {
+  content: "\e7a9";
+}
+
+.switch-music::after {
+  content: "\e66a";
+}
+
+.switch-music::before {
+  content: "\e6db";
+}

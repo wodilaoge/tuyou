@@ -7,6 +7,7 @@ Page({
     ActList: [],
     PageCur: 'basics',
     isshow: false,
+    schoolname:'',
     sectioninfo:[],
     SwiperList: [],
     news: [],
@@ -37,6 +38,11 @@ Page({
       },
     ]
 
+  },
+  toaddress(){
+    wx.navigateTo({
+      url: '/pages/form_address/form_address',
+    })
   },
   cardSwiper(e) {
     this.setData({
@@ -135,7 +141,14 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  onShow: function (e) {
+    this.onLoad();
+  },
   onLoad: function(options) {
+    var n=wx.getStorageSync('school')
+    this.setData({
+      schoolname:n.name
+    })
     this.school();
     this.news();
     this.getinfo();

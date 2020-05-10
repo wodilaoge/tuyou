@@ -3,11 +3,10 @@
       <!-- <view class="text-bold left text-white">友点乐</view>
        -->
        <image src="/img/index/name.png" class="name-img"></image>
-          <picker bindchange="PickerSchool" value="{{indexs}}" range="{{school}}"  range-key="name">
-      <view class="text-bold left2 picker text-white">
-        {{indexs?school[indexs].name:'浙大'}}
+
+      <view class="text-bold left2 picker text-white" bindtap="toaddress">
+        {{schoolname?schoolname:'请选择区域'}}
       </view>
-    </picker>
       <!-- <view class="text-bold left2 text-white">浙大</view> -->
       <image class="imgdown" src="/img/index/icon_down.png"></image>
   </view>

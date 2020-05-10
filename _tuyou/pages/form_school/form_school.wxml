@@ -1,0 +1,21 @@
+<cu-custom bgColor="bg-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">选择地址</view>
+</cu-custom>
+<view class="bk flex">
+  <image src="/img/form/school.png" class="img"></image>
+  <view class="desc">
+    <view class="text-white text-lg item padding">{{province}}</view>
+    <view class="text-white text-lg item padding">{{city}}</view>
+    <view class="text-orange text-lg item padding">请选择学校</view>
+  </view>
+</view>
+<view class="bk">
+  <view class="cu-form-group bk ">
+    <view class=" text-white text-lg item2">详细地址</view>
+    <input placeholder="请输入详细地址" class="item input" placeholder-class="input"></input>
+  </view>
+</view>
+<view class="padding bg-white" wx:for="{{school}}">
+  <view class="text-left item3 text-bold" bindtap="choose" data-id="{{item.code}}" data-index="{{index}}">{{item.name}}</view>
+</view>

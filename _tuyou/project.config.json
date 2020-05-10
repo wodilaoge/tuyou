@@ -178,8 +178,8 @@
 				},
 				{
 					"id": 17,
-					"name": "pages/MyPages/my_messagemind/my_messagemind",
-					"pathName": "pages/MyPages/my_messagemind/my_messagemind",
+					"name": "pages/form_school/form_school",
+					"pathName": "pages/form_school/form_school",
 					"query": "",
 					"scene": null
 				},
@@ -201,6 +201,14 @@
 					"id": -1,
 					"name": "pages/form/form",
 					"pathName": "pages/form/form",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/form_address/form_address",
+					"pathName": "pages/form_address/form_address",
+					"query": "",
 					"scene": null
 				}
 			]

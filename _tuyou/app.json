@@ -10,6 +10,7 @@
     "pages/form_activity/form_activity",
     "pages/form_modify/form_modify",
     "pages/form_address/form_address",
+    "pages/form_school/form_school",
     "pages/MyPages/my/my",
     "pages/MyPages/my_profile/my_profile",
     "pages/MyPages/my_security/my_security",

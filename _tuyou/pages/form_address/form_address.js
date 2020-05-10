@@ -1,4 +1,4 @@
-// pages/form_address/form_address.js
+const util = require("../../utils/util.js");
 const app = getApp();
 Page({
 
@@ -8,6 +8,16 @@ Page({
   data: {
     provinceList: [],
     city: [],
+    StatusBar: app.globalData.StatusBar,
+    CustomBar: app.globalData.CustomBar,
+    Custom: app.globalData.Custom,
+    TabCur: 0,
+    MainCur: 0,
+    VerticalNavTop: 0,
+    options: 1,
+    AllActivity: [],
+    list: [],
+    load: true
   },
 
   /**
@@ -25,10 +35,10 @@ Page({
       console.log(err.errMsg)
     });
   },
-  city() {
+  city(code) {
     let url = app.globalData.URL + '/config/getCity';
     let data = {
-      pid: '00333'
+      pid: code
     };
     app.wxRequest('GET', url, data, (res) => {
       // console.log(res.data)
@@ -39,18 +49,13 @@ Page({
       console.log(err.errMsg)
     });
   },
-  commit(){
-    let url = app.globalData.URL + '/act/updateActGroup';
+  city_initial() {
+    let url = app.globalData.URL + '/config/getCity';
     let data = {
-         
-      id: 2875397771362304,
-        actid: "1760034971189248",
-          groupname: "分组1",
-            signupmax: 10
-    
+      pid: '00301'
     };
-    app.wxRequest('POST', url, data, (res) => {
-      console.log(res.data)
+    app.wxRequest('GET', url, data, (res) => {
+      // console.log(res.data)
       this.setData({
         city: res.data
       })
@@ -59,56 +64,83 @@ Page({
     });
   },
   onLoad() {
-    this.city();
+    this.city_initial();
     this.province();
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    });
+    let list = [{}];
+    for (let i = 0; i < 26; i++) {
+      list[i] = {};
+      list[i].name = String.fromCharCode(65 + i);
+      list[i].id = i;
+    }
+    this.setData({
+      list: list,
+      listCur: list[0]
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  onReady() {
+    wx.hideLoading()
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  toschoool(e) {
+    // console.log(e.currentTarget.dataset.index)
+    var t={
+      code: '',
+      name: ''
+    }
+    t.name = this.data.provinceList[this.data.TabCur].name
+    t.code = this.data.MainCur
+    wx.setStorageSync('province',t)
+    var t2 = {
+      code: '',
+      name: ''
+    }
+    t2.name = this.data.city[e.currentTarget.dataset.index].name
+    t2.code = e.currentTarget.dataset.id
+    wx.setStorageSync('city', t2)
+    wx.navigateTo({
+      url: '/pages/form_school/form_school?id=' + e.currentTarget.dataset.id,
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  tabSelect(e) {
+    this.setData({
+      TabCur: e.currentTarget.dataset.index,
+      MainCur: e.currentTarget.dataset.id,
+      // VerticalNavTop: (e.currentTarget.dataset.id - 1) * 50
+    })
+    this.city(e.currentTarget.dataset.id)
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  VerticalMain(e) {
+    let that = this;
+    let list = this.data.city;
+    let tabHeight = 0;
+    if (this.data.load) {
+      for (let i = 0; i < list.length; i++) {
+        let view = wx.createSelectorQuery().select("#main-" + list[i].code);
+        view.fields({
+          size: true
+        }, data => {
+          list[i].top = tabHeight;
+          tabHeight = tabHeight + data.height;
+          list[i].bottom = tabHeight;
+        }).exec();
+      }
+      that.setData({
+        load: false,
+        list: list
+      })
+    }
+    let scrollTop = e.detail.scrollTop + 20;
+    for (let i = 0; i < list.length; i++) {
+      if (scrollTop > list[i].top && scrollTop < list[i].bottom) {
+        that.setData({
+          VerticalNavTop: (list[i].id - 1) * 50,
+          TabCur: list[i].id
+        })
+        return false
+      }
+    }
   }
 })

@@ -1,18 +1,22 @@
-<!--pages/form_address/form_address.wxml-->
 <cu-custom bgColor="bg-blue" isBack="{{true}}">
-	<view slot="backText">返回</view>
-	<view slot="content">选择地址</view>
+  <view slot="backText">返回</view>
+  <view slot="content">选择地址</view>
 </cu-custom>
-<!-- <button bindtap="commit">00</button> -->
-<view class="content" wx:for="{{city}}">
-  <view class="desc">
-    <view class="xiaoyuan-text-content text-gray"> {{item.code}}</view>
-    <view class="xiaoyuan-text-content text-gray"> {{item.name}}</view>
-  </view>
-</view>
-<view class="content" wx:for="{{provinceList}}">
-  <view class="desc">
-    <view class="xiaoyuan-text-content text-gray"> {{item.code}}</view>
-    <view class="xiaoyuan-text-content text-gray"> {{item.name}}</view>
-  </view>
+
+<view class="VerticalBox">
+  <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation  style="height:calc(100vh - 180rpx)">
+    <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{provinceList}}" wx:key bindtap='tabSelect' data-id="{{item.code}}" data-index="{{index}}">
+      {{item.name}}
+    </view>
+  </scroll-view>
+
+  <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(100vh - 180rpx)" scroll-into-view="main-{{TabCur}}" >
+    <view class=" " wx:for="{{city}}" wx:key id="main-{{index}}">
+      <view class='cu-bar solid-bottom bg-white'>
+        <view class='action' bindtap="toschoool" data-id="{{item.code}}" data-index="{{index}}">
+          {{item.name}}
+        </view>
+      </view>
+    </view>
+  </scroll-view>
 </view>
