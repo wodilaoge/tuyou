@@ -141,7 +141,7 @@ Page({
     this.getinfo();
     this.getuploadinfo();
     // app.editTabbar();
-    this.getShipin();
+    // this.getShipin();
   },
   todetail(e) { //报名参加按钮跳转 带着活动id跳转 校园活动
     wx.navigateTo({

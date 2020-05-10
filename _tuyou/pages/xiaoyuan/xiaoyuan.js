@@ -2,10 +2,11 @@ const app = getApp();
 var util = require("../../utils/util.js");
 Page({
   data: {
-    btdata:[
-      {
-        id:0,
-        name:"校园活动"
+    bt: '校园活动',
+
+    btdata: [{
+        id: 0,
+        name: "校园活动"
       },
       {
         id: 1,
@@ -32,7 +33,7 @@ Page({
     yundongList: [],
     wenyuList: [],
     aihaoList: [],
-    shhipinList: [],
+    shipinList: [],
     yundongdalei: [],
     shipindalei: [],
     wenyudalei: [],
@@ -47,39 +48,18 @@ Page({
     yundongCur: '', //运动内导航栏
     wenyuCur: '', //文娱内导航栏
     aihaoCur: '', //爱好内导航栏
-    shipinCur: '',//视频内导航栏
+    shipinCur: '', //视频内导航栏
     xiaoyuanSwiperList: [],
     yundongSwiperList: [],
     wenyuSwiperList: [],
     aihaoSwiperList: [],
     shipinSwiperList: [],
-    huodongID: '5069992122908672',
     shipin: [],
     news: [],
     news_detail: [],
-    shipindalei2: [
-      {
-        "code": "1",
-        "name": "全部",
-      },
-      {
-        "code": "2",
-        "name": "校园",
-      },
-      {
-        "code": "3",
-        "name": "聚会",
-      },
-      {
-        "code": "4",
-        "name": "装扮",
-      },
-      {
-        "code": "5",
-        "name": "摄影",
-      },
-    ],
-    
+    video_id: 'video_0', ///用于切换视频
+    bofang_if_id: 'video_0', /////用数字来表示匹配
+    bofang_pid: '1', ///1表示有一个播放，0表示无播放
   },
   tabSelect(e) {
     this.setData({
@@ -87,7 +67,7 @@ Page({
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
   },
-  news() {//活动新闻
+  news() { //活动新闻
     let url = app.globalData.URL + '/news/listNews';
     let data = {
       id: this.data.categoryId
@@ -101,7 +81,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-  news_detail() {//活动新闻
+  news_detail() { //活动新闻
     let url = app.globalData.URL + '/news/findNewsDetail';
     let data = {
       id: this.data.news.id
@@ -148,6 +128,7 @@ Page({
     })
   },
   shipinTabSelect(e) { //视频内导航栏
+    console.log(e)
     var url = app.globalData.URL + '/act/listActivity';
     let data = {
       sid: this.data.shipinid,
@@ -166,7 +147,8 @@ Page({
       self.setData({
         bkData: res.data.data
       })
-
+      console.log(res)
+      console.log(res.data.data)
       for (var i in res.data.data) {
         var url = app.globalData.URL + '/act/listActivity';
         var url2 = app.globalData.URL + '/secrot/listSecrotation';
@@ -205,6 +187,7 @@ Page({
           }, (err) => {
             console.log(err.errMsg)
           });
+
           var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
           util.gets(urldalei, data).then(function(res) {
             self.setData({
@@ -233,32 +216,35 @@ Page({
           let data = {
             sid: res.data.data[i].code
           };
-
           app.wxRequest('GET', url2, data, (res) => {
             self.setData({
-              wenyuSwiperList: res.data
+              wenyuSwiperList: res.data,
+              shipinSwiperList: res.data
             })
           }, (err) => {
             console.log(err.errMsg)
           });
-
           var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
-          util.gets(urldalei, data).then(function (res) {
+          util.gets(urldalei, data).then(function(res) {
+            console.log(res)
             self.setData({
               wenyudalei: res.data.data,
-              wenyuCur: res.data.data[0].code
+              wenyuCur: res.data.data[0].code,
+              shipindalei: res.data.data,
             })
-          }).then(function () {
+          }).then(function() {
             data = {
               sid: self.data.wenyuid
             }
             app.wxRequest('GET', url, data, (res) => {
+              console.log(res)
               self.setData({
                 wenyuList: res.data
               })
             }, (err) => {
               console.log(err.errMsg)
             });
+
           })
         }
         if (res.data.data[i].name == "爱好") {
@@ -278,12 +264,12 @@ Page({
           });
 
           var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
-          util.gets(urldalei, data).then(function (res) {
+          util.gets(urldalei, data).then(function(res) {
             self.setData({
               aihaodalei: res.data.data,
               aihaoCur: res.data.data[0].code
             })
-          }).then(function () {
+          }).then(function() {
             data = {
               sid: self.data.aihaoid
             }
@@ -336,10 +322,11 @@ Page({
       }
     })
   },
-  getShipin() {//视频
+
+  getShipin() { //视频
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
-      arctid: this.data.huodongID
+
     };
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
@@ -349,20 +336,54 @@ Page({
       console.log(err.errMsg)
     });
   },
+  video_change: function(e) { ////视频切换
+    console.log(e)
+    if (this.data.bofang_if_id != e.currentTarget.id) { ///相等表示点击和播放不匹配
+      if (this.data.bofang_pid == '0') {
+        this.setData({
+          bofang_pid: '1'
+        })
+      }
+
+      var now_id = e.currentTarget.id;
+      var prev_id = this.data.video_id;
+      this.setData({
+        video_id: now_id,
+        bofang_if_id: now_id
+      })
+      wx.createVideoContext(prev_id).pause();
+      wx.createVideoContext(now_id).play();
+
+
+    } else { //////////当点击同一个，一次播放一次暂停
+      if (this.data.bofang_pid == '1') {
+        wx.createVideoContext(e.currentTarget.id).pause();
+        this.setData({
+          bofang_pid: '0'
+        })
+      } else {
+        wx.createVideoContext(e.currentTarget.id).play();
+        this.setData({
+          bofang_pid: '1'
+        })
+      }
+    }
+  },
   onLoad: function() {
     this.setData({ //读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
       TabCur: app.globalData.tabbar
     })
     this.towerSwiper('xiaoyuanSwiperList')
-    this.getShipin()
-    this.news()
-    this.news_detail()
   },
   onShow() {
     this.setData({ //读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
       TabCur: app.globalData.tabbar
     })
     this.xuanran();
+    this.getShipin();
+
+    this.news()
+    this.news_detail()
   },
   DotStyle(e) {
     this.setData({
@@ -377,8 +398,8 @@ Page({
   },
   xiaoyuanxiangqing(e) { //其他位置跳转
     wx.navigateTo({
-      url: '../../pages/xiaoyuanxiangqing/xiaoyuanxiangqing?TabCur=0&categoryId=' + e.currentTarget.id ,
-    }) 
+      url: '../../pages/xiaoyuanxiangqing/xiaoyuanxiangqing?TabCur=0&categoryId=' + e.currentTarget.id,
+    })
   },
   baomingcanjia(e) { //报名参加按钮跳转 带着活动id跳转 校园活动
     wx.navigateTo({

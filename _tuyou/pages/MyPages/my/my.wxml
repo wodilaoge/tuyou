@@ -59,10 +59,6 @@
     <image src="/img/my/01.png" class="menu-img"></image>
     <text class="menu-name">账号安全</text>
   </navigator>
-  <navigator url="/pages/MyPages/my_workplate/my_workplate" class="menu-item">
-    <image src="/img/my/03.png" class="menu-img"></image>
-    <text class="menu-name">工作台</text>
-  </navigator>
   <navigator url="/pages/MyPages/my_activity/my_activity" class="menu-item">
     <image src="/img/my/04.png" class="menu-img"></image>
     <text class="menu-name">活动</text>
@@ -99,10 +95,10 @@
     <image src="/img/my/12.png" class="menu-img"></image>
     <text class="menu-name">照片</text>
   </navigator>
-  <navigator url="/pages/MyPages/my_news/my_news" class="menu-item">
+  <!-- <navigator url="/pages/MyPages/my_news/my_news" class="menu-item">
     <image src="/img/my/13.png" class="menu-img"></image>
     <text class="menu-name">新闻</text>
-  </navigator>
+  </navigator> -->
 </view>
 
 <view class="cu-bar bg-white solid-bottom margin-top">

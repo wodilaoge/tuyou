@@ -28,6 +28,10 @@ Page({
     baomingCur: 0,
     tuanduiSelect: [],
     members: [],
+    shipin: [],
+    video_id: 'video_0', ///用于切换视频
+    bofang_if_id: 'video_0', /////用数字来表示匹配
+    bofang_pid: '1', ///1表示有一个播放，0表示无播放
   },
   //报名
   xingmingInput: function(e) { //input输入
@@ -465,6 +469,54 @@ Page({
       })
     wx.hideLoading()
   },
+
+  getShipin() { //视频
+    let url = app.globalData.URL + '/video/listActVideo';
+    let data = {
+
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res)
+      this.setData({
+        shipin: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  video_change: function (e) { ////视频切换
+    console.log(e)
+    if (this.data.bofang_if_id != e.currentTarget.id) { ///相等表示点击和播放不匹配
+      if (this.data.bofang_pid == '0') {
+        this.setData({
+          bofang_pid: '1'
+        })
+      }
+
+      var now_id = e.currentTarget.id;
+      var prev_id = this.data.video_id;
+      this.setData({
+        video_id: now_id,
+        bofang_if_id: now_id
+      })
+      wx.createVideoContext(prev_id).pause();
+      wx.createVideoContext(now_id).play();
+
+
+    } else { //////////当点击同一个，一次播放一次暂停
+      if (this.data.bofang_pid == '1') {
+        wx.createVideoContext(e.currentTarget.id).pause();
+        this.setData({
+          bofang_pid: '0'
+        })
+      } else {
+        wx.createVideoContext(e.currentTarget.id).play();
+        this.setData({
+          bofang_pid: '1'
+        })
+      }
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -477,6 +529,7 @@ Page({
    */
   onShow: function(options) {
     this.comment()
+    this.getShipin()
   },
 
   /**
