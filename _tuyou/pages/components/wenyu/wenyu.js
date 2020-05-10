@@ -8,7 +8,7 @@ Component({
     wenyuCur: String
   },
   attached: function () {
-    console.log(this.properties.yundongCur);
+    console.log(this.properties.wenyuList);
   },
   /**
    * 组件的初始数据
@@ -21,6 +21,15 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    yundongxiangqing(e) {
+      wx.navigateTo({
+        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.yundong.id + '&slogan=' + e.currentTarget.dataset.yundong.slogan,
+      })
+    },
+    baomingtiaozhan(e) {
+      wx.navigateTo({
+        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=1&categoryId=' + e.currentTarget.dataset.yundong.id + '&slogan=' + e.currentTarget.dataset.yundong.slogan,
+      })
+    },
   }
 })
