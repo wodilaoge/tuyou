@@ -8,7 +8,6 @@ Page({
 
     SwiperList_zhaopian: [],
     detail: [],
-    slogan: '',
     comment: [],
     comment_detail: [],
 
@@ -44,6 +43,7 @@ Page({
       type: 'image',
       url: '/img/yundongxiangqing.png',
     }],
+    rotationhide:true,
 
     swiperList_zhaopian: [{
       id: 0,
@@ -142,9 +142,25 @@ Page({
       console.log(err.errMsg)
     });
   },
-
+  rotation(){
+    var self=this
+    let url = app.globalData.URL + '/act/findRotations';
+    let data={
+      actid:self.data.categoryId
+    }
+    util.gets(url, data).then(function (res) {
+      self.setData({
+        swiperList:res.data.data
+      })
+      if(res.data.data.length!=0)
+      {
+        let flag=true;
+        for(let i in res.data.data){}
+      }
+    });
+  },
   detail() { //页面项目信息
-    let url = app.globalData.URL + '/act/findCampusActivity';
+    let url = app.globalData.URL + '/act/findActivity';
     let data = {
       id: this.data.categoryId
     };
@@ -156,6 +172,7 @@ Page({
       console.log(err.errMsg)
     });
   },
+  
   comment() { //评论
     var self = this
     let url = app.globalData.URL + '/comm/listCommByObj';
@@ -257,7 +274,7 @@ Page({
   zan() { //活动点赞或取消
     self = this;
     let url = app.globalData.URL + '/applaud/updateApplaud';
-    if (self.data.ifzan)
+    if (self.data.ifzan) 
       var data = {
         objtype: 30,
         objid: self.data.categoryId,
@@ -565,7 +582,6 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      slogan: options.slogan,
       categoryId: options.categoryId,
       user: wx.getStorageSync('userInfo'),
       TabCur: options.TabCur,
@@ -573,6 +589,7 @@ Page({
     })
     this.baomingzhuangtai()
     this.ifguanzhu()
+    this.ifzan()
     this.comment()
     this.fenzu()
     this.detail()

@@ -23,12 +23,12 @@ Component({
   methods: {
     yundongxiangqing(e) {
       wx.navigateTo({
-        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.yundong.id + '&slogan=' + e.currentTarget.dataset.yundong.slogan,
+        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.yundong.id,
       })
     },
     baomingtiaozhan(e) {
       wx.navigateTo({
-        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=1&categoryId=' + e.currentTarget.dataset.yundong.id + '&slogan=' + e.currentTarget.dataset.yundong.slogan,
+        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=1&categoryId=' + e.currentTarget.dataset.yundong.id,
       })
     },
   }

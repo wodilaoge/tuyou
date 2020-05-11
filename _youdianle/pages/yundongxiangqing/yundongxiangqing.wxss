@@ -38,7 +38,7 @@ page {
 }
 
 .btn-baomingtiaozhan {
-  margin-left: 300rpx;
+  margin-left: 360rpx;
   width: 168rpx;
   height: 54rpx;
 }
