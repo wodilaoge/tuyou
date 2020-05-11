@@ -371,7 +371,7 @@ Page({
   },
   change_sousuo:function(){
     wx.navigateTo({
-      url: '../../sousuo',
+      url: '../sousuo/sousuo',
     })
   },
   onLoad: function() {

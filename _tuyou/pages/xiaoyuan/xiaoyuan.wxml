@@ -52,7 +52,7 @@
       </block>
     </view>
   </view> -->
-  <view class="cu-item {{6==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="6">
+  <view class="cu-item {{6==TabCur?'text-bold cur':''}}" bindtap="change_sousuo" data-id="6">
     <text class="cuIcon-search"></text>
   </view>
 </scroll-view>
@@ -245,7 +245,7 @@
 创建者：朱娇龙
 创建时间：20200505
 内容：视频界面-->
-<block wx:if="{{TabCur==5}}" bindchange="change_sousuo">
+<block wx:if="{{TabCur==5}}">
 
 
 </block>
