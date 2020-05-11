@@ -658,7 +658,7 @@
           <image class="img-icon" src="/img/icon_fabulous.png"></image>
         </view>
         <view class="action">
-          <image class="img-icon" src="/img/icon_share.png"></image>
+          <image class="img-icon" src="/img/icon_upload_photos.png"></image>
         </view>
       </view>
     </view>

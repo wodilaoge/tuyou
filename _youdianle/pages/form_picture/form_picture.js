@@ -1,10 +1,15 @@
 const app = getApp();
+var upload = require("../../utils/upload.js");
+var util = require("../../utils/util.js");
 Page({
   data: {
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
     group: 0,
+    title: '',
     index: null,
+    url4: [],
+    penname: '',
     picker: ['个人报名', '团体报名'],
     picker2: ['匿名参赛', '实名参赛'],
     picker3: ['观看无需报名', '匿名报名观看', '实名报名观看'],
@@ -30,27 +35,21 @@ Page({
       index: e.detail.value
     })
   },
-  MultiChange(e) {
+  gettitle(e) {
     this.setData({
-      multiIndex: e.detail.value
+      title: e.detail.value
     })
   },
-  TimeChange(e) {
+  getpenname(e) {
     this.setData({
-      time: e.detail.value
+      penname: e.detail.value
     })
   },
-  DateChange(e) {
-    this.setData({
-      date: e.detail.value
-    })
-  },
-  RegionChange: function (e) {
-    this.setData({
-      region: e.detail.value
-    })
+  onLoad: function (options) {
+
   },
   ChooseImage(e) {
+    var that = this
     var t = e.currentTarget.dataset.id
     wx.chooseImage({
       count: 4, //默认9
@@ -67,50 +66,10 @@ Page({
               imgList: res.tempFilePaths
             })
           }
-        }
-        if (t == 2) {
-          if (this.data.imgList2.length != 0) {
-            this.setData({
-              imgList2: this.data.imgList2.concat(res.tempFilePaths)
-            })
-          } else {
-            this.setData({
-              imgList2: res.tempFilePaths
-            })
-          }
-        }
-        if (t == 3) {
-          if (this.data.imgList3.length != 0) {
-            this.setData({
-              imgList3: this.data.imgList3.concat(res.tempFilePaths)
-            })
-          } else {
-            this.setData({
-              imgList3: res.tempFilePaths
-            })
-          }
-        }
-        if (t == 4) {
-          if (this.data.imgList4.length != 0) {
-            this.setData({
-              imgList4: this.data.imgList4.concat(res.tempFilePaths)
-            })
-          } else {
-            this.setData({
-              imgList4: res.tempFilePaths
-            })
-          }
-        }
-        if (t == 5) {
-          if (this.data.imgList5.length != 0) {
-            this.setData({
-              imgList5: this.data.imgList5.concat(res.tempFilePaths)
-            })
-          } else {
-            this.setData({
-              imgList5: res.tempFilePaths
-            })
-          }
+          upload.uploadFile(this.data.imgList[this.data.imgList.length - 1], 'rot', that)
+          this.setData({
+            loadModal: true
+          })
         }
       }
     });
@@ -120,30 +79,6 @@ Page({
     if (t == 1) {
       wx.previewImage({
         urls: this.data.imgList,
-        current: e.currentTarget.dataset.url
-      });
-    }
-    if (t == 2) {
-      wx.previewImage({
-        urls: this.data.imgList2,
-        current: e.currentTarget.dataset.url
-      });
-    }
-    if (t == 3) {
-      wx.previewImage({
-        urls: this.data.imgList3,
-        current: e.currentTarget.dataset.url
-      });
-    }
-    if (t == 4) {
-      wx.previewImage({
-        urls: this.data.imgList4,
-        current: e.currentTarget.dataset.url
-      });
-    }
-    if (t == 5) {
-      wx.previewImage({
-        urls: this.data.imgList5,
         current: e.currentTarget.dataset.url
       });
     }
@@ -166,92 +101,68 @@ Page({
         }
       })
     }
-    if (t == 2) {
-      wx.showModal({
-        title: '确定',
-        content: '确定要删除这张照片？',
-        cancelText: '取消',
-        confirmText: '确认删除',
-        success: res => {
-          if (res.confirm && t == 2) {
-            this.data.imgList2.splice(e.currentTarget.dataset.index, 1);
-            this.setData({
-              imgList2: this.data.imgList2
-            })
-          }
-        }
-      })
-    }
-    if (t == 3) {
-      wx.showModal({
-        title: '确定',
-        content: '确定要删除这张照片？',
-        cancelText: '取消',
-        confirmText: '确认删除',
-        success: res => {
-          if (res.confirm && t == 3) {
-            this.data.imgList3.splice(e.currentTarget.dataset.index, 1);
-            this.setData({
-              imgList3: this.data.imgList3
-            })
-          }
-        }
-      })
-    }
-    if (t == 4) {
-      wx.showModal({
-        title: '确定',
-        content: '确定要删除这张照片？',
-        cancelText: '取消',
-        confirmText: '确认删除',
-        success: res => {
-          if (res.confirm && t == 4) {
-            this.data.imgList4.splice(e.currentTarget.dataset.index, 1);
-            this.setData({
-              imgList4: this.data.imgList4
-            })
-          }
-        }
-      })
-    }
-    if (t == 5) {
-      wx.showModal({
-        title: '确定',
-        content: '确定要删除这张照片？',
-        cancelText: '取消',
-        confirmText: '确认删除',
-        success: res => {
-          if (res.confirm && t == 5) {
-            this.data.imgList5.splice(e.currentTarget.dataset.index, 1);
-            this.setData({
-              imgList5: this.data.imgList5
-            })
-          }
-        }
-      })
-    }
   },
   textareaAInput(e) {
     this.setData({
       textareaAValue: e.detail.value
     })
   },
-  textareaBInput(e) {
-    this.setData({
-      textareaBValue: e.detail.value
-    })
-  },
-  toForm_modify: function (e) {
+  toForm_modify: function(e) {
     wx.navigateTo({
       url: "../../pages/form_modify/form_modify"
     })
   },
-  commit: function (e) {
+  commit: function(e) {
+    var user = wx.getStorageSync('userInfo')
+    let url = app.globalData.URL + '/photo/updateActPhoto';
+    var data = this.data
+    var data = {
+      id:'',
+      actid:this.data.actid,
+      title:this.data.title,
+      author:user.nickname,
+      authorAlias:this.data.penname,
+      authorHead: user.head,
+      content:this.data.textareaAInput,
+      status:10,
+      creater:user.id,
+      listPhoto:[]
+    }
+    util.post_token(url, data).then(function(res) {
+      console.log(res.data)
+      if (res.data.code == 0) {
+        wx.showToast({
+          title: '提交成功',
+          duration: 2000,
+          success: function() {
+            setTimeout(function() {
+              wx.reLaunch({
+                url: '/pages/index/index',
+              })
+            }, 2000);
+          }
+        })
+      } else {
+        wx.showToast({
+          title: '提交失败!',
+          image: '/img/fail.png',
+          icon: 'success',
+          duration: 2000
+        })
+      }
+    }).catch(function(res) {
+      console.log(res)
+      wx.showToast({
+        title: '提交失败！',
+        icon: 'success',
+        duration: 2000
+      })
+    })
     this.setData({
       modalName: e.currentTarget.dataset.target
     })
   },
-  addicon: function (e) {
+  addicon: function(e) {
     var t = this.data.group
     console.log(t)
     t++

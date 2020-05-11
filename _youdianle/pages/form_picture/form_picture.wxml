@@ -26,12 +26,12 @@
   </view>
   <view class="cu-form-group margin-top">
     <view class="title">笔名</view>
-    <input class="input text-grey" placeholder="胡小心"></input>
+    <input class="input text-grey"bindinput="getpenname"placeholder="胡小心"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-bar bg-white margin-top">
     <view class="action">
-      照片1
+      照片
     </view>
     <view class="action">
       {{imgList.length}}/9
@@ -55,13 +55,11 @@
     <input class="text-grey input" placeholder="" type='text' name="name" bindinput="name"></input>
   </view>
   <view class="container">
-    <!-- 分割线 -->
     <view class="divLine">
     </view>
-    <!-- 留白 -->
     <view class="white"></view>
   </view>
-  <view class="cu-bar bg-white margin-top">
+  <!-- <view class="cu-bar bg-white margin-top">
     <view class="action">
       照片2
     </view>
@@ -87,10 +85,8 @@
     <input class="text-grey input" placeholder="" type='text' name="name" bindinput="name"></input>
   </view>
   <view class="container">
-    <!-- 分割线 -->
     <view class="divLine">
     </view>
-    <!-- 留白 -->
     <view class="white"></view>
   </view>
   <view class="cu-bar bg-white margin-top">
@@ -117,14 +113,17 @@
   <view class="cu-form-group2">
     <image class="icon" src="../../img/write.png"></image>
     <input class="text-grey input" placeholder="" type='text' name="name" bindinput="name"></input>
-  </view>
-  <view class="container">
-    <!-- 分割线 -->
+  </view> -->
+  <!-- <view class="container">
     <view class="divLine">
     </view>
-    <!-- 留白 -->
     <view class="white"></view>
-  </view>
+  </view> -->
+
+    <view class='cu-load load-modal' wx:if="{{loadModal}}">
+      <!-- <view class='cuIcon-emojifill text-orange'></view> -->
+      <view class='gray-text'>加载中...</view>
+    </view>
   <view class="text-center margin-top3">
     <checkbox checked class="blue checkicon"></checkbox>
     <text class="text-grey">我已阅读并同意</text>
