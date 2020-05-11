@@ -11,8 +11,8 @@ Page({
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
     Custom: app.globalData.Custom,
-    TabCur: 0,
-    MainCur: 0,
+    TabCur: 30,
+    MainCur:'00333',
     VerticalNavTop: 0,
     options: 1,
     AllActivity: [],
@@ -52,7 +52,7 @@ Page({
   city_initial() {
     let url = app.globalData.URL + '/config/getCity';
     let data = {
-      pid: '00301'
+      pid: '00333'
     };
     app.wxRequest('GET', url, data, (res) => {
       // console.log(res.data)

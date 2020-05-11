@@ -362,7 +362,7 @@ Page({
         acid1: this.data.info.acid1,
         acid2: this.data.info.acid2,
         logo: this.data.url3[0],
-        rotations: rotation,
+        rotations: this.data.url4,
         groups: this.data.groups,
         fromtime: this.data.info.fromtime,
         totime: null,
