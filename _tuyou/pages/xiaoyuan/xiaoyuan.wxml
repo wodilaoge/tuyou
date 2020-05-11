@@ -241,12 +241,19 @@
   </view>
 
 </block>
+<!--
+创建者：朱娇龙
+创建时间：20200505
+内容：视频界面-->
+<block wx:if="{{TabCur==5}} ">
 
+
+</block>
 <!--
 创建者：朱娇龙
 创建时间：20200505
 内容：新闻页面-->
-<block wx:if="{{TabCur==5}} ">
+<!-- <block wx:if="{{TabCur==5}} "> -->
   <!-- <view class="cu-card article no-card bg-white padding-top-xl " wx:for="{{news.list}} ">
     <view class="cu-item shadow " style="margin-top:0rpx; ">
       <view class="content2 ">
@@ -264,10 +271,10 @@
       </view>
     </view>
   </view> -->
-
+<!-- 
   <view class="xinwen-liubai ">
     <image class="xinwen-liubai-img justify-center " src="../../img/download.png "></image>
     <view style="margin-top:54rpx;padding-left:293rpx; ">你已经到底了哟</view>
   </view>
-</block>
+</block> -->
 <!-- <tabs></tabs> -->
