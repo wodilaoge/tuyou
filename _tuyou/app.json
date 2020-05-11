@@ -40,7 +40,8 @@
     "pages/xuanzetuandui2/xuanzetuandui2",
     "pages/ziliao/ziliao",
     "pages/chakanhuifu/chakanhuifu",
-    "pages/tuanduixinxi/tuanduixinxi"
+    "pages/tuanduixinxi/tuanduixinxi",
+    "pages/sousuo/sousuo"
   ],
   "window": {
     "backgroundTextStyle": "light",
