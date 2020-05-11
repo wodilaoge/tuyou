@@ -6,7 +6,6 @@
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
-		"enhance": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
@@ -21,20 +20,19 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"enhance": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.4.2",
 	"appid": "wxe28bb23826f3d9d8",
 	"projectname": "_tuyou",
-	"cloudfunctionTemplateRoot": "",
-	"watchOptions": {
-		"ignore": []
-	},
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
-	"scripts": {},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -49,6 +47,7 @@
 			"list": []
 		},
 		"game": {
+			"currentL": -1,
 			"list": []
 		},
 		"gamePlugin": {
@@ -210,12 +209,6 @@
 					"name": "pages/form_address/form_address",
 					"pathName": "pages/form_address/form_address",
 					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "搜索",
-					"pathName": "pages/sousuo/sousuo",
 					"scene": null
 				}
 			]

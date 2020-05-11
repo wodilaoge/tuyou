@@ -70,11 +70,11 @@ var uploadFile = function (path, wayto, t) {
             });
         });
     };
-	var S4 = function () {
-        return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+    var S4 = function () {
+        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
     }
     var getuuid = function () {
-        return (S4()+S4()+S4()+S4()+S4()+S4()+S4()+S4());
+        return (S4() + S4() + S4() + S4() + S4() + S4() + S4() + S4());
     }
     //create uuid
     var wxuuid = function () {
@@ -93,7 +93,7 @@ var uploadFile = function (path, wayto, t) {
     var uploadFile = function (filePath, way) {
         var that = t;
         var uuid = getuuid();
-      var Key = 'app/' + way + '/10.' + uuid + filePath.substr(filePath.lastIndexOf('.'));;
+        var Key = 'app/' + way + '/10.' + uuid + filePath.substr(filePath.lastIndexOf('.'));;
         var stoway;
         var tmpway;
         if (way == 'rule') {
@@ -142,16 +142,26 @@ var uploadFile = function (path, wayto, t) {
                     var url = prefix + camSafeUrlEncode(Key).replace(/%2F/g, '/');
                     console.log('url', url);
                     if (/^2\d\d$/.test('' + res.statusCode)) {
-
-                        if (stoway) {
+                        if (tmpway == "url4") {
+                            var obj={};
+                            obj.id='';
+                            obj.rotation=url;
+                            stoway.push(obj);
                             that.setData({
-                                [tmpway]: stoway.concat(url)
+                                [tmpway]:stoway
                             })
                         } else {
-                            that.setData({
-                                [tmpway]: url
-                            })
+                            if (stoway) {
+                                that.setData({
+                                    [tmpway]: stoway.concat(url)
+                                })
+                            } else {
+                                that.setData({
+                                    [tmpway]: url
+                                })
+                            }
                         }
+
                     } else {
                         wx.showModal({
                             title: '上传失败',
