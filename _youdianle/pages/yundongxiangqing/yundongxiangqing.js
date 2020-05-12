@@ -10,6 +10,7 @@ Page({
     detail: [],
     comment: [],
     comment_detail: [],
+    yibaomingList:[],
 
     isguanzhu: false,
 
@@ -98,7 +99,6 @@ Page({
     })
   },
   bindRadioChange: function (e) {
-    console.log(e)
     this.setData({
       canjiaorguankan: e.currentTarget.dataset.id
     })
@@ -160,6 +160,19 @@ Page({
       }
     });
   },
+  yibaoming(){
+    let url = app.globalData.URL + '/act/listActSignupTopN';
+    let data={
+      actid:this.data.categoryId
+    }
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        yibaomingList: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
   detail() { //页面项目信息
     let url = app.globalData.URL + '/act/findActivity';
     let data = {
@@ -185,7 +198,6 @@ Page({
       this.setData({
         comment: res.data
       });
-      console.log()
       if (self.data.comment.list.length == 0)
         self.setData({
           loading: false,
@@ -292,7 +304,6 @@ Page({
         status: 1,
       };
     app.wxRequest('POST', url, data, (res) => {
-      console.log(res)
       if (self.data.ifzan)
         self.setData({
           ifzan: false,
@@ -361,7 +372,6 @@ Page({
 
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res)
       this.setData({
         shipin: res.data
       })
@@ -370,7 +380,6 @@ Page({
     });
   },
   video_change: function (e) { ////视频切换
-    console.log(e)
     if (this.data.bofang_if_id != e.currentTarget.id) { ///相等表示点击和播放不匹配
       if (this.data.bofang_pid == '0') {
         this.setData({
@@ -520,9 +529,7 @@ Page({
             status: 10,
             creater: self.data.user.id
           }
-        console.log(data)
         util.post_token(url, data).then(function (res) {
-          console.log(res)
           if (res.data.code == 0) {
             wx.showToast({
               title: '报名成功！', // 标题
@@ -540,7 +547,6 @@ Page({
             })
         })
       } else {
-        console.log(1)
         if (self.data.tuanduiSelect.length == 0)
           wx.showToast({
             title: '请选择团队！',
@@ -588,6 +594,7 @@ Page({
       TabCur: options.TabCur,
       options: options
     })
+    this.yibaoming()
     this.rotation()
     this.baomingzhuangtai()
     this.ifguanzhu()
