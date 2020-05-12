@@ -10,9 +10,6 @@ Page({
     index: null,
     url4: [],
     penname: '',
-    picker: ['个人报名', '团体报名'],
-    picker2: ['匿名参赛', '实名参赛'],
-    picker3: ['观看无需报名', '匿名报名观看', '实名报名观看'],
     picker4: ['篮球', '足球', '排球', '羽毛球', '乒乓球', '其他'],
     multiIndex: [0, 0, 0],
     time: '12:01',
@@ -21,10 +18,7 @@ Page({
     region: ['浙江省', '杭州市', '浙江大学'],
     place: ['浙江大学篮球场'],
     imgList: [],
-    imgList2: [],
-    imgList3: [],
-    imgList4: [],
-    imgList5: [],
+    photo:[],
     modalName: null,
     textareaAValue: '',
     textareaBValue: ''
@@ -46,7 +40,9 @@ Page({
     })
   },
   onLoad: function (options) {
-
+    this.setData({
+      actid:options.actid
+    })
   },
   ChooseImage(e) {
     var that = this
@@ -66,7 +62,7 @@ Page({
               imgList: res.tempFilePaths
             })
           }
-          upload.uploadFile(this.data.imgList[this.data.imgList.length - 1], 'rot', that)
+          upload.uploadFile(this.data.imgList[this.data.imgList.length - 1], 'photo', that)
           this.setData({
             loadModal: true
           })
@@ -93,6 +89,10 @@ Page({
         confirmText: '确认删除',
         success: res => {
           if (res.confirm && t == 1) {
+            this.data.photo.splice(e.currentTarget.dataset.index, 1);
+            this.setData({
+              photo: this.data.photo
+            })
             this.data.imgList.splice(e.currentTarget.dataset.index, 1);
             this.setData({
               imgList: this.data.imgList
