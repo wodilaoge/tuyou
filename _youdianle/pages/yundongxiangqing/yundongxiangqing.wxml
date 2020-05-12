@@ -61,7 +61,7 @@
         </view>
         <view class="yundong-content padding-xs" style="margin-bottom:18rpx;">
           <image class="icon-size" style="margin-top:28rpx;" src="/img/icon_title.png" mode="heightFix"></image>
-          <text class="title-text-content" style="margin-top:28rpx;" decode="{{true}}">{{slogan}}</text>
+          <text class="title-text-content" style="margin-top:28rpx;" decode="{{true}}">{{detail.slogan}}</text>
           <block wx:if="{{isguanzhu==false}}">
             <button class="cu-btn line-orange round btn-guanzhu" bindtap="guanzhu">关注</button>
           </block>
@@ -74,7 +74,7 @@
       <view class="bg-white">
         <view class="yibaoming-margin-top margin-left ">
           <text class="yibaoming-text-content">已报名</text>
-          <text class="yibaoming-text-content" style="color:var(--blue)">21/{{detail.signupmax}}</text>
+          <text class="yibaoming-text-content" style="color:var(--blue)">{{detail.entrycount}}/{{detail.signupmax}}</text>
           <text class="yibaoming-text-content">人</text>
           <button class="cu-btn bg-orange round btn-baomingtiaozhan margin-top">报名挑战</button>
         </view>
@@ -104,13 +104,15 @@
     <view class="cu-bar bg-white ">
       <view class="cu-bar-title">奖品设置</view>
     </view>
-    <image src="/img/jiangpin.png" mode="scaleToFill" style="width:700rpx;height:399rpx;"></image>
+    <text>{{detail.award}}</text>
+    <image src="{{detail.awardpic}}" mode="scaleToFill" style="width:700rpx;"></image>
   </view>
   <view class="bg-white padding margin-top">
     <view class="cu-bar bg-white ">
       <view class="cu-bar-title">赞助商</view>
     </view>
-    <image src="/img/zanzhushang.png" mode="scaleToFill" style="width:700rpx;height:200rpx;"></image>
+    <text>{{detail.sponsor}}</text>
+    <image src="{{detail.sponsorpic}}" mode="scaleToFill" style="width:700rpx;"></image>
   </view>
 
   <block>
@@ -175,7 +177,7 @@
 创建时间：20200418
 创建内容：报名-->
 <block wx:if="{{TabCur==1}}">
-  <view class="bg-white margin-top">
+  <view class="bg-white margin-top-sm">
     <view class="cu-bar bg-white padding">
       <view class="cu-bar-title">报名</view>
     </view>
@@ -244,7 +246,7 @@
       <view class="bg-white margin-top padding-top">
         <view class="yibaoming-margin-top margin-left ">
           <text class="yibaoming-text-content">已报名</text>
-          <text class="yibaoming-text-content" style="color:var(--blue)">21/24</text>
+          <text class="yibaoming-text-content" style="color:var(--blue)">{{detail.entrycount}}/{{detail.signupmax}}</text>
           <text class="yibaoming-text-content">人</text>
         </view>
         <view class="yundong-content bg-white">
@@ -259,23 +261,25 @@
     </block>
 
     <block wx:if="{{isbaominggeren==1}}">
-      <view>
-        <image class="img-success " src="/img/img_success.png"></image>
-      </view>
+      <view style="background-color:var(--white)">
+        <view>
+          <image class="img-success " src="/img/img_success.png"></image>
+        </view>
 
-      <view class="flex justify-center">
-        <text class="baoming_text_ok">报名成功</text>
-      </view>
-      <view class="flex justify-center">
-        <text class="baoming_text_wait">请耐心等待活动开始</text>
-      </view>
-      <view class="flex justify-center padding-lg">
-        <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx">取消报名</button>
-      </view>
-      <view class="fenge-bg"></view>
-      <view class="cu-bar bg-white solid-bottom">
-        <view class='action'>
-          <text class='cu-bar-title'>已报名21人</text>
+        <view class="flex justify-center">
+          <text class="baoming_text_ok">报名成功</text>
+        </view>
+        <view class="flex justify-center">
+          <text class="baoming_text_wait">请耐心等待活动开始</text>
+        </view>
+        <view class="flex justify-center padding-lg">
+          <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx">取消报名</button>
+        </view>
+        <view class="fenge-bg"></view>
+        <view class="cu-bar bg-white solid-bottom">
+          <view class='action'>
+            <text class='cu-bar-title'>已报名21人</text>
+          </view>
         </view>
       </view>
     </block>
@@ -341,7 +345,7 @@
       <view class="bg-white margin-top padding-top">
         <view class="yibaoming-margin-top margin-left ">
           <text class="yibaoming-text-content">已报名</text>
-          <text class="yibaoming-text-content" style="color:var(--blue)">21/24</text>
+          <text class="yibaoming-text-content" style="color:var(--blue)">{{detail.entrycount}}/{{detail.signupmax}}</text>
           <text class="yibaoming-text-content">人</text>
         </view>
         <view class="yundong-content bg-white">
@@ -654,7 +658,7 @@
           <image class="img-icon" src="/img/icon_fabulous.png"></image>
         </view>
         <view class="action">
-          <image class="img-icon" src="/img/icon_share.png"></image>
+          <image class="img-icon" src="/img/icon_upload_photos.png"></image>
         </view>
       </view>
     </view>
@@ -982,7 +986,7 @@
 <!--
 创建者：陈雨豪
 创建时间：20200420
-创建内容：资讯-->
+创建内容：资讯
 <block wx:if="{{TabCur==6}}">
   <view class="bg-white padding huodong-margin-top">
     <text class="cu-bar-title">活动新闻</text>
@@ -1073,4 +1077,4 @@
       </view>
     </view>
   </view>
-</block>
+</block>-->
