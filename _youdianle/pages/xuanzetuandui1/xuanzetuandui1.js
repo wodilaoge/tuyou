@@ -16,6 +16,17 @@ Page({
       VerticalNavTop: (e.currentTarget.dataset.id - 1) * 50
     })
   },
+  tabSelectTeam(e) {
+    console.log(e.currentTarget.dataset.item)
+    var pages = getCurrentPages();
+    var prevPage = pages[pages.length - 2];  //上一个页面
+    prevPage.setData({
+      tuanduiSelect: e.currentTarget.dataset.item
+    });
+    wx.navigateBack({
+      delta: 1
+    })
+  },
   VerticalMain(e) {
     let self = this;
     let list = this.data.list;
@@ -54,6 +65,7 @@ Page({
       lid:self.data.lid
     }
     app.wxRequest('GET', url, data, (res) => {
+      console.log(res.data)
       self.setData({
         teams: res.data
       })
@@ -73,6 +85,7 @@ Page({
     self.setData({
       lid: options.lid
     })
+    self.getteams()
     let list = [{}];
     for (let i in this.data.YundongList) {
       list[i] = {};

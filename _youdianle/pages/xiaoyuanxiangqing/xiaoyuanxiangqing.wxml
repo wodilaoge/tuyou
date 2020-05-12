@@ -307,7 +307,7 @@
             </view>
             <view class="cu-form-group ">
               <view class="title">报名团队</view>
-              <input class="form-text" placeholder='点击选择团队' bindtap="xuanzetuandui" value="{{tuanduiSelect}}" disable></input>
+              <input class="form-text" placeholder='点击选择团队' bindtap="xuanzetuandui" value="{{tuanduiSelect.name}}" disable></input>
             </view>
           </form>
         </view>
