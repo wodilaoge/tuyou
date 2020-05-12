@@ -6,6 +6,7 @@
     "pages/form_team/form_team",
     "pages/form_picture/form_picture",
     "pages/form_video/form_video",
+    "pages/form_actid_video/form_actid_video",
     "pages/form_launch/form_launch",
     "pages/form_activity/form_activity",
     "pages/form_modify/form_modify",

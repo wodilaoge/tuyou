@@ -7,6 +7,7 @@ Page({
     group: 0,
     videonum: 0,
     index: null,
+    actid:'',
     picker4: ['篮球', '足球', '排球', '羽毛球', '乒乓球', '其他'],
     multiIndex: [0, 0, 0],
     fileName: '',
@@ -52,7 +53,7 @@ Page({
       date: e.detail.value
     })
   },
-  RegionChange: function(e) {
+  RegionChange: function (e) {
     this.setData({
       region: e.detail.value
     })
@@ -94,12 +95,12 @@ Page({
       textareaBValue: e.detail.value
     })
   },
-  toForm_modify: function(e) {
+  toForm_modify: function (e) {
     wx.navigateTo({
       url: "../../pages/form_modify/form_modify"
     })
   },
-  commit: function(e) {
+  commit: function (e) {
     var user = wx.getStorageSync('userInfo')
     let pro = wx.getStorageSync('province')
     let city = wx.getStorageSync('city')
@@ -108,7 +109,7 @@ Page({
     var data = this.data
     var data = {
       id: null,
-      actid: '',
+      actid: this.data.actid,
       sid: null,
       acid1: null,
       acid2: null,
@@ -118,20 +119,20 @@ Page({
       authorHead: user.head,
       fileId: this.data.video,
       notes: this.data.notes,
-      univ:pro.code,
-      province:city.code,
-      city:school.code,
+      univ: pro.code,
+      province: city.code,
+      city: school.code,
       status: '10',
-      creater: user.id,
+      creater:user.id,
       mender: ''
     }
-    util.post_token(url, data).then(function(res) {
+    util.post_token(url, data).then(function (res) {
       if (!res.data.code) {
         wx.showToast({
           title: '提交成功',
           duration: 2000,
-          success: function() {
-            setTimeout(function() {
+          success: function () {
+            setTimeout(function () {
               wx.reLaunch({
                 url: '/pages/index/index',
               })
@@ -147,7 +148,7 @@ Page({
           duration: 2000
         })
       }
-    }).catch(function(res) {
+    }).catch(function (res) {
       console.log(res)
       wx.showToast({
         title: '提交失败！',
@@ -160,11 +161,11 @@ Page({
       modalName: e.currentTarget.dataset.target
     })
   },
-  getSignature: function(callback) {
+  getSignature: function (callback) {
     wx.request({
       url: 'http://192.144.169.239:8080/kt/config/getVodSignatureV2',
       dataType: 'json',
-      success: function(res) {
+      success: function (res) {
         console.log(`data`, res.data);
         console.log(`data`, res.data.code);
         console.log(`data`, res.data.data);
@@ -178,12 +179,16 @@ Page({
       }
     });
   },
-  inputChange: function(evt) {
+  inputChange: function (evt) {
     this.setData({
       fileName: evt.detail.value
     })
   },
-
+  onLoad: function (options) {
+    this.setData({
+      actid: options.actid
+    })
+  },
   startUpload() {
     const self = this;
     VodUploader.start({
@@ -193,11 +198,11 @@ Page({
 
       mediaName: self.data.fileName, //选填，视频名称，强烈推荐填写(如果不填，则默认为“来自微信小程序”)
       coverFile: self.data.coverFile, // 选填，视频封面
-      success: function(result) {
+      success: function (result) {
         console.log('success');
         console.log(result);
       },
-      error: function(result) {
+      error: function (result) {
         console.log('error');
         console.log(result);
         wx.showModal({
@@ -206,14 +211,14 @@ Page({
           showCancel: false
         });
       },
-      progress: function(result) {
+      progress: function (result) {
         console.log('progress');
         console.log(result);
         wx.showLoading({
           title: '上传中 ' + result.percent * 100 + '%',
         });
       },
-      finish: function(result) {
+      finish: function (result) {
         console.log('finish');
         console.log(result);
         wx.hideLoading()
@@ -229,13 +234,13 @@ Page({
       }
     });
   },
-  chooseVideo: function(e) {
+  chooseVideo: function (e) {
     const self = this;
     wx.chooseVideo({
       sourceType: ['album', 'camera'],
       compressed: true,
       maxDuration: 60,
-      success: function(file) {
+      success: function (file) {
         self.setData({
           videoFile: file
         })
