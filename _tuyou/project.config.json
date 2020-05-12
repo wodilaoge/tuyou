@@ -6,6 +6,7 @@
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
+		"enhance": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
@@ -20,17 +21,20 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		},
-		"enhance": true
+		}
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.4.2",
 	"appid": "wxe28bb23826f3d9d8",
 	"projectname": "_tuyou",
+	"cloudfunctionTemplateRoot": "",
+	"watchOptions": {
+		"ignore": []
+	},
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
-	"isGameTourist": false,
+	"scripts": {},
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {
@@ -47,7 +51,6 @@
 			"list": []
 		},
 		"game": {
-			"currentL": -1,
 			"list": []
 		},
 		"gamePlugin": {
@@ -206,8 +209,9 @@
 				},
 				{
 					"id": -1,
-					"name": "按id发视频",
-					"pathName": "pages/form_actid_video/form_actid_video",
+					"name": "pages/form_address/form_address",
+					"pathName": "pages/form_address/form_address",
+					"query": "",
 					"scene": null
 				},
 				{

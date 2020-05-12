@@ -1,7 +1,7 @@
 
 .menu-item {
   width: 33%;
-  padding: 5px;
+  padding: 20rpx;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -9,7 +9,9 @@
 }
 
 .menu-name {
-  text-align: center;
+  /* text-align: center; */
+  position: relative;
+  left: 90rpx;
 }
 
 .menu-name2 {
@@ -18,9 +20,10 @@
 }
 
 .menu-img {
-  width: 222rpx;
-  height: 222rpx;
+  width: 180rpx;
+  height: 180rpx;
   padding: 20rpx;
+  left: 40rpx;
   margin-left: 5rpx;
 }
 
