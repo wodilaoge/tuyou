@@ -155,9 +155,7 @@ Page({
     var self = this;
     new Promise(function(resolve, reject) {
       setTimeout(function() {
-        while (self.data.loading == true) {
-          console.log("wait")
-        }
+        
       }, 1000)
       resolve();
     })
