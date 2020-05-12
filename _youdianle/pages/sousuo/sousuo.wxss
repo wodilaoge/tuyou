@@ -1,6 +1,6 @@
 /* pages/sousuo/sousuo.wxss */
 @import "../xiaoyuan/xiaoyuan.wxss";
-
+@import "../index/index.wxss";
 .top {
   background-color: #5454ff;
   height: 80rpx;

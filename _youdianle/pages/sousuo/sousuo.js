@@ -1,4 +1,5 @@
 // pages/sousuo/sousuo.js
+const app = getApp();
 Page({
 
   /**
@@ -7,6 +8,10 @@ Page({
   data: {
     TabCur: 6,
     change_if: 0,
+    sousuo_neirong: '',
+    sousuo_detail: [],
+    hotWords: [],
+
   },
   tabSelect(e) {
     this.setData({
@@ -18,12 +23,44 @@ Page({
     this.setData({
       change_if: 1,
     })
+      let url = app.globalData.URL + '/search/listAll';
+      let data = {
+        keywords: this.data.sousuo_neirong
+      };
+      app.wxRequest('GET', url, data, (res) => {
+        console.log(res)
+        this.setData({
+          sousuo_detail: res.data
+        })
+      }, (err) => {
+        console.log(err.errMsg)
+      });
+   
   },
+  value_sousuo: function(res) {
+    console.log(res)
+    this.setData({
+      sousuo_neirong: res.detail.value,
+    })
+  },
+  getHotWords:function() {
+    let url = app.globalData.URL + '/search/listHotWords';
+    let data ={}
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res)
+      this.setData({
+        hotWords: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+  this.getHotWords()
   },
 
   /**
