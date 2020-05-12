@@ -481,11 +481,9 @@ Page({
     var self = this;
     return new Promise(function(resolve, reject) {
       setTimeout(function() {
-        while (self.data.loading == true) {
-          console.log("wait")
-        }
+      
         resolve();
-      }, 1500)
+      }, 1000)
     })
   },
   onLoad: async function(options) { //读取活动对应id

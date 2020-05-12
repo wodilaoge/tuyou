@@ -154,8 +154,9 @@ Page({
       })
       if(res.data.data.length!=0)
       {
-        let flag=true;
-        for(let i in res.data.data){}
+        self.setData({
+          rotationhide:false
+        })
       }
     });
   },
@@ -587,6 +588,7 @@ Page({
       TabCur: options.TabCur,
       options: options
     })
+    this.rotation()
     this.baomingzhuangtai()
     this.ifguanzhu()
     this.ifzan()
