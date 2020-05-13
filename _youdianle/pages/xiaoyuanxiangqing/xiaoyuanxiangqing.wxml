@@ -137,9 +137,9 @@
     </view>
   </block>
 
-  <view>
+  <view wx:if="{{!chooseSize}}">
     <view class="cu-bar input foot padding">
-      <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！' bindtap="pinluntiaozhuan"></input>
+      <image class="img-input" mode="scaleToFill" src="/img/input.png" bindtap="chooseSezi"></image>
       <view class="action">
         <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
       </view>
@@ -149,6 +149,14 @@
       <view class="action">
         <image class="img-icon" mode="aspectFit" src="/img/icon_share.png"></image>
       </view>
+    </view>
+  </view>
+  <!--隐藏区域  -->
+  <view class="modals modals-bottom-dialog" hidden="{{!chooseSize}}">
+    <view class="modals-cancel" bindtap="hideModal"></view>
+    <view class="bottom-dialog-body bottom-pos" animation="{{animationData}}" style="display:flex">
+      <textarea focus="true" class="form-text2" value="{{Input}}" maxlength="-1" style="width:550rpx;height:350rpx" bindinput="emailInput"></textarea>
+      <button class="cu-btn bg-orange shadow-blur padding-sm margin-left-sm" bindtap="pd_fasong">发送</button>
     </view>
   </view>
 </block>

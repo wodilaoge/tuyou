@@ -231,6 +231,13 @@
 					"pathName": "pages/MyPages/my_team/my_team",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/baoming/baoming",
+					"pathName": "pages/baoming/baoming",
+					"query": "lid=11878394752925696",
+					"scene": null
 				}
 			]
 		}
