@@ -4,6 +4,13 @@ page {
   letter-spacing:2rpx;
 }
 
+/*模态框*/
+.modals{position:fixed; z-index: 999; top:0; left: 0; right:0; bottom: 0;}
+.modals-cancel{position:absolute; z-index:1000; top:0; left: 0; right:0; bottom: 0; background-color: rgba(0,0,0,.5);}
+.bottom-dialog-body{position:absolute; z-index:10001; bottom:0; left:0; right:0; padding:30rpx; height:400rpx; background-color: #fff;}
+/*动画前初始位置*/
+.bottom-pos{-webkit-transform:translateY(100%);transform:translateY(100%);}
+
 .basis-30 {
   flex-basis: 30%;
   flex-wrap: wrap；;
@@ -105,7 +112,6 @@ page {
 }
 
 .form-text2 {
-  text-align: left;
   background-color: #f8f9fd;
   border-radius: 36rpx;
   font-size: 32rpx;
@@ -196,6 +202,9 @@ page {
 .img-icon {
   width: 40rpx;
   height: 40rpx;
+}
+.img-input {
+  height: 60rpx;
 }
 
 /*完成报名-----------------------*/

@@ -2,6 +2,10 @@ const app = getApp();
 var util = require("../../utils/util.js");
 Page({
   data: {
+    chooseSize: false,
+    animationData: {},
+    Input: "",
+
     options: [],
     TabCur: 0,
     paimingCur: 0,
@@ -21,6 +25,8 @@ Page({
     canjiaorguankan: 10,
     huodongfenzu: [],
     fenzuhide: false,
+    tuanduiSelect: [],
+    members: [],
 
     likecount: 0,
     ifzan: false,
@@ -77,12 +83,123 @@ Page({
     }]
 
   },
+  //发布评论
+  chooseSezi: function (e) {
+    var that = this;
+    // 创建一个动画实例
+    var animation = wx.createAnimation({
+      // 动画持续时间
+      duration: 500,
+      // 定义动画效果，当前是匀速
+      timingFunction: 'linear'
+    })
+    // 将该变量赋值给当前动画
+    that.animation = animation
+    // 先在y轴偏移，然后用step()完成一个动画
+    animation.translateY(200).step()
+    // 用setData改变当前动画
+    that.setData({
+      // 通过export()方法导出数据
+      animationData: animation.export(),
+      // 改变view里面的Wx：if
+      chooseSize: true
+    })
+    // 设置setTimeout来改变y轴偏移量，实现有感觉的滑动
+    setTimeout(function () {
+      animation.translateY(0).step()
+      that.setData({
+        animationData: animation.export()
+      })
+    }, 200)
+  },
+  hideModal: function (e) {
+    var that = this;
+    var animation = wx.createAnimation({
+      duration: 1000,
+      timingFunction: 'linear'
+    })
+    that.animation = animation
+    animation.translateY(200).step()
+    that.setData({
+      animationData: animation.export()
+
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      that.setData({
+        animationData: animation.export(),
+        chooseSize: false
+      })
+    }, 200)
+  },
+  emailInput: function (e) { //input输入
+    this.setData({
+      Input: e.detail.value
+    });
+  },
+  //评论
+  pd_fasong() {
+    if (this.data.Input == "") {
+      wx.showToast({
+        title: '请输入回复内容', // 标题
+        icon: 'none',
+        duration: 1500 // 提示窗停留时间，默认1500ms
+      })
+    } else {
+      this.fasong()
+    }
+  },
+  fasong() { //发送按钮
+    var self = this;
+    let url = app.globalData.URL + '/comm/addComment';
+    let data = {
+      pid: null,
+      objtype: 30,
+      objid: self.data.categoryId,
+      objtitle: "",
+      comment: self.data.Input,
+      creater: self.data.user.id,
+      createrAlias: self.data.user.nickname,
+      createrHead: self.data.user.head
+    };
+    app.wxRequest('POST', url, data, (res) => {
+      self.onLoad(self.data.options);
+      wx.showToast({
+        title: '评论成功！', // 标题
+        icon: 'success', // 图标类型，默认success
+        duration: 1500 // 提示窗停留时间，默认1500ms
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+    self.setData({
+      Input: '',
+    })
+    self.hideModal()
+  },
+  ////////////////
   cardSwiper(e) {
     this.setData({
       cardCur: e.detail.current
     })
   },
-
+  xuanzetuandui() {
+    wx.navigateTo({
+      url: '/pages/xuanzetuandui1/xuanzetuandui1?lid=' + this.data.user.id,
+    })
+  },
+  baomingSelect(e) {
+    if (e.currentTarget.dataset.id == 0)
+      this.setData({
+        baomingCur: e.currentTarget.dataset.id,
+        canjiaorguankan: 10,
+      })
+    else
+      this.setData({
+        baomingCur: e.currentTarget.dataset.id,
+        canjiaorguankan: 20,
+      })
+  },
   tabSelect(e) {
     this.setData({
       TabCur: e.currentTarget.dataset.id,
@@ -128,6 +245,11 @@ Page({
     }, (err) => {
       console.log(err.errMsg)
     });
+  },
+  chakanhuifu: function (e) { //查看回放跳转
+    wx.navigateTo({
+      url: '/pages/chakanhuifu/chakanhuifu?id=' + e.currentTarget.dataset.id,
+    })
   },
   getZhaopian() { //照片
     let url = app.globalData.URL + '/photo/listActPhoto';
@@ -182,6 +304,21 @@ Page({
       this.setData({
         detail: res.data
       })
+      if (this.data.detail.signupway == "30")
+        this.setData({
+          signupway: false,
+          baomingCur: 0
+        })
+      else if (this.data.detail.signupway == "10")
+        this.setData({
+          signupway: true,
+          baomingCur: 0
+        })
+      else if (this.data.detail.signupway == "20")
+        this.setData({
+          signupway: true,
+          baomingCur: 1
+        })
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -243,7 +380,6 @@ Page({
     let url = app.globalData.URL + '/act/listActGroup';
     let data = {
       actid: self.data.categoryId,
-      signup: true
     }
     util.gets(url, data).then(function (res) {
       self.setData({
@@ -589,10 +725,27 @@ Page({
               creater: self.data.user.id,
               members: self.data.members,
             }
+          util.post_token(url, data).then(function (res) {
+            console.log(res)
+            if (res.data.code == 0) {
+              wx.showToast({
+                title: '报名成功！', // 标题
+                icon: 'success', // 图标类型，默认success
+                duration: 1500 // 提示窗停留时间，默认1500ms
+              })
+              self.setData({
+                isbaomingtuandui: 1
+              })
+            } else
+              wx.showToast({
+                title: '报名失败！',
+                image: '/img/fail.png',
+                duration: 1000,
+              })
+          })
         }
       }
     }
-
   },
   /**
    * 生命周期函数--监听页面加载
@@ -604,6 +757,7 @@ Page({
       TabCur: options.TabCur,
       options: options
     })
+    this.detail()
     this.yibaoming()
     this.rotation()
     this.baomingzhuangtai()
@@ -611,7 +765,6 @@ Page({
     this.ifzan()
     this.comment()
     this.fenzu()
-    this.detail()
     this.news()
     this.news_detail()
     this.getShipin()

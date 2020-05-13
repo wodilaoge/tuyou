@@ -11,7 +11,7 @@
   right: -11rpx;
 }
 .icon2{
-  position: fixed;
+  position: relative;
   width: 40rpx;
   height: 40rpx;
   /* top: 64rpx;
@@ -31,5 +31,5 @@
   margin-top: 10rpx;
 }
 .margin-r{
-  right: 70rpx;
+  left: 160rpx;
 }

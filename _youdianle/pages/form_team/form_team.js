@@ -4,8 +4,10 @@ var upload = require("../../utils/upload.js");
 
 Page({
   data: {
+    isaddress:false,
     group: 0,
-    index: null,
+    indexbig: 0,
+    index: 0,
     number: 50,
     name: '',
     article: '',
@@ -29,10 +31,46 @@ Page({
     provinceList: [],
     citys: [],
     school: [],
+    pickerbig: [],
+    picker2: ['篮球', '足球', '羽毛球', '乒乓球', '网球'],
     picker4: ['篮球', '足球', '羽毛球', '乒乓球', '网球'],
     imgList: [],
     modalName: null,
-    other: []
+    other: [],
+    information:[],
+    sid:'',
+    acid1:''
+  },
+
+  PickerChange2(e) { //活动大类
+    this.setData({
+      index: e.detail.value
+    })
+    let v = this.data.picker2[this.data.index].code
+    this.setData({
+      acid1: v
+    });
+    this.getthird(this.data.information.acid1)
+  },
+  PickerChangebig(e) { //活动板块
+    this.setData({
+      indexbig: e.detail.value
+    })
+    let v = this.data.pickerbig[this.data.indexbig].code
+    this.setData({
+      sid: v
+    });
+    this.gettwo(v)
+  },
+  PickerChangetiny(e) { //活动小类
+    let t = 'information.acid2'
+    this.setData({
+      indextiny: e.detail.value
+    })
+    let v = this.data.pickertiny[this.data.indextiny].code
+    this.setData({
+      [t]: v
+    });
   },
   PickerPro(e) {
     let t = 'province'
@@ -60,6 +98,18 @@ Page({
     this.setData({
       indexs: e.detail.value,
       [t]: this.data.school[this.data.indexs].code
+    })
+  },
+  gettwo(code) {
+    var that = this
+    let url = app.globalData.URL + '/config/getActivityClass1';
+    let data = {
+      'sid': code
+    };
+    util.gets(url, data).then(function (res) {
+      that.setData({
+        picker2: res.data.data
+      })
     })
   },
   school(pid) {
@@ -237,8 +287,8 @@ Page({
     var data = this.data
     var data = {
       lid: user.id,
-      sid: "076003",
-      acid1: "076002001",
+      sid: data.sid,
+      acid1: data.acid1,
       name: data.name,
       summary: data.article,
       logo: data.other[0],
@@ -298,6 +348,14 @@ Page({
     });
   },
   onLoad() {
+    var that=this
     this.province();
+
+    let url = app.globalData.URL + '/config/getActivitySection';
+    util.gets(url, {}).then(function (res) {
+      that.setData({
+        pickerbig: res.data.data
+      })
+    })
   },
 })

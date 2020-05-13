@@ -1,13 +1,13 @@
 const app = getApp();
+var util = require("../../utils/util.js");
 Page({
   data: {
     TabCur: 0,
     VerticalNavTop: 0,
     MainCur: 0,
-    YundongList: app.globalData.YundongList ,
     list: [],
-    teams:[],
-    lid:'',
+    lid: '',
+    isload:true
   },
   tabSelect(e) {
     this.setData({
@@ -19,7 +19,7 @@ Page({
   tabSelectTeam(e) {
     console.log(e.currentTarget.dataset.item)
     var pages = getCurrentPages();
-    var prevPage = pages[pages.length - 2];  //上一个页面
+    var prevPage = pages[pages.length - 2]; //上一个页面
     prevPage.setData({
       tuanduiSelect: e.currentTarget.dataset.item
     });
@@ -58,51 +58,63 @@ Page({
       }
     }
   },
-  getteams(){
-    var self=this
-    let url = app.globalData.URL + '/team/listByLeader'
-    let data={
-      lid:self.data.lid
+  getteams() {
+    var self = this
+    var list
+    let url = app.globalData.URL + '/team/listAcid1ByLeader'
+    let data = {
+      lid: self.data.lid
     }
-    app.wxRequest('GET', url, data, (res) => {
-      console.log(res.data)
-      self.setData({
-        teams: res.data
-      })
-    }, (err) => {
-      console.log(err.errMsg)
-    });
+    util.gets(url, data).then(function(res) {
+      list = res.data.data
+      url = app.globalData.URL + '/team/listByLeader'
+      for (let i in list) {
+        data = {
+          lid: self.data.lid,
+          acid1: list[i].code
+        }
+        util.gets(url, data).then(function(res) {
+          list[i]["teams"] = res.data.data
+        }).then(function () {
+          self.setData({
+            list: list
+          })
+        })
+      }
+    })
+  },
+  TBcontroll() { //同步控制
+    var self = this;
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        self.setData({
+          isload: false
+        })
+        resolve();
+      }, 1000)
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: async function(options) {
     let self = this;
-    wx.showLoading({
-      title: '加载中...',
-      mask: true
-    });
     self.setData({
       lid: options.lid
     })
     self.getteams()
-    let list = [{}];
-    for (let i in this.data.YundongList) {
-      list[i] = {};
-      list[i].name = this.data.YundongList[i].name;
-      list[i].id = i;
-    }
-    this.setData({
-      list: list,
-      listCur: list[0]
-    })
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    });
+    await self.TBcontroll()
+    wx.hideLoading()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    wx.hideLoading()
   },
 
   /**

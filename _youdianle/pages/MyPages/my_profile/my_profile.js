@@ -289,7 +289,7 @@ Page({
       province: tmp.province,
       city: tmp.city,
       univ: tmp.univ,
-      univname: tmp.univname,
+      univname: tmp.univshort,
       univshort: tmp.univshort,
       major: tmp.major,
       studentno: tmp.studentno,
@@ -300,8 +300,7 @@ Page({
       actrole: tmp.actrole,
       speciality: tmp.speciality,
       slogan: tmp.slogan,
-      workunit: tmp.workunit,
-      creater: ""
+      workunit: tmp.workunit
     }
     util.post_token(url, data).then(function (res) {
       console.log(res.data)
@@ -319,7 +318,7 @@ Page({
         })
       } else {
         wx.showToast({
-          title: '提交失败!',
+          title: res.data.msg,
           image: '/img/fail.png',
           icon: 'success',
           duration: 2000

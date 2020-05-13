@@ -537,7 +537,7 @@ Page({
     this.getuploadinfo(); //获取上传文件信息
     this.setData({
       info: t,
-      opinion3: (parseInt(this.data.info.way) + 1) * 10
+      opinion3: (parseInt(t.way) + 1) * 10
     })
   },
   onReady: function() {

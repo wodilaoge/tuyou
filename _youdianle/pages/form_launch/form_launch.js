@@ -19,6 +19,7 @@ Page({
       entrylimit: 50,
       ischecked: false,
     },
+    isaddress:false,
     index: 0, //活动方式
     indexbig:0,
     indextiny:0,
@@ -36,6 +37,9 @@ Page({
     picker2: ['篮球', '足球', '羽毛球', '乒乓球', '网球'],
     multiIndex: [0, 0, 0],
     region: ['浙江省', '杭州市', '浙江大学'],
+    pro:'',
+    city:'',
+    schoolinfo:''
   },
 
   PickerChange(e) { //报名方式
@@ -252,11 +256,28 @@ Page({
       })
     })
   },
+  tochooseadress(e){
+    console.log('address')
+    wx.navigateTo({
+      url: '/pages/form_address/form_address',
+    })
+  },
   onLoad() {
     this.province();
     var that = this
-    let url = app.globalData.URL + '/config/getActivitySection';
 
+    let pro = wx.getStorageSync('province')
+    let city = wx.getStorageSync('city')
+    let schoolinfo = wx.getStorageSync('school')
+    if (schoolinfo) {
+      this.setData({
+        pro:pro,
+        city:city,
+        schoolinfo:schoolinfo,
+        isaddress: true
+      })
+    }
+    let url = app.globalData.URL + '/config/getActivitySection';
     util.gets(url, {}).then(function (res) {
       that.setData({
         pickerbig: res.data.data
