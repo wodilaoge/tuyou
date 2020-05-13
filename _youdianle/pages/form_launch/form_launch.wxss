@@ -29,3 +29,7 @@
 .margin-top3{
   margin-top: 10rpx;
 }
+.right{
+  position: relative;
+  left: 120rpx;
+}

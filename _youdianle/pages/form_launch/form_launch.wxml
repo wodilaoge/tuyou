@@ -72,6 +72,12 @@
       </view>
     </picker>
   </view>
+    <view class="cu-form-group" bindtap="tochooseadress">
+    <view class="title ">地址</view>
+    <view class="text-right text-content text-grey right">{{pro.name}}{{city.name}}{{schoolinfo.name}}</view>
+    <!-- <input class="input text-grey" placeholder="体育馆" bindinput="getvenue"></input> -->
+    <image class="icon" src="../../img/write.png"></image>
+  </view>
   <view class="cu-form-group">
     <view class="title ">场馆</view>
     <input class="input text-grey" placeholder="体育馆" bindinput="getvenue"></input>
