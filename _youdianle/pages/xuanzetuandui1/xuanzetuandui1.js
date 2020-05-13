@@ -75,12 +75,12 @@ Page({
         }
         util.gets(url, data).then(function(res) {
           list[i]["teams"] = res.data.data
+        }).then(function () {
+          self.setData({
+            list: list
+          })
         })
       }
-    }).then(function() {
-      self.setData({
-        list: list
-      })
     })
   },
   TBcontroll() { //同步控制

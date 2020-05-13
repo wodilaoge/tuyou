@@ -24,7 +24,7 @@
   <view class="cu-item {{3==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="3"> 照片 </view>
   <view class="cu-item {{4==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="4"> 排名 </view>
   <view class="cu-item {{5==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="5"> 数据</view>
-  <!--<view class="cu-item {{6==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="6"> 资讯</view>-->
+  <!--<view class="cu-item {{6==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="6"> 资讯</view>--> 
 </scroll-view>
 
 <block wx:if="{{TabCur==0}}">

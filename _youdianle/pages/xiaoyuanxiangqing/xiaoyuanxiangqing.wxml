@@ -260,11 +260,11 @@
           <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx">取消报名</button>
         </view>
         <view class="fenge-bg"></view>
-        <view class="cu-bar bg-white solid-bottom">
+        <!--<view class="cu-bar bg-white solid-bottom">
           <view class='action'>
             <text class='cu-bar-title'>已报名21人</text>
           </view>
-        </view>
+        </view>-->
       </block>
     </block>
     <block wx:if="{{baomingCur==1}}">
