@@ -117,7 +117,9 @@
                     <button class="cu-btn btn-hot bg-orange disabled" wx:if="{{item.hot}}">热门</button>
                   </view>
                   <view class="text-gray text-sm">
-                    <text class="{{false==item.ifzan?'cuIcon-appreciate':'cuIcon-appreciatefill'}} margin-lr-xs line" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}'></text> {{item.praiseCnt}}
+                    <image wx:if="{{false==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}' src="/img/weidianzan.png" mode="scaleToFill" style="width:24rpx;height:24rpx"></image>
+                    <image wx:if="{{true==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}' src="/img/yidianzan.png" mode="scaleToFill" style="width:24rpx;height:24rpx"></image>
+                     {{item.praiseCnt}}
                     <text class="cuIcon-appreciate margin-lr-xs "></text> {{item.degradeCnt}}
                   </view>
                 </view>
@@ -144,19 +146,11 @@
         <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
       </view>
       <view class="action">
-        <image class="img-icon" mode="aspectFit" style="margin-right:10rpx" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
+        <image class="img-icon" mode="aspectFit" style="margin-left:5rpx" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
       </view>
       <view class="action">
         <image class="img-icon" mode="aspectFit" src="/img/icon_share.png"></image>
       </view>
-    </view>
-  </view>
-  <!--隐藏区域  -->
-  <view class="modals modals-bottom-dialog" hidden="{{!chooseSize}}">
-    <view class="modals-cancel" bindtap="hideModal"></view>
-    <view class="bottom-dialog-body bottom-pos" animation="{{animationData}}" style="display:flex">
-      <textarea focus="true" class="form-text2" value="{{Input}}" maxlength="-1" style="width:550rpx;height:350rpx" bindinput="emailInput"></textarea>
-      <button class="cu-btn bg-orange shadow-blur padding-sm margin-left-sm" bindtap="pd_fasong">发送</button>
     </view>
   </view>
 </block>
@@ -423,7 +417,9 @@
                       <button class="cu-btn btn-hot bg-orange disabled" wx:if="{{item.hot}}">热门</button>
                     </view>
                     <view class="text-gray text-sm">
-                      <text class="{{false==item.ifzan?'cuIcon-appreciate':'cuIcon-appreciatefill'}} margin-lr-xs line" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}'></text> {{item.praiseCnt}}
+                      <image wx:if="{{false==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}' src="/img/weidianzan.png" mode="scaleToFill" style="width:24rpx;height:24rpx"></image>
+                    <image wx:if="{{true==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}' src="/img/yidianzan.png" mode="scaleToFill" style="width:24rpx;height:24rpx"></image>
+                    {{item.praiseCnt}}
                       <text class="cuIcon-appreciate margin-lr-xs "></text> {{item.degradeCnt}}
                     </view>
                   </view>
@@ -730,7 +726,9 @@
                     <button class="cu-btn btn-hot bg-orange disabled" wx:if="{{item.hot}}">热门</button>
                   </view>
                   <view class="text-gray text-sm">
-                    <text class="{{false==item.ifzan?'cuIcon-appreciate':'cuIcon-appreciatefill'}} margin-lr-xs line" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}'></text> {{item.praiseCnt}}
+                    <image wx:if="{{false==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}' src="/img/weidianzan.png" mode="scaleToFill" style="width:24rpx;height:24rpx"></image>
+                    <image wx:if="{{true==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}' src="/img/yidianzan.png" mode="scaleToFill" style="width:24rpx;height:24rpx"></image>
+                    {{item.praiseCnt}}
                     <text class="cuIcon-appreciate margin-lr-xs "></text> {{item.degradeCnt}}
                   </view>
                 </view>
@@ -750,9 +748,9 @@
     </view>
   </block>
 
-  <view>
+  <view wx:if="{{!chooseSize}}">
     <view class="cu-bar input foot padding">
-      <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！' bindtap="pinluntiaozhuan"></input>
+      <image class="img-input" mode="scaleToFill" src="/img/input.png" bindtap="chooseSezi"></image>
       <view class="action">
         <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
       </view>
@@ -932,3 +930,13 @@
     <button class="shuju-btn1 bg-orange round" style="width: 668rpx; height: 80rpx;">提交并结束本场活动</button>
   </view>
 </block>
+
+
+  <!--隐藏区域  -->
+  <view class="modals modals-bottom-dialog" hidden="{{!chooseSize}}">
+    <view class="modals-cancel" bindtap="hideModal"></view>
+    <view class="bottom-dialog-body bottom-pos" animation="{{animationData}}" style="display:flex">
+      <textarea focus="true" class="form-text2" value="{{Input}}" maxlength="-1" style="width:550rpx;height:350rpx" bindinput="emailInput"></textarea>
+      <button class="cu-btn bg-orange shadow-blur padding-sm margin-left-sm" bindtap="pd_fasong">发送</button>
+    </view>
+  </view>
