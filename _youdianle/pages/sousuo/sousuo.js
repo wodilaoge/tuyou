@@ -20,22 +20,28 @@ Page({
     })
   },
   change_sousuo() {
-    this.setData({
-      change_if: 1,
-    })
-      let url = app.globalData.URL + '/search/listAll';
-      let data = {
-        keywords: this.data.sousuo_neirong
-      };
-      app.wxRequest('GET', url, data, (res) => {
-        console.log(res)
-        this.setData({
-          sousuo_detail: res.data
-        })
-      }, (err) => {
-        console.log(err.errMsg)
-      });
-   
+    if (this.data.sousuo_neirong) {
+      this.setData({
+        change_if: 1,
+      })
+    } else {
+      this.setData({
+        change_if: 0,
+      })
+    }
+    let url = app.globalData.URL + '/search/listAll';
+    let data = {
+      keywords: this.data.sousuo_neirong
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res)
+      this.setData({
+        sousuo_detail: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+
   },
   value_sousuo: function(res) {
     console.log(res)
@@ -43,9 +49,9 @@ Page({
       sousuo_neirong: res.detail.value,
     })
   },
-  getHotWords:function() {
+  getHotWords: function() {
     let url = app.globalData.URL + '/search/listHotWords';
-    let data ={}
+    let data = {}
     app.wxRequest('GET', url, data, (res) => {
       console.log(res)
       this.setData({
@@ -60,7 +66,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-  this.getHotWords()
+    this.getHotWords()
   },
 
   /**
