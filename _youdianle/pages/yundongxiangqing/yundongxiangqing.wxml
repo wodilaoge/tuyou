@@ -11,7 +11,7 @@
 <view hidden="{{rotationhide}}">
   <swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
     <swiper-item wx:for="{{swiperList}}" wx:key>
-      <image src="{{item.rotation}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+      <image src="{{item.rotation}}" mode="aspectFill"></image>
       <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
     </swiper-item>
   </swiper>
@@ -24,7 +24,7 @@
   <view class="cu-item {{3==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="3"> 照片 </view>
   <view class="cu-item {{4==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="4"> 排名 </view>
   <view class="cu-item {{5==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="5"> 数据</view>
-  <view class="cu-item {{6==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="6"> 资讯</view>
+  <!--<view class="cu-item {{6==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="6"> 资讯</view>-->
 </scroll-view>
 
 <block wx:if="{{TabCur==0}}">
@@ -74,15 +74,15 @@
 
       </view>
       <view class="bg-white">
-        <view class="yibaoming-margin-top margin-left ">
-          <text class="yibaoming-text-content">已报名</text>
-          <text class="yibaoming-text-content" style="color:var(--blue)">{{yibaomingList.length}}/{{detail.signupmax}}</text>
-          <text class="yibaoming-text-content">人</text>
-          <button class="cu-btn bg-orange round btn-baomingtiaozhan margin-top">报名挑战</button>
+        <view class="yibaoming-margin-top margin-left " style="display: flex;position: relative;">
+          <text class="yibaoming-text-content margin-top">已报名</text>
+          <text class="yibaoming-text-content margin-top" style="color:var(--blue)">{{yibaomingList.length}}/{{detail.signupmax}}</text>
+          <text class="yibaoming-text-content margin-top">人</text>
+          <button class="cu-btn bg-orange round btn-baomingtiaozhan margin-top-sm">报名挑战</button>
         </view>
         <view class="yundong-content bg-white">
           <view class="padding-sm">
-            <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" style="background-image:url({{item.head}});"/>
+            <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" style="background-image:url({{item.head}});" />
           </view>
         </view>
       </view>
@@ -105,14 +105,14 @@
     <view class="cu-bar bg-white ">
       <view class="cu-bar-title">奖品设置</view>
     </view>
-    <text>{{detail.award}}</text>
+    <text hidden="{{detail.award}}=='null'">{{detail.award}}</text>
     <image src="{{detail.awardpic}}" mode="scaleToFill" style="width:700rpx;"></image>
   </view>
   <view class="bg-white padding margin-top">
     <view class="cu-bar bg-white ">
       <view class="cu-bar-title">赞助商</view>
     </view>
-    <text>{{detail.sponsor}}</text>
+    <text hidden="{{detail.sponsor}}=='null'">{{detail.sponsor}}</text>
     <image src="{{detail.sponsorpic}}" mode="scaleToFill" style="width:700rpx;"></image>
   </view>
 
@@ -183,13 +183,15 @@
       <view class="cu-bar-title">报名</view>
     </view>
   </view>
-  <view class=" padding " style="margin-left:175rpx;" hidden="{{signupway}}">
-    <button class="cu-btn {{baomingCur==0?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-left" bindtap="baomingSelect" data-id="0">
-      个人报名
-    </button>
-    <button class="cu-btn  {{baomingCur==1?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-right" bindtap="baomingSelect" data-id="1">
-      团队报名
-    </button>
+  <view style="background-color:var(--white)" hidden="{{signupway}}">
+    <view class=" padding " style="margin-left:175rpx;">
+      <button class="cu-btn {{baomingCur==0?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-left" bindtap="baomingSelect" data-id="0">
+        个人报名
+      </button>
+      <button class="cu-btn  {{baomingCur==1?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-right" bindtap="baomingSelect" data-id="1">
+        团队报名
+      </button>
+    </view>
   </view>
   <block wx:if="{{baomingCur==0}}">
     <block wx:if="{{isbaominggeren==0}}">
@@ -247,13 +249,12 @@
       <view class="bg-white margin-top padding-top">
         <view class="yibaoming-margin-top margin-left ">
           <text class="yibaoming-text-content">已报名</text>
-          <text class="yibaoming-text-content" style="color:var(--blue)">{{detail.entrycount}}/{{detail.signupmax}}</text>
+          <text class="yibaoming-text-content" style="color:var(--blue)">{{yibaomingList.length}}/{{detail.signupmax}}</text>
           <text class="yibaoming-text-content">人</text>
         </view>
         <view class="yundong-content bg-white">
           <view class="padding-sm">
-            <view class="cu-avatar round lg margin-sm" wx:for="{{21}}" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{(index+1)%9}}.jpg);">
-            </view>
+            <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" style="background-image:url({{item.head}});" />
           </view>
         </view>
       </view>
@@ -279,7 +280,7 @@
         <view class="fenge-bg"></view>
         <view class="cu-bar bg-white solid-bottom">
           <view class='action'>
-            <text class='cu-bar-title'>已报名21人</text>
+            <text class='cu-bar-title'>已报名{{yibaomingList.length}}人</text>
           </view>
         </view>
       </view>
@@ -325,7 +326,7 @@
           </view>
           <view class="cu-form-group ">
             <view class="title">报名团队</view>
-            <input class="form-text" placeholder='点击选择团队' bindtap="xuanzetuandui" value="{{tuanduiSelect}}" disable></input>
+            <input class="form-text" placeholder='点击选择团队' bindtap="xuanzetuandui" value="{{tuanduiSelect.name}}" disable></input>
           </view>
         </form>
       </view>
@@ -346,13 +347,12 @@
       <view class="bg-white margin-top padding-top">
         <view class="yibaoming-margin-top margin-left ">
           <text class="yibaoming-text-content">已报名</text>
-          <text class="yibaoming-text-content" style="color:var(--blue)">{{detail.entrycount}}/{{detail.signupmax}}</text>
+          <text class="yibaoming-text-content" style="color:var(--blue)">{{yibaomingList.length}}/{{detail.signupmax}}</text>
           <text class="yibaoming-text-content">人</text>
         </view>
         <view class="yundong-content bg-white">
           <view class="padding-sm">
-            <view class="cu-avatar round lg margin-sm" wx:for="{{21}}" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{(index+1)%9}}.jpg);">
-            </view>
+            <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" style="background-image:url({{item.head}});" />
           </view>
         </view>
       </view>
@@ -372,7 +372,7 @@
 
       <view class="bg-white margin-top">
         <view class="cu-bar bg-white padding">
-          <view class="yibaoming-text-content">已报名n人</view>
+          <view class="yibaoming-text-content">已报名{{yibaomingList.length}}人</view>
         </view>
       </view>
       <view class="bg-white">

@@ -21,6 +21,8 @@ Page({
     canjiaorguankan: 10,
     huodongfenzu: [],
     fenzuhide: false,
+    tuanduiSelect: [],
+    members: [],
 
     likecount: 0,
     ifzan: false,
@@ -82,7 +84,23 @@ Page({
       cardCur: e.detail.current
     })
   },
-
+  xuanzetuandui() {
+    wx.navigateTo({
+      url: '/pages/xuanzetuandui1/xuanzetuandui1?lid=' + this.data.user.id,
+    })
+  },
+  baomingSelect(e) {
+    if (e.currentTarget.dataset.id == 0)
+      this.setData({
+        baomingCur: e.currentTarget.dataset.id,
+        canjiaorguankan: 10,
+      })
+    else
+      this.setData({
+        baomingCur: e.currentTarget.dataset.id,
+        canjiaorguankan: 20,
+      })
+  },
   tabSelect(e) {
     this.setData({
       TabCur: e.currentTarget.dataset.id,
@@ -182,6 +200,21 @@ Page({
       this.setData({
         detail: res.data
       })
+      if (this.data.detail.signupway == "30")
+        this.setData({
+          signupway: false,
+          baomingCur: 0
+        })
+      else if (this.data.detail.signupway == "10")
+        this.setData({
+          signupway: true,
+          baomingCur: 0
+        })
+      else if (this.data.detail.signupway == "20")
+        this.setData({
+          signupway: true,
+          baomingCur: 1
+        })
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -243,7 +276,6 @@ Page({
     let url = app.globalData.URL + '/act/listActGroup';
     let data = {
       actid: self.data.categoryId,
-      signup: true
     }
     util.gets(url, data).then(function (res) {
       self.setData({
@@ -579,10 +611,27 @@ Page({
               creater: self.data.user.id,
               members: self.data.members,
             }
+          util.post_token(url, data).then(function (res) {
+            console.log(res)
+            if (res.data.code == 0) {
+              wx.showToast({
+                title: '报名成功！', // 标题
+                icon: 'success', // 图标类型，默认success
+                duration: 1500 // 提示窗停留时间，默认1500ms
+              })
+              self.setData({
+                isbaomingtuandui: 1
+              })
+            } else
+              wx.showToast({
+                title: '报名失败！',
+                image: '/img/fail.png',
+                duration: 1000,
+              })
+          })
         }
       }
     }
-
   },
   /**
    * 生命周期函数--监听页面加载
@@ -594,6 +643,7 @@ Page({
       TabCur: options.TabCur,
       options: options
     })
+    this.detail()
     this.yibaoming()
     this.rotation()
     this.baomingzhuangtai()
@@ -601,7 +651,6 @@ Page({
     this.ifzan()
     this.comment()
     this.fenzu()
-    this.detail()
     this.news()
     this.news_detail()
     this.getShipin()

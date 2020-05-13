@@ -38,7 +38,8 @@ page {
 }
 
 .btn-baomingtiaozhan {
-  margin-left: 360rpx;
+  position: absolute; /* 要约束所在位置的子元素的位置要设置成绝对 */
+  right: 30rpx; /* 靠右调节 */
   width: 168rpx;
   height: 54rpx;
 }
@@ -51,8 +52,8 @@ page {
 
 .text-guize {
   padding: 0 10rpx;
-  font-size:28rpx;
-  color:#666666;
+  font-size: 28rpx;
+  color: #666;
   line-height: 56rpx;
   margin-bottom: 30rpx;
 }
