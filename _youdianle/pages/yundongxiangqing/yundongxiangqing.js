@@ -411,6 +411,16 @@ Page({
       }
     }
   },
+  shipintiaozhuan(){
+    wx.navigateTo({
+      url: '../form_actid_video/form_actid_video?+actid=' + this.data.categoryId
+    })
+  },
+  shipintiaozhuan() {
+    wx.navigateTo({
+      url: '../form_picture/form_picture?+actid=' + this.data.categoryId
+    })
+  },
 /////////////////
   ifguanzhu() { //是否关注
     self = this;

@@ -180,6 +180,13 @@
   color: black;
   font-weight: bold;
 }
+.banner_text_time{
+  
+font-size:24rpx;
+font-family:PingFang SC;
+font-weight:500;
+color:rgba(153,153,153,1);
+}
 
 .video {
   background-color: white;

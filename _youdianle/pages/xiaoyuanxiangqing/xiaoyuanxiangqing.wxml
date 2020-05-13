@@ -484,6 +484,7 @@
       </view>
     </view>
 
+
     <view wx:else>
       <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx; ">{{shipin.list[index].title}}</view>
       <view class="content-white ">
@@ -516,6 +517,18 @@
         </view>
         <view class="sp-quanbupinglun margin ">全部评论({{shipin.list[index].commCnt}})</view>
       </view>
+    </view>
+  </view>
+  <view class="cu-bar input foot padding">
+    <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！' bindtap="pinluntiaozhuan"></input>
+    <view class="action">
+      <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
+    </view>
+    <view class="action">
+      <image class="img-icon" mode="aspectFit" style="margin-right:10rpx" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
+    </view>
+    <view class="action">
+      <image class="img-icon" mode="aspectFit" src="/img/icon_upload_video@2x.png" bindtap="shipintiaozhuan"></image>
     </view>
   </view>
 

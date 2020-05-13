@@ -86,7 +86,7 @@
         <view class="banner_basic" bindtap="todetail" id="{{ActList.list[0].id}}">
           <image src="{{ActList.list[0].logo}}" class="banner_img"></image>
           <text class="banner_text">{{ActList.list[0].actname}}</text>
-          <!-- <text >"{{ActList.list[0].fromtime}}"</text> -->
+          <!-- <text class="banner_text_time">"{{ActList.list[0].fromtime}}"</text> -->
         </view>
         <view class="banner_basic " bindtap="todetail" id="{{ActList.list[1].id}}">
           <image src="{{ActList.list[1].logo}}" class="banner_img"></image>

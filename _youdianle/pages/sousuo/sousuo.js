@@ -1,5 +1,6 @@
 // pages/sousuo/sousuo.js
 const app = getApp();
+const utilsDays = require('../../utils/utils-day');
 Page({
 
   /**
@@ -11,7 +12,7 @@ Page({
     sousuo_neirong: '',
     sousuo_detail: [],
     hotWords: [],
-
+    listCampus_timeChange: [],
   },
   tabSelect(e) {
     this.setData({
@@ -36,12 +37,23 @@ Page({
     app.wxRequest('GET', url, data, (res) => {
       console.log(res)
       this.setData({
-        sousuo_detail: res.data
+        sousuo_detail: res.data,
       })
     }, (err) => {
       console.log(err.errMsg)
     });
-
+  },
+  timeChange: function() {//////修改时间
+    var obj = [];
+    var time ='';
+    for (var i in this.data.sousuo_detail.listCampus) {
+      // arr.push(obj[utilsDays.formatMsgTime(this.data.sousuo_detail.listCampus[i].fromtime)]);
+      time = this.data.sousuo_detail.listCampus[i].fromtime.slice(0, 14);
+      arr.push(obj[time]);
+    }
+    this.setData({
+      listCampus_timeChange: obj
+    })
   },
   value_sousuo: function(res) {
     console.log(res)
@@ -80,6 +92,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    this.timeChange()
 
   },
 
