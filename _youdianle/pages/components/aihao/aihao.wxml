@@ -26,7 +26,7 @@
               </view>
               <view class="time-text-content">
                 <image class="icon-size" src="/img/icon_time.png" mode="heightFix"></image>
-                3月11日（周三）13:00开战
+                {{item.fromtime}}开战
               </view>
             </view>
           </view>

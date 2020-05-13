@@ -10,13 +10,17 @@ Page({
     schoolname:'',
     sectioninfo:[],
     SwiperList: [],
+    SportList:[],
     news: [],
     indexs: 0, //学校
     school: [],
+    aihaoList:[],
+    wenyuList:[],
+    videolist:[],
     sport: "1dwad ",
     tabbar: {},
     swiperList: [],
-    "items": [{
+    items: [{
         "id": "1",
         "imageUrl": "https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg",
         "content": "南昌校区图书馆"
@@ -54,6 +58,16 @@ Page({
       PageCur: e.currentTarget.dataset.cur
     })
   },
+  yundongxiangqing(e) {
+    wx.navigateTo({
+      url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.yundong.id,
+    })
+  },
+  baomingtiaozhan(e) {
+    wx.navigateTo({
+      url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=1&categoryId=' + e.currentTarget.dataset.yundong.id,
+    })
+  },
   getuploadinfo() {
     var that = this
     let url = app.globalData.URL + '/config/getSections';
@@ -75,10 +89,64 @@ Page({
   },
   getinfo() {
     var url = app.globalData.URL + '/act/listActivity';
-    var data = '';
+    var data = {
+      sid:'076002'
+    };
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
         ActList: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  getsportinfo() {
+    var url = app.globalData.URL + '/act/listActivity';
+    var data = {
+      sid: '076003'
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        SportList: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  getplayinfo() {
+    var url = app.globalData.URL + '/act/listActivity';
+    var data = {
+      sid: '076004'
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        wenyuList: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  gethobbyinfo() {
+    var url = app.globalData.URL + '/act/listActivity';
+    var data = {
+      sid: '076005'
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        aihaoList: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  getvideoinfo() {
+    var url = app.globalData.URL + '/video/listActVideo';
+    var data = {
+    
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        videolist: res.data
       })
     }, (err) => {
       console.log(err.errMsg)
@@ -150,9 +218,13 @@ Page({
       schoolname:n.name
     })
     this.school();
-    this.news();
     this.getinfo();
+    this.getsportinfo();//运动信息
+    this.getplayinfo();//文娱信息
+    this.gethobbyinfo();//爱好信息
+    this.getvideoinfo();//视频信息
     this.getuploadinfo();
+
     // app.editTabbar();
     // this.getShipin();
   },

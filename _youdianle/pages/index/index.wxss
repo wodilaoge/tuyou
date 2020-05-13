@@ -1,7 +1,10 @@
 .top-gradul-blue {
   background: linear-gradient(to bottom, #5454ff, rgba(255, 255, 255, 255));
 }
-
+.tinyright{
+  position: relative;
+  left: 50rpx;
+}
 .goods-container {
   display: flex;
   justify-content: space-between;

@@ -22,28 +22,16 @@
           <text class='cuIcon-title text-blue'></text> {{item.name}} </view>
       </view>
       <view class="cu-list menu-avatar">
-        <view class="cu-item">
-          <view class="cu-avatar avatar-round" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);height:80rpx;width:80rpx;"></view>
+        <view class="cu-item" wx:for="{{teams}}" wx:key bindtap='tabSelectTeam' data-item="{{item}}">
+          <view class="cu-avatar avatar-round" style="background-image:url({{item.logo}});height:80rpx;width:80rpx;"></view>
           <view class="content">
-            <view class="text-bold">飞鹰队</view>
+            <view class="text-bold">{{item.name}}</view>
             <view class="text-orange text-sm flex">
               <text class="text-cut">
-										<text class=" margin-right-xs"></text>32人
+										<text class=" margin-right-xs"></text>{{item.mbrCount}}人
               </text>
             </view>
           </view>
-        </view>
-        <view class="cu-item">
-          <view class="cu-avatar avatar-round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/img/champion/Taric.png);height:80rpx;width:80rpx;"></view>
-          <view class="content">
-            <view class="text-bold">飞虎队</view>
-            <view class="text-orange text-sm flex">
-              <text class="text-cut">
-										<text class=" margin-right-xs"></text>32人
-              </text>
-            </view>
-          </view>
-          
         </view>
         
       </view>

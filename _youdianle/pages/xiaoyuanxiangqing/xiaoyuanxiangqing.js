@@ -23,7 +23,7 @@ Page({
     fenzuhide: false,
     fenzuindex: 0,
     xingmingInput: '',
-    isguanzhu:false,
+    isguanzhu: false,
     isbaominggeren: 0,
     isbaomingtuandui: 0,
     baomingCur: 0,
@@ -365,7 +365,7 @@ Page({
       lid: self.data.user.id
     }
     util.gets(url, data).then(function(res) {
-      if (res.data.data == null) { } else if (res.data.data.status == 10)
+      if (res.data.data == null) {} else if (res.data.data.status == 10)
         self.setData({
           isbaomingtuandui: 1
         })
@@ -439,7 +439,6 @@ Page({
             })
         })
       } else {
-        console.log(1)
         if (self.data.tuanduiSelect.length == 0)
           wx.showToast({
             title: '请选择团队！',
@@ -472,6 +471,24 @@ Page({
               creater: self.data.user.id,
               members: self.data.members,
             }
+          util.post_token(url, data).then(function(res) {
+            console.log(res)
+            if (res.data.code == 0) {
+              wx.showToast({
+                title: '报名成功！', // 标题
+                icon: 'success', // 图标类型，默认success
+                duration: 1500 // 提示窗停留时间，默认1500ms
+              })
+              self.setData({
+                isbaomingtuandui: 1
+              })
+            } else
+              wx.showToast({
+                title: '报名失败！',
+                image: '/img/fail.png',
+                duration: 1000,
+              })
+          })
         }
       }
     }
@@ -481,7 +498,7 @@ Page({
     var self = this;
     return new Promise(function(resolve, reject) {
       setTimeout(function() {
-      
+
         resolve();
       }, 1000)
     })
@@ -538,7 +555,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-  video_change: function (e) { ////视频切换
+  video_change: function(e) { ////视频切换
     console.log(e)
     if (this.data.bofang_if_id != e.currentTarget.id) { ///相等表示点击和播放不匹配
       if (this.data.bofang_pid == '0') {
