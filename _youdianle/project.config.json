@@ -191,9 +191,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/form_picture/form_picture",
-					"pathName": "pages/form_picture/form_picture",
+					"id": 19,
+					"name": "pages/MyPages/my_profile/my_profile",
+					"pathName": "pages/MyPages/my_profile/my_profile",
 					"query": "",
 					"scene": null
 				},

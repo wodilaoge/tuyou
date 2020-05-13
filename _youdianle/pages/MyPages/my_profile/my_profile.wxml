@@ -11,7 +11,7 @@
 		<view class="title">头像</view>
     <view class="cu-avatar xl round margin-r" bindtap="ChooseImage"  style="background-image:url({{userinfo.head}})"></view>
     
-    	<image class="icon2" src="/img/array.png"></image>
+    	<image class="icon" src="/img/array.png"></image>
 	</view>
   	<view class="cu-form-group">
 		<view class="title">昵称</view>
@@ -22,18 +22,18 @@
 		<view class="title">性别</view>
 		<picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
 			<view class="picker text-grey">
-				{{index?picker[index]:'女'}}
+				{{userinfo.sex==1?'女':'男'}}
 			</view>
 		</picker>
   </view>
   <view class="cu-form-group">
 		<view class="title">姓名</view>
-		<input class="input text-grey" placeholder="张宁" type='text' name="name" bindinput="getname"></input>
+		<input class="input text-grey" placeholder="{{userinfo.name}}" type='text' name="name" bindinput="getname"></input>
     	<image class="icon" src="/img/array.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">手机号码</view>
-		<input class="input text-grey" placeholder="130000000" type='text' name="name" bindinput="getphone"></input>
+		<input class="input text-grey" placeholder="{{userinfo.mobile}}" type='text' name="name" bindinput="getphone"></input>
     	<image class="icon" src="/img/array.png"></image>
 	</view>
   <view class="cu-form-group">
@@ -43,12 +43,12 @@
 	</view>
     <view class="cu-form-group">
 		<view class="title">证件号码</view>
-		<input class="input text-grey" placeholder="331000000" type='text' name="name" bindinput="getidno"></input>
+		<input class="input text-grey" placeholder="{{userinfo.idno}}" type='text' name="name" bindinput="getidno"></input>
     	<image class="icon" src="/img/array.png"></image>
 	</view>
   	<view class="cu-form-group">
 		<view class="title">出生日期</view>
-		<picker mode="date" value="{{date}}" start="2015-09-01" end="2020-09-01" bindchange="DateChange">
+		<picker mode="date" value="{{userinfo.birthday}}" start="2015-09-01" end="2020-09-01" bindchange="DateChange">
 			<view class="picker">
 				{{date}}
 			</view>
@@ -56,10 +56,10 @@
 	</view>
   <view class="cu-form-group">
 		<view class="title">国籍</view>
-		<input class="input text-grey" placeholder="中国" type='text' name="name" bindinput="getnationality"></input>
+		<input class="input text-grey" placeholder="{{userinfo.nationality}}" type='text' name="name" bindinput="getnationality"></input>
     	<image class="icon" src="/img/array.png"></image>
 	</view>
-     <view class="cu-form-group margin-top">
+     <!-- <view class="cu-form-group margin-top">
     <view class="title">省</view>
     <picker bindchange="PickerPro" value="{{indexp}}" range="{{provinceList}}"  range-key="name">
       <view class="picker text-grey">
@@ -81,50 +81,50 @@
         {{indexs?school[indexs].name:'浙江大学'}}
       </view>
     </picker>
-  </view>
+  </view> -->
   <view class="cu-form-group">
 		<view class="title">学校简称</view>
-		<input class="input text-grey" placeholder="浙江大学" type='text' name="name" bindinput="getunivshort"></input>
+		<input class="input text-grey" placeholder="{{userinfo.univname}}" type='text' name="name" bindinput="getunivshort"></input>
     	<image class="icon" src="/img/array.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">专业</view>
-		<input class="input text-grey" placeholder="计算机" type='text' name="name" bindinput="getmajor"></input>
+		<input class="input text-grey" placeholder="{{userinfo.major}}" type='text' name="name" bindinput="getmajor"></input>
     	<image class="icon" src="/img/array.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">学生证号</view>
-		<input class="input text-grey" placeholder="181219" type='text' name="name" bindinput="getstudentno"></input>
+		<input class="input text-grey" placeholder="{{userinfo.studentno}}" type='text' name="name" bindinput="getstudentno"></input>
     	<image class="icon" src="/img/array.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">身高</view>
-		<input class="input text-grey" placeholder="170" type='text' name="name" bindinput="getheight"></input>
+		<input class="input text-grey" placeholder="{{userinfo.height}}" type='text' name="name" bindinput="getheight"></input>
     	<image class="icon" src="/img/array.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">体重</view>
-		<input class="input text-grey" placeholder="50KG" type='text' name="name" bindinput="getweight"></input>
+		<input class="input text-grey" placeholder="{{userinfo.weight}}" type='text' name="name" bindinput="getweight"></input>
     	<image class="icon" src="/img/array.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">活动角色</view>
-		<input class="input text-grey" placeholder="前锋" type='text' name="name" bindinput="getactrole"></input>
+		<input class="input text-grey" placeholder="{{userinfo.actrole}}" type='text' name="name" bindinput="getactrole"></input>
     	<image class="icon" src="/img/array.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">特长</view>
-		<input class="input text-grey" placeholder="游戏" type='text' name="name" bindinput="getspeciality"></input>
+		<input class="input text-grey" placeholder="{{userinfo.speciality}}" type='text' name="name" bindinput="getspeciality"></input>
     	<image class="icon" src="/img/array.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">个性签名</view>
-		<input class="input text-grey" placeholder="加油！！" type='text' name="name" bindinput="getslogan"></input>
+		<input class="input text-grey" placeholder="{{userinfo.slogan}}" type='text' name="name" bindinput="getslogan"></input>
     	<image class="icon" src="/img/array.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">工作单位</view>
-		<input class="input text-grey" placeholder="暂无" type='text' name="name" bindinput="getworkunit"></input>
+		<input class="input text-grey" placeholder="{{userinfo.workunit}}" type='text' name="name" bindinput="getworkunit"></input>
     	<image class="icon" src="/img/array.png"></image>
 	</view>
 
