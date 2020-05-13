@@ -277,30 +277,30 @@ Page({
     var tmp = this.data.userinfo
     var data = {
       id:tmp.id,
-      // head:tmp.head,
-      // nickname: tmp.nickname,
-      // name: tmp.name,
-      // sex: tmp.sex,
-      // email: tmp.email,
-      // idtype: tmp.idtype,
-      // idno: tmp.idno,
-      // birthday: tmp.birthday,
-      // nationality: tmp.nationality,
-      // province: tmp.province,
-      // city: tmp.city,
-      // univ: tmp.univ,
-      // univname: tmp.univshort,
-      // univshort: tmp.univshort,
-      // major: tmp.major,
-      // studentno: tmp.studentno,
-      // enrolyear: tmp.enrolyear,
-      // graduateyear: tmp.graduateyear,
-      // height: tmp.height,
-      // weight: tmp.weight,
-      // actrole: tmp.actrole,
-      // speciality: tmp.speciality,
-      // slogan: tmp.slogan,
-      // workunit: tmp.workunit
+      head:tmp.head,
+      nickname: tmp.nickname,
+      name: tmp.name,
+      sex: tmp.sex,
+      email: tmp.email,
+      idtype: tmp.idtype,
+      idno: tmp.idno,
+      birthday: tmp.birthday,
+      nationality: tmp.nationality,
+      province: tmp.province,
+      city: tmp.city,
+      univ: tmp.univ,
+      univname: tmp.univshort,
+      univshort: tmp.univshort,
+      major: tmp.major,
+      studentno: tmp.studentno,
+      enrolyear: tmp.enrolyear,
+      graduateyear: tmp.graduateyear,
+      height: tmp.height,
+      weight: tmp.weight,
+      actrole: tmp.actrole,
+      speciality: tmp.speciality,
+      slogan: tmp.slogan,
+      workunit: tmp.workunit
     }
     util.post_token(url, data).then(function (res) {
       console.log(res.data)
@@ -318,7 +318,7 @@ Page({
         })
       } else {
         wx.showToast({
-          title: '提交失败!',
+          title: res.data.msg,
           image: '/img/fail.png',
           icon: 'success',
           duration: 2000
