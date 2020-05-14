@@ -133,8 +133,8 @@
 	<text class="text-grey">我已阅读并同意</text>
 	<text class="text-blue">《同友活动申明》</text>
   <view class="flex margin-top2">
-    <button class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="cancel" >取消修改</button>
-    <button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="commit"  data-target="Modal">确认修改</button>
+    <!-- <button class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="cancel" >取消修改</button> -->
+    <button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="commit"  data-target="Modal">保存修改</button>
   </view>
 </view>
 </form>
