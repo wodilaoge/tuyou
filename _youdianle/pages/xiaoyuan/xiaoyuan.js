@@ -73,7 +73,6 @@ Page({
       id: this.data.categoryId
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res.data)
       this.setData({
         news: res.data
       })
@@ -128,7 +127,6 @@ Page({
     })
   },
   shipinTabSelect(e) { //视频内导航栏
-    console.log(e)
     var url = app.globalData.URL + '/act/listActivity';
     let data = {
       sid: this.data.shipinid,
@@ -147,8 +145,6 @@ Page({
       self.setData({
         bkData: res.data.data
       })
-      console.log(res)
-      console.log(res.data.data)
       for (var i in res.data.data) {
         var url = app.globalData.URL + '/act/listActivity';
         var url2 = app.globalData.URL + '/secrot/listSecrotation';
@@ -199,13 +195,20 @@ Page({
               sid: self.data.yundongid,
               acid1: self.data.yundongCur
             }
-            app.wxRequest('GET', url, data, (res) => {
+            util.gets(url, data).then(function (res) {
               self.setData({
-                yundongList: res.data
+                yundongList: res.data.data
               })
-            }, (err) => {
-              console.log(err.errMsg)
-            });
+            }).then(function(){
+              var timestamp = Date.parse(new Date());//当天时间戳
+              var data = new Date(timestamp)
+              console.log(data)
+              for(let i in self.data.yundongList.list){
+                let deadline = self.data.yundongList.list[i].signupdeadline
+                var s = deadline - data;
+                console.log(s)
+              }
+            })
           })
           continue;
         }
@@ -226,7 +229,6 @@ Page({
           });
           var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
           util.gets(urldalei, data).then(function(res) {
-            console.log(res)
             self.setData({
               wenyudalei: res.data.data,
               wenyuCur: res.data.data[0].code,
@@ -237,7 +239,6 @@ Page({
               sid: self.data.wenyuid
             }
             app.wxRequest('GET', url, data, (res) => {
-              console.log(res)
               self.setData({
                 wenyuList: res.data
               })
@@ -299,7 +300,6 @@ Page({
           });
           var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
           util.gets(urldalei, data).then(function(res) {
-            console.log(res)
             self.setData({
               shipindalei: res.data.data,
             })
@@ -314,7 +314,6 @@ Page({
               sid: self.data.shipinid,
               acid1: self.data.shipinCur
             }
-            console.log(data)
             app.wxRequest('GET', url, data, (res) => {
               self.setData({
                 shipinList: res.data
@@ -343,7 +342,6 @@ Page({
     });
   },
   video_change: function(e) { ////视频切换
-    console.log(e)
     if (this.data.bofang_if_id != e.currentTarget.id) { ///相等表示点击和播放不匹配
       if (this.data.bofang_pid == '0') {
         this.setData({
