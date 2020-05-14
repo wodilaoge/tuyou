@@ -357,5 +357,26 @@ Page({
         pickerbig: res.data.data
       })
     })
+
+    let url2 = app.globalData.URL + '/appuser/getPubPerm'
+    util.gets(url2, {}).then(function (res) {
+      console.log('auth', res)
+      that.setData({
+        auth: res.data
+      })
+      if (res.data.data.code) {
+        wx.showToast({
+          title: '请先绑定手机！',
+          duration: 2000,
+          success: function () {
+            setTimeout(function () {
+              wx.navigateTo({
+                url: '/pages/MyPages/my_security/my_security',
+              })
+            }, 2000);
+          }
+        })
+      }
+    })
   },
 })

@@ -137,7 +137,7 @@
   </view>
   <view class="cu-form-group ">
     <view class="title">微信公众号</view>
-    <input class="input text-grey" bindinput="getwx" placeholder="tuyou"></input>
+    <input class="input text-grey" bindinput="getwx" placeholder="youdianle"></input>
     <image class="icon2" src="../../img/copy.png"></image>
   </view>
   <view class="text-center margin-top3">
