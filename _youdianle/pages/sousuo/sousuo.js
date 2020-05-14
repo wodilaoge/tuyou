@@ -43,9 +43,9 @@ Page({
       console.log(err.errMsg)
     });
   },
-  timeChange: function() {//////修改时间
+  timeChange: function() { //////修改时间
     var obj = [];
-    var time ='';
+    var time = '';
     for (var i in this.data.sousuo_detail.listCampus) {
       // arr.push(obj[utilsDays.formatMsgTime(this.data.sousuo_detail.listCampus[i].fromtime)]);
       time = this.data.sousuo_detail.listCampus[i].fromtime.slice(0, 14);
@@ -60,6 +60,7 @@ Page({
     this.setData({
       sousuo_neirong: res.detail.value,
     })
+    this.change_sousuo()
   },
   getHotWords: function() {
     let url = app.globalData.URL + '/search/listHotWords';
@@ -72,6 +73,13 @@ Page({
     }, (err) => {
       console.log(err.errMsg)
     });
+  },
+  remen_sousuo_neirong: function(e) {
+    console.log(e)
+    this.setData({
+      sousuo_neirong: this.data.hotWords[e.currentTarget.id].keyword,
+    })
+    this.change_sousuo()
   },
 
   /**

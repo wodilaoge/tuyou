@@ -48,35 +48,17 @@
       热门搜索
     </view>
   </view>
+
   <view class="ss_remen_kuang">
-    <view class="flex" style="margin-left:36rpx;">
-      <view class="ss_remen_bt_left"></view>
-      <view class="ss_remen_bt">勇士</view>
-      <view class="ss_remen_bt_right"></view>
-    </view>
-    <view class="flex" style="margin-left:20rpx;">
-      <view class="ss_remen_bt_left"></view>
-      <view class="ss_remen_bt">年轻</view>
-      <view class="ss_remen_bt_right"></view>
-    </view>
-    <view class="flex" style="margin-left:20rpx;">
-      <view class="ss_remen_bt_left"></view>
-      <view class="ss_remen_bt">最新赛季</view>
-      <view class="ss_remen_bt_right"></view>
-    </view>
-    <view class="flex" style="margin-left:20rpx;">
-      <view class="ss_remen_bt_left"></view>
-      <view class="ss_remen_bt">年轻</view>
-      <view class="ss_remen_bt_right"></view>
+    <view wx:for="{{hotWords}}">
+      <view class="flex" style="margin-left:36rpx;" bindtap="remen_sousuo_neirong" id="{{index}}">
+        <view class="ss_remen_bt_left"></view>
+        <view class="ss_remen_bt">{{hotWords[index].keyword}}</view>
+        <view class="ss_remen_bt_right"></view>
+      </view>
     </view>
   </view>
-  <view class="ss_remen_kuang">
-    <view class="flex" style="margin-left:36rpx;">
-      <view class="ss_remen_bt_left"></view>
-      <view class="ss_remen_bt">最新赛季</view>
-      <view class="ss_remen_bt_right"></view>
-    </view>
-  </view>
+
   <view class="ss_remen margin-top-sm flex">
     <view class="ss_remen_sousuo">
       搜索历史

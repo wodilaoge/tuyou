@@ -292,18 +292,24 @@ Page({
 
           app.wxRequest('GET', url2, data, (res) => {
             self.setData({
-             shipinSwiperList: res.data
+              shipinSwiperList: res.data
             })
           }, (err) => {
             console.log(err.errMsg)
           });
           var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
-          util.gets(urldalei, data).then(function (res) {
+          util.gets(urldalei, data).then(function(res) {
+            console.log(res)
             self.setData({
-             shipindalei: res.data.data,
-             shipinCur: res.data.data[0].code
+              shipindalei: res.data.data,
             })
-          }).then(function () {
+            if (res.data.data[0]) {
+              self.setData({
+                shipinCur: res.data.data[0].code
+              })
+
+            }
+          }).then(function() {
             data = {
               sid: self.data.shipinid,
               acid1: self.data.shipinCur
@@ -369,7 +375,7 @@ Page({
       }
     }
   },
-  change_sousuo:function(){
+  change_sousuo: function() {
     wx.navigateTo({
       url: '../sousuo/sousuo',
     })
