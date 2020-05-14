@@ -263,6 +263,13 @@ Page({
     })
   },
   onLoad() {
+    let url2 = app.globalData.URL +'/appuser/getPubPerm'
+    util.gets(url2, {}).then(function (res) {
+      console.log('auth',res)
+      that.setData({
+        auth: res.data
+      })
+    })
     this.province();
     var that = this
     let t1 = 'information.province'
