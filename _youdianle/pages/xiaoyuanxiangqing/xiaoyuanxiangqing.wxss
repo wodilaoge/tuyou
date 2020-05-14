@@ -113,7 +113,7 @@ page {
 
 .form-text2 {
   background-color: #f8f9fd;
-  border-radius: 36rpx;
+  border-radius: 10rpx;
   font-size: 32rpx;
   line-height: 32rpx;
 }

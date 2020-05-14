@@ -652,18 +652,7 @@
 
     <view style="height:300rpx;"></view>
 
-<<<<<<< HEAD
-    <view class="cu-bar input foot padding">
-      <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！' bindtap="pinluntiaozhuan"></input>
-      <view class="action">
-        <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
-      </view>
-      <view class="action">
-        <image class="img-icon" mode="aspectFit" style="margin-right:10rpx" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
-      </view>
-      <view class="action">
-        <image class="img-icon" mode="aspectFit" src="/img/icon_upload_video@2x.png" bindtap="zhaopiantiaozhuan"></image>
-=======
+
     <view class="box" wx:if="{{!chooseSize}}">
       <view class="cu-bar input foot padding">
         <image class="img-input" mode="scaleToFill" src="/img/input.png" bindtap="chooseSezi"></image>
@@ -676,7 +665,6 @@
         <view class="action">
           <image class="img-icon" src="/img/icon_upload_photos.png"></image>
         </view>
->>>>>>> 01fb324d9b0e1e129f8ae8abc50094ec38d10b41
       </view>
     </view>
   </view>
