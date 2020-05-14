@@ -4,10 +4,10 @@ Page({
   data: {
     information: {
       actname: '',
-      sid:'',
+      sid: '',
       acid1: '',
       acid2: '',
-      cid:'',
+      cid: '',
       slogan: '',
       univid: '003330106',
       province: '00333',
@@ -19,10 +19,10 @@ Page({
       entrylimit: 50,
       ischecked: false,
     },
-    isaddress:false,
+    isaddress: false,
     index: 0, //活动方式
-    indexbig:0,
-    indextiny:0,
+    indexbig: 0,
+    indextiny: 0,
     indexp: 30, //省
     indexc: 0, //市
     indexs: 0, //学校
@@ -32,14 +32,14 @@ Page({
     citys: [],
     school: [],
     picker: ['个人报名', '团体报名', '个人团队均可报名'],
-    pickertiny:[],
-    pickerbig:[],
+    pickertiny: [],
+    pickerbig: [],
     picker2: ['篮球', '足球', '羽毛球', '乒乓球', '网球'],
     multiIndex: [0, 0, 0],
     region: ['浙江省', '杭州市', '浙江大学'],
-    pro:'',
-    city:'',
-    schoolinfo:''
+    pro: '',
+    city: '',
+    schoolinfo: ''
   },
 
   PickerChange(e) { //报名方式
@@ -101,7 +101,7 @@ Page({
     })
     this.school(this.data.information.city)
   },
-  PickerSchool(e){
+  PickerSchool(e) {
     let t = 'information.univid'
     this.setData({
       indexs: e.detail.value,
@@ -194,8 +194,8 @@ Page({
       url: '../../pages/form_activity/form_activity'
     })
   },
-  
-  school(pid){
+
+  school(pid) {
     let url = app.globalData.URL + '/config/getUniv';
     let data = {
       cid: pid
@@ -232,31 +232,31 @@ Page({
       console.log(err.errMsg)
     });
   },
-  gettwo(code){
+  gettwo(code) {
     var that = this
     let url = app.globalData.URL + '/config/getActivityClass1';
     let data = {
       'sid': code
     };
-    util.gets(url, data).then(function (res) {
+    util.gets(url, data).then(function(res) {
       that.setData({
         picker2: res.data.data
       })
     })
   },
-  getthird(code){
+  getthird(code) {
     var that = this
     let url = app.globalData.URL + '/config/getActivityClass2';
     let data = {
       'cid': code
     };
-    util.gets(url, data).then(function (res) {
+    util.gets(url, data).then(function(res) {
       that.setData({
         pickertiny: res.data.data
       })
     })
   },
-  tochooseadress(e){
+  tochooseadress(e) {
     console.log('address')
     wx.navigateTo({
       url: '/pages/form_address/form_address',
@@ -265,20 +265,25 @@ Page({
   onLoad() {
     this.province();
     var that = this
-
+    let t1 = 'information.province'
+    let t2 = 'information.city'
+    let t3 = 'information.univid'
     let pro = wx.getStorageSync('province')
     let city = wx.getStorageSync('city')
     let schoolinfo = wx.getStorageSync('school')
     if (schoolinfo) {
       this.setData({
-        pro:pro,
-        city:city,
-        schoolinfo:schoolinfo,
+        pro: pro,
+        city: city,
+        schoolinfo: schoolinfo,
+        [t1]: pro.code,
+        [t2]: city.code,
+        [t3]: schoolinfo.code,
         isaddress: true
       })
     }
     let url = app.globalData.URL + '/config/getActivitySection';
-    util.gets(url, {}).then(function (res) {
+    util.gets(url, {}).then(function(res) {
       that.setData({
         pickerbig: res.data.data
       })
