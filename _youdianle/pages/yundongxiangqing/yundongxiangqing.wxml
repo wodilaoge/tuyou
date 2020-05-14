@@ -228,9 +228,9 @@
           </view>
           <view class="cu-form-group " hidden="{{fenzuhide}}">
             <view class="title">选择分组</view>
-            <picker bindchange="bindPickerChange" range="{{huodongfenzu.groupname}}">
+            <picker bindchange="bindPickerChange" range="{{picker}}">
               <view class="picker">
-                {{huodongfenzu[fenzuindex].groupname}}
+                {{picker[fenzuindex]}}
               </view>
             </picker>
           </view>
@@ -322,9 +322,9 @@
           </view>
           <view class="cu-form-group " hidden="{{fenzuhide}}">
             <view class="title">选择分组</view>
-            <picker bindchange="bindPickerChange" range="{{huodongfenzu.groupname}}">
+            <picker bindchange="bindPickerChange" range="{{picker}}">
               <view class="picker">
-                {{huodongfenzu[fenzuindex].groupname}}
+                {{picker[fenzuindex]}}
               </view>
             </picker>
           </view>

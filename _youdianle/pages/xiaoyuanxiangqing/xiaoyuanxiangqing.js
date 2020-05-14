@@ -25,6 +25,7 @@ Page({
     huodongfenzu: [],
     fenzuhide: false,
     fenzuindex: 0,
+    picker:[],
     xingmingInput: '',
     isguanzhu: false,
     isbaominggeren: 0,
@@ -451,6 +452,15 @@ Page({
         self.setData({
           fenzuhide: true
         })
+      else {
+        let picker = []
+        for (let i in self.data.huodongfenzu) {
+          picker[i] = self.data.huodongfenzu[i].groupname
+        }
+        self.setData({
+          picker: picker
+        })
+      }
     })
   },
   shipintiaozhuan() {

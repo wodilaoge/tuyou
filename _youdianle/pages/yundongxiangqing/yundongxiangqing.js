@@ -14,7 +14,7 @@ Page({
     detail: [],
     comment: [],
     comment_detail: [],
-    yibaomingList:[],
+    yibaomingList: [],
 
     isguanzhu: false,
 
@@ -24,7 +24,9 @@ Page({
     baomingCur: 0,
     canjiaorguankan: 10,
     huodongfenzu: [],
+    picker: [],
     fenzuhide: false,
+    fenzuindex: 0,
     tuanduiSelect: [],
     members: [],
 
@@ -50,7 +52,7 @@ Page({
       type: 'image',
       url: '/img/yundongxiangqing.png',
     }],
-    rotationhide:true,
+    rotationhide: true,
 
     swiperList_zhaopian: [{
       id: 0,
@@ -84,7 +86,7 @@ Page({
 
   },
   //发布评论
-  chooseSezi: function (e) {
+  chooseSezi: function(e) {
     var that = this;
     // 创建一个动画实例
     var animation = wx.createAnimation({
@@ -105,14 +107,14 @@ Page({
       chooseSize: true
     })
     // 设置setTimeout来改变y轴偏移量，实现有感觉的滑动
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export()
       })
     }, 200)
   },
-  hideModal: function (e) {
+  hideModal: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 1000,
@@ -124,7 +126,7 @@ Page({
       animationData: animation.export()
 
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export(),
@@ -132,7 +134,7 @@ Page({
       })
     }, 200)
   },
-  emailInput: function (e) { //input输入
+  emailInput: function(e) { //input输入
     this.setData({
       Input: e.detail.value
     });
@@ -210,12 +212,13 @@ Page({
       paimingCur: e.currentTarget.dataset.id,
     })
   },
-  bindPickerChange: function (e) {
+  bindPickerChange: function(e) {
+    console.log(e)
     this.setData({
-      fenzuindex: e.detail.id
+      fenzuindex: e.detail.value
     })
   },
-  bindRadioChange: function (e) {
+  bindRadioChange: function(e) {
     this.setData({
       canjiaorguankan: e.currentTarget.dataset.id
     })
@@ -246,7 +249,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-  chakanhuifu: function (e) { //查看回放跳转
+  chakanhuifu: function(e) { //查看回放跳转
     wx.navigateTo({
       url: '/pages/chakanhuifu/chakanhuifu?id=' + e.currentTarget.dataset.id,
     })
@@ -264,28 +267,27 @@ Page({
       console.log(err.errMsg)
     });
   },
-  rotation(){
-    var self=this
+  rotation() {
+    var self = this
     let url = app.globalData.URL + '/act/findRotations';
-    let data={
-      actid:self.data.categoryId
+    let data = {
+      actid: self.data.categoryId
     }
-    util.gets(url, data).then(function (res) {
+    util.gets(url, data).then(function(res) {
       self.setData({
-        swiperList:res.data.data
+        swiperList: res.data.data
       })
-      if(res.data.data.length!=0)
-      {
+      if (res.data.data.length != 0) {
         self.setData({
-          rotationhide:false
+          rotationhide: false
         })
       }
     });
   },
-  yibaoming(){
+  yibaoming() {
     let url = app.globalData.URL + '/act/listActSignupTopN';
-    let data={
-      actid:this.data.categoryId
+    let data = {
+      actid: this.data.categoryId
     }
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
@@ -323,7 +325,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-  
+
   comment() { //评论
     var self = this
     let url = app.globalData.URL + '/comm/listCommByObj';
@@ -381,15 +383,24 @@ Page({
     let data = {
       actid: self.data.categoryId,
     }
-    util.gets(url, data).then(function (res) {
+    util.gets(url, data).then(function(res) {
       self.setData({
-        huodongfenzu: res.data.data
+        huodongfenzu: res.data.data,
       })
-    }).then(function () {
+    }).then(function() {
       if (self.data.huodongfenzu.length == 0)
         self.setData({
           fenzuhide: true
         })
+      else {
+        let picker = []
+        for (let i in self.data.huodongfenzu) {
+          picker[i] = self.data.huodongfenzu[i].groupname
+        }
+        self.setData({
+          picker: picker
+        })
+      }
     })
   },
   ifzan() { //是否点赞
@@ -423,7 +434,7 @@ Page({
   zan() { //活动点赞或取消
     self = this;
     let url = app.globalData.URL + '/applaud/updateApplaud';
-    if (self.data.ifzan) 
+    if (self.data.ifzan)
       var data = {
         objtype: 30,
         objid: self.data.categoryId,
@@ -515,7 +526,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-  video_change: function (e) { ////视频切换
+  video_change: function(e) { ////视频切换
     if (this.data.bofang_if_id != e.currentTarget.id) { ///相等表示点击和播放不匹配
       if (this.data.bofang_pid == '0') {
         this.setData({
@@ -547,7 +558,7 @@ Page({
       }
     }
   },
-  shipintiaozhuan(){
+  shipintiaozhuan() {
     wx.navigateTo({
       url: '../form_actid_video/form_actid_video?+actid=' + this.data.categoryId
     })
@@ -557,7 +568,7 @@ Page({
       url: '../form_picture/form_picture?+actid=' + this.data.categoryId
     })
   },
-/////////////////
+  /////////////////
   ifguanzhu() { //是否关注
     self = this;
     let url = app.globalData.URL + '/follow/findFollow';
@@ -613,15 +624,15 @@ Page({
   },
 
   ////////////////////////
-  baomingzhuangtai() {//报名状态
+  baomingzhuangtai() { //报名状态
     var self = this
     let url = app.globalData.URL + '/act/findActSignupTeamStatus'
     let data = {
       actid: self.data.categoryId,
       lid: self.data.user.id
     }
-    util.gets(url, data).then(function (res) {
-      if (res.data.data == null) { } else if (res.data.data.status == 10)
+    util.gets(url, data).then(function(res) {
+      if (res.data.data == null) {} else if (res.data.data.status == 10)
         self.setData({
           isbaomingtuandui: 1
         })
@@ -631,8 +642,8 @@ Page({
       actid: self.data.categoryId,
       uid: self.data.user.id
     }
-    util.gets(url, data).then(function (res) {
-      if (res.data.data == null) { } else if (res.data.data.status == 10)
+    util.gets(url, data).then(function(res) {
+      if (res.data.data == null) {} else if (res.data.data.status == 10)
         self.setData({
           isbaominggeren: 1
         })
@@ -675,7 +686,7 @@ Page({
             status: 10,
             creater: self.data.user.id
           }
-        util.post_token(url, data).then(function (res) {
+        util.post_token(url, data).then(function(res) {
           if (res.data.code == 0) {
             wx.showToast({
               title: '报名成功！', // 标题
@@ -725,7 +736,7 @@ Page({
               creater: self.data.user.id,
               members: self.data.members,
             }
-          util.post_token(url, data).then(function (res) {
+          util.post_token(url, data).then(function(res) {
             console.log(res)
             if (res.data.code == 0) {
               wx.showToast({
