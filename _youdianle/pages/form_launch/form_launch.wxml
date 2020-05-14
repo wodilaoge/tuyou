@@ -49,7 +49,7 @@
       </view>
     </picker>
   </view> -->
-   <view class="cu-form-group margin-top">
+   <!-- <view class="cu-form-group margin-top">
     <view class="title">省</view>
     <picker bindchange="PickerPro" value="{{indexp}}" range="{{provinceList}}"  range-key="name">
       <view class="picker text-grey">
@@ -71,7 +71,7 @@
         {{indexs?school[indexs].name:'浙江大学'}}
       </view>
     </picker>
-  </view>
+  </view> -->
     <view class="cu-form-group" bindtap="tochooseadress">
     <view class="title ">地址</view>
     <view class="text-right text-content text-grey right">{{pro.name}}{{city.name}}{{schoolinfo.name}}</view>
