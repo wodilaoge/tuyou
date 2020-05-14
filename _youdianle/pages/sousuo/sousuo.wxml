@@ -63,21 +63,15 @@
     <view class="ss_remen_sousuo">
       搜索历史
     </view>
-    <view class="ss_remen_qk">
+    <view class="ss_remen_qk" bindtap="remAll">
       清空
     </view>
   </view>
-  <view class="ss_lishi_kuang">
-    <view class="ss_lishi_text">勇士</view>
-    <image class="ss_lishi_icon" src="/img/icon_garbage.png" style="margin-right:25rpx;"></image>
-  </view>
-  <view class="ss_lishi_kuang">
-    <view class="ss_lishi_text">年轻</view>
-    <image class="ss_lishi_icon" src="/img/icon_garbage.png" style="margin-right:25rpx;"></image>
-  </view>
-  <view class="ss_lishi_kuang">
-    <view class="ss_lishi_text">最新赛季</view>
-    <image class="ss_lishi_icon" src="/img/icon_garbage.png" style="margin-right:25rpx;"></image>
+  <view wx:for="{{sousuo_lishi}}">
+    <view class="ss_lishi_kuang" wx:if="{{sousuo_lishi[index]}}">
+      <view class="ss_lishi_text">{{sousuo_lishi[index]}}</view>
+      <image class="ss_lishi_icon" src="/img/icon_garbage.png" style="margin-right:25rpx;" bindtap="remOne" id="{{index}}"></image>
+    </view>
   </view>
 </block>
 
