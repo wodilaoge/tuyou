@@ -311,7 +311,7 @@ Page({
           success: function () {
             setTimeout(function () {
               wx.reLaunch({
-                url: '/pages/index/index',
+                url: '/pages/MyPages/my/my',
               })
             }, 2000);
           }

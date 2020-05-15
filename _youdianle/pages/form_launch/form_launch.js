@@ -180,8 +180,8 @@ Page({
     })
   },
   cancel: function(e) {
-    wx.navigateTo({
-      url: "../../pages/form/form"
+    wx.switchTab({
+      url: "/pages/form/form"
     })
   },
 
@@ -269,7 +269,7 @@ Page({
       that.setData({
         auth: res.data
       })
-      if(res.data.data.code){
+      if(res.data.code){
         wx.showToast({
           title: '请先绑定手机！',
           duration: 2000,

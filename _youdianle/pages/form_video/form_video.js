@@ -268,7 +268,7 @@ Page({
       that.setData({
         auth: res.data
       })
-      if (res.data.data.code) {
+      if (res.data.code) {
         wx.showToast({
           title: '请先绑定手机！',
           duration: 2000,

@@ -13,6 +13,7 @@ Page({
     sousuo_detail: [],
     hotWords: [],
     listCampus_timeChange: [],
+    sousuo_lishi: [],
   },
   tabSelect(e) {
     this.setData({
@@ -42,6 +43,8 @@ Page({
     }, (err) => {
       console.log(err.errMsg)
     });
+    this.setLishi()
+    this.getLishi()
   },
   timeChange: function() { //////修改时间
     var obj = [];
@@ -81,12 +84,55 @@ Page({
     })
     this.change_sousuo()
   },
+  /////////////搜索历史
+  getLishi: function() {
+    var that = this;
+    wx.getStorage({
+      key: 'lishi',
+      success: function(res) {
+        console.log(res)
+        if (res.data) {
+          that.setData({
+            sousuo_lishi: res.data,
+          })
+        }
+      },
+    })
+  },
+  setLishi: function() {
+    var that = this;
+    if (this.data.sousuo_neirong != '') {
+      var array = this.data.sousuo_lishi
+      array.push(this.data.sousuo_neirong)
+      wx.setStorageSync("lishi", array)
+      that.getLishi()
+    }
+  },
+  remAll: function(e) {
+    console.log(e)
+    var that = this;
+    var array = this.data.sousuo_lishi
+    array.splice(0, array.length)
+    wx.setStorageSync("lishi", array)
+    that.getLishi()
+
+  },
+  remOne:function(e){
+    console.log(e)
+    var that = this;
+    var array = this.data.sousuo_lishi
+    array.splice(e.currentTarget.id, 1)
+    wx.setStorageSync("lishi", array)
+    that.getLishi()
+  },
+  /////////
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
     this.getHotWords()
+    this.getLishi()
   },
 
   /**
@@ -101,6 +147,7 @@ Page({
    */
   onShow: function() {
     this.timeChange()
+    this.getLishi()
 
   },
 
