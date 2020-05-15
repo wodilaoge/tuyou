@@ -3,7 +3,6 @@ var util = require("../../utils/util.js");
 Page({
   data: {
     bt: '校园活动',
-
     btdata: [{
         id: 0,
         name: "校园活动"
@@ -65,6 +64,7 @@ Page({
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
   },
   tabSelect(e) {
+    console.log(e.currentTarget.dataset.id)
     this.setData({
       TabCur: e.currentTarget.dataset.id,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60

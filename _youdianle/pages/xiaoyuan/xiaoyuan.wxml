@@ -57,7 +57,7 @@
   </view>
 </scroll-view>
 <block wx:if="{{TabCur==0}}">
-  <view class="top-gradul-blue">
+  <view class="top-gradul-blue" style="margin-top:-50rpx">
     <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#FE538F">
       <swiper-item wx:for="{{xiaoyuanSwiperList}}" wx:key>
         <view class="swiper-item">
@@ -90,7 +90,7 @@
 创建时间：20200411
 内容：运动页面-->
 <block wx:if="{{TabCur==1}}">
-  <view class="top-gradul-blue">
+  <view class="top-gradul-blue" style="margin-top:-50rpx">
     <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#FE538F">
       <swiper-item wx:for="{{yundongSwiperList}}" wx:key>
         <view class="swiper-item">
@@ -113,7 +113,7 @@
 创建时间：20200505
 内容：文娱页面-->
 <block wx:if="{{TabCur==2}}">
-  <view class="top-gradul-blue">
+  <view class="top-gradul-blue" style="margin-top:-50rpx">
     <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#FE538F">
       <swiper-item wx:for="{{yundongSwiperList}}" wx:key>
         <view class="swiper-item">
@@ -136,7 +136,7 @@
 创建时间：20200505
 内容：爱好页面-->
 <block wx:if="{{TabCur==3}}">
-  <view class="top-gradul-blue">
+  <view class="top-gradul-blue" style="margin-top:-50rpx">
     <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#FE538F">
       <swiper-item wx:for="{{yundongSwiperList}}" wx:key>
         <view class="swiper-item">

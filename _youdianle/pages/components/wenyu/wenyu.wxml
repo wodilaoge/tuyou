@@ -9,7 +9,7 @@
   <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-wenyu="{{item}}">
     <view class="cu-card article">
       <view class="cu-item">
-        <view class="yundong-content title-text-content" style="margin-top:28rpx;">
+        <view class="yundong-content title-text-content" style="margin-bottom:20rpx; padding-left:0rpx">
           <image class="icon-size" src="/img/icon_title.png" mode="heightFix"></image>
           <text decode="{{true}}">{{item.slogan}}</text>
         </view>
