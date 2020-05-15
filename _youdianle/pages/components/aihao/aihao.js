@@ -5,10 +5,10 @@ Component({
   },
   properties: {
     aihaoList: Object,
-    aihaoCur: String
+    aihaoCur: String,
+    aihaoxiaolei:Object
   },
   attached: function () {
-    console.log(this.properties.aihaoList);
   },
   /**
    * 组件的初始数据
@@ -23,12 +23,12 @@ Component({
   methods: {
     yundongxiangqing(e) {
       wx.navigateTo({
-        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.yundong.id,
+        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.aihao.id,
       })
     },
     baomingtiaozhan(e) {
       wx.navigateTo({
-        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=1&categoryId=' + e.currentTarget.dataset.yundong.id,
+        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=1&categoryId=' + e.currentTarget.dataset.aihao.id,
       })
     },
   }

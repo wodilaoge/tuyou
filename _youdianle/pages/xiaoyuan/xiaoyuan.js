@@ -38,6 +38,9 @@ Page({
     shipindalei: [],
     wenyudalei: [],
     aihaodalei: [],
+    yundongxiaolei: [],
+    wenyuxiaolei: [],
+    aihaoxiaolei: [],
     yundongid: '',
     shipinid: '',
     aihaoid: '',
@@ -94,36 +97,51 @@ Page({
     });
   },
   yundongTabSelect(e) { //运动内导航栏1
-    var url = app.globalData.URL + '/act/listActivity';
-    let data = {
-      sid: this.data.yundongid,
-      acid1: e.currentTarget.dataset.cur
-    };
     this.setData({
       yundongCur: e.currentTarget.dataset.cur,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
+    var self = this
+    let url = app.globalData.URL + '/config/getActivityClass2'
+    let data = {
+      cid: self.properties.yundongCur
+    }
+    util.gets(url, data).then(function (res) {
+      self.setData({
+        yundongxiaolei: res.data.data
+      })
+    })
   },
   wenyuTabSelect(e) { //文娱内导航栏
-    var url = app.globalData.URL + '/act/listActivity';
-    let data = {
-      sid: this.data.wenyuid,
-      acid1: e.currentTarget.dataset.cur
-    };
     this.setData({
       wenyuCur: e.currentTarget.dataset.cur,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
+    var self = this
+    let url = app.globalData.URL + '/config/getActivityClass2'
+    let data = {
+      cid: self.properties.wenyuCur
+    }
+    util.gets(url, data).then(function (res) {
+      self.setData({
+        wenyuxiaolei: res.data.data
+      })
+    })
   },
   aihaoTabSelect(e) { //爱好内导航栏
-    var url = app.globalData.URL + '/act/listActivity';
-    let data = {
-      sid: this.data.aihaoid,
-      acid1: e.currentTarget.dataset.cur
-    };
     this.setData({
       aihaoCur: e.currentTarget.dataset.cur,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
+    })
+    var self = this
+    let url = app.globalData.URL + '/config/getActivityClass2'
+    let data = {
+      cid: self.properties.aihaoCur
+    }
+    util.gets(url, data).then(function (res) {
+      self.setData({
+        aihaoxiaolei: res.data.data
+      })
     })
   },
   shipinTabSelect(e) { //视频内导航栏
@@ -200,14 +218,15 @@ Page({
                 yundongList: res.data.data
               })
             }).then(function(){
-              var timestamp = Date.parse(new Date());//当天时间戳
-              var data = new Date(timestamp)
-              console.log(data)
-              for(let i in self.data.yundongList.list){
-                let deadline = self.data.yundongList.list[i].signupdeadline
-                var s = deadline - data;
-                console.log(s)
+              let urlxiaolei = app.globalData.URL + '/config/getActivityClass2'
+              let dataxiaolei = {
+                cid: self.data.yundongCur
               }
+              util.gets(urlxiaolei, dataxiaolei).then(function (res) {
+                self.setData({
+                  yundongxiaolei: res.data.data
+                })
+              })
             })
           })
           continue;
@@ -238,14 +257,21 @@ Page({
             data = {
               sid: self.data.wenyuid
             }
-            app.wxRequest('GET', url, data, (res) => {
+            util.gets(url, data).then(function (res) {
               self.setData({
-                wenyuList: res.data
+                wenyuList: res.data.data
               })
-            }, (err) => {
-              console.log(err.errMsg)
-            });
-
+            }).then(function () {
+              let urlxiaolei = app.globalData.URL + '/config/getActivityClass2'
+              let dataxiaolei = {
+                cid: self.data.wenyuCur
+              }
+              util.gets(urlxiaolei, dataxiaolei).then(function (res) {
+                self.setData({
+                  wenyuxiaolei: res.data.data
+                })
+              })
+            })
           })
         }
         if (res.data.data[i].name == "爱好") {
@@ -274,13 +300,21 @@ Page({
             data = {
               sid: self.data.aihaoid
             }
-            app.wxRequest('GET', url, data, (res) => {
+            util.gets(url, data).then(function (res) {
               self.setData({
-                aihaoList: res.data
+                aihaoList: res.data.data
               })
-            }, (err) => {
-              console.log(err.errMsg)
-            });
+            }).then(function () {
+              let urlxiaolei = app.globalData.URL + '/config/getActivityClass2'
+              let dataxiaolei = {
+                cid: self.data.aihaoCur
+              }
+              util.gets(urlxiaolei, dataxiaolei).then(function (res) {
+                self.setData({
+                  aihaoxiaolei: res.data.data
+                })
+              })
+            })
           })
         }
         if (res.data.data[i].name == "视频") {

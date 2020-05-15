@@ -1,4 +1,6 @@
 // pages/yundong/lanqiu/lanqiu.js
+const app = getApp();
+var util = require("../../../utils/util.js");
 Component({
   options: { 
     addGlobalClass: true
@@ -6,7 +8,8 @@ Component({
   
   properties: {
     yundongList: Object,
-    yundongCur:String
+    yundongCur:String,
+    yundongxiaolei:Object
   },
 
   attached: function () {
@@ -15,6 +18,7 @@ Component({
    * 组件的初始数据
    */
   data: {
+    xiaolei:[]
   },
 
   /**

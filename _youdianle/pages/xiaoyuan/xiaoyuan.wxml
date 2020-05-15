@@ -68,7 +68,7 @@
   </view>
 
   <view class="cu-card article no-card bg-white">
-    <view class="cu-item shadow " wx:for="{{ActList.list}}">
+    <view class="cu-item shadow " wx:for="{{ActList.list}}" wx:key>
       <view class="content margin-bottom" bindtap="xiaoyuanxiangqing" id="{{item.id}}">
         <image src="{{item.logo}}" mode="aspectFill"></image>
         <view class="desc">
@@ -105,7 +105,7 @@
     </view>
   </scroll-view>
   <view>
-    <yundong yundongList="{{yundongList}}" yundongCur="{{yundongCur}}"></yundong>
+    <yundong yundongList="{{yundongList}}" yundongCur="{{yundongCur}}" yundongxiaolei="{{yundongxiaolei}}"></yundong>
   </view>
 </block>
 <!--
@@ -128,7 +128,7 @@
     </view>
   </scroll-view>
   <view>
-    <wenyu wenyuList="{{wenyuList}}" wenyuCur="{{wenyuCur}}"></wenyu>
+    <wenyu wenyuList="{{wenyuList}}" wenyuCur="{{wenyuCur}}" wenyuxiaolei="{{wenyuxiaolei}}"></wenyu>
   </view>
 </block>
 <!--
@@ -151,7 +151,7 @@
     </view>
   </scroll-view>
   <view>
-    <aihao aihaoList="{{aihaoList}}" aihaoCur="{{aihaoCur}}"></aihao>
+    <aihao aihaoList="{{aihaoList}}" aihaoCur="{{aihaoCur}}" aihaoxiaolei="{{aihaoxiaolei}}"></aihao>
   </view>
 </block>
 <!-- 发布栏 -->
@@ -167,7 +167,7 @@
     </view>
   </scroll-view>
 
-  <view wx:for="{{shipin.list}}">
+  <view wx:for="{{shipin.list}}" wx:key>
     <view wx:if="{{index==0}}">
       <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx;">{{shipin.list[0].title}}</view>
       <view class="content-white">

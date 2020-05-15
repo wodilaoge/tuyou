@@ -82,7 +82,7 @@
         </view>
         <view class="yundong-content bg-white">
           <view class="padding-sm">
-            <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" style="background-image:url({{item.head}});" />
+            <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" wx:key style="background-image:url({{item.head}});" />
           </view>
         </view>
       </view>
@@ -128,7 +128,7 @@
       <view class="cu-card case no-card bg-white">
         <view class="cu-item shadow">
           <view class="cu-list menu-avatar">
-            <view class="cu-item" wx:for="{{comment_detail}}" wx:for-index="index">
+            <view class="cu-item" wx:for="{{comment_detail}}" wx:for-index="index" wx:key>
               <view class="cu-avatar round lg" style="background-image:url({{item.createrHead}});"></view>
               <view class="content flex-sub">
                 <view class=" flex justify-between">
@@ -258,7 +258,7 @@
         </view>
         <view class="yundong-content bg-white">
           <view class="padding-sm">
-            <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" style="background-image:url({{item.head}});" />
+            <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" wx:key style="background-image:url({{item.head}});" />
           </view>
         </view>
       </view>
@@ -356,7 +356,7 @@
         </view>
         <view class="yundong-content bg-white">
           <view class="padding-sm">
-            <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" style="background-image:url({{item.head}});" />
+            <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" wx:key style="background-image:url({{item.head}});" />
           </view>
         </view>
       </view>
@@ -428,7 +428,7 @@
       <view class="cu-card case no-card bg-white">
         <view class="cu-item shadow">
           <view class="cu-list menu-avatar">
-            <view class="cu-item" wx:for="{{comment_detail}}" wx:for-index="index">
+            <view class="cu-item" wx:for="{{comment_detail}}" wx:for-index="index" wx:key>
               <view class="cu-avatar round lg" style="background-image:url({{item.createrHead}});"></view>
               <view class="content flex-sub">
                 <view class=" flex justify-between">
@@ -487,7 +487,7 @@
     </view>
   </scroll-view>
 
-  <view wx:for="{{shipin.list}}">
+  <view wx:for="{{shipin.list}}" wx:key>
     <view wx:if="{{index==0}}">
       <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx;">{{shipin.list[0].title}}</view>
       <view class="content-white">
@@ -778,7 +778,7 @@
       <view class="cu-card case no-card bg-white">
         <view class="cu-item shadow">
           <view class="cu-list menu-avatar">
-            <view class="cu-item" wx:for="{{comment_detail}}" wx:for-index="index">
+            <view class="cu-item" wx:for="{{comment_detail}}" wx:for-index="index" wx:key>
               <view class="cu-avatar round lg" style="background-image:url({{item.createrHead}});"></view>
               <view class="content flex-sub">
                 <view class=" flex justify-between">
