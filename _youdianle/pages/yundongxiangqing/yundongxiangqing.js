@@ -91,7 +91,7 @@ Page({
     // 创建一个动画实例
     var animation = wx.createAnimation({
       // 动画持续时间
-      duration: 500,
+      duration: 100,
       // 定义动画效果，当前是匀速
       timingFunction: 'linear'
     })
@@ -112,12 +112,12 @@ Page({
       that.setData({
         animationData: animation.export()
       })
-    }, 200)
+    }, 100)
   },
   hideModal: function(e) {
     var that = this;
     var animation = wx.createAnimation({
-      duration: 1000,
+      duration: 100,
       timingFunction: 'linear'
     })
     that.animation = animation
@@ -132,7 +132,7 @@ Page({
         animationData: animation.export(),
         chooseSize: false
       })
-    }, 200)
+    }, 100)
   },
   emailInput: function(e) { //input输入
     this.setData({

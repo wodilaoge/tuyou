@@ -425,8 +425,8 @@ Page({
     this.xuanran();
     this.getShipin();
 
-    this.news()
-    this.news_detail()
+    //this.news()
+    //this.news_detail()
   },
   DotStyle(e) {
     this.setData({

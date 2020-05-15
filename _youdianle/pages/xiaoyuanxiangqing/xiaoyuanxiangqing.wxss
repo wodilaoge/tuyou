@@ -7,7 +7,7 @@ page {
 /*模态框*/
 .modals{position:fixed; z-index: 999; top:0; left: 0; right:0; bottom: 0;}
 .modals-cancel{position:absolute; z-index:1000; top:0; left: 0; right:0; bottom: 0; background-color: rgba(0,0,0,.5);}
-.bottom-dialog-body{position:absolute; z-index:10001; bottom:0; left:0; right:0; padding:30rpx; height:400rpx; background-color: #fff;}
+.bottom-dialog-body{position:absolute; z-index:10001; bottom:0; left:0; right:0; padding:30rpx; height:500rpx; background-color: #fff;}
 /*动画前初始位置*/
 .bottom-pos{-webkit-transform:translateY(100%);transform:translateY(100%);}
 
@@ -115,7 +115,7 @@ page {
   background-color: #f8f9fd;
   border-radius: 10rpx;
   font-size: 32rpx;
-  line-height: 32rpx;
+  line-height: 33rpx;
 }
 
 .mlt{
@@ -453,4 +453,10 @@ checkbox.tp-checkbox {
   width: 100rpx;
   height: 60rpx;
   font-size: 24rpx;
+}
+
+.btn-fasong {
+  width: 156rpx;
+  height: 64rpx;
+  border-radius: 33.5rpx;
 }
