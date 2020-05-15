@@ -23,10 +23,10 @@ Page({
         id: 4,
         name: "视频"
       },
-      {
+      /*{
         id: 5,
         name: "新闻"
-      },
+      },*/
     ],
     ActList: [],
     yundongList: [],
@@ -57,8 +57,8 @@ Page({
     aihaoSwiperList: [],
     shipinSwiperList: [],
     shipin: [],
-    news: [],
-    news_detail: [],
+    //news: [],
+    //news_detail: [],
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
@@ -70,7 +70,7 @@ Page({
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
   },
-  news() { //活动新闻
+  /*news() { //活动新闻
     let url = app.globalData.URL + '/news/listNews';
     let data = {
       id: this.data.categoryId
@@ -95,7 +95,7 @@ Page({
     }, (err) => {
       console.log(err.errMsg)
     });
-  },
+  },*/
   yundongTabSelect(e) { //运动内导航栏1
     this.setData({
       yundongCur: e.currentTarget.dataset.cur,
