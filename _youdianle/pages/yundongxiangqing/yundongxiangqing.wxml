@@ -5,7 +5,7 @@
 
 <view class="top">
   <cu-custom isBack="{{true}}" bgColor="bg-blue">
-    <view slot="content">运动详情</view>
+    <view slot="content">{{biaoti}}</view>
   </cu-custom>
 </view>
 <view hidden="{{rotationhide}}">

@@ -2,23 +2,22 @@
 const app = getApp();
 var util = require("../../../utils/util.js");
 Component({
-  options: { 
+  options: {
     addGlobalClass: true
   },
-  
+
   properties: {
     yundongList: Object,
-    yundongCur:String,
-    yundongxiaolei:Object
+    yundongCur: String,
+    yundongxiaolei: Object
   },
 
-  attached: function () {
-  },
+  attached: function() {},
   /**
    * 组件的初始数据
    */
   data: {
-    xiaolei:[]
+    xiaolei: []
   },
 
   /**
@@ -26,13 +25,15 @@ Component({
    */
   methods: {
     yundongxiangqing(e) {
+      app.globalData.tabbar = 1;
       wx.navigateTo({
-        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.yundong.id,
+        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=0&Title=运动详情&categoryId=' + e.currentTarget.dataset.yundong.id,
       })
     },
     baomingtiaozhan(e) {
+      app.globalData.tabbar = 1;
       wx.navigateTo({
-        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=1&categoryId=' + e.currentTarget.dataset.yundong.id,
+        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=1&Title=运动详情&categoryId=' + e.currentTarget.dataset.yundong.id,
       })
     },
   }

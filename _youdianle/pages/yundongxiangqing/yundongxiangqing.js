@@ -9,6 +9,7 @@ Page({
     options: [],
     TabCur: 0,
     paimingCur: 0,
+    biaoti:"",
 
     SwiperList_zhaopian: [],
     detail: [],
@@ -32,8 +33,8 @@ Page({
 
     likecount: 0,
     ifzan: false,
-    news: [],
-    news_detail: [],
+    //news: [],
+    //news_detail: [],
     shipin: [],
     shipin_detail: [],
 
@@ -223,7 +224,7 @@ Page({
       canjiaorguankan: e.currentTarget.dataset.id
     })
   },
-  news() { //活动新闻
+  /*news() { //活动新闻
     let url = app.globalData.URL + '/news/listNews';
     let data = {
       id: this.data.categoryId
@@ -248,7 +249,7 @@ Page({
     }, (err) => {
       console.log(err.errMsg)
     });
-  },
+  },*/
   chakanhuifu: function(e) { //查看回放跳转
     wx.navigateTo({
       url: '/pages/chakanhuifu/chakanhuifu?id=' + e.currentTarget.dataset.id,
@@ -766,6 +767,7 @@ Page({
       categoryId: options.categoryId,
       user: wx.getStorageSync('userInfo'),
       TabCur: options.TabCur,
+      biaoti:options.Title,
       options: options
     })
     this.detail()
@@ -776,8 +778,8 @@ Page({
     this.ifzan()
     this.comment()
     this.fenzu()
-    this.news()
-    this.news_detail()
+    //this.news()
+    //this.news_detail()
     this.getShipin()
     this.getZhaopian()
   },
