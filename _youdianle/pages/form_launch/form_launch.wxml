@@ -86,9 +86,9 @@
 
   <view class="cu-form-group">
     <view class="title">报名开始时间</view>
-    <picker mode="date" value="{{information.fromtime}}" start="2015.09.01" end="2020.09.01" bindchange="DateChange">
+    <picker mode="date" value="{{timenow}}" start="2020.5.1" end="2020.09.01" bindchange="DateChange">
       <view class="picker text-grey">
-        {{information.fromtime}}
+        {{timenow}}
       </view>
     </picker>
   </view>

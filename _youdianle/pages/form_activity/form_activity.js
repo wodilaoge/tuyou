@@ -364,7 +364,7 @@ Page({
         logo: this.data.url3[0],
         rotations: this.data.url4,
         groups: this.data.groups,
-        fromtime: this.data.info.fromtime,
+        fromtime: this.data.info.timenow,
         totime: null,
         signupdeadline: this.data.info.signupdeadline,
         signupmax: this.data.info.entrylimit,

@@ -9,16 +9,17 @@ Page({
       acid2: '',
       cid: '',
       slogan: '',
-      univid: '003330106',
-      province: '00333',
-      city: '0033301',
+      univid: '',
+      province: '',
+      city: '',
       venue: '',
-      fromtime: '2020.4.25 16:00',
-      signupdeadline: '2020.8.25 16:00',
+      timenow: '',
+      signupdeadline: '2020.8.25',
       way: '',
       entrylimit: 50,
       ischecked: false,
     },
+    timenow:'',
     isaddress: false,
     index: 0, //活动方式
     indexbig: 0,
@@ -119,9 +120,8 @@ Page({
     })
   },
   DateChange(e) {
-    let t = 'information.fromtime'
     this.setData({
-      [t]: e.detail.value
+      timenow: e.detail.value
     })
   },
   DateChange2(e) {
@@ -186,6 +186,10 @@ Page({
   },
 
   commit: function(e) {
+    let t = 'information.timenow'
+    this.setData({
+      [t]: this.data.timenow
+    })
     wx.setStorage({ //将活动信息存入缓存
       key: "information",
       data: this.data.information
@@ -263,6 +267,28 @@ Page({
     })
   },
   onLoad() {
+    var timestamp = Date.parse(new Date());
+    timestamp = timestamp / 1000;
+    // console.log("当前时间戳为：" + timestamp);
+    var n = timestamp * 1000;
+    var date = new Date(n);
+    //年  
+    var Y = date.getFullYear();
+    //月  
+    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
+    //日  
+    var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+    //时  
+    // var h = date.getHours();
+    // //分  
+    // var m = date.getMinutes();
+    // //秒  
+    // var s = date.getSeconds();
+    // console.log("当前时间：" + Y + M + D + h + ":" + m + ":" + s)
+    var nowtime=Y+'-'+M+'-'+D
+    this.setData({
+      timenow:nowtime
+    })
     let url2 = app.globalData.URL +'/appuser/getPubPerm'
     util.gets(url2, {}).then(function (res) {
       console.log('auth',res)
