@@ -3,7 +3,7 @@ App({
   globalData: {
     tabbar: 0,
     userInfo: "",
-    URL: 'http://192.144.169.239:8080/kt',
+    URL: 'https://api.udianle.com/kt',
     systemInfo: null, //客户端设备信息，
     YundongList: [{
         name: '篮球',
