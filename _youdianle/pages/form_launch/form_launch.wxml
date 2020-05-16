@@ -136,7 +136,7 @@
       <text class="text-blue">《有点乐活动声明》</text>
     </checkbox-group>
     <view class="flex margin-top2">
-      <button class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="cancel">取消活动</button>
+      <!-- <button class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="cancel">取消活动</button> -->
       <button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="commit" data-target="Modal">补充信息</button>
     </view>
 
