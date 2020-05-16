@@ -545,7 +545,7 @@ Page({
   getShipin() { //视频
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
-
+        actid:this.data.categoryId
     };
     app.wxRequest('GET', url, data, (res) => {
       console.log(res)
@@ -564,7 +564,6 @@ Page({
       objid: e.currentTarget.dataset.dxid,
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res)
       this.setData({
         pinglunallList: res.data
       })
@@ -617,12 +616,12 @@ Page({
   },
   shipintiaozhuan() {
     wx.navigateTo({
-      url: '../form_actid_video/form_actid_video?+actid=' + this.data.categoryId
+      url: '../form_actid_video/form_actid_video?actid=' + this.data.categoryId
     })
   },
   zhaopiantiaozhuan() {
     wx.navigateTo({
-      url: '../form_picture/form_picture?+actid=' + this.data.categoryId
+      url: '../form_picture/form_picture?actid=' + this.data.categoryId
     })
   },
   /////////////////
