@@ -133,7 +133,7 @@
     <checkbox-group bindchange="checked">
       <checkbox checked="{{ischecked2}}" class="blue checkicon"></checkbox>
       <text class="text-grey">我已阅读并同意</text>
-      <text class="text-blue">《有点乐活动声明》</text>
+      <text class="text-blue" bindtap="toagreepage">《有点乐用户协议》</text>
     </checkbox-group>
     <view class="flex margin-top2">
       <!-- <button class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="cancel">取消活动</button> -->
