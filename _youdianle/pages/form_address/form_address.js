@@ -17,7 +17,7 @@ Page({
     options: 1,
     AllActivity: [],
     list: [],
-    load: true
+    load: true,
   },
 
   /**
@@ -63,7 +63,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-  onLoad() {
+  onLoad(options) {
     this.city_initial();
     this.province();
     wx.showLoading({

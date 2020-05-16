@@ -19,6 +19,8 @@ Page({
       entrylimit: 0,
       ischecked: false,
     },
+    time1: '7:00',
+    time2: '18:00',
     index2:0,
     timenow:'',
     isaddress: false,
@@ -118,7 +120,12 @@ Page({
   },
   TimeChange(e) {
     this.setData({
-      time: e.detail.value
+      time1: e.detail.value
+    })
+  },
+  TimeChange2(e) {
+    this.setData({
+      time2: e.detail.value
     })
   },
   DateChange(e) {
@@ -185,9 +192,12 @@ Page({
 
   commit: function(e) {
     let t = 'information.timenow'
+    let t2 ='information.signupdeadline'
     this.setData({
-      [t]: this.data.timenow
+      [t]: this.data.timenow+' '+this.data.time1,
+      [t2]:this.data.information.signupdeadline+' '+this.data.time2
     })
+    
     wx.setStorage({ //将活动信息存入缓存
       key: "information",
       data: this.data.information
@@ -259,7 +269,7 @@ Page({
     })
   },
   tochooseadress(e) {
-    console.log('address')
+    wx.setStorageSync('addressMode', '2')
     wx.navigateTo({
       url: '/pages/form_address/form_address',
     })

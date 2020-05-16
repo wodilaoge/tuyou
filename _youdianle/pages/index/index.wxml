@@ -188,7 +188,7 @@
   </view>
   <view wx:for="{{wenyuList.list}}" wx:if="{{index<1}}" wx:key="key">
     <view class="cu-bar bg-white solid-bottom">
-      <image class="cu-avatar my margin-left" src="/img/jita.png" mode="heightFix"></image>
+      <image class="cu-avatar my margin-left" src="{{item.logo}}" mode="heightFix"></image>
       <text>吉他</text>
       <text class=" title-time margin-right">1 天 01: 02 </text>
     </view>
@@ -213,7 +213,7 @@
                 </view>
                 <view class="time-text-content">
                   <image class="icon-size" src="/img/icon_time.png" mode="heightFix"></image>
-                  {{item.fromtime}}开战
+                  {{item.fromtime}}开始
                 </view>
               </view>
               <image src="{{item.logo}}" mode="aspectFill"></image>
@@ -244,7 +244,7 @@
   </view>
   <view wx:for="{{aihaoList.list}}" wx:key="key">
     <view class="cu-bar bg-white solid-bottom">
-      <image class="cu-avatar my margin-left" src="/img/yingxionglianmeng.png" mode="heightFix"></image>
+      <image class="cu-avatar my margin-left" src="{{item.logo}}" mode="heightFix"></image>
       <text style="">英雄联盟</text>
       <text class=" title-time margin-right">1 天 01: 02 </text>
     </view>
