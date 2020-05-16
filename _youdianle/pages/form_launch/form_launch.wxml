@@ -33,12 +33,12 @@
   </view>
   <view class="cu-form-group">
     <view class="title">活动名称</view>
-    <input class="input text-grey" bindinput="getname" placeholder="春季篮球"></input>
+    <input class="input text-grey" bindinput="getname" placeholder="必填"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group">
     <view class="title ">活动口号</view>
-    <input class="input text-grey" placeholder="争夺XX三分王！敢挑战吗?" bindinput="getslogan"></input>
+    <input class="input text-grey" placeholder="必填" bindinput="getslogan"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <!-- <view class="cu-form-group">
@@ -80,7 +80,7 @@
   </view>
   <view class="cu-form-group">
     <view class="title ">场馆</view>
-    <input class="input text-grey" placeholder="体育馆" bindinput="getvenue"></input>
+    <input class="input text-grey" placeholder="必填" bindinput="getvenue"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
 
@@ -115,15 +115,11 @@
     <input class="input text-grey" value="{{information.entrylimit}}" bindinput="getentity"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
-  <view class="cu-form-group">
-    <view class="title">组建聊天群</view>
-    <switch bindchange="changeswitch"></switch>
-  </view>
   <view class="text-center margin-top3">
     <checkbox-group bindchange="checked">
       <checkbox checked="{{ischecked2}}" class="blue checkicon"></checkbox>
       <text class="text-grey">我已阅读并同意</text>
-      <text class="text-blue">《同友活动申明》</text>
+      <text class="text-blue">《有点乐活动声明》</text>
     </checkbox-group>
     <view class="flex margin-top2">
       <button class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="cancel">取消活动</button>

@@ -14,11 +14,12 @@ Page({
       city: '',
       venue: '',
       timenow: '',
-      signupdeadline: '2020.8.25',
+      signupdeadline: '2020-8-25',
       way: '',
-      entrylimit: 50,
+      entrylimit: 0,
       ischecked: false,
     },
+    index2:0,
     timenow:'',
     isaddress: false,
     index: 0, //活动方式
@@ -46,7 +47,8 @@ Page({
   PickerChange(e) { //报名方式
     let t = 'information.way'
     this.setData({
-      [t]: e.detail.value
+      [t]: e.detail.value,
+      index2:e.detail.value
     })
   },
   PickerChange2(e) { //活动大类
@@ -169,11 +171,7 @@ Page({
       entrylimit: e.detail.value
     })
   },
-  changeswitch(e) {
-    this.setData({
-      ischecked: !this.data.ischecked
-    })
-  },
+
   checked(e) {
     this.setData({
       ischecked2: !this.data.ischecked2
