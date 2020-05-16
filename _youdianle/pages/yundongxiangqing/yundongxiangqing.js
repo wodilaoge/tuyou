@@ -6,7 +6,6 @@ Page({
     animationData: {},
     Input: "",
 
-    options: [],
     TabCur: 0,
     paimingCur: 0,
     biaoti: "",
@@ -29,7 +28,8 @@ Page({
     fenzuhide: false,
     fenzuindex: 0,
     tuanduiSelect: [],
-    members: [],
+    members: [], 
+    xingmingInput: '',
 
     likecount: 0,
     ifzan: false,
@@ -90,6 +90,11 @@ Page({
       path: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
     }]
 
+  },
+  bmtz(){
+    this.setData({
+      TabCur:1
+    })
   },
   //发布评论
   chooseSezi: function(e) {
@@ -166,6 +171,7 @@ console.log(e)
   },
   fasong() { //发送按钮
     var self = this;
+<<<<<<< HEAD
     console.log(this.data.dxid)
     if (this.data.duixiang == '50') {
       let url = app.globalData.URL + '/comm/addComment';
@@ -212,6 +218,29 @@ console.log(e)
         console.log(err.errMsg)
       });
     }
+=======
+    let url = app.globalData.URL + '/comm/addComment';
+    let data = {
+      pid: null,
+      objtype: 30,
+      objid: self.data.categoryId,
+      objtitle: "",
+      comment: self.data.Input,
+      creater: self.data.user.id,
+      createrAlias: self.data.user.nickname,
+      createrHead: self.data.user.head
+    };
+    app.wxRequest('POST', url, data, (res) => {
+      self.comment();
+      wx.showToast({
+        title: '评论成功！', // 标题
+        icon: 'success', // 图标类型，默认success
+        duration: 1500 // 提示窗停留时间，默认1500ms
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+>>>>>>> c96b50db9bb8bdcc284e4ceb8c1ff79275eb0cd8
     self.setData({
       Input: '',
     })
@@ -260,6 +289,11 @@ console.log(e)
     this.setData({
       canjiaorguankan: e.currentTarget.dataset.id
     })
+  },
+  xingmingInput: function (e) { //input输入
+    this.setData({
+      xingmingInput: e.detail.value
+    });
   },
   /*news() { //活动新闻
     let url = app.globalData.URL + '/news/listNews';
@@ -832,8 +866,12 @@ console.log(e)
       categoryId: options.categoryId,
       user: wx.getStorageSync('userInfo'),
       TabCur: options.TabCur,
+<<<<<<< HEAD
       biaoti: options.Title,
       options: options
+=======
+      biaoti:options.Title
+>>>>>>> c96b50db9bb8bdcc284e4ceb8c1ff79275eb0cd8
     })
     this.detail()
     this.yibaoming()
@@ -847,6 +885,16 @@ console.log(e)
     //this.news_detail()
     this.getShipin()
     this.getZhaopian()
+    setTimeout(function () {
+      if (this.data.detail.length == 0)
+        wx.showToast({
+          title: '暂无活动数据！', // 标题
+          image: '/img/fail.png', // 图标类型，默认success
+          duration: 1000 // 提示窗停留时间，默认1500ms
+        })
+
+      resolve();
+    }, 1000)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -70,7 +70,7 @@ Page({
     var self = this
     let url = app.globalData.URL + '/team/listByLeader'
     let data = {
-      lid: '11878394752925696'
+      lid: t.id
     }
     app.wxRequest('GET', url, data, (res) => {
       console.log(res.data)
@@ -82,7 +82,7 @@ Page({
     });
     let url2 = app.globalData.URL + '/team/listAcid1ByLeader'
     let data2 = {
-      lid: '11878394752925696'
+      lid: t.id
     }
     app.wxRequest('GET', url2, data2, (res) => {
       console.log(res.data)

@@ -2,19 +2,18 @@ const app = getApp();
 var util = require("../../utils/util.js");
 Page({
   data: {
-    chooseSize:false,
+    chooseSize: false,
     animationData: {},
-    Input:"",
+    Input: "",
 
-    options: [],
     TabCur: 0,
     paimingCur: 0,
     categoryId: '',
     detail: [], //页面详细内容
     comment: [],
     comment_detail: [],
-    news: [],
-    news_detail: [],
+    //news: [],
+    //news_detail: [],
     likecount: 0,
     ifzan: false,
     loading: true,
@@ -25,7 +24,7 @@ Page({
     huodongfenzu: [],
     fenzuhide: false,
     fenzuindex: 0,
-    picker:[],
+    picker: [],
     xingmingInput: '',
     isguanzhu: false,
     isbaominggeren: 0,
@@ -38,7 +37,7 @@ Page({
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
   },
-  chooseSezi: function (e) {
+  chooseSezi: function(e) {
     var that = this;
     // 创建一个动画实例
     var animation = wx.createAnimation({
@@ -59,14 +58,14 @@ Page({
       chooseSize: true
     })
     // 设置setTimeout来改变y轴偏移量，实现有感觉的滑动
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export()
       })
     }, 100)
   },
-  hideModal: function (e) {
+  hideModal: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -78,7 +77,7 @@ Page({
       animationData: animation.export()
 
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export(),
@@ -86,7 +85,7 @@ Page({
       })
     }, 100)
   },
-  emailInput: function (e) { //input输入
+  emailInput: function(e) { //input输入
     this.setData({
       Input: e.detail.value
     });
@@ -117,7 +116,7 @@ Page({
       createrHead: self.data.user.head
     };
     app.wxRequest('POST', url, data, (res) => {
-      self.onLoad(self.data.options);
+      self.comment();
       wx.showToast({
         title: '评论成功！', // 标题
         icon: 'success', // 图标类型，默认success
@@ -196,6 +195,21 @@ Page({
       this.setData({
         detail: res.data
       })
+      if (this.data.detail.signupway == "30")
+        this.setData({
+          signupway: false,
+          baomingCur: 0
+        })
+      else if (this.data.detail.signupway == "10")
+        this.setData({
+          signupway: true,
+          baomingCur: 0
+        })
+      else if (this.data.detail.signupway == "20")
+        this.setData({
+          signupway: true,
+          baomingCur: 1
+        })
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -246,7 +260,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-  news() { //活动新闻
+  /*news() { //活动新闻
     let url = app.globalData.URL + '/news/listNews';
     let data = {
       id: this.data.categoryId
@@ -271,7 +285,7 @@ Page({
     }, (err) => {
       console.log(err.errMsg)
     });
-  },
+  },*/
   ifguanzhu() { //是否关注
     self = this;
     let url = app.globalData.URL + '/follow/findFollow';
@@ -618,8 +632,7 @@ Page({
     this.setData({
       categoryId: options.categoryId,
       user: wx.getStorageSync('userInfo'),
-      TabCur: options.TabCur,
-      options: options
+      TabCur: options.TabCur
     })
     this.fenzu()
     this.baomingzhuangtai()
@@ -627,29 +640,18 @@ Page({
     this.comment()
     this.ifguanzhu()
     this.ifzan()
-    this.news()
-    this.news_detail()
-    wx.showLoading({
-      title: '加载中...',
-      mask: true
-    });
-    await this.TBcontroll()
-    if (this.data.detail.signupway == "30")
-      this.setData({
-        signupway: false,
-        baomingCur: 0
-      })
-    else if (this.data.detail.signupway == "10")
-      this.setData({
-        signupway: true,
-        baomingCur: 0
-      })
-    else if (this.data.detail.signupway == "20")
-      this.setData({
-        signupway: true,
-        baomingCur: 1
-      })
-    wx.hideLoading()
+    //this.news()
+    //this.news_detail()
+    setTimeout(function () {
+      if (this.data.detail.length == 0)
+        wx.showToast({
+          title: '暂无活动数据！', // 标题
+          image: '/img/fail.png', // 图标类型，默认success
+          duration: 1000 // 提示窗停留时间，默认1500ms
+        })
+
+      resolve();
+    }, 1000)
   },
 
   getShipin() { //视频
@@ -702,9 +704,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
-    this.news_detail()
-  },
+  onReady: function() {},
 
   /**
    * 生命周期函数--监听页面显示

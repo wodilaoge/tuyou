@@ -64,6 +64,7 @@ Page({
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
   },
   tabSelect(e) {
+    app.globalData.tabbar = e.currentTarget.dataset.id;
     this.setData({
       TabCur: e.currentTarget.dataset.id,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
@@ -419,9 +420,9 @@ Page({
     this.towerSwiper('xiaoyuanSwiperList')
   },
   onShow() {
-    this.setData({ //读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
-      TabCur: app.globalData.tabbar
-    })
+    // this.setData({ //读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
+    //   TabCur: app.globalData.tabbar
+    // })
     this.xuanran();
     this.getShipin();
 
@@ -440,13 +441,11 @@ Page({
     })
   },
   xiaoyuanxiangqing(e) { //其他位置跳转
-    app.globalData.tabbar = this.data.TabCur;
     wx.navigateTo({
       url: '../../pages/xiaoyuanxiangqing/xiaoyuanxiangqing?TabCur=0&categoryId=' + e.currentTarget.id,
     })
   },
   baomingcanjia(e) { //报名参加按钮跳转 带着活动id跳转 校园活动
-    app.globalData.tabbar = this.data.TabCur;
     wx.navigateTo({
       url: '../../pages/xiaoyuanxiangqing/xiaoyuanxiangqing?TabCur=1&categoryId=' + e.currentTarget.id,
     })
