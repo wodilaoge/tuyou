@@ -13,8 +13,8 @@ Page({
     detail: [], //页面详细内容
     comment: [],
     comment_detail: [],
-    news: [],
-    news_detail: [],
+    //news: [],
+    //news_detail: [],
     likecount: 0,
     ifzan: false,
     loading: true,
@@ -246,7 +246,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-  news() { //活动新闻
+  /*news() { //活动新闻
     let url = app.globalData.URL + '/news/listNews';
     let data = {
       id: this.data.categoryId
@@ -271,7 +271,7 @@ Page({
     }, (err) => {
       console.log(err.errMsg)
     });
-  },
+  },*/
   ifguanzhu() { //是否关注
     self = this;
     let url = app.globalData.URL + '/follow/findFollow';
@@ -632,8 +632,8 @@ Page({
     this.comment()
     this.ifguanzhu()
     this.ifzan()
-    this.news()
-    this.news_detail()
+    //this.news()
+    //this.news_detail()
     wx.showLoading({
       title: '加载中...',
       mask: true
@@ -708,7 +708,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    this.news_detail()
   },
 
   /**
