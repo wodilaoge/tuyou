@@ -658,7 +658,7 @@
     <swiper class="card-swiper round-dot " indicator-dots="true " circular="true " autoplay="true " interval="5000 " duration="500 " bindchange="cardSwiper " indicator-color="#8799a3 " indicator-active-color="#5454FF " previous-margin="0rpx" next-margin="0rpx ">
       <swiper-item wx:for="{{swiperList_zhaopian}} " wx:key class="{{cardCur==index? 'cur': ''}} ">
         <view class="swiper-item ">
-          <image src="{{item.path}} " mode="aspectFill "></image>
+          <image src="{{item.path}} " mode="aspectFill"></image>
         </view>
       </swiper-item>
     </swiper>
@@ -1125,11 +1125,11 @@
 <!--隐藏区域  -->
 <view fixed class="modals modals-bottom-dialog" hidden="{{!chooseSize}}">
   <view class="modals-cancel" bindtap="hideModal"></view>
-  <view class="bottom-dialog-body bottom-pos " animation="{{animationData}} " style="display:block ">
+  <view class="bottom-dialog-body bottom-pos " animation="{{animationData}}" style="display:block">
     <view>
       <text class="cu-bar-title " style="margin-left:300rpx ">写评论</text>
       <button class="cu-btn bg-orange shadow-blur padding-sm margin-left-sm btn-fasong " bindtap="pd_fasong" style="margin-left:100rpx ">发送</button>
     </view>
-    <textarea class="form-text2 margin-top-sm margin-buttom " style="height:350rpx;width:100% " value="{{Input}} " maxlength="4000 " bindinput="emailInput" cursor-spacing="200 "></textarea>
+    <textarea class="form-text2 margin-top-sm margin-buttom " style="height:350rpx;width:100% " value="{{Input}} " maxlength="4000 " bindinput="emailInput" cursor-spacing="200"></textarea>
   </view>
 </view>
