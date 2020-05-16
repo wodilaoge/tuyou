@@ -349,7 +349,7 @@ page {
 }
 
 .sp-quanbupinglun {
-  min-height: 100rpx;
+  height: 50rpx;
   font-size: 24rpx;
   font-family: PingFang-SC-Medium;
   color: #5454ff;

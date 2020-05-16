@@ -45,11 +45,7 @@ Page({
     city: '',
     schoolinfo: ''
   },
-  toagreepage(){
-    wx.navigateTo({
-      url: '/pages/webview/webview',
-    })
-  },
+
   PickerChange(e) { //报名方式
     let t = 'information.way'
     this.setData({

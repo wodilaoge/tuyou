@@ -8,7 +8,7 @@ Page({
 
     TabCur: 0,
     paimingCur: 0,
-    biaoti:"",
+    biaoti: "",
 
     SwiperList_zhaopian: [],
     detail: [],
@@ -28,7 +28,7 @@ Page({
     fenzuhide: false,
     fenzuindex: 0,
     tuanduiSelect: [],
-    members: [], 
+    members: [],
     xingmingInput: '',
 
     likecount: 0,
@@ -37,22 +37,19 @@ Page({
     //news_detail: [],
     shipin: [],
     shipin_detail: [],
+    duixiang: '',
+    dxid: '',
+    dxtitle: '',
 
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
     zhaopian: [],
     zhaopian_detail: [],
+    pinglunall: 0,
+    pinglunallList: [],
     user: [],
-    swiperList: [{
-      id: 0,
-      type: 'image',
-      url: '/img/yundongxiangqing.png'
-    }, {
-      id: 1,
-      type: 'image',
-      url: '/img/yundongxiangqing.png',
-    }],
+    swiperList: [],
     rotationhide: true,
 
     swiperList_zhaopian: [{
@@ -86,39 +83,35 @@ Page({
     }]
 
   },
-  bmtz(){
+  bmtz() {
     this.setData({
-      TabCur:1
+      TabCur: 1
     })
   },
   //发布评论
   chooseSezi: function(e) {
     var that = this;
-    // 创建一个动画实例
     var animation = wx.createAnimation({
-      // 动画持续时间
       duration: 100,
-      // 定义动画效果，当前是匀速
       timingFunction: 'linear'
     })
-    // 将该变量赋值给当前动画
     that.animation = animation
-    // 先在y轴偏移，然后用step()完成一个动画
     animation.translateY(200).step()
-    // 用setData改变当前动画
     that.setData({
-      // 通过export()方法导出数据
       animationData: animation.export(),
-      // 改变view里面的Wx：if
       chooseSize: true
     })
-    // 设置setTimeout来改变y轴偏移量，实现有感觉的滑动
     setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export()
       })
     }, 100)
+    that.setData({
+      duixiang: e.currentTarget.dataset.duixiang,
+      dxid: e.currentTarget.dataset.dxid,
+      dxtitle: e.currentTarget.dataset.dxtitle,
+    })
   },
   hideModal: function(e) {
     var that = this;
@@ -140,6 +133,7 @@ Page({
       })
     }, 100)
   },
+
   emailInput: function(e) { //input输入
     this.setData({
       Input: e.detail.value
@@ -159,33 +153,57 @@ Page({
   },
   fasong() { //发送按钮
     var self = this;
-    let url = app.globalData.URL + '/comm/addComment';
-    let data = {
-      pid: null,
-      objtype: 30,
-      objid: self.data.categoryId,
-      objtitle: "",
-      comment: self.data.Input,
-      creater: self.data.user.id,
-      createrAlias: self.data.user.nickname,
-      createrHead: self.data.user.head
-    };
-    app.wxRequest('POST', url, data, (res) => {
-      self.comment();
-      wx.showToast({
-        title: '评论成功！', // 标题
-        icon: 'success', // 图标类型，默认success
-        duration: 1500 // 提示窗停留时间，默认1500ms
-      })
-    }, (err) => {
-      console.log(err.errMsg)
-    });
+    console.log(this.data.dxid)
+    if (this.data.duixiang == '50') {
+      let url = app.globalData.URL + '/comm/addComment';
+      let data = {
+        pid: null,
+        objtype: 50,
+        objid: self.data.dxid,
+        objtitle: self.data.dxtitle,
+        comment: self.data.Input,
+        creater: self.data.user.id,
+        createrAlias: self.data.user.nickname,
+        createrHead: self.data.user.head
+      };
+      app.wxRequest('POST', url, data, (res) => {
+        self.onLoad(self.data.options);
+        wx.showToast({
+          title: '评论成功！', // 标题
+          icon: 'success', // 图标类型，默认success
+          duration: 1500 // 提示窗停留时间，默认1500ms
+        })
+      }, (err) => {
+        console.log(err.errMsg)
+      });
+    } else {
+      let url = app.globalData.URL + '/comm/addComment';
+      let data = {
+        pid: null,
+        objtype: 30,
+        objid: self.data.categoryId,
+        objtitle: "",
+        comment: self.data.Input,
+        creater: self.data.user.id,
+        createrAlias: self.data.user.nickname,
+        createrHead: self.data.user.head
+      };
+      app.wxRequest('POST', url, data, (res) => {
+        self.onLoad(self.data.options);
+        wx.showToast({
+          title: '评论成功！', // 标题
+          icon: 'success', // 图标类型，默认success
+          duration: 1500 // 提示窗停留时间，默认1500ms
+        })
+      }, (err) => {
+        console.log(err.errMsg)
+      });
+    }
     self.setData({
       Input: '',
     })
     self.hideModal()
   },
-  ////////////////
   cardSwiper(e) {
     this.setData({
       cardCur: e.detail.current
@@ -229,7 +247,7 @@ Page({
       canjiaorguankan: e.currentTarget.dataset.id
     })
   },
-  xingmingInput: function (e) { //input输入
+  xingmingInput: function(e) { //input输入
     this.setData({
       xingmingInput: e.detail.value
     });
@@ -527,15 +545,42 @@ Page({
   getShipin() { //视频
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
-
+        actid:this.data.categoryId
     };
     app.wxRequest('GET', url, data, (res) => {
+      console.log(res)
       this.setData({
         shipin: res.data
       })
     }, (err) => {
       console.log(err.errMsg)
     });
+  },
+  pinglunall_change: function(e) {
+    console.log(e)
+    let url = app.globalData.URL + '/comm/listCommByObj';
+    let data = {
+      objtype: 50,
+      objid: e.currentTarget.dataset.dxid,
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        pinglunallList: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+
+    if (this.data.pinglunall == 0) {
+      this.setData({
+        pinglunall: 1,
+      })
+    } else {
+      this.setData({
+        pinglunall: 0,
+      })
+    }
+
   },
   video_change: function(e) { ////视频切换
     if (this.data.bofang_if_id != e.currentTarget.id) { ///相等表示点击和播放不匹配
@@ -571,12 +616,12 @@ Page({
   },
   shipintiaozhuan() {
     wx.navigateTo({
-      url: '../form_actid_video/form_actid_video?+actid=' + this.data.categoryId
+      url: '../form_actid_video/form_actid_video?actid=' + this.data.categoryId
     })
   },
-  shipintiaozhuan() {
+  zhaopiantiaozhuan() {
     wx.navigateTo({
-      url: '../form_picture/form_picture?+actid=' + this.data.categoryId
+      url: '../form_picture/form_picture?actid=' + this.data.categoryId
     })
   },
   /////////////////
@@ -777,7 +822,7 @@ Page({
       categoryId: options.categoryId,
       user: wx.getStorageSync('userInfo'),
       TabCur: options.TabCur,
-      biaoti:options.Title
+      biaoti: options.Title,
     })
     this.detail()
     this.yibaoming()
@@ -791,7 +836,7 @@ Page({
     //this.news_detail()
     this.getShipin()
     this.getZhaopian()
-    setTimeout(function () {
+    setTimeout(function() {
       if (this.data.detail.length == 0)
         wx.showToast({
           title: '暂无活动数据！', // 标题
