@@ -301,9 +301,10 @@ Page({
   detail() { //页面项目信息
     let url = app.globalData.URL + '/act/findActivity';
     let data = {
-      id: this.data.categoryId
+      acdid: this.data.categoryId
     };
     app.wxRequest('GET', url, data, (res) => {
+      console.log(res.data)
       this.setData({
         detail: res.data
       })
