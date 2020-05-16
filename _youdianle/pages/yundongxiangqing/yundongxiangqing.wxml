@@ -279,7 +279,7 @@
           <text class="baoming_text_wait">请耐心等待活动开始</text>
         </view>
         <view class="flex justify-center padding-lg">
-          <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx">取消报名</button>
+          <!--<button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx">取消报名</button>-->
         </view>
         <view class="fenge-bg"></view>
         <view class="cu-bar bg-white solid-bottom">
