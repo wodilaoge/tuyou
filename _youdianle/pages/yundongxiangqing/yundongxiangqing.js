@@ -124,7 +124,6 @@ Page({
         animationData: animation.export()
       })
     }, 100)
-console.log(e)
     that.setData({
       duixiang: e.currentTarget.dataset.duixiang,
       dxid: e.currentTarget.dataset.dxid,
@@ -171,8 +170,6 @@ console.log(e)
   },
   fasong() { //发送按钮
     var self = this;
-<<<<<<< HEAD
-    console.log(this.data.dxid)
     if (this.data.duixiang == '50') {
       let url = app.globalData.URL + '/comm/addComment';
       let data = {
@@ -218,29 +215,6 @@ console.log(e)
         console.log(err.errMsg)
       });
     }
-=======
-    let url = app.globalData.URL + '/comm/addComment';
-    let data = {
-      pid: null,
-      objtype: 30,
-      objid: self.data.categoryId,
-      objtitle: "",
-      comment: self.data.Input,
-      creater: self.data.user.id,
-      createrAlias: self.data.user.nickname,
-      createrHead: self.data.user.head
-    };
-    app.wxRequest('POST', url, data, (res) => {
-      self.comment();
-      wx.showToast({
-        title: '评论成功！', // 标题
-        icon: 'success', // 图标类型，默认success
-        duration: 1500 // 提示窗停留时间，默认1500ms
-      })
-    }, (err) => {
-      console.log(err.errMsg)
-    });
->>>>>>> c96b50db9bb8bdcc284e4ceb8c1ff79275eb0cd8
     self.setData({
       Input: '',
     })
@@ -588,7 +562,7 @@ console.log(e)
   getShipin() { //视频
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
-
+        actid:this.data.categoryId
     };
     app.wxRequest('GET', url, data, (res) => {
       console.log(res)
@@ -600,21 +574,18 @@ console.log(e)
     });
   },
   pinglunall_change:function(e){
-    console.log(e)
     let url = app.globalData.URL + '/comm/listCommByObj';
     let data = {
         objtype:50,
         objid:e.currentTarget.dataset.dxid,
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res)
       this.setData({
        pinglunallList: res.data
       })
     }, (err) => {
       console.log(err.errMsg)
     });
-
     if(this.data.pinglunall==0){
       this.setData({
         pinglunall: 1,
@@ -660,12 +631,12 @@ console.log(e)
   },
   shipintiaozhuan() {
     wx.navigateTo({
-      url: '../form_actid_video/form_actid_video?+actid=' + this.data.categoryId
+      url: '../form_actid_video/form_actid_video?actid=' + this.data.categoryId
     })
   },
   zhaopiantiaozhuan() {
     wx.navigateTo({
-      url: '../form_picture/form_picture?+actid=' + this.data.categoryId
+      url: '../form_picture/form_picture?actid=' + this.data.categoryId
     })
   },
   /////////////////
@@ -866,12 +837,9 @@ console.log(e)
       categoryId: options.categoryId,
       user: wx.getStorageSync('userInfo'),
       TabCur: options.TabCur,
-<<<<<<< HEAD
       biaoti: options.Title,
-      options: options
-=======
-      biaoti:options.Title
->>>>>>> c96b50db9bb8bdcc284e4ceb8c1ff79275eb0cd8
+      options: options,
+      biaoti:options.Title,
     })
     this.detail()
     this.yibaoming()
