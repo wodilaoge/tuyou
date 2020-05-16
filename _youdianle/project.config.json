@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"enhance": true,
 		"postcss": true,
@@ -237,6 +237,13 @@
 					"name": "pages/baoming/baoming",
 					"pathName": "pages/baoming/baoming",
 					"query": "lid=11878394752925696",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "登录",
+					"pathName": "pages/login/login",
+					"query": "",
 					"scene": null
 				}
 			]

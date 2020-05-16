@@ -30,7 +30,7 @@ var uploadFile = function (path, wayto, t) {
         }
         wx.request({
             method: 'GET',
-            url: 'http://192.144.169.239:8000/sts', // 重要！服务端签名，后续调整正式服务端确定后再修改。
+            url: 'http://api.udianle.com/sts', // 重要！服务端签名，后续调整正式服务端确定后再修改。s
             dataType: 'json',
             success: function (result) {
                 var data = result.data;

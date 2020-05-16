@@ -212,11 +212,41 @@
     <view class="title">分组5</view>
     <input class="input text-grey" placeholder="5队" bindinput="g5"></input>
     <image class="icon" src="../../img/write.png"></image>
-  </view>
+  </view> 
+    <view class="cu-form-group" wx:if="{{group>=6}}">
+    <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
+    <view class="title">分组6</view>
+    <input class="input text-grey" placeholder="6队" bindinput="g6"></input>
+    <image class="icon" src="../../img/write.png"></image>
+  </view> 
+    <view class="cu-form-group" wx:if="{{group>=7}}">
+    <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
+    <view class="title">分组7</view>
+    <input class="input text-grey" placeholder="7队" bindinput="g7"></input>
+    <image class="icon" src="../../img/write.png"></image>
+  </view> 
+    <view class="cu-form-group" wx:if="{{group>=8}}">
+    <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
+    <view class="title">分组8</view>
+    <input class="input text-grey" placeholder="8队" bindinput="g8"></input>
+    <image class="icon" src="../../img/write.png"></image>
+  </view> 
+    <view class="cu-form-group" wx:if="{{group>=9}}">
+    <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
+    <view class="title">分组9</view>
+    <input class="input text-grey" placeholder="9队" bindinput="g9"></input>
+    <image class="icon" src="../../img/write.png"></image>
+  </view> 
+    <view class="cu-form-group" wx:if="{{group>=10}}">
+    <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
+    <view class="title">分组10</view>
+    <input class="input text-grey" placeholder="10队" bindinput="g10"></input>
+    <image class="icon" src="../../img/write.png"></image>
+  </view> 
   <view class="text-center margin-top3">
     <checkbox checked class="blue checkicon"></checkbox>
     <text class="text-grey">我已阅读并同意</text>
-    <text class="text-blue">《有点乐活动申明》</text>
+    <text class="text-blue" bindtap="toagreepage">《友点乐活动声明》</text>
   </view>
 </form>
 <view class="flex margin-top2">

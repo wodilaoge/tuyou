@@ -41,7 +41,11 @@ Page({
     sid:'',
     acid1:''
   },
-
+  toagreepage() {
+    wx.navigateTo({
+      url: '/pages/webview/webview',
+    })
+  },
   PickerChange2(e) { //活动大类
     this.setData({
       index: e.detail.value

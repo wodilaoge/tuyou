@@ -19,11 +19,18 @@ Page({
     imgList: [],
     modalName: null,
     textareaAValue: '',
-    textareaBValue: ''
+    textareaBValue: '',
+    authurl:'',
+    
   },
   getname(e) {
     this.setData({
       title: e.detail.value
+    })
+  },
+  toagreepage() {
+    wx.navigateTo({
+      url: '/pages/webview/webview',
     })
   },
   getauthor(e) {
@@ -161,9 +168,17 @@ Page({
     })
   },
   getSignature: function(callback) {
+    var user = wx.getStorageSync('userInfo')
+    console.log(this.data.authurl)
+    user = 'Bearer ' + user.token;
     wx.request({
-      url: 'http://192.144.169.239:8080/kt/config/getVodSignatureV2',
+      url: 'https://api.udianle.com/kt/util/getVodSignatureV2',
       dataType: 'json',
+      header: {
+        'content-type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': user,
+      },
       success: function(res) {
         console.log(`data`, res.data);
         console.log(`data`, res.data.code);
@@ -281,6 +296,14 @@ Page({
           }
         })
       }
+    })
+
+    let url = app.globalData.URL + '/config/findVodParam'
+    util.gets(url, {}).then(function (res) {
+      console.log('authurl', res.data)
+      that.setData({
+        authurl: res.data.data.authUrl
+      })
     })
   }
 })
