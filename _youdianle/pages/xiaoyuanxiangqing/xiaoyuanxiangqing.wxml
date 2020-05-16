@@ -745,12 +745,12 @@
                     <text class="cuIcon-appreciate margin-lr-xs "></text> {{item.degradeCnt}}
                   </view>
                 </view>
-                <view bindtap="chakanhuifu" data-id="{{item.id}}">
+                <view data-id="{{item.id}}">
                   <view class="card-text-content">
                     {{item.comment}}
                   </view>
                   <view class="card-text-content-time">
-                    {{item.strCreatetime}} {{item.replyCnt}} 回复
+                    {{item.strCreatetime}}
                   </view>
                 </view>
               </view>

@@ -6,7 +6,6 @@ Page({
     animationData: {},
     Input: "",
 
-    options: [],
     TabCur: 0,
     paimingCur: 0,
     biaoti:"",
@@ -29,7 +28,8 @@ Page({
     fenzuhide: false,
     fenzuindex: 0,
     tuanduiSelect: [],
-    members: [],
+    members: [], 
+    xingmingInput: '',
 
     likecount: 0,
     ifzan: false,
@@ -85,6 +85,11 @@ Page({
       path: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
     }]
 
+  },
+  bmtz(){
+    this.setData({
+      TabCur:1
+    })
   },
   //发布评论
   chooseSezi: function(e) {
@@ -166,7 +171,7 @@ Page({
       createrHead: self.data.user.head
     };
     app.wxRequest('POST', url, data, (res) => {
-      self.onLoad(self.data.options);
+      self.comment();
       wx.showToast({
         title: '评论成功！', // 标题
         icon: 'success', // 图标类型，默认success
@@ -223,6 +228,11 @@ Page({
     this.setData({
       canjiaorguankan: e.currentTarget.dataset.id
     })
+  },
+  xingmingInput: function (e) { //input输入
+    this.setData({
+      xingmingInput: e.detail.value
+    });
   },
   /*news() { //活动新闻
     let url = app.globalData.URL + '/news/listNews';
@@ -301,10 +311,9 @@ Page({
   detail() { //页面项目信息
     let url = app.globalData.URL + '/act/findActivity';
     let data = {
-      acdid: this.data.categoryId
+      id: this.data.categoryId
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res.data)
       this.setData({
         detail: res.data
       })
@@ -768,8 +777,7 @@ Page({
       categoryId: options.categoryId,
       user: wx.getStorageSync('userInfo'),
       TabCur: options.TabCur,
-      biaoti:options.Title,
-      options: options
+      biaoti:options.Title
     })
     this.detail()
     this.yibaoming()
@@ -783,6 +791,16 @@ Page({
     //this.news_detail()
     this.getShipin()
     this.getZhaopian()
+    setTimeout(function () {
+      if (this.data.detail.length == 0)
+        wx.showToast({
+          title: '暂无活动数据！', // 标题
+          image: '/img/fail.png', // 图标类型，默认success
+          duration: 1000 // 提示窗停留时间，默认1500ms
+        })
+
+      resolve();
+    }, 1000)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
