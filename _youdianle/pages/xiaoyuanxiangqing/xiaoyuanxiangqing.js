@@ -468,11 +468,6 @@ Page({
       url: '../form_actid_video/form_actid_video?+actid=' + this.data.categoryId
     })
   },
-  shipintiaozhuan() {
-    wx.navigateTo({
-      url: '../form_picture/form_picture?+actid=' + this.data.categoryId
-    })
-  },
   baomingzhuangtai() {
     var self = this
     let url = app.globalData.URL + '/act/findActSignupTeamStatus'

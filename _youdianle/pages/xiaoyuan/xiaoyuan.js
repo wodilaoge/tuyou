@@ -367,6 +367,7 @@ Page({
 
     };
     app.wxRequest('GET', url, data, (res) => {
+      console.log(res)
       this.setData({
         shipin: res.data
       })
