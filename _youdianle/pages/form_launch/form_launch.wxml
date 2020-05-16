@@ -92,7 +92,14 @@
       </view>
     </picker>
   </view>
-
+	<view class="cu-form-group">
+		<view class="title">开始具体时间选择</view>
+		<picker mode="time" value="{{time}}" start="06:00" end="24:00" bindchange="TimeChange">
+			<view class="picker text-grey">
+				{{time1}}
+			</view>
+		</picker>
+	</view>
   <view class="cu-form-group">
     <view class="title">报名截止时间</view>
     <picker mode="date" value="{{information.signupdeadline}}" start="2015-09-01" end="2020-09-01" bindchange="DateChange2">
@@ -101,7 +108,14 @@
       </view>
     </picker>
   </view>
-
+	<view class="cu-form-group">
+		<view class="title">截止具体时间选择</view>
+		<picker mode="time" value="{{time}}" start="06:00" end="24:00" bindchange="TimeChange2">
+			<view class="picker text-grey">
+				{{time2}}
+			</view>
+		</picker>
+	</view>
   <view class="cu-form-group margin-top">
     <view class="title">报名方式</view>
     <picker bindchange="PickerChange" value="{{index2}}" range="{{picker}}">

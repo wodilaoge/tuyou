@@ -44,6 +44,7 @@ Page({
 
   },
   toaddress(){
+    wx.setStorageSync('addressMode', '1')
     wx.navigateTo({
       url: '/pages/form_address/form_address',
     })

@@ -7,35 +7,42 @@ Page({
    */
   data: {
 
-    province:'',
-    city:'',
-    school:[]
+    province: '',
+    city: '',
+    school: []
 
   },
-  choose(e){
+  choose(e) {
     console.log(e.currentTarget.dataset.id)
-    var t={
-      code:'',
-      name:''
+    var t = {
+      code: '',
+      name: ''
     }
     t.code = e.currentTarget.dataset.id
     t.name = this.data.school[e.currentTarget.dataset.index].name
     wx.setStorageSync('school', t)
-    wx.switchTab({
-      url: '/pages/index/index',
-    })
+    var mode = wx.getStorageSync('addressMode')
+    if (mode == "1") {
+      wx.switchTab({
+        url: '/pages/index/index',
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/form_launch/form_launch',
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     console.log(options.id)
     this.school(options.id)
-    var pro=wx.getStorageSync('province')
-    var cit=wx.getStorageSync('city')
+    var pro = wx.getStorageSync('province')
+    var cit = wx.getStorageSync('city')
     this.setData({
-      province:pro.name,
-      city:cit.name
+      province: pro.name,
+      city: cit.name
     })
   },
   school(pid) {
