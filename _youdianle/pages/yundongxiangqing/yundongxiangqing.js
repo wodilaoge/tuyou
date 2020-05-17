@@ -5,6 +5,7 @@ Page({
     chooseSize: false,
     animationData: {},
     Input: "",
+    options:[],
 
     TabCur: 0,
     paimingCur: 0,
@@ -153,7 +154,6 @@ Page({
   },
   fasong() { //发送按钮
     var self = this;
-    console.log(this.data.dxid)
     if (this.data.duixiang == '50') {
       let url = app.globalData.URL + '/comm/addComment';
       let data = {
@@ -237,7 +237,6 @@ Page({
     })
   },
   bindPickerChange: function(e) {
-    console.log(e)
     this.setData({
       fenzuindex: e.detail.value
     })
@@ -548,7 +547,6 @@ Page({
         actid:this.data.categoryId
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res)
       this.setData({
         shipin: res.data
       })
@@ -557,7 +555,6 @@ Page({
     });
   },
   pinglunall_change: function(e) {
-    console.log(e)
     let url = app.globalData.URL + '/comm/listCommByObj';
     let data = {
       objtype: 50,
@@ -793,7 +790,6 @@ Page({
               members: self.data.members,
             }
           util.post_token(url, data).then(function(res) {
-            console.log(res)
             if (res.data.code == 0) {
               wx.showToast({
                 title: '报名成功！', // 标题
@@ -835,7 +831,7 @@ Page({
           mbrAlias: self.data.user.nickname,
           mbrHead: self.data.user.head,
           signupType: status.signupType,
-          status: 20,
+          status: status.status,
           creater: self.data.user.id
         }
         console.log(data)
@@ -895,6 +891,7 @@ Page({
       user: wx.getStorageSync('userInfo'),
       TabCur: options.TabCur,
       biaoti: options.Title,
+      options:options
     })
     this.detail()
     this.yibaoming()

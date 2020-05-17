@@ -5,6 +5,7 @@ Page({
     chooseSize: false,
     animationData: {},
     Input: "",
+    options:[],
 
     TabCur: 0,
     paimingCur: 0,
@@ -735,7 +736,8 @@ Page({
     this.setData({
       categoryId: options.categoryId,
       user: wx.getStorageSync('userInfo'),
-      TabCur: options.TabCur
+      TabCur: options.TabCur,
+      options: options
     })
     this.fenzu()
     this.baomingzhuangtai()
