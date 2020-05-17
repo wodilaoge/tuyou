@@ -1,4 +1,5 @@
-// pages/MyPages/my_pic/my_pic.js
+const app = getApp()
+var util = require("../../../utils/util.js");
 Page({
 
   /**
@@ -17,6 +18,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    let url = app.globalData.URL + '/config/findCosParam';
+    util.gets(url, {}).then(function (res) {
+      console.log(res)
+      that.setData({
+        userinfo: res.data.data
+      })
+    })
   },
 })

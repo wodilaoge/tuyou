@@ -23,6 +23,11 @@ Page({
     textareaAValue: '',
     textareaBValue: ''
   },
+  toagreepage() {
+    wx.navigateTo({
+      url: '/pages/webview/webview',
+    })
+  },
   PickerChange(e) {
     console.log(e);
     this.setData({

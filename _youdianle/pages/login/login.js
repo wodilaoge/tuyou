@@ -10,6 +10,16 @@ Page({
       isagree: !this.data.isagree
     })
   },
+  toagreepage() {
+    wx.navigateTo({
+      url: '/pages/webview/webview',
+    })
+  },
+  toagreepage2() {
+    wx.navigateTo({
+      url: '/pages/webview2/webview2',
+    })
+  },
   login(e) {
     if (!this.data.isagree) {
       wx.showToast({

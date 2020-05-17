@@ -28,9 +28,9 @@
 </scroll-view>
 
 <block wx:if="{{TabCur==0}}">
-  <view class="cu-bar bg-white solid-bottom margin-top-sm">
+  <view class="cu-bar bg-white solid-bottom margin-top-sm" style="display:fixed;position: relative;">
     <image class="cu-avatar round my" src="{{detail.createrhead}}" mode="heightFix"></image>
-    <text style="margin-left:-100rpx">三分赛</text>
+    <text style="position:absolute;left:110rpx;">三分赛</text>
     <text class=" title-time margin-right">1 天 01: 02 </text>
   </view>
 
@@ -279,7 +279,7 @@
           <text class="baoming_text_wait">请耐心等待活动开始</text>
         </view>
         <view class="flex justify-center padding-lg">
-          <!--<button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx">取消报名</button>-->
+          <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx" bindtap="quxiaobaoming" data-obj="0">取消报名</button>
         </view>
         <view class="fenge-bg"></view>
         <view class="cu-bar bg-white solid-bottom">
@@ -362,21 +362,25 @@
       </view>
     </block>
     <block wx:if="{{isbaomingtuandui==1}}">
-      <view class=" bg-white wodebaoming-center padding">
+      <view style="background-color:var(--white)">
         <view>
-          <image class="margin-bottom-xs" src="/img/wodebaoming.png" mode="aspectFit" style="height:200rpx;width:200rpx;"></image>
+          <image class="img-success " src="/img/img_success.png"></image>
         </view>
-        <view class="queren margin-bottom-xs" style="color:#999999">
-          2020.3.18 13:00:00
-        </view>
-        <view class="text-28">
-          成功报名参赛/观看Lorem Ipsum
-        </view>
-      </view>
 
-      <view class="bg-white margin-top">
-        <view class="cu-bar bg-white padding">
-          <view class="yibaoming-text-content">已报名{{yibaomingList.length}}人</view>
+        <view class="flex justify-center">
+          <text class="baoming_text_ok">报名成功</text>
+        </view>
+        <view class="flex justify-center">
+          <text class="baoming_text_wait">请耐心等待活动开始</text>
+        </view>
+        <view class="flex justify-center padding-lg">
+          <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx" bindtap="quxiaobaoming" data-obj="1">取消报名</button>
+        </view>
+        <view class="fenge-bg"></view>
+        <view class="cu-bar bg-white solid-bottom">
+          <view class='action'>
+            <text class='cu-bar-title'>已报名{{yibaomingList.length}}人</text>
+          </view>
         </view>
       </view>
       <view class="bg-white">
@@ -443,7 +447,7 @@
                     <text class="cuIcon-appreciate margin-lr-xs "></text> {{item.degradeCnt}}
                   </view>
                 </view>
-                <view bindtap="chakanhuifu" data-id="{{item.id}}">
+                <view data-id="{{item.id}}">
                   <view class="card-text-content">
                     {{item.comment}}
                   </view>
@@ -592,15 +596,15 @@
   </view>
 
   <view class="cu-bar input foot padding ">
-    <input class="solid-bottom " focus="{{false}} " maxlength="300 " cursor-spacing="10 " placeholder='来说点什么吧！' bindtap="pinluntiaozhuan "></input>
+    <input class="solid-bottom " focus="{{false}} " maxlength="300 " cursor-spacing="10 " placeholder='来说点什么吧！' bindtap="pinluntiaozhuan"></input>
     <view class="action ">
-      <image class="img-icon " mode="aspectFit " src="/img/icon_talk.png " bindtap="pinluntiaozhuan "></image>
+      <image class="img-icon " mode="aspectFit " src="/img/icon_talk.png " bindtap="pinluntiaozhuan"></image>
     </view>
     <view class="action ">
-      <image class="img-icon " mode="aspectFit " style="margin-right:10rpx " src="{{false==ifzan? '/img/icon_fabulous.png': '/img/icon_fabulous_z.png'}} " bindtap="zan "></image>
+      <image class="img-icon " mode="aspectFit " style="margin-right:10rpx " src="{{false==ifzan? '/img/icon_fabulous.png': '/img/icon_fabulous_z.png'}} " bindtap="zan"></image>
     </view>
     <view class="action ">
-      <image class="img-icon " mode="aspectFit " src="/img/icon_upload_video@2x.png " bindtap="shipintiaozhuan "></image>
+      <image class="img-icon " mode="aspectFit " src="/img/icon_upload_video@2x.png " bindtap="shipintiaozhuan"></image>
     </view>
   </view>
 </block>
@@ -609,9 +613,11 @@
 创建时间：20200418
 创建内容：照片-->
 <block wx:if="{{TabCur==3}}">
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2672522e5f887e226966e4dc77cf5015ed6409cc
   <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx; ">{{zhaopian[0].title}}</view>
-
   <view class="content-white ">
     <view class=" sp-cu-bar cu-bar-radius bg-white ">
       <image class="sp-avatar round " src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg "></image>
@@ -660,7 +666,7 @@
     <swiper class="card-swiper round-dot " indicator-dots="true " circular="true " autoplay="true " interval="5000 " duration="500 " bindchange="cardSwiper " indicator-color="#8799a3 " indicator-active-color="#5454FF " previous-margin="0rpx" next-margin="0rpx ">
       <swiper-item wx:for="{{swiperList_zhaopian}} " wx:key class="{{cardCur==index? 'cur': ''}} ">
         <view class="swiper-item ">
-          <image src="{{item.path}} " mode="aspectFill "></image>
+          <image src="{{item.path}} " mode="aspectFill"></image>
         </view>
       </swiper-item>
     </swiper>
@@ -690,7 +696,7 @@
 
     <view class="box " wx:if="{{!chooseSize}} ">
       <view class="cu-bar input foot padding ">
-        <image class="img-input " mode="scaleToFill " src="/img/input.png " bindtap="chooseSezi "></image>
+        <image class="img-input " mode="scaleToFill " src="/img/input.png " bindtap="chooseSezi"></image>
         <view class="action ">
           <image class="img-icon " src="/img/icon_talk.png "></image>
         </view>
@@ -698,7 +704,7 @@
           <image class="img-icon " src="/img/icon_fabulous.png "></image>
         </view>
         <view class="action ">
-          <image class="img-icon " src="/img/icon_upload_photos.png " bindtap="zhaopiantiaozhuan "></image>
+          <image class="img-icon " src="/img/icon_upload_photos.png " bindtap="zhaopiantiaozhuan"></image>
         </view>
       </view>
     </view>
@@ -711,15 +717,15 @@
 创建内容：排名-->
 <block wx:if="{{TabCur==4}}">
   <view class=" padding " style="margin-left:175rpx; ">
-    <button class="cu-btn {{paimingCur==0? 'bg-orange': 'bg-grey2 text-grey'}} btn-paiming-left " bindtap="paimingSelect " data-id="0 ">
+    <button class="cu-btn {{paimingCur==0? 'bg-orange': 'bg-grey2 text-grey'}} btn-paiming-left " bindtap="paimingSelect" data-id="0 ">
       个人排名
     </button>
-    <button class="cu-btn {{paimingCur==1? 'bg-orange': 'bg-grey2 text-grey'}} btn-paiming-right " bindtap="paimingSelect " data-id="1 ">
+    <button class="cu-btn {{paimingCur==1? 'bg-orange': 'bg-grey2 text-grey'}} btn-paiming-right " bindtap="paimingSelect" data-id="1 ">
       团队排名
     </button>
   </view>
 
-  <block wx:if="{{paimingCur==0}} ">
+  <block wx:if="{{paimingCur==0}}">
     <view class="bg-white padding yundong-sp-center ">
       <image class="icon-paiming " mode="aspectFit " src="/img/icon_one.png "></image>
       <view class="cu-avatar round my " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg); "></view>
@@ -760,7 +766,7 @@
     </view>
   </block>
 
-  <block wx:if="{{paimingCur==1}} ">
+  <block wx:if="{{paimingCur==1}}">
     <view class="bg-white padding yundong-sp-center ">
       <image class="icon-paiming " mode="aspectFit " src="/img/icon_one.png "></image>
       <view class="cu-avatar round my " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big81005.jpg); "></view>
@@ -819,16 +825,16 @@
                 <view class=" flex justify-between ">
                   <view>
                     <text class="card-text-grey " decode="{{true}} ">{{item.createrAlias}}&emsp;</text>
-                    <button class="cu-btn btn-hot bg-orange disabled " wx:if="{{item.hot}} ">热门</button>
+                    <button class="cu-btn btn-hot bg-orange disabled " wx:if="{{item.hot}}">热门</button>
                   </view>
                   <view class="text-gray text-sm ">
-                    <image wx:if="{{false==item.ifzan}} " bindtap="zan_list " data-objid="{{item.id}} " data-ifzan="{{item.ifzan}} " data-index='{{index}}' src="/img/weidianzan.png " mode="scaleToFill " style="width:24rpx;height:24rpx "></image>
-                    <image wx:if="{{true==item.ifzan}} " bindtap="zan_list " data-objid="{{item.id}} " data-ifzan="{{item.ifzan}} " data-index='{{index}}' src="/img/yidianzan.png " mode="scaleToFill " style="width:24rpx;height:24rpx "></image>
+                    <image wx:if="{{false==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}} " data-ifzan="{{item.ifzan}} " data-index='{{index}}' src="/img/weidianzan.png " mode="scaleToFill " style="width:24rpx;height:24rpx "></image>
+                    <image wx:if="{{true==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}} " data-ifzan="{{item.ifzan}} " data-index='{{index}}' src="/img/yidianzan.png " mode="scaleToFill " style="width:24rpx;height:24rpx "></image>
                     {{item.praiseCnt}}
                     <text class="cuIcon-appreciate margin-lr-xs "></text> {{item.degradeCnt}}
                   </view>
                 </view>
-                <view bindtap="chakanhuifu " data-id="{{item.id}} ">
+                <view data-id="{{item.id}} ">
                   <view class="card-text-content ">
                     {{item.comment}}
                   </view>
@@ -844,9 +850,9 @@
     </view>
   </block>
 
-  <view class="box " wx:if="{{!chooseSize}} ">
+  <view class="box " wx:if="{{!chooseSize}}">
     <view class="cu-bar input foot padding ">
-      <image class="img-input " mode="scaleToFill " src="/img/input.png " bindtap="chooseSezi "></image>
+      <image class="img-input " mode="scaleToFill " src="/img/input.png " bindtap="chooseSezi"></image>
       <view class="action ">
         <image class="img-icon " src="/img/icon_talk.png "></image>
       </view>
@@ -1061,7 +1067,7 @@
 
   <view class="cu-card case no-card bg-white ">
     <view class="cu-item shadow ">
-      <view class="cu-list menu-avatar " bindtap="chakanhuifu ">
+      <view class="cu-list menu-avatar " bindtap="chakanhuifu">
         <view class="cu-item ">
           <view class="cu-avatar round lg " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg); "></view>
           <view class="content flex-sub ">
@@ -1125,13 +1131,13 @@
 
 
 <!--隐藏区域  -->
-<view fixed class="modals modals-bottom-dialog " hidden="{{!chooseSize}} ">
-  <view class="modals-cancel " bindtap="hideModal "></view>
-  <view class="bottom-dialog-body bottom-pos " animation="{{animationData}} " style="display:block ">
+<view fixed class="modals modals-bottom-dialog" hidden="{{!chooseSize}}">
+  <view class="modals-cancel" bindtap="hideModal"></view>
+  <view class="bottom-dialog-body bottom-pos " animation="{{animationData}}" style="display:block">
     <view>
       <text class="cu-bar-title " style="margin-left:300rpx ">写评论</text>
-      <button class="cu-btn bg-orange shadow-blur padding-sm margin-left-sm btn-fasong " bindtap="pd_fasong " style="margin-left:100rpx ">发送</button>
+      <button class="cu-btn bg-orange shadow-blur padding-sm margin-left-sm btn-fasong " bindtap="pd_fasong" style="margin-left:100rpx ">发送</button>
     </view>
-    <textarea class="form-text2 margin-top-sm margin-buttom " style="height:350rpx;width:100% " value="{{Input}} " maxlength="4000 " bindinput="emailInput " cursor-spacing="200 "></textarea>
+    <textarea class="form-text2 margin-top-sm margin-buttom " style="height:350rpx;width:100% " value="{{Input}}" maxlength="4000 " bindinput="emailInput" cursor-spacing="200"></textarea>
   </view>
 </view>

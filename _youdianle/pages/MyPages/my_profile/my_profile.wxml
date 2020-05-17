@@ -131,7 +131,7 @@
 <view class="text-center margin-top3">
 	<checkbox checked class="blue checkicon" ></checkbox>
 	<text class="text-grey">我已阅读并同意</text>
-	<text class="text-blue">《有点乐活动声明》</text>
+	<text class="text-blue">《友点乐活动声明》</text>
   <view class="flex margin-top2">
     <!-- <button class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="cancel" >取消修改</button> -->
     <button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="commit"  data-target="Modal">保存修改</button>

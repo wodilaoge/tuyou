@@ -19,11 +19,18 @@ Page({
     imgList: [],
     modalName: null,
     textareaAValue: '',
-    textareaBValue: ''
+    textareaBValue: '',
+    authurl:'',
+    
   },
   getname(e) {
     this.setData({
       title: e.detail.value
+    })
+  },
+  toagreepage() {
+    wx.navigateTo({
+      url: '/pages/webview/webview',
     })
   },
   getauthor(e) {
@@ -106,7 +113,7 @@ Page({
     let school = wx.getStorageSync('school')
     let url = app.globalData.URL + '/video/updateActVideo';
     var data = this.data
-    var data = {
+    var datas = {
       id: null,
       actid: '',
       sid: null,
@@ -125,7 +132,7 @@ Page({
       creater: user.id,
       mender: ''
     }
-    util.post_token(url, data).then(function(res) {
+    util.post_token(url, datas).then(function(res) {
       if (!res.data.code) {
         wx.showToast({
           title: '提交成功',
@@ -141,7 +148,7 @@ Page({
       } else {
         console.log(res)
         wx.showToast({
-          title: '提交失败！',
+          title: this.data.msg,
           icon: 'success',
           image: '/img/fail.png',
           duration: 2000
@@ -161,9 +168,17 @@ Page({
     })
   },
   getSignature: function(callback) {
+    var user = wx.getStorageSync('userInfo')
+    console.log(this.data.authurl)
+    user = 'Bearer ' + user.token;
     wx.request({
-      url: 'http://192.144.169.239:8080/kt/config/getVodSignatureV2',
+      url: 'https://api.udianle.com/kt/util/getVodSignatureV2',
       dataType: 'json',
+      header: {
+        'content-type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': user,
+      },
       success: function(res) {
         console.log(`data`, res.data);
         console.log(`data`, res.data.code);
@@ -281,6 +296,14 @@ Page({
           }
         })
       }
+    })
+
+    let url = app.globalData.URL + '/config/findVodParam'
+    util.gets(url, {}).then(function (res) {
+      console.log('authurl', res.data)
+      that.setData({
+        authurl: res.data.data.authUrl
+      })
     })
   }
 })

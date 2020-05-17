@@ -10,7 +10,7 @@ Page({
     opinion1: 10,
     opinion2: 20,
     opinion3: 10,
-    number: 50,
+    number: 100,
     picker: ['个人报名', '团体报名'],
     picker2: ['匿名参赛', '实名参赛'],
     picker3: ['观看无需报名', '匿名报名观看', '实名报名观看'],
@@ -32,6 +32,11 @@ Page({
     info: {},
     tes: '',
     webinfo: []
+  },
+  toagreepage() {
+    wx.navigateTo({
+      url: '/pages/webview/webview',
+    })
   },
   PickerChange(e) {
     console.log(e);
@@ -306,9 +311,9 @@ Page({
   },
   addicon: function(e) {
     var tt = this.data.group
-    if (tt > 4) {
+    if (tt > 9) {
       wx.showToast({
-        title: '最多添加5个',
+        title: '最多添加10个',
       })
     } else {
       tt++
@@ -411,7 +416,7 @@ Page({
         }
         else{
           wx.showToast({
-            title: '提交失败!',
+            title:res.data.msg,
             image:'/img/fail.png',
             icon: 'success',
             duration: 2000
@@ -441,7 +446,6 @@ Page({
         'groups[0].groupname': e.detail.value
       })
     }
-
   },
   g2(e) {
     var that = this;
@@ -512,6 +516,96 @@ Page({
     } else {
       that.setData({
         'groups[4].groupname': e.detail.value
+      })
+    }
+  },
+  g6(e) {
+    var that = this;
+    var obj = {};
+    if (this.data.groups.length == 5) {
+      obj.id = '';
+      obj.groupname = '';
+      obj.signupmax = 10;
+      let t = that.data.groups;
+      t.push(obj);
+      that.setData({
+        t
+      });
+    } else {
+      that.setData({
+        'groups[5].groupname': e.detail.value
+      })
+    }
+  },
+  g7(e) {
+    var that = this;
+    var obj = {};
+    if (this.data.groups.length == 6) {
+      obj.id = '';
+      obj.groupname = '';
+      obj.signupmax = 10;
+      let t = that.data.groups;
+      t.push(obj);
+      that.setData({
+        t
+      });
+    } else {
+      that.setData({
+        'groups[6].groupname': e.detail.value
+      })
+    }
+  },
+  g8(e) {
+    var that = this;
+    var obj = {};
+    if (this.data.groups.length == 7) {
+      obj.id = '';
+      obj.groupname = '';
+      obj.signupmax = 10;
+      let t = that.data.groups;
+      t.push(obj);
+      that.setData({
+        t
+      });
+    } else {
+      that.setData({
+        'groups[7].groupname': e.detail.value
+      })
+    }
+  },
+  g9(e) {
+    var that = this;
+    var obj = {};
+    if (this.data.groups.length == 8) {
+      obj.id = '';
+      obj.groupname = '';
+      obj.signupmax = 10;
+      let t = that.data.groups;
+      t.push(obj);
+      that.setData({
+        t
+      });
+    } else {
+      that.setData({
+        'groups[8].groupname': e.detail.value
+      })
+    }
+  },
+  g10(e) {
+    var that = this;
+    var obj = {};
+    if (this.data.groups.length == 9) {
+      obj.id = '';
+      obj.groupname = '';
+      obj.signupmax = 10;
+      let t = that.data.groups;
+      t.push(obj);
+      that.setData({
+        t
+      });
+    } else {
+      that.setData({
+        'groups[9].groupname': e.detail.value
       })
     }
   },

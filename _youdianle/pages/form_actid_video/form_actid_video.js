@@ -163,7 +163,7 @@ Page({
   },
   getSignature: function (callback) {
     wx.request({
-      url: 'http://192.144.169.239:8080/kt/config/getVodSignatureV2',
+      url: this.data.authurl,
       dataType: 'json',
       success: function (res) {
         console.log(`data`, res.data);
@@ -185,6 +185,13 @@ Page({
     })
   },
   onLoad: function (options) {
+    let url = app.globalData.URL + '/config/findVodParam'
+    util.gets(url, {}).then(function (res) {
+      console.log('authurl', res)
+      that.setData({
+        authurl: res.data.data.authurl
+      })
+    })
     this.setData({
       actid: options.actid
     })

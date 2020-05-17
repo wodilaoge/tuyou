@@ -5,6 +5,7 @@ Page({
     chooseSize: false,
     animationData: {},
     Input: "",
+    options:[],
 
     TabCur: 0,
     paimingCur: 0,
@@ -28,7 +29,7 @@ Page({
     fenzuhide: false,
     fenzuindex: 0,
     tuanduiSelect: [],
-    members: [], 
+    members: [],
     xingmingInput: '',
 
     likecount: 0,
@@ -46,21 +47,18 @@ Page({
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
     zhaopian: [],
     zhaopian_detail: [],
+<<<<<<< HEAD
     pinglunall:0,
     pinglunallList:[{
       id:'',
       list:[],
     }],
+=======
+    pinglunall: 0,
+    pinglunallList: [],
+>>>>>>> 2672522e5f887e226966e4dc77cf5015ed6409cc
     user: [],
-    swiperList: [{
-      id: 0,
-      type: 'image',
-      url: '/img/yundongxiangqing.png'
-    }, {
-      id: 1,
-      type: 'image',
-      url: '/img/yundongxiangqing.png',
-    }],
+    swiperList: [],
     rotationhide: true,
 
     swiperList_zhaopian: [{
@@ -94,33 +92,24 @@ Page({
     }]
 
   },
-  bmtz(){
+  bmtz() {
     this.setData({
-      TabCur:1
+      TabCur: 1
     })
   },
   //发布评论
   chooseSezi: function(e) {
     var that = this;
-    // 创建一个动画实例
     var animation = wx.createAnimation({
-      // 动画持续时间
       duration: 100,
-      // 定义动画效果，当前是匀速
       timingFunction: 'linear'
     })
-    // 将该变量赋值给当前动画
     that.animation = animation
-    // 先在y轴偏移，然后用step()完成一个动画
     animation.translateY(200).step()
-    // 用setData改变当前动画
     that.setData({
-      // 通过export()方法导出数据
       animationData: animation.export(),
-      // 改变view里面的Wx：if
       chooseSize: true
     })
-    // 设置setTimeout来改变y轴偏移量，实现有感觉的滑动
     setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
@@ -223,7 +212,6 @@ Page({
     })
     self.hideModal()
   },
-  ////////////////
   cardSwiper(e) {
     this.setData({
       cardCur: e.detail.current
@@ -257,7 +245,6 @@ Page({
     })
   },
   bindPickerChange: function(e) {
-    console.log(e)
     this.setData({
       fenzuindex: e.detail.value
     })
@@ -267,7 +254,7 @@ Page({
       canjiaorguankan: e.currentTarget.dataset.id
     })
   },
-  xingmingInput: function (e) { //input输入
+  xingmingInput: function(e) { //input输入
     this.setData({
       xingmingInput: e.detail.value
     });
@@ -569,7 +556,6 @@ Page({
         actid:this.data.categoryId
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res)
       this.setData({
         shipin: res.data
       })
@@ -577,32 +563,45 @@ Page({
       console.log(err.errMsg)
     });
   },
+<<<<<<< HEAD
   pinglunall_change:function(e){
     var shipintmp=this.data.shipin;
+=======
+  pinglunall_change: function(e) {
+>>>>>>> 2672522e5f887e226966e4dc77cf5015ed6409cc
     let url = app.globalData.URL + '/comm/listCommByObj';
     let data = {
-        objtype:50,
-        objid:e.currentTarget.dataset.dxid,
+      objtype: 50,
+      objid: e.currentTarget.dataset.dxid,
     };
     app.wxRequest('GET', url, data, (res) => {
       shipintmp.list[e.currentTarget.dataset.index].listComm = res.data.list;
       this.setData({
+<<<<<<< HEAD
         shipin : shipintmp,
+=======
+        pinglunallList: res.data
+>>>>>>> 2672522e5f887e226966e4dc77cf5015ed6409cc
       })
     }, (err) => {
       console.log(err.errMsg)
     });
+<<<<<<< HEAD
     
     if(this.data.pinglunall==0){
+=======
+
+    if (this.data.pinglunall == 0) {
+>>>>>>> 2672522e5f887e226966e4dc77cf5015ed6409cc
       this.setData({
         pinglunall: 1,
       })
-    }else{
+    } else {
       this.setData({
         pinglunall: 0,
       })
     }
-    
+
   },
   video_change: function(e) { ////视频切换
     var shipintmp = this.data.shipin;
@@ -748,7 +747,7 @@ Page({
         })
     })
   },
-  lijibaoming() {
+  lijibaoming(){
     var self = this
     if (self.data.xingmingInput == '')
       wx.showToast({
@@ -836,7 +835,6 @@ Page({
               members: self.data.members,
             }
           util.post_token(url, data).then(function(res) {
-            console.log(res)
             if (res.data.code == 0) {
               wx.showToast({
                 title: '报名成功！', // 标题
@@ -857,6 +855,78 @@ Page({
       }
     }
   },
+  quxiaobaoming(e){
+    var self=this
+    var status
+    if (e.currentTarget.dataset.obj==0){
+      let url = app.globalData.URL + '/act/findActSignupIndStatus'
+      let data={
+        actid:self.data.categoryId,
+        uid: self.data.user.id
+      }
+      util.gets(url, data).then(function (res) {
+        status=res.data.data
+      }).then(function () {
+        url = app.globalData.URL + '/act/cancelActSignupInd'
+        data = {
+          id: status.id,
+          actid: self.data.categoryId,
+          groupid: "",
+          mbrId: self.data.user.id,
+          mbrAlias: self.data.user.nickname,
+          mbrHead: self.data.user.head,
+          signupType: status.signupType,
+          status: status.status,
+          creater: self.data.user.id
+        }
+        console.log(data)
+        util.post_token(url, data).then(function (res) {
+          wx.showToast({
+            title: '操作成功！', // 标题
+            icon: 'success', // 图标类型，默认success
+            duration: 1500 // 提示窗停留时间，默认1500ms
+          })
+          self.setData({
+            isbaominggeren: 0
+          })
+        })
+      })
+    }
+    if (e.currentTarget.dataset.obj == 1) {
+      let url = app.globalData.URL + '/act/findActSignupTeamStatus'
+      let data = {
+        actid:self.data.categoryId,
+        lid: self.data.user.id
+      }
+      util.gets(url, data).then(function (res) {
+        status = res.data.data
+      }).then(function () {
+        url = app.globalData.URL + '/act/cancelActSignupTeam'
+        data = {
+          id: status.id,
+          actid: self.data.categoryId,
+          groupid: "",
+          tid: self.data.tuanduiSelect.id,
+          team: self.data.tuanduiSelect.name,
+          teamLogo: self.data.tuanduiSelect.logo,
+          lid: self.data.user.id,
+          signupType:"",
+          creater: self.data.user.id,
+          members: self.data.members,
+        }
+        util.post_token(url, data).then(function (res) {
+          wx.showToast({
+            title: '操作成功！', // 标题
+            icon: 'success', // 图标类型，默认success
+            duration: 1500 // 提示窗停留时间，默认1500ms
+          })
+          self.setData({
+            isbaomingtuandui: 0
+          })
+        })
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -866,8 +936,7 @@ Page({
       user: wx.getStorageSync('userInfo'),
       TabCur: options.TabCur,
       biaoti: options.Title,
-      options: options,
-      biaoti:options.Title,
+      options:options
     })
     this.detail()
     this.yibaoming()
@@ -881,7 +950,7 @@ Page({
     //this.news_detail()
     this.getShipin()
     this.getZhaopian()
-    setTimeout(function () {
+    setTimeout(function() {
       if (this.data.detail.length == 0)
         wx.showToast({
           title: '暂无活动数据！', // 标题

@@ -41,7 +41,11 @@ Page({
     sid:'',
     acid1:''
   },
-
+  toagreepage() {
+    wx.navigateTo({
+      url: '/pages/webview/webview',
+    })
+  },
   PickerChange2(e) { //活动大类
     this.setData({
       index: e.detail.value
@@ -319,7 +323,7 @@ Page({
         })
       } else {
         wx.showToast({
-          title: '提交失败!',
+          title: res.data.msg,
           image: '/img/fail.png',
           icon: 'success',
           duration: 2000

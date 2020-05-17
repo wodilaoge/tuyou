@@ -44,13 +44,14 @@
     "pages/chakanhuifu/chakanhuifu",
     "pages/tuanduixinxi/tuanduixinxi",
     "pages/sousuo/sousuo",
-    "pages/webview/webview"
+    "pages/webview/webview",
+    "pages/webview2/webview2"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#5454FF",
     "backgroundColor": "#5454FF",
-
+    "navigationBarTitleText": "ColorUI",
     "navigationStyle": "custom",
     "navigationBarTextStyle": "white",
     "enablePullDownRefresh": true
