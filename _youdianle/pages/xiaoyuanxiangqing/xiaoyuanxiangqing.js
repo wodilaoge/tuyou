@@ -37,17 +37,6 @@ Page({
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
-<<<<<<< HEAD
-    pinglunallList: [],
-=======
-    pinglunallList: [{
-      'id': '',
-      'zankai': 0,
-      'pinglun': [],
-    }],
-    pinglun_detial: [],
-
->>>>>>> 2672522e5f887e226966e4dc77cf5015ed6409cc
   },
   chooseSezi: function(e) {
     var that = this;
@@ -764,15 +753,11 @@ Page({
   },
 
   getShipin() { //视频
-<<<<<<< HEAD
-=======
     var self = this;
->>>>>>> 2672522e5f887e226966e4dc77cf5015ed6409cc
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
       // actid:this.data.categoryId
     };
-<<<<<<< HEAD
     app.wxRequest('GET', url, data, (res) => {
       console.log(res)
       this.setData({
@@ -806,7 +791,6 @@ Page({
         pinglunall: 0,
       })
     }
-=======
 
     wx.request({
       // var user = wx.getStorageSync('userInfo'),
@@ -840,31 +824,6 @@ Page({
         })
       }
     })
-    // util.gets(url, data).then(function (res) {
-    //   console.log(res)
-    //   this.setData({
-    //     shipin: res.data
-    //   })
-    // }).then(function (res){
-    //   console.log(this.data.shipin)
-    //   for (var i in this.data.shipin.list) {
-    //     url = app.globalData.URL + '/comm/listCommByObj';
-    //     data = {
-    //       objtype: 50,
-    //       objid: i.id,
-    //     };
-    //     app.wxRequest('GET', url, data, (res) => {
-    //       console.log(res)
-    //       self.setData({
-    //         pinglun_detial: res.data
-    //       })
-    //     }, (err) => {
-    //       console.log(err.errMsg)
-    //     });
-    //     this.data.pinglunallList.push([i.id, 0, this.data.pinglun_detial])
-    //   }
-    // })
->>>>>>> 2672522e5f887e226966e4dc77cf5015ed6409cc
 
   },
 

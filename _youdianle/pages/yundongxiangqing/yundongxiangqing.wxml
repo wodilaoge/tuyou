@@ -613,10 +613,6 @@
 创建时间：20200418
 创建内容：照片-->
 <block wx:if="{{TabCur==3}}">
-<<<<<<< HEAD
-
-=======
->>>>>>> 2672522e5f887e226966e4dc77cf5015ed6409cc
   <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx; ">{{zhaopian[0].title}}</view>
   <view class="content-white ">
     <view class=" sp-cu-bar cu-bar-radius bg-white ">

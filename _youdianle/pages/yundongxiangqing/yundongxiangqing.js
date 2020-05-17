@@ -47,16 +47,13 @@ Page({
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
     zhaopian: [],
     zhaopian_detail: [],
-<<<<<<< HEAD
     pinglunall:0,
     pinglunallList:[{
       id:'',
       list:[],
     }],
-=======
     pinglunall: 0,
     pinglunallList: [],
->>>>>>> 2672522e5f887e226966e4dc77cf5015ed6409cc
     user: [],
     swiperList: [],
     rotationhide: true,
@@ -563,12 +560,9 @@ Page({
       console.log(err.errMsg)
     });
   },
-<<<<<<< HEAD
-  pinglunall_change:function(e){
-    var shipintmp=this.data.shipin;
-=======
   pinglunall_change: function(e) {
->>>>>>> 2672522e5f887e226966e4dc77cf5015ed6409cc
+    var shipintmp = this.data.shipin;
+
     let url = app.globalData.URL + '/comm/listCommByObj';
     let data = {
       objtype: 50,
@@ -577,22 +571,16 @@ Page({
     app.wxRequest('GET', url, data, (res) => {
       shipintmp.list[e.currentTarget.dataset.index].listComm = res.data.list;
       this.setData({
-<<<<<<< HEAD
         shipin : shipintmp,
-=======
         pinglunallList: res.data
->>>>>>> 2672522e5f887e226966e4dc77cf5015ed6409cc
       })
     }, (err) => {
       console.log(err.errMsg)
     });
-<<<<<<< HEAD
     
     if(this.data.pinglunall==0){
-=======
 
     if (this.data.pinglunall == 0) {
->>>>>>> 2672522e5f887e226966e4dc77cf5015ed6409cc
       this.setData({
         pinglunall: 1,
       })
@@ -601,7 +589,7 @@ Page({
         pinglunall: 0,
       })
     }
-
+    }
   },
   video_change: function(e) { ////视频切换
     var shipintmp = this.data.shipin;
