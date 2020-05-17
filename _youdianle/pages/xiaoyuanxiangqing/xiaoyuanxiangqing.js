@@ -36,14 +36,12 @@ Page({
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
-    pinglunallList:[
-      {
-        'id':'',
-        'zankai':0,
-        'pinglun':[],
-      }
-    ],
-    pinglun_detial:[],
+    pinglunallList: [{
+      'id': '',
+      'zankai': 0,
+      'pinglun': [],
+    }],
+    pinglun_detial: [],
 
   },
   chooseSezi: function(e) {
@@ -536,19 +534,21 @@ Page({
         })
     })
   },
-  quxiaobaoming() {
+  quxiaobaoming(e) {
     var self = this
-    if (e.currentTarget.dataset.id == 0) {
-      let url = globalData.URL + '/act/findActSignupIndStatus'
+    var status
+    if (e.currentTarget.dataset.obj == 0) {
+      let url = app.globalData.URL + '/act/findActSignupIndStatus'
       let data = {
-        actid=self.data.categoryId,
+        actid: self.data.categoryId,
         uid: self.data.user.id
       }
-      util.gets(url, data).then(function (res) {
-        var status = res.data.data
-      }).then(function () {
-        url = globalData.URL + '/act/cancelActSignupInd'
+      util.gets(url, data).then(function(res) {
+        status = res.data.data
+      }).then(function() {
+        url = app.globalData.URL + '/act/cancelActSignupInd'
         data = {
+          id: status.id,
           actid: self.data.categoryId,
           groupid: "",
           mbrId: self.data.user.id,
@@ -559,7 +559,7 @@ Page({
           status: 20,
           creater: self.data.user.id
         }
-        util.gets(url, data).then(function (res) {
+        util.post_token(url, data).then(function(res) {
           wx.showToast({
             title: '操作成功！', // 标题
             icon: 'success', // 图标类型，默认success
@@ -571,28 +571,29 @@ Page({
         })
       })
     }
-    if (e.currentTarget.dataset.id == 1) {
-      let url = globalData.URL + '/act/findActSignupTeamStatus'
+    if (e.currentTarget.dataset.obj == 1) {
+      let url = app.globalData.URL + '/act/findActSignupTeamStatus'
       let data = {
-        actid=self.data.categoryId,
+        actid: self.data.categoryId,
         lid: self.data.user.id
       }
-      util.gets(url, data).then(function (res) {
-        var status = res.data.data
-      }).then(function () {
-        url = globalData.URL + '/act/cancelActSignupTeam'
+      util.gets(url, data).then(function(res) {
+        status = res.data.data
+      }).then(function() {
+        url = app.globalData.URL + '/act/cancelActSignupTeam'
         data = {
+          id: status.id,
           actid: self.data.categoryId,
           groupid: "",
           tid: self.data.tuanduiSelect.id,
           team: self.data.tuanduiSelect.name,
           teamLogo: self.data.tuanduiSelect.logo,
           lid: self.data.user.id,
-          signupType:"",
+          signupType: "",
           creater: self.data.user.id,
           members: self.data.members,
         }
-        util.gets(url, data).then(function (res) {
+        util.post_token(url, data).then(function(res) {
           wx.showToast({
             title: '操作成功！', // 标题
             icon: 'success', // 图标类型，默认success
@@ -727,8 +728,8 @@ Page({
     })
   },
 
-  pinglunall_change: function (e) {
-    
+  pinglunall_change: function(e) {
+
   },
   onLoad: async function(options) { //读取活动对应id
     this.setData({
@@ -744,7 +745,7 @@ Page({
     this.ifzan()
     //this.news()
     //this.news_detail()
-    setTimeout(function () {
+    setTimeout(function() {
       if (this.data.detail.length == 0)
         wx.showToast({
           title: '暂无活动数据！', // 标题
@@ -757,7 +758,7 @@ Page({
   },
 
   getShipin() { //视频
-    var self=this;
+    var self = this;
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
       // actid:this.data.categoryId
@@ -772,7 +773,7 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      success: function (res) {
+      success: function(res) {
         console.log(res.data)
         this.setData({
           shipin: res.data
@@ -786,7 +787,7 @@ Page({
           header: {
             'content-type': 'application/json'
           },
-          success: function (res) {
+          success: function(res) {
             this.setData({
               pinglun_detial: res.data
             })

@@ -28,9 +28,9 @@
 </scroll-view>
 
 <block wx:if="{{TabCur==0}}">
-  <view class="cu-bar bg-white solid-bottom margin-top-sm">
+  <view class="cu-bar bg-white solid-bottom margin-top-sm" style="display:fixed;position: relative;">
     <image class="cu-avatar round my" src="{{detail.createrhead}}" mode="heightFix"></image>
-    <text style="margin-left:-100rpx">三分赛</text>
+    <text style="position:absolute;left:110rpx;">三分赛</text>
     <text class=" title-time margin-right">1 天 01: 02 </text>
   </view>
 

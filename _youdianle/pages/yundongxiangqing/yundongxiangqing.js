@@ -814,30 +814,32 @@ Page({
       }
     }
   },
-  quxiaobaoming(){
+  quxiaobaoming(e){
     var self=this
-    if (e.currentTarget.dataset.id==0){
-      let url = globalData.URL + '/act/findActSignupIndStatus'
+    var status
+    if (e.currentTarget.dataset.obj==0){
+      let url = app.globalData.URL + '/act/findActSignupIndStatus'
       let data={
-        actid=self.data.categoryId,
+        actid:self.data.categoryId,
         uid: self.data.user.id
       }
       util.gets(url, data).then(function (res) {
-        var status=res.data.data
+        status=res.data.data
       }).then(function () {
-        url = globalData.URL + '/act/cancelActSignupInd'
+        url = app.globalData.URL + '/act/cancelActSignupInd'
         data = {
+          id: status.id,
           actid: self.data.categoryId,
           groupid: "",
           mbrId: self.data.user.id,
           mbrAlias: self.data.user.nickname,
           mbrHead: self.data.user.head,
-          mbrName: self.data.xingmingInput,
           signupType: status.signupType,
           status: 20,
           creater: self.data.user.id
         }
-        util.gets(url, data).then(function (res) {
+        console.log(data)
+        util.post_token(url, data).then(function (res) {
           wx.showToast({
             title: '操作成功！', // 标题
             icon: 'success', // 图标类型，默认success
@@ -849,17 +851,18 @@ Page({
         })
       })
     }
-    if (e.currentTarget.dataset.id == 1) {
-      let url = globalData.URL + '/act/findActSignupTeamStatus'
+    if (e.currentTarget.dataset.obj == 1) {
+      let url = app.globalData.URL + '/act/findActSignupTeamStatus'
       let data = {
-        actid=self.data.categoryId,
+        actid:self.data.categoryId,
         lid: self.data.user.id
       }
       util.gets(url, data).then(function (res) {
-        var status = res.data.data
+        status = res.data.data
       }).then(function () {
-        url = globalData.URL + '/act/cancelActSignupTeam'
+        url = app.globalData.URL + '/act/cancelActSignupTeam'
         data = {
+          id: status.id,
           actid: self.data.categoryId,
           groupid: "",
           tid: self.data.tuanduiSelect.id,
@@ -870,7 +873,7 @@ Page({
           creater: self.data.user.id,
           members: self.data.members,
         }
-        util.gets(url, data).then(function (res) {
+        util.post_token(url, data).then(function (res) {
           wx.showToast({
             title: '操作成功！', // 标题
             icon: 'success', // 图标类型，默认success
