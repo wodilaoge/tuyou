@@ -5,6 +5,7 @@ Page({
     chooseSize: false,
     animationData: {},
     Input: "",
+    options:[],
 
     TabCur: 0,
     paimingCur: 0,
@@ -153,7 +154,6 @@ Page({
   },
   fasong() { //发送按钮
     var self = this;
-    console.log(this.data.dxid)
     if (this.data.duixiang == '50') {
       let url = app.globalData.URL + '/comm/addComment';
       let data = {
@@ -237,7 +237,6 @@ Page({
     })
   },
   bindPickerChange: function(e) {
-    console.log(e)
     this.setData({
       fenzuindex: e.detail.value
     })
@@ -548,7 +547,6 @@ Page({
         actid:this.data.categoryId
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res)
       this.setData({
         shipin: res.data
       })
@@ -557,7 +555,6 @@ Page({
     });
   },
   pinglunall_change: function(e) {
-    console.log(e)
     let url = app.globalData.URL + '/comm/listCommByObj';
     let data = {
       objtype: 50,
@@ -705,7 +702,7 @@ Page({
         })
     })
   },
-  lijibaoming() {
+  lijibaoming(){
     var self = this
     if (self.data.xingmingInput == '')
       wx.showToast({
@@ -793,7 +790,6 @@ Page({
               members: self.data.members,
             }
           util.post_token(url, data).then(function(res) {
-            console.log(res)
             if (res.data.code == 0) {
               wx.showToast({
                 title: '报名成功！', // 标题
@@ -814,6 +810,78 @@ Page({
       }
     }
   },
+  quxiaobaoming(e){
+    var self=this
+    var status
+    if (e.currentTarget.dataset.obj==0){
+      let url = app.globalData.URL + '/act/findActSignupIndStatus'
+      let data={
+        actid:self.data.categoryId,
+        uid: self.data.user.id
+      }
+      util.gets(url, data).then(function (res) {
+        status=res.data.data
+      }).then(function () {
+        url = app.globalData.URL + '/act/cancelActSignupInd'
+        data = {
+          id: status.id,
+          actid: self.data.categoryId,
+          groupid: "",
+          mbrId: self.data.user.id,
+          mbrAlias: self.data.user.nickname,
+          mbrHead: self.data.user.head,
+          signupType: status.signupType,
+          status: status.status,
+          creater: self.data.user.id
+        }
+        console.log(data)
+        util.post_token(url, data).then(function (res) {
+          wx.showToast({
+            title: '操作成功！', // 标题
+            icon: 'success', // 图标类型，默认success
+            duration: 1500 // 提示窗停留时间，默认1500ms
+          })
+          self.setData({
+            isbaominggeren: 0
+          })
+        })
+      })
+    }
+    if (e.currentTarget.dataset.obj == 1) {
+      let url = app.globalData.URL + '/act/findActSignupTeamStatus'
+      let data = {
+        actid:self.data.categoryId,
+        lid: self.data.user.id
+      }
+      util.gets(url, data).then(function (res) {
+        status = res.data.data
+      }).then(function () {
+        url = app.globalData.URL + '/act/cancelActSignupTeam'
+        data = {
+          id: status.id,
+          actid: self.data.categoryId,
+          groupid: "",
+          tid: self.data.tuanduiSelect.id,
+          team: self.data.tuanduiSelect.name,
+          teamLogo: self.data.tuanduiSelect.logo,
+          lid: self.data.user.id,
+          signupType:"",
+          creater: self.data.user.id,
+          members: self.data.members,
+        }
+        util.post_token(url, data).then(function (res) {
+          wx.showToast({
+            title: '操作成功！', // 标题
+            icon: 'success', // 图标类型，默认success
+            duration: 1500 // 提示窗停留时间，默认1500ms
+          })
+          self.setData({
+            isbaomingtuandui: 0
+          })
+        })
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -823,6 +891,7 @@ Page({
       user: wx.getStorageSync('userInfo'),
       TabCur: options.TabCur,
       biaoti: options.Title,
+      options:options
     })
     this.detail()
     this.yibaoming()

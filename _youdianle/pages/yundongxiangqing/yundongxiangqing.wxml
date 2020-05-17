@@ -28,9 +28,9 @@
 </scroll-view>
 
 <block wx:if="{{TabCur==0}}">
-  <view class="cu-bar bg-white solid-bottom margin-top-sm">
+  <view class="cu-bar bg-white solid-bottom margin-top-sm" style="display:fixed;position: relative;">
     <image class="cu-avatar round my" src="{{detail.createrhead}}" mode="heightFix"></image>
-    <text style="margin-left:-100rpx">三分赛</text>
+    <text style="position:absolute;left:110rpx;">三分赛</text>
     <text class=" title-time margin-right">1 天 01: 02 </text>
   </view>
 
@@ -279,7 +279,7 @@
           <text class="baoming_text_wait">请耐心等待活动开始</text>
         </view>
         <view class="flex justify-center padding-lg">
-          <!--<button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx">取消报名</button>-->
+          <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx" bindtap="quxiaobaoming" data-obj="0">取消报名</button>
         </view>
         <view class="fenge-bg"></view>
         <view class="cu-bar bg-white solid-bottom">
@@ -362,21 +362,25 @@
       </view>
     </block>
     <block wx:if="{{isbaomingtuandui==1}}">
-      <view class=" bg-white wodebaoming-center padding">
+      <view style="background-color:var(--white)">
         <view>
-          <image class="margin-bottom-xs" src="/img/wodebaoming.png" mode="aspectFit" style="height:200rpx;width:200rpx;"></image>
+          <image class="img-success " src="/img/img_success.png"></image>
         </view>
-        <view class="queren margin-bottom-xs" style="color:#999999">
-          2020.3.18 13:00:00
-        </view>
-        <view class="text-28">
-          成功报名参赛/观看Lorem Ipsum
-        </view>
-      </view>
 
-      <view class="bg-white margin-top">
-        <view class="cu-bar bg-white padding">
-          <view class="yibaoming-text-content">已报名{{yibaomingList.length}}人</view>
+        <view class="flex justify-center">
+          <text class="baoming_text_ok">报名成功</text>
+        </view>
+        <view class="flex justify-center">
+          <text class="baoming_text_wait">请耐心等待活动开始</text>
+        </view>
+        <view class="flex justify-center padding-lg">
+          <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx" bindtap="quxiaobaoming" data-obj="1">取消报名</button>
+        </view>
+        <view class="fenge-bg"></view>
+        <view class="cu-bar bg-white solid-bottom">
+          <view class='action'>
+            <text class='cu-bar-title'>已报名{{yibaomingList.length}}人</text>
+          </view>
         </view>
       </view>
       <view class="bg-white">
@@ -1130,6 +1134,6 @@
       <text class="cu-bar-title " style="margin-left:300rpx ">写评论</text>
       <button class="cu-btn bg-orange shadow-blur padding-sm margin-left-sm btn-fasong " bindtap="pd_fasong" style="margin-left:100rpx ">发送</button>
     </view>
-    <textarea class="form-text2 margin-top-sm margin-buttom " style="height:350rpx;width:100% " value="{{Input}} " maxlength="4000 " bindinput="emailInput" cursor-spacing="200"></textarea>
+    <textarea class="form-text2 margin-top-sm margin-buttom " style="height:350rpx;width:100% " value="{{Input}}" maxlength="4000 " bindinput="emailInput" cursor-spacing="200"></textarea>
   </view>
 </view>
