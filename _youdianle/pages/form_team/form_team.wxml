@@ -25,16 +25,16 @@
   </view>
   <view class="cu-form-group margin-top">
     <view class="title">团队名称</view>
-    <input class="input text-grey" bindinput="getname" placeholder="春季篮球赛"></input>
+    <input class="input text-grey" bindinput="getname" placeholder="请输入团队名称"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group ">
     <text class="text">正文</text>
-    <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="春季篮球赛"></textarea>
+    <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="请输入正文"></textarea>
   </view>
   <view class="cu-form-group margin-top">
     <view class="title">队长</view>
-    <input class="input text-grey" bindinput="getcaptain" placeholder="胡小心"></input>
+    <input class="input text-grey" bindinput="getcaptain" placeholder="请输入队长"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-bar bg-white">
@@ -60,12 +60,12 @@
   </view>
   <view class="cu-form-group margin-top">
     <view class="title">联系电话</view>
-    <input class="input text-grey" bindinput="getphone" placeholder="春季篮球赛"></input>
+    <input class="input text-grey" bindinput="getphone" placeholder="请输入联系对话"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group">
     <view class="title">团队签名</view>
-    <input class="input text-grey" bindinput="gettdslogan" placeholder="胡小心"></input>
+    <input class="input text-grey" bindinput="gettdslogan" placeholder="请输入团队签名"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
 

@@ -17,12 +17,12 @@
   </view>
   <view class="cu-form-group">
     <view class="title">活动名称</view>
-    <input class="input text-grey" bindinput="getname" placeholder="春季篮球赛"></input>
+    <input class="input text-grey" bindinput="getname" placeholder="请输入活动名称"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group">
     <view class="title">作者</view>
-    <input class="input text-grey" bindinput="getauthor" placeholder="胡小心"></input>
+    <input class="input text-grey" bindinput="getauthor" placeholder="请输入作者"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group margin-top">

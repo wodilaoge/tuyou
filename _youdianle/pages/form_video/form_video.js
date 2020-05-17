@@ -113,7 +113,7 @@ Page({
     let school = wx.getStorageSync('school')
     let url = app.globalData.URL + '/video/updateActVideo';
     var data = this.data
-    var data = {
+    var datas = {
       id: null,
       actid: '',
       sid: null,
@@ -132,7 +132,7 @@ Page({
       creater: user.id,
       mender: ''
     }
-    util.post_token(url, data).then(function(res) {
+    util.post_token(url, datas).then(function(res) {
       if (!res.data.code) {
         wx.showToast({
           title: '提交成功',
@@ -148,7 +148,7 @@ Page({
       } else {
         console.log(res)
         wx.showToast({
-          title: '提交失败！',
+          title: this.data.msg,
           icon: 'success',
           image: '/img/fail.png',
           duration: 2000

@@ -323,7 +323,7 @@ Page({
         })
       } else {
         wx.showToast({
-          title: '提交失败!',
+          title: res.data.msg,
           image: '/img/fail.png',
           icon: 'success',
           duration: 2000

@@ -10,7 +10,7 @@ Page({
     opinion1: 10,
     opinion2: 20,
     opinion3: 10,
-    number: 50,
+    number: 100,
     picker: ['个人报名', '团体报名'],
     picker2: ['匿名参赛', '实名参赛'],
     picker3: ['观看无需报名', '匿名报名观看', '实名报名观看'],

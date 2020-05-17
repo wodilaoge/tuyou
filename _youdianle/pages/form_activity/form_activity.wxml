@@ -59,7 +59,7 @@
   </view>
   <view class="cu-form-group2">
     <image class="icon" src="../../img/write.png"></image>
-    <input class="text-grey input" placeholder="" type='text' name="name" bindinput="name"></input>
+    <input class="text-grey input" placeholder="请输入个性规则" type='text' name="name" bindinput="name"></input>
   </view>
   <view class="container">
     <!-- 分割线 -->
@@ -92,7 +92,7 @@
   </view>
   <view class="cu-form-group2">
     <image class="icon" src="../../img/write.png"></image>
-    <input class="text-grey input" placeholder="" type='text' name="name" bindinput="name"></input>
+    <input class="text-grey input" placeholder="请输入奖励" type='text' name="name" bindinput="name"></input>
   </view>
   <view class="container">
     <!-- 分割线 -->
@@ -166,7 +166,7 @@
   </view>
   <view class="cu-form-group2">
     <image class="icon" src="../../img/write.png"></image>
-    <input class="text-grey input" placeholder="" type='text' name="name" bindinput="name"></input>
+    <input class="text-grey input" placeholder="请输入赞助商" type='text' name="name" bindinput="name"></input>
   </view>
   <view class="container">
     <!-- 分割线 -->
@@ -186,61 +186,61 @@
   <view class="cu-form-group" wx:if="{{group>=1}}">
     <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
     <view class="title">分组1</view>
-    <input class="input text-grey" placeholder="1队" bindinput="g1"></input>
+    <input class="input text-grey" placeholder="请输入分组名称" bindinput="g1"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group" wx:if="{{group>=2}}">
     <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
     <view class="title">分组2</view>
-    <input class="input text-grey" placeholder="2队" bindinput="g2"></input>
+    <input class="input text-grey" placeholder="请输入分组名称" bindinput="g2"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group" wx:if="{{group>=3}}">
     <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
     <view class="title">分组3</view>
-    <input class="input text-grey" placeholder="3队" bindinput="g3"></input>
+    <input class="input text-grey" placeholder="请输入分组名称" bindinput="g3"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group" wx:if="{{group>=4}}">
     <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
     <view class="title">分组4</view>
-    <input class="input text-grey" placeholder="4队" bindinput="g4"></input>
+    <input class="input text-grey" placeholder="请输入分组名称" bindinput="g4"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group" wx:if="{{group>=5}}">
     <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
     <view class="title">分组5</view>
-    <input class="input text-grey" placeholder="5队" bindinput="g5"></input>
+    <input class="input text-grey" placeholder="请输入分组名称" bindinput="g5"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view> 
     <view class="cu-form-group" wx:if="{{group>=6}}">
     <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
     <view class="title">分组6</view>
-    <input class="input text-grey" placeholder="6队" bindinput="g6"></input>
+    <input class="input text-grey" placeholder="请输入分组名称" bindinput="g6"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view> 
     <view class="cu-form-group" wx:if="{{group>=7}}">
     <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
     <view class="title">分组7</view>
-    <input class="input text-grey" placeholder="7队" bindinput="g7"></input>
+    <input class="input text-grey" placeholder="请输入分组名称" bindinput="g7"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view> 
     <view class="cu-form-group" wx:if="{{group>=8}}">
     <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
     <view class="title">分组8</view>
-    <input class="input text-grey" placeholder="8队" bindinput="g8"></input>
+    <input class="input text-grey" placeholder="请输入分组名称" bindinput="g8"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view> 
     <view class="cu-form-group" wx:if="{{group>=9}}">
     <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
     <view class="title">分组9</view>
-    <input class="input text-grey" placeholder="9队" bindinput="g9"></input>
+    <input class="input text-grey" placeholder="请输入分组名称" bindinput="g9"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view> 
     <view class="cu-form-group" wx:if="{{group>=10}}">
     <image class="icon-sub" src="../../img/sub.png" bindtap="subicon"></image>
     <view class="title">分组10</view>
-    <input class="input text-grey" placeholder="10队" bindinput="g10"></input>
+    <input class="input text-grey" placeholder="请输入分组名称" bindinput="g10"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view> 
   <view class="text-center margin-top3">

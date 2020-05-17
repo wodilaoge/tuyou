@@ -14,15 +14,16 @@ Page({
       city: '',
       venue: '',
       timenow: '',
-      signupdeadline: '2020-8-25',
-      way: '',
-      entrylimit: 0,
+      signupdeadline: '',
+      way: 0,
+      entrylimit: 100,
       ischecked: false,
     },
     time1: '7:00',
     time2: '18:00',
     index2:0,
     timenow:'',
+    timenow2:'',
     isaddress: false,
     index: 0, //活动方式
     indexbig: 0,
@@ -43,7 +44,8 @@ Page({
     region: ['浙江省', '杭州市', '浙江大学'],
     pro: '',
     city: '',
-    schoolinfo: ''
+    schoolinfo: '',
+    tinyshow:'选择活动小类'
   },
 
   PickerChange(e) { //报名方式
@@ -134,9 +136,12 @@ Page({
     })
   },
   DateChange2(e) {
-    let t = 'information.signupdeadline'
+    // let t = 'information.signupdeadline'
+    // this.setData({
+    //   [t]: e.detail.value
+    // })
     this.setData({
-      [t]: e.detail.value
+      timenow2: e.detail.value
     })
   },
   RegionChange: function(e) {
@@ -195,7 +200,7 @@ Page({
     let t2 ='information.signupdeadline'
     this.setData({
       [t]: this.data.timenow+' '+this.data.time1,
-      [t2]:this.data.information.signupdeadline+' '+this.data.time2
+      [t2]: this.data.timenow2+' '+this.data.time2
     })
     
     wx.setStorage({ //将活动信息存入缓存
@@ -266,6 +271,12 @@ Page({
       that.setData({
         pickertiny: res.data.data
       })
+      console.log(res.data)
+      if(!res.data.data.length){
+        that.setData({
+          tinyshow:"无"
+        })
+      }
     })
   },
   tochooseadress(e) {
@@ -295,7 +306,8 @@ Page({
     // console.log("当前时间：" + Y + M + D + h + ":" + m + ":" + s)
     var nowtime=Y+'-'+M+'-'+D
     this.setData({
-      timenow:nowtime
+      timenow:nowtime,
+      timenow2:nowtime,
     })
     let url2 = app.globalData.URL +'/appuser/getPubPerm'
     util.gets(url2, {}).then(function (res) {
@@ -341,6 +353,107 @@ Page({
       that.setData({
         pickerbig: res.data.data
       })
+    })
+  },
+  prevNum() {
+    let t = "information.entrylimit"
+    this.setData({
+      [t]: this.data.information.entrylimit + 1
+    });
+  },
+  nextNum() {
+    let t = "information.entrylimit"
+    this.setData({
+      [t]: this.data.information.entrylimit - 1
+    });
+  },
+  num(e) {
+    let t ="information.entrylimit"
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
+
+  finish: function (e) {
+    let t = 'information.timenow'
+    let t2 = 'information.signupdeadline'
+    this.setData({
+      [t]: this.data.timenow + ' ' + this.data.time1,
+      [t2]: this.data.timenow2 + ' ' + this.data.time2
+    })
+    var user = wx.getStorageSync('userInfo')
+    user = 'Bearer ' + user.token;
+    var urls = app.globalData.URL + '/act/pubActivity';
+    var tmp=this.data.information
+    wx.request({
+      url: urls,
+      method: "POST",
+      data: {
+        id: '',
+        actname: tmp.actname,
+        sid: tmp.sid,
+        acid1: tmp.acid1,
+        acid2: tmp.acid2,
+        logo: null,
+        rotations: null,
+        groups: null,
+        fromtime: tmp.timenow,
+        totime: null,
+        signupdeadline: tmp.signupdeadline,
+        signupmax: tmp.entrylimit,
+        audiencemax: null,
+        slogan: tmp.slogan,
+        entrylimit: null,
+        audiencelimit: null,
+        rule: null,
+        rulepic: null,
+        award: null,
+        awardpic: null,
+        sponsor: null,
+        sponsorpic: null,
+        signupway: (parseInt(tmp.way) + 1) * 10,
+        chatid: null,
+        univid: tmp.univid,
+        province: tmp.province,
+        city: tmp.city,
+        address: tmp.venue,
+        venue: tmp.venue,
+        creater: user.id,
+        createralias: user.nickname,
+        createrhead: user.head,
+        status: 10,
+      },
+      header: {
+        "Content-Type": "application/json",
+        'Authorization': user
+      },
+      success: function (res) {
+        console.log(res.data);
+        if (res.data.code == 0) {
+          wx.showToast({
+            title: '提交成功',
+            duration: 2000,
+            success: function () {
+              setTimeout(function () {
+                wx.reLaunch({
+                  url: '/pages/index/index',
+                })
+              }, 2000);
+            }
+          })
+        }
+        else {
+          wx.showToast({
+            title: res.data.msg,
+            image: '/img/fail.png',
+            icon: 'success',
+            duration: 2000
+          })
+        }
+      },
+    })
+    this.setData({
+      modalName: e.currentTarget.dataset.target
     })
   },
 })
