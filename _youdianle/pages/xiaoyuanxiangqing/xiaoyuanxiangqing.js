@@ -536,6 +536,75 @@ Page({
         })
     })
   },
+  quxiaobaoming() {
+    var self = this
+    if (e.currentTarget.dataset.id == 0) {
+      let url = globalData.URL + '/act/findActSignupIndStatus'
+      let data = {
+        actid=self.data.categoryId,
+        uid: self.data.user.id
+      }
+      util.gets(url, data).then(function (res) {
+        var status = res.data.data
+      }).then(function () {
+        url = globalData.URL + '/act/cancelActSignupInd'
+        data = {
+          actid: self.data.categoryId,
+          groupid: "",
+          mbrId: self.data.user.id,
+          mbrAlias: self.data.user.nickname,
+          mbrHead: self.data.user.head,
+          mbrName: self.data.xingmingInput,
+          signupType: status.signupType,
+          status: 20,
+          creater: self.data.user.id
+        }
+        util.gets(url, data).then(function (res) {
+          wx.showToast({
+            title: '操作成功！', // 标题
+            icon: 'success', // 图标类型，默认success
+            duration: 1500 // 提示窗停留时间，默认1500ms
+          })
+          self.setData({
+            isbaominggeren: 0
+          })
+        })
+      })
+    }
+    if (e.currentTarget.dataset.id == 1) {
+      let url = globalData.URL + '/act/findActSignupTeamStatus'
+      let data = {
+        actid=self.data.categoryId,
+        lid: self.data.user.id
+      }
+      util.gets(url, data).then(function (res) {
+        var status = res.data.data
+      }).then(function () {
+        url = globalData.URL + '/act/cancelActSignupTeam'
+        data = {
+          actid: self.data.categoryId,
+          groupid: "",
+          tid: self.data.tuanduiSelect.id,
+          team: self.data.tuanduiSelect.name,
+          teamLogo: self.data.tuanduiSelect.logo,
+          lid: self.data.user.id,
+          signupType:"",
+          creater: self.data.user.id,
+          members: self.data.members,
+        }
+        util.gets(url, data).then(function (res) {
+          wx.showToast({
+            title: '操作成功！', // 标题
+            icon: 'success', // 图标类型，默认success
+            duration: 1500 // 提示窗停留时间，默认1500ms
+          })
+          self.setData({
+            isbaomingtuandui: 0
+          })
+        })
+      })
+    }
+  },
   lijibaoming() {
     var self = this
     if (self.data.xingmingInput == '')
