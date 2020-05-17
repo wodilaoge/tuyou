@@ -36,15 +36,7 @@ Page({
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
-    pinglunallList:[
-      {
-        'id':'',
-        'zankai':0,
-        'pinglun':[],
-      }
-    ],
-    pinglun_detial:[],
-
+    pinglunallList: [],
   },
   chooseSezi: function(e) {
     var that = this;
@@ -667,8 +659,8 @@ Page({
     })
   },
 
-  pinglunall_change: function (e) {
-    
+  pinglunall_change: function(e) {
+
   },
   onLoad: async function(options) { //读取活动对应id
     this.setData({
@@ -684,7 +676,7 @@ Page({
     this.ifzan()
     //this.news()
     //this.news_detail()
-    setTimeout(function () {
+    setTimeout(function() {
       if (this.data.detail.length == 0)
         wx.showToast({
           title: '暂无活动数据！', // 标题
@@ -697,68 +689,43 @@ Page({
   },
 
   getShipin() { //视频
-    var self=this;
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
       // actid:this.data.categoryId
     };
-
-    wx.request({
-      // var user = wx.getStorageSync('userInfo'),
-      url: app.globalData.URL + '/video/listActVideo',
-      data: {
-
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        console.log(res.data)
-        this.setData({
-          shipin: res.data
-        })
-        wx.request({
-          url: app.globalData.URL + '/comm/listCommByObj',
-          data: {
-            objtype: 50,
-            objid: i.id,
-          },
-          header: {
-            'content-type': 'application/json'
-          },
-          success: function (res) {
-            this.setData({
-              pinglun_detial: res.data
-            })
-            this.data.pinglunallList.push([i.id, 0, this.data.pinglun_detial])
-          }
-        })
-      }
-    })
-    // util.gets(url, data).then(function (res) {
-    //   console.log(res)
-    //   this.setData({
-    //     shipin: res.data
-    //   })
-    // }).then(function (res){
-    //   console.log(this.data.shipin)
-    //   for (var i in this.data.shipin.list) {
-    //     url = app.globalData.URL + '/comm/listCommByObj';
-    //     data = {
-    //       objtype: 50,
-    //       objid: i.id,
-    //     };
-    //     app.wxRequest('GET', url, data, (res) => {
-    //       console.log(res)
-    //       self.setData({
-    //         pinglun_detial: res.data
-    //       })
-    //     }, (err) => {
-    //       console.log(err.errMsg)
-    //     });
-    //     this.data.pinglunallList.push([i.id, 0, this.data.pinglun_detial])
-    //   }
-    // })
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res)
+      this.setData({
+        shipin: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  pinglunall_change: function (e) {
+    var shipintmp = this.data.shipin;
+    let url = app.globalData.URL + '/comm/listCommByObj';
+    let data = {
+      objtype: 50,
+      objid: e.currentTarget.dataset.dxid,
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      shipintmp.list[e.currentTarget.dataset.index].listComm = res.data.list;
+      this.setData({
+        shipin: shipintmp,
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+    if (this.data.pinglunall == 0) {
+      this.setData({
+        pinglunall: 1,
+      })
+    } else {
+      this.setData({
+        pinglunall: 0,
+      })
+    }
 
   },
 
@@ -769,8 +736,10 @@ Page({
         this.setData({
           bofang_pid: '1'
         })
-      }
-
+        let url = app.globalData.URL + '/video/updatePlayCnt';
+        let data = [];
+        app.wxRequest('POST', url, data, (res) => {})
+      } 
       var now_id = e.currentTarget.id;
       var prev_id = this.data.video_id;
       this.setData({
