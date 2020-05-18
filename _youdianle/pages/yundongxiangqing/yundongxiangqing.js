@@ -47,6 +47,11 @@ Page({
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
     zhaopian: [],
     zhaopian_detail: [],
+    pinglunall:0,
+    pinglunallList:[{
+      id:'',
+      list:[],
+    }],
     pinglunall: 0,
     pinglunallList: [],
     user: [],
@@ -541,6 +546,7 @@ Page({
       console.log(err.errMsg)
     });
   },
+  /////////////
   getShipin() { //视频
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
@@ -555,18 +561,24 @@ Page({
     });
   },
   pinglunall_change: function(e) {
+    var shipintmp = this.data.shipin;
+
     let url = app.globalData.URL + '/comm/listCommByObj';
     let data = {
       objtype: 50,
       objid: e.currentTarget.dataset.dxid,
     };
     app.wxRequest('GET', url, data, (res) => {
+      shipintmp.list[e.currentTarget.dataset.index].listComm = res.data.list;
       this.setData({
+        shipin : shipintmp,
         pinglunallList: res.data
       })
     }, (err) => {
       console.log(err.errMsg)
     });
+    
+    if(this.data.pinglunall==0){
 
     if (this.data.pinglunall == 0) {
       this.setData({
@@ -577,14 +589,34 @@ Page({
         pinglunall: 0,
       })
     }
-
+    }
   },
   video_change: function(e) { ////视频切换
+    var shipintmp = this.data.shipin;
     if (this.data.bofang_if_id != e.currentTarget.id) { ///相等表示点击和播放不匹配
       if (this.data.bofang_pid == '0') {
         this.setData({
           bofang_pid: '1'
         })
+
+        let url = app.globalData.URL + '/video/updatePlayCnt';
+        let data = {
+          id:this.data.shipin.list[e.currentTarget.dataset.index].id,
+        };
+        app.wxRequest('POST', url, data, (res) => { })
+        url = app.globalData.URL + '/comm/listCommByObj';
+         data = {
+          objid: this.data.shipin.list[e.currentTarget.dataset.index].id,
+          objtype:50
+        };
+        app.wxRequest('GET', url, data, (res) => {
+          shipintmp.list[e.currentTarget.dataset.index].commCnt = res.data;
+          this.setData({
+            shipin: shipintmp,
+          })
+        }, (err) => {
+          console.log(err.errMsg)
+        });
       }
 
       var now_id = e.currentTarget.id;
@@ -611,6 +643,7 @@ Page({
       }
     }
   },
+/////////////
   shipintiaozhuan() {
     wx.navigateTo({
       url: '../form_actid_video/form_actid_video?actid=' + this.data.categoryId
@@ -914,7 +947,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.getShipin()
+
   },
 
   /**
