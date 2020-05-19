@@ -140,9 +140,6 @@
                     <image wx:if="{{false==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}' src="/img/weidianzan.png" mode="scaleToFill" style="width:24rpx;height:24rpx"></image>
                     <image wx:if="{{true==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}' src="/img/yidianzan.png" mode="scaleToFill" style="width:24rpx;height:24rpx"></image>
                     {{item.praiseCnt}}
-                    <image wx:if="{{false==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}' src="/img/weidiancai.png" mode="scaleToFill" style="width:24rpx;height:24rpx"></image>
-                    <image wx:if="{{true==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}' src="/img/yidiancai.png" mode="scaleToFill" style="width:24rpx;height:24rpx"></image>
-                    {{item.degradeCnt}}
                   </view>
                 </view>
                 <view data-id="{{item.id}}">
@@ -454,7 +451,6 @@
                     <image wx:if="{{false==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}' src="/img/weidianzan.png" mode="scaleToFill" style="width:24rpx;height:24rpx"></image>
                     <image wx:if="{{true==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}' src="/img/yidianzan.png" mode="scaleToFill" style="width:24rpx;height:24rpx"></image>
                     {{item.praiseCnt}}
-                    <text class="cuIcon-appreciate margin-lr-xs "></text> {{item.degradeCnt}}
                   </view>
                 </view>
                 <view data-id="{{item.id}}">
@@ -837,7 +833,6 @@
                     <image wx:if="{{false==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}} " data-ifzan="{{item.ifzan}} " data-index='{{index}}' src="/img/weidianzan.png " mode="scaleToFill " style="width:24rpx;height:24rpx "></image>
                     <image wx:if="{{true==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}} " data-ifzan="{{item.ifzan}} " data-index='{{index}}' src="/img/yidianzan.png " mode="scaleToFill " style="width:24rpx;height:24rpx "></image>
                     {{item.praiseCnt}}
-                    <text class="cuIcon-appreciate margin-lr-xs "></text> {{item.degradeCnt}}
                   </view>
                 </view>
                 <view data-id="{{item.id}} ">
@@ -845,7 +840,7 @@
                     {{item.comment}}
                   </view>
                   <view class="card-text-content-time ">
-                    {{item.strCreatetime}} {{item.replyCnt}} 回复
+                    {{item.strCreatetime}}
                   </view>
                 </view>
               </view>
@@ -1138,7 +1133,7 @@
 
 <!--隐藏区域  -->
 <view fixed class="modals modals-bottom-dialog" hidden="{{!chooseSize}}">
-  <view class="modals-cancel" bindtap="hideModal"></view>
+  <view class="modals-cancel" bindtap="hideModal" catchtouchmove="true"></view>
   <view class="bottom-dialog-body bottom-pos " animation="{{animationData}}" style="display:block">
     <view>
       <text class="cu-bar-title " style="margin-left:300rpx ">写评论</text>
