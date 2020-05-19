@@ -82,14 +82,43 @@ App({
         },
         dataType: 'json',
         success: function(res) {
+          if (res.data.code == '109') {
+            wx.showToast({
+              title: '请重新登录！',
+              image: '/img/fail.png',
+              duration: 500,
+              success: function() {
+                wx.redirectTo({
+                  url: '/pages/login/login',
+                })
+              }
+            })
+          }
           // if (res.data.code == '109') {
-          //   wx.showToast({
-          //     title: '请重新登录！',
-          //     image: '/img/fail.png',
-          //     duration: 500,
-          //     success: function() {
-          //       wx.redirectTo({
-          //         url: '/pages/login/login',
+          //   wx.login({ //匿名登录
+          //     success: function(res) {
+          //       console.log('login', res.code);
+          //       wx.request({
+          //         url: 'https://api.udianle.com/kt/auth/wcAnonLogin',
+          //         method: 'post',
+          //         data: {
+          //           code: res.code
+          //         },
+          //         header: {
+          //           'content-type': 'application/json',
+          //           'Accept': 'application/json'
+          //         },
+          //         dataType: 'json',
+          //         success: function(res) {
+          //           console.log(res.data)
+          //           that.globalData.userInfo = res.data.data
+          //           wx.setStorageSync('userInfo', res.data.data)
+          //           // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+          //           // 所以此处加入 callback 以防止这种情况
+          //           if (that.employIdCallback) {
+          //             that.employIdCallback(res);
+          //           }
+          //         }
           //       })
           //     }
           //   })
@@ -145,7 +174,7 @@ App({
               wx.setStorageSync('userInfo', res.data.data)
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
-  
+
               if (that.employIdCallback) {
                 that.employIdCallback(res);
               }

@@ -85,18 +85,18 @@ const gets = (url, data) => {
           'Authorization': user
         },
         success: function(res) { //服务器返回数据
-          // if (res.data.code == '109') {
-          //   wx.showToast({
-          //     title: '请重新登录！',
-          //     image: '/img/fail.png',
-          //     duration: 500,
-          //     success: function() {
-          //       wx.redirectTo({
-          //         url: '/pages/login/login',
-          //       })
-          //     }
-          //   })
-          // } else
+          if (res.data.code == '109') {
+            wx.showToast({
+              title: '请重新登录！',
+              image: '/img/fail.png',
+              duration: 500,
+              success: function() {
+                wx.redirectTo({
+                  url: '/pages/login/login',
+                })
+              }
+            })
+          } else
            if (res.statusCode == 200) {
             resolve(res);
           } else { //返回错误提示信息
