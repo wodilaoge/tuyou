@@ -822,6 +822,7 @@ Page({
               members: self.data.members,
             }
           util.post_token(url, data).then(function(res) {
+            console.log(res.data)
             if (res.data.code == 0) {
               wx.showToast({
                 title: '报名成功！', // 标题
@@ -852,7 +853,6 @@ Page({
         actid:self.data.categoryId,
         uid: self.data.user.id
       }
-      console.log(data)
       util.gets(url, data).then(function (res) {
         status = res.data.data
       }).then(function () {

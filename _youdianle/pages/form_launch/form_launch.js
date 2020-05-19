@@ -21,9 +21,9 @@ Page({
     },
     time1: '7:00',
     time2: '18:00',
-    index2:0,
-    timenow:'',
-    timenow2:'',
+    index2: 0,
+    timenow: '',
+    timenow2: '',
     isaddress: false,
     index: 0, //活动方式
     indexbig: 0,
@@ -45,14 +45,14 @@ Page({
     pro: '',
     city: '',
     schoolinfo: '',
-    tinyshow:'选择活动小类'
+    tinyshow: '选择活动小类'
   },
 
   PickerChange(e) { //报名方式
     let t = 'information.way'
     this.setData({
       [t]: e.detail.value,
-      index2:e.detail.value
+      index2: e.detail.value
     })
   },
   PickerChange2(e) { //活动大类
@@ -197,12 +197,12 @@ Page({
 
   commit: function(e) {
     let t = 'information.timenow'
-    let t2 ='information.signupdeadline'
+    let t2 = 'information.signupdeadline'
     this.setData({
-      [t]: this.data.timenow+' '+this.data.time1,
-      [t2]: this.data.timenow2+' '+this.data.time2
+      [t]: this.data.timenow + ' ' + this.data.time1,
+      [t2]: this.data.timenow2 + ' ' + this.data.time2
     })
-    
+
     wx.setStorage({ //将活动信息存入缓存
       key: "information",
       data: this.data.information
@@ -272,9 +272,9 @@ Page({
         pickertiny: res.data.data
       })
       console.log(res.data)
-      if(!res.data.data.length){
+      if (!res.data.data.length) {
         that.setData({
-          tinyshow:"无"
+          tinyshow: "无"
         })
       }
     })
@@ -304,23 +304,50 @@ Page({
     // //秒  
     // var s = date.getSeconds();
     // console.log("当前时间：" + Y + M + D + h + ":" + m + ":" + s)
-    var nowtime=Y+'-'+M+'-'+D
+    var nowtime = Y + '-' + M + '-' + D
     this.setData({
-      timenow:nowtime,
-      timenow2:nowtime,
+      timenow: nowtime,
+      timenow2: nowtime,
     })
-    let url2 = app.globalData.URL +'/appuser/getPubPerm'
-    util.gets(url2, {}).then(function (res) {
-      console.log('auth',res)
+    // 获取用户信息
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) { console.log('wx auth finished')} else {
+          console.log('no auth')
+          wx.showModal({
+            title: '友点乐',
+            content: '请先进行微信登录',
+            cancelText: '取消',
+            confirmText: '授权',
+            success: res => {
+              if (res.confirm) {
+                wx.navigateTo({
+                  url: '/pages/login/login',
+                })
+              } else {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }
+            }
+          })
+        }
+      }
+    })
+
+
+    let url2 = app.globalData.URL + '/appuser/getPubPerm'
+    util.gets(url2, {}).then(function(res) {
+      console.log('auth', res)
       that.setData({
         auth: res.data
       })
-      if(res.data.code){
+      if (res.data.code) {
         wx.showToast({
           title: '请先绑定手机！',
           duration: 2000,
-          success: function () {
-            setTimeout(function () {
+          success: function() {
+            setTimeout(function() {
               wx.navigateTo({
                 url: '/pages/MyPages/my_security/my_security',
               })
@@ -368,13 +395,13 @@ Page({
     });
   },
   num(e) {
-    let t ="information.entrylimit"
+    let t = "information.entrylimit"
     this.setData({
       [t]: e.detail.value
     })
   },
 
-  finish: function (e) {
+  finish: function(e) {
     let t = 'information.timenow'
     let t2 = 'information.signupdeadline'
     this.setData({
@@ -384,7 +411,7 @@ Page({
     var user = wx.getStorageSync('userInfo')
     user = 'Bearer ' + user.token;
     var urls = app.globalData.URL + '/act/pubActivity';
-    var tmp=this.data.information
+    var tmp = this.data.information
     wx.request({
       url: urls,
       method: "POST",
@@ -427,22 +454,21 @@ Page({
         "Content-Type": "application/json",
         'Authorization': user
       },
-      success: function (res) {
+      success: function(res) {
         console.log(res.data);
         if (res.data.code == 0) {
           wx.showToast({
             title: '提交成功',
             duration: 2000,
-            success: function () {
-              setTimeout(function () {
+            success: function() {
+              setTimeout(function() {
                 wx.reLaunch({
                   url: '/pages/index/index',
                 })
               }, 2000);
             }
           })
-        }
-        else {
+        } else {
           wx.showToast({
             title: res.data.msg,
             image: '/img/fail.png',

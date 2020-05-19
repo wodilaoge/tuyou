@@ -214,20 +214,43 @@ Page({
     this.onLoad();
   },
   onLoad: function(options) {
-    var n=wx.getStorageSync('school')
-    this.setData({
-      schoolname:n.name
-    })
-    this.school();
-    this.getinfo();
-    this.getsportinfo();//运动信息
-    this.getplayinfo();//文娱信息
-    this.gethobbyinfo();//爱好信息
-    this.getvideoinfo();//视频信息
-    this.getuploadinfo();
-
+    let temp=wx.getStorageSync('userInfo')
+    if (temp) {
+      console.log('index ok!')
+      var n = wx.getStorageSync('school')
+      this.setData({
+        schoolname: n.name
+      })
+      this.school();
+      this.getinfo();
+      this.getsportinfo();//运动信息
+      this.getplayinfo();//文娱信息
+      this.gethobbyinfo();//爱好信息
+      this.getvideoinfo();//视频信息
+      this.getuploadinfo();
     // app.editTabbar();
     // this.getShipin();
+
+    } else {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况 appjs的callback方法
+      console.log('new user')
+      app.employIdCallback = res => {
+        console.log('userInfoReadyCallback: ', res.data.data);
+        wx.setStorageSync('userInfo', res.data.data)
+        var n = wx.getStorageSync('school')
+        this.setData({
+          schoolname: n.name
+        })
+        this.school();
+        this.getinfo();
+        this.getsportinfo();//运动信息
+        this.getplayinfo();//文娱信息
+        this.gethobbyinfo();//爱好信息
+        this.getvideoinfo();//视频信息
+        this.getuploadinfo();
+      }
+    }
   },
   todetail(e) { //报名参加按钮跳转 带着活动id跳转 校园活动
     wx.navigateTo({

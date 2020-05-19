@@ -11,7 +11,7 @@ Page({
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
     Custom: app.globalData.Custom,
-    TabCur: 30,
+    TabCur: 0,
     MainCur:'00333',
     VerticalNavTop: 0,
     options: 1,
