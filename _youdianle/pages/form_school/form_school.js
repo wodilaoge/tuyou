@@ -22,6 +22,7 @@ Page({
     t.name = this.data.school[e.currentTarget.dataset.index].name
     wx.setStorageSync('school', t)
     var mode = wx.getStorageSync('addressMode')
+    
     if (mode == "1") {
       wx.switchTab({
         url: '/pages/index/index',
@@ -29,7 +30,7 @@ Page({
     } else {
       wx.navigateTo({
         url: '/pages/form_launch/form_launch',
-      })
+      })   
     }
   },
   /**
