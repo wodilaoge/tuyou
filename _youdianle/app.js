@@ -2,7 +2,7 @@
 App({
   globalData: {
     tabbar: 0,
-    userInfo: "",
+    userInfo: [],
     URL: 'https://api.udianle.com/kt',
     systemInfo: null, //客户端设备信息，
     YundongList: [{
@@ -54,20 +54,22 @@ App({
   },
   wxRequest(method, url, data, callback, errFun) {
     var user = wx.getStorageSync('userInfo')
-    if (user == null) {
-      wx.showToast({
-        title: '登录失败！',
-        image: '/img/fail.png',
-        duration: 500,
-        success: function() {
-          setTimeout(function() {
-            wx.redirectTo({
-              url: '/pages/login/login',
-            })
-          }, 1000);
-        }
-      })
-    } else {
+    // var user = this.globalData.userInfo
+    // if (user == null) {
+    //   wx.showToast({
+    //     title: '登录失败！',
+    //     image: '/img/fail.png',
+    //     duration: 500,
+    //     success: function() {
+    //       setTimeout(function() {
+    //         wx.redirectTo({
+    //           url: '/pages/login/login',
+    //         })
+    //       }, 1000);
+    //     }
+    //   })
+    // } else 
+    {
       user = 'Bearer ' + user.token;
       wx.request({
         url: url,
@@ -80,18 +82,18 @@ App({
         },
         dataType: 'json',
         success: function(res) {
-          if (res.data.code == '109') {
-            wx.showToast({
-              title: '请重新登录！',
-              image: '/img/fail.png',
-              duration: 500,
-              success: function() {
-                wx.redirectTo({
-                  url: '/pages/login/login',
-                })
-              }
-            })
-          }
+          // if (res.data.code == '109') {
+          //   wx.showToast({
+          //     title: '请重新登录！',
+          //     image: '/img/fail.png',
+          //     duration: 500,
+          //     success: function() {
+          //       wx.redirectTo({
+          //         url: '/pages/login/login',
+          //       })
+          //     }
+          //   })
+          // }
           callback(res.data);
         },
         fail: function(err) {
@@ -100,38 +102,59 @@ App({
       })
     }
   },
-  
+
   onLaunch: function() {
     // 展示本地存储能力
     // this.hideTabBar();
+    var that = this
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
     // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          // wx.getUserInfo({
-          //   success: res => {
-          //     // 可以将 res 发送给后台解码出 unionId
-          //     this.globalData.userInfo = res.userInfo
-          //     // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-          //     // 所以此处加入 callback 以防止这种情况
-          //     if (this.userInfoReadyCallback) {
-          //       this.userInfoReadyCallback(res)
-          //     }
-          //   }
-          // })
-        } else {
-          // 未授权，跳转到授权页面
-          console.log('no')
-          wx.redirectTo({
-            url: '/pages/login/login',
+    // wx.getSetting({
+    //   success: res => {
+    //     if (res.authSetting['scope.userInfo']) {
+    //     } else {
+    //       // 未授权，跳转到授权页面
+    //       console.log('no')
+    //       wx.redirectTo({
+    //         url: '/pages/login/login',
+    //       })
+    //     }
+    //   }
+    // })
+    var tmp = wx.getStorageSync('userInfo')
+    if (!tmp) {
+      wx.login({ //匿名登录
+        success: function(res) {
+          console.log('login', res.code);
+          wx.request({
+            url: 'https://api.udianle.com/kt/auth/wcAnonLogin',
+            method: 'post',
+            data: {
+              code: res.code
+            },
+            header: {
+              'content-type': 'application/json',
+              'Accept': 'application/json'
+            },
+            dataType: 'json',
+            success: function(res) {
+              console.log(res.data)
+              that.globalData.userInfo = res.data.data
+              wx.setStorageSync('userInfo', res.data.data)
+              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+              // 所以此处加入 callback 以防止这种情况
+  
+              if (that.employIdCallback) {
+                that.employIdCallback(res);
+              }
+            }
           })
+
         }
-      }
-    })
+      })
+    }
 
     // 获取系统状态栏信息
     wx.getSystemInfo({

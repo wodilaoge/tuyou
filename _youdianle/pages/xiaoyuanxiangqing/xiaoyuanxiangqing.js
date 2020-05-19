@@ -38,6 +38,7 @@ Page({
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
+    pinglunall:[],
   },
   chooseSezi: function(e) {
     var that = this;
@@ -721,9 +722,6 @@ Page({
     })
   },
 
-  pinglunall_change: function(e) {
-
-  },
   onLoad: async function(options) { //读取活动对应id
     this.setData({
       categoryId: options.categoryId,
@@ -734,7 +732,8 @@ Page({
     this.fenzu()
     this.baomingzhuangtai()
     this.detail()
-    this.comment()
+    this.comment() 
+    this.getShipin()
     this.ifguanzhu()
     this.ifzan()
     //this.news()
@@ -751,12 +750,12 @@ Page({
       resolve();
     }, 1000)
   },
-
+/////////////////////////
   getShipin() { //视频
     var self = this;
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
-      // actid:this.data.categoryId
+      actid:this.data.categoryId
     };
     app.wxRequest('GET', url, data, (res) => {
       console.log(res)
@@ -791,39 +790,6 @@ Page({
         pinglunall: 0,
       })
     }
-
-    wx.request({
-      // var user = wx.getStorageSync('userInfo'),
-      url: app.globalData.URL + '/video/listActVideo',
-      data: {
-
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function(res) {
-        console.log(res.data)
-        this.setData({
-          shipin: res.data
-        })
-        wx.request({
-          url: app.globalData.URL + '/comm/listCommByObj',
-          data: {
-            objtype: 50,
-            objid: i.id,
-          },
-          header: {
-            'content-type': 'application/json'
-          },
-          success: function(res) {
-            this.setData({
-              pinglun_detial: res.data
-            })
-            this.data.pinglunallList.push([i.id, 0, this.data.pinglun_detial])
-          }
-        })
-      }
-    })
 
   },
 
@@ -862,17 +828,86 @@ Page({
       }
     }
   },
+  shipin_ifguanzhu() { //是否关注
+    self = this;
+    let url = app.globalData.URL + '/follow/findFollow';
+    let data = {
+      objtype: 30,
+      objid: self.data.categoryId,
+      uid: self.data.user.id,
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      self.setData({
+        isguanzhu: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  shipin_guanzhu() { //活动关注或取消关注
+    self = this;
+    let url = app.globalData.URL + '/follow/updateFollow';
+    if (self.data.isguanzhu)
+      var data = {
+        objtype: 30,
+        objid: self.data.categoryId,
+        objtitle: self.data.detail.actname,
+        creater: self.data.user.id,
+        status: 0,
+      };
+    else
+      var data = {
+        objtype: 30,
+        objid: self.data.categoryId,
+        objtitle: self.data.detail.actname,
+        creater: self.data.user.id,
+        status: 1,
+      };
+    app.wxRequest('POST', url, data, (res) => {
+      if (self.data.ifzan)
+        self.setData({
+          isguanzhu: false
+        })
+      else
+        self.setData({
+          isguanzhu: true
+        })
+      wx.showToast({
+        title: '操作成功！', // 标题
+        icon: 'success', // 图标类型，默认success
+        duration: 500 // 提示窗停留时间，默认1500ms
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  shipinguanzhu:function(e){
+    let url = app.globalData.URL + '/follow/updateFollow';
+    let data = {
+      objtype: 50,
+      objid: this.data.shipin.list[e.currentTarget.dataset.index].id,
+      objtitle: this.data.shipin.list[e.currentTarget.dataset.index].title,
+      creater: this.data.user.id,
+      status: 1,
+    };
+    app.wxRequest('POST', url, data, (res) => {
+      console.log(res)
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {},
+  onReady: function() {
+  },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function(options) {
     this.comment()
-    this.getShipin()
+    
   },
 
   /**

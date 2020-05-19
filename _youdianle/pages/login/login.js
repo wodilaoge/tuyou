@@ -57,8 +57,11 @@ Page({
                       duration: 500,
                       success: function () {
                         setTimeout(function () {
-                          wx.reLaunch({
-                            url: '/pages/index/index',
+                          // wx.reLaunch({
+                          //   url: '/pages/index/index',
+                          // })
+                          wx.navigateBack({
+                            delta:1
                           })
                         }, 1000);
                       }
