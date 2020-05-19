@@ -287,6 +287,11 @@
             <text class='cu-bar-title'>已报名{{yibaomingList.length}}人</text>
           </view>
         </view>
+        <view class="yundong-content bg-white">
+          <view class="padding-sm">
+            <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" wx:key style="background-image:url({{item.head}});" />
+          </view>
+        </view>
       </view>
     </block>
   </block>
@@ -380,6 +385,11 @@
         <view class="cu-bar bg-white solid-bottom">
           <view class='action'>
             <text class='cu-bar-title'>已报名{{yibaomingList.length}}人</text>
+          </view>
+        </view>
+        <view class="yundong-content bg-white">
+          <view class="padding-sm">
+            <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" wx:key style="background-image:url({{item.head}});" />
           </view>
         </view>
       </view>

@@ -6,6 +6,7 @@ Page({
     animationData: {},
     Input: "",
     options:[],
+    yibaomingList:[],
 
     TabCur: 0,
     paimingCur: 0,
@@ -529,6 +530,19 @@ Page({
         })
     })
   },
+  yibaoming() {
+    let url = app.globalData.URL + '/act/listActSignupTopN';
+    let data = {
+      actid: this.data.categoryId
+    }
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        yibaomingList: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
   quxiaobaoming(e) {
     var self = this
     var status
@@ -538,23 +552,15 @@ Page({
         actid: self.data.categoryId,
         uid: self.data.user.id
       }
-      util.gets(url, data).then(function(res) {
+      util.gets(url, data).then(function (res) {
         status = res.data.data
-      }).then(function() {
+      }).then(function () {
         url = app.globalData.URL + '/act/cancelActSignupInd'
         data = {
-          id: status.id,
-          actid: self.data.categoryId,
-          groupid: "",
-          mbrId: self.data.user.id,
-          mbrAlias: self.data.user.nickname,
-          mbrHead: self.data.user.head,
-          mbrName: self.data.xingmingInput,
-          signupType: status.signupType,
-          status: 20,
-          creater: self.data.user.id
+          id: status.id
         }
-        util.post_token(url, data).then(function(res) {
+        util.gets(url, data).then(function (res) {
+          console.log(res.data)
           wx.showToast({
             title: '操作成功！', // 标题
             icon: 'success', // 图标类型，默认success
@@ -563,6 +569,7 @@ Page({
           self.setData({
             isbaominggeren: 0
           })
+          self.yibaoming()
         })
       })
     }
@@ -572,23 +579,14 @@ Page({
         actid: self.data.categoryId,
         lid: self.data.user.id
       }
-      util.gets(url, data).then(function(res) {
+      util.gets(url, data).then(function (res) {
         status = res.data.data
-      }).then(function() {
+      }).then(function () {
         url = app.globalData.URL + '/act/cancelActSignupTeam'
         data = {
-          id: status.id,
-          actid: self.data.categoryId,
-          groupid: "",
-          tid: self.data.tuanduiSelect.id,
-          team: self.data.tuanduiSelect.name,
-          teamLogo: self.data.tuanduiSelect.logo,
-          lid: self.data.user.id,
-          signupType: "",
-          creater: self.data.user.id,
-          members: self.data.members,
+          id: status.id
         }
-        util.post_token(url, data).then(function(res) {
+        util.gets(url, data).then(function (res) {
           wx.showToast({
             title: '操作成功！', // 标题
             icon: 'success', // 图标类型，默认success
@@ -597,6 +595,7 @@ Page({
           self.setData({
             isbaomingtuandui: 0
           })
+          self.yibaoming()
         })
       })
     }
@@ -739,6 +738,7 @@ Page({
     this.ifzan()
     //this.news()
     //this.news_detail()
+    this.yibaoming()
     setTimeout(function() {
       if (this.data.detail.length == 0)
         wx.showToast({

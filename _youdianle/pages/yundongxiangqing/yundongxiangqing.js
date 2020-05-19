@@ -840,6 +840,7 @@ Page({
           })
         }
       }
+      self.yibaoming()
     }
   },
   quxiaobaoming(e){
@@ -851,23 +852,15 @@ Page({
         actid:self.data.categoryId,
         uid: self.data.user.id
       }
+      console.log(data)
       util.gets(url, data).then(function (res) {
-        status=res.data.data
+        status = res.data.data
       }).then(function () {
         url = app.globalData.URL + '/act/cancelActSignupInd'
         data = {
-          id: status.id,
-          actid: self.data.categoryId,
-          groupid: "",
-          mbrId: self.data.user.id,
-          mbrAlias: self.data.user.nickname,
-          mbrHead: self.data.user.head,
-          signupType: status.signupType,
-          status: status.status,
-          creater: self.data.user.id
+          id: status.id
         }
-        console.log(data)
-        util.post_token(url, data).then(function (res) {
+        util.gets(url, data).then(function (res) {
           wx.showToast({
             title: '操作成功！', // 标题
             icon: 'success', // 图标类型，默认success
@@ -876,6 +869,7 @@ Page({
           self.setData({
             isbaominggeren: 0
           })
+          self.yibaoming()
         })
       })
     }
@@ -890,18 +884,9 @@ Page({
       }).then(function () {
         url = app.globalData.URL + '/act/cancelActSignupTeam'
         data = {
-          id: status.id,
-          actid: self.data.categoryId,
-          groupid: "",
-          tid: self.data.tuanduiSelect.id,
-          team: self.data.tuanduiSelect.name,
-          teamLogo: self.data.tuanduiSelect.logo,
-          lid: self.data.user.id,
-          signupType:"",
-          creater: self.data.user.id,
-          members: self.data.members,
+          id: status.id
         }
-        util.post_token(url, data).then(function (res) {
+        util.gets(url, data).then(function (res) {
           wx.showToast({
             title: '操作成功！', // 标题
             icon: 'success', // 图标类型，默认success
@@ -910,6 +895,7 @@ Page({
           self.setData({
             isbaomingtuandui: 0
           })
+          self.yibaoming()
         })
       })
     }
@@ -918,27 +904,28 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.setData({
+    var self=this
+    self.setData({
       categoryId: options.categoryId,
       user: wx.getStorageSync('userInfo'),
       TabCur: options.TabCur,
       biaoti: options.Title,
       options:options
     })
-    this.detail()
-    this.yibaoming()
-    this.rotation()
-    this.baomingzhuangtai()
-    this.ifguanzhu()
-    this.ifzan()
-    this.comment()
-    this.fenzu()
+    self.detail()
+    self.yibaoming()
+    self.rotation()
+    self.baomingzhuangtai()
+    self.ifguanzhu()
+    self.ifzan()
+    self.comment()
+    self.fenzu()
     //this.news()
     //this.news_detail()
-    this.getShipin()
-    this.getZhaopian()
+    self.getShipin()
+    self.getZhaopian()
     setTimeout(function() {
-      if (this.data.detail.length == 0)
+      if (self.data.detail.length == 0)
         wx.showToast({
           title: '暂无活动数据！', // 标题
           image: '/img/fail.png', // 图标类型，默认success
@@ -946,7 +933,7 @@ Page({
         })
 
       resolve();
-    }, 1000)
+    }, 10000)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
