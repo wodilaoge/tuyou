@@ -549,7 +549,7 @@
             <view style="height:10rpx;"></view>
           </view>
         </view>
-        <view class="sp-quanbupinglun margin-top-sm" bindtap="pinglunall_change" data-duixiang="{{50}}" data-dxid="{{shipin.list[0].id}}">全部评论({{shipin.list[0].commCnt}})</view>
+        <view class="sp-quanbupinglun margin-top-sm" bindtap="pinglunall_change" data-duixiang="{{50}}" data-dxid="{{shipin.list[0].id}}" data-index="{{0}}">全部评论({{shipin.list[0].commCnt}})</view>
       </view>
     </view>
 

@@ -562,7 +562,6 @@ Page({
   },
   pinglunall_change: function(e) {
     var shipintmp = this.data.shipin;
-
     let url = app.globalData.URL + '/comm/listCommByObj';
     let data = {
       objtype: 50,
