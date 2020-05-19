@@ -277,6 +277,31 @@ Page({
   },
   onLoad() {
     var that=this
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) { console.log('wx auth finished') } else {
+          console.log('no auth')
+          wx.showModal({
+            title: '友点乐',
+            content: '请先进行微信登录',
+            cancelText: '取消',
+            confirmText: '授权',
+            success: res => {
+              if (res.confirm) {
+                wx.navigateTo({
+                  url: '/pages/login/login',
+                })
+              } else {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }
+            }
+          })
+        }
+      }
+    })
+
     let url2 = app.globalData.URL + '/appuser/getPubPerm'
     util.gets(url2, {}).then(function (res) {
       console.log('auth', res)
