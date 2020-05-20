@@ -784,6 +784,7 @@ Page({
             self.setData({
               isbaominggeren: 1
             })
+            self.yibaoming()
           } else
             wx.showToast({
               title: '报名失败！',
@@ -836,6 +837,7 @@ Page({
               self.setData({
                 isbaomingtuandui: 1
               })
+              self.yibaoming()
             } else
               wx.showToast({
                 title: '报名失败！',
@@ -858,15 +860,25 @@ Page({
         uid: self.data.user.id
       }
       util.gets(url, data).then(function(res) {
-        wx.showToast({
-          title: '操作成功！', // 标题
-          icon: 'success', // 图标类型，默认success
-          duration: 1500 // 提示窗停留时间，默认1500ms
+        util.gets(url, data).then(function (res) {
+          if (res.data.code == 0) {
+            wx.showToast({
+              title: '操作成功！', // 标题
+              icon: 'success', // 图标类型，默认success
+              duration: 1500 // 提示窗停留时间，默认1500ms
+            })
+            self.setData({
+              isbaominggeren: 0
+            })
+            self.yibaoming()
+          }
+          else
+            wx.showToast({
+              title: res.data.msg, // 标题
+              image: '/img/fail.png', // 图标类型，默认success
+              duration: 1000 // 提示窗停留时间，默认1500ms
+            })
         })
-        self.setData({
-          isbaominggeren: 0
-        })
-        self.yibaoming()
       })
     }
     if (e.currentTarget.dataset.obj == 1) {
@@ -880,20 +892,30 @@ Page({
         console.log(status)
         console.log(data)
       }).then(function() {
-        url = app.globalData.URL + '/act/cancelActSignupTeam'
+        url = app.globalData.URL + '/act/cancelActSignupByTeam'
         data = {
-          id: status.id
+          actid: self.data.categoryId,
+          tid: status.tid
         }
         util.gets(url, data).then(function(res) {
-          wx.showToast({
-            title: '操作成功！', // 标题
-            icon: 'success', // 图标类型，默认success
-            duration: 1500 // 提示窗停留时间，默认1500ms
-          })
-          self.setData({
-            isbaomingtuandui: 0
-          })
-          self.yibaoming()
+          if (res.data.code == 0) {
+            wx.showToast({
+              title: '操作成功！', // 标题
+              icon: 'success', // 图标类型，默认success
+              duration: 1500 // 提示窗停留时间，默认1500ms
+            })
+            self.setData({
+              isbaomingtuandui: 0
+            })
+            self.yibaoming()
+          }
+          else
+            wx.showToast({
+              title: res.data.msg, // 标题
+              image: '/img/fail.png', // 图标类型，默认success
+              duration: 1000 // 提示窗停留时间，默认1500ms
+            })
+          console.log(res.data)
         })
       })
     }

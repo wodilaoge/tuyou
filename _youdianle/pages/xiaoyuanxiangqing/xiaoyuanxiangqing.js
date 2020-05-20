@@ -547,29 +547,30 @@ Page({
     var self = this
     var status
     if (e.currentTarget.dataset.obj == 0) {
-      let url = app.globalData.URL + '/act/findActSignupIndStatus'
+      let url = app.globalData.URL + '/act/cancelActSignupIndByUser'
       let data = {
         actid: self.data.categoryId,
         uid: self.data.user.id
       }
-      util.gets(url, data).then(function(res) {
-        status = res.data.data
-      }).then(function() {
-        url = app.globalData.URL + '/act/cancelActSignupInd'
-        data = {
-          id: status.id
-        }
-        util.gets(url, data).then(function(res) {
-          console.log(res.data)
-          wx.showToast({
-            title: '操作成功！', // 标题
-            icon: 'success', // 图标类型，默认success
-            duration: 1500 // 提示窗停留时间，默认1500ms
-          })
-          self.setData({
-            isbaominggeren: 0
-          })
-          self.yibaoming()
+      util.gets(url, data).then(function (res) {
+        util.gets(url, data).then(function (res) {
+          if (res.data.code == 0) {
+            wx.showToast({
+              title: '操作成功！', // 标题
+              icon: 'success', // 图标类型，默认success
+              duration: 1500 // 提示窗停留时间，默认1500ms
+            })
+            self.setData({
+              isbaominggeren: 0
+            })
+            self.yibaoming()
+          }
+          else
+            wx.showToast({
+              title: res.data.msg, // 标题
+              image: '/img/fail.png', // 图标类型，默认success
+              duration: 1000 // 提示窗停留时间，默认1500ms
+            })
         })
       })
     }
@@ -579,23 +580,35 @@ Page({
         actid: self.data.categoryId,
         lid: self.data.user.id
       }
-      util.gets(url, data).then(function(res) {
+      util.gets(url, data).then(function (res) {
         status = res.data.data
-      }).then(function() {
-        url = app.globalData.URL + '/act/cancelActSignupTeam'
+        console.log(status)
+        console.log(data)
+      }).then(function () {
+        url = app.globalData.URL + '/act/cancelActSignupByTeam'
         data = {
-          id: status.id
+          actid: self.data.categoryId,
+          tid: status.tid
         }
-        util.gets(url, data).then(function(res) {
-          wx.showToast({
-            title: '操作成功！', // 标题
-            icon: 'success', // 图标类型，默认success
-            duration: 1500 // 提示窗停留时间，默认1500ms
-          })
-          self.setData({
-            isbaomingtuandui: 0
-          })
-          self.yibaoming()
+        util.gets(url, data).then(function (res) {
+          if (res.data.code == 0) {
+            wx.showToast({
+              title: '操作成功！', // 标题
+              icon: 'success', // 图标类型，默认success
+              duration: 1500 // 提示窗停留时间，默认1500ms
+            })
+            self.setData({
+              isbaomingtuandui: 0
+            })
+            self.yibaoming()
+          }
+          else
+            wx.showToast({
+              title: res.data.msg, // 标题
+              image: '/img/fail.png', // 图标类型，默认success
+              duration: 1000 // 提示窗停留时间，默认1500ms
+            })
+          console.log(res.data)
         })
       })
     }
