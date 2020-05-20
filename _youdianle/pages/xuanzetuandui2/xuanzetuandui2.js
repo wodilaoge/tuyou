@@ -27,15 +27,6 @@ Page({
   SelectMem(e) {
     var self = this
     var ed = self.data.list
-    /*let ns={
-      mbrId: e.currentTarget.dataset.item.uid,
-      mbrAlias: e.currentTarget.dataset.item.nickname,
-      mbrHead: e.currentTarget.dataset.item.head
-    }
-    ed.push(ns)
-    self.setData({
-      select:ed
-    })*/
     if (ed[e.target.dataset.index].select)
       self.setData({
         select: self.data.select - 1
@@ -48,6 +39,7 @@ Page({
     self.setData({
       list: ed
     })
+    console.log(self.data.select)
   },
   queding() {
     var self = this
