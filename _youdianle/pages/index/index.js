@@ -59,6 +59,11 @@ Page({
       PageCur: e.currentTarget.dataset.cur
     })
   },
+  tofind(){
+    wx.navigateTo({
+      url: '/pages/sousuo/sousuo',
+    })
+  },
   yundongxiangqing(e) {
     wx.navigateTo({
       url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.yundong.id,

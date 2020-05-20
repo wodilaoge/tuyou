@@ -280,7 +280,7 @@ Page({
     })
   },
   tochooseadress(e) {
-    wx.setStorageSync('addressMode', '2')
+    wx.setStorageSync('addressMode', '3')
     wx.navigateTo({
       url: '/pages/form_address/form_address',
     })

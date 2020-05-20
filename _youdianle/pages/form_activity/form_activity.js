@@ -4,6 +4,9 @@ var util = require("../../utils/util.js");
 Page({
   data: {
     actid: 1760034971189248,
+    rule:null,
+    award:null,
+    spon:null,
     group: 0,
     index: 0,
     index2: 0,
@@ -32,6 +35,25 @@ Page({
     info: {},
     tes: '',
     webinfo: []
+  },
+  test(){
+      let t=this.data.url1.length!=0?this.data.url1:null
+      console.log(t)
+  },
+  getrule(e) {
+    this.setData({
+      rule: e.detail.value
+    })
+  },
+  getaward(e) {
+    this.setData({
+      award: e.detail.value
+    })
+  },
+  getspon(e) {
+    this.setData({
+      spon: e.detail.value
+    })
   },
   toagreepage() {
     wx.navigateTo({
@@ -366,8 +388,8 @@ Page({
         sid: this.data.info.sid,
         acid1: this.data.info.acid1,
         acid2: this.data.info.acid2,
-        logo: this.data.url3[0],
-        rotations: this.data.url4,
+        logo: this.data.url3.length != 0 ? this.data.url3[0] : null,
+        rotations: this.data.url4.length!=0?this.data.url4:null,
         groups: this.data.groups,
         fromtime: this.data.info.timenow,
         totime: null,
@@ -377,12 +399,12 @@ Page({
         slogan: this.data.info.slogan,
         entrylimit: this.data.opinion1,
         audiencelimit: this.data.opinion2,
-        rule: null,
-        rulepic: this.data.url1[0],
-        award: null,
-        awardpic: this.data.url2[0],
-        sponsor: null,
-        sponsorpic: this.data.url5[0],
+        rule: this.data.rule,
+        rulepic: this.data.url1.length!=0 ? this.data.url1[0]:null,
+        award: this.data.award,
+        awardpic: this.data.url2.length!=0?this.data.url2[0]:null,
+        sponsor: this.data.spon,
+        sponsorpic: this.data.url5.length != 0 ? this.data.url2[0] : null,
         signupway: this.data.opinion3,
         chatid: null,
         univid: this.data.info.univid,

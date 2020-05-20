@@ -13,7 +13,7 @@
 </view>
 <view class="cu-form-group">
   <image class="icon2" src="/img/my/icon_cancellation@3x.png"></image>
-  <view class="title text-left">账号注销</view>
+  <view class="title text-left" bindtap="dead">账号注销</view>
   <input class="input text-grey" placeholder="" type='text'  bindinput="kill"></input>
     <image class="icon2" src="/img/array.png"></image>
 </view>

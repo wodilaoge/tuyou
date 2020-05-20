@@ -9,6 +9,8 @@
     </view>
     <!-- <view class="text-bold left2 text-white">浙大</view> -->
     <image class="imgdown" src="/img/index/icon_down.png"></image>
+    <image class="find" bindtap="tofind" src="/img/find.png"></image>
+
   </view>
 
   <view class="top-gradul-blue">

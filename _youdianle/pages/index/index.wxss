@@ -44,6 +44,14 @@
   flex-wrap: wrap; /*允许换行*/
 }
 
+.find{
+  height: 55rpx;
+  width: 55rpx;
+  margin: 10rpx;
+  position: relative;
+  top: 95rpx;
+  left: 60rpx;
+}
 .imgdown {
   position: relative;
   height: 20rpx;

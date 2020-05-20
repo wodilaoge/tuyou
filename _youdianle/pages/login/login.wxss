@@ -12,7 +12,7 @@
   position: relative;
   width: 250rpx;
   height: 250rpx;
-  margin-top: 300rpx;
+  margin-top: 250rpx;
 }
 .bottom{
   position: relative;

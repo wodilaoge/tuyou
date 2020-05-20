@@ -111,6 +111,20 @@ Page({
     let pro = wx.getStorageSync('province')
     let city = wx.getStorageSync('city')
     let school = wx.getStorageSync('school')
+    if(!school){
+      wx.setStorageSync('addressMode', '2')
+      wx.showToast({
+        title: '请先选择学校',
+        duration: 2000,
+        success: function () {
+          setTimeout(function () {
+            wx.reLaunch({
+              url: '/pages/form_address/form_address',
+            })
+          }, 2000);
+        }
+      })
+    }
     let url = app.globalData.URL + '/video/updateActVideo';
     var data = this.data
     var datas = {
@@ -148,7 +162,7 @@ Page({
       } else {
         console.log(res)
         wx.showToast({
-          title: this.data.msg,
+          title: res.data.msg,
           icon: 'success',
           image: '/img/fail.png',
           duration: 2000

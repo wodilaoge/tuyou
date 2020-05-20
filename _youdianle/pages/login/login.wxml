@@ -1,7 +1,11 @@
 <!-- start.wxml -->
+<cu-custom bgColor="bg-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">微信授权</view>
+</cu-custom>
 <view class="container">
   <image class="logo" src="/img/login/icon.png"></image>
-  <text class="userName">友点乐</text>
+  <!-- <text class="userName">友点乐</text> -->
   <text class="userName2">约活动 越开心</text>
   <view class="start-container">
     <button class="lg" disabled="{{!isagree}}"  open-type="getUserInfo" bindgetuserinfo='login'>微信登录</button>

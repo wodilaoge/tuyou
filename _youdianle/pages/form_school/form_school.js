@@ -27,7 +27,13 @@ Page({
       wx.switchTab({
         url: '/pages/index/index',
       })
-    } else {
+    } 
+    else if(mode=="2"){
+      wx.navigateTo({
+        url: '/pages/form_video/form_video',
+      })   
+    }
+    else {
       wx.navigateTo({
         url: '/pages/form_launch/form_launch',
       })   
