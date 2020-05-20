@@ -100,13 +100,6 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "篮球",
-					"pathName": "pages/yundong/lanqiu/lanqiu",
-					"query": "",
-					"scene": null
-				},
-				{
 					"id": 7,
 					"name": "我的",
 					"pathName": "pages/MyPages/my/my",
@@ -156,10 +149,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 13,
 					"name": "选择团队2",
 					"pathName": "pages/xuanzetuandui2/xuanzetuandui2",
-					"query": "",
+					"query": "id= 16937976625889280&name=123&logo=https://sys-1301681474.cos.ap-shanghai.myqcloud.com/comm/logo200.png",
 					"scene": null
 				},
 				{

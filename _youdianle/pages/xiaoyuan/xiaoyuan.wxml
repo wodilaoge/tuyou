@@ -114,7 +114,7 @@
 <block wx:if="{{TabCur==2}}">
   <view class="top-gradul-blue" style="margin-top:-30rpx">
     <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#FE538F">
-      <swiper-item wx:for="{{yundongSwiperList}}" wx:key>
+      <swiper-item wx:for="{{wenyuSwiperList}}" wx:key>
         <view class="swiper-item">
           <image src="{{item.path}}" mode="scaleToFill"></image>
         </view>
@@ -137,7 +137,7 @@
 <block wx:if="{{TabCur==3}}">
   <view class="top-gradul-blue" style="margin-top:-30rpx">
     <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#FE538F">
-      <swiper-item wx:for="{{yundongSwiperList}}" wx:key>
+      <swiper-item wx:for="{{aihaoSwiperList}}" wx:key>
         <view class="swiper-item">
           <image src="{{item.path}}" mode="scaleToFill"></image>
         </view>

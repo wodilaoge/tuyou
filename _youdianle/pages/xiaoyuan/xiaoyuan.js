@@ -284,7 +284,7 @@ Page({
 
           app.wxRequest('GET', url2, data, (res) => {
             self.setData({
-              aihaoList: res.data
+              aihaoSwiperList: res.data
             })
           }, (err) => {
             console.log(err.errMsg)

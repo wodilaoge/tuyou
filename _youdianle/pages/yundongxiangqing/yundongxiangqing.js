@@ -728,7 +728,8 @@ Page({
       actid: self.data.categoryId,
       uid: self.data.user.id
     }
-    util.gets(url, data).then(function(res) {
+    util.gets(url, data).then(function (res) {
+      console.log(res.data.data)
       if (res.data.data == null) {} else if (res.data.data.status == 10)
         self.setData({
           isbaominggeren: 1
@@ -884,6 +885,8 @@ Page({
       }
       util.gets(url, data).then(function (res) {
         status = res.data.data
+        console.log(status)
+        console.log(data)
       }).then(function () {
         url = app.globalData.URL + '/act/cancelActSignupTeam'
         data = {
@@ -934,8 +937,6 @@ Page({
           image: '/img/fail.png', // 图标类型，默认success
           duration: 1000 // 提示窗停留时间，默认1500ms
         })
-
-      resolve();
     }, 10000)
   },
   /**

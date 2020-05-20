@@ -17,14 +17,12 @@ Page({
     })
   },
   tabSelectTeam(e) {
-    console.log(e.currentTarget.dataset.item)
-    var pages = getCurrentPages();
-    var prevPage = pages[pages.length - 2]; //上一个页面
+    var prevPage = getCurrentPages()[pages.length - 2]; //上一个页面
     prevPage.setData({
       tuanduiSelect: e.currentTarget.dataset.item
     });
-    wx.navigateBack({
-      delta: 1
+    wx.navigateTo({
+      url: 'pages/xuanzetuandui2/xuanzetuandui2?id=' + e.currentTarget.dataset.item.id + '&name=' + e.currentTarget.dataset.item.name + '&logo=' + e.currentTarget.dataset.item.logo
     })
   },
   VerticalMain(e) {

@@ -10,51 +10,18 @@
 </view>
 
 <view class="bg-white padding" style="display:flex; ">
-  <view class="cu-avatar radius" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);height:80rpx;width:80rpx;"></view>
-  <view class="text-bold margin-top-sm margin-left-sm">飞鹰队</view>
+  <view class="cu-avatar radius" style="background-image:url({{logo}});height:80rpx;width:80rpx;"></view>
+  <view class="text-bold margin-top-sm margin-left-sm">{{name}}</view>
 </view>
 <view class="margin-top-sm bg-white padding-left padding-top select-title">请选择n名队员</view>
-<view class="bg-white padding">
+<view class="bg-white padding"  wx:for="{{list}}" wx:key>
   <view class="flex justify-between margin-top">
     <view class="flex">
-      <view class="cu-avatar round my margin-right" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10002.jpg);"></view>
-      <view class="select-name margin-top-xs">李钥</view>
+      <view class="cu-avatar round my margin-right" style="background-image:url({{item.head}});"></view>
+      <view class="select-name margin-top-xs">{{item.nickname}}</view>
     </view>
-      <checkbox class="round blue " style="zoom:90%;" checked></checkbox>
-  </view>
-  <view class="flex justify-between margin-top">
-    <view class="flex">
-      <view class="cu-avatar round my margin-right" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10003.jpg);"></view>
-      <view class="select-name margin-top-xs">李钥</view>
-    </view>
-      <checkbox class="round blue " style="zoom:90%;"></checkbox>
-  </view>
-  <view class="flex justify-between margin-top">
-    <view class="flex">
-      <view class="cu-avatar round my margin-right" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10004.jpg);"></view>
-      <view class="select-name margin-top-xs">李钥</view>
-    </view>
-      <checkbox class="round blue " style="zoom:90%;"></checkbox>
-  </view>
-  <view class="flex justify-between margin-top">
-    <view class="flex">
-      <view class="cu-avatar round my margin-right" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
-      <view class="select-name margin-top-xs">李钥</view>
-    </view>
-      <checkbox class="round blue " style="zoom:90%;"></checkbox>
-  </view>
-  <view class="flex justify-between margin-top">
-    <view class="flex">
-      <view class="cu-avatar round my margin-right" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10005.jpg);"></view>
-      <view class="select-name margin-top-xs">李钥</view>
-    </view>
-      <checkbox class="round blue " style="zoom:90%;"></checkbox>
-  </view>
-  <view class="flex justify-between margin-top">
-    <view class="flex">
-      <view class="cu-avatar round my margin-right" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10007.jpg);"></view>
-      <view class="select-name margin-top-xs">李钥</view>
-    </view>
-      <checkbox class="round blue " style="zoom:90%;"></checkbox>
+    <checkbox class="round blue " style="zoom:90%;" bindtap='SelectMem' data-item="{{item}}" data-index="{{index}}" checked="{{item.select}}"></checkbox>
   </view>
 </view>
+
+<button class="bg-orange round margin-top" bindtap='queding' style="width: 668rpx; height: 80rpx; ">确定</button>
