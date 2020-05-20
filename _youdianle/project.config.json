@@ -245,6 +245,12 @@
 					"pathName": "pages/login/login",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/MyPages/my_security/my_security",
+					"pathName": "pages/MyPages/my_security/my_security",
+					"scene": null
 				}
 			]
 		}

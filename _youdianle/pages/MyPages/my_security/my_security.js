@@ -13,7 +13,13 @@ Page({
       mobile:m
     })
   },
+  dead(e){
+    let url = app.globalData.URL + '/hd/cancelaccount'
 
+    // util.post_token(url,data).then(function(res){
+
+    // })
+  },
   getPhoneNumber: function(e) {
     var that = this;
     console.log(e)

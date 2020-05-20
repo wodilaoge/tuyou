@@ -59,7 +59,7 @@
   </view>
   <view class="cu-form-group2">
     <image class="icon" src="../../img/write.png"></image>
-    <input class="text-grey input" placeholder="请输入个性规则" type='text' name="name" bindinput="name"></input>
+    <input class="text-grey input" placeholder="请输入个性规则" type='text' name="name" bindinput="getrule"></input>
   </view>
   <view class="container">
     <!-- 分割线 -->
@@ -92,7 +92,7 @@
   </view>
   <view class="cu-form-group2">
     <image class="icon" src="../../img/write.png"></image>
-    <input class="text-grey input" placeholder="请输入奖励" type='text' name="name" bindinput="name"></input>
+    <input class="text-grey input" placeholder="请输入奖励" type='text' name="name" bindinput="getaward"></input>
   </view>
   <view class="container">
     <!-- 分割线 -->
@@ -166,7 +166,7 @@
   </view>
   <view class="cu-form-group2">
     <image class="icon" src="../../img/write.png"></image>
-    <input class="text-grey input" placeholder="请输入赞助商" type='text' name="name" bindinput="name"></input>
+    <input class="text-grey input" placeholder="请输入赞助商" type='text' name="name" bindinput="getspon"></input>
   </view>
   <view class="container">
     <!-- 分割线 -->
@@ -250,7 +250,7 @@
   </view>
 </form>
 <view class="flex margin-top2">
-  <button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="commit" data-target="Modal">立即提交</button>
+  <button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="test" data-target="Modal">立即提交</button>
 </view>
 <!-- <view class="cu-modal {{modalName=='Modal'?'show':''}}">
   <view class="cu-dialog">
