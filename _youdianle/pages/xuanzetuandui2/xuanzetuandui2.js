@@ -69,7 +69,8 @@ Page({
           selectlist.push(ns)
         }
       }
-      var prevPage = getCurrentPages()[pages.length - 3]; //前两个页面
+      var pages = getCurrentPages();
+      var prevPage = pages[pages.length - 3]; //前两个页面
       prevPage.setData({
         members: selectlist
       });

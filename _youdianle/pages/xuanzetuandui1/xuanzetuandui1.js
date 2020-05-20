@@ -17,12 +17,13 @@ Page({
     })
   },
   tabSelectTeam(e) {
-    var prevPage = getCurrentPages()[pages.length - 2]; //上一个页面
+    var pages = getCurrentPages();
+    var prevPage = pages[pages.length - 2]; //上一个页面
     prevPage.setData({
       tuanduiSelect: e.currentTarget.dataset.item
     });
     wx.navigateTo({
-      url: 'pages/xuanzetuandui2/xuanzetuandui2?id=' + e.currentTarget.dataset.item.id + '&name=' + e.currentTarget.dataset.item.name + '&logo=' + e.currentTarget.dataset.item.logo
+      url: '/pages/xuanzetuandui2/xuanzetuandui2?id=' + e.currentTarget.dataset.item.id + '&name=' + e.currentTarget.dataset.item.name + '&logo=' + e.currentTarget.dataset.item.logo
     })
   },
   VerticalMain(e) {
