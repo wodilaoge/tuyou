@@ -446,6 +446,20 @@
       </view>
     </block>
   </view>
+  <view wx:if="{{!chooseSize}}">
+    <view class="cu-bar input foot padding">
+      <image class="img-input" mode="scaleToFill" src="/img/input.png" bindtap="chooseSezi"></image>
+      <view class="action">
+        <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
+      </view>
+      <view class="action">
+        <image class="img-icon" mode="aspectFit" style="margin-left:5rpx" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
+      </view>
+      <view class="action">
+        <image class="img-icon" mode="aspectFit" src="/img/icon_share.png"></image>
+      </view>
+    </view>
+  </view>
 </block>
 
 
