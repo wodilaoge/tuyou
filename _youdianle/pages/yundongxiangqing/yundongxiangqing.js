@@ -717,6 +717,7 @@ Page({
       lid: self.data.user.id
     }
     util.gets(url, data).then(function(res) {
+      console.log(res.data.data)
       if (res.data.data == null) {} else if (res.data.data.status == 10)
         self.setData({
           isbaomingtuandui: 1
@@ -855,6 +856,8 @@ Page({
       }
       util.gets(url, data).then(function (res) {
         status = res.data.data
+        console.log(status)
+        console.log(data)
       }).then(function () {
         url = app.globalData.URL + '/act/cancelActSignupInd'
         data = {
