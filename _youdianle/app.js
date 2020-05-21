@@ -1,6 +1,8 @@
 //app.js
+
 App({
   globalData: {
+    loadModal:true,
     tabbar: 0,
     userInfo: [],
     URL: 'https://api.udianle.com/kt',
@@ -207,6 +209,7 @@ App({
               that.globalData.userInfo = res.data.data
               wx.setStorageSync('userInfo', res.data.data)
               console.log('userinfo sto ok')
+
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
 

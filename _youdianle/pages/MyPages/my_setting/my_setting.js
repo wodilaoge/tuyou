@@ -1,4 +1,6 @@
 // pages/MyPages/my_setting/my_setting.js
+const app = getApp()
+var util = require("../../../utils/util.js");
 Page({
 
   /**
@@ -18,6 +20,27 @@ Page({
   onLoad: function (options) {
 
   },
+  dead(){
+    var that = this;
+    let url = app.globalData.URL + '/auth/logout';
+    util.gets(url, {}).then(function (res) {
+
+      console.log(res.data)
+      if (res.data.code==0) {
+        wx.showToast({
+          title: '注销成功',
+          duration: 2000,
+          success: function () {
+            setTimeout(function () {
+              wx.reLaunch({
+                url: '/pages/index/index',
+              })
+            }, 2000);
+          }
+        })
+      }
+    })
+  },
   tomessage(){
     wx.navigateTo({
       url: '/pages/MyPages/my_messagemind/my_messagemind',
@@ -31,8 +54,8 @@ Page({
   onShareAppMessage: function () {
     var that = this;
     return {
-      title: '微搬砖',
-      // path: 'pages/index/index',
+      title: '友点乐',
+      path: '/pages/index/index',
       success: function (res) {
         console.log("转发成功:" + JSON.stringify(res));
         that.shareClick();

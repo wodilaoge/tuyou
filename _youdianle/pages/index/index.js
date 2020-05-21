@@ -4,6 +4,7 @@ const app = getApp()
 var util = require("../../utils/util.js");
 Page({
   data: {
+    loadModal: true,
     ActList: [],
     PageCur: 'basics',
     isshow: false,
@@ -97,7 +98,7 @@ Page({
     var url = app.globalData.URL + '/act/listActivityHome';
     var data = {
       sid: '076002',
-      pageSize:5
+      pageSize: 5
     };
     app.wxRequest_notoken('GET', url, data, (res) => {
       this.setData({
@@ -148,8 +149,7 @@ Page({
   },
   getvideoinfo() {
     var url = app.globalData.URL + '/video/listActVideoHome';
-    var data = {
-    };
+    var data = {};
     app.wxRequest_notoken('GET', url, data, (res) => {
       this.setData({
         videolist: res.data
@@ -215,10 +215,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onShow: function(e) {
-    this.onLoad();
-  },
-  onLoad: function (options) {
+  onShow: function(e) {},
+  onLoad: function(options) {
+    this.startReportHeart()
     var n = wx.getStorageSync('school')
     if (n.length) {
       this.setData({
@@ -226,12 +225,12 @@ Page({
       })
     }
     // this.school();
-    this.getinfo();//校园活动
+    this.getinfo(); //校园活动
     this.getsportinfo(); //运动信息
     this.getplayinfo(); //文娱信息
     this.gethobbyinfo(); //爱好信息
     this.getvideoinfo(); //视频信息
-    this.getuploadinfo();//轮播图
+    this.getuploadinfo(); //轮播图
   },
 
 
@@ -294,6 +293,25 @@ Page({
       indexs: e.detail.value,
     })
   },
+  startReportHeart() {
+    var that = this
+    var timerTem = setTimeout(function() {
+      if (app.globalData.userInfo.length == 0) {
+        that.startReportHeart()
+      } else {
+        that.setData({
+          loadModal: false
+        })
+      }
+    }, 200)
+    // 保存定时器name
+    // console.log(app.data.globalData.userInfo)
+    // if (app.globalData.userInfo)
+    // console.log(app.globalData.userInfo)
+    // that.setData({
+    //   loadModal: false
+    // })
+  },
   // school() {
   //   let url = app.globalData.URL + '/config/getUniv';
   //   let data = {
@@ -313,8 +331,8 @@ Page({
   onShareAppMessage: function() {
     var that = this;
     return {
-      title: '微搬砖',
-      path: 'pages/index/index',
+      title: '友点乐',
+      path: '/pages/index/index',
       success: function(res) {
         console.log("转发成功:"  + JSON.stringify(res));
         that.shareClick();

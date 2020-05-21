@@ -10,8 +10,14 @@ Page({
     options: [],
     yibaomingList: [],
 
+    tuanduipaiming: [],
+    gerenpaiming: [],
+
     TabCur: 0,
     paimingCur: 0,
+    baomingCur: 0,
+    shujuCur: 0,
+
     categoryId: '',
     detail: [], //页面详细内容
     comment: [],
@@ -33,7 +39,6 @@ Page({
     isguanzhu: false,
     isbaominggeren: 0,
     isbaomingtuandui: 0,
-    baomingCur: 0,
     tuanduiSelect: [],
     members: [],
     shipin: [],
@@ -250,6 +255,11 @@ Page({
       paimingCur: e.currentTarget.dataset.id,
     })
   },
+  shujuSelect(e) {
+    this.setData({
+      shujuCur: e.currentTarget.dataset.id,
+    })
+  },
   baomingSelect(e) {
     if (e.currentTarget.dataset.id == 0)
       this.setData({
@@ -272,6 +282,33 @@ Page({
       url: '/pages/chakanhuifu/chakanhuifu?id=' + e.currentTarget.dataset.id,
     })
   },
+
+  gerenpaiming() {
+    let url = app.globalData.URL + '/hd/getHnamebrrank';
+    let data = {
+      actid: this.data.categoryId
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        gerenpaiming: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  tuanduipaiming() {
+    let url = app.globalData.URL + '/hd/getHdteamrank';
+    let data = {
+      actid: this.data.categoryId
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        tuanduipaiming: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
   detail() { //页面项目信息
     let url = app.globalData.URL + '/act/findCampusActivity';
     let data = {
@@ -281,21 +318,28 @@ Page({
       this.setData({
         detail: res.data
       })
-      if (this.data.detail.signupway == "30")
+      if (this.data.detail.signupway == "30") {
+        self.gerenpaiming()
+        self.tuanduipaiming()
         this.setData({
           signupway: false,
           baomingCur: 0
         })
-      else if (this.data.detail.signupway == "10")
+      } else if (this.data.detail.signupway == "10") {
+        self.gerenpaiming()
         this.setData({
           signupway: true,
           baomingCur: 0
         })
-      else if (this.data.detail.signupway == "20")
+      } else if (this.data.detail.signupway == "20") {
+        self.tuanduipaiming()
         this.setData({
           signupway: true,
-          baomingCur: 1
+          baomingCur: 1,
+          paimingCur: 1,
+          canjiaorguankan: 20
         })
+      }
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -372,6 +416,11 @@ Page({
       console.log(err.errMsg)
     });
   },*/
+  gerenziliao(e) { //个人资料
+    wx.navigateTo({
+      url: '/pages/ziliao/ziliao?id=' + e.currentTarget.dataset.id,
+    })
+  },
   ifguanzhu() { //是否关注
     self = this;
     let url = app.globalData.URL + '/follow/findFollow';
@@ -615,8 +664,8 @@ Page({
         actid: self.data.categoryId,
         uid: self.data.user.id
       }
-      util.gets(url, data).then(function (res) {
-        util.gets(url, data).then(function (res) {
+      util.gets(url, data).then(function(res) {
+        util.gets(url, data).then(function(res) {
           if (res.data.code == 0) {
             wx.showToast({
               title: '操作成功！', // 标题
@@ -627,8 +676,7 @@ Page({
               isbaominggeren: 0
             })
             self.yibaoming()
-          }
-          else
+          } else
             wx.showToast({
               title: res.data.msg, // 标题
               image: '/img/fail.png', // 图标类型，默认success
@@ -643,17 +691,17 @@ Page({
         actid: self.data.categoryId,
         lid: self.data.user.id
       }
-      util.gets(url, data).then(function (res) {
+      util.gets(url, data).then(function(res) {
         status = res.data.data
         console.log(status)
         console.log(data)
-      }).then(function () {
+      }).then(function() {
         url = app.globalData.URL + '/act/cancelActSignupByTeam'
         data = {
           actid: self.data.categoryId,
           tid: status.tid
         }
-        util.gets(url, data).then(function (res) {
+        util.gets(url, data).then(function(res) {
           if (res.data.code == 0) {
             wx.showToast({
               title: '操作成功！', // 标题
@@ -664,8 +712,7 @@ Page({
               isbaomingtuandui: 0
             })
             self.yibaoming()
-          }
-          else
+          } else
             wx.showToast({
               title: res.data.msg, // 标题
               image: '/img/fail.png', // 图标类型，默认success
@@ -913,25 +960,25 @@ Page({
   },
   shipinDianzan: function(e) {
     let url = app.globalData.URL + '/applaud/updateApplaud';
-    let shipintmp=this.data.shipin;
-    if (this.data.shipin.list[e.currentTarget.dataset.index].applaudCnt==0){
-    let data = {
-      objtype: 50,
-      objid: this.data.shipin.list[e.currentTarget.dataset.index].id,
-      objtitle: this.data.shipin.list[e.currentTarget.dataset.index].title,
-      creater: this.data.user.id,
-      status: 1,
-    };
-    app.wxRequest('POST', url, data, (res) => {
-      console.log(res)
-    }, (err) => {
-      console.log(err.errMsg)
-    });
-      shipintmp.list[e.currentTarget.dataset.index].applaudCnt=1;
+    let shipintmp = this.data.shipin;
+    if (this.data.shipin.list[e.currentTarget.dataset.index].applaudCnt == 0) {
+      let data = {
+        objtype: 50,
+        objid: this.data.shipin.list[e.currentTarget.dataset.index].id,
+        objtitle: this.data.shipin.list[e.currentTarget.dataset.index].title,
+        creater: this.data.user.id,
+        status: 1,
+      };
+      app.wxRequest('POST', url, data, (res) => {
+        console.log(res)
+      }, (err) => {
+        console.log(err.errMsg)
+      });
+      shipintmp.list[e.currentTarget.dataset.index].applaudCnt = 1;
       this.setData({
-        shipin:shipintmp
+        shipin: shipintmp
       })
-    }else{
+    } else {
       let data = {
         objtype: 50,
         objid: this.data.shipin.list[e.currentTarget.dataset.index].id,
@@ -943,7 +990,7 @@ Page({
         console.log(res)
       }, (err) => {
         console.log(err.errMsg)
-        });
+      });
       shipintmp.list[e.currentTarget.dataset.index].applaudCnt = 0;
       this.setData({
         shipin: shipintmp
@@ -990,16 +1037,16 @@ Page({
   onReachBottom: function() {
 
   },
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     var that = this;
     return {
-      title: '微搬砖',
+      title: '友点乐',
       path: 'pages/xiaoyuanxiangqing/xiaoyuanxiangqing',
-      success: function (res) {
+      success: function(res) {
         console.log("转发成功:" + JSON.stringify(res));
         that.shareClick();
       },
-      fail: function (res) {
+      fail: function(res) {
         console.log("转发失败:" + JSON.stringify(res));
       }
     }

@@ -310,4 +310,7 @@
     </navigator>
   </view>
 </view>
+  <view class='cu-load load-modal' wx:if="{{loadModal}}">
+    <view class='gray-text'>加载中...</view>
+  </view>
 <!-- <tabs></tabs> -->

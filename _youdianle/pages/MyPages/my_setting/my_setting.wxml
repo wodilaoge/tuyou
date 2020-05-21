@@ -39,3 +39,6 @@
   <view class="title">关于友点乐</view>
   <image class="icon" src="/img/array.png"></image>
 </view>
+<view class="padding flex flex-direction margin-lg justify-between ">
+  <button class="cu-btn bg-orange lg" bindtap="dead">注销登录</button>
+</view>

@@ -6,10 +6,12 @@ Page({
     animationData: {},
     Input: "",
     options: [],
+    biaoti: "",
 
     TabCur: 0,
     paimingCur: 0,
-    biaoti: "",
+    shujuCur: 0,
+    baomingCur: 0,
 
     SwiperList_zhaopian: [],
     detail: [],
@@ -17,12 +19,14 @@ Page({
     comment_detail: [],
     yibaomingList: [],
 
+    tuanduipaiming: [],
+    gerenpaiming: [],
+
     isguanzhu: false,
 
     signupway: true,
     isbaominggeren: 0,
     isbaomingtuandui: 0,
-    baomingCur: 0,
     canjiaorguankan: 10,
     huodongfenzu: [],
     picker: [],
@@ -241,6 +245,11 @@ Page({
       paimingCur: e.currentTarget.dataset.id,
     })
   },
+  shujuSelect(e) {
+    this.setData({
+      shujuCur: e.currentTarget.dataset.id,
+    })
+  },
   bindPickerChange: function(e) {
     this.setData({
       fenzuindex: e.detail.value
@@ -330,7 +339,36 @@ Page({
       console.log(err.errMsg)
     });
   },
+  gerenpaiming() {
+    let url = app.globalData.URL + '/act/listActSignup';
+    let data = {
+      actid: this.data.categoryId,
+      signupType: 10
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        gerenpaiming: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  tuanduipaiming() {
+    let url = app.globalData.URL + '/act/listActSignup';
+    let data = {
+      actid: this.data.categoryId,
+      signupType: 20
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        tuanduipaiming: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
   detail() { //页面项目信息
+    var self = this
     let url = app.globalData.URL + '/act/findActivity';
     let data = {
       id: this.data.categoryId
@@ -339,22 +377,28 @@ Page({
       this.setData({
         detail: res.data
       })
-      if (this.data.detail.signupway == "30")
+      if (this.data.detail.signupway == "30") {
+        self.gerenpaiming()
+        self.tuanduipaiming()
         this.setData({
           signupway: false,
           baomingCur: 0
         })
-      else if (this.data.detail.signupway == "10")
+      } else if (this.data.detail.signupway == "10") {
+        self.gerenpaiming()
         this.setData({
           signupway: true,
           baomingCur: 0
         })
-      else if (this.data.detail.signupway == "20")
+      } else if (this.data.detail.signupway == "20") {
+        self.tuanduipaiming()
         this.setData({
           signupway: true,
           baomingCur: 1,
-          canjiaorguankan:20
+          paimingCur: 1,
+          canjiaorguankan: 20
         })
+      }
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -708,7 +752,14 @@ Page({
       console.log(err.errMsg)
     });
   },
+  /////////////////////////
 
+  ///////////////////////////////
+  gerenziliao(e) {
+    wx.navigateTo({
+      url: '/pages/ziliao/ziliao?id=' + e.currentTarget.dataset.id,
+    })
+  },
   ////////////////////////
   baomingzhuangtai() { //报名状态
     var self = this
@@ -718,7 +769,6 @@ Page({
       lid: self.data.user.id
     }
     util.gets(url, data).then(function(res) {
-      console.log(res.data.data)
       if (res.data.data == null) {} else if (res.data.data.status == 10)
         self.setData({
           isbaomingtuandui: 1
@@ -730,7 +780,6 @@ Page({
       uid: self.data.user.id
     }
     util.gets(url, data).then(function(res) {
-      console.log(res.data.data)
       if (res.data.data == null) {} else if (res.data.data.status == 10)
         self.setData({
           isbaominggeren: 1
@@ -825,9 +874,7 @@ Page({
               creater: self.data.user.id,
               members: self.data.members,
             }
-          console.log(data)
           util.post_token(url, data).then(function(res) {
-            console.log(res.data)
             if (res.data.code == 0) {
               wx.showToast({
                 title: '报名成功！', // 标题
@@ -860,7 +907,7 @@ Page({
         uid: self.data.user.id
       }
       util.gets(url, data).then(function(res) {
-        util.gets(url, data).then(function (res) {
+        util.gets(url, data).then(function(res) {
           if (res.data.code == 0) {
             wx.showToast({
               title: '操作成功！', // 标题
@@ -871,8 +918,7 @@ Page({
               isbaominggeren: 0
             })
             self.yibaoming()
-          }
-          else
+          } else
             wx.showToast({
               title: res.data.msg, // 标题
               image: '/img/fail.png', // 图标类型，默认success
@@ -889,8 +935,6 @@ Page({
       }
       util.gets(url, data).then(function(res) {
         status = res.data.data
-        console.log(status)
-        console.log(data)
       }).then(function() {
         url = app.globalData.URL + '/act/cancelActSignupByTeam'
         data = {
@@ -908,14 +952,12 @@ Page({
               isbaomingtuandui: 0
             })
             self.yibaoming()
-          }
-          else
+          } else
             wx.showToast({
               title: res.data.msg, // 标题
               image: '/img/fail.png', // 图标类型，默认success
               duration: 1000 // 提示窗停留时间，默认1500ms
             })
-          console.log(res.data)
         })
       })
     }
@@ -998,16 +1040,16 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     var that = this;
     return {
-      title: '微搬砖',
+      title: '友点乐',
       path: 'pages/yundongxiangqing/yundongxiangqing',
-      success: function (res) {
+      success: function(res) {
         console.log("转发成功:" + JSON.stringify(res));
         that.shareClick();
       },
-      fail: function (res) {
+      fail: function(res) {
         console.log("转发失败:" + JSON.stringify(res));
       }
     }

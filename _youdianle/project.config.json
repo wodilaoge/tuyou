@@ -21,7 +21,9 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"useCompilerModule": true,
+		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.4.2",
@@ -121,10 +123,10 @@
 					"scene": null
 				},
 				{
-					"id": 10,
+					"id": 9,
 					"name": "运动详情",
 					"pathName": "pages/yundongxiangqing/yundongxiangqing",
-					"query": "categoryId= 16989577176678400&Title=运动详情&TabCur=1",
+					"query": "categoryId= 19925701587107840&Title=运动详情&TabCur=4",
 					"scene": null
 				},
 				{
@@ -243,6 +245,7 @@
 					"id": -1,
 					"name": "pages/MyPages/my_security/my_security",
 					"pathName": "pages/MyPages/my_security/my_security",
+					"query": "",
 					"scene": null
 				}
 			]
