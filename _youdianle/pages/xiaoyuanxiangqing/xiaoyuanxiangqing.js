@@ -952,7 +952,7 @@ Page({
   onShareAppMessage: function () {
     var that = this;
     return {
-      title: '微搬砖',
+      title: '友点乐',
       path: 'pages/xiaoyuanxiangqing/xiaoyuanxiangqing',
       success: function (res) {
         console.log("转发成功:" + JSON.stringify(res));
