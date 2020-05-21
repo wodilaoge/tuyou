@@ -188,8 +188,8 @@ App({
     //     }
     //   }
     // })
-    var tmp = wx.getStorageSync('userInfo')
-    if (!tmp) {
+    // var tmp = wx.getStorageSync('userInfo')
+    // if (!tmp) {
       wx.login({ //匿名登录
         success: function(res) {
           console.log('login', res.code);
@@ -221,7 +221,7 @@ App({
 
         }
       })
-  }
+  // }
 
     // 获取系统状态栏信息
     wx.getSystemInfo({
