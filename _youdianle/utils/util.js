@@ -73,7 +73,7 @@ const gets = (url, data) => {
   //     }
   //   })
   // } else
-   {
+  {
     user = 'Bearer ' + user.token;
     var promise = new Promise((resolve, reject) => {
       //网络请求
@@ -86,6 +86,7 @@ const gets = (url, data) => {
         },
         success: function(res) { //服务器返回数据
           if (res.data.code == '109') {
+            console.log('utils code 109', res.data)
             wx.showToast({
               title: '请重新登录！',
               image: '/img/fail.png',
@@ -97,7 +98,7 @@ const gets = (url, data) => {
               }
             })
           } else
-           if (res.statusCode == 200) {
+          if (res.statusCode == 200) {
             resolve(res);
           } else { //返回错误提示信息
             reject(res.data);

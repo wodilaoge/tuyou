@@ -27,5 +27,19 @@ Page({
     wx.navigateTo({
       url: '/pages/MyPages/my_blacklist/my_blacklist',
     })
+  },
+  onShareAppMessage: function () {
+    var that = this;
+    return {
+      title: '微搬砖',
+      // path: 'pages/index/index',
+      success: function (res) {
+        console.log("转发成功:" + JSON.stringify(res));
+        that.shareClick();
+      },
+      fail: function (res) {
+        console.log("转发失败:" + JSON.stringify(res));
+      }
+    }
   }
 })

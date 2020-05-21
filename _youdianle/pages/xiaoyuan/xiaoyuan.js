@@ -474,4 +474,18 @@ Page({
       direction: e.touches[0].pageX - this.data.towerStart > 0 ? 'right' : 'left'
     })
   },
+  onShareAppMessage: function () {
+    var that = this;
+    return {
+      title: '微搬砖',
+      path: 'pages/xiaoyuan/xiaoyuan',
+      success: function (res) {
+        console.log("转发成功:" + JSON.stringify(res));
+        that.shareClick();
+      },
+      fail: function (res) {
+        console.log("转发失败:" + JSON.stringify(res));
+      }
+    }
+  }
 })

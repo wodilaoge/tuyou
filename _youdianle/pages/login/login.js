@@ -57,12 +57,12 @@ Page({
                       duration: 500,
                       success: function () {
                         setTimeout(function () {
-                          // wx.reLaunch({
-                          //   url: '/pages/index/index',
-                          // })
-                          wx.navigateBack({
-                            delta:1
+                          wx.switchTab({
+                            url: '/pages/index/index',
                           })
+                          // wx.navigateBack({
+                          //   delta:1
+                          // })
                         }, 1000);
                       }
                       
@@ -84,12 +84,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var user=wx.getStorageSync("userInfo")
-    if(user){
-      wx.navigateTo({
-        url: '/pages/index/index',
-      })
-    }
+    // var user=wx.getStorageSync("userInfo")
+    // if(user){
+    //   wx.navigateTo({
+    //     url: '/pages/index/index',
+    //   })
+    // }
   },
 
   /**

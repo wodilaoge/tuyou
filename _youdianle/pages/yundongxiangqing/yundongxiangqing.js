@@ -998,7 +998,18 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
-
+  onShareAppMessage: function () {
+    var that = this;
+    return {
+      title: '微搬砖',
+      path: 'pages/yundongxiangqing/yundongxiangqing',
+      success: function (res) {
+        console.log("转发成功:" + JSON.stringify(res));
+        that.shareClick();
+      },
+      fail: function (res) {
+        console.log("转发失败:" + JSON.stringify(res));
+      }
+    }
   }
 })

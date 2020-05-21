@@ -7,16 +7,16 @@ Page({
     ActList: [],
     PageCur: 'basics',
     isshow: false,
-    schoolname:'',
-    sectioninfo:[],
+    schoolname: '',
+    sectioninfo: [],
     SwiperList: [],
-    SportList:[],
+    SportList: [],
     news: [],
     indexs: 0, //学校
     school: [],
-    aihaoList:[],
-    wenyuList:[],
-    videolist:[],
+    aihaoList: [],
+    wenyuList: [],
+    videolist: [],
     sport: "1dwad ",
     tabbar: {},
     swiperList: [],
@@ -43,7 +43,7 @@ Page({
     ]
 
   },
-  toaddress(){
+  toaddress() {
     wx.setStorageSync('addressMode', '1')
     wx.navigateTo({
       url: '/pages/form_address/form_address',
@@ -59,7 +59,7 @@ Page({
       PageCur: e.currentTarget.dataset.cur
     })
   },
-  tofind(){
+  tofind() {
     wx.navigateTo({
       url: '/pages/sousuo/sousuo',
     })
@@ -80,14 +80,14 @@ Page({
     var url2 = app.globalData.URL + '/secrot/listSecrotation';
     let data = '';
     let data2 = {
-      sid:'076002'
+      sid: '076002'
     };
-    util.gets(url, {}).then(function (res) {
+    util.gets(url, {}).then(function(res) {
       that.setData({
         sectioninfo: res.data
       })
     })
-    util.gets(url2,data2).then(function (res) {
+    util.gets(url2, data2).then(function(res) {
       that.setData({
         swiperList: res.data.data
       })
@@ -96,7 +96,7 @@ Page({
   getinfo() {
     var url = app.globalData.URL + '/act/listActivity';
     var data = {
-      sid:'076002'
+      sid: '076002'
     };
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
@@ -148,7 +148,7 @@ Page({
   getvideoinfo() {
     var url = app.globalData.URL + '/video/listActVideo';
     var data = {
-    
+
     };
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
@@ -158,7 +158,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-  jump(e){
+  jump(e) {
     app.globalData.tabbar = e.currentTarget.dataset.id;
     wx.switchTab({
       url: '/pages/xiaoyuan/xiaoyuan',
@@ -215,26 +215,28 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onShow: function (e) {
+  onShow: function(e) {
     this.onLoad();
   },
   onLoad: function(options) {
-    let temp=wx.getStorageSync('userInfo')
+    let temp = wx.getStorageSync('userInfo')
     if (temp) {
       console.log('index ok!')
       var n = wx.getStorageSync('school')
-      this.setData({
-        schoolname: n.name
-      })
+      if (n) {
+        this.setData({
+          schoolname: n.name
+        })
+      }
       this.school();
       this.getinfo();
-      this.getsportinfo();//运动信息
-      this.getplayinfo();//文娱信息
-      this.gethobbyinfo();//爱好信息
-      this.getvideoinfo();//视频信息
+      this.getsportinfo(); //运动信息
+      this.getplayinfo(); //文娱信息
+      this.gethobbyinfo(); //爱好信息
+      this.getvideoinfo(); //视频信息
       this.getuploadinfo();
-    // app.editTabbar();
-    // this.getShipin();
+      // app.editTabbar();
+      // this.getShipin();
 
     } else {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
@@ -249,10 +251,10 @@ Page({
         })
         this.school();
         this.getinfo();
-        this.getsportinfo();//运动信息
-        this.getplayinfo();//文娱信息
-        this.gethobbyinfo();//爱好信息
-        this.getvideoinfo();//视频信息
+        this.getsportinfo(); //运动信息
+        this.getplayinfo(); //文娱信息
+        this.gethobbyinfo(); //爱好信息
+        this.getvideoinfo(); //视频信息
         this.getuploadinfo();
       }
     }
@@ -273,7 +275,7 @@ Page({
       indexs: e.detail.value,
     })
   },
-   school() {
+  school() {
     let url = app.globalData.URL + '/config/getUniv';
     let data = {
       cid: '0033301'
@@ -286,4 +288,21 @@ Page({
       console.log(err.errMsg)
     });
   },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function() {
+    var that = this;
+    return {
+      title: '微搬砖',
+      path: 'pages/index/index',
+      success: function(res) {
+        console.log("转发成功:"  + JSON.stringify(res));
+        that.shareClick();
+      },
+      fail: function(res) {
+        console.log("转发失败:"  + JSON.stringify(res));
+      }
+    }
+  }
 })

@@ -83,6 +83,7 @@ App({
         dataType: 'json',
         success: function(res) {
           if (res.data.code == '109') {
+            console.log('appjs code 109',res.data)
             wx.showToast({
               title: '请重新登录！',
               image: '/img/fail.png',
@@ -152,8 +153,9 @@ App({
     //     }
     //   }
     // })
-    var tmp = wx.getStorageSync('userInfo')
-    if (!tmp) {
+
+    // var tmp = wx.getStorageSync('userInfo')
+    // if (!tmp) {
       wx.login({ //匿名登录
         success: function(res) {
           console.log('login', res.code);
@@ -183,7 +185,7 @@ App({
 
         }
       })
-    }
+  // }
 
     // 获取系统状态栏信息
     wx.getSystemInfo({

@@ -6,3 +6,6 @@
   left: 36rpx; */
   right: -11rpx;
 }
+.buttonshare{
+  width: 100rpx;
+}

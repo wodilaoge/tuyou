@@ -30,9 +30,10 @@
   <view class="title">赏一个五星好评</view>
   <image class="icon" src="/img/array.png"></image>
 </view>
-<view class="cu-form-group">
+<view class="cu-form-group" bindtap="share">
   <view class="title">分享给好友</view>
-  <image class="icon" src="/img/array.png"></image>
+  <button class="cu-btn round bg-blue buttonshare" open-type="share">分享</button>
+  <!-- <image class="icon" src="/img/array.png"></image> -->
 </view>
 <view class="cu-form-group">
   <view class="title">关于友点乐</view>
