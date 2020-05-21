@@ -356,7 +356,14 @@ page {
   font-weight: normal;
   margin-left: 29rpx;
 }
-
+.sp-quanbupinglun2 {
+  margin-left: 280rpx;
+  height: 50rpx;
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  color: black;
+  font-weight: normal;
+}
 /* 投票 */
 
 .tp-tptitle {

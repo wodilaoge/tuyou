@@ -258,15 +258,15 @@
         </view>
         <view class="fenge-bg"></view>
         <view class="cu-bar bg-white solid-bottom">
-            <view class='action'>
-              <text class='cu-bar-title'>已报名{{yibaomingList.length}}人</text>
-            </view>
+          <view class='action'>
+            <text class='cu-bar-title'>已报名{{yibaomingList.length}}人</text>
           </view>
-          <view class="yundong-content bg-white">
-            <view class="padding-sm">
-              <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" wx:key style="background-image:url({{item.head}});" />
-            </view>
+        </view>
+        <view class="yundong-content bg-white">
+          <view class="padding-sm">
+            <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" wx:key style="background-image:url({{item.head}});" />
           </view>
+        </view>
       </block>
     </block>
     <block wx:if="{{baomingCur==1}}">
@@ -485,11 +485,11 @@
         </view>
 
         <view>
-          <video id="video_{{index}}" src="{{shipin.list[0].fileId}}" autoplay="true " controls style="width:100%;" bindtap="video_change"data-index="{{index}}"></video>
+          <video id="video_{{index}}" src="{{shipin.list[0].fileId}}" autoplay="true " controls style="width:100%;" bindtap="video_change" data-index="{{index}}"></video>
         </view>
         <view class="flex  margin-top ">
           <view class="sp-bofang-times ">播放{{shipin.list[0].playCnt}}次</view>
-          <image src="{{shipin.list[0].applaudCnt!=0?'/img/icon_like_all.png':'/img/icon_like.png'}} " style="width:44rpx;height:40rpx;margin-left:270rpx;"bindtap="shipinDianzan" data-index="{{index}}"   ></image>
+          <image src="{{shipin.list[0].applaudCnt!=0?'/img/icon_like_all.png':'/img/icon_like.png'}} " style="width:44rpx;height:40rpx;margin-left:270rpx;" bindtap="shipinDianzan" data-index="{{index}}"></image>
           <view class=" align-center " style="margin-left:16rpx;font-size:32rpx;width:55rpx; ">{{shipin.list[0].applaudCnt}}</view>
           <button class="cu-btn round lines-orange  " style="margin-top:-2rpx; margin-left:16rpx;width:120rpx;height:48rpx;" bindtap="chooseSezi" data-duixiang="{{50}}" data-index="{{0}}" data-dxid="{{shipin.list[0].id}}" data-dxtitle="{{shipin.list[0].title}}">评论</button>
           <image src="/img/icon_share_more.png " style="width:44rpx;height:40rpx;margin-left:16rpx; margin-right:20rpx; "></image>
@@ -498,7 +498,7 @@
         <view class=" sp-pinglun margin-top ">{{shipin.list[0].notes}}</view>
         <view class="sp-hotpinglun margin-top ">热门评论</view>
         <view class="margin-top" style="background-color: #f8f9fd;">
-          <view hidden="{{pinglunall}}">
+          <!-- <view hidden="{{pinglunall}}"> -->
             <view class="margin-top sp-pinlun-content" wx:if="{{shipin.list[0].listComm[0]}}">
               <image class="sp-pinglun-avatar round " src="{{shipin.list[0].listComm[0].createrHead}} "></image>
               <view class="sp-pinglun-name ">{{shipin.list[0].listComm[0].createrAlias}}</view>
@@ -510,8 +510,8 @@
               <view class="sp-pinglun-neirong ">{{shipin.list[0].listComm[1].comment}}</view>
             </view>
             <view style="height:10rpx;"></view>
-          </view>
-          <view hidden="{{!pinglunall}}">
+          <!-- </view> -->
+          <!-- <view hidden="{{!pinglunall}}">
             <view wx:for="{{shipin.list[0].listComm}}" wx:for-index="index2">
               <view class="margin-top sp-pinlun-content">
                 <image class="sp-pinglun-avatar round " src="{{shipin.list[0].listComm[index2].createrHead}} "></image>
@@ -520,9 +520,10 @@
               </view>
             </view>
             <view style="height:10rpx;"></view>
-          </view>
+          </view> -->
         </view>
-        <view class="sp-quanbupinglun margin-top-sm" bindtap="pinglunall_change" data-duixiang="{{50}}" data-dxid="{{shipin.list[0].id}}" data-index="{{0}}">全部评论({{shipin.list[0].commCnt}})</view>
+        <!-- <view class="sp-quanbupinglun margin-top-sm" bindtap="pinglunall_change" data-duixiang="{{50}}" data-dxid="{{shipin.list[0].id}}" data-index="{{0}}">全部评论({{shipin.list[0].commCnt}})</view> -->
+        <view class="sp-quanbupinglun margin-top-sm" bindtap="shipinChooseSezi" data-duixiang="{{50}}" data-dxid="{{shipin.list[0].id}}" data-index="{{0}}">全部评论({{shipin.list[0].commCnt}})</view>
       </view>
     </view>
 
@@ -536,7 +537,7 @@
         </view>
 
         <view>
-          <video id="video_{{index}}" src="{{shipin.list[index].fileId}}"  controls style="width:100%;" bindtap="video_change"></video>
+          <video id="video_{{index}}" src="{{shipin.list[index].fileId}}" controls style="width:100%;" bindtap="video_change"></video>
         </view>
         <view class="flex  margin-top ">
           <view class="sp-bofang-times ">播放{{shipin.list[index].playCnt}}次</view>
@@ -563,7 +564,7 @@
             <view style="height:10rpx;"></view>
           </view>
           <view hidden="{{!pinglunall}}">
-            <view wx:for="{{shipin.list[index].listComm}}"  wx:for-index="index2">
+            <view wx:for="{{shipin.list[index].listComm}}" wx:for-index="index2">
               <view class="margin-top sp-pinlun-content">
                 <image class="sp-pinglun-avatar round " src="{{shipin.list[index].listComm[index2].createrHead}} "></image>
                 <view class="sp-pinglun-name ">{{shipin.list[index].listComm[index2].createrAlias}}</view>
@@ -573,7 +574,7 @@
             <view style="height:10rpx;"></view>
           </view>
         </view>
-        <view class="sp-quanbupinglun margin-top-sm" bindtap="pinglunall_change" data-index="{{index}}"  data-duixiang="{{50}}" data-dxid="{{shipin.list[index].id}}">全部评论({{shipin.list[index].commCnt}})</view>
+        <view class="sp-quanbupinglun margin-top-sm" bindtap="pinglunall_change" data-index="{{index}}" data-duixiang="{{50}}" data-dxid="{{shipin.list[index].id}}">全部评论({{shipin.list[index].commCnt}})</view>
       </view>
     </view>
   </view>
@@ -1007,5 +1008,23 @@
       <button class="cu-btn bg-orange shadow-blur padding-sm margin-left-sm btn-fasong" bindtap="pd_fasong" style="margin-left:100rpx">发送</button>
     </view>
     <textarea class="form-text2 margin-top-sm margin-buttom" style="width:100%" value="{{Input}}" maxlength="4000" bindinput="emailInput" cursor-spacing="200"></textarea>
+  </view>
+</view>
+
+<!--shipin隐藏区域  -->
+<view fixed class="modals modals-bottom-dialog" hidden="{{!shipinChooseSize}}">
+  <view class="modals-cancel" bindtap="shipinHideModal" catchtouchmove="true"></view>
+  <view class="bottom-dialog-body bottom-pos" animation="{{shipinAnimationData}}" style="display:block">
+    <view>
+      <text class="cuIcon-close lg text-black" bindtap="shipinHideModal"></text>
+      <text class="sp-quanbupinglun2">全部评论({{shipin.list[shipin_index].commCnt}})</text>
+    </view>
+    <view wx:for="{{shipin.list[0].listComm}}" wx:for-index="index2" style=" background-color: #f8f9fd;">
+      <view class="margin-top sp-pinlun-content">
+        <image class="sp-pinglun-avatar round " src="{{shipin.list[0].listComm[index2].createrHead}} "></image>
+        <view class="sp-pinglun-name ">{{shipin.list[0].listComm[index2].createrAlias}}</view>
+        <view class="sp-pinglun-neirong ">{{shipin.list[0].listComm[index2].comment}}</view>
+      </view>
+    </view>
   </view>
 </view>
