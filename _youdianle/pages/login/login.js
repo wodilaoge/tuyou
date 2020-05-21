@@ -57,12 +57,12 @@ Page({
                       duration: 500,
                       success: function () {
                         setTimeout(function () {
-                          // wx.switchTab({
-                          //   url: '/pages/index/index',
-                          // })
-                          wx.navigateBack({
-                            delta:1
+                          wx.switchTab({
+                            url: '/pages/index/index',
                           })
+                          // wx.navigateBack({
+                          //   delta:1
+                          // })
                         }, 1000);
                       }
                       
