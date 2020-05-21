@@ -82,23 +82,24 @@ Page({
     let data2 = {
       sid: '076002'
     };
-    util.gets(url, {}).then(function(res) {
+    util.gets_notoken(url, {}).then(function(res) {
       that.setData({
         sectioninfo: res.data
       })
     })
-    util.gets(url2, data2).then(function(res) {
+    util.gets_notoken(url2, data2).then(function(res) {
       that.setData({
         swiperList: res.data.data
       })
     })
   },
   getinfo() {
-    var url = app.globalData.URL + '/act/listActivity';
+    var url = app.globalData.URL + '/act/listActivityHome';
     var data = {
-      sid: '076002'
+      sid: '076002',
+      pageSize:5
     };
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest_notoken('GET', url, data, (res) => {
       this.setData({
         ActList: res.data
       })
@@ -107,11 +108,11 @@ Page({
     });
   },
   getsportinfo() {
-    var url = app.globalData.URL + '/act/listActivity';
+    var url = app.globalData.URL + '/act/listActivityHome';
     var data = {
       sid: '076003'
     };
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest_notoken('GET', url, data, (res) => {
       this.setData({
         SportList: res.data
       })
@@ -120,11 +121,11 @@ Page({
     });
   },
   getplayinfo() {
-    var url = app.globalData.URL + '/act/listActivity';
+    var url = app.globalData.URL + '/act/listActivityHome';
     var data = {
       sid: '076004'
     };
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest_notoken('GET', url, data, (res) => {
       this.setData({
         wenyuList: res.data
       })
@@ -133,11 +134,11 @@ Page({
     });
   },
   gethobbyinfo() {
-    var url = app.globalData.URL + '/act/listActivity';
+    var url = app.globalData.URL + '/act/listActivityHome';
     var data = {
       sid: '076005'
     };
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest_notoken('GET', url, data, (res) => {
       this.setData({
         aihaoList: res.data
       })
@@ -146,11 +147,10 @@ Page({
     });
   },
   getvideoinfo() {
-    var url = app.globalData.URL + '/video/listActVideo';
+    var url = app.globalData.URL + '/video/listActVideoHome';
     var data = {
-
     };
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest_notoken('GET', url, data, (res) => {
       this.setData({
         videolist: res.data
       })
@@ -164,19 +164,19 @@ Page({
       url: '/pages/xiaoyuan/xiaoyuan',
     })
   },
-  news() { //活动新闻
-    let url = app.globalData.URL + '/news/listNews';
-    let data = {
-      actid: '1025873553653760'
-    };
-    app.wxRequest('GET', url, data, (res) => {
-      this.setData({
-        news: res.data
-      })
-    }, (err) => {
-      console.log(err.errMsg)
-    });
-  },
+  // news() { //活动新闻
+  //   let url = app.globalData.URL + '/news/listNews';
+  //   let data = {
+  //     actid: '1025873553653760'
+  //   };
+  //   app.wxRequest('GET', url, data, (res) => {
+  //     this.setData({
+  //       news: res.data
+  //     })
+  //   }, (err) => {
+  //     console.log(err.errMsg)
+  //   });
+  // },
   toxiaoyuan: function(e) {
     wx.switchTab({
       url: "/pages/xiaoyuan/xiaoyuan"
@@ -218,47 +218,66 @@ Page({
   onShow: function(e) {
     this.onLoad();
   },
-  onLoad: function(options) {
-    let temp = wx.getStorageSync('userInfo')
-    if (temp) {
-      console.log('index ok!')
-      var n = wx.getStorageSync('school')
-      if (n) {
-        this.setData({
-          schoolname: n.name
-        })
-      }
-      this.school();
-      this.getinfo();
-      this.getsportinfo(); //运动信息
-      this.getplayinfo(); //文娱信息
-      this.gethobbyinfo(); //爱好信息
-      this.getvideoinfo(); //视频信息
-      this.getuploadinfo();
-      // app.editTabbar();
-      // this.getShipin();
-
-    } else {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况 appjs的callback方法
-      console.log('new user')
-      app.employIdCallback = res => {
-        console.log('userInfoReadyCallback: ', res.data.data);
-        wx.setStorageSync('userInfo', res.data.data)
-        var n = wx.getStorageSync('school')
-        this.setData({
-          schoolname: n.name
-        })
-        this.school();
-        this.getinfo();
-        this.getsportinfo(); //运动信息
-        this.getplayinfo(); //文娱信息
-        this.gethobbyinfo(); //爱好信息
-        this.getvideoinfo(); //视频信息
-        this.getuploadinfo();
-      }
+  onLoad: function (options) {
+    var n = wx.getStorageSync('school')
+    if (n.length) {
+      this.setData({
+        schoolname: n.name
+      })
     }
+    // this.school();
+    this.getinfo();//校园活动
+    this.getsportinfo(); //运动信息
+    this.getplayinfo(); //文娱信息
+    this.gethobbyinfo(); //爱好信息
+    this.getvideoinfo(); //视频信息
+    this.getuploadinfo();//轮播图
   },
+
+
+  // onLoad: function(options) {
+  //   let temp = wx.getStorageSync('userInfo')
+  //   if (temp) {
+  //     console.log('index ok!')
+  //     var n = wx.getStorageSync('school')
+  //     if (n.length) {
+  //       this.setData({
+  //         schoolname: n.name
+  //       })
+  //     }
+  //     this.school();
+  //     this.getinfo();
+  //     this.getsportinfo(); //运动信息
+  //     this.getplayinfo(); //文娱信息
+  //     this.gethobbyinfo(); //爱好信息
+  //     this.getvideoinfo(); //视频信息
+  //     this.getuploadinfo();
+  //     // app.editTabbar();
+  //     // this.getShipin();
+
+  //   } else {
+  //     // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+  //     // 所以此处加入 callback 以防止这种情况 appjs的callback方法
+  //     console.log('new user')
+  //     app.employIdCallback = res => {
+  //       console.log('userInfoReadyCallback: ', res.data.data);
+  //       wx.setStorageSync('userInfo', res.data.data)
+  //       var n = wx.getStorageSync('school')
+  //       if (n) {
+  //         this.setData({
+  //           schoolname: n.name
+  //         })
+  //       }
+  //       this.school();
+  //       this.getinfo();
+  //       this.getsportinfo(); //运动信息
+  //       this.getplayinfo(); //文娱信息
+  //       this.gethobbyinfo(); //爱好信息
+  //       this.getvideoinfo(); //视频信息
+  //       this.getuploadinfo();
+  //     }
+  //   }
+  // },
   todetail(e) { //报名参加按钮跳转 带着活动id跳转 校园活动
     wx.navigateTo({
       url: '../../pages/xiaoyuanxiangqing/xiaoyuanxiangqing?categoryId=' + e.currentTarget.id,
@@ -275,19 +294,19 @@ Page({
       indexs: e.detail.value,
     })
   },
-  school() {
-    let url = app.globalData.URL + '/config/getUniv';
-    let data = {
-      cid: '0033301'
-    };
-    app.wxRequest('GET', url, data, (res) => {
-      this.setData({
-        school: res.data
-      })
-    }, (err) => {
-      console.log(err.errMsg)
-    });
-  },
+  // school() {
+  //   let url = app.globalData.URL + '/config/getUniv';
+  //   let data = {
+  //     cid: '0033301'
+  //   };
+  //   app.wxRequest('GET', url, data, (res) => {
+  //     this.setData({
+  //       school: res.data
+  //     })
+  //   }, (err) => {
+  //     console.log(err.errMsg)
+  //   });
+  // },
   /**
    * 用户点击右上角分享
    */

@@ -112,6 +112,45 @@ const gets = (url, data) => {
     return promise;
   }
 }
+
+const gets_notoken = (url, data) => {
+  {
+    var promise = new Promise((resolve, reject) => {
+      //网络请求
+      wx.request({
+        url: url,
+        data: data,
+        header: {
+          'content-type': 'application/json',
+        },
+        success: function (res) { //服务器返回数据
+          if (res.data.code == '109') {
+            console.log('utils code 109', res.data)
+            wx.showToast({
+              title: '请重新登录！',
+              image: '/img/fail.png',
+              duration: 500,
+              success: function () {
+                wx.redirectTo({
+                  url: '/pages/login/login',
+                })
+              }
+            })
+          } else
+            if (res.statusCode == 200) {
+              resolve(res);
+            } else { //返回错误提示信息
+              reject(res.data);
+            }
+        },
+        error: function (e) {
+          reject('网络出错');
+        }
+      })
+    });
+    return promise;
+  }
+}
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -121,5 +160,6 @@ module.exports = {
   formatTime: formatTime,
   gets,
   post,
-  post_token
+  post_token,
+  gets_notoken
 }
