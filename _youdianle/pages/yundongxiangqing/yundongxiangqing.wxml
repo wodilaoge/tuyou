@@ -729,44 +729,23 @@
   </view>
 
   <block wx:if="{{paimingCur==0}}">
-    <view class="bg-white padding yundong-sp-center ">
-      <image class="icon-paiming " mode="aspectFit " src="/img/icon_one.png "></image>
-      <view class="cu-avatar round my " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg); "></view>
-      <text class="paiming-name " decode="{{true}} ">&ensp;李曼曼</text>
-      <view class="paiming-name text-orange " style="margin-left:auto; ">90分</view>
-    </view>
-    <view class="bg-white padding yundong-sp-center ">
-      <image class="icon-paiming " mode="aspectFit " src="/img/icon_two.png "></image>
-      <view class="cu-avatar round my " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg); "></view>
-      <text class="paiming-name " decode="{{true}} ">&ensp;李曼曼</text>
-      <view class="paiming-name text-orange " style="margin-left:auto; ">90分</view>
-    </view>
-    <view class="bg-white padding yundong-sp-center ">
-      <image class="icon-paiming " mode="aspectFit " src="/img/icon_three.png "></image>
-      <view class="cu-avatar round my " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg); "></view>
-      <text class="paiming-name " decode="{{true}} ">&ensp;李曼曼</text>
-      <view class="paiming-name text-orange " style="margin-left:auto; ">90分</view>
-    </view>
+    <view class="bg-white padding yundong-sp-center " wx:for="{{gerenpaiming.list}}" wx:for-index="index">
+      <view wx:if="{{index==0}}">
+        <image class="icon-paiming " mode="aspectFit " src="/img/icon_one.png"></image>
+      </view>
+      <view wx:elif="{{index==1}}">
+        <image class="icon-paiming " mode="aspectFit " src="/img/icon_two.png"></image>
+      </view>
+      <view wx:elif="{{index==2}}">
+        <image class="icon-paiming " mode="aspectFit " src="/img/icon_three.png"></image>
+      </view>
+      <view wx:else class="card-text-content margin-right-xl margin-left-xs">{{index}}</view>
 
-
-    <view class="bg-white padding yundong-sp-center ">
-      <image class="icon-paiming " mode="aspectFit "></image>
-      <view class="cu-avatar round my " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg); "></view>
-      <text class="paiming-name " decode="{{true}} ">&ensp;李曼曼</text>
-      <view class="paiming-name text-orange " style="margin-left:auto; ">90分</view>
+      <view class="cu-avatar round my " style="background-image:url({{item.members[0].mbrHead}}); "></view>
+      <text class="paiming-name " decode="{{true}} ">&ensp;{{item.members[0].mbrAlias}}</text>
+      <view class="paiming-name text-orange " wx:if="{{item.members[0].mbrScore!=null}}" style="margin-left:auto; ">{{item.members[0].mbrScore}}</view>
     </view>
-    <view class="bg-white padding yundong-sp-center ">
-      <image class="icon-paiming " mode="aspectFit "></image>
-      <view class="cu-avatar round my " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg); "></view>
-      <text class="paiming-name " decode="{{true}} ">&ensp;李曼曼</text>
-      <view class="paiming-name text-orange " style="margin-left:auto; ">90分</view>
-    </view>
-    <view class="bg-white padding yundong-sp-center ">
-      <image class="icon-paiming " mode="aspectFit "></image>
-      <view class="cu-avatar round my " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg); "></view>
-      <text class="paiming-name " decode="{{true}} ">&ensp;李曼曼</text>
-      <view class="paiming-name text-orange " style="margin-left:auto; ">90分</view>
-    </view>
+    
   </block>
 
   <block wx:if="{{paimingCur==1}}">

@@ -173,7 +173,6 @@ page {
 }
 
 .card-text-content {
-  font-family: PingFang-SC-Medium;
   font-size: 32rpx;
   font-weight: normal;
 }
@@ -420,9 +419,9 @@ checkbox.tp-checkbox {
 }
 
 .icon-paiming {
-  width: 44rpx;
+  width: 40rpx;
   height: 48rpx;
-  margin-right: 46rpx;
+  margin-right: 40rpx;
 }
 
 .paiming-name {
