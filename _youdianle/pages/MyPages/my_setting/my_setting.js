@@ -31,8 +31,8 @@ Page({
   onShareAppMessage: function () {
     var that = this;
     return {
-      title: '微搬砖',
-      // path: 'pages/index/index',
+      title: '友点乐',
+      path: '/pages/index/index',
       success: function (res) {
         console.log("转发成功:" + JSON.stringify(res));
         that.shareClick();
