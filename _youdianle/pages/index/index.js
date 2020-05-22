@@ -299,6 +299,12 @@ Page({
       if (app.globalData.userInfo.length == 0) {
         that.startReportHeart()
       } else {
+        // wx.showToast({
+        //   title: app.globalData.userInfo.token,
+        //   duration: 5000,
+        //   success: function() {
+        //   }
+        // })
         that.setData({
           loadModal: false
         })

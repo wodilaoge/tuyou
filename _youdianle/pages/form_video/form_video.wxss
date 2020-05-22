@@ -6,6 +6,12 @@
   width: 45rpx;
   height: 45rpx;
 }
+.icon2{
+  position: relative;
+  width: 45rpx;
+  height: 45rpx;
+  bottom: 45rpx;
+}
 .input{
    text-align: right
 }

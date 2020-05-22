@@ -7,16 +7,41 @@
   <view slot="content">发视频</view>
 </cu-custom>
 <form>
-  <view class="cu-form-group margin-top">
+  <!-- <view class="cu-form-group margin-top">
     <view class="title">活动方式</view>
     <picker bindchange="PickerChange" value="{{index}}" range="{{picker4}}">
       <view class="picker text-blue">
         {{index?picker4[index]:'篮球'}}
       </view>
     </picker>
+  </view> -->
+  <view class="cu-form-group margin-top">
+    <view class="title">活动板块</view>
+    <picker bindchange="PickerChangebig" value="{{indexbig}}" range="{{pickerbig}}" range-key="{{'name'}}">
+      <view class="picker text-blue">
+        {{indexbig?pickerbig[indexbig].name:'选择活动版块'}}
+      </view>
+    </picker>
   </view>
+  <view class="cu-form-group ">
+    <view class="title">活动大类</view>
+    <picker bindchange="PickerChange2" disabled="{{!picker2.length}}" value="{{index}}" range="{{picker2}}" range-key="{{'name'}}">
+      <view class="picker text-blue">
+        {{index?picker2[index].name:'选择活动大类'}}
+      </view>
+    </picker>
+  </view>
+    <view class="cu-form-group ">
+    <view class="title">活动小类</view>
+    <picker bindchange="PickerChangetiny" disabled="{{!pickertiny.length}}" value="{{indextiny}}" range="{{pickertiny}}" range-key="{{'name'}}">
+      <view class="picker text-blue">
+        {{pickertiny.length?pickertiny[indextiny].name:tinyshow}}
+      </view>
+    </picker>
+  </view>
+
   <view class="cu-form-group">
-    <view class="title">活动名称</view>
+    <view class="title">标题</view>
     <input class="input text-grey" bindinput="getname" placeholder="请输入活动名称"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
@@ -27,7 +52,8 @@
   </view>
   <view class="cu-form-group margin-top">
     <text class="text">说明</text>
-    <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="  春季篮球赛"></textarea>
+    <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder=" 清输入视频说明"></textarea>
+    <image class="icon2" src="../../img/write.png"></image>
   </view>
 
   <!-- <view class="cu-bar bg-white margin-top">

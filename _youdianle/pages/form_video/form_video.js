@@ -6,7 +6,6 @@ Page({
   data: {
     group: 0,
     videonum: 0,
-    index: null,
     picker4: ['篮球', '足球', '排球', '羽毛球', '乒乓球', '其他'],
     multiIndex: [0, 0, 0],
     fileName: '',
@@ -21,7 +20,82 @@ Page({
     textareaAValue: '',
     textareaBValue: '',
     authurl:'',
+    index: 0, //活动方式
+    indexbig: 0,
+    indextiny: 0,
+    pickertiny: [],
+    pickerbig: [],
+    picker2: ['篮球', '足球', '羽毛球', '乒乓球', '网球'],
+    tinyshow: '选择活动小类',
+    information: {
+      sid: null,
+      acid1: null,
+      acid2: null,
+    },
     
+  },
+  PickerChange2(e) { //活动大类
+    let t = 'information.acid1'
+    this.setData({
+      index: e.detail.value
+    })
+    let v = this.data.picker2[this.data.index].code
+    this.setData({
+      [t]: v
+    });
+    this.getthird(this.data.information.acid1)
+  },
+  PickerChangebig(e) { //活动板块
+    let t = 'information.sid'
+    this.setData({
+      indexbig: e.detail.value
+    })
+    let v = this.data.pickerbig[this.data.indexbig].code
+    this.setData({
+      [t]: v
+    });
+    this.gettwo(this.data.information.sid)
+  },
+  PickerChangetiny(e) { //活动小类
+    let t = 'information.acid2'
+    this.setData({
+      indextiny: e.detail.value
+    })
+    let v = this.data.pickertiny[this.data.indextiny].code
+    this.setData({
+      [t]: v
+    });
+  },
+  
+  gettwo(code) {
+    var that = this
+    let url = app.globalData.URL + '/config/getActivityClass1';
+    let data = {
+      'sid': code
+    };
+    util.gets(url, data).then(function(res) {
+      that.setData({
+        picker2: res.data.data
+      })
+    })
+  },
+  getthird(code) {
+    var that = this
+    let url = app.globalData.URL + '/config/getActivityClass2';
+    let data = {
+      'cid': code
+    };
+    util.gets(url, data).then(function(res) {
+      that.setData({
+        pickertiny: res.data.data
+      })
+      console.log(res.data)
+      if (!res.data.data.length) {
+        that.setData({
+          tinyshow: "无"
+        })
+      }
+    })
   },
   getname(e) {
     this.setData({
@@ -130,9 +204,9 @@ Page({
     var datas = {
       id: null,
       actid: '',
-      sid: null,
-      acid1: null,
-      acid2: null,
+      sid: this.data.information.sid,
+      acid1: this.data.information.acid1,
+      acid2: this.data.information.acid2,
       title: this.data.title,
       author: user.id,
       authorAlias: user.nickname,
@@ -343,6 +417,12 @@ Page({
       console.log('authurl', res.data)
       that.setData({
         authurl: res.data.data.authUrl
+      })
+    })
+    let url2 = app.globalData.URL + '/config/getActivitySection';
+    util.gets(url2, {}).then(function(res) {
+      that.setData({
+        pickerbig: res.data.data
       })
     })
   }

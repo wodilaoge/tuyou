@@ -261,11 +261,7 @@
         </view>
         <view class="yundong-content bg-white">
           <view class="padding-sm">
-<<<<<<< HEAD
-            <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" wx:key style="background-image:url({{item.head}});" />
-=======
             <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" data-id="{{item.id}}" bindtap="gerenziliao" wx:key style="background-image:url({{item.head}});" />
->>>>>>> 663c2c0fe962f8932335365b2691ec0c92166753
           </view>
         </view>
       </block>
