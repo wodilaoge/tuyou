@@ -173,7 +173,6 @@ page {
 }
 
 .card-text-content {
-  font-family: PingFang-SC-Medium;
   font-size: 32rpx;
   font-weight: normal;
 }
@@ -356,7 +355,14 @@ page {
   font-weight: normal;
   margin-left: 29rpx;
 }
-
+.sp-quanbupinglun2 {
+  margin-left: 280rpx;
+  height: 50rpx;
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  color: black;
+  font-weight: normal;
+}
 /* 投票 */
 
 .tp-tptitle {
@@ -420,9 +426,9 @@ checkbox.tp-checkbox {
 }
 
 .icon-paiming {
-  width: 44rpx;
+  width: 40rpx;
   height: 48rpx;
-  margin-right: 46rpx;
+  margin-right: 40rpx;
 }
 
 .paiming-name {

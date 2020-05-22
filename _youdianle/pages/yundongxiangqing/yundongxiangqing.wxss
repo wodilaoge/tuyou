@@ -82,12 +82,6 @@ page {
   display: flex;
 }
 
-.icon-paiming {
-  width: 44rpx;
-  height: 48rpx;
-  margin-right: 46rpx;
-}
-
 .paiming-name {
   font-size: 32rpx;
   font-weight: normal;

@@ -3,7 +3,9 @@ var util = require("../../utils/util.js");
 Page({
   data: {
     chooseSize: false,
+    shipinChooseSize: false,
     animationData: {},
+    shipinAnimationData: {},
     Input: "",
     options: [],
     yibaomingList: [],
@@ -44,6 +46,7 @@ Page({
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
     pinglunall: [],
+    shipin_index:0,
   },
   chooseSezi: function(e) {
     var that = this;
@@ -63,11 +66,52 @@ Page({
         animationData: animation.export()
       })
     }, 100)
+
     that.setData({
       duixiang: e.currentTarget.dataset.duixiang,
       dxid: e.currentTarget.dataset.dxid,
       dxtitle: e.currentTarget.dataset.dxtitle,
     })
+  },
+  shipinChooseSezi: function (e) {
+    var that = this;
+    var animation = wx.createAnimation({
+      duration: 100,
+      timingFunction: 'linear'
+    })
+    that.animation = animation
+    animation.translateY(200).step()
+    that.setData({
+      shipinAnimationData: animation.export(),
+      shipinChooseSize: true
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      that.setData({
+        shipinAnimationData: animation.export()
+      })
+    }, 100)
+    that.setData({
+      shipin_index: e.currentTarget.dataset.index,
+    })
+
+    /////
+    var shipintmp = this.data.shipin;
+    let url = app.globalData.URL + '/comm/listCommByObj';
+    let data = {
+      objtype: 50,
+      objid: e.currentTarget.dataset.dxid,
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      shipintmp.list[e.currentTarget.dataset.index].listComm = res.data.list;
+      this.setData({
+        shipin: shipintmp,
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+    
+
   },
   hideModal: function(e) {
     var that = this;
@@ -86,6 +130,25 @@ Page({
       that.setData({
         animationData: animation.export(),
         chooseSize: false
+      })
+    }, 100)
+  },
+  shipinHideModal: function (e) {
+    var that = this;
+    var animation = wx.createAnimation({
+      duration: 100,
+      timingFunction: 'linear'
+    })
+    that.animation = animation
+    animation.translateY(200).step()
+    that.setData({
+      shipinAnimationData: animation.export()
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      that.setData({
+        shipinAnimationData: animation.export(),
+        shipinChooseSize: false
       })
     }, 100)
   },
@@ -827,29 +890,7 @@ Page({
     });
   },
   pinglunall_change: function(e) {
-    var shipintmp = this.data.shipin;
-    let url = app.globalData.URL + '/comm/listCommByObj';
-    let data = {
-      objtype: 50,
-      objid: e.currentTarget.dataset.dxid,
-    };
-    app.wxRequest('GET', url, data, (res) => {
-      shipintmp.list[e.currentTarget.dataset.index].listComm = res.data.list;
-      this.setData({
-        shipin: shipintmp,
-      })
-    }, (err) => {
-      console.log(err.errMsg)
-    });
-    if (this.data.pinglunall == 0) {
-      this.setData({
-        pinglunall: 1,
-      })
-    } else {
-      this.setData({
-        pinglunall: 0,
-      })
-    }
+   
 
   },
 
