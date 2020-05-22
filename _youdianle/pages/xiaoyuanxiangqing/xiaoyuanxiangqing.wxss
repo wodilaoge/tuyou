@@ -466,3 +466,8 @@ checkbox.tp-checkbox {
   height: 64rpx;
   border-radius: 33.5rpx;
 }
+.yundong-sp-center {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+}

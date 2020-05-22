@@ -80,6 +80,7 @@ page {
 .yundong-sp-center {
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .paiming-name {

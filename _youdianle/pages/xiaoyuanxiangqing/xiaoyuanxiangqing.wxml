@@ -126,6 +126,9 @@
                   <view class="card-text-content">
                     {{item.comment}}
                   </view>
+                  <view class="card-text-content-time">
+                    {{item.strCreatetime}}
+                  </view>
                 </view>
               </view>
             </view>
@@ -197,7 +200,7 @@
             </view>
             <view class="cu-form-group ">
               <view class="title" style="margin-right:65rpx;">手机</view>
-              <input class="form-text" placeholder="请输入手机号"></input>
+              <input class="form-text" placeholder="请输入手机号" disabled></input>
             </view>
             <view class="cu-form-group " hidden="{{fenzuhide}}">
               <view class="title">选择分组</view>
@@ -291,7 +294,7 @@
             </view>
             <view class="cu-form-group ">
               <view class="title" style="margin-right:65rpx;">手机</view>
-              <input class="form-text" placeholder="请输入手机号"></input>
+              <input class="form-text" placeholder="请输入手机号" disabled></input>
             </view>
             <view class="cu-form-group " hidden="{{fenzuhide}}">
               <view class="title">选择分组</view>
@@ -429,7 +432,7 @@
                       {{item.comment}}
                     </view>
                     <view class="card-text-content-time">
-                      {{item.strCreatetime}} {{item.replyCnt}} 回复
+                      {{item.strCreatetime}}
                     </view>
                   </view>
                 </view>
@@ -493,17 +496,17 @@
         <view class="sp-hotpinglun margin-top ">热门评论</view>
         <view class="margin-top" style="background-color: #f8f9fd;">
           <!-- <view hidden="{{pinglunall}}"> -->
-            <view class="margin-top sp-pinlun-content" wx:if="{{shipin.list[0].listComm[0]}}">
-              <image class="sp-pinglun-avatar round " src="{{shipin.list[0].listComm[0].createrHead}} "></image>
-              <view class="sp-pinglun-name ">{{shipin.list[0].listComm[0].createrAlias}}</view>
-              <view class="sp-pinglun-neirong ">{{shipin.list[0].listComm[0].comment}}</view>
-            </view>
-            <view class="margin-top sp-pinlun-content" wx:if="{{shipin.list[0].listComm[1]}}">
-              <image class="sp-pinglun-avatar round " src="{{shipin.list[0].listComm[1].createrHead}} "></image>
-              <view class="sp-pinglun-name ">{{shipin.list[0].listComm[1].createrAlias}}</view>
-              <view class="sp-pinglun-neirong ">{{shipin.list[0].listComm[1].comment}}</view>
-            </view>
-            <view style="height:10rpx;"></view>
+          <view class="margin-top sp-pinlun-content" wx:if="{{shipin.list[0].listComm[0]}}">
+            <image class="sp-pinglun-avatar round " src="{{shipin.list[0].listComm[0].createrHead}} "></image>
+            <view class="sp-pinglun-name ">{{shipin.list[0].listComm[0].createrAlias}}</view>
+            <view class="sp-pinglun-neirong ">{{shipin.list[0].listComm[0].comment}}</view>
+          </view>
+          <view class="margin-top sp-pinlun-content" wx:if="{{shipin.list[0].listComm[1]}}">
+            <image class="sp-pinglun-avatar round " src="{{shipin.list[0].listComm[1].createrHead}} "></image>
+            <view class="sp-pinglun-name ">{{shipin.list[0].listComm[1].createrAlias}}</view>
+            <view class="sp-pinglun-neirong ">{{shipin.list[0].listComm[1].comment}}</view>
+          </view>
+          <view style="height:10rpx;"></view>
           <!-- </view> -->
           <!-- <view hidden="{{!pinglunall}}">
             <view wx:for="{{shipin.list[0].listComm}}" wx:for-index="index2">
@@ -797,9 +800,6 @@
                   <view class="card-text-content">
                     {{item.comment}}
                   </view>
-                  <view class="card-text-content-time">
-                    {{item.strCreatetime}}
-                  </view>
                 </view>
               </view>
             </view>
@@ -816,7 +816,7 @@
         <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
       </view>
       <view class="action">
-        <image class="img-icon" mode="aspectFit" style="margin-right:10rpx" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
+        <image class="img-icon" mode="aspectFit" style="margin-left:5rpx" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
       </view>
       <view class="action">
         <image class="img-icon" mode="aspectFit" src="/img/icon_share.png"></image>
@@ -845,152 +845,29 @@
 
   <block wx:if="{{shujuCur==0}}">
     <view class="margin-bottom ">
-      <view class="padding-left bg-white yundong-sp-center ">
+      <view class="padding-left bg-white yundong-sp-center " wx:for="{{gerenpaiming.list}}" wx:key="groupid">
         <view class="bg-blue " style="width:300rpx;height:42rpx; ">
-          <text style="margin-left:36rpx; ">分组1
-      </text>
+          <text style="margin-left:36rpx; ">{{item.groupname}}</text>
         </view>
         <view class="bg-blue " style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-          <text style="margin-left:65rpx; ">排名
-      </text>
+          <text style="margin-left:65rpx; ">排名</text>
         </view>
         <view class="bg-blue " style="margin-left:1rpx;width:208rpx;height:42rpx; ">
-          <text style="margin-left:81rpx; ">得分
-      </text>
+          <text style="margin-left:81rpx; ">得分</text>
         </view>
-      </view>
 
-      <view class="bg-white padding-lg yundong-sp-center ">
-        <view style="width:300rpx;height:42rpx; ">
-          <view class="cu-avatar round my " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg); "></view>
-          <text class="paiming-name " decode="{{true}} ">&ensp;李曼曼</text>
-        </view>
-        <view style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-          <input class="weui-input " style="margin-left:64rpx; " auto-focus placeholder="1 " />
-        </view>
-        <view style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-          <input class="weui-input " style="margin-left:90rpx; " placeholder="90 " />
-        </view>
-      </view>
 
-      <view class="bg-white padding-lg yundong-sp-center ">
-        <view style="width:300rpx;height:42rpx; ">
-          <view class="cu-avatar round my " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg); "></view>
-          <text class="paiming-name " decode="{{true}} ">&ensp;李曼曼</text>
-        </view>
-        <view style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-          <input class="weui-input " style="margin-left:64rpx; " placeholder="1 " />
-        </view>
-        <view style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-          <input class="weui-input " style="margin-left:90rpx; " placeholder="90 " />
-        </view>
-      </view>
-
-      <view class="bg-white padding-lg yundong-sp-center ">
-        <view style="width:300rpx;height:42rpx; ">
-          <view class="cu-avatar round my " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg); "></view>
-          <text class="paiming-name " decode="{{true}} ">&ensp;李曼曼</text>
-        </view>
-        <view style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-          <input class="weui-input " style="margin-left:64rpx; " placeholder="1 " />
-        </view>
-        <view style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-          <input class="weui-input " style="margin-left:90rpx; " placeholder="90 " />
-        </view>
-      </view>
-
-      <view class="bg-white padding-lg yundong-sp-center ">
-        <view style="width:300rpx;height:42rpx; ">
-          <view class="cu-avatar round my " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg); "></view>
-          <text class="paiming-name " decode="{{true}} ">&ensp;李曼曼</text>
-        </view>
-        <view style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-          <input class="weui-input " style="margin-left:64rpx; " placeholder="1 " />
-        </view>
-        <view style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-          <input class="weui-input " style="margin-left:90rpx; " placeholder="90 " />
-        </view>
-      </view>
-
-      <view class="bg-white padding-lg yundong-sp-center ">
-        <view style="width:300rpx;height:42rpx; ">
-          <view class="cu-avatar round my " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg); "></view>
-          <text class="paiming-name " decode="{{true}} ">&ensp;李曼曼</text>
-        </view>
-        <view style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-          <input class="weui-input " style="margin-left:64rpx; " placeholder="1 " />
-        </view>
-        <view style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-          <input class="weui-input " style="margin-left:90rpx; " placeholder="90 " />
-        </view>
-      </view>
-
-      <view class="bg-white padding-lg yundong-sp-center ">
-        <view style="width:300rpx;height:42rpx; ">
-          <view class="cu-avatar round my " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg); "></view>
-          <text class="paiming-name " decode="{{true}} ">&ensp;李曼曼</text>
-        </view>
-        <view style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-          <input class="weui-input " style="margin-left:64rpx; " placeholder="1 " />
-        </view>
-        <view style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-          <input class="weui-input " style="margin-left:90rpx; " placeholder="90 " />
-        </view>
-      </view>
-
-      <view class="bg-white padding-lg yundong-sp-center ">
-        <view style="width:300rpx;height:42rpx; ">
-          <view class="cu-avatar round my " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg); "></view>
-          <text class="paiming-name " decode="{{true}} ">&ensp;李曼曼</text>
-        </view>
-        <view style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-          <input class="weui-input " style="margin-left:64rpx; " placeholder="1 " />
-        </view>
-        <view style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-          <input class="weui-input " style="margin-left:90rpx; " placeholder="90 " />
-        </view>
-      </view>
-    </view>
-
-    <view class="margin-bottom ">
-      <view class="padding-left bg-white yundong-sp-center ">
-        <view class="bg-blue " style="width:300rpx;height:42rpx; ">
-          <text style="margin-left:36rpx; ">分组2
-      </text>
-        </view>
-        <view class="bg-blue " style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-          <text style="margin-left:65rpx; ">排名
-      </text>
-        </view>
-        <view class="bg-blue " style="margin-left:1rpx;width:208rpx;height:42rpx; ">
-          <text style="margin-left:81rpx; ">得分
-      </text>
-        </view>
-      </view>
-
-      <view class="bg-white padding-lg yundong-sp-center ">
-        <view style="width:300rpx;height:42rpx; ">
-          <view class="cu-avatar round my " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg); "></view>
-          <text class="paiming-name " decode="{{true}} ">&ensp;李曼曼</text>
-        </view>
-        <view style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-          <input class="weui-input " style="margin-left:64rpx; " placeholder="1 " />
-        </view>
-        <view style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-          <input class="weui-input " style="margin-left:90rpx; " placeholder="90 " />
-        </view>
-      </view>
-
-      <view class="bg-white padding-lg yundong-sp-center ">
-        <view style="width:300rpx;height:42rpx; ">
-          <view class="cu-avatar round my " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg); "></view>
-          <text class="paiming-name " decode="{{true}} ">&ensp;李曼曼</text>
-        </view>
-        <view style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-          <input class="weui-input " style="margin-left:64rpx; " placeholder="1 " />
-        </view>
-        <view style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-          <input class="weui-input " style="margin-left:90rpx; " placeholder="90 " />
+        <view class="bg-white padding-lg yundong-sp-center " wx:for="{{item.members}}" wx:key="id" wx:for-item="members">
+          <view style="width:300rpx;height:42rpx;">
+            <view class="cu-avatar round my " style="background-image:url({{members.mbrHead}}); "></view>
+            <text class="paiming-name " decode="{{true}} ">&ensp;{{members.mbrAlias}}</text>
+          </view>
+          <view style="margin-left:1rpx;width:180rpx;height:42rpx; ">
+            <input class="weui-input " style="margin-left:64rpx; " placeholder="{{members.mbrRank==null?'':members.mbrScore}}" />
+          </view>
+          <view style="margin-left:1rpx;width:180rpx;height:42rpx; ">
+            <input class="weui-input " style="margin-left:90rpx; " placeholder="{{members.mbrScore==null?'':members.mbrScore}}" />
+          </view>
         </view>
       </view>
     </view>
