@@ -246,8 +246,11 @@ Page({
 
   //
   tabSelect(e) {
+    var op = this.data.options
+    op.TabCur = e.currentTarget.dataset.id
     this.setData({
       TabCur: e.currentTarget.dataset.id,
+      options: op
     })
   },
   paimingSelect(e) {
