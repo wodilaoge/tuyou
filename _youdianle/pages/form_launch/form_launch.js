@@ -310,6 +310,7 @@ Page({
       timenow2: nowtime,
     })
     // 获取用户信息
+    var that = this
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
