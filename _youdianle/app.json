@@ -54,7 +54,7 @@
     "navigationBarTitleText": "ColorUI",
     "navigationStyle": "custom",
     "navigationBarTextStyle": "white",
-    "enablePullDownRefresh": true
+    "enablePullDownRefresh":true
   },
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom"

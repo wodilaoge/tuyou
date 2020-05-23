@@ -106,7 +106,7 @@ Page({
     let data = {
       cid: self.properties.yundongCur
     }
-    util.gets(url, data).then(function (res) {
+    util.gets(url, data).then(function(res) {
       self.setData({
         yundongxiaolei: res.data.data
       })
@@ -122,7 +122,7 @@ Page({
     let data = {
       cid: self.properties.wenyuCur
     }
-    util.gets(url, data).then(function (res) {
+    util.gets(url, data).then(function(res) {
       self.setData({
         wenyuxiaolei: res.data.data
       })
@@ -138,7 +138,7 @@ Page({
     let data = {
       cid: self.properties.aihaoCur
     }
-    util.gets(url, data).then(function (res) {
+    util.gets(url, data).then(function(res) {
       self.setData({
         aihaoxiaolei: res.data.data
       })
@@ -168,11 +168,13 @@ Page({
         var url2 = app.globalData.URL + '/secrot/listSecrotation';
         if (res.data.data[i].name == "校园活动") {
           let data = {
-            sid: res.data.data[i].code
+            sid: res.data.data[i].code,
+            pageSize:2
           };
           app.wxRequest('GET', url, data, (res) => {
             self.setData({
-              ActList: res.data
+              ActList: res.data,
+              activityborder:res.data.border
             })
           }, (err) => {
             console.log(err.errMsg)
@@ -213,16 +215,16 @@ Page({
               sid: self.data.yundongid,
               acid1: self.data.yundongCur
             }
-            util.gets(url, data).then(function (res) {
+            util.gets(url, data).then(function(res) {
               self.setData({
                 yundongList: res.data.data
               })
-            }).then(function(){
+            }).then(function() {
               let urlxiaolei = app.globalData.URL + '/config/getActivityClass2'
               let dataxiaolei = {
                 cid: self.data.yundongCur
               }
-              util.gets(urlxiaolei, dataxiaolei).then(function (res) {
+              util.gets(urlxiaolei, dataxiaolei).then(function(res) {
                 self.setData({
                   yundongxiaolei: res.data.data
                 })
@@ -257,16 +259,16 @@ Page({
             data = {
               sid: self.data.wenyuid
             }
-            util.gets(url, data).then(function (res) {
+            util.gets(url, data).then(function(res) {
               self.setData({
                 wenyuList: res.data.data
               })
-            }).then(function () {
+            }).then(function() {
               let urlxiaolei = app.globalData.URL + '/config/getActivityClass2'
               let dataxiaolei = {
                 cid: self.data.wenyuCur
               }
-              util.gets(urlxiaolei, dataxiaolei).then(function (res) {
+              util.gets(urlxiaolei, dataxiaolei).then(function(res) {
                 self.setData({
                   wenyuxiaolei: res.data.data
                 })
@@ -300,16 +302,16 @@ Page({
             data = {
               sid: self.data.aihaoid
             }
-            util.gets(url, data).then(function (res) {
+            util.gets(url, data).then(function(res) {
               self.setData({
                 aihaoList: res.data.data
               })
-            }).then(function () {
+            }).then(function() {
               let urlxiaolei = app.globalData.URL + '/config/getActivityClass2'
               let dataxiaolei = {
                 cid: self.data.aihaoCur
               }
-              util.gets(urlxiaolei, dataxiaolei).then(function (res) {
+              util.gets(urlxiaolei, dataxiaolei).then(function(res) {
                 self.setData({
                   aihaoxiaolei: res.data.data
                 })
@@ -368,7 +370,7 @@ Page({
 
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res)
+      console.log('shipin',res)
       this.setData({
         shipin: res.data
       })
@@ -414,17 +416,45 @@ Page({
     })
   },
   onLoad: function() {
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          console.log('wx auth finished')
+        } else {
+          console.log('no auth')
+          wx.showModal({
+            title: '友点乐',
+            content: '请先进行微信登录',
+            cancelText: '取消',
+            confirmText: '授权',
+            success: res => {
+              if (res.confirm) {
+                wx.navigateTo({
+                  url: '/pages/login/login',
+                })
+              } else {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }
+            }
+          })
+        }
+      }
+    })
+    this.xuanran();//初始化
+    this.getShipin();
     this.setData({ //读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
       TabCur: app.globalData.tabbar
     })
     this.towerSwiper('xiaoyuanSwiperList')
+
   },
   onShow() {
     // this.setData({ //读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
     //   TabCur: app.globalData.tabbar
     // })
-    this.xuanran();
-    this.getShipin();
+
 
     //this.news()
     //this.news_detail()
@@ -474,18 +504,52 @@ Page({
       direction: e.touches[0].pageX - this.data.towerStart > 0 ? 'right' : 'left'
     })
   },
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     var that = this;
     return {
       title: '友点乐',
       path: 'pages/xiaoyuan/xiaoyuan',
-      success: function (res) {
+      success: function(res) {
         console.log("转发成功:" + JSON.stringify(res));
         that.shareClick();
       },
-      fail: function (res) {
+      fail: function(res) {
         console.log("转发失败:" + JSON.stringify(res));
       }
     }
-  }
+  },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onReachBottom: function () {
+    console.log("上拉刷新")
+    wx.showLoading({
+      title: '加载中...',
+      mask: true  //显示触摸蒙层  防止事件穿透触发
+  });
+    let that = this;
+    console.log(that.data.activityborder)
+    if (that.data.TabCur==0) {
+      var url = app.globalData.URL + '/act/listActivity';
+      let data = {
+        sid: '076002',
+        border:that.data.ActList.border,
+        pageSize:2
+      };
+      app.wxRequest('GET', url, data, (res) => {
+        console.log('刷新校园中',res)
+        let t='ActList.list'
+        var tmp=that.data.ActList.list
+        for(let s of res.data.list)
+          tmp.push(s)
+        that.setData({
+          [t]:tmp,
+        })
+        wx.hideLoading() 
+      }, (err) => {
+        console.log(err.errMsg)
+      });
+    }
+  },
+
 })

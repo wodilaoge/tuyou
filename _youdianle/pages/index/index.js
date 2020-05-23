@@ -296,15 +296,15 @@ Page({
   startReportHeart() {
     var that = this
     var timerTem = setTimeout(function() {
-      if (app.globalData.userInfo.length == 0) {
+      if (app.globalData.userInfo.token == null) {
         that.startReportHeart()
       } else {
-        // wx.showToast({
-        //   title: app.globalData.userInfo.token,
-        //   duration: 5000,
-        //   success: function() {
-        //   }
-        // })
+        wx.showToast({
+          title: '友点乐欢迎您！',
+          duration: 2000,
+          success: function() {
+          }
+        })
         that.setData({
           loadModal: false
         })

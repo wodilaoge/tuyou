@@ -285,6 +285,26 @@ Page({
       url: '/pages/form_address/form_address',
     })
   },
+  onShow: function (options) {
+    var that = this
+    let t1 = 'information.province'
+    let t2 = 'information.city'
+    let t3 = 'information.univid'
+    let pro = wx.getStorageSync('province')
+    let city = wx.getStorageSync('city')
+    let schoolinfo = wx.getStorageSync('school')
+    if (schoolinfo) {
+      this.setData({
+        pro: pro,
+        city: city,
+        schoolinfo: schoolinfo,
+        [t1]: pro.code,
+        [t2]: city.code,
+        [t3]: schoolinfo.code,
+        isaddress: true
+      })
+    }
+  },
   onLoad() {
     var timestamp = Date.parse(new Date());
     timestamp = timestamp / 1000;
@@ -357,8 +377,6 @@ Page({
         }
       }
     })
-
-
 
     this.province();
     var that = this
