@@ -30,7 +30,7 @@
 <block wx:if="{{TabCur==0}}">
   <view class="cu-bar bg-white solid-bottom margin-top-sm" style="display:fixed;position: relative;">
     <image class="cu-avatar round my" src="{{detail.createrhead}}" mode="heightFix"></image>
-    <text style="position:absolute;left:110rpx;">三分赛</text>
+    <!--<text style="position:absolute;left:110rpx;">三分赛</text>-->
     <text class=" title-time" style="position:absolute;width:100%;left:180rpx;" wx:if="{{detail.lefttime!=null}}">{{item.lefttime.day}} 天 {{item.lefttime.hr}}: {{item.lefttime.min}} </text>
   </view>
 
@@ -744,7 +744,7 @@
 
         <view class="cu-avatar round my " style="background-image:url({{members.mbrHead}}); "></view>
         <text class="paiming-name " decode="{{true}} ">&ensp;{{members.mbrAlias}}</text>
-        <view class="paiming-name text-orange " wx:if="{{members.mbrScore!=null}}" style="margin-left:auto; ">{{members.mbrScore}}
+        <view class="paiming-name text-orange " wx:if="{{members.mbrScore!=null}}" style="position: fixed;right:40rpx; ">{{members.mbrScore}}分
         </view>
       </view>
     </view>
@@ -846,7 +846,7 @@
 
   <block wx:if="{{shujuCur==0}}">
     <view class="margin-bottom">
-      <view class="padding-left bg-white yundong-sp-center " wx:for="{{gerenpaiming.list}}" wx:key="groupid" wx:for-index="index">
+      <view class="padding-left bg-white yundong-sp-center " wx:for="{{gerenshuju.list}}" wx:key="groupid" wx:for-index="index">
         <view class="bg-blue " style="width:300rpx;height:42rpx; ">
           <text style="margin-left:36rpx; ">{{item.groupname}}</text>
         </view>
@@ -875,7 +875,7 @@
   </block>
   <block wx:if="{{shujuCur==1}}">
     <view class="margin-bottom">
-      <view class="padding-left bg-white yundong-sp-center " wx:for="{{tuanduipaiming.list}}" wx:key="groupid" wx:for-index="index">
+      <view class="padding-left bg-white yundong-sp-center " wx:for="{{tuanduishuju.list}}" wx:key="groupid" wx:for-index="index">
         <view class="bg-blue " style="width:300rpx;height:42rpx; ">
           <text style="margin-left:36rpx; ">{{item.team}}/{{item.groupname}}</text>
         </view>
@@ -906,7 +906,7 @@
   <view style="margin-top:140rpx; ">
     <view class="yundong-sp-center " style="margin-left:39rpx;margin-bottom:44rpx;width: 668rpx; height: 80rpx; ">
       <button class="shuju-btn1 line-red ">结束本场活动</button>
-      <button class="shuju-btn1 line-orange ">提交</button>
+      <button class="shuju-btn1 line-orange " bindtap="tijiao">提交</button>
     </view>
     <button class="shuju-btn1 bg-orange round " style="width: 668rpx; height: 80rpx; ">提交并结束本场活动</button>
   </view>
@@ -1012,7 +1012,7 @@
 <!--隐藏区域  -->
 <view fixed class="modals modals-bottom-dialog" hidden="{{!chooseSize}}">
   <view class="modals-cancel" bindtap="hideModal" catchtouchmove="true"></view>
-  <view class="bottom-dialog-body bottom-pos " animation="{{animationData}}" style="display:block">
+  <view class="bottom-dialog-body bottom-pos " animation="{{animationData}}" style="display:block" catchtouchmove="true">
     <view>
       <text class="cu-bar-title " style="margin-left:300rpx ">写评论</text>
       <button class="cu-btn bg-orange shadow-blur padding-sm margin-left-sm btn-fasong " bindtap="pd_fasong" style="margin-left:100rpx ">发送</button>

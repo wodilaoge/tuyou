@@ -997,7 +997,7 @@
 <!--隐藏区域  -->
 <view fixed class="modals modals-bottom-dialog" hidden="{{!chooseSize}}">
   <view class="modals-cancel" bindtap="hideModal" catchtouchmove="true"></view>
-  <view class="bottom-dialog-body bottom-pos " animation="{{animationData}}" style="display:block">
+  <view class="bottom-dialog-body bottom-pos " animation="{{animationData}}" style="display:block" catchtouchmove="true">
     <view>
       <text class="cu-bar-title " style="margin-left:300rpx ">写评论</text>
       <button class="cu-btn bg-orange shadow-blur padding-sm margin-left-sm btn-fasong " bindtap="pd_fasong" style="margin-left:100rpx ">发送</button>

@@ -694,8 +694,6 @@ Page({
       }
       util.gets(url, data).then(function(res) {
         status = res.data.data
-        console.log(status)
-        console.log(data)
       }).then(function() {
         url = app.globalData.URL + '/act/cancelActSignupByTeam'
         data = {
@@ -719,7 +717,6 @@ Page({
               image: '/img/fail.png', // 图标类型，默认success
               duration: 1000 // 提示窗停留时间，默认1500ms
             })
-          console.log(res.data)
         })
       })
     }
@@ -733,6 +730,10 @@ Page({
         duration: 1000,
       })
     else {
+      wx.showLoading({
+        title: '加载中...',
+        mask: true  //显示触摸蒙层  防止事件穿透触发
+      });
       let url
       let data
       if (self.data.baomingCur == 0) {
@@ -761,7 +762,6 @@ Page({
             status: 10,
             creater: self.data.user.id
           }
-        console.log(data)
         util.post_token(url, data).then(function(res) {
           console.log(res)
           if (res.data.code == 0) {
@@ -773,12 +773,14 @@ Page({
             self.setData({
               isbaominggeren: 1
             })
+            self.yibaoming()
           } else
             wx.showToast({
               title: '报名失败！',
               image: '/img/fail.png',
               duration: 1000,
             })
+          wx.hideLoading()
         })
       } else {
         if (self.data.tuanduiSelect.length == 0)
@@ -788,6 +790,10 @@ Page({
             duration: 1000,
           })
         else {
+          wx.showLoading({
+            title: '加载中...',
+            mask: true  //显示触摸蒙层  防止事件穿透触发
+          });
           url = app.globalData.URL + '/act/addActSignupTeam'
           if (self.data.fenzuhide)
             data = {
@@ -824,12 +830,14 @@ Page({
               self.setData({
                 isbaomingtuandui: 1
               })
+              self.yibaoming()
             } else
               wx.showToast({
                 title: '报名失败！',
                 image: '/img/fail.png',
                 duration: 1000,
               })
+            wx.hideLoading()
           })
         }
       }
