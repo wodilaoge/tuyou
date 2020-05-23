@@ -12,6 +12,8 @@ Page({
 
     tuanduipaiming: [],
     gerenpaiming: [],
+    tuanduishuju: [],
+    gerenshuju: [],
 
     TabCur: 0,
     paimingCur: 0,
@@ -156,6 +158,36 @@ Page({
     this.setData({
       Input: e.detail.value
     });
+  },
+  paimingInput: function (e) { //input输入
+    if (e.target.dataset.flag == 0) {
+      var member = this.data.gerenshuju
+      member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrRank = e.detail.value
+      this.setData({
+        gerenshuju: member
+      })
+    } else {
+      var member = this.data.tuanduishuju
+      member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrRank = e.detail.value
+      this.setData({
+        tuanduishuju: member
+      })
+    }
+  },
+  defenInput: function (e) { //input输入
+    if (e.target.dataset.flag == 0) {
+      var member = this.data.gerenshuju
+      member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrScore = e.detail.value
+      this.setData({
+        gerenshuju: member
+      })
+    } else {
+      var member = this.data.tuanduishuju
+      member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrScore = e.detail.value
+      this.setData({
+        tuanduishuju: member
+      })
+    }
   },
   //评论
   pd_fasong() {
@@ -844,6 +876,103 @@ Page({
     }
 
   },
+  ////////////////////////////
+  gerenshuju() {
+    var self = this
+    var url = app.globalData.URL + '/act/updateActIndRank' //更新个人排名
+    var mlist = []
+    for (let i in self.data.gerenshuju.list) {
+      for (let j in self.data.gerenshuju.list[i].members) {
+        let mem = {
+          mbrId: self.data.gerenshuju.list[i].members[j].mbrId,
+          mbrRank: self.data.gerenshuju.list[i].members[j].mbrRank,
+          mbrScore: self.data.gerenshuju.list[i].members[j].mbrScore
+        }
+        mlist.push(mem)
+      }
+    }
+    var data = {
+      actid: self.data.categoryId,
+      members: mlist
+    }
+    console.log(data)
+    util.post_token(url, data).then(function (res) {
+      if (res.data.code == 0)
+        wx.showToast({
+          title: '操作成功！', // 标题
+          icon: 'success', // 图标类型，默认success
+          duration: 500 // 提示窗停留时间，默认1500ms
+        })
+      else
+        wx.showToast({
+          title: res.data.data.msg,
+          image: '/img/fail.png',
+          duration: 1000,
+        })
+    })
+  },
+  tuanduishuju() {
+    var self = this
+    var url = app.globalData.URL + '/act/updateActTeamRank' //更新团队排名
+    var mlist = []
+    var tlist = []
+    for (let i in self.data.tuanduishuju.list) {
+      let team = {
+        tid: self.data.tuanduishuju.list[i].tid,
+        teamRank: self.data.tuanduishuju.list[i].teamRank,
+        teamScore: self.data.tuanduishuju.list[i].teamScore
+      }
+      tlist.push(team)
+      for (let j in self.data.tuanduishuju.list[i].members) {
+        let mem = {
+          mbrId: self.data.tuanduishuju.list[i].members[j].mbrId,
+          mbrRank: self.data.tuanduishuju.list[i].members[j].mbrRank,
+          mbrScore: self.data.tuanduishuju.list[i].members[j].mbrScore
+        }
+        mlist.push(mem)
+      }
+    }
+    var data = {
+      actid: self.data.categoryId,
+      teams: tlist,
+      members: mlist
+    }
+    util.post_token(url, data).then(function (res) {
+      if (res.data.code == 0)
+        wx.showToast({
+          title: '操作成功！', // 标题
+          icon: 'success', // 图标类型，默认success
+          duration: 500 // 提示窗停留时间，默认1500ms
+        })
+      else
+        wx.showToast({
+          title: res.data.data.msg,
+          image: '/img/fail.png',
+          duration: 1000,
+        })
+    })
+  },
+  tijiao() {
+    this.gerenshuju()
+  },
+  jieshu() {
+    var self = this
+    var url = app.globalData.URL + '/act/stopActivity' //更新个人排名
+    let data = {
+      actid: self.data.cate
+    }
+    app.wxRequest('GET', url, data, (res) => {
+      if (res.code == 0)
+        wx.showToast({
+          title: '操作成功！', // 标题
+          icon: 'success', // 图标类型，默认success
+          duration: 500 // 提示窗停留时间，默认1500ms
+        })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  //////////////////////////////
   TBcontroll() { //同步控制
     var self = this;
     return new Promise(function(resolve, reject) {
