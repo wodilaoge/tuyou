@@ -1045,7 +1045,7 @@ Page({
         wx.showToast({
           title: res.data.data.msg,
           image: '/img/fail.png',
-          duration: 1000,
+          duration: 500,
         })
     })
   },
@@ -1086,16 +1086,22 @@ Page({
         wx.showToast({
           title: res.data.data.msg,
           image: '/img/fail.png',
-          duration: 1000,
+          duration: 500,
         })
     })
   },
   tijiao() {
-    this.gerenshuju()
+    if (this.data.detail.signupway == "30") {
+      this.tuanduishuju()
+      this.gerenshuju()
+    } else if (this.data.detail.signupway == "10")
+      this.gerenshuju()
+    else
+      this.tuanduishuju()
   },
   jieshu() {
     var self = this
-    var url = app.globalData.URL + '/act/stopActivity' //更新个人排名
+    var url = app.globalData.URL + '/act/stopActivity' //结束活动
     let data = {
       actid: self.data.cate
     }
@@ -1106,9 +1112,15 @@ Page({
           icon: 'success', // 图标类型，默认success
           duration: 500 // 提示窗停留时间，默认1500ms
         })
+      else
+        console.log(res.data)
     }, (err) => {
       console.log(err.errMsg)
     });
+  },
+  tijiaobingjieshu(){
+    this.tijiao()
+    this.jieshu()
   },
   //////////////////////////////
   /**

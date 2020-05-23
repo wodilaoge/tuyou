@@ -905,10 +905,10 @@
 
   <view style="margin-top:140rpx; ">
     <view class="yundong-sp-center " style="margin-left:39rpx;margin-bottom:44rpx;width: 668rpx; height: 80rpx; ">
-      <button class="shuju-btn1 line-red ">结束本场活动</button>
+      <button class="shuju-btn1 line-red " bindtap="jieshu">结束本场活动</button>
       <button class="shuju-btn1 line-orange " bindtap="tijiao">提交</button>
     </view>
-    <button class="shuju-btn1 bg-orange round " style="width: 668rpx; height: 80rpx; ">提交并结束本场活动</button>
+    <button class="shuju-btn1 bg-orange round " style="width: 668rpx; height: 80rpx;" bindtap="tijiaobingjieshu">提交并结束本场活动</button>
   </view>
 </block>
 
