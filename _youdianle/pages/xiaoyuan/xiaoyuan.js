@@ -414,6 +414,32 @@ Page({
     })
   },
   onLoad: function() {
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) { console.log('wx auth finished') } else {
+          console.log('no auth')
+          wx.showModal({
+            title: '友点乐',
+            content: '请先进行微信登录',
+            cancelText: '取消',
+            confirmText: '授权',
+            success: res => {
+              if (res.confirm) {
+                wx.navigateTo({
+                  url: '/pages/login/login',
+                })
+              } else {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }
+            }
+          })
+        }
+      }
+    })
+
+
     this.setData({ //读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
       TabCur: app.globalData.tabbar
     })

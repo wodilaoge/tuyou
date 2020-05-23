@@ -34,9 +34,9 @@ Page({
       })   
     }
     else {
-      wx.navigateTo({
-        url: '/pages/form_launch/form_launch',
-      })   
+      wx.navigateBack({
+        delta:2
+      })
     }
   },
   /**

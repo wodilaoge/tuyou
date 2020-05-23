@@ -186,20 +186,6 @@
 					"scene": null
 				},
 				{
-					"id": 19,
-					"name": "pages/MyPages/my_profile/my_profile",
-					"pathName": "pages/MyPages/my_profile/my_profile",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 20,
-					"name": "pages/form_launch/form_launch",
-					"pathName": "pages/form_launch/form_launch",
-					"query": "",
-					"scene": null
-				},
-				{
 					"id": -1,
 					"name": "按id发视频",
 					"pathName": "pages/form_actid_video/form_actid_video",
@@ -210,13 +196,6 @@
 					"id": -1,
 					"name": "搜索",
 					"pathName": "pages/sousuo/sousuo",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/MyPages/my_team_detail/my_team_detail",
-					"pathName": "pages/MyPages/my_team_detail/my_team_detail",
 					"query": "",
 					"scene": null
 				},
@@ -243,8 +222,8 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/MyPages/my_security/my_security",
-					"pathName": "pages/MyPages/my_security/my_security",
+					"name": "form",
+					"pathName": "pages/form/form",
 					"query": "",
 					"scene": null
 				}

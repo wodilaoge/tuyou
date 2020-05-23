@@ -22,10 +22,10 @@ Page({
     email: '',
     website: '',
     wcoa: '',
-    univid: '003330106',
-    province: '00333',
-    city: '0033301',
-    indexp: 30, //省
+    univid: '',
+    province: '',
+    city: '',
+    indexp: 0, //省
     indexc: 0, //市
     indexs: 0, //学校
     provinceList: [],
