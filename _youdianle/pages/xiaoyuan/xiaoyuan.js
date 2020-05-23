@@ -168,11 +168,13 @@ Page({
         var url2 = app.globalData.URL + '/secrot/listSecrotation';
         if (res.data.data[i].name == "校园活动") {
           let data = {
-            sid: res.data.data[i].code
+            sid: res.data.data[i].code,
+            pageSize:2
           };
           app.wxRequest('GET', url, data, (res) => {
             self.setData({
-              ActList: res.data
+              ActList: res.data,
+              activityborder:res.data.border
             })
           }, (err) => {
             console.log(err.errMsg)
@@ -368,7 +370,7 @@ Page({
 
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res)
+      console.log('shipin',res)
       this.setData({
         shipin: res.data
       })
@@ -438,19 +440,19 @@ Page({
         }
       }
     })
-
-
+    this.xuanran();//初始化
+    this.getShipin();
     this.setData({ //读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
       TabCur: app.globalData.tabbar
     })
     this.towerSwiper('xiaoyuanSwiperList')
+
   },
   onShow() {
     // this.setData({ //读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
     //   TabCur: app.globalData.tabbar
     // })
-    this.xuanran();
-    this.getShipin();
+
 
     //this.news()
     //this.news_detail()
@@ -513,5 +515,39 @@ Page({
         console.log("转发失败:" + JSON.stringify(res));
       }
     }
-  }
+  },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onReachBottom: function () {
+    console.log("上拉刷新")
+    wx.showLoading({
+      title: '加载中...',
+      mask: true  //显示触摸蒙层  防止事件穿透触发
+  });
+    let that = this;
+    console.log(that.data.activityborder)
+    if (that.data.TabCur==0) {
+      var url = app.globalData.URL + '/act/listActivity';
+      let data = {
+        sid: '076002',
+        border:that.data.ActList.border,
+        pageSize:2
+      };
+      app.wxRequest('GET', url, data, (res) => {
+        console.log('刷新校园中',res)
+        let t='ActList.list'
+        var tmp=that.data.ActList.list
+        for(let s of res.data.list)
+          tmp.push(s)
+        that.setData({
+          [t]:tmp,
+        })
+        wx.hideLoading() 
+      }, (err) => {
+        console.log(err.errMsg)
+      });
+    }
+  },
+
 })
