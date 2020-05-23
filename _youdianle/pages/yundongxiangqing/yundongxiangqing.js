@@ -143,12 +143,12 @@ Page({
       })
     }, 100)
   },
-  emailInput: function (e) { //input输入
+  emailInput: function(e) { //input输入
     this.setData({
       Input: e.detail.value
     });
   },
-  paimingInput: function (e) { //input输入
+  paimingInput: function(e) { //input输入
     this.setData({
       Input: e.detail.value
     });
@@ -245,7 +245,7 @@ Page({
       })
   },
   tabSelect(e) {
-    var op=this.data.options
+    var op = this.data.options
     op.TabCur = e.currentTarget.dataset.id
     this.setData({
       TabCur: e.currentTarget.dataset.id,
@@ -453,12 +453,11 @@ Page({
           };
           util.gets(url2, data).then(function(res) {
             list[i].praiseCnt = res.data.data
-            if (i == list.length - 1) {
-              self.setData({
-                comment_detail: list,
-                loading: false
-              });
-            }
+
+            self.setData({
+              comment_detail: list,
+              loading: false
+            });
           });
         }
       }

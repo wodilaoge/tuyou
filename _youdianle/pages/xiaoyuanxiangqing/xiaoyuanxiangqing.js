@@ -46,7 +46,7 @@ Page({
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
     pinglunall: [],
-    shipin_index:0,
+    shipin_index: 0,
   },
   chooseSezi: function(e) {
     var that = this;
@@ -73,7 +73,7 @@ Page({
       dxtitle: e.currentTarget.dataset.dxtitle,
     })
   },
-  shipinChooseSezi: function (e) {
+  shipinChooseSezi: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -85,7 +85,7 @@ Page({
       shipinAnimationData: animation.export(),
       shipinChooseSize: true
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         shipinAnimationData: animation.export()
@@ -110,7 +110,7 @@ Page({
     }, (err) => {
       console.log(err.errMsg)
     });
-    
+
 
   },
   hideModal: function(e) {
@@ -133,7 +133,7 @@ Page({
       })
     }, 100)
   },
-  shipinHideModal: function (e) {
+  shipinHideModal: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -144,7 +144,7 @@ Page({
     that.setData({
       shipinAnimationData: animation.export()
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         shipinAnimationData: animation.export(),
@@ -381,12 +381,10 @@ Page({
         };
         util.gets(url2, data).then(function(res) {
           list[i].praiseCnt = res.data.data
-          if (i == list.length - 1) {
-            self.setData({
-              comment_detail: list,
-              loading: false
-            });
-          }
+          self.setData({
+            comment_detail: list,
+            loading: false
+          });
         });
       }
     }, (err) => {
@@ -893,7 +891,7 @@ Page({
     });
   },
   pinglunall_change: function(e) {
-   
+
 
   },
 
