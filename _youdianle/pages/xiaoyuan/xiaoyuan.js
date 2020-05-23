@@ -106,7 +106,7 @@ Page({
     let data = {
       cid: self.properties.yundongCur
     }
-    util.gets(url, data).then(function (res) {
+    util.gets(url, data).then(function(res) {
       self.setData({
         yundongxiaolei: res.data.data
       })
@@ -122,7 +122,7 @@ Page({
     let data = {
       cid: self.properties.wenyuCur
     }
-    util.gets(url, data).then(function (res) {
+    util.gets(url, data).then(function(res) {
       self.setData({
         wenyuxiaolei: res.data.data
       })
@@ -138,7 +138,7 @@ Page({
     let data = {
       cid: self.properties.aihaoCur
     }
-    util.gets(url, data).then(function (res) {
+    util.gets(url, data).then(function(res) {
       self.setData({
         aihaoxiaolei: res.data.data
       })
@@ -215,7 +215,7 @@ Page({
               sid: self.data.yundongid,
               acid1: self.data.yundongCur
             }
-            util.gets(url, data).then(function (res) {
+            util.gets(url, data).then(function(res) {
               self.setData({
                 yundongList: res.data.data
               })
@@ -224,7 +224,7 @@ Page({
               let dataxiaolei = {
                 cid: self.data.yundongCur
               }
-              util.gets(urlxiaolei, dataxiaolei).then(function (res) {
+              util.gets(urlxiaolei, dataxiaolei).then(function(res) {
                 self.setData({
                   yundongxiaolei: res.data.data
                 })
@@ -259,16 +259,16 @@ Page({
             data = {
               sid: self.data.wenyuid
             }
-            util.gets(url, data).then(function (res) {
+            util.gets(url, data).then(function(res) {
               self.setData({
                 wenyuList: res.data.data
               })
-            }).then(function () {
+            }).then(function() {
               let urlxiaolei = app.globalData.URL + '/config/getActivityClass2'
               let dataxiaolei = {
                 cid: self.data.wenyuCur
               }
-              util.gets(urlxiaolei, dataxiaolei).then(function (res) {
+              util.gets(urlxiaolei, dataxiaolei).then(function(res) {
                 self.setData({
                   wenyuxiaolei: res.data.data
                 })
@@ -302,16 +302,16 @@ Page({
             data = {
               sid: self.data.aihaoid
             }
-            util.gets(url, data).then(function (res) {
+            util.gets(url, data).then(function(res) {
               self.setData({
                 aihaoList: res.data.data
               })
-            }).then(function () {
+            }).then(function() {
               let urlxiaolei = app.globalData.URL + '/config/getActivityClass2'
               let dataxiaolei = {
                 cid: self.data.aihaoCur
               }
-              util.gets(urlxiaolei, dataxiaolei).then(function (res) {
+              util.gets(urlxiaolei, dataxiaolei).then(function(res) {
                 self.setData({
                   aihaoxiaolei: res.data.data
                 })
@@ -504,16 +504,16 @@ Page({
       direction: e.touches[0].pageX - this.data.towerStart > 0 ? 'right' : 'left'
     })
   },
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     var that = this;
     return {
       title: '友点乐',
       path: 'pages/xiaoyuan/xiaoyuan',
-      success: function (res) {
+      success: function(res) {
         console.log("转发成功:" + JSON.stringify(res));
         that.shareClick();
       },
-      fail: function (res) {
+      fail: function(res) {
         console.log("转发失败:" + JSON.stringify(res));
       }
     }

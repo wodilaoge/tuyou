@@ -12,6 +12,8 @@ Page({
 
     tuanduipaiming: [],
     gerenpaiming: [],
+    tuanduishuju: [],
+    gerenshuju: [],
 
     TabCur: 0,
     paimingCur: 0,
@@ -156,6 +158,36 @@ Page({
     this.setData({
       Input: e.detail.value
     });
+  },
+  paimingInput: function (e) { //input输入
+    if (e.target.dataset.flag == 0) {
+      var member = this.data.gerenshuju
+      member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrRank = e.detail.value
+      this.setData({
+        gerenshuju: member
+      })
+    } else {
+      var member = this.data.tuanduishuju
+      member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrRank = e.detail.value
+      this.setData({
+        tuanduishuju: member
+      })
+    }
+  },
+  defenInput: function (e) { //input输入
+    if (e.target.dataset.flag == 0) {
+      var member = this.data.gerenshuju
+      member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrScore = e.detail.value
+      this.setData({
+        gerenshuju: member
+      })
+    } else {
+      var member = this.data.tuanduishuju
+      member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrScore = e.detail.value
+      this.setData({
+        tuanduishuju: member
+      })
+    }
   },
   //评论
   pd_fasong() {
@@ -694,8 +726,6 @@ Page({
       }
       util.gets(url, data).then(function(res) {
         status = res.data.data
-        console.log(status)
-        console.log(data)
       }).then(function() {
         url = app.globalData.URL + '/act/cancelActSignupByTeam'
         data = {
@@ -719,7 +749,6 @@ Page({
               image: '/img/fail.png', // 图标类型，默认success
               duration: 1000 // 提示窗停留时间，默认1500ms
             })
-          console.log(res.data)
         })
       })
     }
@@ -733,6 +762,10 @@ Page({
         duration: 1000,
       })
     else {
+      wx.showLoading({
+        title: '加载中...',
+        mask: true  //显示触摸蒙层  防止事件穿透触发
+      });
       let url
       let data
       if (self.data.baomingCur == 0) {
@@ -761,7 +794,6 @@ Page({
             status: 10,
             creater: self.data.user.id
           }
-        console.log(data)
         util.post_token(url, data).then(function(res) {
           console.log(res)
           if (res.data.code == 0) {
@@ -773,12 +805,14 @@ Page({
             self.setData({
               isbaominggeren: 1
             })
+            self.yibaoming()
           } else
             wx.showToast({
               title: '报名失败！',
               image: '/img/fail.png',
               duration: 1000,
             })
+          wx.hideLoading()
         })
       } else {
         if (self.data.tuanduiSelect.length == 0)
@@ -788,6 +822,10 @@ Page({
             duration: 1000,
           })
         else {
+          wx.showLoading({
+            title: '加载中...',
+            mask: true  //显示触摸蒙层  防止事件穿透触发
+          });
           url = app.globalData.URL + '/act/addActSignupTeam'
           if (self.data.fenzuhide)
             data = {
@@ -824,18 +862,133 @@ Page({
               self.setData({
                 isbaomingtuandui: 1
               })
+              self.yibaoming()
             } else
               wx.showToast({
                 title: '报名失败！',
                 image: '/img/fail.png',
                 duration: 1000,
               })
+            wx.hideLoading()
           })
         }
       }
     }
 
   },
+  ////////////////////////////
+  gerenshuju() {
+    var self = this
+    var url = app.globalData.URL + '/act/updateActIndRank' //更新个人排名
+    var mlist = []
+    for (let i in self.data.gerenshuju.list) {
+      for (let j in self.data.gerenshuju.list[i].members) {
+        let mem = {
+          mbrId: self.data.gerenshuju.list[i].members[j].mbrId,
+          mbrRank: self.data.gerenshuju.list[i].members[j].mbrRank,
+          mbrScore: self.data.gerenshuju.list[i].members[j].mbrScore
+        }
+        mlist.push(mem)
+      }
+    }
+    var data = {
+      actid: self.data.categoryId,
+      members: mlist
+    }
+    console.log(data)
+    util.post_token(url, data).then(function (res) {
+      if (res.data.code == 0)
+        wx.showToast({
+          title: '操作成功！', // 标题
+          icon: 'success', // 图标类型，默认success
+          duration: 500 // 提示窗停留时间，默认1500ms
+        })
+      else
+        wx.showToast({
+          title: res.data.data.msg,
+          image: '/img/fail.png',
+          duration: 500,
+        })
+    })
+  },
+  tuanduishuju() {
+    var self = this
+    var url = app.globalData.URL + '/act/updateActTeamRank' //更新团队排名
+    var mlist = []
+    var tlist = []
+    for (let i in self.data.tuanduishuju.list) {
+      let team = {
+        tid: self.data.tuanduishuju.list[i].tid,
+        teamRank: self.data.tuanduishuju.list[i].teamRank,
+        teamScore: self.data.tuanduishuju.list[i].teamScore
+      }
+      tlist.push(team)
+      for (let j in self.data.tuanduishuju.list[i].members) {
+        let mem = {
+          mbrId: self.data.tuanduishuju.list[i].members[j].mbrId,
+          mbrRank: self.data.tuanduishuju.list[i].members[j].mbrRank,
+          mbrScore: self.data.tuanduishuju.list[i].members[j].mbrScore
+        }
+        mlist.push(mem)
+      }
+    }
+    var data = {
+      actid: self.data.categoryId,
+      teams: tlist,
+      members: mlist
+    }
+    util.post_token(url, data).then(function (res) {
+      if (res.data.code == 0)
+        wx.showToast({
+          title: '操作成功！', // 标题
+          icon: 'success', // 图标类型，默认success
+          duration: 500 // 提示窗停留时间，默认1500ms
+        })
+      else
+        wx.showToast({
+          title: res.data.data.msg,
+          image: '/img/fail.png',
+          duration: 500,
+        })
+    })
+  },
+  tijiao() {
+    if (this.data.detail.signupway == "30") {
+      this.tuanduishuju()
+      this.gerenshuju()
+    } else if (this.data.detail.signupway == "10")
+      this.gerenshuju()
+    else
+      this.tuanduishuju()
+  },
+  jieshu() {
+    var self = this
+    var url = app.globalData.URL + '/act/stopActivity' //结束活动
+    let data = {
+      actid: self.data.cate
+    }
+    app.wxRequest('GET', url, data, (res) => {
+      if (res.code == 0)
+        wx.showToast({
+          title: '操作成功！', // 标题
+          icon: 'success', // 图标类型，默认success
+          duration: 500 // 提示窗停留时间，默认1500ms
+        })
+      else
+        wx.showToast({
+          title: res.data.data.msg,
+          image: '/img/fail.png',
+          duration: 1000,
+        })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  tijiaobingjieshu() {
+    this.tijiao()
+    this.jieshu()
+  },
+  //////////////////////////////
   TBcontroll() { //同步控制
     var self = this;
     return new Promise(function(resolve, reject) {
