@@ -38,7 +38,7 @@ Page({
       if (list.length == 0)
         self.setData({
           loading: false,
-          comment_detail:list
+          comment_detail: list
         });
       for (let i in list) {
         let url2 = app.globalData.URL + '/applaud/findApplaud'; //点赞情况
@@ -58,12 +58,10 @@ Page({
         };
         util.gets(url2, data).then(function(res) {
           list[i].praiseCnt = res.data.data
-          if (i == list.length - 1) {
-            self.setData({
-              comment_detail: list,
-              loading: false
-            });
-          }
+          self.setData({
+            comment_detail: list,
+            loading: false
+          });
         });
       }
     }, (err) => {
@@ -155,7 +153,7 @@ Page({
     var self = this;
     new Promise(function(resolve, reject) {
       setTimeout(function() {
-        
+
       }, 1000)
       resolve();
     })

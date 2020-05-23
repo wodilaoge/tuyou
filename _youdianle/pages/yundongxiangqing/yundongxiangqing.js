@@ -149,14 +149,40 @@ Page({
     });
   },
   paimingInput: function(e) { //input输入
-    this.setData({
-      Input: e.detail.value
-    });
+    console.log(e)
+    if (e.target.dataset.flag==0){
+      var member = this.data.gerenpaiming
+      member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrRank = e.detail.value
+      this.setData({
+        gerenpaiming: member
+      })
+    }
+    else{
+      var member = this.data.tuanduipaiming
+      member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrRank = e.detail.value
+      this.setData({
+        tuanduipaiming: member
+      })
+    }
+  },
+  test(e){
+    console.log(e)
   },
   defenInput: function(e) { //input输入
-    this.setData({
-      Input: e.detail.value
-    });
+    if (e.target.dataset.flag == 0) {
+      var member = this.data.gerenpaiming
+      member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrScore = e.detail.value
+      this.setData({
+        gerenpaiming: member
+      })
+    }
+    else {
+      var member = this.data.tuanduipaiming
+      member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrScore = e.detail.value
+      this.setData({
+        tuanduipaiming: member
+      })
+    }
   },
   //评论
   pd_fasong() {
@@ -230,6 +256,11 @@ Page({
   xuanzetuandui() {
     wx.navigateTo({
       url: '/pages/xuanzetuandui1/xuanzetuandui1?lid=' + this.data.user.id,
+    })
+  },
+  pinluntiaozhuan(e) { //评论跳转
+    wx.navigateTo({
+      url: '/pages/pinlunliebiao/pinlunliebiao?categoryId=' + this.data.categoryId + '&objtitle=' + this.data.detail.actname,
     })
   },
   baomingSelect(e) {
