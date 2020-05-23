@@ -45,6 +45,7 @@ Page({
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
+    shipinInit:0,
     pinglunall: [],
     shipin_index: 0,
   },
@@ -875,6 +876,11 @@ Page({
     }, 1000)
   },
   /////////////////////////
+
+//   /////////////为视频初始化
+//   if(e.currentTarget.dataset.id == '2') {
+//   this.initShipin()
+// }
   getShipin() { //视频
     var self = this;
     let url = app.globalData.URL + '/video/listActVideo';
@@ -890,13 +896,8 @@ Page({
       console.log(err.errMsg)
     });
   },
-  pinglunall_change: function(e) {
-
-
-  },
-
   video_change: function(e) { ////视频切换
-    console.log(e)
+    var shipintmp = this.data.shipin;
     if (this.data.bofang_if_id != e.currentTarget.id) { ///相等表示点击和播放不匹配
       if (this.data.bofang_pid == '0') {
         this.setData({
@@ -906,8 +907,12 @@ Page({
         let data = {
           id: this.data.shipin.list[e.currentTarget.dataset.index].id,
         };
-        app.wxRequest('POST', url, data, (res) => {
-          console.log()
+        app.wxRequest('GET', url, data, (res) => {
+          console.log(res)
+        })
+        shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
+        self.setData({
+          shipin: shipintmp
         })
       }
       var now_id = e.currentTarget.id;
@@ -937,64 +942,160 @@ Page({
         let data = {
           id: this.data.shipin.list[e.currentTarget.dataset.index].id,
         };
-        app.wxRequest('POST', url, data, (res) => {
+        app.wxRequest('GET', url, data, (res) => {
           console.log(res)
+        })
+        shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
+        self.setData({
+          shipin: shipintmp
         })
       }
     }
   },
+  initShipin:function() {
+    if(this.data.shipinInit==0){
+    var self = this;
+    var shipintmp = this.data.shipin;
+    for (var i in this.data.shipin.list) {
+      console.log(i)
+      let url2 = app.globalData.URL + '/follow/findFollow';
+      let data2 = {
+        objtype: 50,
+        objid: shipintmp.list[i].id,
+        uid: self.data.user.id,
+      };
+      app.wxRequest('GET', url2, data2, (res) => {
+        console.log(res)
+        if (res.data == true) {
+          shipintmp.list[i].ifguanzhu = 1;
+        } else {
+          shipintmp.list[i].ifguanzhu = 0;
+        }
+        self.setData({
+          shipin: shipintmp
+        })
+      }, (err) => {
+        console.log(err)
+      });
 
+      url2 = app.globalData.URL + '/applaud/findApplaud';
+      data2 = {
+        objtype: 50,
+        objid: shipintmp.list[i].id,
+        uid: this.data.user.id,
+      };
+      app.wxRequest('GET', url2, data2, (res) => {
+        console.log(res)
+        if (res.data == true) {
+          shipintmp.list[i].ifzan = 1;
+        } else {
+          shipintmp.list[i].ifzan = 0;
+        }
+        self.setData({
+          shipin: shipintmp
+        })
+      }, (err) => {
+        console.log(err)
+      });
+    }
+    }
+  },
   shipinguanzhu: function(e) {
-    let url = app.globalData.URL + '/follow/updateFollow';
-    let data = {
+    var self = this;
+    let shipintmp = this.data.shipin;
+    let url2 = app.globalData.URL + '/follow/findFollow';
+    let data2 = {
       objtype: 50,
       objid: this.data.shipin.list[e.currentTarget.dataset.index].id,
-      objtitle: this.data.shipin.list[e.currentTarget.dataset.index].title,
-      creater: this.data.user.id,
-      status: 1,
+      uid: this.data.user.id,
     };
-    app.wxRequest('POST', url, data, (res) => {
-      console.log(res)
-    }, (err) => {
-      console.log(err.errMsg)
-    });
+    app.wxRequest('GET', url2, data2, (res) => {
+      if (res.data == true) {
+        shipintmp.list[e.currentTarget.dataset.index].ifguanzhu = 0;
+        self.setData({
+          shipin: shipintmp
+        })
+        let url = app.globalData.URL + '/follow/updateFollow';
+        let data = {
+          objtype: 50,
+          objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+          objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
+          creater: self.data.user.id,
+          status: 0,
+        };
+        app.wxRequest('POST', url, data, (res) => {}, (err) => {});
+
+      } else {
+        shipintmp.list[e.currentTarget.dataset.index].ifguanzhu = 1;
+        self.setData({
+          shipin: shipintmp
+        })
+        let url = app.globalData.URL + '/follow/updateFollow';
+        let data = {
+          objtype: 50,
+          objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+          objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
+          creater: self.data.user.id,
+          status: 1,
+        };
+        app.wxRequest('POST', url, data, (res) => {}, (err) => {});
+      }
+    }, (err) => {});
+    if(this.data.shipinInit==0){
+      
+        this.initShipin()
+        this.setData({
+          shipinInit:1
+        })
+    }
   },
   shipinDianzan: function(e) {
-    let url = app.globalData.URL + '/applaud/updateApplaud';
+    var self = this;
     let shipintmp = this.data.shipin;
-    if (this.data.shipin.list[e.currentTarget.dataset.index].applaudCnt == 0) {
-      let data = {
-        objtype: 50,
-        objid: this.data.shipin.list[e.currentTarget.dataset.index].id,
-        objtitle: this.data.shipin.list[e.currentTarget.dataset.index].title,
-        creater: this.data.user.id,
-        status: 1,
-      };
-      app.wxRequest('POST', url, data, (res) => {
-        console.log(res)
-      }, (err) => {
-        console.log(err.errMsg)
-      });
-      shipintmp.list[e.currentTarget.dataset.index].applaudCnt = 1;
+    let url2 = app.globalData.URL + '/applaud/findApplaud';
+    let data2 = {
+      objtype: 50,
+      objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+      uid: self.data.user.id,
+    };
+    app.wxRequest('GET', url2, data2, (res) => {
+      if (res.data == true) {
+        shipintmp.list[e.currentTarget.dataset.index].ifzan = 0;
+        shipintmp.list[e.currentTarget.dataset.index].applaudCnt--;
+        self.setData({
+          shipin: shipintmp
+        })
+        let url = app.globalData.URL + '/applaud/updateApplaud';
+        let data = {
+          objtype: 50,
+          objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+          objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
+          creater: self.data.user.id,
+          status: 0,
+        };
+        app.wxRequest('POST', url, data, (res) => { }, (err) => { });
+
+      } else {
+        shipintmp.list[e.currentTarget.dataset.index].ifzan = 1;
+        shipintmp.list[e.currentTarget.dataset.index].applaudCnt++;
+        self.setData({
+          shipin: shipintmp
+        })
+        let url = app.globalData.URL + '/applaud/updateApplaud';
+        let data = {
+          objtype: 50,
+          objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+          objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
+          creater: self.data.user.id,
+          status: 1,
+        };
+        app.wxRequest('POST', url, data, (res) => { }, (err) => { });
+      }
+    }, (err) => { });
+    if (this.data.shipinInit == 0) {
+      this.initShipin()
       this.setData({
-        shipin: shipintmp
-      })
-    } else {
-      let data = {
-        objtype: 50,
-        objid: this.data.shipin.list[e.currentTarget.dataset.index].id,
-        objtitle: this.data.shipin.list[e.currentTarget.dataset.index].title,
-        creater: this.data.user.id,
-        status: 0,
-      };
-      app.wxRequest('POST', url, data, (res) => {
-        console.log(res)
-      }, (err) => {
-        console.log(err.errMsg)
-      });
-      shipintmp.list[e.currentTarget.dataset.index].applaudCnt = 0;
-      this.setData({
-        shipin: shipintmp
+        shipinInit: 1
       })
     }
   },
