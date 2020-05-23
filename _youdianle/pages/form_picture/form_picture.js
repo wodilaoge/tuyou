@@ -174,13 +174,13 @@ Page({
       id:'',
       actid:this.data.actid,
       title:this.data.title,
-      author:user.nickname,
+      author:user.id,
       authorAlias:this.data.penname,
       authorHead: user.head,
       content:this.data.textareaAInput,
       status:10,
       creater:user.id,
-      listPhoto:[]
+      listPhoto:this.data.photo
     }
     util.post_token(url, data).then(function(res) {
       console.log(res.data)
