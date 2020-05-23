@@ -460,7 +460,7 @@ Page({
         status: 1,
       };
     app.wxRequest('POST', url, data, (res) => {
-      if (self.data.ifzan)
+      if (self.data.isguanzhu)
         self.setData({
           isguanzhu: false
         })

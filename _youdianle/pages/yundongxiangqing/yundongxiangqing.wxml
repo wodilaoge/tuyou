@@ -78,7 +78,7 @@
           <text class="yibaoming-text-content margin-top">已报名</text>
           <text class="yibaoming-text-content margin-top" style="color:var(--blue)">{{yibaomingList.length}}/{{detail.signupmax}}</text>
           <text class="yibaoming-text-content margin-top">人</text>
-          <!--<button class="cu-btn bg-orange round btn-baomingtiaozhan margin-top-sm" bindtap="bmtz">报名挑战</button>-->
+          <button class="cu-btn bg-orange round btn-baomingtiaozhan margin-top-sm" bindtap="bmtz">报名挑战</button>
         </view>
         <view class="yundong-content bg-white">
           <view class="padding-sm">
@@ -866,7 +866,7 @@
 
   <block wx:if="{{shujuCur==0}}">
     <view class="margin-bottom ">
-      <view class="padding-left bg-white yundong-sp-center " wx:for="{{gerenpaiming.list}}" wx:key="groupid">
+      <view class="padding-left bg-white yundong-sp-center " wx:for="{{gerenpaiming.list}}" wx:key="groupid" wx:for-index="index">
         <view class="bg-blue " style="width:300rpx;height:42rpx; ">
           <text style="margin-left:36rpx; ">{{item.groupname}}</text>
         </view>
@@ -878,16 +878,16 @@
         </view>
 
 
-        <view class="bg-white padding-top-lg padding-bottom-lg yundong-sp-center " wx:for="{{item.members}}" wx:key="id" wx:for-item="members">
+        <view class="bg-white padding-top-lg padding-bottom-lg yundong-sp-center " wx:for="{{item.members}}" wx:key="id" wx:for-item="members" wx:for-index="index2">
           <view style="width:300rpx;height:42rpx; ">
             <view class="cu-avatar round my " style="background-image:url({{members.mbrHead}}); "></view>
             <text class="paiming-name " decode="{{true}} ">&ensp;{{members.mbrAlias}}</text>
           </view>
           <view style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-            <input class="weui-input " style="margin-left:64rpx; " placeholder="{{members.mbrRank==null?'':members.mbrScore}}" />
+            <input class="weui-input " style="margin-left:64rpx; " value="{{members.mbrRank==null?'':members.mbrScore}}" bindinput="paimingInput" data-shuju="{{members}}"/>
           </view>
           <view style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-            <input class="weui-input " style="margin-left:90rpx; " placeholder="{{members.mbrScore==null?'':members.mbrScore}}" />
+            <input class="weui-input " style="margin-left:90rpx; " value="{{members.mbrScore==null?'':members.mbrScore}}" bindinput="defenInput" data-shuju="{{members}}"/>
           </view>
         </view>
       </view>

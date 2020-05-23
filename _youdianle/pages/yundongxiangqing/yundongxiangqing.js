@@ -143,8 +143,17 @@ Page({
       })
     }, 100)
   },
-
-  emailInput: function(e) { //input输入
+  emailInput: function (e) { //input输入
+    this.setData({
+      Input: e.detail.value
+    });
+  },
+  paimingInput: function (e) { //input输入
+    this.setData({
+      Input: e.detail.value
+    });
+  },
+  defenInput: function(e) { //input输入
     this.setData({
       Input: e.detail.value
     });
