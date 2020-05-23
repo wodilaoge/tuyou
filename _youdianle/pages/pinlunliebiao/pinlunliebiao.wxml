@@ -18,16 +18,17 @@
     <view class="cu-list menu-avatar">
       <view class="cu-item" wx:for="{{comment_detail}}" wx:for-index="index">
         <view class="cu-avatar round lg" style="background-image:url({{item.createrHead}});"></view>
-        <view class="content flex-sub" >
+        <view class="content flex-sub">
           <view class=" flex justify-between">
             <view>
               <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
               <button class="cu-btn btn-hot bg-orange disabled" wx:if="{{item.hot}}">热门</button>
             </view>
-            <view class="text-gray text-sm">
-              <text class="{{false==item.ifzan?'cuIcon-appreciate':'cuIcon-appreciatefill'}}  margin-lr-xs line" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}'></text> {{item.praiseCnt}}
-              <text class="cuIcon-appreciate margin-lr-xs "></text> {{item.degradeCnt}}
-            </view>
+            <!--<view class="text-gray text-sm">
+              <image wx:if="{{false==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}' src="/img/weidianzan.png" mode="scaleToFill" style="width:24rpx;height:24rpx"></image>
+              <image wx:if="{{true==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}' src="/img/yidianzan.png" mode="scaleToFill" style="width:24rpx;height:24rpx"></image>
+              {{item.praiseCnt}}
+            </view>-->
           </view>
           <view data-id="{{item.id}}">
             <view class="card-text-content">
