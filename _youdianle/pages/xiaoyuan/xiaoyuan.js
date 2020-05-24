@@ -408,8 +408,8 @@ Page({
         })
       }
       var now_id = e.currentTarget.id;
-      var prev_id = this.data.video_id;
-      this.setData({
+      var prev_id = self.data.video_id;
+      self.setData({
         video_id: now_id,
         bofang_if_id: now_id
       })
@@ -418,20 +418,20 @@ Page({
 
 
     } else { //////////当点击同一个，一次播放一次暂停
-      if (this.data.bofang_pid == '1') {
+      if (self.data.bofang_pid == '1') {
         wx.createVideoContext(e.currentTarget.id).pause();
-        this.setData({
+        self.setData({
           bofang_pid: '0'
         })
       } else {
         wx.createVideoContext(e.currentTarget.id).play();
-        this.setData({
+        self.setData({
           bofang_pid: '1'
         })
 
         let url = app.globalData.URL + '/video/updatePlayCnt';
         let data = {
-          id: this.data.shipin.list[e.currentTarget.dataset.index].id,
+          id: self.data.shipin.list[e.currentTarget.dataset.index].id,
         };
         app.wxRequest('GET', url, data, (res) => {})
         shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
@@ -708,6 +708,159 @@ Page({
     this.setData({
       Input: e.detail.value
     });
+  },
+
+  emailInput: function (e) { //input输入
+    this.setData({
+      Input: e.detail.value
+    });
+  },
+  paimingInput: function (e) { //input输入
+    if (e.target.dataset.flag == 0) {
+      var member = this.data.gerenshuju
+      member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrRank = e.detail.value
+      this.setData({
+        gerenshuju: member
+      })
+    } else {
+      var member = this.data.tuanduishuju
+      member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrRank = e.detail.value
+      this.setData({
+        tuanduishuju: member
+      })
+    }
+  },
+  defenInput: function (e) { //input输入
+    if (e.target.dataset.flag == 0) {
+      var member = this.data.gerenshuju
+      member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrScore = e.detail.value
+      this.setData({
+        gerenshuju: member
+      })
+    } else {
+      var member = this.data.tuanduishuju
+      member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrScore = e.detail.value
+      this.setData({
+        tuanduishuju: member
+      })
+    }
+  },
+  //评论
+  pd_fasong() {
+    if (this.data.Input == "") {
+      wx.showToast({
+        title: '请输入回复内容', // 标题
+        icon: 'none',
+        duration: 1500 // 提示窗停留时间，默认1500ms
+      })
+    } else {
+      this.fasong()
+    }
+  },
+  fasong() { //发送按钮
+    var self = this;
+    if (this.data.duixiang == '50') {
+      let url = app.globalData.URL + '/comm/addComment';
+      let data = {
+        pid: null,
+        objtype: 50,
+        objid: self.data.dxid,
+        objtitle: self.data.dxtitle,
+        comment: self.data.Input,
+        creater: self.data.user.id,
+        createrAlias: self.data.user.nickname,
+        createrHead: self.data.user.head
+      };
+      app.wxRequest('POST', url, data, (res) => {
+        self.onLoad(self.data.options);
+        wx.showToast({
+          title: '评论成功！', // 标题
+          icon: 'success', // 图标类型，默认success
+          duration: 1500 // 提示窗停留时间，默认1500ms
+        })
+      }, (err) => {
+        console.log(err.errMsg)
+      });
+    } else {
+      let url = app.globalData.URL + '/comm/addComment';
+      let data = {
+        pid: null,
+        objtype: 30,
+        objid: self.data.categoryId,
+        objtitle: "",
+        comment: self.data.Input,
+        creater: self.data.user.id,
+        createrAlias: self.data.user.nickname,
+        createrHead: self.data.user.head
+      };
+      app.wxRequest('POST', url, data, (res) => {
+        self.onLoad(self.data.options);
+        wx.showToast({
+          title: '评论成功！', // 标题
+          icon: 'success', // 图标类型，默认success
+          duration: 1500 // 提示窗停留时间，默认1500ms
+        })
+      }, (err) => {
+        console.log(err.errMsg)
+      });
+    }
+    self.setData({
+      Input: '',
+    })
+    self.hideModal()
+  },
+
+  fasong() { //发送按钮
+    var self = this;
+    if (this.data.duixiang == '50') {
+      let url = app.globalData.URL + '/comm/addComment';
+      let data = {
+        pid: null,
+        objtype: 50,
+        objid: self.data.dxid,
+        objtitle: self.data.dxtitle,
+        comment: self.data.Input,
+        creater: self.data.user.id,
+        createrAlias: self.data.user.nickname,
+        createrHead: self.data.user.head
+      };
+      app.wxRequest('POST', url, data, (res) => {
+        self.onLoad(self.data.options);
+        wx.showToast({
+          title: '评论成功！', // 标题
+          icon: 'success', // 图标类型，默认success
+          duration: 1500 // 提示窗停留时间，默认1500ms
+        })
+      }, (err) => {
+        console.log(err.errMsg)
+      });
+    } else {
+      let url = app.globalData.URL + '/comm/addComment';
+      let data = {
+        pid: null,
+        objtype: 30,
+        objid: self.data.categoryId,
+        objtitle: "",
+        comment: self.data.Input,
+        creater: self.data.user.id,
+        createrAlias: self.data.user.nickname,
+        createrHead: self.data.user.head
+      };
+      app.wxRequest('POST', url, data, (res) => {
+        self.onLoad(self.data.options);
+        wx.showToast({
+          title: '评论成功！', // 标题
+          icon: 'success', // 图标类型，默认success
+          duration: 1500 // 提示窗停留时间，默认1500ms
+        })
+      }, (err) => {
+        console.log(err.errMsg)
+      });
+    }
+    self.setData({
+      Input: '',
+    })
+    self.hideModal()
   },
   //////////////////
 
