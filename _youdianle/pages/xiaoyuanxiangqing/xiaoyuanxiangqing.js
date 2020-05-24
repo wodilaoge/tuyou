@@ -53,7 +53,6 @@ Page({
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
     shipinInit:0,
-    pinglunall: [],
     shipin_index: 0,
   },
   chooseSezi: function(e) {
@@ -708,7 +707,6 @@ Page({
   },
   baomingkongzhi() {
     let detail = this.data.detail
-    console.log(detail.entrylimit)
     if (detail.entrylimit == 10) {
       this.setData({
         cansaiset: true,
@@ -871,7 +869,6 @@ Page({
           creater: self.data.user.id
         }
       util.post_token(url, data).then(function (res) {
-        console.log(res)
         if (res.data.code == 0) {
           wx.showToast({
             title: '报名成功！', // 标题
@@ -928,7 +925,6 @@ Page({
             members: self.data.members,
           }
         util.post_token(url, data).then(function (res) {
-          console.log(res)
           if (res.data.code == 0) {
             wx.showToast({
               title: '报名成功！', // 标题
@@ -969,7 +965,6 @@ Page({
       actid: self.data.categoryId,
       members: mlist
     }
-    console.log(data)
     util.post_token(url, data).then(function (res) {
       if (res.data.code == 0)
         wx.showToast({
@@ -1114,7 +1109,6 @@ Page({
       actid: this.data.categoryId
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res)
       this.setData({
         shipin: res.data
       })
@@ -1134,7 +1128,6 @@ Page({
           id: this.data.shipin.list[e.currentTarget.dataset.index].id,
         };
         app.wxRequest('GET', url, data, (res) => {
-          console.log(res)
         })
         shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
         self.setData({
@@ -1164,12 +1157,10 @@ Page({
         })
 
         let url = app.globalData.URL + '/video/updatePlayCnt';
-        console.log(this.data.shipin.list[e.currentTarget.dataset.index].id)
         let data = {
           id: this.data.shipin.list[e.currentTarget.dataset.index].id,
         };
         app.wxRequest('GET', url, data, (res) => {
-          console.log(res)
         })
         shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
         self.setData({
@@ -1183,7 +1174,6 @@ Page({
     var self = this;
     var shipintmp = this.data.shipin;
     for (var i in this.data.shipin.list) {
-      console.log(i)
       let url2 = app.globalData.URL + '/follow/findFollow';
       let data2 = {
         objtype: 50,
@@ -1191,7 +1181,6 @@ Page({
         uid: self.data.user.id,
       };
       app.wxRequest('GET', url2, data2, (res) => {
-        console.log(res)
         if (res.data == true) {
           shipintmp.list[i].ifguanzhu = 1;
         } else {
@@ -1211,7 +1200,6 @@ Page({
         uid: this.data.user.id,
       };
       app.wxRequest('GET', url2, data2, (res) => {
-        console.log(res)
         if (res.data == true) {
           shipintmp.list[i].ifzan = 1;
         } else {

@@ -352,19 +352,7 @@ Page({
       url: '/pages/chakanhuifu/chakanhuifu?id=' + e.currentTarget.dataset.id,
     })
   },
-  getZhaopian() { //照片
-    let url = app.globalData.URL + '/photo/listActPhoto';
-    let data = {
-      arctid: this.data.categoryId
-    };
-    app.wxRequest('GET', url, data, (res) => {
-      this.setData({
-        zhaopian: res.data
-      })
-    }, (err) => {
-      console.log(err.errMsg)
-    });
-  },
+ 
   rotation() {
     var self = this
     let url = app.globalData.URL + '/act/findRotations';
@@ -870,6 +858,21 @@ Page({
     }
   },
   /////////////
+  getZhaopian() { //照片
+    let url = app.globalData.URL + '/photo/listActPhoto';
+    let data = {
+      arctid: this.data.categoryId
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res)
+      this.setData({
+        zhaopian: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  ////////////
   shipintiaozhuan() {
     wx.navigateTo({
       url: '../form_actid_video/form_actid_video?actid=' + this.data.categoryId

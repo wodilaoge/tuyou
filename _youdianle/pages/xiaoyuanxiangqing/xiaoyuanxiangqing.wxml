@@ -465,11 +465,11 @@
     创建时间：20200405
     创建内容：重新恢复视频界面和投票界面-->
 <block wx:if="{{TabCur==2}}">
-  <scroll-view scroll-x class="bg-white nav text-center">
+  <!-- <scroll-view scroll-x class="bg-white nav text-center">
     <view class="cu-item" bindtap="shipinTabSelect" data-cur="{{item.code}}" wx:for="{{shipindalei}}" wx:key="code">
       <button class="cu-btn btn-yundong-cur round {{shipinCur==item.code?'bg-orange':'bg-gery'}} padding">{{item.name}}</button>
     </view>
-  </scroll-view>
+  </scroll-view> -->
 
   <view wx:for="{{shipin.list}}">
     <view wx:if="{{index==0}}">
