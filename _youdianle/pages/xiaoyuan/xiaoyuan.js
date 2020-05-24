@@ -62,6 +62,7 @@ Page({
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
+    school:[],
   },
   tabSelect(e) {
     app.globalData.tabbar = e.currentTarget.dataset.id;
@@ -169,6 +170,7 @@ Page({
         if (res.data.data[i].name == "校园活动") {
           let data = {
             sid: res.data.data[i].code,
+            univ: self.data.school.code,
             pageSize: 2
           };
           app.wxRequest('GET', url, data, (res) => {
@@ -213,7 +215,7 @@ Page({
           }).then(function () {
             data = {
               sid: self.data.yundongid,
-              acid1: self.data.yundongCur
+              univ: self.data.school.code
             }
             util.gets(url, data).then(function(res) {
               self.setData({
@@ -257,7 +259,8 @@ Page({
             })
           }).then(function () {
             data = {
-              sid: self.data.wenyuid
+              sid: self.data.wenyuid,
+              univ: self.data.school.code
             }
             util.gets(url, data).then(function(res) {
               self.setData({
@@ -300,7 +303,8 @@ Page({
             })
           }).then(function () {
             data = {
-              sid: self.data.aihaoid
+              sid: self.data.aihaoid,
+              univ: self.data.school.code
             }
             util.gets(url, data).then(function(res) {
               self.setData({
@@ -451,11 +455,10 @@ Page({
 
   },
   onShow() {
-    // this.setData({ //读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
-    //   TabCur: app.globalData.tabbar
-    // })
-
-
+    this.setData({
+      school: wx.getStorageSync('school')
+    })
+    this.xuanran();
     //this.news()
     //this.news_detail()
   },

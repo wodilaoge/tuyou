@@ -1010,7 +1010,7 @@ Page({
       if (self.data.fenzuhide)
         data = {
           actid: self.data.categoryId,
-          groupid: "",
+          groupid: null,
           mbrId: self.data.user.id,
           mbrAlias: self.data.user.nickname,
           mbrHead: self.data.user.head,
@@ -1067,7 +1067,7 @@ Page({
         if (self.data.fenzuhide)
           data = {
             actid: self.data.categoryId,
-            groupid: "",
+            groupid: null,
             tid: self.data.tuanduiSelect.id,
             team: self.data.tuanduiSelect.name,
             teamLogo: self.data.tuanduiSelect.logo,
