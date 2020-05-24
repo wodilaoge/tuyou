@@ -23,7 +23,6 @@ Page({
     let url = app.globalData.URL + '/appuser/findUserByID';
     let data = {
       id: this.data.duiyuanID,
-
     };
     app.wxRequest('GET', url, data, (res) => {
       console.log(res.data)
@@ -44,7 +43,6 @@ Page({
     this.setData({
       duiyuanID:options.id
     })
-    console.log(this.data.duiyuanID)
     this.getDuiyuan()
   },
 
