@@ -16,7 +16,7 @@
     </picker>
   </view> -->
   <view class="cu-form-group margin-top">
-    <view class="title">标题</view>
+    <view class="title">图片标题</view>
     <input class="input text-grey" placeholder="春季篮球赛"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>

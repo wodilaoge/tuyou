@@ -16,7 +16,7 @@
     </picker>
   </view> -->
   <view class="cu-form-group margin-top">
-    <view class="title">活动名称</view>
+    <view class="title">视频标题</view>
     <input class="input text-grey" bindinput="getname" ></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>

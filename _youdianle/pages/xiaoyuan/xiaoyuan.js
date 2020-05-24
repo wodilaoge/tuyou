@@ -40,6 +40,7 @@ Page({
     yundongxiaolei: [],
     wenyuxiaolei: [],
     aihaoxiaolei: [],
+    shipinxiaolei: [],
     yundongid: '',
     shipinid: '',
     aihaoid: '',
@@ -50,18 +51,19 @@ Page({
     yundongCur: '', //运动内导航栏
     wenyuCur: '', //文娱内导航栏
     aihaoCur: '', //爱好内导航栏
-    shipinCur: '', //视频内导航栏
+    shipinCur: '0', //视频内导航栏
     xiaoyuanSwiperList: [],
     yundongSwiperList: [],
     wenyuSwiperList: [],
     aihaoSwiperList: [],
     shipinSwiperList: [],
     shipin: [],
-    //news: [],
-    //news_detail: [],
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
+    shipinInit: 0,
+    shipin_index: 0,
+    user: [],
   },
   tabSelect(e) {
     app.globalData.tabbar = e.currentTarget.dataset.id;
@@ -145,15 +147,25 @@ Page({
     })
   },
   shipinTabSelect(e) { //视频内导航栏
-    var url = app.globalData.URL + '/act/listActivity';
-    let data = {
-      sid: this.data.shipinid,
-      acid1: e.currentTarget.dataset.cur
-    };
     this.setData({
       shipinCur: e.currentTarget.dataset.cur,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
+    var self = this
+    let url = app.globalData.URL + '/config/getActivityClass2'
+    let data = {
+      cid: self.properties.shipinCur
+    }
+    util.gets(url, data).then(function(res) {
+      self.setData({
+        shipinxiaolei: res.data.data
+      })
+    })
+    if (this.data.shipinCur == '0') {
+      this.getShipin()
+    } else {
+      this.getShipinfenlei()
+    }
   },
   xuanran() {
     var self = this;
@@ -169,12 +181,12 @@ Page({
         if (res.data.data[i].name == "校园活动") {
           let data = {
             sid: res.data.data[i].code,
-            pageSize:2
+            pageSize: 2
           };
           app.wxRequest('GET', url, data, (res) => {
             self.setData({
               ActList: res.data,
-              activityborder:res.data.border
+              activityborder: res.data.border
             })
           }, (err) => {
             console.log(err.errMsg)
@@ -333,20 +345,18 @@ Page({
           }, (err) => {
             console.log(err.errMsg)
           });
-          var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
-          console.log(urldalei)
-          console.log(data)
+          var urldalei = app.globalData.URL + '/config/findAllActivityClass1'; //查询大类
           util.gets(urldalei, data).then(function(res) {
-            console.log(res)
             self.setData({
               shipindalei: res.data.data,
+              shipinCur: '0'
             })
-            if (res.data.data[0]) {
-              self.setData({
-                shipinCur: res.data.data[0].code
-              })
+            // if (res.data.data[0]) {
+            //   self.setData({
+            //     shipinCur: res.data.data[0].code
+            //   })
 
-            }
+            // }
           }).then(function() {
             data = {
               sid: self.data.shipinid,
@@ -366,13 +376,12 @@ Page({
     })
   },
 
+  /////////////////////////
   getShipin() { //视频
+    var self = this;
     let url = app.globalData.URL + '/video/listActVideo';
-    let data = {
-
-    };
+    let data = {};
     app.wxRequest('GET', url, data, (res) => {
-      console.log('shipin',res)
       this.setData({
         shipin: res.data
       })
@@ -381,13 +390,23 @@ Page({
     });
   },
   video_change: function(e) { ////视频切换
+    var self = this;
+    var shipintmp = this.data.shipin;
     if (this.data.bofang_if_id != e.currentTarget.id) { ///相等表示点击和播放不匹配
       if (this.data.bofang_pid == '0') {
         this.setData({
           bofang_pid: '1'
         })
+        let url = app.globalData.URL + '/video/updatePlayCnt';
+        let data = {
+          id: this.data.shipin.list[e.currentTarget.dataset.index].id,
+        };
+        app.wxRequest('GET', url, data, (res) => {})
+        shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
+        self.setData({
+          shipin: shipintmp
+        })
       }
-
       var now_id = e.currentTarget.id;
       var prev_id = this.data.video_id;
       this.setData({
@@ -409,9 +428,289 @@ Page({
         this.setData({
           bofang_pid: '1'
         })
+
+        let url = app.globalData.URL + '/video/updatePlayCnt';
+        let data = {
+          id: this.data.shipin.list[e.currentTarget.dataset.index].id,
+        };
+        app.wxRequest('GET', url, data, (res) => {})
+        shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
+        self.setData({
+          shipin: shipintmp
+        })
       }
     }
   },
+  initShipin: function() {
+    if (this.data.shipinInit == 0) {
+      var self = this;
+      var shipintmp = this.data.shipin;
+      for (var i in this.data.shipin.list) {
+        let url2 = app.globalData.URL + '/follow/findFollow';
+        let data2 = {
+          objtype: 50,
+          objid: shipintmp.list[i].id,
+          uid: self.data.user.id,
+        };
+        app.wxRequest('GET', url2, data2, (res) => {
+          if (res.data == true) {
+            shipintmp.list[i].ifguanzhu = 1;
+          } else {
+            shipintmp.list[i].ifguanzhu = 0;
+          }
+          self.setData({
+            shipin: shipintmp
+          })
+        }, (err) => {
+          console.log(err)
+        });
+
+        url2 = app.globalData.URL + '/applaud/findApplaud';
+        data2 = {
+          objtype: 50,
+          objid: shipintmp.list[i].id,
+          uid: this.data.user.id,
+        };
+        app.wxRequest('GET', url2, data2, (res) => {
+          if (res.data == true) {
+            shipintmp.list[i].ifzan = 1;
+          } else {
+            shipintmp.list[i].ifzan = 0;
+          }
+          self.setData({
+            shipin: shipintmp
+          })
+        }, (err) => {
+          console.log(err)
+        });
+      }
+    }
+  },
+  shipinguanzhu: function(e) {
+    var self = this;
+    let shipintmp = this.data.shipin;
+    let url2 = app.globalData.URL + '/follow/findFollow';
+    console.log(e)
+    console.log(shipintmp)
+    let data2 = {
+      objtype: 50,
+      objid: this.data.shipin.list[e.currentTarget.dataset.index].id,
+      uid: this.data.user.id,
+    };
+    app.wxRequest('GET', url2, data2, (res) => {
+      if (res.data == true) {
+        shipintmp.list[e.currentTarget.dataset.index].ifguanzhu = 0;
+        self.setData({
+          shipin: shipintmp
+        })
+        let url = app.globalData.URL + '/follow/updateFollow';
+        let data = {
+          objtype: 50,
+          objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+          objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
+          creater: self.data.user.id,
+          status: 0,
+        };
+        app.wxRequest('POST', url, data, (res) => {}, (err) => {});
+
+      } else {
+        shipintmp.list[e.currentTarget.dataset.index].ifguanzhu = 1;
+        self.setData({
+          shipin: shipintmp
+        })
+        let url = app.globalData.URL + '/follow/updateFollow';
+        let data = {
+          objtype: 50,
+          objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+          objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
+          creater: self.data.user.id,
+          status: 1,
+        };
+        app.wxRequest('POST', url, data, (res) => {}, (err) => {});
+      }
+    }, (err) => {});
+    if (this.data.shipinInit == 0) {
+
+      this.initShipin()
+      this.setData({
+        shipinInit: 1
+      })
+    }
+  },
+  shipinDianzan: function(e) {
+    var self = this;
+    let shipintmp = this.data.shipin;
+    let url2 = app.globalData.URL + '/applaud/findApplaud';
+    let data2 = {
+      objtype: 50,
+      objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+      uid: self.data.user.id,
+    };
+    app.wxRequest('GET', url2, data2, (res) => {
+      if (res.data == true) {
+        shipintmp.list[e.currentTarget.dataset.index].ifzan = 0;
+        shipintmp.list[e.currentTarget.dataset.index].applaudCnt--;
+        self.setData({
+          shipin: shipintmp
+        })
+        let url = app.globalData.URL + '/applaud/updateApplaud';
+        let data = {
+          objtype: 50,
+          objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+          objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
+          creater: self.data.user.id,
+          status: 0,
+        };
+        app.wxRequest('POST', url, data, (res) => {}, (err) => {});
+
+      } else {
+        shipintmp.list[e.currentTarget.dataset.index].ifzan = 1;
+        shipintmp.list[e.currentTarget.dataset.index].applaudCnt++;
+        self.setData({
+          shipin: shipintmp
+        })
+        let url = app.globalData.URL + '/applaud/updateApplaud';
+        let data = {
+          objtype: 50,
+          objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+          objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
+          creater: self.data.user.id,
+          status: 1,
+        };
+        app.wxRequest('POST', url, data, (res) => {}, (err) => {});
+      }
+    }, (err) => {});
+    if (this.data.shipinInit == 0) {
+      this.initShipin()
+      this.setData({
+        shipinInit: 1
+      })
+    }
+  },
+  getShipinfenlei() { //视频
+    let url = app.globalData.URL + '/video/listActVideo';
+    let data = {
+      acid1: this.data.shipinCur
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        shipin: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  chooseSezi: function (e) {
+    var that = this;
+    var animation = wx.createAnimation({
+      duration: 100,
+      timingFunction: 'linear'
+    })
+    that.animation = animation
+    animation.translateY(200).step()
+    that.setData({
+      animationData: animation.export(),
+      chooseSize: true
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      that.setData({
+        animationData: animation.export()
+      })
+    }, 100)
+
+    that.setData({
+      duixiang: e.currentTarget.dataset.duixiang,
+      dxid: e.currentTarget.dataset.dxid,
+      dxtitle: e.currentTarget.dataset.dxtitle,
+    })
+  },
+  shipinChooseSezi: function (e) {
+    var that = this;
+    var animation = wx.createAnimation({
+      duration: 100,
+      timingFunction: 'linear'
+    })
+    that.animation = animation
+    animation.translateY(200).step()
+    that.setData({
+      shipinAnimationData: animation.export(),
+      shipinChooseSize: true
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      that.setData({
+        shipinAnimationData: animation.export()
+      })
+    }, 100)
+    that.setData({
+      shipin_index: e.currentTarget.dataset.index,
+    })
+
+    /////
+    var shipintmp = this.data.shipin;
+    let url = app.globalData.URL + '/comm/listCommByObj';
+    let data = {
+      objtype: 50,
+      objid: e.currentTarget.dataset.dxid,
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      shipintmp.list[e.currentTarget.dataset.index].listComm = res.data.list;
+      this.setData({
+        shipin: shipintmp,
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+
+
+  },
+  hideModal: function (e) {
+    var that = this;
+    var animation = wx.createAnimation({
+      duration: 100,
+      timingFunction: 'linear'
+    })
+    that.animation = animation
+    animation.translateY(200).step()
+    that.setData({
+      animationData: animation.export()
+
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      that.setData({
+        animationData: animation.export(),
+        chooseSize: false
+      })
+    }, 100)
+  },
+  shipinHideModal: function (e) {
+    var that = this;
+    var animation = wx.createAnimation({
+      duration: 100,
+      timingFunction: 'linear'
+    })
+    that.animation = animation
+    animation.translateY(200).step()
+    that.setData({
+      shipinAnimationData: animation.export()
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      that.setData({
+        shipinAnimationData: animation.export(),
+        shipinChooseSize: false
+      })
+    }, 100)
+  },
+  emailInput: function (e) { //input输入
+    this.setData({
+      Input: e.detail.value
+    });
+  },
+  //////////////////
+
   change_sousuo: function() {
     wx.navigateTo({
       url: '../sousuo/sousuo',
@@ -444,7 +743,10 @@ Page({
         }
       }
     })
-    this.xuanran();//初始化
+    this.setData({
+      user: wx.getStorageSync('userInfo'),
+    })
+    this.xuanran(); //初始化
     this.getShipin();
     this.setData({ //读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
       TabCur: app.globalData.tabbar
@@ -523,34 +825,81 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     console.log("上拉刷新")
-    wx.showLoading({
-      title: '加载中...',
-      mask: true  //显示触摸蒙层  防止事件穿透触发
-  });
     let that = this;
     console.log(that.data.activityborder)
-    if (that.data.TabCur==0) {
+    if (that.data.TabCur == 0) {
+      wx.showLoading({
+        title: '加载中...',
+        mask: true //显示触摸蒙层  防止事件穿透触发
+      });
       var url = app.globalData.URL + '/act/listActivity';
       let data = {
         sid: '076002',
-        border:that.data.ActList.border,
-        pageSize:2
+        border: that.data.ActList.border,
+        pageSize: 2
       };
       app.wxRequest('GET', url, data, (res) => {
-        console.log('刷新校园中',res)
-        let t='ActList.list'
-        var tmp=that.data.ActList.list
-        for(let s of res.data.list)
+        console.log('刷新校园中', res)
+        let t = 'ActList.list'
+        var tmp = that.data.ActList.list
+        for (let s of res.data.list)
           tmp.push(s)
         that.setData({
-          [t]:tmp,
+          [t]: tmp,
         })
-        wx.hideLoading() 
+        wx.hideLoading()
       }, (err) => {
         console.log(err.errMsg)
       });
+    } else if (that.data.tabbar == 1) {
+      wx.showLoading({
+        title: '加载中...',
+        mask: true //显示触摸蒙层  防止事件穿透触发
+      });
+      self.setData({
+        yundongid: res.data.data[i].code
+      })
+      let data = {
+        sid: res.data.data[i].code
+      };
+
+      app.wxRequest('GET', url2, data, (res) => {
+        self.setData({
+          yundongSwiperList: res.data
+        })
+      }, (err) => {
+        console.log(err.errMsg)
+      });
+
+      var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
+      util.gets(urldalei, data).then(function(res) {
+        self.setData({
+          yundongdalei: res.data.data,
+          yundongCur: res.data.data[0].code
+        })
+      }).then(function() {
+        data = {
+          sid: self.data.yundongid,
+          acid1: self.data.yundongCur
+        }
+        util.gets(url, data).then(function(res) {
+          self.setData({
+            yundongList: res.data.data
+          })
+        }).then(function() {
+          let urlxiaolei = app.globalData.URL + '/config/getActivityClass2'
+          let dataxiaolei = {
+            cid: self.data.yundongCur
+          }
+          util.gets(urlxiaolei, dataxiaolei).then(function(res) {
+            self.setData({
+              yundongxiaolei: res.data.data
+            })
+          })
+        })
+      })
     }
   },
 
