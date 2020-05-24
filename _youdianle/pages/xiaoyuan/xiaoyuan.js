@@ -253,7 +253,6 @@ Page({
             self.setData({
               wenyudalei: res.data.data,
               wenyuCur: res.data.data[0].code,
-              shipindalei: res.data.data,
             })
           }).then(function() {
             data = {
@@ -335,7 +334,10 @@ Page({
             console.log(err.errMsg)
           });
           var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
+          console.log(urldalei)
+          console.log(data)
           util.gets(urldalei, data).then(function(res) {
+            console.log(res)
             self.setData({
               shipindalei: res.data.data,
             })
