@@ -180,7 +180,7 @@
       <block wx:if="{{isbaominggeren==0}}">
         <view class="bg-white">
           <form>
-            <view class="cu-form-group">
+            <view class="cu-form-group" hidden="{{guankanhide}}">>
               <radio-group class="block" style="margin-left:240rpx;">
                 <view class="flex">
                   <view>
@@ -194,11 +194,11 @@
                 </view>
               </radio-group>
             </view>
-            <view class="cu-form-group">
+            <view class="cu-form-group" hidden="{{shiminghide}}">
               <view class="title" style="margin-right:65rpx;">姓名 </view>
               <input class="form-text" placeholder="李四" bindinput="xingmingInput" value="{{xingmingInput}}"></input>
             </view>
-            <view class="cu-form-group ">
+            <view class="cu-form-group " hidden="{{shiminghide}}">
               <view class="title" style="margin-right:65rpx;">手机</view>
               <input class="form-text" placeholder="请输入手机号" disabled></input>
             </view>
@@ -213,7 +213,7 @@
           </form>
         </view>
         <view class="bg-white flex" style="align-items: center;justify-content: center;">
-          <checkbox class="blue yuedu-logo" checked></checkbox>
+          <checkbox class="blue yuedu-logo" checked bindtap='iftongyiRadioChange'></checkbox>
           <view class="queren margin-left-sm" style="color:#999999;">
             我已阅读并同意
           </view>
@@ -273,7 +273,7 @@
       <block wx:if="{{isbaomingtuandui==0}}">
         <view class="bg-white">
           <form>
-            <view class="cu-form-group">
+            <view class="cu-form-group" hidden="{{guankanhide}}">>
               <radio-group class="block" style="margin-left:240rpx;">
                 <view class="flex">
                   <view>
@@ -288,11 +288,11 @@
                 </view>
               </radio-group>
             </view>
-            <view class="cu-form-group">
+            <view class="cu-form-group" hidden="{{shiminghide}}">
               <view class="title" style="margin-right:65rpx;">姓名 </view>
               <input class="form-text" placeholder="李四" bindinput="xingmingInput" value="{{xingmingInput}}"></input>
             </view>
-            <view class="cu-form-group ">
+            <view class="cu-form-group " hidden="{{shiminghide}}">
               <view class="title" style="margin-right:65rpx;">手机</view>
               <input class="form-text" placeholder="请输入手机号" disabled></input>
             </view>
@@ -311,7 +311,7 @@
           </form>
         </view>
         <view class="bg-white flex" style="align-items: center;justify-content: center;">
-          <checkbox class="blue yuedu-logo" checked></checkbox>
+          <checkbox class="blue yuedu-logo" checked bindtap='iftongyiRadioChange'></checkbox>
           <view class="queren margin-left-sm" style="color:#999999;">
             我已阅读并同意
           </view>
