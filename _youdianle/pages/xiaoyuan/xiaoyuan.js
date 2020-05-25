@@ -61,7 +61,7 @@ Page({
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
-    school:[],
+    school: [],
     shipinInit: 0,
     shipin_index: 0,
     user: [],
@@ -179,12 +179,19 @@ Page({
       for (var i in res.data.data) {
         var url = app.globalData.URL + '/act/listActivity';
         var url2 = app.globalData.URL + '/secrot/listSecrotation';
+        var data
         if (res.data.data[i].name == "校园活动") {
-          let data = {
-            sid: res.data.data[i].code,
-            univ: self.data.school.code,
-            pageSize: 2
-          };
+          if (self.data.school.length != 0)
+             data = {
+              sid: res.data.data[i].code,
+              univ: self.data.school.code,
+              pageSize: 2
+            };
+          else
+            data = {
+              sid: res.data.data[i].code,
+              pageSize: 2
+            };
           app.wxRequest('GET', url, data, (res) => {
             self.setData({
               ActList: res.data,
@@ -206,7 +213,7 @@ Page({
           self.setData({
             yundongid: res.data.data[i].code
           })
-          let data = {
+          data = {
             sid: res.data.data[i].code
           };
 
@@ -225,10 +232,15 @@ Page({
               yundongCur: res.data.data[0].code
             })
           }).then(function() {
-            data = {
-              sid: self.data.yundongid,
-              univ: self.data.school.code
-            }
+            if (self.data.school.length != 0)
+              data = {
+                sid: self.data.yundongid,
+                univ: self.data.school.code
+              };
+            else
+              data = {
+                sid: self.data.yundongid
+              };
             util.gets(url, data).then(function(res) {
               self.setData({
                 yundongList: res.data.data
@@ -269,10 +281,15 @@ Page({
               wenyuCur: res.data.data[0].code,
             })
           }).then(function() {
-            data = {
-              sid: self.data.wenyuid,
-              univ: self.data.school.code
-            }
+            if (self.data.school.length != 0)
+              data = {
+                sid: self.data.wenyuid,
+                univ: self.data.school.code
+              };
+            else
+              data = {
+                sid: self.data.wenyuid
+              };
             util.gets(url, data).then(function(res) {
               self.setData({
                 wenyuList: res.data.data
@@ -313,10 +330,15 @@ Page({
               aihaoCur: res.data.data[0].code
             })
           }).then(function() {
-            data = {
-              sid: self.data.aihaoid,
-              univ: self.data.school.code
-            }
+            if (self.data.school.length != 0)
+              data = {
+                sid: self.data.aihaoid,
+                univ: self.data.school.code
+              };
+            else
+              data = {
+                sid: self.data.aihaoid
+              };
             util.gets(url, data).then(function(res) {
               self.setData({
                 aihaoList: res.data.data
@@ -531,7 +553,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-  chooseSezi: function (e) {
+  chooseSezi: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -543,7 +565,7 @@ Page({
       animationData: animation.export(),
       chooseSize: true
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export()
@@ -556,7 +578,7 @@ Page({
       dxtitle: e.currentTarget.dataset.dxtitle,
     })
   },
-  shipinChooseSezi: function (e) {
+  shipinChooseSezi: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -568,7 +590,7 @@ Page({
       shipinAnimationData: animation.export(),
       shipinChooseSize: true
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         shipinAnimationData: animation.export()
@@ -596,7 +618,7 @@ Page({
 
 
   },
-  hideModal: function (e) {
+  hideModal: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -608,7 +630,7 @@ Page({
       animationData: animation.export()
 
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export(),
@@ -616,7 +638,7 @@ Page({
       })
     }, 100)
   },
-  shipinHideModal: function (e) {
+  shipinHideModal: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -627,7 +649,7 @@ Page({
     that.setData({
       shipinAnimationData: animation.export()
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         shipinAnimationData: animation.export(),
@@ -635,11 +657,50 @@ Page({
       })
     }, 100)
   },
-  emailInput: function (e) { //input输入
+  emailInput: function(e) { //input输入
     this.setData({
       Input: e.detail.value
     });
   },
+<<<<<<< HEAD
+=======
+
+  emailInput: function(e) { //input输入
+    this.setData({
+      Input: e.detail.value
+    });
+  },
+  paimingInput: function(e) { //input输入
+    if (e.target.dataset.flag == 0) {
+      var member = this.data.gerenshuju
+      member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrRank = e.detail.value
+      this.setData({
+        gerenshuju: member
+      })
+    } else {
+      var member = this.data.tuanduishuju
+      member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrRank = e.detail.value
+      this.setData({
+        tuanduishuju: member
+      })
+    }
+  },
+  defenInput: function(e) { //input输入
+    if (e.target.dataset.flag == 0) {
+      var member = this.data.gerenshuju
+      member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrScore = e.detail.value
+      this.setData({
+        gerenshuju: member
+      })
+    } else {
+      var member = this.data.tuanduishuju
+      member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrScore = e.detail.value
+      this.setData({
+        tuanduishuju: member
+      })
+    }
+  },
+>>>>>>> 53491043315b965a4b7bc33d11ca95f6dac0d8fe
   //评论
   pd_fasong() {
     if (this.data.Input == "") {
