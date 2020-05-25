@@ -156,6 +156,11 @@ Page({
       })
     }
   },
+  getname(e){
+    this.setData({
+      title:e.detail.value
+    })
+  },
   textareaAInput(e) {
     this.setData({
       textareaAValue: e.detail.value
