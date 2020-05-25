@@ -219,7 +219,7 @@ Page({
   onLoad: function(options) {
     this.startReportHeart()
     var n = wx.getStorageSync('school')
-    if (n.length) {
+    if (n) {
       this.setData({
         schoolname: n.name
       })
