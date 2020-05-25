@@ -1,5 +1,6 @@
 /* pages/xiaoyuan/xiaoyuan.wxss */
 @import "../yundongxiangqing/yundongxiangqing.wxss";
+@import "../xiaoyuanxiangqing/xiaoyuanxiangqing.wxss";
 @import "../index/index.wxss";
 page{
   padding-bottom: 0rpx;
