@@ -406,9 +406,7 @@ Page({
   getShipin() { //视频
     var self = this;
     let url = app.globalData.URL + '/video/listActVideo'; 
-    // let url = app.globalData.URL + '/video/listActVideoHome';
     let data = {
-      // uid:this.data.user.id,
     };
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
@@ -657,13 +655,6 @@ Page({
       })
     }, 100)
   },
-  emailInput: function(e) { //input输入
-    this.setData({
-      Input: e.detail.value
-    });
-  },
-<<<<<<< HEAD
-=======
 
   emailInput: function(e) { //input输入
     this.setData({
@@ -700,7 +691,6 @@ Page({
       })
     }
   },
->>>>>>> 53491043315b965a4b7bc33d11ca95f6dac0d8fe
   //评论
   pd_fasong() {
     if (this.data.Input == "") {
