@@ -2,6 +2,7 @@ const app = getApp();
 var util = require("../../utils/util.js");
 Page({
   data: {
+    isReflesh: true,
     bt: '校园活动',
     btdata: [{
         id: 0,
@@ -61,7 +62,7 @@ Page({
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
-    school:[],
+    school: [],
     shipinInit: 0,
     shipin_index: 0,
     user: [],
@@ -109,7 +110,7 @@ Page({
     let data = {
       cid: self.properties.yundongCur
     }
-    util.gets(url, data).then(function(res) {
+    util.gets(url, data).then(function (res) {
       self.setData({
         yundongxiaolei: res.data.data
       })
@@ -125,7 +126,7 @@ Page({
     let data = {
       cid: self.properties.wenyuCur
     }
-    util.gets(url, data).then(function(res) {
+    util.gets(url, data).then(function (res) {
       self.setData({
         wenyuxiaolei: res.data.data
       })
@@ -141,7 +142,7 @@ Page({
     let data = {
       cid: self.properties.aihaoCur
     }
-    util.gets(url, data).then(function(res) {
+    util.gets(url, data).then(function (res) {
       self.setData({
         aihaoxiaolei: res.data.data
       })
@@ -157,7 +158,7 @@ Page({
     let data = {
       cid: self.properties.shipinCur
     }
-    util.gets(url, data).then(function(res) {
+    util.gets(url, data).then(function (res) {
       self.setData({
         shipinxiaolei: res.data.data
       })
@@ -172,7 +173,7 @@ Page({
     var self = this;
     let url1 = app.globalData.URL + '/config/getSections';
 
-    util.gets(url1, []).then(function(res) {
+    util.gets(url1, []).then(function (res) {
       self.setData({
         bkData: res.data.data
       })
@@ -219,26 +220,26 @@ Page({
           });
 
           var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
-          util.gets(urldalei, data).then(function(res) {
+          util.gets(urldalei, data).then(function (res) {
             self.setData({
               yundongdalei: res.data.data,
               yundongCur: res.data.data[0].code
             })
-          }).then(function() {
+          }).then(function () {
             data = {
               sid: self.data.yundongid,
               univ: self.data.school.code
             }
-            util.gets(url, data).then(function(res) {
+            util.gets(url, data).then(function (res) {
               self.setData({
                 yundongList: res.data.data
               })
-            }).then(function() {
+            }).then(function () {
               let urlxiaolei = app.globalData.URL + '/config/getActivityClass2'
               let dataxiaolei = {
                 cid: self.data.yundongCur
               }
-              util.gets(urlxiaolei, dataxiaolei).then(function(res) {
+              util.gets(urlxiaolei, dataxiaolei).then(function (res) {
                 self.setData({
                   yundongxiaolei: res.data.data
                 })
@@ -263,26 +264,26 @@ Page({
             console.log(err.errMsg)
           });
           var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
-          util.gets(urldalei, data).then(function(res) {
+          util.gets(urldalei, data).then(function (res) {
             self.setData({
               wenyudalei: res.data.data,
               wenyuCur: res.data.data[0].code,
             })
-          }).then(function() {
+          }).then(function () {
             data = {
               sid: self.data.wenyuid,
               univ: self.data.school.code
             }
-            util.gets(url, data).then(function(res) {
+            util.gets(url, data).then(function (res) {
               self.setData({
                 wenyuList: res.data.data
               })
-            }).then(function() {
+            }).then(function () {
               let urlxiaolei = app.globalData.URL + '/config/getActivityClass2'
               let dataxiaolei = {
                 cid: self.data.wenyuCur
               }
-              util.gets(urlxiaolei, dataxiaolei).then(function(res) {
+              util.gets(urlxiaolei, dataxiaolei).then(function (res) {
                 self.setData({
                   wenyuxiaolei: res.data.data
                 })
@@ -307,26 +308,26 @@ Page({
           });
 
           var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
-          util.gets(urldalei, data).then(function(res) {
+          util.gets(urldalei, data).then(function (res) {
             self.setData({
               aihaodalei: res.data.data,
               aihaoCur: res.data.data[0].code
             })
-          }).then(function() {
+          }).then(function () {
             data = {
               sid: self.data.aihaoid,
               univ: self.data.school.code
             }
-            util.gets(url, data).then(function(res) {
+            util.gets(url, data).then(function (res) {
               self.setData({
                 aihaoList: res.data.data
               })
-            }).then(function() {
+            }).then(function () {
               let urlxiaolei = app.globalData.URL + '/config/getActivityClass2'
               let dataxiaolei = {
                 cid: self.data.aihaoCur
               }
-              util.gets(urlxiaolei, dataxiaolei).then(function(res) {
+              util.gets(urlxiaolei, dataxiaolei).then(function (res) {
                 self.setData({
                   aihaoxiaolei: res.data.data
                 })
@@ -350,7 +351,7 @@ Page({
             console.log(err.errMsg)
           });
           var urldalei = app.globalData.URL + '/config/findAllActivityClass1'; //查询大类
-          util.gets(urldalei, data).then(function(res) {
+          util.gets(urldalei, data).then(function (res) {
             self.setData({
               shipindalei: res.data.data,
               shipinCur: '0'
@@ -361,7 +362,7 @@ Page({
             //   })
 
             // }
-          }).then(function() {
+          }).then(function () {
             data = {
               sid: self.data.shipinid,
               acid1: self.data.shipinCur
@@ -393,7 +394,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-  video_change: function(e) { ////视频切换
+  video_change: function (e) { ////视频切换
     var self = this;
     var shipintmp = this.data.shipin;
     if (this.data.bofang_if_id != e.currentTarget.id) { ///相等表示点击和播放不匹配
@@ -445,7 +446,7 @@ Page({
       }
     }
   },
-  initShipin: function() {
+  initShipin: function () {
     if (this.data.shipinInit == 0) {
       var self = this;
       var shipintmp = this.data.shipin;
@@ -490,7 +491,7 @@ Page({
       }
     }
   },
-  shipinguanzhu: function(e) {
+  shipinguanzhu: function (e) {
     var self = this;
     let shipintmp = this.data.shipin;
     let url2 = app.globalData.URL + '/follow/findFollow';
@@ -541,7 +542,7 @@ Page({
       })
     }
   },
-  shipinDianzan: function(e) {
+  shipinDianzan: function (e) {
     var self = this;
     let shipintmp = this.data.shipin;
     let url2 = app.globalData.URL + '/applaud/findApplaud';
@@ -868,12 +869,12 @@ Page({
   },
   //////////////////
 
-  change_sousuo: function() {
+  change_sousuo: function () {
     wx.navigateTo({
       url: '../sousuo/sousuo',
     })
   },
-  onLoad: function() {
+  onLoad: function () {
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
@@ -964,16 +965,16 @@ Page({
       direction: e.touches[0].pageX - this.data.towerStart > 0 ? 'right' : 'left'
     })
   },
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
     var that = this;
     return {
       title: '友点乐',
       path: 'pages/xiaoyuan/xiaoyuan',
-      success: function(res) {
+      success: function (res) {
         console.log("转发成功:" + JSON.stringify(res));
         that.shareClick();
       },
-      fail: function(res) {
+      fail: function (res) {
         console.log("转发失败:" + JSON.stringify(res));
       }
     }
@@ -981,11 +982,12 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
     console.log("上拉刷新")
     let that = this;
     console.log(that.data.activityborder)
-    if (that.data.TabCur == 0) {
+    //校园刷新数据
+    if (that.data.TabCur == 0 && that.data.isReflesh) {
       wx.showLoading({
         title: '加载中...',
         mask: true //显示触摸蒙层  防止事件穿透触发
@@ -997,6 +999,11 @@ Page({
         pageSize: 2
       };
       app.wxRequest('GET', url, data, (res) => {
+        if (res.data.border == null) {
+          that.setData({
+            isReflesh: false
+          })
+        }
         console.log('刷新校园中', res)
         let t = 'ActList.list'
         var tmp = that.data.ActList.list
@@ -1009,7 +1016,9 @@ Page({
       }, (err) => {
         console.log(err.errMsg)
       });
-    } else if (that.data.tabbar == 1) {
+    }
+    //运动刷新
+    else if (that.data.tabbar == 1) {
       wx.showLoading({
         title: '加载中...',
         mask: true //显示触摸蒙层  防止事件穿透触发
@@ -1020,7 +1029,6 @@ Page({
       let data = {
         sid: res.data.data[i].code
       };
-
       app.wxRequest('GET', url2, data, (res) => {
         self.setData({
           yundongSwiperList: res.data
@@ -1030,26 +1038,26 @@ Page({
       });
 
       var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
-      util.gets(urldalei, data).then(function(res) {
+      util.gets(urldalei, data).then(function (res) {
         self.setData({
           yundongdalei: res.data.data,
           yundongCur: res.data.data[0].code
         })
-      }).then(function() {
+      }).then(function () {
         data = {
           sid: self.data.yundongid,
           acid1: self.data.yundongCur
         }
-        util.gets(url, data).then(function(res) {
+        util.gets(url, data).then(function (res) {
           self.setData({
             yundongList: res.data.data
           })
-        }).then(function() {
+        }).then(function () {
           let urlxiaolei = app.globalData.URL + '/config/getActivityClass2'
           let dataxiaolei = {
             cid: self.data.yundongCur
           }
-          util.gets(urlxiaolei, dataxiaolei).then(function(res) {
+          util.gets(urlxiaolei, dataxiaolei).then(function (res) {
             self.setData({
               yundongxiaolei: res.data.data
             })
