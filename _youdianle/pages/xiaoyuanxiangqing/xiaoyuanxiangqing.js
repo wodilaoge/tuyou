@@ -24,6 +24,7 @@ Page({
     paimingCur: 0,
     baomingCur: 0,
     shujuCur: 0,
+    shujuhide: true,
 
     categoryId: '',
     detail: [], //页面详细内容
@@ -369,6 +370,11 @@ Page({
       this.setData({
         detail: res.data
       })
+      if (res.data.auth != null)
+        if (res.data.auth.rights.indexOf("U") != -1)
+          this.setData({
+            shujuhide: false
+          })
       if (this.data.detail.signupway == "30") {
         self.gerenpaiming()
         self.tuanduipaiming()
@@ -1067,24 +1073,25 @@ Page({
   },
 
   onLoad: async function(options) { //读取活动对应id
-    this.setData({
+  var self=this
+    self.setData({
       categoryId: options.categoryId,
       user: wx.getStorageSync('userInfo'),
       TabCur: options.TabCur,
       options: options
     })
-    this.fenzu()
-    this.baomingzhuangtai()
-    this.detail()
-    this.comment()
-    this.getShipin()
-    this.ifguanzhu()
-    this.ifzan()
+    self.fenzu()
+    self.baomingzhuangtai()
+    self.detail()
+    self.comment()
+    self.getShipin()
+    self.ifguanzhu()
+    self.ifzan()
     //this.news()
     //this.news_detail()
-    this.yibaoming()
+    self.yibaoming()
     setTimeout(function() {
-      if (this.data.detail.length == 0)
+      if (self.data.detail.length == 0)
         wx.showToast({
           title: '暂无活动数据！', // 标题
           image: '/img/fail.png', // 图标类型，默认success
@@ -1092,7 +1099,7 @@ Page({
         })
 
       resolve();
-    }, 1000)
+    }, 10000)
   },
   /////////////////////////
 

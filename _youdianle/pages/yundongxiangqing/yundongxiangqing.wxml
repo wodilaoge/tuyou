@@ -23,7 +23,7 @@
   <view class="cu-item {{2==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="2"> 视频</view>
   <view class="cu-item {{3==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="3"> 照片 </view>
   <view class="cu-item {{4==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="4"> 排名 </view>
-  <view class="cu-item {{5==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="5"> 数据</view>
+  <view class="cu-item {{5==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="5" wx:if="{{shujuhide==false}}"> 数据</view>
   <!--<view class="cu-item {{6==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="6"> 资讯</view>-->
 </scroll-view>
 
@@ -713,7 +713,7 @@
 
   <block wx:if="{{paimingCur==0}}">
     <view class="bg-white padding yundong-sp-center " wx:for="{{gerenpaiming.list}}" wx:for-index="index">
-      <view class="yundong-sp-center" wx:for="{{item.members}}" wx:for-item="members">
+      <view class="yundong-sp-center padding-bottom" wx:for="{{item.members}}" wx:for-item="members" style="flex-basis: 100%;">
         <view wx:if="{{index==0}}">
           <image class="icon-paiming " mode="aspectFit " src="/img/icon_one.png"></image>
         </view>
@@ -726,7 +726,7 @@
         <view wx:else class="card-text-content margin-right-xl margin-left-xs">{{index+1}}</view>
 
         <view class="cu-avatar round my " style="background-image:url({{members.mbrHead}}); "></view>
-        <text class="paiming-name " decode="{{true}} ">&ensp;{{members.mbrAlias}}</text>
+        <text class="paiming-name " decode="{{true}}" >&ensp;{{members.mbrAlias}}</text>
         <view class="paiming-name text-orange " wx:if="{{members.mbrScore!=null}}" style="position: fixed;right:40rpx; ">{{members.mbrScore}}分
         </view>
       </view>

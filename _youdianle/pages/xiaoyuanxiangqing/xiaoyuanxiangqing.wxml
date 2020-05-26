@@ -67,7 +67,7 @@
       </block>
     </view>
   </view>
-  <view class="cu-item {{5==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="5"> 数据
+  <view class="cu-item {{5==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="5" wx:if="{{shujuhide==false}}"> 数据
     <view class="tab_item_img">
       <block wx:if="{{TabCur==5}}">
         <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
@@ -667,7 +667,7 @@
 
   <block wx:if="{{paimingCur==0}}">
     <view class="bg-white padding yundong-sp-center " wx:for="{{gerenpaiming.list}}" wx:for-index="index">
-      <view class="yundong-sp-center" wx:for="{{item.members}}" wx:for-item="members">
+      <view class="yundong-sp-center padding-bottom" wx:for="{{item.members}}" wx:for-item="members" style="flex-basis: 100%;">
         <view wx:if="{{index==0}}">
           <image class="icon-paiming " mode="aspectFit " src="/img/icon_one.png"></image>
         </view>

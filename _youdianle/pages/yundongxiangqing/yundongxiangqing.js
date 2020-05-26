@@ -18,6 +18,7 @@ Page({
     paimingCur: 0,
     shujuCur: 0,
     baomingCur: 0,
+    shujuhide: true,
 
     SwiperList_zhaopian: [],
     detail: [],
@@ -423,6 +424,11 @@ Page({
       this.setData({
         detail: res.data
       })
+      if (res.data.auth != null)
+        if (res.data.auth.rights.indexOf("U") != -1)
+          this.setData({
+            shujuhide: false
+          })
       if (this.data.detail.signupway == "30") {
         self.gerenpaiming()
         self.tuanduipaiming()
@@ -782,7 +788,7 @@ Page({
     }
   },
 
-  chooseSezi: function (e) {
+  chooseSezi: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -794,7 +800,7 @@ Page({
       animationData: animation.export(),
       chooseSize: true
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export()
@@ -807,7 +813,7 @@ Page({
       dxtitle: e.currentTarget.dataset.dxtitle,
     })
   },
-  shipinChooseSezi: function (e) {
+  shipinChooseSezi: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -819,7 +825,7 @@ Page({
       shipinAnimationData: animation.export(),
       shipinChooseSize: true
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         shipinAnimationData: animation.export()
@@ -847,7 +853,7 @@ Page({
 
 
   },
-  hideModal: function (e) {
+  hideModal: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -859,7 +865,7 @@ Page({
       animationData: animation.export()
 
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export(),
@@ -867,7 +873,7 @@ Page({
       })
     }, 100)
   },
-  shipinHideModal: function (e) {
+  shipinHideModal: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -878,7 +884,7 @@ Page({
     that.setData({
       shipinAnimationData: animation.export()
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         shipinAnimationData: animation.export(),
@@ -886,13 +892,13 @@ Page({
       })
     }, 100)
   },
-  emailInput: function (e) { //input输入
+  emailInput: function(e) { //input输入
     this.setData({
       Input: e.detail.value
     });
   },
 
-  defenInput: function (e) { //input输入
+  defenInput: function(e) { //input输入
     if (e.target.dataset.flag == 0) {
       var member = this.data.gerenshuju
       member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrScore = e.detail.value
