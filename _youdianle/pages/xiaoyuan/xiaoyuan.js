@@ -180,12 +180,19 @@ Page({
       for (var i in res.data.data) {
         var url = app.globalData.URL + '/act/listActivity';
         var url2 = app.globalData.URL + '/secrot/listSecrotation';
+        var data
         if (res.data.data[i].name == "校园活动") {
-          let data = {
-            sid: res.data.data[i].code,
-            univ: self.data.school.code,
-            pageSize: 2
-          };
+          if (self.data.school.length != 0)
+             data = {
+              sid: res.data.data[i].code,
+              univ: self.data.school.code,
+              pageSize: 2
+            };
+          else
+            data = {
+              sid: res.data.data[i].code,
+              pageSize: 2
+            };
           app.wxRequest('GET', url, data, (res) => {
             self.setData({
               ActList: res.data,
@@ -207,7 +214,7 @@ Page({
           self.setData({
             yundongid: res.data.data[i].code
           })
-          let data = {
+          data = {
             sid: res.data.data[i].code
           };
 
@@ -225,12 +232,17 @@ Page({
               yundongdalei: res.data.data,
               yundongCur: res.data.data[0].code
             })
-          }).then(function () {
-            data = {
-              sid: self.data.yundongid,
-              univ: self.data.school.code
-            }
-            util.gets(url, data).then(function (res) {
+          }).then(function() {
+            if (self.data.school.length != 0)
+              data = {
+                sid: self.data.yundongid,
+                univ: self.data.school.code
+              };
+            else
+              data = {
+                sid: self.data.yundongid
+              };
+            util.gets(url, data).then(function(res) {
               self.setData({
                 yundongList: res.data.data
               })
@@ -269,12 +281,17 @@ Page({
               wenyudalei: res.data.data,
               wenyuCur: res.data.data[0].code,
             })
-          }).then(function () {
-            data = {
-              sid: self.data.wenyuid,
-              univ: self.data.school.code
-            }
-            util.gets(url, data).then(function (res) {
+          }).then(function() {
+            if (self.data.school.length != 0)
+              data = {
+                sid: self.data.wenyuid,
+                univ: self.data.school.code
+              };
+            else
+              data = {
+                sid: self.data.wenyuid
+              };
+            util.gets(url, data).then(function(res) {
               self.setData({
                 wenyuList: res.data.data
               })
@@ -313,12 +330,17 @@ Page({
               aihaodalei: res.data.data,
               aihaoCur: res.data.data[0].code
             })
-          }).then(function () {
-            data = {
-              sid: self.data.aihaoid,
-              univ: self.data.school.code
-            }
-            util.gets(url, data).then(function (res) {
+          }).then(function() {
+            if (self.data.school.length != 0)
+              data = {
+                sid: self.data.aihaoid,
+                univ: self.data.school.code
+              };
+            else
+              data = {
+                sid: self.data.aihaoid
+              };
+            util.gets(url, data).then(function(res) {
               self.setData({
                 aihaoList: res.data.data
               })
@@ -384,8 +406,9 @@ Page({
   /////////////////////////
   getShipin() { //视频
     var self = this;
-    let url = app.globalData.URL + '/video/listActVideo';
-    let data = {};
+    let url = app.globalData.URL + '/video/listActVideo'; 
+    let data = {
+    };
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
         shipin: res.data
@@ -446,150 +469,74 @@ Page({
       }
     }
   },
-  initShipin: function () {
-    if (this.data.shipinInit == 0) {
-      var self = this;
-      var shipintmp = this.data.shipin;
-      for (var i in this.data.shipin.list) {
-        let url2 = app.globalData.URL + '/follow/findFollow';
-        let data2 = {
-          objtype: 50,
-          objid: shipintmp.list[i].id,
-          uid: self.data.user.id,
-        };
-        app.wxRequest('GET', url2, data2, (res) => {
-          if (res.data == true) {
-            shipintmp.list[i].ifguanzhu = 1;
-          } else {
-            shipintmp.list[i].ifguanzhu = 0;
-          }
-          self.setData({
-            shipin: shipintmp
-          })
-        }, (err) => {
-          console.log(err)
-        });
-
-        url2 = app.globalData.URL + '/applaud/findApplaud';
-        data2 = {
-          objtype: 50,
-          objid: shipintmp.list[i].id,
-          uid: this.data.user.id,
-        };
-        app.wxRequest('GET', url2, data2, (res) => {
-          if (res.data == true) {
-            shipintmp.list[i].ifzan = 1;
-          } else {
-            shipintmp.list[i].ifzan = 0;
-          }
-          self.setData({
-            shipin: shipintmp
-          })
-        }, (err) => {
-          console.log(err)
-        });
-      }
-    }
-  },
   shipinguanzhu: function (e) {
     var self = this;
     let shipintmp = this.data.shipin;
-    let url2 = app.globalData.URL + '/follow/findFollow';
-    console.log(e)
-    console.log(shipintmp)
-    let data2 = {
-      objtype: 50,
-      objid: this.data.shipin.list[e.currentTarget.dataset.index].id,
-      uid: this.data.user.id,
-    };
-    app.wxRequest('GET', url2, data2, (res) => {
-      if (res.data == true) {
-        shipintmp.list[e.currentTarget.dataset.index].ifguanzhu = 0;
-        self.setData({
-          shipin: shipintmp
-        })
-        let url = app.globalData.URL + '/follow/updateFollow';
-        let data = {
-          objtype: 50,
-          objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
-          objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
-          creater: self.data.user.id,
-          status: 0,
-        };
-        app.wxRequest('POST', url, data, (res) => {}, (err) => {});
-
-      } else {
-        shipintmp.list[e.currentTarget.dataset.index].ifguanzhu = 1;
-        self.setData({
-          shipin: shipintmp
-        })
-        let url = app.globalData.URL + '/follow/updateFollow';
-        let data = {
-          objtype: 50,
-          objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
-          objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
-          creater: self.data.user.id,
-          status: 1,
-        };
-        app.wxRequest('POST', url, data, (res) => {}, (err) => {});
-      }
-    }, (err) => {});
-    if (this.data.shipinInit == 0) {
-
-      this.initShipin()
-      this.setData({
-        shipinInit: 1
+    if (shipintmp.list[e.currentTarget.dataset.index].myFollow == 1) {
+      shipintmp.list[e.currentTarget.dataset.index].myFollow = 0;
+      self.setData({
+        shipin: shipintmp
       })
+      let url = app.globalData.URL + '/follow/updateFollow';
+      let data = {
+        objtype: 50,
+        objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+        objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
+        creater: self.data.user.id,
+        status: 0,
+      };
+      app.wxRequest('POST', url, data, (res) => { }, (err) => { });
+
+    } else {
+      shipintmp.list[e.currentTarget.dataset.index].myFollow = 1;
+      self.setData({
+        shipin: shipintmp
+      })
+      let url = app.globalData.URL + '/follow/updateFollow';
+      let data = {
+        objtype: 50,
+        objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+        objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
+        creater: self.data.user.id,
+        status: 1,
+      };
+      app.wxRequest('POST', url, data, (res) => { }, (err) => { });
     }
   },
   shipinDianzan: function (e) {
     var self = this;
     let shipintmp = this.data.shipin;
-    let url2 = app.globalData.URL + '/applaud/findApplaud';
-    let data2 = {
-      objtype: 50,
-      objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
-      uid: self.data.user.id,
-    };
-    app.wxRequest('GET', url2, data2, (res) => {
-      if (res.data == true) {
-        shipintmp.list[e.currentTarget.dataset.index].ifzan = 0;
-        shipintmp.list[e.currentTarget.dataset.index].applaudCnt--;
-        self.setData({
-          shipin: shipintmp
-        })
-        let url = app.globalData.URL + '/applaud/updateApplaud';
-        let data = {
-          objtype: 50,
-          objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
-          objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
-          creater: self.data.user.id,
-          status: 0,
-        };
-        app.wxRequest('POST', url, data, (res) => {}, (err) => {});
-
-      } else {
-        shipintmp.list[e.currentTarget.dataset.index].ifzan = 1;
-        shipintmp.list[e.currentTarget.dataset.index].applaudCnt++;
-        self.setData({
-          shipin: shipintmp
-        })
-        let url = app.globalData.URL + '/applaud/updateApplaud';
-        let data = {
-          objtype: 50,
-          objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
-          objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
-          creater: self.data.user.id,
-          status: 1,
-        };
-        app.wxRequest('POST', url, data, (res) => {}, (err) => {});
-      }
-    }, (err) => {});
-    if (this.data.shipinInit == 0) {
-      this.initShipin()
-      this.setData({
-        shipinInit: 1
+    if (shipintmp.list[e.currentTarget.dataset.index].myApplaud == 1) {
+      shipintmp.list[e.currentTarget.dataset.index].ifzan = 0;
+      shipintmp.list[e.currentTarget.dataset.index].applaudCnt--;
+      self.setData({
+        shipin: shipintmp
       })
+      let url = app.globalData.URL + '/applaud/updateApplaud';
+      let data = {
+        objtype: 50,
+        objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+        objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
+        creater: self.data.user.id,
+        status: 0,
+      };
+      app.wxRequest('POST', url, data, (res) => { }, (err) => { });
+
+    } else {
+      shipintmp.list[e.currentTarget.dataset.index].myApplaud = 1;
+      shipintmp.list[e.currentTarget.dataset.index].applaudCnt++;
+      self.setData({
+        shipin: shipintmp
+      })
+      let url = app.globalData.URL + '/applaud/updateApplaud';
+      let data = {
+        objtype: 50,
+        objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+        objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
+        creater: self.data.user.id,
+        status: 1,
+      };
+      app.wxRequest('POST', url, data, (res) => { }, (err) => { });
     }
   },
   getShipinfenlei() { //视频
@@ -605,7 +552,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-  chooseSezi: function (e) {
+  chooseSezi: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -617,7 +564,7 @@ Page({
       animationData: animation.export(),
       chooseSize: true
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export()
@@ -630,7 +577,7 @@ Page({
       dxtitle: e.currentTarget.dataset.dxtitle,
     })
   },
-  shipinChooseSezi: function (e) {
+  shipinChooseSezi: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -642,7 +589,7 @@ Page({
       shipinAnimationData: animation.export(),
       shipinChooseSize: true
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         shipinAnimationData: animation.export()
@@ -670,7 +617,7 @@ Page({
 
 
   },
-  hideModal: function (e) {
+  hideModal: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -682,7 +629,7 @@ Page({
       animationData: animation.export()
 
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export(),
@@ -690,7 +637,7 @@ Page({
       })
     }, 100)
   },
-  shipinHideModal: function (e) {
+  shipinHideModal: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -701,7 +648,7 @@ Page({
     that.setData({
       shipinAnimationData: animation.export()
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         shipinAnimationData: animation.export(),
@@ -709,18 +656,13 @@ Page({
       })
     }, 100)
   },
-  emailInput: function (e) { //input输入
-    this.setData({
-      Input: e.detail.value
-    });
-  },
 
-  emailInput: function (e) { //input输入
+  emailInput: function(e) { //input输入
     this.setData({
       Input: e.detail.value
     });
   },
-  paimingInput: function (e) { //input输入
+  paimingInput: function(e) { //input输入
     if (e.target.dataset.flag == 0) {
       var member = this.data.gerenshuju
       member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrRank = e.detail.value
@@ -735,7 +677,7 @@ Page({
       })
     }
   },
-  defenInput: function (e) { //input输入
+  defenInput: function(e) { //input输入
     if (e.target.dataset.flag == 0) {
       var member = this.data.gerenshuju
       member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrScore = e.detail.value
@@ -777,7 +719,7 @@ Page({
         createrHead: self.data.user.head
       };
       app.wxRequest('POST', url, data, (res) => {
-        self.onLoad(self.data.options);
+        self.onLoad();
         wx.showToast({
           title: '评论成功！', // 标题
           icon: 'success', // 图标类型，默认success
@@ -799,7 +741,7 @@ Page({
         createrHead: self.data.user.head
       };
       app.wxRequest('POST', url, data, (res) => {
-        self.onLoad(self.data.options);
+        self.onLoad();
         wx.showToast({
           title: '评论成功！', // 标题
           icon: 'success', // 图标类型，默认success
@@ -814,60 +756,7 @@ Page({
     })
     self.hideModal()
   },
-
-  fasong() { //发送按钮
-    var self = this;
-    if (this.data.duixiang == '50') {
-      let url = app.globalData.URL + '/comm/addComment';
-      let data = {
-        pid: null,
-        objtype: 50,
-        objid: self.data.dxid,
-        objtitle: self.data.dxtitle,
-        comment: self.data.Input,
-        creater: self.data.user.id,
-        createrAlias: self.data.user.nickname,
-        createrHead: self.data.user.head
-      };
-      app.wxRequest('POST', url, data, (res) => {
-        self.onLoad(self.data.options);
-        wx.showToast({
-          title: '评论成功！', // 标题
-          icon: 'success', // 图标类型，默认success
-          duration: 1500 // 提示窗停留时间，默认1500ms
-        })
-      }, (err) => {
-        console.log(err.errMsg)
-      });
-    } else {
-      let url = app.globalData.URL + '/comm/addComment';
-      let data = {
-        pid: null,
-        objtype: 30,
-        objid: self.data.categoryId,
-        objtitle: "",
-        comment: self.data.Input,
-        creater: self.data.user.id,
-        createrAlias: self.data.user.nickname,
-        createrHead: self.data.user.head
-      };
-      app.wxRequest('POST', url, data, (res) => {
-        self.onLoad(self.data.options);
-        wx.showToast({
-          title: '评论成功！', // 标题
-          icon: 'success', // 图标类型，默认success
-          duration: 1500 // 提示窗停留时间，默认1500ms
-        })
-      }, (err) => {
-        console.log(err.errMsg)
-      });
-    }
-    self.setData({
-      Input: '',
-    })
-    self.hideModal()
-  },
-  //////////////////
+////////////
 
   change_sousuo: function () {
     wx.navigateTo({

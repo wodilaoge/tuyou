@@ -177,8 +177,8 @@
         <view class=" sp-cu-bar cu-bar-radius bg-white  ">
           <image class="sp-avatar round " src="{{shipin.list[0].authorHead}}"></image>
           <view class="sp-avatar-name">{{shipin.list[0].authorAlias}}</view>
-          <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{shipin.list[index].ifguanzhu==1}}">关注</button>
-          <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{!shipin.list[index].ifguanzhu==1}}">已关注</button>
+          <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{shipin.list[index].myFollow==1}}">关注</button>
+          <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{!shipin.list[index].myFollow==1}}">已关注</button>
         </view>
 
         <view>
@@ -186,7 +186,7 @@
         </view>
         <view class="flex  margin-top ">
           <view class="sp-bofang-times ">播放{{shipin.list[0].playCnt}}次</view>
-          <image src="{{shipin.list[0].ifzan!=1?'/img/icon_like.png':'/img/icon_like_all.png'}}" style="width:44rpx;height:40rpx;margin-left:270rpx;" bindtap="shipinDianzan" data-index="{{index}}"></image>
+          <image src="{{shipin.list[0].myApplaud!=1?'/img/icon_like.png':'/img/icon_like_all.png'}}" style="width:44rpx;height:40rpx;margin-left:270rpx;" bindtap="shipinDianzan" data-index="{{index}}"></image>
           <view class=" align-center " style="margin-left:16rpx;font-size:32rpx;width:55rpx; ">{{shipin.list[0].applaudCnt}}</view>
           <button class="cu-btn round lines-orange  " style="margin-top:-2rpx; margin-left:16rpx;width:120rpx;height:48rpx;" bindtap="chooseSezi" data-duixiang="{{50}}" data-index="{{0}}" data-dxid="{{shipin.list[0].id}}" data-dxtitle="{{shipin.list[0].title}}">评论</button>
           <image src="/img/icon_share_more.png " style="width:44rpx;height:40rpx;margin-left:16rpx; margin-right:20rpx; "></image>
@@ -219,8 +219,8 @@
         <view class=" sp-cu-bar cu-bar-radius bg-white  ">
           <image class="sp-avatar round " src="{{shipin.list[index].authorHead}} "></image>
           <view class="sp-avatar-name">{{shipin.list[index].authorAlias}}</view>
-          <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{shipin.list[index].ifguanzhu==1}}">关注</button>
-          <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{!shipin.list[index].ifguanzhu==1}}">已关注</button>
+          <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{shipin.list[index].myFollow==1}}">关注</button>
+          <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{!shipin.list[index].myFollow==1}}">已关注</button>
         </view>
 
         <view>
@@ -228,7 +228,7 @@
         </view>
         <view class="flex  margin-top ">
           <view class="sp-bofang-times ">播放{{shipin.list[index].playCnt}}次</view>
-          <image src="{{shipin.list[index].ifzan!=1?'/img/icon_like.png':'/img/icon_like_all.png'}}" style="width:44rpx;height:40rpx;margin-left:270rpx;" bindtap="shipinDianzan" data-index="{{index}}"></image>
+          <image src="{{shipin.list[index].myApplaud!=1?'/img/icon_like.png':'/img/icon_like_all.png'}}" style="width:44rpx;height:40rpx;margin-left:270rpx;" bindtap="shipinDianzan" data-index="{{index}}"></image>
           <view class=" align-center " style="margin-left:16rpx;font-size:32rpx;width:55rpx; ">{{shipin.list[index].applaudCnt}}</view>
           <button class="cu-btn round lines-orange  " style="margin-top:-2rpx; margin-left:16rpx;width:120rpx;height:48rpx;" bindtap="chooseSezi" data-duixiang="{{50}}" data-index="{{index}}" data-dxid="{{shipin.list[index].id}}" data-dxtitle="{{shipin.list[index].title}}">评论</button>
           <image src="/img/icon_share_more.png " style="width:44rpx;height:40rpx;margin-left:16rpx; margin-right:20rpx; "></image>

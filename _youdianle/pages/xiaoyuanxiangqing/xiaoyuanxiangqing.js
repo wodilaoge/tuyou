@@ -12,8 +12,8 @@ Page({
     cansaiset: false,
     guankanset: false,
     guankanhide: false,
-    shiminghide: false, 
-    iftongyi:true,
+    shiminghide: false,
+    iftongyi: true,
 
     tuanduipaiming: [],
     gerenpaiming: [],
@@ -52,7 +52,7 @@ Page({
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
-    shipinInit:0,
+    shipinInit: 0,
     shipin_index: 0,
   },
   chooseSezi: function(e) {
@@ -164,7 +164,7 @@ Page({
       Input: e.detail.value
     });
   },
-  paimingInput: function (e) { //input输入
+  paimingInput: function(e) { //input输入
     if (e.target.dataset.flag == 0) {
       var member = this.data.gerenshuju
       member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrRank = e.detail.value
@@ -179,7 +179,7 @@ Page({
       })
     }
   },
-  defenInput: function (e) { //input输入
+  defenInput: function(e) { //input输入
     if (e.target.dataset.flag == 0) {
       var member = this.data.gerenshuju
       member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrScore = e.detail.value
@@ -269,7 +269,7 @@ Page({
       fenzuindex: e.detail.id
     })
   },
-  bindRadioChange: function (e) {
+  bindRadioChange: function(e) {
     if (e.currentTarget.dataset.id == 10 || e.currentTarget.dataset.id == 20)
       this.setData({
         canjiaorguankan: e.currentTarget.dataset.id,
@@ -281,7 +281,7 @@ Page({
         shiminghide: guankanset
       })
   },
-  iftongyiRadioChange: function (e) {
+  iftongyiRadioChange: function(e) {
     this.setData({
       iftongyi: !this.data.iftongyi
     })
@@ -722,14 +722,12 @@ Page({
       this.setData({
         guankanhide: true
       })
-    }
-    else if (detail.audiencelimit == 20) {
+    } else if (detail.audiencelimit == 20) {
       this.setData({
         guankanset: true,
         guankanhide: false
       })
-    }
-    else if (detail.audiencelimit == 30) {
+    } else if (detail.audiencelimit == 30) {
       this.setData({
         guankanset: false,
         guankanhide: false
@@ -749,7 +747,7 @@ Page({
         actid: self.data.categoryId,
         uid: self.data.user.id
       }
-      util.gets(url, data).then(function (res) {
+      util.gets(url, data).then(function(res) {
         wx.hideLoading()
         if (res.data.code == 0) {
           wx.showToast({
@@ -775,15 +773,15 @@ Page({
         actid: self.data.categoryId,
         lid: self.data.user.id
       }
-      util.gets(url, data).then(function (res) {
+      util.gets(url, data).then(function(res) {
         status = res.data.data
-      }).then(function () {
+      }).then(function() {
         url = app.globalData.URL + '/act/cancelActSignupByTeam'
         data = {
           actid: self.data.categoryId,
           tid: status.tid
         }
-        util.gets(url, data).then(function (res) {
+        util.gets(url, data).then(function(res) {
           wx.hideLoading()
           if (res.data.code == 0) {
             wx.showToast({
@@ -868,7 +866,7 @@ Page({
           status: 10,
           creater: self.data.user.id
         }
-      util.post_token(url, data).then(function (res) {
+      util.post_token(url, data).then(function(res) {
         if (res.data.code == 0) {
           wx.showToast({
             title: '报名成功！', // 标题
@@ -924,7 +922,7 @@ Page({
             creater: self.data.user.id,
             members: self.data.members,
           }
-        util.post_token(url, data).then(function (res) {
+        util.post_token(url, data).then(function(res) {
           if (res.data.code == 0) {
             wx.showToast({
               title: '报名成功！', // 标题
@@ -965,7 +963,7 @@ Page({
       actid: self.data.categoryId,
       members: mlist
     }
-    util.post_token(url, data).then(function (res) {
+    util.post_token(url, data).then(function(res) {
       if (res.data.code == 0)
         wx.showToast({
           title: '操作成功！', // 标题
@@ -1006,7 +1004,7 @@ Page({
       teams: tlist,
       members: mlist
     }
-    util.post_token(url, data).then(function (res) {
+    util.post_token(url, data).then(function(res) {
       if (res.data.code == 0)
         wx.showToast({
           title: '操作成功！', // 标题
@@ -1098,15 +1096,15 @@ Page({
   },
   /////////////////////////
 
-//   /////////////为视频初始化
-//   if(e.currentTarget.dataset.id == '2') {
-//   this.initShipin()
-// }
+  //   /////////////为视频初始化
+  //   if(e.currentTarget.dataset.id == '2') {
+  //   this.initShipin()
+  // }
   getShipin() { //视频
     var self = this;
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
-      actid: this.data.categoryId
+      actid: this.data.categoryId,
     };
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
@@ -1127,8 +1125,7 @@ Page({
         let data = {
           id: this.data.shipin.list[e.currentTarget.dataset.index].id,
         };
-        app.wxRequest('GET', url, data, (res) => {
-        })
+        app.wxRequest('GET', url, data, (res) => {})
         shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
         self.setData({
           shipin: shipintmp
@@ -1160,8 +1157,7 @@ Page({
         let data = {
           id: this.data.shipin.list[e.currentTarget.dataset.index].id,
         };
-        app.wxRequest('GET', url, data, (res) => {
-        })
+        app.wxRequest('GET', url, data, (res) => {})
         shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
         self.setData({
           shipin: shipintmp
@@ -1169,111 +1165,44 @@ Page({
       }
     }
   },
-  initShipin:function() {
-    if(this.data.shipinInit==0){
-    var self = this;
-    var shipintmp = this.data.shipin;
-    for (var i in this.data.shipin.list) {
-      let url2 = app.globalData.URL + '/follow/findFollow';
-      let data2 = {
-        objtype: 50,
-        objid: shipintmp.list[i].id,
-        uid: self.data.user.id,
-      };
-      app.wxRequest('GET', url2, data2, (res) => {
-        if (res.data == true) {
-          shipintmp.list[i].ifguanzhu = 1;
-        } else {
-          shipintmp.list[i].ifguanzhu = 0;
-        }
-        self.setData({
-          shipin: shipintmp
-        })
-      }, (err) => {
-        console.log(err)
-      });
-
-      url2 = app.globalData.URL + '/applaud/findApplaud';
-      data2 = {
-        objtype: 50,
-        objid: shipintmp.list[i].id,
-        uid: this.data.user.id,
-      };
-      app.wxRequest('GET', url2, data2, (res) => {
-        if (res.data == true) {
-          shipintmp.list[i].ifzan = 1;
-        } else {
-          shipintmp.list[i].ifzan = 0;
-        }
-        self.setData({
-          shipin: shipintmp
-        })
-      }, (err) => {
-        console.log(err)
-      });
-    }
-    }
-  },
   shipinguanzhu: function(e) {
     var self = this;
     let shipintmp = this.data.shipin;
-    let url2 = app.globalData.URL + '/follow/findFollow';
-    let data2 = {
-      objtype: 50,
-      objid: this.data.shipin.list[e.currentTarget.dataset.index].id,
-      uid: this.data.user.id,
-    };
-    app.wxRequest('GET', url2, data2, (res) => {
-      if (res.data == true) {
-        shipintmp.list[e.currentTarget.dataset.index].ifguanzhu = 0;
-        self.setData({
-          shipin: shipintmp
-        })
-        let url = app.globalData.URL + '/follow/updateFollow';
-        let data = {
-          objtype: 50,
-          objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
-          objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
-          creater: self.data.user.id,
-          status: 0,
-        };
-        app.wxRequest('POST', url, data, (res) => {}, (err) => {});
+    if (shipintmp.list[e.currentTarget.dataset.index].myFollow == 1) {
+      shipintmp.list[e.currentTarget.dataset.index].myFollow = 0;
+      self.setData({
+        shipin: shipintmp
+      })
+      let url = app.globalData.URL + '/follow/updateFollow';
+      let data = {
+        objtype: 50,
+        objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+        objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
+        creater: self.data.user.id,
+        status: 0,
+      };
+      app.wxRequest('POST', url, data, (res) => {}, (err) => {});
 
-      } else {
-        shipintmp.list[e.currentTarget.dataset.index].ifguanzhu = 1;
-        self.setData({
-          shipin: shipintmp
-        })
-        let url = app.globalData.URL + '/follow/updateFollow';
-        let data = {
-          objtype: 50,
-          objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
-          objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
-          creater: self.data.user.id,
-          status: 1,
-        };
-        app.wxRequest('POST', url, data, (res) => {}, (err) => {});
-      }
-    }, (err) => {});
-    if(this.data.shipinInit==0){
-      
-        this.initShipin()
-        this.setData({
-          shipinInit:1
-        })
+    } else {
+      shipintmp.list[e.currentTarget.dataset.index].myFollow = 1;
+      self.setData({
+        shipin: shipintmp
+      })
+      let url = app.globalData.URL + '/follow/updateFollow';
+      let data = {
+        objtype: 50,
+        objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+        objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
+        creater: self.data.user.id,
+        status: 1,
+      };
+      app.wxRequest('POST', url, data, (res) => {}, (err) => {});
     }
   },
   shipinDianzan: function(e) {
     var self = this;
     let shipintmp = this.data.shipin;
-    let url2 = app.globalData.URL + '/applaud/findApplaud';
-    let data2 = {
-      objtype: 50,
-      objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
-      uid: self.data.user.id,
-    };
-    app.wxRequest('GET', url2, data2, (res) => {
-      if (res.data == true) {
+    if (shipintmp.list[e.currentTarget.dataset.index].myApplaud == 1) {
         shipintmp.list[e.currentTarget.dataset.index].ifzan = 0;
         shipintmp.list[e.currentTarget.dataset.index].applaudCnt--;
         self.setData({
@@ -1287,10 +1216,10 @@ Page({
           creater: self.data.user.id,
           status: 0,
         };
-        app.wxRequest('POST', url, data, (res) => { }, (err) => { });
+        app.wxRequest('POST', url, data, (res) => {}, (err) => {});
 
       } else {
-        shipintmp.list[e.currentTarget.dataset.index].ifzan = 1;
+        shipintmp.list[e.currentTarget.dataset.index].myApplaud = 1;
         shipintmp.list[e.currentTarget.dataset.index].applaudCnt++;
         self.setData({
           shipin: shipintmp
@@ -1303,16 +1232,11 @@ Page({
           creater: self.data.user.id,
           status: 1,
         };
-        app.wxRequest('POST', url, data, (res) => { }, (err) => { });
+        app.wxRequest('POST', url, data, (res) => {}, (err) => {});
       }
-    }, (err) => { });
-    if (this.data.shipinInit == 0) {
-      this.initShipin()
-      this.setData({
-        shipinInit: 1
-      })
-    }
   },
+
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
