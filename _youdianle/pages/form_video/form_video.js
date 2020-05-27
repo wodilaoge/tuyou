@@ -4,22 +4,23 @@ var upload = require("../../utils/upload.js");
 var util = require("../../utils/util.js");
 Page({
   data: {
+    hiddenmodalput:true,
     group: 0,
     videonum: 0,
     picker4: ['篮球', '足球', '排球', '羽毛球', '乒乓球', '其他'],
     multiIndex: [0, 0, 0],
-    fileName: '',
-    title: '',
-    author: '',
-    notes: '',
+    fileName: null,
+    title: null,
+    author: null,
+    notes: null,
     video: '',
     videoFile: null,
     coverFile: null,
     imgList: [],
     modalName: null,
-    textareaAValue: '',
-    textareaBValue: '',
-    authurl:'',
+    textareaAValue: null,
+    textareaBValue: null,
+    authurl:null,
     index: 0, //活动方式
     indexbig: 0,
     indextiny: 0,
@@ -179,6 +180,18 @@ Page({
     wx.navigateTo({
       url: "../../pages/form_modify/form_modify"
     })
+  },
+
+  firstcommit(){
+    var that=this
+    that.setData({
+      hiddenmodalput: !this.data.hiddenmodalput
+    })
+  },
+  cancel2: function () {
+    this.setData({
+      hiddenmodalput: true
+    });
   },
   commit: function(e) {
     var user = wx.getStorageSync('userInfo')
