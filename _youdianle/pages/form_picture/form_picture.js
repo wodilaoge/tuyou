@@ -3,6 +3,7 @@ var upload = require("../../utils/upload.js");
 var util = require("../../utils/util.js");
 Page({
   data: {
+    hiddenmodalput:true,
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
     group: 0,
@@ -171,6 +172,17 @@ Page({
       url: "../../pages/form_modify/form_modify"
     })
   },
+  firstcommit() {
+    var that = this
+    that.setData({
+      hiddenmodalput: !this.data.hiddenmodalput
+    })
+  },
+  cancel2: function () {
+    this.setData({
+      hiddenmodalput: true
+    });
+  },
   commit: function(e) {
     var user = wx.getStorageSync('userInfo')
     let url = app.globalData.URL + '/photo/updateActPhoto';
@@ -195,8 +207,11 @@ Page({
           duration: 2000,
           success: function() {
             setTimeout(function() {
-              wx.reLaunch({
-                url: '/pages/index/index',
+              // wx.reLaunch({
+              //   url: '/pages/index/index',
+              // })
+              wx.navigateBack({
+                delta:1
               })
             }, 2000);
           }

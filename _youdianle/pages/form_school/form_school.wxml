@@ -10,12 +10,12 @@
     <view class="text-orange text-lg item padding">请选择学校</view>
   </view>
 </view>
-<view class="bk">
+<!-- <view class="bk">
   <view class="cu-form-group bk ">
     <view class=" text-white text-lg item2">详细地址</view>
     <input placeholder="请输入详细地址" class="item input" placeholder-class="input"></input>
   </view>
-</view>
+</view> -->
 <view class="padding bg-white" wx:for="{{school}}">
   <view class="text-left item3 text-bold" bindtap="choose" data-id="{{item.code}}" data-index="{{index}}">{{item.name}}</view>
 </view>
