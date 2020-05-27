@@ -31,7 +31,7 @@
   <view class="cu-bar bg-white solid-bottom margin-top-sm" style="display:fixed;position: relative;">
     <image class="cu-avatar round my" src="{{detail.createrhead}}" mode="heightFix"></image>
     <!--<text style="position:absolute;left:110rpx;">三分赛</text>-->
-    <text class=" title-time" style="position:absolute;width:100%;left:180rpx;" wx:if="{{detail.lefttime!=null}}">{{item.lefttime.day}} 天 {{item.lefttime.hr}}: {{item.lefttime.min}} </text>
+    <text class=" title-time" style="position:absolute;width:100%;left:260rpx;" wx:if="{{detail.lefttime!=null}}">{{detail.lefttime.day}} 天 {{detail.lefttime.hr}}: {{detail.lefttime.min}} </text>
   </view>
 
   <view style="margin-bottom:20rpx;">

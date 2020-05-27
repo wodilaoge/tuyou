@@ -165,7 +165,7 @@
   <view class="content-white">
     <view class="bg-blue">
       <view class="cu-bar cu-bar-radius bg-white padding">
-        <text class="cu-bar-title">在线报名</text>
+        <text class="cu-bar-title">报名</text>
       </view>
     </view>
     <view class=" padding " style="margin-left:175rpx;" hidden="{{signupway}}">
@@ -180,7 +180,7 @@
       <block wx:if="{{isbaominggeren==0}}">
         <view class="bg-white">
           <form>
-            <view class="cu-form-group" hidden="{{guankanhide}}">>
+            <view class="cu-form-group" hidden="{{guankanhide}}">
               <radio-group class="block" style="margin-left:240rpx;">
                 <view class="flex">
                   <view>
