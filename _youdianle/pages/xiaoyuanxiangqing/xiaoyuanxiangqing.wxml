@@ -196,11 +196,11 @@
             </view>
             <view class="cu-form-group" hidden="{{shiminghide}}">
               <view class="title" style="margin-right:65rpx;">姓名 </view>
-              <input class="form-text" placeholder="李四" bindinput="xingmingInput" value="{{xingmingInput}}"></input>
+              <input class="form-text" placeholder="{{yonghuxinxi.name==null||''?'请完善个人信息':yonghuxinxi.name}}" bindinput="xingmingInput" value="{{xingmingInput}}"></input>
             </view>
             <view class="cu-form-group " hidden="{{shiminghide}}">
               <view class="title" style="margin-right:65rpx;">手机</view>
-              <input class="form-text" placeholder="请输入手机号" disabled></input>
+              <input class="form-text" placeholder="{{yonghuxinxi.mobile==null||''?'请绑定手机':yonghuxinxi.mobile}}" disabled></input>
             </view>
             <view class="cu-form-group " hidden="{{fenzuhide}}">
               <view class="title">选择分组</view>
@@ -290,11 +290,11 @@
             </view>
             <view class="cu-form-group" hidden="{{shiminghide}}">
               <view class="title" style="margin-right:65rpx;">姓名 </view>
-              <input class="form-text" placeholder="李四" bindinput="xingmingInput" value="{{xingmingInput}}"></input>
+              <input class="form-text" placeholder="{{yonghuxinxi.name==null||''?'请完善个人信息':yonghuxinxi.name}}" bindinput="xingmingInput" value="{{xingmingInput}}"></input>
             </view>
             <view class="cu-form-group " hidden="{{shiminghide}}">
               <view class="title" style="margin-right:65rpx;">手机</view>
-              <input class="form-text" placeholder="请输入手机号" disabled></input>
+              <input class="form-text" placeholder="{{yonghuxinxi.mobile==null||''?'请绑定手机':yonghuxinxi.mobile}}" disabled></input>
             </view>
             <view class="cu-form-group " hidden="{{fenzuhide}}">
               <view class="title">选择分组</view>

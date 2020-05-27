@@ -13,6 +13,7 @@ Page({
     shiminghide: false,
     fenzuindex: 0,
     iftongyi: true,
+    yonghuxinxi: [],
 
     TabCur: 0,
     paimingCur: 0,
@@ -42,7 +43,6 @@ Page({
     fenzuhide: false,
     tuanduiSelect: [],
     members: [],
-    xingmingInput: '',
 
     likecount: 0,
     ifzan: false,
@@ -270,20 +270,28 @@ Page({
       this.setData({
         baomingCur: e.currentTarget.dataset.id,
         canjiaorguankan: 10,
+        shiminghide: cansaiset
       })
     else
       this.setData({
         baomingCur: e.currentTarget.dataset.id,
         canjiaorguankan: 20,
+        shiminghide: cansaiset
       })
+    if (self.data.shiminghide == false)
+      self.ifshiming()
   },
   tabSelect(e) {
+    var self = this
     var op = this.data.options
     op.TabCur = e.currentTarget.dataset.id
     this.setData({
       TabCur: e.currentTarget.dataset.id,
       options: op
     })
+    if (e.currentTarget.dataset.id == 1)
+      if (self.data.shiminghide == false)
+        self.ifshiming()
   },
   paimingSelect(e) {
     this.setData({
@@ -304,23 +312,20 @@ Page({
     if (e.currentTarget.dataset.id == 10 || e.currentTarget.dataset.id == 20)
       this.setData({
         canjiaorguankan: e.currentTarget.dataset.id,
-        shiminghide: cansaiset
+        shiminghide: this.data.cansaiset
       })
     else if (e.currentTarget.dataset.id == 20 || e.currentTarget.dataset.id == 40)
       this.setData({
         canjiaorguankan: e.currentTarget.dataset.id,
-        shiminghide: guankanset
+        shiminghide: this.data.guankanset
       })
+    if (self.data.shiminghide == false)
+      self.ifshiming()
   },
   iftongyiRadioChange: function(e) {
     this.setData({
       iftongyi: !this.data.iftongyi
     })
-  },
-  xingmingInput: function(e) { //input输入
-    this.setData({
-      xingmingInput: e.detail.value
-    });
   },
   /*news() { //活动新闻
     let url = app.globalData.URL + '/news/listNews';
@@ -1099,25 +1104,17 @@ Page({
         duration: 1000,
       })
     else {
-      if (this.data.baomingCur == 0) {
-        if (this.data.cansaiset == false && self.data.xingmingInput == '')
+      if (this.data.shiminghide == false) {
+        if (this.data.yonghuxinxi.name == null || this.data.yonghuxinxi.name == '' || this.data.yonghuxinxi.mobile == '' || this.data.yonghuxinxi.mobile == null)
           wx.showToast({
-            title: '请填写姓名！',
+            title: '完善信息/绑定手机号！',
             image: '/img/fail.png',
             duration: 1000,
           })
         else
-          this.lijibaoming_do()
-      } else {
-        if (this.data.guankanset == false && self.data.xingmingInput == '')
-          wx.showToast({
-            title: '请填写姓名！',
-            image: '/img/fail.png',
-            duration: 1000,
-          })
-        else
-          this.lijibaoming_do()
-      }
+          this.lijibaoming_do_shiming()
+      } else
+        this.lijibaoming_do()
     }
   },
   lijibaoming_do() {
@@ -1230,6 +1227,118 @@ Page({
               image: '/img/fail.png',
               duration: 1000,
             })
+        })
+      }
+    }
+  },
+  lijibaoming_do_shiming() {
+    var self = this
+    wx.showLoading({
+      title: '加载中...',
+      mask: true  //显示触摸蒙层  防止事件穿透触发
+    });
+    let url
+    let data
+    if (self.data.baomingCur == 0) {
+      url = app.globalData.URL + '/act/addActSignupInd'
+      if (self.data.fenzuhide)
+        data = {
+          actid: self.data.categoryId,
+          groupid: null,
+          mbrId: self.data.user.id,
+          mbrAlias: self.data.user.nickname,
+          mbrHead: self.data.user.head,
+          mbrName: this.data.yonghuxinxi.name,
+          signupType: self.data.canjiaorguankan,
+          status: 10,
+          creater: self.data.user.id
+        }
+      else
+        data = {
+          actid: self.data.categoryId,
+          groupid: self.data.huodongfenzu[self.data.fenzuindex].id,
+          mbrId: self.data.user.id,
+          mbrAlias: self.data.user.nickname,
+          mbrHead: self.data.user.head,
+          mbrName: this.data.yonghuxinxi.name,
+          signupType: self.data.canjiaorguankan,
+          status: 10,
+          creater: self.data.user.id
+        }
+      util.post_token(url, data).then(function(res) {
+        if (res.data.code == 0) {
+          wx.showToast({
+            title: '报名成功！', // 标题
+            icon: 'success', // 图标类型，默认success
+            duration: 1500 // 提示窗停留时间，默认1500ms
+          })
+          self.setData({
+            isbaominggeren: 1
+          })
+          self.yibaoming()
+        } else
+          wx.showToast({
+            title: '报名失败！',
+            image: '/img/fail.png',
+            duration: 1000,
+          })
+        wx.hideLoading()
+      })
+    } else {
+      if (self.data.tuanduiSelect.length == 0)
+        wx.showToast({
+          title: '请选择团队！',
+          image: '/img/fail.png',
+          duration: 1000,
+        })
+      else {
+        wx.showLoading({
+          title: '加载中...',
+          mask: true  //显示触摸蒙层  防止事件穿透触发
+        });
+        url = app.globalData.URL + '/act/addActSignupTeam'
+        if (self.data.fenzuhide)
+          data = {
+            actid: self.data.categoryId,
+            groupid: null,
+            tid: self.data.tuanduiSelect.id,
+            team: self.data.tuanduiSelect.name,
+            teamLogo: self.data.tuanduiSelect.logo,
+            lid: self.data.user.id,
+            signupType: self.data.canjiaorguankan,
+            creater: self.data.user.id,
+            members: self.data.members,
+          }
+        else
+          data = {
+            actid: self.data.categoryId,
+            groupid: self.data.huodongfenzu[self.data.fenzuindex].id,
+            tid: self.data.tuanduiSelect.id,
+            team: self.data.tuanduiSelect.name,
+            teamLogo: self.data.tuanduiSelect.logo,
+            lid: self.data.user.id,
+            signupType: self.data.canjiaorguankan,
+            creater: self.data.user.id,
+            members: self.data.members,
+          }
+        util.post_token(url, data).then(function(res) {
+          if (res.data.code == 0) {
+            wx.showToast({
+              title: '报名成功！', // 标题
+              icon: 'success', // 图标类型，默认success
+              duration: 1500 // 提示窗停留时间，默认1500ms
+            })
+            self.setData({
+              isbaomingtuandui: 1
+            })
+            self.yibaoming()
+          } else
+            wx.showToast({
+              title: '报名失败！',
+              image: '/img/fail.png',
+              duration: 1000,
+            })
+          wx.hideLoading()
         })
       }
     }
@@ -1442,6 +1551,58 @@ Page({
     this.jieshu()
   },
   //////////////////////////////
+  yonghuxinxi() {
+    var self = this
+    let url = app.globalData.URL + '/appuser/findUserByID'
+    let data = {
+      id: self.data.user.id
+    }
+    app.wxRequest('GET', url, data, (res) => {
+      self.setData({
+        yonghuxinxi: res.data
+      })
+      if (res.data.length == 0)
+        wx.showToast({
+          title: 获取用户信息失败,
+          image: '/img/fail.png',
+          duration: 500,
+        })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  ifshiming() {
+    console.log("实名判断")
+    if (self.data.yonghuxinxi.name == null || self.data.yonghuxinxi.name == '')
+      wx.showModal({
+        title: '提示',
+        content: '该活动需要实名参加/观看，是否前往实名',
+        success: function(res) {
+          if (res.confirm) { //这里是点击了确定以后
+            wx.navigateTo({
+              url: '/pages/MyPages/my_profile/my_profile',
+            })
+          } else { //这里是点击了取消以后
+            console.log('用户点击取消')
+          }
+        }
+      })
+    if (self.data.yonghuxinxi.mobile == null || self.data.yonghuxinxi.mobile == '')
+      wx.showModal({
+        title: '提示',
+        content: '该活动参加/观看需要手机号，是否前往绑定',
+        success: function(res) {
+          if (res.confirm) { //这里是点击了确定以后
+            wx.navigateTo({
+              url: '/pages/MyPages/my_security/my_security',
+            })
+          } else { //这里是点击了取消以后
+            console.log('用户点击取消')
+          }
+        }
+      })
+  },
+  /////////////////////////////
   /**
    * 生命周期函数--监听页面加载
    */
@@ -1454,6 +1615,7 @@ Page({
       biaoti: options.Title,
       options: options
     })
+    self.yonghuxinxi()
     self.detail()
     self.yibaoming()
     self.rotation()
@@ -1486,7 +1648,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    var self = this
+    self.yonghuxinxi()
+    if (self.data.TabCur == 1)
+      setTimeout(function() {
+        if (self.data.shiminghide == false)
+          self.ifshiming()
+      }, 1500)
   },
 
   /**
