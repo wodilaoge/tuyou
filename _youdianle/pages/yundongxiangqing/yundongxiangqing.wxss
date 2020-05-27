@@ -16,7 +16,8 @@ page {
   overflow: hidden;
   font-size: 28rpx;
   line-height: 28rpx;
-  font-weight: 900;
+  color: #333;
+  font-weight: bold;
 }
 
 .title-text-content {

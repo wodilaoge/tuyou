@@ -477,3 +477,11 @@ checkbox.tp-checkbox {
 .view-active{
 border-bottom: 1px solid rgb(8, 8, 8);
 }
+
+.yibaoming-text-content {
+  overflow: hidden;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #333;
+  font-weight: bold;
+}

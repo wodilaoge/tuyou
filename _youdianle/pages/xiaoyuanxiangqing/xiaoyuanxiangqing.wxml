@@ -259,7 +259,7 @@
         <view class="fenge-bg"></view>
         <view class="cu-bar bg-white solid-bottom">
           <view class='action'>
-            <text class='cu-bar-title'>已报名{{yibaomingList.length}}人</text>
+            <text class='yibaoming-text-content'>已报名{{yibaomingList.length}}人</text>
           </view>
         </view>
         <view class="yundong-content bg-white">
@@ -355,7 +355,7 @@
           <view class="fenge-bg"></view>
           <view class="cu-bar bg-white solid-bottom">
             <view class='action'>
-              <text class='cu-bar-title'>已报名{{yibaomingList.length}}人</text>
+              <text class='yibaoming-text-content'>已报名{{yibaomingList.length}}人</text>
             </view>
           </view>
           <view class="yundong-content bg-white">
