@@ -31,7 +31,7 @@
   <view class="cu-bar bg-white solid-bottom margin-top-sm" style="display:fixed;position: relative;">
     <image class="cu-avatar round my" src="{{detail.createrhead}}" mode="heightFix"></image>
     <!--<text style="position:absolute;left:110rpx;">三分赛</text>-->
-    <text class=" title-time" style="position:absolute;width:100%;left:180rpx;" wx:if="{{detail.lefttime!=null}}">{{item.lefttime.day}} 天 {{item.lefttime.hr}}: {{item.lefttime.min}} </text>
+    <text class=" title-time" style="position:absolute;width:100%;left:260rpx;" wx:if="{{detail.lefttime!=null}}">{{detail.lefttime.day}} 天 {{detail.lefttime.hr}}:{{detail.lefttime.min}} </text>
   </view>
 
   <view style="margin-bottom:20rpx;">
@@ -221,11 +221,11 @@
           </view>
           <view class="cu-form-group" hidden="{{shiminghide}}">
             <view class="title" style="margin-right:65rpx;">姓名 </view>
-            <input class="form-text" placeholder="李四" bindinput="xingmingInput" value="{{xingmingInput}}"></input>
+            <input class="form-text" placeholder="{{yonghuxinxi.name==null||''?'请完善个人信息':yonghuxinxi.name}}" disabled></input>
           </view>
           <view class="cu-form-group "  hidden="{{shiminghide}}">
             <view class="title" style="margin-right:65rpx;">手机</view>
-            <input class="form-text" placeholder="请输入手机号" disabled></input>
+            <input class="form-text" placeholder="{{yonghuxinxi.mobile==null||''?'请绑定手机':yonghuxinxi.mobile}}" disabled></input>
           </view>
           <view class="cu-form-group " hidden="{{fenzuhide}}">
             <view class="title">选择分组</view>
@@ -285,7 +285,7 @@
         <view class="fenge-bg"></view>
         <view class="cu-bar bg-white solid-bottom">
           <view class='action'>
-            <text class='cu-bar-title'>已报名{{yibaomingList.length}}人</text>
+            <text class='yibaoming-text-content'>已报名{{yibaomingList.length}}人</text>
           </view>
         </view>
         <view class="yundong-content bg-white">
@@ -317,11 +317,11 @@
           </view>
           <view class="cu-form-group" hidden="{{shiminghide}}">
             <view class="title" style="margin-right:65rpx;" >姓名 </view>
-            <input class="form-text" placeholder="李四" bindinput="xingmingInput" value="{{xingmingInput}}"></input>
+            <input class="form-text" placeholder="{{yonghuxinxi.name==null||''?'请完善个人信息':yonghuxinxi.name}}" disabled></input>
           </view>
           <view class="cu-form-group " hidden="{{shiminghide}}">
             <view class="title" style="margin-right:65rpx;" >手机</view>
-            <input class="form-text" placeholder="请输入手机号" disabled></input>
+            <input class="form-text" placeholder="{{yonghuxinxi.mobile==null||''?'请绑定手机':yonghuxinxi.mobile}}" disabled></input>
           </view>
           <view class="cu-form-group " hidden="{{fenzuhide}}">
             <view class="title">选择分组</view>
@@ -382,7 +382,7 @@
         <view class="fenge-bg"></view>
         <view class="cu-bar bg-white solid-bottom">
           <view class='action'>
-            <text class='cu-bar-title'>已报名{{yibaomingList.length}}人</text>
+            <text class='yibaoming-text-content'>已报名{{yibaomingList.length}}人</text>
           </view>
         </view>
         <view class="yundong-content bg-white">
