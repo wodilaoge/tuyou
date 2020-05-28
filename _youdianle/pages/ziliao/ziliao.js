@@ -9,10 +9,12 @@ Page({
     CustomBar: app.globalData.CustomBar,
     TabCur: 0,
     duiyuanID: '',
+    user: '',
     duiyuanDeatil: [],
     fensishu: 0,
     haoyoushu: 0,
     dianzanshu: 0,
+    ifguanzhu: 0,
   },
 
   tabSelect(e) {
@@ -28,7 +30,6 @@ Page({
       id: this.data.duiyuanID,
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res.data)
       this.setData({
         duiyuanDeatil: res.data,
       })
@@ -43,7 +44,6 @@ Page({
       objtype: 10,
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res.data)
       this.setData({
         fensishu: res.data,
       })
@@ -58,7 +58,6 @@ Page({
       objtype: 10,
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res.data)
       this.setData({
         haoyoushu: res.data,
       })
@@ -67,13 +66,12 @@ Page({
     });
   },
   getDianzan() {
-    let url = app.globalData.URL + '/follow/countByObj';
+    let url = app.globalData.URL + '/applaud/countByObj';
     let data = {
       objid: this.data.duiyuanID,
       objtype: 10,
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res.data)
       this.setData({
         dianzanshu: res.data,
       })
@@ -81,18 +79,71 @@ Page({
       console.log(err.errMsg)
     });
   },
+  getGuanzhu() {
+    let url = app.globalData.URL + '/follow/findFollow';
+    let data = {
+      objid: this.data.duiyuanID,
+      objtype: 10,
+      uid: this.data.user.id
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res.data)
+      this.setData({
+        ifguanzhu: res.data,
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  changeGuanzhu: function(e) {
+
+    if (this.data.ifguanzhu == 0) {
+      this.setData({
+        ifguanzhu: 1,
+        fensishu: this.data.fensishu + 1,
+      })
+
+      let url = app.globalData.URL + '/follow/updateFollow';
+      let data = {
+        objtype: 10,
+        objid: this.data.duiyuanID,
+        creater: this.data.user.id,
+        status: 1,
+      };
+      app.wxRequest('POST', url, data, (res) => {
+        console.log(res)
+      }, (err) => {});
+
+    } else {
+      this.setData({
+        ifguanzhu: 0,
+        fensishu: this.data.fensishu - 1,
+      })
+      let url = app.globalData.URL + '/follow/updateFollow';
+      let data = {
+        objtype: 10,
+        objid: this.data.duiyuanID,
+        creater: this.data.user.id,
+        status: 0,
+      };
+      app.wxRequest('POST', url, data, (res) => {
+        console.log(res)
+      }, (err) => {});
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options)
     this.setData({
-      duiyuanID: options.id
+      duiyuanID: options.id,
+      user: wx.getStorageSync('userInfo'),
     })
     this.getDuiyuan()
     this.getDianzan()
     this.getFensi()
     this.getHaoyou()
+    this.getGuanzhu()
   },
 
   /**
