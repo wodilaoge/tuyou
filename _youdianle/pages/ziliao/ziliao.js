@@ -8,8 +8,11 @@ Page({
   data: {
     CustomBar: app.globalData.CustomBar,
     TabCur: 0,
-    duiyuanID:'',
-    duiyuanDeatil:[],
+    duiyuanID: '',
+    duiyuanDeatil: [],
+    fensishu: 0,
+    haoyoushu: 0,
+    dianzanshu: 0,
   },
 
   tabSelect(e) {
@@ -33,65 +36,111 @@ Page({
       console.log(err.errMsg)
     });
   },
-
-
+  getFensi() {
+    let url = app.globalData.URL + '/follow/countByObj';
+    let data = {
+      objid: this.data.duiyuanID,
+      objtype: 10,
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res.data)
+      this.setData({
+        fensishu: res.data,
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  getHaoyou() {
+    let url = app.globalData.URL + '/follow/countByObj';
+    let data = {
+      objid: this.data.duiyuanID,
+      objtype: 10,
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res.data)
+      this.setData({
+        haoyoushu: res.data,
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  getDianzan() {
+    let url = app.globalData.URL + '/follow/countByObj';
+    let data = {
+      objid: this.data.duiyuanID,
+      objtype: 10,
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res.data)
+      this.setData({
+        dianzanshu: res.data,
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     console.log(options)
     this.setData({
-      duiyuanID:options.id
+      duiyuanID: options.id
     })
     this.getDuiyuan()
+    this.getDianzan()
+    this.getFensi()
+    this.getHaoyou()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })
