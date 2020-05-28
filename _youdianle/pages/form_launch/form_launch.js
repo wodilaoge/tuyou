@@ -2,6 +2,7 @@ const app = getApp();
 var util = require("../../utils/util.js");
 Page({
   data: {
+    hiddenmodalput:true,
     information: {
       actname: '',
       sid: '',
@@ -144,7 +145,7 @@ Page({
       timenow2: e.detail.value
     })
   },
-  RegionChange: function(e) {
+  RegionChange: function (e) {
     this.setData({
       region: e.detail.value
     })
@@ -189,13 +190,14 @@ Page({
       ischecked2: !this.data.ischecked2
     })
   },
-  cancel: function(e) {
+  cancel: function (e) {
     wx.switchTab({
       url: "/pages/form/form"
     })
   },
 
-  commit: function(e) {
+  commit: function (e) {
+
     let t = 'information.timenow'
     let t2 = 'information.signupdeadline'
     this.setData({
@@ -255,7 +257,7 @@ Page({
     let data = {
       'sid': code
     };
-    util.gets(url, data).then(function(res) {
+    util.gets(url, data).then(function (res) {
       that.setData({
         picker2: res.data.data
       })
@@ -267,7 +269,7 @@ Page({
     let data = {
       'cid': code
     };
-    util.gets(url, data).then(function(res) {
+    util.gets(url, data).then(function (res) {
       that.setData({
         pickertiny: res.data.data
       })
@@ -335,7 +337,7 @@ Page({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
           let url2 = app.globalData.URL + '/appuser/getPubPerm'
-          util.gets(url2, {}).then(function(res) {
+          util.gets(url2, {}).then(function (res) {
             console.log('auth', res)
             that.setData({
               auth: res.data
@@ -344,8 +346,8 @@ Page({
               wx.showToast({
                 title: '请先绑定手机！',
                 duration: 2000,
-                success: function() {
-                  setTimeout(function() {
+                success: function () {
+                  setTimeout(function () {
                     wx.navigateTo({
                       url: '/pages/MyPages/my_security/my_security',
                     })
@@ -354,8 +356,8 @@ Page({
               })
             }
           })
-           console.log('wx auth finished')
-          } else {
+          console.log('wx auth finished')
+        } else {
           console.log('no auth')
           wx.showModal({
             title: '友点乐',
@@ -398,7 +400,7 @@ Page({
       })
     }
     let url = app.globalData.URL + '/config/getActivitySection';
-    util.gets(url, {}).then(function(res) {
+    util.gets(url, {}).then(function (res) {
       that.setData({
         pickerbig: res.data.data
       })
@@ -423,7 +425,8 @@ Page({
     })
   },
 
-  finish: function(e) {
+  commit2(e){
+    console.log('confirm')
     let t = 'information.timenow'
     let t2 = 'information.signupdeadline'
     this.setData({
@@ -476,14 +479,14 @@ Page({
         "Content-Type": "application/json",
         'Authorization': user
       },
-      success: function(res) {
+      success: function (res) {
         console.log(res.data);
         if (res.data.code == 0) {
           wx.showToast({
             title: '提交成功',
             duration: 2000,
-            success: function() {
-              setTimeout(function() {
+            success: function () {
+              setTimeout(function () {
                 wx.reLaunch({
                   url: '/pages/index/index',
                 })
@@ -500,8 +503,20 @@ Page({
         }
       },
     })
+    // this.setData({
+    //   modalName: e.currentTarget.dataset.target
+    // })
+  },
+  cancel2: function () {
     this.setData({
-      modalName: e.currentTarget.dataset.target
+      hiddenmodalput: true
+    });
+  },
+  finish: function (e) {
+    var that=this
+    that.setData({
+      hiddenmodalput: !this.data.hiddenmodalput
     })
+
   },
 })

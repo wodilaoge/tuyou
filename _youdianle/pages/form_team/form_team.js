@@ -4,7 +4,8 @@ var upload = require("../../utils/upload.js");
 
 Page({
   data: {
-    isaddress:false,
+    hiddenmodalput: true,
+    isaddress: false,
     group: 0,
     indexbig: 0,
     index: 0,
@@ -37,9 +38,9 @@ Page({
     imgList: [],
     modalName: null,
     other: [],
-    information:[],
-    sid:'',
-    acid1:''
+    information: [],
+    sid: '',
+    acid1: ''
   },
   toagreepage() {
     wx.navigateTo({
@@ -54,7 +55,7 @@ Page({
     this.setData({
       acid1: v
     });
-    this.getthird(this.data.information.acid1)
+    // this.getthird(this.data.information.acid1)
   },
   PickerChangebig(e) { //活动板块
     this.setData({
@@ -82,7 +83,8 @@ Page({
       indexp: e.detail.value,
       indexc: 0,
       indexs: 0,
-      [t]: this.data.provinceList[this.data.indexp].code
+      [t]: this.data.provinceList[this.data.indexp].code,
+      proname: this.data.provinceList[this.data.indexp].name
     })
     this.city(this.data.province)
   },
@@ -93,7 +95,8 @@ Page({
       indexs: 0
     })
     this.setData({
-      [t]: this.data.citys[this.data.indexc].code
+      [t]: this.data.citys[this.data.indexc].code,
+      cityname: this.data.citys[this.data.indexc].name
     })
     this.school(this.data.city)
   },
@@ -101,7 +104,8 @@ Page({
     let t = 'univid'
     this.setData({
       indexs: e.detail.value,
-      [t]: this.data.school[this.data.indexs].code
+      [t]: this.data.school[this.data.indexs].code,
+      schoolname:this.data.school[this.data.indexs].name
     })
   },
   gettwo(code) {
@@ -174,7 +178,7 @@ Page({
       date: e.detail.value
     })
   },
-  RegionChange: function(e) {
+  RegionChange: function (e) {
     this.setData({
       region: e.detail.value
     })
@@ -280,12 +284,23 @@ Page({
       article: e.detail.value
     })
   },
-  toForm_modify: function(e) {
+  toForm_modify: function (e) {
     wx.navigateTo({
       url: "../../pages/form_modify/form_modify"
     })
   },
-  commit: function(e) {
+  firstcommit() {
+    var that = this
+    that.setData({
+      hiddenmodalput: !this.data.hiddenmodalput
+    })
+  },
+  cancel2: function () {
+    this.setData({
+      hiddenmodalput: true
+    });
+  },
+  commit: function (e) {
     var user = wx.getStorageSync('userInfo')
     let url = app.globalData.URL + '/team/updateTeam';
     var data = this.data
@@ -294,6 +309,7 @@ Page({
       sid: data.sid,
       acid1: data.acid1,
       name: data.name,
+      lid: user.id,
       summary: data.article,
       logo: data.other[0],
       linktel: data.linktel,
@@ -307,18 +323,18 @@ Page({
       website: data.website,
       wcoa: data.wcoa,
     }
-    util.post_token(url, data).then(function(res) {
+    util.post_token(url, data).then(function (res) {
       console.log(res.data)
       if (res.data.code == 0) {
-        wx.showToast({ 
+        wx.showToast({
           title: '提交成功',
-           duration: 2000,
-           success: function() { 
-            setTimeout(function() { 
+          duration: 2000,
+          success: function () {
+            setTimeout(function () {
               wx.reLaunch({
                 url: '/pages/index/index',
-              }) 
-            }, 2000); 
+              })
+            }, 2000);
           }
         })
       } else {
@@ -329,7 +345,7 @@ Page({
           duration: 2000
         })
       }
-    }).catch(function(res) {
+    }).catch(function (res) {
       console.log(res)
       wx.showToast({
         title: '提交失败！',
@@ -352,12 +368,12 @@ Page({
     });
   },
   onLoad() {
-    var that=this
+    var that = this
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
           let url2 = app.globalData.URL + '/appuser/getPubPerm'
-          util.gets(url2, {}).then(function(res) {
+          util.gets(url2, {}).then(function (res) {
             console.log('auth', res)
             that.setData({
               auth: res.data
@@ -366,8 +382,8 @@ Page({
               wx.showToast({
                 title: '请先绑定手机！',
                 duration: 2000,
-                success: function() {
-                  setTimeout(function() {
+                success: function () {
+                  setTimeout(function () {
                     wx.navigateTo({
                       url: '/pages/MyPages/my_security/my_security',
                     })
@@ -376,8 +392,8 @@ Page({
               })
             }
           })
-           console.log('wx auth finished')
-          } else {
+          console.log('wx auth finished')
+        } else {
           console.log('no auth')
           wx.showModal({
             title: '友点乐',

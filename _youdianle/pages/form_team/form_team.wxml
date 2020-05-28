@@ -8,6 +8,7 @@
 </cu-custom>
 <form>
  <view class="cu-form-group margin-top">
+  <view class=" text-red text-xl star">*</view>
     <view class="title">活动板块</view>
     <picker bindchange="PickerChangebig" value="{{indexbig}}" range="{{pickerbig}}" range-key="{{'name'}}">
       <view class="picker text-blue">
@@ -16,6 +17,7 @@
     </picker>
   </view>
   <view class="cu-form-group ">
+    <view class=" text-red text-xl star">*</view>
     <view class="title">活动大类</view>
     <picker bindchange="PickerChange2" value="{{index}}" range="{{picker2}}" range-key="{{'name'}}">
       <view class="picker text-blue">
@@ -24,6 +26,7 @@
     </picker>
   </view>
   <view class="cu-form-group margin-top">
+    <view class=" text-red text-xl star">*</view>
     <view class="title">团队名称</view>
     <input class="input text-grey" bindinput="getname" placeholder="请输入团队名称"></input>
     <image class="icon" src="../../img/write.png"></image>
@@ -32,11 +35,11 @@
     <text class="text">正文</text>
     <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="请输入正文"></textarea>
   </view>
-  <view class="cu-form-group margin-top">
+  <!-- <view class="cu-form-group margin-top">
     <view class="title">队长</view>
     <input class="input text-grey" bindinput="getcaptain" placeholder="请输入队长"></input>
     <image class="icon" src="../../img/write.png"></image>
-  </view>
+  </view> -->
   <view class="cu-bar bg-white">
     <view class="action">
       队徽
@@ -147,5 +150,12 @@
   </view>
 </form>
 <view class="padding flex flex-direction justify-between ">
-  <button class="cu-btn bg-orange margin-tb-sm lg round" bindtap="commit" data-target="Modal">提交</button>
+  <button class="cu-btn bg-orange margin-tb-sm lg round" bindtap="firstcommit" data-target="Modal">提交</button>
 </view>
+<modal hidden="{{hiddenmodalput}}" title="友点乐" confirm-text="提交" cancel-text='取消' bindcancel="cancel2"
+  bindconfirm="commit">
+  <view class="text-black">团队名称：{{title}}</view>
+  <view>将被发布到：{{proname}}省{{cityname}}市{{schoolname}}</view>
+  <view>{{pickerbig[indexbig].name}}板块{{picker2[index].name}}大类{{pickertiny[indextiny].name}}小类</view>
+  <view>根据监管要求，通过必要的内容审核方能最终展示给大众，请耐心等待。确定提交吗？</view>
+</modal>

@@ -67,7 +67,7 @@
       </block>
     </view>
   </view>
-  <view class="cu-item {{5==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="5"> 数据
+  <view class="cu-item {{5==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="5" wx:if="{{shujuhide==false}}"> 数据
     <view class="tab_item_img">
       <block wx:if="{{TabCur==5}}">
         <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
@@ -165,7 +165,7 @@
   <view class="content-white">
     <view class="bg-blue">
       <view class="cu-bar cu-bar-radius bg-white padding">
-        <text class="cu-bar-title">在线报名</text>
+        <text class="cu-bar-title">报名</text>
       </view>
     </view>
     <view class=" padding " style="margin-left:175rpx;" hidden="{{signupway}}">
@@ -180,7 +180,7 @@
       <block wx:if="{{isbaominggeren==0}}">
         <view class="bg-white">
           <form>
-            <view class="cu-form-group" hidden="{{guankanhide}}">>
+            <view class="cu-form-group" hidden="{{guankanhide}}">
               <radio-group class="block" style="margin-left:240rpx;">
                 <view class="flex">
                   <view>
@@ -196,11 +196,11 @@
             </view>
             <view class="cu-form-group" hidden="{{shiminghide}}">
               <view class="title" style="margin-right:65rpx;">姓名 </view>
-              <input class="form-text" placeholder="李四" bindinput="xingmingInput" value="{{xingmingInput}}"></input>
+              <input class="form-text" placeholder="{{yonghuxinxi.name==null||''?'请完善个人信息':yonghuxinxi.name}}" bindinput="xingmingInput" value="{{xingmingInput}}"></input>
             </view>
             <view class="cu-form-group " hidden="{{shiminghide}}">
               <view class="title" style="margin-right:65rpx;">手机</view>
-              <input class="form-text" placeholder="请输入手机号" disabled></input>
+              <input class="form-text" placeholder="{{yonghuxinxi.mobile==null||''?'请绑定手机':yonghuxinxi.mobile}}" disabled></input>
             </view>
             <view class="cu-form-group " hidden="{{fenzuhide}}">
               <view class="title">选择分组</view>
@@ -259,7 +259,7 @@
         <view class="fenge-bg"></view>
         <view class="cu-bar bg-white solid-bottom">
           <view class='action'>
-            <text class='cu-bar-title'>已报名{{yibaomingList.length}}人</text>
+            <text class='yibaoming-text-content'>已报名{{yibaomingList.length}}人</text>
           </view>
         </view>
         <view class="yundong-content bg-white">
@@ -290,11 +290,11 @@
             </view>
             <view class="cu-form-group" hidden="{{shiminghide}}">
               <view class="title" style="margin-right:65rpx;">姓名 </view>
-              <input class="form-text" placeholder="李四" bindinput="xingmingInput" value="{{xingmingInput}}"></input>
+              <input class="form-text" placeholder="{{yonghuxinxi.name==null||''?'请完善个人信息':yonghuxinxi.name}}" bindinput="xingmingInput" value="{{xingmingInput}}"></input>
             </view>
             <view class="cu-form-group " hidden="{{shiminghide}}">
               <view class="title" style="margin-right:65rpx;">手机</view>
-              <input class="form-text" placeholder="请输入手机号" disabled></input>
+              <input class="form-text" placeholder="{{yonghuxinxi.mobile==null||''?'请绑定手机':yonghuxinxi.mobile}}" disabled></input>
             </view>
             <view class="cu-form-group " hidden="{{fenzuhide}}">
               <view class="title">选择分组</view>
@@ -355,7 +355,7 @@
           <view class="fenge-bg"></view>
           <view class="cu-bar bg-white solid-bottom">
             <view class='action'>
-              <text class='cu-bar-title'>已报名{{yibaomingList.length}}人</text>
+              <text class='yibaoming-text-content'>已报名{{yibaomingList.length}}人</text>
             </view>
           </view>
           <view class="yundong-content bg-white">
@@ -667,7 +667,7 @@
 
   <block wx:if="{{paimingCur==0}}">
     <view class="bg-white padding yundong-sp-center " wx:for="{{gerenpaiming.list}}" wx:for-index="index">
-      <view class="yundong-sp-center" wx:for="{{item.members}}" wx:for-item="members">
+      <view class="yundong-sp-center padding-bottom" wx:for="{{item.members}}" wx:for-item="members" style="flex-basis: 100%;">
         <view wx:if="{{index==0}}">
           <image class="icon-paiming " mode="aspectFit " src="/img/icon_one.png"></image>
         </view>

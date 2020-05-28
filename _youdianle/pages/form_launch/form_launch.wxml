@@ -8,7 +8,9 @@
 </cu-custom>
 <form>
   <view class="cu-form-group margin-top">
+    <view class=" text-red text-xl star ">*</view>
     <view class="title">活动板块</view>
+
     <picker bindchange="PickerChangebig" value="{{indexbig}}" range="{{pickerbig}}" range-key="{{'name'}}">
       <view class="picker text-blue">
         {{indexbig?pickerbig[indexbig].name:'选择活动版块'}}
@@ -16,22 +18,28 @@
     </picker>
   </view>
   <view class="cu-form-group ">
+    <view class=" text-red text-xl star">*</view>
     <view class="title">活动大类</view>
-    <picker bindchange="PickerChange2" disabled="{{!picker2.length}}" value="{{index}}" range="{{picker2}}" range-key="{{'name'}}">
+    <picker bindchange="PickerChange2" disabled="{{!picker2.length}}" value="{{index}}" range="{{picker2}}"
+      range-key="{{'name'}}">
       <view class="picker text-blue">
         {{index?picker2[index].name:'选择活动大类'}}
       </view>
     </picker>
   </view>
-    <view class="cu-form-group ">
+  <view class="cu-form-group ">
+    <view class=" text-red text-xl star">*</view>
+
     <view class="title">活动小类</view>
-    <picker bindchange="PickerChangetiny" disabled="{{!pickertiny.length}}" value="{{indextiny}}" range="{{pickertiny}}" range-key="{{'name'}}">
+    <picker bindchange="PickerChangetiny" disabled="{{!pickertiny.length}}" value="{{indextiny}}" range="{{pickertiny}}"
+      range-key="{{'name'}}">
       <view class="picker text-blue">
         {{pickertiny.length?pickertiny[indextiny].name:tinyshow}}
       </view>
     </picker>
   </view>
   <view class="cu-form-group">
+    <view class=" text-red text-xl star">*</view>
     <view class="title">活动名称</view>
     <input class="input text-grey" bindinput="getname" placeholder="输入活动名称"></input>
     <image class="icon" src="../../img/write.png"></image>
@@ -49,7 +57,7 @@
       </view>
     </picker>
   </view> -->
-   <!-- <view class="cu-form-group margin-top">
+  <!-- <view class="cu-form-group margin-top">
     <view class="title">省</view>
     <picker bindchange="PickerPro" value="{{indexp}}" range="{{provinceList}}"  range-key="name">
       <view class="picker text-grey">
@@ -72,19 +80,21 @@
       </view>
     </picker>
   </view> -->
-    <view class="cu-form-group" bindtap="tochooseadress">
-    <view class="title ">地址</view>
+  <view class="cu-form-group" bindtap="tochooseadress">
+    <view class="title text-left">地址</view>
     <view class="text-right text-content text-grey right">{{pro.name}}{{city.name}}{{schoolinfo.name}}</view>
     <!-- <input class="input text-grey" placeholder="体育馆" bindinput="getvenue"></input> -->
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group">
+    <!-- <view class=" text-red text-xl star" style="position: relative; right: 80rpx;">*</view> -->
     <view class="title ">场馆</view>
     <input class="input text-grey" placeholder="请输入场馆" bindinput="getvenue"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
 
   <view class="cu-form-group">
+
     <view class="title">报名开始日期</view>
     <picker mode="date" value="{{timenow}}" start="2020.5.1" end="2020.09.01" bindchange="DateChange">
       <view class="picker text-grey">
@@ -92,31 +102,34 @@
       </view>
     </picker>
   </view>
-	<view class="cu-form-group">
-		<view class="title">报名开始时间</view>
-		<picker mode="time" value="{{time}}" start="06:00" end="24:00" bindchange="TimeChange">
-			<view class="picker text-grey">
-				{{time1}}
-			</view>
-		</picker>
-	</view>
   <view class="cu-form-group">
-    <view class="title">报名截止日期</view>
+
+    <view class="title">活动开始时间</view>
+    <picker mode="time" value="{{time}}" start="06:00" end="24:00" bindchange="TimeChange">
+      <view class="picker text-grey">
+        {{time1}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">活动截止日期</view>
     <picker mode="date" value="{{timenow}}" start="2015-09-01" end="2020-09-01" bindchange="DateChange2">
       <view class="picker text-grey">
         {{timenow2}}
       </view>
     </picker>
   </view>
-	<view class="cu-form-group">
-		<view class="title">报名截止时间</view>
-		<picker mode="time" value="{{time}}" start="06:00" end="24:00" bindchange="TimeChange2">
-			<view class="picker text-grey">
-				{{time2}}
-			</view>
-		</picker>
-	</view>
+  <view class="cu-form-group">
+    <view class="title">报名截止时间</view>
+    <picker mode="time" value="{{time}}" start="06:00" end="24:00" bindchange="TimeChange2">
+      <view class="picker text-grey">
+        {{time2}}
+      </view>
+    </picker>
+  </view>
   <view class="cu-form-group margin-top">
+    <view class=" text-red text-xl star">*</view>
+
     <view class="title">报名方式</view>
     <picker bindchange="PickerChange" value="{{index2}}" range="{{picker}}">
       <view class="picker text-grey">
@@ -129,7 +142,8 @@
     <input class="input text-grey" value="{{information.entrylimit}}" bindinput="getentity"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view> -->
-    <view class="cu-form-group">
+  <view class="cu-form-group">
+    <!-- <view class=" text-red text-xl star" style="position: relative; right: 130rpx;">*</view> -->
     <view class="title">参与人数上限</view>
     <!-- <input class="input text-grey" placeholder="50"></input> -->
     <view class="tui-gallery-list">
@@ -149,8 +163,15 @@
     </checkbox-group>
     <view class="flex margin-top2">
       <button class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="commit">补充信息</button>
-      <button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="finish" data-target="Modal">立即提交</button>
+      <button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="finish"
+        data-target="Modal">立即提交</button>
     </view>
-
   </view>
 </form>
+<modal hidden="{{hiddenmodalput}}" title="友点乐" confirm-text="提交" cancel-text='取消' bindcancel="cancel2"
+  bindconfirm="commit2">
+  <view class="text-black">活动名称：{{information.actname}}</view>
+  <view>将被发布到：{{pro.name}}省{{city.name}}市{{schoolinfo.name}}</view>
+  <view>{{pickerbig[indexbig].name}}板块{{picker2[index].name}}大类{{pickertiny[indextiny].name}}小类</view>
+  <view>根据监管要求，通过必要的内容审核方能最终展示给大众，请耐心等待。确定提交吗？</view>
+</modal>

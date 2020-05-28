@@ -4,6 +4,7 @@ var upload = require("../../utils/upload.js");
 var util = require("../../utils/util.js");
 Page({
   data: {
+    hiddenmodalput:true,
     group: 0,
     videonum: 0,
     index: null,
@@ -133,8 +134,11 @@ Page({
           duration: 2000,
           success: function () {
             setTimeout(function () {
-              wx.reLaunch({
-                url: '/pages/index/index',
+              // wx.reLaunch({
+              //   url: '/pages/index/index',
+              // })
+              wx.navigateBack({
+                delta:1
               })
             }, 2000);
           }
@@ -161,6 +165,17 @@ Page({
       modalName: e.currentTarget.dataset.target
     })
   },
+  firstcommit() {
+    var that = this
+    that.setData({
+      hiddenmodalput: !this.data.hiddenmodalput
+    })
+  },
+  cancel2: function () {
+    this.setData({
+      hiddenmodalput: true
+    });
+  },
   getSignature: function (callback) {
     wx.request({
       url: this.data.authurl,
@@ -185,11 +200,12 @@ Page({
     })
   },
   onLoad: function (options) {
+    var that=this
     let url = app.globalData.URL + '/config/findVodParam'
     util.gets(url, {}).then(function (res) {
-      console.log('authurl', res)
+      console.log('authurl', res.data.data.authUrl)
       that.setData({
-        authurl: res.data.data.authurl
+        authurl: res.data.data.authUrl
       })
     })
     this.setData({
