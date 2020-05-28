@@ -8,6 +8,7 @@ Page({
     shipinAnimationData: {},
     Input: "",
     options: [],
+    biaoti: "",
     yibaomingList: [],
     cansaiset: false,
     guankanset: false,
@@ -374,6 +375,9 @@ Page({
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
         detail: res.data
+      })
+      this.setData({
+        biaoti: res.data.actname
       })
       if (res.data.auth != null)
         if (res.data.auth.rights.indexOf("U") != -1)
@@ -1236,6 +1240,7 @@ Page({
       categoryId: options.categoryId,
       user: wx.getStorageSync('userInfo'),
       TabCur: options.TabCur,
+      biaoti:options.Title,
       options: options
     })
     self.yonghuxinxi()
@@ -1256,8 +1261,6 @@ Page({
           image: '/img/fail.png', // 图标类型，默认success
           duration: 1000 // 提示窗停留时间，默认1500ms
         })
-
-      resolve();
     }, 10000)
   },
   /////////////////////////
