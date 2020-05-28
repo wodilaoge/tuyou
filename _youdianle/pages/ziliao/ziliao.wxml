@@ -5,7 +5,12 @@
   </cu-custom>
   <view class="flex">
     <text class="ziliao-name">{{duiyuanDeatil.name}}</text>
-    <button class="cu-btn round lines-white " style="width:100rpx;height:42rpx;margin-left:197rpx;">关注</button>
+    <block wx:if="{{ifguanzhu==0}}">
+      <button class="cu-btn round lines-white " style="width:100rpx;height:42rpx;margin-left:197rpx;" bindtap="changeGuanzhu">关注</button>
+    </block>
+    <block wx:if="{{ifguanzhu==1}}">
+      <button class="cu-btn round lines-white " style="width:100rpx;height:42rpx;margin-left:197rpx;" bindtap="changeGuanzhu">已关注</button>
+    </block>
   </view>
   <view class="flex" style="margin-top:47rpx;">
     <image class="ziliao-avatar" src="{{duiyuanDeatil.head}}">
@@ -428,7 +433,7 @@
       </view>
     </view>
   </view>
-  
+
   <view class="bg-white flex" style="padding-left:24rpx;padding-top:55rpx;height:250rpx;">
     <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg" style="height: 160rpx;width:160rpx;"></image>
     <view style="margin-left:34rpx;">
