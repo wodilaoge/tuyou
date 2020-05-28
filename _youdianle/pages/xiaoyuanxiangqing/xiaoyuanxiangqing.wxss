@@ -1,29 +1,78 @@
-
 page {
   /*页面布局*/
   padding-bottom: 150rpx;
-  letter-spacing:2rpx;
+  letter-spacing: 2rpx;
+}
+
+.biaoti {
+  overflow: hidden; /*隐藏溢出*/
+  text-overflow: ellipsis; /*当文本溢出包含元素时显示省略符号来代表被修剪的文本*/
+  white-space: nowrap;/*规定段落中的文本不进行换行*/
 }
 
 /*模态框*/
-.modals{position:fixed; z-index: 999; top:0; left: 0; right:0; bottom: 0;}
-.modals-cancel{position:absolute; z-index:1000; top:0; left: 0; right:0; bottom: 0; background-color: rgba(0,0,0,.5);}
-.bottom-dialog-body{position:absolute; z-index:10001; bottom:0; left:0; right:0; padding:30rpx; height:290rpx; background-color: #fff;}
-.shipin-bottom-dialog-body{position:absolute; z-index:10001; bottom:0; left:0; right:0; padding:30rpx; height:790rpx; background-color: #fff;}
+
+.modals {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.modals-cancel {
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bottom-dialog-body {
+  position: absolute;
+  z-index: 10001;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30rpx;
+  height: 290rpx;
+  background-color: #fff;
+}
+
+.shipin-bottom-dialog-body {
+  position: absolute;
+  z-index: 10001;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30rpx;
+  height: 790rpx;
+  background-color: #fff;
+}
+
 /*动画前初始位置*/
-.bottom-pos{-webkit-transform:translateY(100%);transform:translateY(100%);}
+
+.bottom-pos {
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+}
 
 .basis-30 {
   flex-basis: 30%;
   flex-wrap: wrap；;
 }
-.goods-text{
+
+.goods-text {
   padding: 0 10rpx;
-  font-size:28rpx;
-  color:#666666;
+  font-size: 28rpx;
+  color: #666;
   line-height: 56rpx;
   margin-bottom: 30rpx;
 }
+
 .text-border-radius {
   border-radius: 30rpx;
 }
@@ -120,7 +169,7 @@ page {
   line-height: 33rpx;
 }
 
-.mlt{
+.mlt {
   margin-left: 10000rpx;
 }
 
@@ -204,6 +253,7 @@ page {
   width: 40rpx;
   height: 40rpx;
 }
+
 .img-input {
   height: 60rpx;
 }
@@ -264,6 +314,7 @@ page {
 }
 
 /* 视频 */
+
 .shipin-title {
   display: flex;
   height: 100rpx;
@@ -275,6 +326,7 @@ page {
   color: rgba(51, 51, 51, 1);
   background-color: white;
 }
+
 .sp-avatar {
   margin-left: 24rpx;
   width: 64rpx;
@@ -357,6 +409,7 @@ page {
   font-weight: normal;
   margin-left: 29rpx;
 }
+
 .sp-quanbupinglun2 {
   margin-left: 280rpx;
   height: 50rpx;
@@ -365,6 +418,7 @@ page {
   color: black;
   font-weight: normal;
 }
+
 /* 投票 */
 
 .tp-tptitle {
@@ -449,7 +503,7 @@ checkbox.tp-checkbox {
   width: 320rpx;
   height: 80rpx;
   border-radius: 40rpx;
-  border: 2rpx solid; 
+  border: 2rpx solid;
 }
 
 .btn-bm {
@@ -457,6 +511,7 @@ checkbox.tp-checkbox {
   height: 80rpx;
   font-size: 32rpx;
 }
+
 .btn-shouji {
   width: 100rpx;
   height: 60rpx;
@@ -468,14 +523,15 @@ checkbox.tp-checkbox {
   height: 64rpx;
   border-radius: 33.5rpx;
 }
+
 .yundong-sp-center {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
 }
 
-.view-active{
-border-bottom: 1px solid rgb(8, 8, 8);
+.view-active {
+  border-bottom: 1px solid rgb(8, 8, 8);
 }
 
 .yibaoming-text-content {

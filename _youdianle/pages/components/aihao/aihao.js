@@ -26,13 +26,13 @@ Component({
     yundongxiangqing(e) {
       app.globalData.tabbar = 3;
       wx.navigateTo({
-        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=0&Title=爱好详情&categoryId=' + e.currentTarget.dataset.aihao.id,
+        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=0&Title=' + e.currentTarget.dataset.aihao.actname+'&categoryId=' + e.currentTarget.dataset.aihao.id,
       })
     },
     baomingtiaozhan(e) {
       app.globalData.tabbar = 3;
       wx.navigateTo({
-        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=1&Title=爱好活动&categoryId=' + e.currentTarget.dataset.aihao.id,
+        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=1&Title=' + e.currentTarget.dataset.aihao.actname +'&categoryId=' + e.currentTarget.dataset.aihao.id,
       })
     },
   }

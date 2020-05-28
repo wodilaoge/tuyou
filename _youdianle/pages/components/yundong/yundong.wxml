@@ -24,12 +24,12 @@
               </view>
               <view class="time-text-content">
                 <image class="icon-size" src="/img/icon_time.png" mode="heightFix"></image>
-                3月11日（周三）13:00开赛
+                {{item.fromtime}}
               </view>
             </view>
           </view>
         </view>
-        <view class="yundong-content title-text-content" style="margin-top:28rpx;">
+        <view class="yundong-content title-text-content" style="margin-top:28rpx;" wx:if="{{item.slogan!=''||null}}">
           <image class="icon-size" src="/img/icon_title.png" mode="heightFix"></image>
           <text decode="{{true}}">{{item.slogan}}</text>
         </view>

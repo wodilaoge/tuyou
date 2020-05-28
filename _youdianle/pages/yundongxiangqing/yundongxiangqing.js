@@ -429,6 +429,9 @@ Page({
       this.setData({
         detail: res.data
       })
+      this.setData({
+        biaoti: res.data.actname
+      })
       if (res.data.auth != null)
         if (res.data.auth.rights.indexOf("U") != -1)
           this.setData({

@@ -8,7 +8,7 @@
 静态页面改成动态页面 -->
 <view class="top bg-blue">
   <cu-custom isBack="{{true}}" bgColor="bg-blue">
-    <view slot="content">活动详情</view>
+    <view slot="content" class="biaoti">{{biaoti}}</view>
   </cu-custom>
 </view>
 <view class="cu-card article no-card bg-blue">
