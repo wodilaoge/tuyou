@@ -26,45 +26,25 @@
     </view>
   </view>
   <view class="flex" style="margin-top:41rpx;">
-    <text class="ziliao-shuzi" style="margin-left:112rpx;">{{fensishu}}</text>
-    <text class="ziliao-shuzi" style="margin-left:228rpx;">{{haoyoushu}}</text>
-    <text class="ziliao-shuzi" style="margin-left:228rpx;">{{dianzanshu}}</text>
+    <text class="ziliao-shuzi" style="margin-left:112rpx;">{{huodongshu}}</text>
+    <text class="ziliao-shuzi" style="margin-left:228rpx;">{{fensishu}}</text>
+    <text class="ziliao-shuzi" style="margin-left:235rpx;">{{dianzanshu}}</text>
   </view>
   <view class="flex" style="margin-top:26rpx;">
-    <text class="ziliao-fensi" style="margin-left:95rpx;">粉丝</text>
-    <text class="ziliao-fensi" style="margin-left:197rpx;">好友</text>
-    <text class="ziliao-fensi" style="margin-left:203rpx;">点赞</text>
+    <text class="ziliao-fensi" style="margin-left:100rpx;">活动</text>
+    <text class="ziliao-fensi" style="margin-left:197rpx;">粉丝</text>
+    <text class="ziliao-fensi" style="margin-left:210rpx;">点赞</text>
   </view>
 </view>
 
-<scroll-view scroll-x class="bg-white nav">
-  <view class="cu-item {{0==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="0" style="margin-left:73rpx;" hover-class="bianse"> 资料
-    <view class="tab_item_img">
-      <block wx:if="{{TabCur==0}}">
-        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
-      </block>
-    </view>
+<scroll-view scroll-x class="bg-white nav ">
+  <view class="cu-item {{0==TabCur?'text-bold text-red cur':''}}" bindtap="tabSelect" data-id="0" style="margin-left:73rpx;">资料
   </view>
-  <view class="cu-item {{1==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="1" style="margin-left:120rpx;"> 排名
-    <view class="tab_item_img">
-      <block wx:if="{{TabCur==1}}">
-        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
-      </block>
-    </view>
+  <view class="cu-item {{1==TabCur?'text-bold cur text-blue':''}}" bindtap="tabSelect" data-id="1" style="margin-left:120rpx;">排名
   </view>
-  <view class="cu-item {{2==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="2" style="margin-left:120rpx;"> 粉丝
-    <view class="tab_item_img">
-      <block wx:if="{{TabCur==2}}">
-        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
-      </block>
-    </view>
+  <view class="cu-item {{2==TabCur?'text-bold cur text-blue':''}}" bindtap="tabSelect" data-id="2" style="margin-left:120rpx;">粉丝
   </view>
-  <view class="cu-item {{3==TabCur?'text-bold cur':''}}" bindtap="tabSelect" data-id="3" style="margin-left:120rpx;"> 咨询
-    <view class="tab_item_img">
-      <block wx:if="{{TabCur==3}}">
-        <image class="tab_item_img" mode="aspectFit" src="../../img/img_selection.png"></image>
-      </block>
-    </view>
+  <view class="cu-item {{3==TabCur?'text-bold cur text-blue':''}}" bindtap="tabSelect" data-id="3" style="margin-left:120rpx;">资讯
   </view>
 </scroll-view>
 
@@ -112,12 +92,12 @@
       <view class="ziliao-content2">{{duiyuanDeatil.speciality}}</view>
     </view>
   </view>
-  <view style="margin-top:2rpx;background-color:white;">
+  <!-- <view style="margin-top:2rpx;background-color:white;">
     <view class="ziliao-content justify-between" style="height:73rpx;">
       <view class="ziliao-content1">爱好</view>
       <view class="ziliao-content2">篮球</view>
     </view>
-  </view>
+  </view> -->
 
 
   <view class="pinglun-title">评论108</view>

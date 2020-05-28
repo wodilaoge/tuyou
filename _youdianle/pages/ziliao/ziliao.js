@@ -15,6 +15,7 @@ Page({
     haoyoushu: 0,
     dianzanshu: 0,
     ifguanzhu: 0,
+    huodongshu: 0,
   },
 
   tabSelect(e) {
@@ -74,6 +75,19 @@ Page({
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
         dianzanshu: res.data,
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  getHuodong() {
+    let url = app.globalData.URL + '/act/countActByUser';
+    let data = {
+      objid: this.data.duiyuanID,
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        huodongshu: res.data,
       })
     }, (err) => {
       console.log(err.errMsg)
@@ -144,6 +158,7 @@ Page({
     this.getFensi()
     this.getHaoyou()
     this.getGuanzhu()
+    this.getHuodong()
   },
 
   /**

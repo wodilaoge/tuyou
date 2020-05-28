@@ -87,7 +87,12 @@
   height: 40rpx;
   margin: -80rpx 0rpx -40rpx 5rpx;
 }
-
+.nav .cu-item.cur {
+	border-bottom: 6rpx solid;
+}
+.text-blue{
+  color:#5454FF;
+}
 .bianse {
   color: #5454ff;
 }
