@@ -203,9 +203,9 @@ Page({
     var that=this
     let url = app.globalData.URL + '/config/findVodParam'
     util.gets(url, {}).then(function (res) {
-      console.log('authurl', res)
+      console.log('authurl', res.data.data.authUrl)
       that.setData({
-        authurl: res.data.data.authurl
+        authurl: res.data.data.authUrl
       })
     })
     this.setData({
