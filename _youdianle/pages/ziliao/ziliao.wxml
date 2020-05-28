@@ -12,11 +12,11 @@
     </image>
     <view>
       <view class="flex">
-        <text class="duiming">飞鹰队</text>
-        <view class="weizhi ">前锋</view>
+        <text class="duiming">{{duiyuanDeatil.defaultTeam}}</text>
+        <view class="weizhi ">{{duiyuanDeatil.defaultRole}}</view>
       </view>
       <view class="flex">
-        <text class="ziliao-ziliao">{{duiyuanDeatil.name}}岁 | 1.85米 | 80公斤</text>
+        <text class="ziliao-ziliao">{{duiyuanDeatil.name}}岁 | {{duiyuanDeatil.height}}米 | {{duiyuanDeatil.weight}}公斤</text>
       </view>
     </view>
   </view>
@@ -68,43 +68,43 @@
   <view style="margin-top:20rpx;background-color:white;">
     <view class="ziliao-content justify-between" style="height:73rpx;">
       <view class="ziliao-content1">性别</view>
-      <view class="ziliao-content2">男</view>
+      <view class="ziliao-content2">{{duiyuanDeatil.sex}}</view>
     </view>
   </view>
   <view style="margin-top:2rpx;background-color:white;">
     <view class="ziliao-content justify-between" style="height:73rpx;">
       <view class="ziliao-content1">国籍</view>
-      <view class="ziliao-content2">中国</view>
+      <view class="ziliao-content2">{{duiyuanDeatil.nationality}}</view>
     </view>
   </view>
   <view style="margin-top:2rpx;background-color:white;">
     <view class="ziliao-content justify-between" style="height:73rpx;">
       <view class="ziliao-content1">出生年月</view>
-      <view class="ziliao-content2">2000.01.14</view>
+      <view class="ziliao-content2">{{duiyuanDeatil.birthday}}</view>
     </view>
   </view>
   <view style="margin-top:2rpx;background-color:white;">
     <view class="ziliao-content justify-between" style="height:73rpx;">
       <view class="ziliao-content1">院校</view>
-      <view class="ziliao-content2">浙江工商大学</view>
+      <view class="ziliao-content2">{{duiyuanDeatil.univname}}</view>
     </view>
   </view>
   <view style="margin-top:2rpx;background-color:white;">
     <view class="ziliao-content justify-between" style="height:73rpx;">
       <view class="ziliao-content1">入学年份</view>
-      <view class="ziliao-content2">1018.9</view>
+      <view class="ziliao-content2">{{duiyuanDeatil.enrolyear}}</view>
     </view>
   </view>
   <view style="margin-top:2rpx;background-color:white;">
     <view class="ziliao-content justify-between" style="height:73rpx;">
       <view class="ziliao-content1">毕业年份</view>
-      <view class="ziliao-content2">2022.6</view>
+      <view class="ziliao-content2">{{duiyuanDeatil.graduateyear}}</view>
     </view>
   </view>
   <view style="margin-top:2rpx;background-color:white;">
     <view class="ziliao-content justify-between" style="height:73rpx;">
       <view class="ziliao-content1">国特长籍</view>
-      <view class="ziliao-content2">篮球、足球</view>
+      <view class="ziliao-content2">{{duiyuanDeatil.speciality}}</view>
     </view>
   </view>
   <view style="margin-top:2rpx;background-color:white;">
