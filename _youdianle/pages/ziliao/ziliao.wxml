@@ -16,14 +16,14 @@
         <view class="weizhi ">{{duiyuanDeatil.defaultRole}}</view>
       </view>
       <view class="flex">
-        <text class="ziliao-ziliao">{{duiyuanDeatil.name}}岁 | {{duiyuanDeatil.height}}米 | {{duiyuanDeatil.weight}}公斤</text>
+        <text class="ziliao-ziliao">{{duiyuanDeatil.birthday}}岁 | {{duiyuanDeatil.height}}米 | {{duiyuanDeatil.weight}}公斤</text>
       </view>
     </view>
   </view>
   <view class="flex" style="margin-top:41rpx;">
-    <text class="ziliao-shuzi" style="margin-left:112rpx;">8</text>
-    <text class="ziliao-shuzi" style="margin-left:228rpx;">8</text>
-    <text class="ziliao-shuzi" style="margin-left:228rpx;">8</text>
+    <text class="ziliao-shuzi" style="margin-left:112rpx;">{{fensishu}}</text>
+    <text class="ziliao-shuzi" style="margin-left:228rpx;">{{haoyoushu}}</text>
+    <text class="ziliao-shuzi" style="margin-left:228rpx;">{{dianzanshu}}</text>
   </view>
   <view class="flex" style="margin-top:26rpx;">
     <text class="ziliao-fensi" style="margin-left:95rpx;">粉丝</text>

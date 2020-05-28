@@ -562,8 +562,17 @@ Page({
       acid1: this.data.shipinCur
     };
     app.wxRequest('GET', url, data, (res) => {
+      let shipintmp = res.data;
+      shipintmp.list[0].playCnt++;
       this.setData({
-        shipin: res.data
+        shipin: shipintmp
+      })
+      let url2 = app.globalData.URL + '/video/updatePlayCnt';
+      let data2 = {
+        id: self.data.shipin.list[0].id,
+      };
+      app.wxRequest('GET', url2, data2, (res) => {
+        console.log(res)
       })
     }, (err) => {
       console.log(err.errMsg)

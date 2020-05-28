@@ -1000,7 +1000,7 @@ Page({
   getZhaopian() { //照片
     let url = app.globalData.URL + '/photo/listActPhoto';
     let data = {
-      arctid: this.data.categoryId
+      actid: this.data.categoryId
     };
     app.wxRequest('GET', url, data, (res) => {
       console.log(res)
