@@ -729,11 +729,7 @@
 
         <view class="cu-avatar round my " style="background-image:url({{members.mbrHead}}); "></view>
         <text class="paiming-name " decode="{{true}}">&ensp;{{members.mbrAlias}}</text>
-<<<<<<< HEAD
         <view class="paiming-name text-orange " wx:if="{{members.mbrScore!=null}}" style="position: fixed;right:40rpx; ">{{members.mbrScore}}分
-=======
-        <view class="paiming-name text-orange " wx:if="{{members.mbrScore!=null}}" style="position: absolute;right:40rpx; ">{{members.mbrScore}}分
->>>>>>> 0e4f10c2e60d38a2e5d311691a4675b281d7763a
         </view>
       </view>
     </view>
