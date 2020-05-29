@@ -1465,6 +1465,43 @@ Page({
     }
   },
   ////////////////////////////
+  delete_geren(e) { //管理删除
+    wx.showLoading({
+      title: '加载中...',
+      mask: true  //显示触摸蒙层  防止事件穿透触发
+    });
+    var self = this
+    var status
+    let url = app.globalData.URL + '/act/cancelActSignupIndByUser'
+    let data = {
+      actid: self.data.categoryId,
+      uid: e.currentTarget.dataset.id
+    }
+    console.log(e)
+    util.gets(url, data).then(function(res) {
+      wx.hideLoading()
+      if (res.data.code == 0) {
+        wx.showToast({
+          title: '操作成功！', // 标题
+          icon: 'success', // 图标类型，默认success
+          duration: 1500 // 提示窗停留时间，默认1500ms
+        })
+        self.setData({
+          isbaominggeren: 0
+        })
+        self.yibaoming()
+        self.gerenshuju()
+      } else {
+        console.log(res.data)
+        wx.showToast({
+          title: res.data.msg, // 标题
+          image: '/img/fail.png', // 图标类型，默认success
+          duration: 1000 // 提示窗停留时间，默认1500ms
+        })
+      }
+    })
+  },
+  //////////////////////////
   gerenshuju() {
     var self = this
     var url = app.globalData.URL + '/act/updateActIndRank' //更新个人排名
