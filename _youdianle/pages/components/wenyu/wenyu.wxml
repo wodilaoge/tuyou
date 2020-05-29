@@ -9,7 +9,7 @@
   <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-wenyu="{{item}}">
     <view class="cu-card article">
       <view class="cu-item">
-        <view class="yundong-content title-text-content" style="margin-bottom:20rpx; padding-left:0rpx">
+        <view class="yundong-content title-text-content" style="margin-bottom:20rpx; padding-left:0rpx" wx:if="{{item.slogan!=''||null}}">
           <image class="icon-size" src="/img/icon_title.png" mode="heightFix"></image>
           <text decode="{{true}}">{{item.slogan}}</text>
         </view>
@@ -27,7 +27,7 @@
               </view>
               <view class="time-text-content">
                 <image class="icon-size" src="/img/icon_time.png" mode="heightFix"></image>
-                3月11日（周三）13:00开演
+                {{item.fromtime}}
               </view>
             </view>
             <image src="{{item.logo}}" mode="aspectFill"></image>

@@ -8,7 +8,7 @@
 静态页面改成动态页面 -->
 <view class="top bg-blue">
   <cu-custom isBack="{{true}}" bgColor="bg-blue">
-    <view slot="content">活动详情</view>
+    <view slot="content" class="biaoti">{{biaoti}}</view>
   </cu-custom>
 </view>
 <view class="cu-card article no-card bg-blue">
@@ -483,7 +483,7 @@
         </view>
 
         <view>
-          <video id="video_{{index}}" src="{{shipin.list[0].fileId}}" autoplay="true " controls style="width:100%;" bindtap="video_change" data-index="{{index}}"></video>
+          <video id="video_{{index}}" src="{{shipin.list[0].fileId}}" autoplay="true" controls style="width:100%;" bindtap="video_change" data-index="{{index}}"></video>
         </view>
         <view class="flex  margin-top ">
           <view class="sp-bofang-times ">播放{{shipin.list[0].playCnt}}次</view>
@@ -525,7 +525,7 @@
         </view>
 
         <view>
-          <video id="video_{{index}}" src="{{shipin.list[index].fileId}}" controls style="width:100%;" bindtap="video_change"></video>
+          <video id="video_{{index}}" src="{{shipin.list[index].fileId}}" controls style="width:100%;" bindtap="video_change" data-index="{{index}}"></video>
         </view>
         <view class="flex  margin-top ">
           <view class="sp-bofang-times ">播放{{shipin.list[index].playCnt}}次</view>
@@ -681,7 +681,7 @@
 
         <view class="cu-avatar round my " style="background-image:url({{members.mbrHead}}); "></view>
         <text class="paiming-name " decode="{{true}} ">&ensp;{{members.mbrAlias}}</text>
-        <view class="paiming-name text-orange " wx:if="{{members.mbrScore!=null}}" style="position: fixed;right:40rpx; ">{{members.mbrScore}}分
+        <view class="paiming-name text-orange " wx:if="{{members.mbrScore!=null}}" style="position: absolute;right:40rpx;">{{members.mbrScore}}分
         </view>
       </view>
     </view>
@@ -702,7 +702,7 @@
 
       <view class="cu-avatar round my " style="background-image:url({{item.teamLogo}}); "></view>
       <text class="paiming-name " decode="{{true}} ">&ensp;{{item.team}}</text>
-      <view class="paiming-name text-orange " wx:if="{{members.mbrScore!=null}}" style="margin-left:auto; ">{{item.teamScore}}
+      <view class="paiming-name text-orange " wx:if="{{members.mbrScore!=null}}" style="position: absolute;right:40rpx;">{{item.teamScore}}
       </view>
     </view>
   </block>

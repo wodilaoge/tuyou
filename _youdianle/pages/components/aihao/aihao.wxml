@@ -9,7 +9,7 @@
   <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-aihao="{{item}}">
     <view class="cu-card article no-card">
       <view class="cu-item">
-        <view class="yundong-content title-text-content" style="margin-bottom:20rpx;">
+        <view class="yundong-content title-text-content" style="margin-bottom:20rpx;" wx:if="{{item.slogan!=''||null}}">
           <image class="icon-size" src="/img/icon_title.png" mode="heightFix" style=""></image>
           <text decode="{{true}}"> {{item.slogan}}</text>
         </view>
@@ -28,7 +28,7 @@
               </view>
               <view class="time-text-content">
                 <image class="icon-size" src="/img/icon_time.png" mode="heightFix"></image>
-                {{item.fromtime}}开战
+                {{item.fromtime}}
               </view>
             </view>
           </view>

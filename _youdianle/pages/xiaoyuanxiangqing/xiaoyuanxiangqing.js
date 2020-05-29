@@ -8,6 +8,7 @@ Page({
     shipinAnimationData: {},
     Input: "",
     options: [],
+    biaoti: "",
     yibaomingList: [],
     cansaiset: false,
     guankanset: false,
@@ -374,6 +375,9 @@ Page({
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
         detail: res.data
+      })
+      this.setData({
+        biaoti: res.data.actname
       })
       if (res.data.auth != null)
         if (res.data.auth.rights.indexOf("U") != -1)
@@ -1236,6 +1240,7 @@ Page({
       categoryId: options.categoryId,
       user: wx.getStorageSync('userInfo'),
       TabCur: options.TabCur,
+      biaoti:options.Title,
       options: options
     })
     self.yonghuxinxi()
@@ -1256,8 +1261,6 @@ Page({
           image: '/img/fail.png', // 图标类型，默认success
           duration: 1000 // 提示窗停留时间，默认1500ms
         })
-
-      resolve();
     }, 10000)
   },
   /////////////////////////
@@ -1273,32 +1276,43 @@ Page({
       actid: this.data.categoryId,
     };
     app.wxRequest('GET', url, data, (res) => {
+      let shipintmp = res.data;
+      shipintmp.list[0].playCnt++;
       this.setData({
-        shipin: res.data
+        shipin: shipintmp
+      })
+      let url2 = app.globalData.URL + '/video/updatePlayCnt';
+      let data2 = {
+        id: self.data.shipin.list[0].id,
+      };
+      app.wxRequest('GET', url2, data2, (res) => {
+        console.log(res)
       })
     }, (err) => {
       console.log(err.errMsg)
     });
   },
   video_change: function(e) { ////视频切换
+
     var shipintmp = this.data.shipin;
     if (this.data.bofang_if_id != e.currentTarget.id) { ///相等表示点击和播放不匹配
       if (this.data.bofang_pid == '0') {
         this.setData({
           bofang_pid: '1'
         })
-        let url = app.globalData.URL + '/video/updatePlayCnt';
-        let data = {
-          id: this.data.shipin.list[e.currentTarget.dataset.index].id,
-        };
-        app.wxRequest('GET', url, data, (res) => {})
-        shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
-        self.setData({
-          shipin: shipintmp
-        })
       }
-      var now_id = e.currentTarget.id;
-      var prev_id = this.data.video_id;
+      let url = app.globalData.URL + '/video/updatePlayCnt';
+      let data = {
+        id: this.data.shipin.list[e.currentTarget.dataset.index].id,
+      };
+      app.wxRequest('GET', url, data, (res) => {})
+      shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
+      self.setData({
+        shipin: shipintmp
+      })
+
+      let now_id = e.currentTarget.id;
+      let prev_id = this.data.video_id;
       this.setData({
         video_id: now_id,
         bofang_if_id: now_id
@@ -1318,7 +1332,6 @@ Page({
         this.setData({
           bofang_pid: '1'
         })
-
         let url = app.globalData.URL + '/video/updatePlayCnt';
         let data = {
           id: this.data.shipin.list[e.currentTarget.dataset.index].id,
@@ -1369,37 +1382,41 @@ Page({
     var self = this;
     let shipintmp = this.data.shipin;
     if (shipintmp.list[e.currentTarget.dataset.index].myApplaud == 1) {
-        shipintmp.list[e.currentTarget.dataset.index].ifzan = 0;
-        shipintmp.list[e.currentTarget.dataset.index].applaudCnt--;
-        self.setData({
-          shipin: shipintmp
-        })
-        let url = app.globalData.URL + '/applaud/updateApplaud';
-        let data = {
-          objtype: 50,
-          objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
-          objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
-          creater: self.data.user.id,
-          status: 0,
-        };
-        app.wxRequest('POST', url, data, (res) => {}, (err) => {});
+      shipintmp.list[e.currentTarget.dataset.index].myApplaud = 0;
+      shipintmp.list[e.currentTarget.dataset.index].applaudCnt--;
+      self.setData({
+        shipin: shipintmp
+      })
+      let url = app.globalData.URL + '/applaud/updateApplaud';
+      let data = {
+        objtype: 50,
+        objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+        objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
+        creater: self.data.user.id,
+        status: 0,
+      };
+      app.wxRequest('POST', url, data, (res) => {
+        console.log(res)
+      }, (err) => {});
 
-      } else {
-        shipintmp.list[e.currentTarget.dataset.index].myApplaud = 1;
-        shipintmp.list[e.currentTarget.dataset.index].applaudCnt++;
-        self.setData({
-          shipin: shipintmp
-        })
-        let url = app.globalData.URL + '/applaud/updateApplaud';
-        let data = {
-          objtype: 50,
-          objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
-          objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
-          creater: self.data.user.id,
-          status: 1,
-        };
-        app.wxRequest('POST', url, data, (res) => {}, (err) => {});
-      }
+    } else {
+      shipintmp.list[e.currentTarget.dataset.index].myApplaud = 1;
+      shipintmp.list[e.currentTarget.dataset.index].applaudCnt++;
+      self.setData({
+        shipin: shipintmp
+      })
+      let url = app.globalData.URL + '/applaud/updateApplaud';
+      let data = {
+        objtype: 50,
+        objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+        objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
+        creater: self.data.user.id,
+        status: 1,
+      };
+      app.wxRequest('POST', url, data, (res) => {
+        console.log(res)
+      }, (err) => {});
+    }
   },
 
 

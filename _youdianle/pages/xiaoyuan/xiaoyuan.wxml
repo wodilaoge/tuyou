@@ -68,7 +68,7 @@
   </view>
   <view class="cu-card article no-card bg-white">
     <view class="cu-item shadow " wx:for="{{ActList.list}}" wx:key>
-      <view class="content margin-bottom" bindtap="xiaoyuanxiangqing" id="{{item.id}}">
+      <view class="content margin-bottom" bindtap="xiaoyuanxiangqing" data-xiaoyuan="{{item}}">
         <image src="{{item.logo}}" mode="aspectFill"></image>
         <view class="desc">
           <view class="title-limit">{{item.actname}}</view>
