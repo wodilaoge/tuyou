@@ -21,7 +21,7 @@
   <view class="cu-item {{0==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="0"> 详情</view>
   <view class="cu-item {{1==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="1"> 报名 </view>
   <view class="cu-item {{2==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="2"> 视频</view>
-  <view class="cu-item {{3==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="3"> 照片 </view>
+  <!--<view class="cu-item {{3==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="3"> 照片 </view>-->
   <view class="cu-item {{4==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="4"> 排名 </view>
   <view class="cu-item {{5==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="5" wx:if="{{shujuhide==false}}"> 数据</view>
   <!--<view class="cu-item {{6==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="6"> 资讯</view>-->
@@ -609,7 +609,7 @@
 创建者：朱娇龙
 创建时间：20200418
 创建内容：照片-->
-<block wx:if="{{TabCur==3}}">
+<!--<block wx:if="{{TabCur==3}}">
   <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx; ">{{zhaopian[0].title}}</view>
   <view class="content-white ">
     <view class=" sp-cu-bar cu-bar-radius bg-white ">
@@ -702,7 +702,7 @@
       </view>
     </view>
   </view>
-</block>
+</block>-->
 
 <!--
 创建者：陈雨豪

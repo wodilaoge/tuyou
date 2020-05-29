@@ -53,13 +53,13 @@
       </block>
     </view>
   </view>
-  <view class="cu-item {{3==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="3"> 投票
+  <!--<view class="cu-item {{3==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="3"> 投票
     <view class="tab_item_img">
       <block wx:if="{{TabCur==3}}">
         <image class="tab_item_img" mode="aspectFit" src="/img/img_selection.png"></image>
       </block>
     </view>
-  </view>
+  </view>-->
   <view class="cu-item {{4==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="4"> 排名
     <view class="tab_item_img">
       <block wx:if="{{TabCur==4}}">
