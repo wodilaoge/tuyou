@@ -27,6 +27,7 @@ Page({
 
       console.log(res.data)
       if (res.data.code==0) {
+        wx.clearStorageSync()
         wx.showToast({
           title: '注销成功',
           duration: 2000,
