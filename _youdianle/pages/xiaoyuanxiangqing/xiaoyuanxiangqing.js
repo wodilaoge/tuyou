@@ -26,6 +26,7 @@ Page({
     paimingCur: 0,
     baomingCur: 0,
     shujuCur: 0,
+    guanliCur:0,
     shujuhide: true,
 
     categoryId: '',
@@ -303,6 +304,11 @@ Page({
     if (e.currentTarget.dataset.id==1)
       if (self.data.shiminghide == false)
         self.ifshiming()
+  },
+  guanliSelect(e) {
+    this.setData({
+      guanliCur: e.currentTarget.dataset.id,
+    })
   },
   paimingSelect(e) {
     this.setData({
@@ -1094,6 +1100,7 @@ Page({
           duration: 500,
         })
     })
+    self.gerenpaiming()
   },
   tuanduishuju() {
     var self = this
@@ -1135,6 +1142,7 @@ Page({
           duration: 500,
         })
     })
+    self.tuanduipaiming()
   },
   tijiao() {
     if (this.data.detail.signupway == "30") {

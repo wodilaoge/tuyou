@@ -393,39 +393,44 @@
           </view>
         </view>
       </view>
-      <view class="bg-white">
-        <view class="cu-bar bg-white padding">
-          <view class="yibaoming-text-content">分组1</view>
+    </block>
+  </block>
+  <block>
+    <!-- 管理 -->
+    <view style="background-color:var(--white)" hidden="{{signupway}}">
+      <view class=" padding " style="margin-left:175rpx;">
+        <button class="cu-btn {{baomingCur==0?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-left" bindtap="guanliSelect" data-id="0">
+          个人管理
+        </button>
+        <button class="cu-btn  {{baomingCur==1?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-right" bindtap="guanliSelect" data-id="1">
+          团队管理
+        </button>
+      </view>
+    </view>
+    <block wx:if="{{baomingCur==0}}">
+      <view class="bg-white" wx:for="{{gerenpaiming.list}}" wx:for-index="index">
+        <view class="cu-bar bg-white padding" wx:if="{{item.groupname!=null}}">
+          <view class="yibaoming-text-content">{{item.groupname}}</view>
         </view>
-        <view class="padding yundong-sp-center">
+        <view class="padding yundong-sp-center" wx:for="{{item.members}}" wx:for-item="members" style="flex-basis: 100%;">
           <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
-          <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
-          <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
-          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="margin-left:auto;"></image>
-        </view>
-        <view class="bg-white padding yundong-sp-center">
-          <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
-          <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
-          <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
-          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="margin-left:auto;"></image>
+          <view class="cu-avatar round my" style="background-image:url({{members.mbrHead}});"></view>
+          <text class="paiming-name" decode="{{true}}">&ensp;{{members.mbrAlias}}</text>
+          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="position: absolute;right:40rpx;"></image>
+          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="position: absolute;right:60rpx;"></image>
         </view>
       </view>
-      <view class="bg-white margin-top-xs">
-        <view class="cu-bar bg-white padding">
-          <view class="yibaoming-text-content">分组2</view>
+    </block>
+    <block wx:if="{{baomingCur==1}}">
+      <view class="bg-white" wx:for="{{tuanduipaiming.list}}" wx:for-index="index">
+        <view class="cu-bar bg-white padding" wx:if="{{item.groupname!=null}}">
+          <view class="yibaoming-text-content">{{item.groupname}}</view>
         </view>
-        <view class="padding yundong-sp-center">
-          <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
-          <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
-          <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
-          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="margin-left:auto;"></image>
-        </view>
-        <view class="bg-white padding yundong-sp-center">
-          <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
-          <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
-          <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
-          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="margin-left:auto;"></image>
-        </view>
+        <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
+        <view class="cu-avatar round my" style="background-image:url({{item.teamLogo}});"></view>
+        <text class="paiming-name" decode="{{true}}">&ensp;{{item.team}}</text>
+        <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="position: absolute;right:40rpx;"></image>
+        <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="position: absolute;right:60rpx;"></image>
       </view>
     </block>
   </block>
@@ -704,11 +709,11 @@
 创建时间：20200417
 创建内容：排名-->
 <block wx:if="{{TabCur==4}}">
-  <view class=" padding " style="margin-left:175rpx; " hidden="{{signupway}}">
-    <button class="cu-btn {{paimingCur==0? 'bg-orange': 'bg-grey2 text-grey'}} btn-paiming-left " bindtap="paimingSelect" data-id="0 ">
+  <view class="padding" style="margin-left:175rpx; " hidden="{{signupway}}">
+    <button class="cu-btn {{paimingCur==0? 'bg-orange': 'bg-grey2 text-grey'}} btn-paiming-left" bindtap="paimingSelect" data-id="0 ">
       个人排名
     </button>
-    <button class="cu-btn {{paimingCur==1? 'bg-orange': 'bg-grey2 text-grey'}} btn-paiming-right " bindtap="paimingSelect" data-id="1 ">
+    <button class="cu-btn {{paimingCur==1? 'bg-orange': 'bg-grey2 text-grey'}} btn-paiming-right" bindtap="paimingSelect" data-id="1">
       团队排名
     </button>
   </view>

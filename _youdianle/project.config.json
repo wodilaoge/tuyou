@@ -126,7 +126,7 @@
 					"id": 9,
 					"name": "运动详情",
 					"pathName": "pages/yundongxiangqing/yundongxiangqing",
-					"query": "categoryId= 2126092974843494418&Title=运动详情&TabCur=4",
+					"query": "categoryId= 2126092974843494418&Title=运动详情&TabCur=1",
 					"scene": null
 				},
 				{

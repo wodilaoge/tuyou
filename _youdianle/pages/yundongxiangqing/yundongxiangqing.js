@@ -19,6 +19,7 @@ Page({
     paimingCur: 0,
     shujuCur: 0,
     baomingCur: 0,
+    guanliCur: 0,
     shujuhide: true,
 
     SwiperList_zhaopian: [],
@@ -263,6 +264,11 @@ Page({
   pinluntiaozhuan(e) { //评论跳转
     wx.navigateTo({
       url: '/pages/pinlunliebiao/pinlunliebiao?categoryId=' + this.data.categoryId + '&objtitle=' + this.data.detail.actname,
+    })
+  },
+  guanliSelect(e) {
+    this.setData({
+      guanliCur: e.currentTarget.dataset.id,
     })
   },
   baomingSelect(e) {
@@ -686,18 +692,17 @@ Page({
           bofang_pid: '1'
         })
       }
-        let url = app.globalData.URL + '/video/updatePlayCnt';
+      let url = app.globalData.URL + '/video/updatePlayCnt';
       console.log(e.currentTarget.dataset.index)
-        let data = {
-          id: this.data.shipin.list[e.currentTarget.dataset.index].id,
-        };
-        app.wxRequest('GET', url, data, (res) => {
-        })
-        shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
-        self.setData({
-          shipin: shipintmp
-        })
-     
+      let data = {
+        id: this.data.shipin.list[e.currentTarget.dataset.index].id,
+      };
+      app.wxRequest('GET', url, data, (res) => {})
+      shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
+      self.setData({
+        shipin: shipintmp
+      })
+
       var now_id = e.currentTarget.id;
       var prev_id = this.data.video_id;
       this.setData({
@@ -780,7 +785,7 @@ Page({
         shipin: shipintmp
       })
       let url = app.globalData.URL + '/applaud/updateApplaud';
-     
+
       let data = {
         objtype: 50,
         objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
@@ -1493,6 +1498,7 @@ Page({
           duration: 500,
         })
     })
+    self.gerenpaiming()
   },
   tuanduishuju() {
     var self = this
@@ -1534,6 +1540,7 @@ Page({
           duration: 500,
         })
     })
+    self.tuanduipaiming()
   },
   tijiao() {
     if (this.data.detail.signupway == "30") {
