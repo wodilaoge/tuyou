@@ -395,7 +395,7 @@
       </view>
     </block>
   </block>
-  <block wx:if="{{shujuhide==false}}">
+  <block>
     <!-- 管理 -->
     <view style="background-color:var(--white)" hidden="{{signupway}}">
       <view class=" padding " style="margin-left:175rpx;">
@@ -413,11 +413,11 @@
           <view class="yibaoming-text-content">{{item.groupname}}</view>
         </view>
         <view class="padding yundong-sp-center" wx:for="{{item.members}}" wx:for-item="members" style="flex-basis: 100%;">
-          <image class="icon-paiming" mode="aspectFit" data-id="{{members.mbrId}}" bindtap="delete_geren" src="/img/icon_delete.png"></image>
+          <image class="icon-paiming" mode="aspectFit" data-id="{{members.mbrId}}" bindtap="delete_geren" src="/img/icon_delete.png"  wx:if="{{shujuhide==false}}"></image>
           <view class="cu-avatar round my" style="background-image:url({{members.mbrHead}});" data-id="{{members.mbrId}}" bindtap="gerenziliao"></view>
           <text class="paiming-name" decode="{{true}}">&ensp;{{members.mbrAlias}}</text>
-          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="position: absolute;right:40rpx;"></image>
-          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="position: absolute;right:40rpx;"></image>
+          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==1}}"></image>
+          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==0}}"></image>
         </view>
       </view>
     </block>
