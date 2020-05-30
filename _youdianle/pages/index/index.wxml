@@ -123,10 +123,12 @@
     </view>
   </view>
   <view wx:for="{{SportList.list}}" wx:if="{{index<1}}" wx:key="key">
-    <view class="cu-bar bg-white solid-bottom ">
+    <view class="cu-bar bg-white solid-bottom" style="display:fixed;position: relative;">
       <image class="cu-avatar round my margin-left" src="{{item.createrhead}}" mode="heightFix"></image>
-      <text style="">三分赛</text>
-      <text class=" title-time margin-right">1 天 01: 02 </text>
+      <block wx:for="{{yundongxiaolei}}" wx:for-item="cell" wx:if="{{item.acid2==cell.code}}">
+        <text style="position:absolute;left:110rpx;">{{cell.name}}</text>
+      </block>
+      <text class=" title-time" style="position:absolute;width:100%;left:180rpx;" wx:if="{{item.lefttime!=null}}">{{item.lefttime.day}} 天 {{item.lefttime.hr}}:{{item.lefttime.min}} </text>
     </view>
     <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-yundong="{{item}}">
       <view class="cu-card article ">

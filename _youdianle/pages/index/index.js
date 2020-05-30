@@ -173,8 +173,8 @@ Page({
       this.setData({
         videolist: res.data,
         // province: wx.getStorageSync('province').code? wx.getStorageSync('province').code:null,
-        // city: wx.getStorageSync('city').code?wx.getStorageSync('city').code:null,
-        // univ: wx.getStorageSync('school').code?wx.getStorageSync('school').code:null,
+        city: wx.getStorageSync('city').code?wx.getStorageSync('city').code:null,
+        univ: wx.getStorageSync('school').code?wx.getStorageSync('school').code:null,
       })
     }, (err) => {
       console.log(err.errMsg)
@@ -253,6 +253,7 @@ Page({
     this.gethobbyinfo(); //爱好信息
     this.getvideoinfo(); //视频信息
     this.getuploadinfo(); //轮播图
+    // this.getShipin();
   },
 
 
