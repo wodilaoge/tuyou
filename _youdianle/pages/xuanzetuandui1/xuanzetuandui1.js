@@ -16,6 +16,10 @@ Page({
       VerticalNavTop: (e.currentTarget.dataset.id - 1) * 50
     })
   },
+  onPullDownRefresh(){
+    this.onLoad()
+  },
+
   tabSelectTeam(e) {
     var pages = getCurrentPages();
     var prevPage = pages[pages.length - 2]; //上一个页面
