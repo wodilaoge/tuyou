@@ -24,6 +24,10 @@ Page({
       }
     })
   },
+  onPullDownRefresh(){
+    this.onLoad()
+  },
+
   SelectMem(e) {
     var self = this
     var ed = self.data.list

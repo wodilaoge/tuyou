@@ -356,6 +356,10 @@ Page({
   /**
    * 用户点击右上角分享
    */
+
+  onPullDownRefresh(){
+    this.onLoad()
+  },
   onShareAppMessage: function () {
     var that = this;
     return {

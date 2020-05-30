@@ -863,6 +863,10 @@ Page({
         this.lijibaoming_do()
     }
   },
+  onPullDownRefresh(){
+    this.onLoad()
+  },
+
   lijibaoming_do() {
     var self = this
     wx.showLoading({
