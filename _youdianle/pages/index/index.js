@@ -169,7 +169,7 @@ Page({
   getvideoinfo() {
     var url = app.globalData.URL + '/video/listActVideoHome';
     var data = {};
-    app.wxRequest_notoken('POST', url, data, (res) => {
+    app.wxRequest_notoken('GET', url, data, (res) => {
       this.setData({
         videolist: res.data,
         // province: wx.getStorageSync('province').code? wx.getStorageSync('province').code:null,
