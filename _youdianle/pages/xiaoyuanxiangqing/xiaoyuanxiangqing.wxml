@@ -368,44 +368,44 @@
     </block>
 
     <block>
-    <!-- 管理 -->
-    <view style="background-color:var(--white)" hidden="{{signupway}}">
-      <view class=" padding " style="margin-left:175rpx;">
-        <button class="cu-btn {{baomingCur==0?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-left" bindtap="guanliSelect" data-id="0">
-          个人管理
-        </button>
-        <button class="cu-btn  {{baomingCur==1?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-right" bindtap="guanliSelect" data-id="1">
-          团队管理
-        </button>
-      </view>
-    </view>
-    <block wx:if="{{guanliCur==0}}">
-      <view class="bg-white" wx:for="{{gerenpaiming.list}}" wx:for-index="index">
-        <view class="cu-bar bg-white padding" wx:if="{{item.groupname!=null}}">
-          <view class="yibaoming-text-content">{{item.groupname}}</view>
-        </view>
-        <view class="padding yundong-sp-center" wx:for="{{item.members}}" wx:for-item="members" style="flex-basis: 100%;">
-          <image class="icon-paiming" mode="aspectFit" data-id="{{members.mbrId}}" bindtap="delete_geren" src="/img/icon_delete.png"  wx:if="{{shujuhide==false}}"></image>
-          <view class="cu-avatar round my" style="background-image:url({{members.mbrHead}});" data-id="{{members.mbrId}}" bindtap="gerenziliao"></view>
-          <text class="paiming-name" decode="{{true}}">&ensp;{{members.mbrAlias}}</text>
-          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==1}}" data-members="{{members}}" bindtap="gerendianzan"></image>
-          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==0}}" data-members="{{members}}" bindtap="gerendianzan"></image>
+      <!-- 管理 -->
+      <view style="background-color:var(--white)" hidden="{{signupway}}">
+        <view class=" padding " style="margin-left:175rpx;">
+          <button class="cu-btn {{baomingCur==0?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-left" bindtap="guanliSelect" data-id="0">
+            个人管理
+          </button>
+          <button class="cu-btn  {{baomingCur==1?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-right" bindtap="guanliSelect" data-id="1">
+            团队管理
+          </button>
         </view>
       </view>
+      <block wx:if="{{guanliCur==0}}">
+        <view class="bg-white" wx:for="{{gerenpaiming.list}}" wx:for-index="index">
+          <view class="cu-bar bg-white padding" wx:if="{{item.groupname!=null}}">
+            <view class="yibaoming-text-content">{{item.groupname}}</view>
+          </view>
+          <view class="padding yundong-sp-center" wx:for="{{item.members}}" wx:for-item="members" style="flex-basis: 100%;">
+            <image class="icon-paiming" mode="aspectFit" data-id="{{members.mbrId}}" bindtap="delete_geren" src="/img/icon_delete.png" wx:if="{{shujuhide==false}}"></image>
+            <view class="cu-avatar round my" style="background-image:url({{members.mbrHead}});" data-id="{{members.mbrId}}" bindtap="gerenziliao"></view>
+            <text class="paiming-name" decode="{{true}}">&ensp;{{members.mbrAlias}}</text>
+            <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==1}}" data-members="{{members}}" bindtap="gerendianzan"></image>
+            <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==0}}" data-members="{{members}}" bindtap="gerendianzan"></image>
+          </view>
+        </view>
+      </block>
+      <block wx:if="{{guanliCur==1}}">
+        <view class="bg-white" wx:for="{{tuanduipaiming.list}}" wx:for-index="index">
+          <view class="cu-bar bg-white padding" wx:if="{{item.groupname!=null}}">
+            <view class="yibaoming-text-content">{{item.groupname}}</view>
+          </view>
+          <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
+          <view class="cu-avatar round my" style="background-image:url({{item.teamLogo}});"></view>
+          <text class="paiming-name" decode="{{true}}">&ensp;{{item.team}}</text>
+          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="position: absolute;right:40rpx;"></image>
+          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="position: absolute;right:40rpx;"></image>
+        </view>
+      </block>
     </block>
-    <block wx:if="{{guanliCur==1}}">
-      <view class="bg-white" wx:for="{{tuanduipaiming.list}}" wx:for-index="index">
-        <view class="cu-bar bg-white padding" wx:if="{{item.groupname!=null}}">
-          <view class="yibaoming-text-content">{{item.groupname}}</view>
-        </view>
-        <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
-        <view class="cu-avatar round my" style="background-image:url({{item.teamLogo}});"></view>
-        <text class="paiming-name" decode="{{true}}">&ensp;{{item.team}}</text>
-        <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="position: absolute;right:40rpx;"></image>
-        <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="position: absolute;right:40rpx;"></image>
-      </view>
-    </block>
-  </block>
 
     <!-- 评论 -->
     <block>
