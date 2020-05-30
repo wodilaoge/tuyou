@@ -1274,6 +1274,7 @@ Page({
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
       actid: this.data.categoryId,
+      pageSize:2,
     };
     app.wxRequest('GET', url, data, (res) => {
       let shipintmp = res.data;

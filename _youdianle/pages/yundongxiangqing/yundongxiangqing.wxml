@@ -512,7 +512,7 @@
         </view>
 
         <view>
-          <video id="video_{{index}}" src="{{shipin.list[0].fileId}}" autoplay="true " controls style="width:100%;" bindtap="video_change" data-index="{{index}}"></video>
+          <video id="video_{{index}}" src="{{shipin.list[0].fileId}}"  controls style="width:100%;" bindtap="video_change" data-index="{{index}}"></video>
         </view>
         <view class="flex  margin-top ">
           <view class="sp-bofang-times ">播放{{shipin.list[0].playCnt}}次</view>
