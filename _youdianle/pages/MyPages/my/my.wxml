@@ -63,10 +63,10 @@
     <image src="/img/my/04.png" class="menu-img"></image>
     <text class="menu-name">活动</text>
   </navigator>
-  <navigator url="/pages/MyPages/my_team/my_team" class="menu-item">
+  <!-- <navigator url="/pages/MyPages/my_team/my_team" class="menu-item">
     <image src="/img/my/05.png" class="menu-img"></image>
     <text class="menu-name">团队</text>
-  </navigator>
+  </navigator> -->
   <navigator url="/pages/MyPages/my_rank/my_rank" class="menu-item">
     <image src="/img/my/06.png" class="menu-img"></image>
     <text class="menu-name">排名</text>

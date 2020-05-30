@@ -4,6 +4,7 @@ const app = getApp()
 var util = require("../../utils/util.js");
 Page({
   data: {
+    isshowparts:false,//文娱爱好是否显示
     loadModal: true,
     ActList: [],
     PageCur: 'basics',

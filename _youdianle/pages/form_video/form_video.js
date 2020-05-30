@@ -4,7 +4,7 @@ var upload = require("../../utils/upload.js");
 var util = require("../../utils/util.js");
 Page({
   data: {
-    hiddenmodalput:true,
+    hiddenmodalput: true,
     group: 0,
     videonum: 0,
     picker4: ['篮球', '足球', '排球', '羽毛球', '乒乓球', '其他'],
@@ -20,7 +20,7 @@ Page({
     modalName: null,
     textareaAValue: null,
     textareaBValue: null,
-    authurl:null,
+    authurl: null,
     index: 0, //活动方式
     indexbig: 0,
     indextiny: 0,
@@ -33,7 +33,7 @@ Page({
       acid1: null,
       acid2: null,
     },
-    
+
   },
   PickerChange2(e) { //活动大类
     let t = 'information.acid1'
@@ -67,14 +67,14 @@ Page({
       [t]: v
     });
   },
-  
+
   gettwo(code) {
     var that = this
     let url = app.globalData.URL + '/config/getActivityClass1';
     let data = {
       'sid': code
     };
-    util.gets(url, data).then(function(res) {
+    util.gets(url, data).then(function (res) {
       that.setData({
         picker2: res.data.data
       })
@@ -86,7 +86,7 @@ Page({
     let data = {
       'cid': code
     };
-    util.gets(url, data).then(function(res) {
+    util.gets(url, data).then(function (res) {
       that.setData({
         pickertiny: res.data.data
       })
@@ -134,7 +134,7 @@ Page({
       date: e.detail.value
     })
   },
-  RegionChange: function(e) {
+  RegionChange: function (e) {
     this.setData({
       region: e.detail.value
     })
@@ -176,14 +176,14 @@ Page({
       textareaBValue: e.detail.value
     })
   },
-  toForm_modify: function(e) {
+  toForm_modify: function (e) {
     wx.navigateTo({
       url: "../../pages/form_modify/form_modify"
     })
   },
 
-  firstcommit(){
-    var that=this
+  firstcommit() {
+    var that = this
     that.setData({
       hiddenmodalput: !this.data.hiddenmodalput
     })
@@ -193,82 +193,83 @@ Page({
       hiddenmodalput: true
     });
   },
-  commit: function(e) {
+  commit: function (e) {
     var user = wx.getStorageSync('userInfo')
     let pro = wx.getStorageSync('province')
     let city = wx.getStorageSync('city')
     let school = wx.getStorageSync('school')
-    if(!school){
-      wx.setStorageSync('addressMode', '2')
+    if (!school) {
+      wx.setStorageSync('addressMode', '3')
       wx.showToast({
         title: '请先选择学校',
         duration: 2000,
         success: function () {
           setTimeout(function () {
-            wx.reLaunch({
+            wx.navigateTo({
               url: '/pages/form_address/form_address',
             })
           }, 2000);
         }
       })
-    }
-    let url = app.globalData.URL + '/video/updateActVideo';
-    var data = this.data
-    var datas = {
-      id: null,
-      actid: '',
-      sid: this.data.information.sid,
-      acid1: this.data.information.acid1,
-      acid2: this.data.information.acid2,
-      title: this.data.title,
-      author: user.id,
-      authorAlias: user.nickname,
-      authorHead: user.head,
-      fileId: this.data.video,
-      notes: this.data.notes,
-      univ:pro.code,
-      province:city.code,
-      city:school.code,
-      status: '10',
-      creater: user.id,
-      mender: ''
-    }
-    util.post_token(url, datas).then(function(res) {
-      if (!res.data.code) {
-        wx.showToast({
-          title: '提交成功',
-          duration: 2000,
-          success: function() {
-            setTimeout(function() {
-              wx.reLaunch({
-                url: '/pages/index/index',
-              })
-            }, 2000);
-          }
-        })
-      } else {
+    } else {
+      let url = app.globalData.URL + '/video/updateActVideo';
+      var data = this.data
+      var datas = {
+        id: null,
+        actid: '',
+        sid: this.data.information.sid,
+        acid1: this.data.information.acid1,
+        acid2: this.data.information.acid2,
+        title: this.data.title,
+        author: user.id,
+        authorAlias: user.nickname,
+        authorHead: user.head,
+        fileId: this.data.video,
+        notes: this.data.notes,
+        univ: pro.code,
+        province: city.code,
+        city: school.code,
+        status: '10',
+        creater: user.id,
+        mender: ''
+      }
+      util.post_token(url, datas).then(function (res) {
+        if (!res.data.code) {
+          wx.showToast({
+            title: '提交成功',
+            duration: 2000,
+            success: function () {
+              setTimeout(function () {
+                wx.reLaunch({
+                  url: '/pages/index/index',
+                })
+              }, 2000);
+            }
+          })
+        } else {
+          console.log(res)
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'success',
+            image: '/img/fail.png',
+            duration: 2000
+          })
+        }
+      }).catch(function (res) {
         console.log(res)
         wx.showToast({
-          title: res.data.msg,
-          icon: 'success',
-          image: '/img/fail.png',
+          title: '提交失败！',
+          icon: 'fail',
+          image: '../../img/fail.png',
           duration: 2000
         })
-      }
-    }).catch(function(res) {
-      console.log(res)
-      wx.showToast({
-        title: '提交失败！',
-        icon: 'fail',
-        image: '../../img/fail.png',
-        duration: 2000
       })
-    })
-    this.setData({
-      modalName: e.currentTarget.dataset.target
-    })
+      this.setData({
+        modalName: e.currentTarget.dataset.target
+      })
+    }
   },
-  getSignature: function(callback) {
+  getSignature: function (callback) {
     var user = wx.getStorageSync('userInfo')
     console.log(this.data.authurl)
     user = 'Bearer ' + user.token;
@@ -280,7 +281,7 @@ Page({
         'Accept': 'application/json',
         'Authorization': user,
       },
-      success: function(res) {
+      success: function (res) {
         console.log(`data`, res.data);
         console.log(`data`, res.data.code);
         console.log(`data`, res.data.data);
@@ -294,7 +295,7 @@ Page({
       }
     });
   },
-  inputChange: function(evt) {
+  inputChange: function (evt) {
     this.setData({
       fileName: evt.detail.value
     })
@@ -309,11 +310,11 @@ Page({
 
       mediaName: self.data.fileName, //选填，视频名称，强烈推荐填写(如果不填，则默认为“来自微信小程序”)
       coverFile: self.data.coverFile, // 选填，视频封面
-      success: function(result) {
+      success: function (result) {
         console.log('success');
         console.log(result);
       },
-      error: function(result) {
+      error: function (result) {
         console.log('error');
         console.log(result);
         wx.showModal({
@@ -322,14 +323,14 @@ Page({
           showCancel: false
         });
       },
-      progress: function(result) {
+      progress: function (result) {
         console.log('progress');
         console.log(result);
         wx.showLoading({
           title: '上传中 ' + result.percent * 100 + '%',
         });
       },
-      finish: function(result) {
+      finish: function (result) {
         console.log('finish');
         console.log(result);
         wx.hideLoading()
@@ -345,13 +346,13 @@ Page({
       }
     });
   },
-  chooseVideo: function(e) {
+  chooseVideo: function (e) {
     const self = this;
     wx.chooseVideo({
       sourceType: ['album', 'camera'],
       compressed: true,
       maxDuration: 60,
-      success: function(file) {
+      success: function (file) {
         self.setData({
           videoFile: file
         })
@@ -377,12 +378,12 @@ Page({
     });
   },
   onLoad() {
-    var that=this
+    var that = this
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
           let url2 = app.globalData.URL + '/appuser/getPubPerm'
-          util.gets(url2, {}).then(function(res) {
+          util.gets(url2, {}).then(function (res) {
             console.log('auth', res)
             that.setData({
               auth: res.data
@@ -391,8 +392,8 @@ Page({
               wx.showToast({
                 title: '请先绑定手机！',
                 duration: 2000,
-                success: function() {
-                  setTimeout(function() {
+                success: function () {
+                  setTimeout(function () {
                     wx.navigateTo({
                       url: '/pages/MyPages/my_security/my_security',
                     })
@@ -401,8 +402,8 @@ Page({
               })
             }
           })
-           console.log('wx auth finished')
-          } else {
+          console.log('wx auth finished')
+        } else {
           console.log('no auth')
           wx.showModal({
             title: '友点乐',
@@ -433,7 +434,7 @@ Page({
       })
     })
     let url2 = app.globalData.URL + '/config/getActivitySection';
-    util.gets(url2, {}).then(function(res) {
+    util.gets(url2, {}).then(function (res) {
       that.setData({
         pickerbig: res.data.data
       })
