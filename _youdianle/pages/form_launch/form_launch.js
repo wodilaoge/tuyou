@@ -1,4 +1,5 @@
 const app = getApp();
+var upload = require("../../utils/upload.js");
 var util = require("../../utils/util.js");
 Page({
   data: {
@@ -37,7 +38,8 @@ Page({
     provinceList: [],
     citys: [],
     school: [],
-    picker: ['个人报名', '团体报名', '个人团队均可报名'],
+    // picker: ['个人报名', '团体报名', '个人团队均可报名'],
+    picker: ['个人报名'],
     pickertiny: [],
     pickerbig: [],
     picker2: ['篮球', '足球', '羽毛球', '乒乓球', '网球'],
@@ -46,7 +48,9 @@ Page({
     pro: '',
     city: '',
     schoolinfo: '',
-    tinyshow: '选择活动小类'
+    tinyshow: '选择活动小类',
+    imgList3: [],
+    url3: [],
   },
 
   PickerChange(e) { //报名方式
@@ -518,5 +522,72 @@ Page({
       hiddenmodalput: !this.data.hiddenmodalput
     })
 
+  },
+
+  
+  ChooseImage(e) {
+    var t = e.currentTarget.dataset.id
+    var that = this
+    wx.chooseImage({
+      count: 1, //默认9
+      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album'], //从相册选择
+      success: (res) => {
+        
+        if (t == 3) {
+          if (this.data.imgList3.length != 0) {
+            this.setData({
+              imgList3: this.data.imgList3.concat(res.tempFilePaths)
+            })
+          } else {
+            this.setData({
+              imgList3: res.tempFilePaths
+            })
+          }
+          upload.uploadFile(this.data.imgList3[this.data.imgList3.length - 1], 'logo', that)
+          this.setData({
+            loadModal: true
+          })
+        }
+   
+      }
+    });
+
+  },
+  ViewImage(e) {
+    var t = e.currentTarget.dataset.id
+    if (t == 2) {
+      wx.previewImage({
+        urls: this.data.imgList2,
+        current: e.currentTarget.dataset.url
+      });
+    }
+    if (t == 3) {
+      wx.previewImage({
+        urls: this.data.imgList3,
+        current: e.currentTarget.dataset.url
+      });
+    }
+  },
+  DelImg(e) {
+    var t = e.currentTarget.dataset.id
+    if (t == 3) {
+      wx.showModal({
+        title: '确定',
+        content: '确定要删除这张照片？',
+        cancelText: '取消',
+        confirmText: '确认删除',
+        success: res => {
+          if (res.confirm && t == 3) {
+            this.data.imgList3.splice(e.currentTarget.dataset.index, 1)
+            this.data.url3.splice(e.currentTarget.dataset.index, 1);
+            this.setData({
+              imgList3: this.data.imgList3,
+              url3: this.data.url3
+            })
+          }
+        }
+      })
+    }
   },
 })
