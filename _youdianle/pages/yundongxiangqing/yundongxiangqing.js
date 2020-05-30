@@ -107,7 +107,7 @@ Page({
       TabCur: 1
     })
   },
-  //发布评论
+  //弹框
   chooseSezi: function(e) {
     var that = this;
     var animation = wx.createAnimation({
@@ -152,6 +152,7 @@ Page({
       })
     }, 100)
   },
+  ///////////////////////////
   emailInput: function(e) { //input输入
     this.setData({
       Input: e.detail.value

@@ -2,15 +2,63 @@ const app = getApp();
 var util = require("../../utils/util.js");
 Page({
   data: {
+    chooseSize: false,
+    animationData: {},
+    isReflesh: true,
     option: [],
     categoryId: '',
     objtitle: '',
     comment: [],
-    comment_detail: [],
     Input: '',
     user: [],
     loading: true,
   },
+  //弹框
+  chooseSezi: function (e) {
+    var that = this;
+    var animation = wx.createAnimation({
+      duration: 100,
+      timingFunction: 'linear'
+    })
+    that.animation = animation
+    animation.translateY(200).step()
+    that.setData({
+      animationData: animation.export(),
+      chooseSize: true
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      that.setData({
+        animationData: animation.export()
+      })
+    }, 100)
+    that.setData({
+      duixiang: e.currentTarget.dataset.duixiang,
+      dxid: e.currentTarget.dataset.dxid,
+      dxtitle: e.currentTarget.dataset.dxtitle,
+    })
+  },
+  hideModal: function (e) {
+    var that = this;
+    var animation = wx.createAnimation({
+      duration: 100,
+      timingFunction: 'linear'
+    })
+    that.animation = animation
+    animation.translateY(200).step()
+    that.setData({
+      animationData: animation.export()
+
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      that.setData({
+        animationData: animation.export(),
+        chooseSize: false
+      })
+    }, 100)
+  },
+  //////////////////////
   emailInput: function(e) { //input输入
     this.setData({
       Input: e.detail.value
@@ -33,11 +81,10 @@ Page({
       self.setData({
         comment: res.data
       });
-      if (res.data == null || res.data.length == 0) {
-        self.setData({
-          loading: false
-        });
-      } else {
+      self.setData({
+        loading: false
+      });
+      /*if (res.data == null || res.data.length == 0) {} else {
         let list = self.data.comment.list
         if (list.length == 0)
           self.setData({
@@ -68,7 +115,7 @@ Page({
             });
           });
         }
-      }
+      }*/
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -220,7 +267,39 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
+    var self = this
+    if (self.data.isReflesh) {
+      wx.showLoading({
+        title: '加载中...',
+        mask: true //显示触摸蒙层  防止事件穿透触发
+      });
+      let data = {
+        objid: self.data.categoryId,
+        objtype: 30,
+        border: self.data.comment.border
+      };
+      let url = app.globalData.URL + '/comm/listCommByObj';
+      app.wxRequest('GET', url, data, (res) => {
+        console.log(res.data)
+        if (res.data.border == null) {
+          self.setData({
+            isReflesh: false
+          })
+        }
+        console.log('刷新评论中', res)
+        let t = 'comment'
+        var tmp = self.data.comment
+        tmp.border = res.data.border
+        for (let s of res.data.list)
+          tmp.list.push(s)
+        self.setData({
+          [t]: tmp,
+        })
+        wx.hideLoading()
+      }, (err) => {
+        console.log(err.errMsg)
+      });
+    }
   },
 
   /**

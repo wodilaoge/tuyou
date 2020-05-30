@@ -947,7 +947,7 @@ Page({
         acid1:that.data.yundongCur,
         border: that.data.yundongList.border,
         pageSize: 3
-      };
+      }; 
       app.wxRequest('GET', url, data, (res) => {
         console.log(res.data)
         if (res.data.border == null) {
