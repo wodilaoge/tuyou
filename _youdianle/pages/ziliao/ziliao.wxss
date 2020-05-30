@@ -1,4 +1,5 @@
 /* pages/ziliao/ziliao.wxss */
+@import "../yundongxiangqing/yundongxiangqing.wxss";
 .ziliao-back {
   background-color: #5454ff;
   height: 490rpx;

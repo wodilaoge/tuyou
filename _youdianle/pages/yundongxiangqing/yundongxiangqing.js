@@ -196,69 +196,70 @@ Page({
     }
   },
   //评论
-  pd_fasong() {
-    if (this.data.Input == "") {
-      wx.showToast({
-        title: '请输入回复内容', // 标题
-        icon: 'none',
-        duration: 1500 // 提示窗停留时间，默认1500ms
-      })
-    } else {
-      this.fasong()
-    }
-  },
-  fasong() { //发送按钮
-    var self = this;
-    if (this.data.duixiang == '50') {
-      let url = app.globalData.URL + '/comm/addComment';
-      let data = {
-        pid: null,
-        objtype: 50,
-        objid: self.data.dxid,
-        objtitle: self.data.dxtitle,
-        comment: self.data.Input,
-        creater: self.data.user.id,
-        createrAlias: self.data.user.nickname,
-        createrHead: self.data.user.head
-      };
-      app.wxRequest('POST', url, data, (res) => {
-        self.onLoad(self.data.options);
-        wx.showToast({
-          title: '评论成功！', // 标题
-          icon: 'success', // 图标类型，默认success
-          duration: 1500 // 提示窗停留时间，默认1500ms
-        })
-      }, (err) => {
-        console.log(err.errMsg)
-      });
-    } else {
-      let url = app.globalData.URL + '/comm/addComment';
-      let data = {
-        pid: null,
-        objtype: 30,
-        objid: self.data.categoryId,
-        objtitle: "",
-        comment: self.data.Input,
-        creater: self.data.user.id,
-        createrAlias: self.data.user.nickname,
-        createrHead: self.data.user.head
-      };
-      app.wxRequest('POST', url, data, (res) => {
-        self.onLoad(self.data.options);
-        wx.showToast({
-          title: '评论成功！', // 标题
-          icon: 'success', // 图标类型，默认success
-          duration: 1500 // 提示窗停留时间，默认1500ms
-        })
-      }, (err) => {
-        console.log(err.errMsg)
-      });
-    }
-    self.setData({
-      Input: '',
-    })
-    self.hideModal()
-  },
+  // pd_fasong() {
+  //   if (this.data.Input == "") {
+  //     wx.showToast({
+  //       title: '请输入回复内容', // 标题
+  //       icon: 'none',
+  //       duration: 1500 // 提示窗停留时间，默认1500ms
+  //     })
+  //   } else {
+  //     this.fasong()
+  //   }
+  // },
+  // fasong() { //发送按钮
+  //   var self = this;
+  //   if (this.data.duixiang == '50') {
+  //     let url = app.globalData.URL + '/comm/addComment';
+  //     let data = {
+  //       pid: null,
+  //       objtype: 50,
+  //       objid: self.data.dxid,
+  //       objtitle: self.data.dxtitle,
+  //       comment: self.data.Input,
+  //       creater: self.data.user.id,
+  //       createrAlias: self.data.user.nickname,
+  //       createrHead: self.data.user.head
+  //     };
+  //     app.wxRequest('POST', url, data, (res) => {
+  //       self.onLoad(self.data.options);
+  //       wx.showToast({
+  //         title: '评论成功！', // 标题
+  //         icon: 'success', // 图标类型，默认success
+  //         duration: 1500 // 提示窗停留时间，默认1500ms
+  //       })
+  //     }, (err) => {
+  //       console.log(err.errMsg)
+  //     });
+  //   } else {
+  //     let url = app.globalData.URL + '/comm/addComment';
+  //     let data = {
+  //       pid: null,
+  //       objtype: 30,
+  //       objid: self.data.categoryId,
+  //       objtitle: "",
+  //       comment: self.data.Input,
+  //       creater: self.data.user.id,
+  //       createrAlias: self.data.user.nickname,
+  //       createrHead: self.data.user.head
+  //     };
+  //     console.log(data)
+  //     app.wxRequest('POST', url, data, (res) => {
+  //       self.onLoad(self.data.options);
+  //       wx.showToast({
+  //         title: '评论成功！', // 标题
+  //         icon: 'success', // 图标类型，默认success
+  //         duration: 1500 // 提示窗停留时间，默认1500ms
+  //       })
+  //     }, (err) => {
+  //       console.log(err.errMsg)
+  //     });
+  //   }
+  //   self.setData({
+  //     Input: '',
+  //   })
+  //   self.hideModal()
+  // },
   cardSwiper(e) {
     this.setData({
       cardCur: e.detail.current
@@ -853,31 +854,7 @@ Page({
     }
   },
 
-  chooseSezi: function(e) {
-    var that = this;
-    var animation = wx.createAnimation({
-      duration: 100,
-      timingFunction: 'linear'
-    })
-    that.animation = animation
-    animation.translateY(200).step()
-    that.setData({
-      animationData: animation.export(),
-      chooseSize: true
-    })
-    setTimeout(function() {
-      animation.translateY(0).step()
-      that.setData({
-        animationData: animation.export()
-      })
-    }, 100)
-
-    that.setData({
-      duixiang: e.currentTarget.dataset.duixiang,
-      dxid: e.currentTarget.dataset.dxid,
-      dxtitle: e.currentTarget.dataset.dxtitle,
-    })
-  },
+  
   shipinChooseSezi: function(e) {
     var that = this;
     var animation = wx.createAnimation({
@@ -1026,6 +1003,7 @@ Page({
         createrAlias: self.data.user.nickname,
         createrHead: self.data.user.head
       };
+      console.log(data)
       app.wxRequest('POST', url, data, (res) => {
         self.comment();
         console.log(res)

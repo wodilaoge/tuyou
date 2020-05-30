@@ -21,7 +21,7 @@
         <view class="weizhi ">{{duiyuanDeatil.defaultRole===null?'暂无':duiyuanDeatil.defaultRole}}</view>
       </view>
       <view class="flex">
-        <text class="ziliao-ziliao">{{duiyuanDeatil.birthday===null?'暂无':duiyuanDeatil.birthday}}岁 | {{duiyuanDeatil.height===null?'暂无':duiyuanDeatil.height}}米 | {{duiyuanDeatil.weight===null?'暂无':duiyuanDeatil.weight}}公斤</text>
+        <text class="ziliao-ziliao">{{duiyuanDeatil.birthday===null?'':duiyuanDeatil.birthday}}岁 | {{duiyuanDeatil.height===null?'':duiyuanDeatil.height}}米 | {{duiyuanDeatil.weight===null?'':duiyuanDeatil.weight}}公斤</text>
       </view>
     </view>
   </view>
@@ -44,8 +44,8 @@
   </view>
   <view class="cu-item {{2==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="2" style="margin-left:120rpx;">粉丝
   </view>
-  <view class="cu-item {{3==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="3" style="margin-left:120rpx;">资讯
-  </view>
+  <!-- <view class="cu-item {{3==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="3" style="margin-left:120rpx;">资讯
+  </view> -->
 </scroll-view>
 
 <block wx:if="{{TabCur==0}}">
@@ -100,80 +100,65 @@
   </view> -->
 
 
-  <view class="pinglun-title">评论108</view>
+  <block>
+    <view class="huodong-margin-bottom">
+      <!-- 评论 -->
+      <view class="cu-bar bg-white solid-bottom huodong-margin-top">
+        <view class='action'>
+          <text class='cu-bar-title'>评论({{count}})</text>
+        </view>
+      </view>
 
-  <view class="cu-card case no-card ">
-    <view class="cu-item shadow">
-      <view class="cu-list menu-avatar">
-        <view class="cu-item">
-          <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
-          <view class="content flex-sub">
-            <view class=" flex justify-between">
-              <view>
-                <text class="card-text-grey" decode="{{true}}">吴福嘉&emsp;</text>
-                <button class="cu-btn btn-hot bg-orange disabled">热门</button>
+      <view class="cu-card case no-card bg-white">
+        <view class="cu-item shadow">
+          <view class="cu-list menu-avatar">
+            <view class="cu-item" wx:for="{{comment.list}}" wx:for-index="index" wx:key>
+              <view class="cu-avatar round lg" style="background-image:url({{item.createrHead}});"></view>
+              <view class="content flex-sub">
+                <view class=" flex justify-between">
+                  <view>
+                    <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
+                    <button class="cu-btn btn-hot bg-orange disabled" wx:if="{{item.hot}}">热门</button>
+                  </view>
+                  <!--<view class="text-gray text-sm">
+                    <image wx:if="{{false==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}' src="/img/weidianzan.png" mode="scaleToFill" style="width:24rpx;height:24rpx"></image>
+                    <image wx:if="{{true==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}' src="/img/yidianzan.png" mode="scaleToFill" style="width:24rpx;height:24rpx"></image>
+                    {{item.praiseCnt}}
+                  </view>-->
+                </view>
+                <view data-id="{{item.id}}">
+                  <view class="card-text-content">
+                    {{item.comment}}
+                  </view>
+                  <view class="card-text-content-time">
+                    {{item.strCreatetime}}
+                  </view>
+                </view>
               </view>
-              <view class="text-gray text-sm">
-                <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
-                <text class="cuIcon-appreciate margin-lr-xs "></text> 1
-              </view>
-            </view>
-            <view class="card-text-content">
-              活动看着不错，我报名啦
-            </view>
-            <view class="card-text-content-time">
-              03-15 16:15 6 回复
             </view>
           </view>
         </view>
       </view>
     </view>
-  </view>
-
-
-  <view class="cu-card case no-card}">
-    <view class="cu-item shadow">
-      <view class="cu-list menu-avatar">
-        <view class="cu-item ">
-          <view class="cu-avatar round lg " style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);padding-top:0;"></view>
-          <view class="content flex-sub">
-            <view class=" flex justify-between">
-              <view>
-                <text class="card-text-grey">福嘉</text>
-              </view>
-              <view class="text-gray text-sm">
-                <text class="cuIcon-appreciate margin-lr-xs line"></text> 1
-                <text class="cuIcon-appreciate margin-lr-xs "></text> 1
-              </view>
-            </view>
-            <view class="card-text-content">
-              活动看着不错，我报名啦,
-            </view>
-            <view class="card-text-content-time">
-              03-15 16:15 6 回复
-            </view>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
-
-  <view style="height:270rpx;"></view>
-
-  <view class="box">
+  </block>
+  <view wx:if="{{!chooseSize}}">
     <view class="cu-bar input foot padding">
-      <input class="solid-bottom" focus="{{false}}" maxlength="300" cursor-spacing="10" placeholder='来说点什么吧！'></input>
+      <image class="img-input" mode="scaleToFill" src="/img/input.png" bindtap="chooseSezi"></image>
       <view class="action">
-        <image class="img-icon" src="/img/icon_talk.png"></image>
+        <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
       </view>
       <view class="action">
-        <image class="img-icon" src="/img/icon_fabulous.png"></image>
+        <image class="img-icon" mode="aspectFit" style="margin-right:10rpx" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
       </view>
       <view class="action">
-        <image class="img-icon" src="/img/icon_share.png"></image>
+        <image class="img-icon" mode="aspectFit" src="/img/icon_share.png"></image>
       </view>
     </view>
   </view>
+
+  <!-- <view style="height:270rpx;"></view> -->
+
+ 
 
 </block>
 
@@ -397,7 +382,7 @@
 
 </block>
 
-<block wx:if="{{TabCur==3}}">
+<!-- <block wx:if="{{TabCur==3}}">
   <view style="height:20rpx;"></view>
   <view class="zixun-xinwen ">活动新闻</view>
   <view class="bg-white flex" style="padding-left:24rpx;padding-top:37rpx;">
@@ -504,4 +489,16 @@
   </view>
 
 
-</block>
+</block> -->
+
+<!--隐藏区域  -->
+<view fixed class="modals modals-bottom-dialog" hidden="{{!chooseSize}}">
+  <view class="modals-cancel" bindtap="hideModal" catchtouchmove="true"></view>
+  <view class="bottom-dialog-body bottom-pos " animation="{{animationData}}" style="display:block">
+    <view>
+      <text class="cu-bar-title " style="margin-left:300rpx ">写评论</text>
+      <button class="cu-btn bg-orange shadow-blur padding-sm margin-left-sm btn-fasong " bindtap="pd_fasong" style="margin-left:100rpx ">发送</button>
+    </view>
+    <textarea class="form-text2 margin-top-sm margin-buttom " style="height:160rpx;width:100% " value="{{Input}}" maxlength="4000 " bindinput="emailInput" cursor-spacing="65" fixed="true"></textarea>
+  </view>
+</view>

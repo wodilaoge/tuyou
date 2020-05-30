@@ -126,6 +126,22 @@ Page({
     that.getLishi()
   },
   /////////
+  todetail(e) { //报名参加按钮跳转 带着活动id跳转 校园活动
+    wx.navigateTo({
+      url: '../../pages/xiaoyuanxiangqing/xiaoyuanxiangqing?categoryId=' + e.currentTarget.id,
+    })
+  },
+  yundongxiangqing(e) {
+    wx.navigateTo({
+      url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.yundong.id,
+    })
+  },
+  jump(e) {
+    app.globalData.tabbar = e.currentTarget.dataset.id;
+    wx.switchTab({
+      url: '/pages/xiaoyuan/xiaoyuan',
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
