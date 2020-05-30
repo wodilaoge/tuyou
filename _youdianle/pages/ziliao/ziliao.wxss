@@ -1,5 +1,4 @@
 /* pages/ziliao/ziliao.wxss */
-
 .ziliao-back {
   background-color: #5454ff;
   height: 490rpx;
@@ -64,22 +63,6 @@
   font-family: PingFang SC;
   font-weight: 500;
   color: rgba(255, 255, 255, 1);
-}
-
-.nav {
-  white-space: nowrap;
-}
-
-.nav .cu-item {
-  height: 80rpx;
-  /* display: inline-block;
-  line-height: 83rpx; *//* margin: 0 10rpx;
-  padding: 0 15rpx; */
-  width: 52rpx;
-  font-size: 28rpx;
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: rgba(51, 51, 51, 1);
 }
 
 .nav .tab_item_img {

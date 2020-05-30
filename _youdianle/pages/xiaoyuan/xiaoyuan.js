@@ -1023,8 +1023,7 @@ Page({
         title: '加载中...',
         mask: true //显示触摸蒙层  防止事件穿透触发
       });
-      if (shipinCur == 0) {
-
+      if (this.data.shipinCur == 0) {
         this.getShipinFenye()
       } else {
         this.getShipinfenleiFenye()
