@@ -130,14 +130,14 @@
       <!-- 评论 -->
       <view class="cu-bar bg-white solid-bottom huodong-margin-top">
         <view class='action'>
-          <text class='cu-bar-title'>评论({{comment_detail.length}})</text>
+          <text class='cu-bar-title'>评论({{comment.list.length}})</text>
         </view>
       </view>
 
       <view class="cu-card case no-card bg-white">
         <view class="cu-item shadow">
           <view class="cu-list menu-avatar">
-            <view class="cu-item" wx:for="{{comment_detail}}" wx:for-index="index" wx:key>
+            <view class="cu-item" wx:for="{{comment.list}}" wx:for-index="index" wx:key>
               <view class="cu-avatar round lg" style="background-image:url({{item.createrHead}});"></view>
               <view class="content flex-sub">
                 <view class=" flex justify-between">
@@ -440,14 +440,14 @@
       <!-- 评论 -->
       <view class="cu-bar bg-white solid-bottom huodong-margin-top">
         <view class='action'>
-          <text class='cu-bar-title'>评论({{comment_detail.length}})</text>
+          <text class='cu-bar-title'>评论({{comment.list.length}})</text>
         </view>
       </view>
 
       <view class="cu-card case no-card bg-white">
         <view class="cu-item shadow">
           <view class="cu-list menu-avatar">
-            <view class="cu-item" wx:for="{{comment_detail}}" wx:for-index="index" wx:key>
+            <view class="cu-item" wx:for="{{comment.list}}" wx:for-index="index" wx:key>
               <view class="cu-avatar round lg" style="background-image:url({{item.createrHead}});"></view>
               <view class="content flex-sub">
                 <view class=" flex justify-between">
@@ -764,14 +764,14 @@
       <!-- 评论 -->
       <view class="cu-bar bg-white solid-bottom huodong-margin-top">
         <view class='action'>
-          <text class='cu-bar-title'>评论({{comment_detail.length}})</text>
+          <text class='cu-bar-title'>评论({{comment.list.length}})</text>
         </view>
       </view>
 
       <view class="cu-card case no-card bg-white">
         <view class="cu-item shadow">
           <view class="cu-list menu-avatar">
-            <view class="cu-item" wx:for="{{comment_detail}}" wx:for-index="index" wx:key>
+            <view class="cu-item" wx:for="{{comment.list}}" wx:for-index="index" wx:key>
               <view class="cu-avatar round lg" style="background-image:url({{item.createrHead}});"></view>
               <view class="content flex-sub">
                 <view class=" flex justify-between">

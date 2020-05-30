@@ -4,6 +4,7 @@ Page({
   data: {
     chooseSize: false,
     animationData: {},
+    isReflesh: true,
     Input: "",
     options: [],
     biaoti: "",
@@ -25,7 +26,7 @@ Page({
     SwiperList_zhaopian: [],
     detail: [],
     comment: [],
-    comment_detail: [],
+    //comment_detail: [],
     yibaomingList: [],
 
     tuanduipaiming: [],
@@ -483,10 +484,11 @@ Page({
       this.setData({
         comment: res.data
       });
-      if (self.data.comment.length == 0)
-        self.setData({
-          loading: false
-        });
+      self.setData({
+        loading: false
+      });
+      /*if (self.data.comment.length == 0)
+        {}
       else {
         var list = self.data.comment.list
 
@@ -515,7 +517,7 @@ Page({
             });
           });
         }
-      }
+      }*/
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -1784,8 +1786,40 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
-
+  onReachBottom: function () {
+    var self = this
+    if (self.data.isReflesh) {
+      wx.showLoading({
+        title: '加载中...',
+        mask: true //显示触摸蒙层  防止事件穿透触发
+      });
+      let data = {
+        objid: self.data.categoryId,
+        objtype: 30,
+        border: self.data.comment.border
+      };
+      let url = app.globalData.URL + '/comm/listCommByObj';
+      app.wxRequest('GET', url, data, (res) => {
+        console.log(res.data)
+        if (res.data.border == null) {
+          self.setData({
+            isReflesh: false
+          })
+        }
+        console.log('刷新评论中', res)
+        let t = 'comment'
+        var tmp = self.data.comment
+        tmp.border = res.data.border
+        for (let s of res.data.list)
+          tmp.list.push(s)
+        self.setData({
+          [t]: tmp,
+        })
+        wx.hideLoading()
+      }, (err) => {
+        console.log(err.errMsg)
+      });
+    }
   },
 
   /**
