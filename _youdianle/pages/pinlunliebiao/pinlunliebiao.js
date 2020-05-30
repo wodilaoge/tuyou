@@ -33,36 +33,41 @@ Page({
       self.setData({
         comment: res.data
       });
-      let list = self.data.comment.list
-      console.log(list);
-      if (list.length == 0)
+      if (res.data == null || res.data.length == 0) {
         self.setData({
-          loading: false,
-          comment_detail: list
+          loading: false
         });
-      for (let i in list) {
-        let url2 = app.globalData.URL + '/applaud/findApplaud'; //点赞情况
-
-        data = {
-          objtype: 30,
-          objid: list[i].id,
-          uid: self.data.user.id,
-        };
-        util.gets(url2, data).then(function(res) {
-          list[i]['ifzan'] = res.data.data
-        });
-        url2 = app.globalData.URL + '/applaud/countByObj'; //点赞数
-        data = {
-          objid: list[i].id,
-          objtype: 30
-        };
-        util.gets(url2, data).then(function(res) {
-          list[i].praiseCnt = res.data.data
+      } else {
+        let list = self.data.comment.list
+        if (list.length == 0)
           self.setData({
-            comment_detail: list,
-            loading: false
+            loading: false,
+            comment_detail: list
           });
-        });
+        for (let i in list) {
+          let url2 = app.globalData.URL + '/applaud/findApplaud'; //点赞情况
+
+          data = {
+            objtype: 30,
+            objid: list[i].id,
+            uid: self.data.user.id,
+          };
+          util.gets(url2, data).then(function(res) {
+            list[i]['ifzan'] = res.data.data
+          });
+          url2 = app.globalData.URL + '/applaud/countByObj'; //点赞数
+          data = {
+            objid: list[i].id,
+            objtype: 30
+          };
+          util.gets(url2, data).then(function(res) {
+            list[i].praiseCnt = res.data.data
+            self.setData({
+              comment_detail: list,
+              loading: false
+            });
+          });
+        }
       }
     }, (err) => {
       console.log(err.errMsg)

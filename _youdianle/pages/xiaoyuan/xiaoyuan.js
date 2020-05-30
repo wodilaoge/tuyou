@@ -62,7 +62,7 @@ Page({
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
-    school: [],
+    city: [],
     shipinInit: 0,
     shipin_index: 0,
     user: [],
@@ -182,10 +182,10 @@ Page({
         var url2 = app.globalData.URL + '/secrot/listSecrotation';
         var data
         if (res.data.data[i].name == "校园活动") {
-          if (self.data.school.length != 0)
+          if (self.data.city.length != 0)
             data = {
               sid: res.data.data[i].code,
-              univ: self.data.school.code,
+              univ: self.data.city.code,
               pageSize: 2
             };
           else
@@ -233,10 +233,10 @@ Page({
               yundongCur: res.data.data[0].code
             })
           }).then(function() {
-            if (self.data.school.length != 0)
+            if (self.data.city.length != 0)
               data = {
                 sid: self.data.yundongid,
-                univ: self.data.school.code
+                univ: self.data.city.code
               };
             else
               data = {
@@ -282,10 +282,10 @@ Page({
               wenyuCur: res.data.data[0].code,
             })
           }).then(function() {
-            if (self.data.school.length != 0)
+            if (self.data.city.length != 0)
               data = {
                 sid: self.data.wenyuid,
-                univ: self.data.school.code
+                univ: self.data.city.code
               };
             else
               data = {
@@ -331,10 +331,10 @@ Page({
               aihaoCur: res.data.data[0].code
             })
           }).then(function() {
-            if (self.data.school.length != 0)
+            if (self.data.city.length != 0)
               data = {
                 sid: self.data.aihaoid,
-                univ: self.data.school.code
+                univ: self.data.city.code
               };
             else
               data = {
@@ -829,7 +829,7 @@ Page({
   },
   onShow() {
     this.setData({
-      school: wx.getStorageSync('school')
+      city: wx.getStorageSync('city')
     })
     this.xuanran();
     //this.news()

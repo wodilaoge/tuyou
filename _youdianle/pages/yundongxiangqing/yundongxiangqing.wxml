@@ -416,8 +416,8 @@
           <image class="icon-paiming" mode="aspectFit" data-id="{{members.mbrId}}" bindtap="delete_geren" src="/img/icon_delete.png"  wx:if="{{shujuhide==false}}"></image>
           <view class="cu-avatar round my" style="background-image:url({{members.mbrHead}});" data-id="{{members.mbrId}}" bindtap="gerenziliao"></view>
           <text class="paiming-name" decode="{{true}}">&ensp;{{members.mbrAlias}}</text>
-          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==1}}"></image>
-          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==0}}"></image>
+          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==1}}" data-members="{{members}}" bindtap="gerendianzan"></image>
+          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==0}}" data-members="{{members}}" bindtap="gerendianzan"></image>
         </view>
       </view>
     </block>
@@ -838,7 +838,7 @@
     <view class="margin-bottom">
       <view class="padding-left bg-white yundong-sp-center " wx:for="{{gerenshuju.list}}" wx:key="groupid" wx:for-index="index">
         <view class="bg-blue " style="width:300rpx;height:42rpx; ">
-          <text style="margin-left:36rpx; ">{{item.groupname}}</text>
+          <text wx:if="{{item.groupname!=null}}" style="margin-left:36rpx; ">{{item.groupname}}</text>
         </view>
         <view class="bg-blue " style="margin-left:1rpx;width:180rpx;height:42rpx; ">
           <text style="margin-left:65rpx; ">排名</text>
@@ -867,7 +867,8 @@
     <view class="margin-bottom">
       <view class="padding-left bg-white yundong-sp-center " wx:for="{{tuanduishuju.list}}" wx:key="groupid" wx:for-index="index">
         <view class="bg-blue " style="width:300rpx;height:42rpx; ">
-          <text style="margin-left:36rpx; ">{{item.team}}/{{item.groupname}}</text>
+          <text style="margin-left:36rpx;" wx:if="{{item.groupname!=null}}">{{item.team}}/{{item.groupname}}</text>
+          <text style="margin-left:36rpx;" wx:if="{{item.groupname==null}}">{{item.team}}</text>
         </view>
         <view class="bg-blue " style="margin-left:1rpx;width:180rpx;height:42rpx; ">
           <text style="margin-left:65rpx; ">排名</text>
