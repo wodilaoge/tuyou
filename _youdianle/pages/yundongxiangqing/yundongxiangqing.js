@@ -482,10 +482,9 @@ Page({
       this.setData({
         comment: res.data
       });
-      if (self.data.comment.list.length == 0)
+      if (self.data.comment.length == 0)
         self.setData({
-          loading: false,
-          comment_detail: self.data.comment.list
+          loading: false
         });
       else {
         var list = self.data.comment.list
@@ -989,12 +988,22 @@ Page({
         createrHead: self.data.user.head
       };
       app.wxRequest('POST', url, data, (res) => {
-        self.onLoad(self.data.options);
-        wx.showToast({
-          title: '评论成功！', // 标题
-          icon: 'success', // 图标类型，默认success
-          duration: 1500 // 提示窗停留时间，默认1500ms
-        })
+        self.comment();
+        console.log(res)
+        if (res.code == 0)
+          wx.showToast({
+            title: '评论成功！', // 标题
+            icon: 'success', // 图标类型，默认success
+            duration: 1500 // 提示窗停留时间，默认1500ms
+          })
+        else{
+          console.log(res.data)
+          wx.showToast({
+            title: res.data.msg, // 标题
+            image: '/img/fail.png', // 图标类型，默认success
+            duration: 1000 // 提示窗停留时间，默认1500ms
+          })
+        }
       }, (err) => {
         console.log(err.errMsg)
       });
@@ -1156,7 +1165,6 @@ Page({
           mbrId: self.data.user.id,
           mbrAlias: self.data.user.nickname,
           mbrHead: self.data.user.head,
-          mbrName: self.data.xingmingInput,
           signupType: self.data.canjiaorguankan,
           status: 10,
           creater: self.data.user.id
@@ -1168,11 +1176,11 @@ Page({
           mbrId: self.data.user.id,
           mbrAlias: self.data.user.nickname,
           mbrHead: self.data.user.head,
-          mbrName: self.data.xingmingInput,
           signupType: self.data.canjiaorguankan,
           status: 10,
           creater: self.data.user.id
         }
+      console.log(data)
       util.post_token(url, data).then(function(res) {
         wx.hideLoading()
         console.log(res)
@@ -1188,7 +1196,7 @@ Page({
           self.yibaoming()
         } else
           wx.showToast({
-            title: '报名失败！',
+            title: res.data.msg,
             image: '/img/fail.png',
             duration: 1000,
           })
@@ -1490,7 +1498,6 @@ Page({
           isbaominggeren: 0
         })
         self.yibaoming()
-        self.gerenshuju()
       } else {
         console.log(res.data)
         wx.showToast({
@@ -1499,6 +1506,40 @@ Page({
           duration: 1000 // 提示窗停留时间，默认1500ms
         })
       }
+    })
+  },
+  //////////////////////
+  gerendianzan(e) {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true  //显示触摸蒙层  防止事件穿透触发
+    });
+    var self = this
+    let url = app.globalData.URL + '/applaud/updateApplaud'
+    let data = {
+      objtype: 10,
+      objid: e.currentTarget.dataset.members.mbrId,
+      creater: self.data.categoryId,
+      status: 1 - e.currentTarget.dataset.members.myApplaud
+    }
+    util.post_token(url, data).then(function(res) {
+      console.log(res.data)
+      if (res.data.code == 0) {
+        wx.showToast({
+          title: '操作成功！', // 标题
+          icon: 'success', // 图标类型，默认success
+          duration: 1500 // 提示窗停留时间，默认1500ms
+        })
+        self.gerenpaiming()
+      } else {
+        console.log(res.data)
+        wx.showToast({
+          title: res.data.msg, // 标题
+          image: '/img/fail.png', // 图标类型，默认success
+          duration: 1000 // 提示窗停留时间，默认1500ms
+        })
+      }
+      wx.hideLoading()
     })
   },
   //////////////////////////

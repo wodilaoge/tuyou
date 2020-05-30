@@ -84,7 +84,7 @@
 					"id": 3,
 					"name": "评论列表",
 					"pathName": "pages/pinlunliebiao/pinlunliebiao",
-					"query": "categoryId=1025873553653760&objtitle= 浙江大学三周年典演出季--歌舞表演",
+					"query": "categoryId= 23007374432272384&objtitle= 1",
 					"scene": null
 				},
 				{
@@ -110,13 +110,6 @@
 				},
 				{
 					"id": -1,
-					"name": "校园",
-					"pathName": "pages/xiaoyuan/xiaoyuan",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "发布报名",
 					"pathName": "pages/form_launch/form_launch",
 					"query": "",
@@ -126,7 +119,7 @@
 					"id": 9,
 					"name": "运动详情",
 					"pathName": "pages/yundongxiangqing/yundongxiangqing",
-					"query": "categoryId= 2126092974843494418&Title=运动详情&TabCur=1",
+					"query": "categoryId= 23007374432272384&Title=运动详情&TabCur=1",
 					"scene": null
 				},
 				{
