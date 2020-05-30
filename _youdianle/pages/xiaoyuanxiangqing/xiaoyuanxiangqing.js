@@ -5,7 +5,7 @@ Page({
     chooseSize: false,
     shipinChooseSize: false,
     animationData: {},
-    isReflesh: true,
+    isReflesh: false,
     shipinAnimationData: {},
     Input: "",
     options: [],
@@ -428,8 +428,10 @@ Page({
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
         comment: res.data
-      }); self.setData({
-        loading: false
+      }); 
+      self.setData({
+        loading: false,
+        isReflesh:true
       });
       /*if (self.data.comment == 0)
         {}

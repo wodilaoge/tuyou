@@ -90,7 +90,7 @@
     <view class="goods-text">
       <wxparse data="{{ detail.imagetext }}"></wxparse>
       <view class="margin-top">
-        <text class="cuIcon-attention lg text-gray">\t23456</text>
+        <text class="cuIcon-attention lg text-gray">\t128</text>
         <text class="cuIcon-appreciate lg text-gray text-right" decode="{{true}}">\t赞&emsp;{{likecount}}</text>
       </view>
     </view>
