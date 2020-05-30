@@ -3,6 +3,7 @@ var util = require("../../utils/util.js");
 Page({
   data: {
     isReflesh: true,
+    isRefleshyundong: true,
     bt: '校园活动',
     btdata: [{
         id: 0,
@@ -185,7 +186,7 @@ Page({
           if (self.data.city.length != 0)
             data = {
               sid: res.data.data[i].code,
-              univ: self.data.city.code,
+              city: self.data.city.code,
               pageSize: 2
             };
           else
@@ -195,8 +196,7 @@ Page({
             };
           app.wxRequest('GET', url, data, (res) => {
             self.setData({
-              ActList: res.data,
-              activityborder: res.data.border
+              ActList: res.data
             })
           }, (err) => {
             console.log(err.errMsg)
@@ -219,7 +219,7 @@ Page({
           };
 
           app.wxRequest('GET', url2, data, (res) => {
-            self.setData({
+            self.setData({  
               yundongSwiperList: res.data
             })
           }, (err) => {
@@ -236,11 +236,13 @@ Page({
             if (self.data.city.length != 0)
               data = {
                 sid: self.data.yundongid,
-                univ: self.data.city.code
+                city: self.data.city.code,
+                pageSize: 5
               };
             else
               data = {
-                sid: self.data.yundongid
+                sid: self.data.yundongid,
+                pageSize: 5
               };
             util.gets(url, data).then(function(res) {
               self.setData({
@@ -285,7 +287,7 @@ Page({
             if (self.data.city.length != 0)
               data = {
                 sid: self.data.wenyuid,
-                univ: self.data.city.code
+                city: self.data.city.code
               };
             else
               data = {
@@ -334,7 +336,7 @@ Page({
             if (self.data.city.length != 0)
               data = {
                 sid: self.data.aihaoid,
-                univ: self.data.city.code
+                city: self.data.city.code
               };
             else
               data = {
@@ -901,7 +903,6 @@ Page({
   onReachBottom: function () {
     console.log("上拉刷新")
     let that = this;
-    console.log(that.data.activityborder)
     //校园刷新数据
     if (that.data.TabCur == 0 && that.data.isReflesh) {
       wx.showLoading({
@@ -921,10 +922,11 @@ Page({
           })
         }
         console.log('刷新校园中', res)
-        let t = 'ActList.list'
-        var tmp = that.data.ActList.list
+        let t = 'ActList'
+        var tmp = that.data.ActList
+        tmp.border = res.data.border
         for (let s of res.data.list)
-          tmp.push(s)
+          tmp.list.push(s)
         that.setData({
           [t]: tmp,
         })
@@ -934,52 +936,38 @@ Page({
       });
     }
     //运动刷新
-    else if (that.data.tabbar == 1) {
+    else if (that.data.TabCur == 1 && that.data.isRefleshyundong) {
       wx.showLoading({
         title: '加载中...',
         mask: true //显示触摸蒙层  防止事件穿透触发
       });
-      self.setData({
-        yundongid: res.data.data[i].code
-      })
+      var url = app.globalData.URL + '/act/listActivity';
       let data = {
-        sid: res.data.data[i].code
+        sid: that.data.yundongid,
+        acid1:that.data.yundongCur,
+        border: that.data.yundongList.border,
+        pageSize: 3
       };
-      app.wxRequest('GET', url2, data, (res) => {
-        self.setData({
-          yundongSwiperList: res.data
+      app.wxRequest('GET', url, data, (res) => {
+        console.log(res.data)
+        if (res.data.border == null) {
+          that.setData({
+            isRefleshyundong: false
+          })
+        }
+        console.log('刷新运动中', res)
+        let t = 'yundongList'
+        var tmp = that.data.yundongList
+        tmp.border=res.data.border
+        for (let s of res.data.list)
+          tmp.list.push(s)
+        that.setData({
+          [t]: tmp,
         })
+        wx.hideLoading()
       }, (err) => {
         console.log(err.errMsg)
       });
-
-      var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
-      util.gets(urldalei, data).then(function (res) {
-        self.setData({
-          yundongdalei: res.data.data,
-          yundongCur: res.data.data[0].code
-        })
-      }).then(function () {
-        data = {
-          sid: self.data.yundongid,
-          acid1: self.data.yundongCur
-        }
-        util.gets(url, data).then(function (res) {
-          self.setData({
-            yundongList: res.data.data
-          })
-        }).then(function () {
-          let urlxiaolei = app.globalData.URL + '/config/getActivityClass2'
-          let dataxiaolei = {
-            cid: self.data.yundongCur
-          }
-          util.gets(urlxiaolei, dataxiaolei).then(function (res) {
-            self.setData({
-              yundongxiaolei: res.data.data
-            })
-          })
-        })
-      })
     }
   },
 
