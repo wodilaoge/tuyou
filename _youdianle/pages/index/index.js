@@ -4,6 +4,7 @@ const app = getApp()
 var util = require("../../utils/util.js");
 Page({
   data: {
+    isshowparts:false,//文娱爱好是否显示
     loadModal: true,
     ActList: [],
     PageCur: 'basics',
@@ -83,12 +84,12 @@ Page({
     let data2 = {
       sid: '076002'
     };
-    util.gets_notoken(url, {}).then(function(res) {
+    util.gets_notoken(url, {}).then(function (res) {
       that.setData({
         sectioninfo: res.data
       })
     })
-    util.gets_notoken(url2, data2).then(function(res) {
+    util.gets_notoken(url2, data2).then(function (res) {
       that.setData({
         swiperList: res.data.data
       })
@@ -96,11 +97,16 @@ Page({
   },
   getinfo() {
     var url = app.globalData.URL + '/act/listActivityHome';
+    // let t= wx.getStorageSync('province').code?wx.getStorageSync('province').code:null
+    // console.log('t',t)
     var data = {
       sid: '076002',
+      province: wx.getStorageSync('province').code? wx.getStorageSync('province').code:null,
+      city: wx.getStorageSync('city').code?wx.getStorageSync('city').code:null,
+      univ: wx.getStorageSync('school').code?wx.getStorageSync('school').code:null,
       pageSize: 5
     };
-    app.wxRequest_notoken('GET', url, data, (res) => {
+    app.wxRequest_notoken('POST', url, data, (res) => {
       this.setData({
         ActList: res.data
       })
@@ -111,9 +117,16 @@ Page({
   getsportinfo() {
     var url = app.globalData.URL + '/act/listActivityHome';
     var data = {
-      sid: '076003'
+      sid: '076003',
+      province: wx.getStorageSync('province').code? wx.getStorageSync('province').code:null,
+      city: wx.getStorageSync('city').code?wx.getStorageSync('city').code:null,
+      univ: wx.getStorageSync('school').code?wx.getStorageSync('school').code:null,
+
+      province:null,
+      city:null,
+      univ:null
     };
-    app.wxRequest_notoken('GET', url, data, (res) => {
+    app.wxRequest_notoken('POST', url, data, (res) => {
       this.setData({
         SportList: res.data
       })
@@ -124,9 +137,12 @@ Page({
   getplayinfo() {
     var url = app.globalData.URL + '/act/listActivityHome';
     var data = {
-      sid: '076004'
+      sid: '076004',
+      province: wx.getStorageSync('province').code? wx.getStorageSync('province').code:null,
+      city: wx.getStorageSync('city').code?wx.getStorageSync('city').code:null,
+      univ: wx.getStorageSync('school').code?wx.getStorageSync('school').code:null,
     };
-    app.wxRequest_notoken('GET', url, data, (res) => {
+    app.wxRequest_notoken('POST', url, data, (res) => {
       this.setData({
         wenyuList: res.data
       })
@@ -137,9 +153,12 @@ Page({
   gethobbyinfo() {
     var url = app.globalData.URL + '/act/listActivityHome';
     var data = {
-      sid: '076005'
+      sid: '076005',
+      // province: wx.getStorageSync('province').code? wx.getStorageSync('province').code:null,
+      // city: wx.getStorageSync('city').code?wx.getStorageSync('city').code:null,
+      // univ: wx.getStorageSync('school').code?wx.getStorageSync('school').code:null,
     };
-    app.wxRequest_notoken('GET', url, data, (res) => {
+    app.wxRequest_notoken('POST', url, data, (res) => {
       this.setData({
         aihaoList: res.data
       })
@@ -152,7 +171,10 @@ Page({
     var data = {};
     app.wxRequest_notoken('GET', url, data, (res) => {
       this.setData({
-        videolist: res.data
+        videolist: res.data,
+        // province: wx.getStorageSync('province').code? wx.getStorageSync('province').code:null,
+        city: wx.getStorageSync('city').code?wx.getStorageSync('city').code:null,
+        univ: wx.getStorageSync('school').code?wx.getStorageSync('school').code:null,
       })
     }, (err) => {
       console.log(err.errMsg)
@@ -177,37 +199,37 @@ Page({
   //     console.log(err.errMsg)
   //   });
   // },
-  toxiaoyuan: function(e) {
+  toxiaoyuan: function (e) {
     wx.switchTab({
       url: "/pages/xiaoyuan/xiaoyuan"
     })
   },
-  tosport: function(e) {
+  tosport: function (e) {
     wx.switchTab({
       url: "../../pages/xiaoyuan/xiaoyuan"
     })
   },
-  toact: function(e) {
+  toact: function (e) {
     wx.navigateTo({
       url: "../../pages/form_launch/form_launch"
     })
   },
-  tovideo: function(e) {
+  tovideo: function (e) {
     wx.navigateTo({
       url: "../../pages/form_video/form_video"
     })
   },
-  topic: function(e) {
+  topic: function (e) {
     wx.navigateTo({
       url: "../../pages/form_picture/form_picture"
     })
   },
-  toteam: function(e) {
+  toteam: function (e) {
     wx.navigateTo({
       url: "../../pages/form_team/form_team"
     })
   },
-  setshow: function(e) { //使发布4个按钮显示
+  setshow: function (e) { //使发布4个按钮显示
     this.setData({
       isshow: this.data.isshow = !this.data.isshow
     })
@@ -215,8 +237,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onShow: function(e) {},
-  onLoad: function(options) {
+  onShow: function (e) {this.onLoad()},
+  onLoad: function (options) {
     this.startReportHeart()
     var n = wx.getStorageSync('school')
     if (n) {
@@ -231,6 +253,7 @@ Page({
     this.gethobbyinfo(); //爱好信息
     this.getvideoinfo(); //视频信息
     this.getuploadinfo(); //轮播图
+    // this.getShipin();
   },
 
 
@@ -282,7 +305,7 @@ Page({
       url: '../../pages/xiaoyuanxiangqing/xiaoyuanxiangqing?categoryId=' + e.currentTarget.id,
     })
   },
-  toactivity: function(e) {
+  toactivity: function (e) {
     console.log(e)
     wx.navigateTo({
       url: "../../pages/xiaoyuan/xiaoyuan"
@@ -295,15 +318,14 @@ Page({
   },
   startReportHeart() {
     var that = this
-    var timerTem = setTimeout(function() {
+    var timerTem = setTimeout(function () {
       if (app.globalData.userInfo.token == null) {
         that.startReportHeart()
       } else {
         wx.showToast({
           title: '友点乐欢迎您！',
           duration: 2000,
-          success: function() {
-          }
+          success: function () {}
         })
         that.setData({
           loadModal: false
@@ -334,17 +356,17 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
     var that = this;
     return {
       title: '友点乐',
       path: '/pages/index/index',
-      success: function(res) {
-        console.log("转发成功:"  + JSON.stringify(res));
+      success: function (res) {
+        console.log("转发成功:" + JSON.stringify(res));
         that.shareClick();
       },
-      fail: function(res) {
-        console.log("转发失败:"  + JSON.stringify(res));
+      fail: function (res) {
+        console.log("转发失败:" + JSON.stringify(res));
       }
     }
   }

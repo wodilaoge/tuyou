@@ -1,7 +1,9 @@
 
 .menu-item {
-  width: 33%;
-  padding: 20rpx;
+
+
+  width: 50%;
+  padding: 5px;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -11,7 +13,7 @@
 .menu-name {
   /* text-align: center; */
   position: relative;
-  left: 90rpx;
+  left: 160rpx;
 }
 
 .menu-name2 {
@@ -24,7 +26,7 @@
   height: 180rpx;
   padding: 20rpx;
   left: 40rpx;
-  margin-left: 5rpx;
+  margin-left: 80rpx;
 }
 
 .menu {

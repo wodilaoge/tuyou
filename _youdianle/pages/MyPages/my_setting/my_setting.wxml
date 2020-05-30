@@ -40,5 +40,7 @@
   <image class="icon" src="/img/array.png"></image>
 </view>
 <view class="padding flex flex-direction margin-lg justify-between ">
-  <button class="cu-btn bg-orange lg" bindtap="dead">注销登录</button>
+  <!-- <navigator open-type="exit" target="miniProgram">关闭小程序</navigator> -->
+  <navigator open-type="exit" bindtap="dead" target="miniProgram" class="cu-btn bg-orange lg" >注销登录</navigator>
+  <!-- <button class="cu-btn bg-orange lg" bindtap="dead">注销登录</button> -->
 </view>

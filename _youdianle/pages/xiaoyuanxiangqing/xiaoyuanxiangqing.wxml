@@ -53,13 +53,13 @@
       </block>
     </view>
   </view>
-  <view class="cu-item {{3==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="3"> 投票
+  <!--<view class="cu-item {{3==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="3"> 投票
     <view class="tab_item_img">
       <block wx:if="{{TabCur==3}}">
         <image class="tab_item_img" mode="aspectFit" src="/img/img_selection.png"></image>
       </block>
     </view>
-  </view>
+  </view>-->
   <view class="cu-item {{4==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="4"> 排名
     <view class="tab_item_img">
       <block wx:if="{{TabCur==4}}">
@@ -90,7 +90,7 @@
     <view class="goods-text">
       <wxparse data="{{ detail.imagetext }}"></wxparse>
       <view class="margin-top">
-        <text class="cuIcon-attention lg text-gray">\t23456</text>
+        <text class="cuIcon-attention lg text-gray">\t128</text>
         <text class="cuIcon-appreciate lg text-gray text-right" decode="{{true}}">\t赞&emsp;{{likecount}}</text>
       </view>
     </view>
@@ -101,14 +101,14 @@
       <!-- 评论 -->
       <view class="cu-bar bg-white solid-bottom huodong-margin-top">
         <view class='action'>
-          <text class='cu-bar-title'>评论({{comment_detail.length}})</text>
+          <text class='cu-bar-title'>评论({{comment.list.length}})</text>
         </view>
       </view>
 
       <view class="cu-card case no-card bg-white">
         <view class="cu-item shadow">
           <view class="cu-list menu-avatar">
-            <view class="cu-item" wx:for="{{comment_detail}}" wx:for-index="index">
+            <view class="cu-item" wx:for="{{comment.list}}" wx:for-index="index">
               <view class="cu-avatar round lg" style="background-image:url({{item.createrHead}});"></view>
               <view class="content flex-sub">
                 <view class=" flex justify-between">
@@ -364,39 +364,45 @@
             </view>
           </view>
         </view>
-        <view class="bg-white">
-          <view class="cu-bar bg-white padding">
-            <view class="yibaoming-text-content">分组1</view>
+      </block>
+    </block>
+
+    <block>
+      <!-- 管理 -->
+      <view style="background-color:var(--white)" hidden="{{signupway}}">
+        <view class=" padding " style="margin-left:175rpx;">
+          <button class="cu-btn {{baomingCur==0?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-left" bindtap="guanliSelect" data-id="0">
+            个人管理
+          </button>
+          <button class="cu-btn  {{baomingCur==1?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-right" bindtap="guanliSelect" data-id="1">
+            团队管理
+          </button>
+        </view>
+      </view>
+      <block wx:if="{{guanliCur==0}}">
+        <view class="bg-white" wx:for="{{gerenpaiming.list}}" wx:for-index="index">
+          <view class="cu-bar bg-white padding" wx:if="{{item.groupname!=null}}">
+            <view class="yibaoming-text-content">{{item.groupname}}</view>
           </view>
-          <view class="padding yundong-sp-center">
-            <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
-            <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
-            <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
-            <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="margin-left:auto;"></image>
-          </view>
-          <view class="bg-white padding yundong-sp-center">
-            <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
-            <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
-            <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
-            <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="margin-left:auto;"></image>
+          <view class="padding yundong-sp-center" wx:for="{{item.members}}" wx:for-item="members" style="flex-basis: 100%;">
+            <image class="icon-paiming" mode="aspectFit" data-id="{{members.mbrId}}" bindtap="delete_geren" src="/img/icon_delete.png" wx:if="{{shujuhide==false}}"></image>
+            <view class="cu-avatar round my" style="background-image:url({{members.mbrHead}});" data-id="{{members.mbrId}}" bindtap="gerenziliao"></view>
+            <text class="paiming-name" decode="{{true}}">&ensp;{{members.mbrAlias}}</text>
+            <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==1}}" data-members="{{members}}" bindtap="gerendianzan"></image>
+            <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==0}}" data-members="{{members}}" bindtap="gerendianzan"></image>
           </view>
         </view>
-        <view class="bg-white margin-top-xs">
-          <view class="cu-bar bg-white padding">
-            <view class="yibaoming-text-content">分组2</view>
+      </block>
+      <block wx:if="{{guanliCur==1}}">
+        <view class="bg-white" wx:for="{{tuanduipaiming.list}}" wx:for-index="index">
+          <view class="cu-bar bg-white padding" wx:if="{{item.groupname!=null}}">
+            <view class="yibaoming-text-content">{{item.groupname}}</view>
           </view>
-          <view class="padding yundong-sp-center">
-            <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
-            <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
-            <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
-            <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="margin-left:auto;"></image>
-          </view>
-          <view class="bg-white padding yundong-sp-center">
-            <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
-            <view class="cu-avatar round my" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
-            <text class="paiming-name" decode="{{true}}">&ensp;李曼曼</text>
-            <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="margin-left:auto;"></image>
-          </view>
+          <image class="icon-paiming" mode="aspectFit" src="/img/icon_delete.png"></image>
+          <view class="cu-avatar round my" style="background-image:url({{item.teamLogo}});"></view>
+          <text class="paiming-name" decode="{{true}}">&ensp;{{item.team}}</text>
+          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="position: absolute;right:40rpx;"></image>
+          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="position: absolute;right:40rpx;"></image>
         </view>
       </block>
     </block>
@@ -406,14 +412,14 @@
       <view class="huodong-margin-bottom">
         <view class="cu-bar bg-white solid-bottom huodong-margin-top">
           <view class='action'>
-            <text class='cu-bar-title'>评论({{comment_detail.length}})</text>
+            <text class='cu-bar-title'>评论({{comment.list.length}})</text>
           </view>
         </view>
 
         <view class="cu-card case no-card bg-white">
           <view class="cu-item shadow">
             <view class="cu-list menu-avatar">
-              <view class="cu-item" wx:for="{{comment_detail}}" wx:for-index="index">
+              <view class="cu-item" wx:for="{{comment.list}}" wx:for-index="index">
                 <view class="cu-avatar round lg" style="background-image:url({{item.createrHead}});"></view>
                 <view class="content flex-sub">
                   <view class=" flex justify-between">
@@ -496,7 +502,7 @@
         <view class=" sp-pinglun margin-top ">{{shipin.list[0].notes}}</view>
         <view class="sp-hotpinglun margin-top ">热门评论</view>
         <view class="margin-top" style="background-color: #f8f9fd;">
-        
+
           <view class="margin-top sp-pinlun-content" wx:if="{{shipin.list[0].listComm[0]}}">
             <image class="sp-pinglun-avatar round " src="{{shipin.list[0].listComm[0].createrHead}} "></image>
             <view class="sp-pinglun-name ">{{shipin.list[0].listComm[0].createrAlias}}</view>
@@ -538,19 +544,19 @@
         <view class=" sp-pinglun margin-top ">{{shipin.list[index].notes}}</view>
         <view class="sp-hotpinglun margin-top ">热门评论</view>
         <view class="margin-top" style="background-color: #f8f9fd;">
-         
-            <view class="margin-top sp-pinlun-content" wx:if="{{shipin.list[index].listComm[0]}}">
-              <image class="sp-pinglun-avatar round " src="{{shipin.list[index].listComm[0].createrHead}} "></image>
-              <view class="sp-pinglun-name ">{{shipin.list[index].listComm[0].createrAlias}}</view>
-              <view class="sp-pinglun-neirong ">{{shipin.list[index].listComm[0].comment}}</view>
-            </view>
-            <view class="margin-top sp-pinlun-content" wx:if="{{shipin.list[index].listComm[1]}}">
-              <image class="sp-pinglun-avatar round " src="{{shipin.list[index].listComm[1].createrHead}} "></image>
-              <view class="sp-pinglun-name ">{{shipin.list[index].listComm[1].createrAlias}}</view>
-              <view class="sp-pinglun-neirong ">{{shipin.list[index].listComm[1].comment}}</view>
-            </view>
-            <view style="height:10rpx;"></view>
-        
+
+          <view class="margin-top sp-pinlun-content" wx:if="{{shipin.list[index].listComm[0]}}">
+            <image class="sp-pinglun-avatar round " src="{{shipin.list[index].listComm[0].createrHead}} "></image>
+            <view class="sp-pinglun-name ">{{shipin.list[index].listComm[0].createrAlias}}</view>
+            <view class="sp-pinglun-neirong ">{{shipin.list[index].listComm[0].comment}}</view>
+          </view>
+          <view class="margin-top sp-pinlun-content" wx:if="{{shipin.list[index].listComm[1]}}">
+            <image class="sp-pinglun-avatar round " src="{{shipin.list[index].listComm[1].createrHead}} "></image>
+            <view class="sp-pinglun-name ">{{shipin.list[index].listComm[1].createrAlias}}</view>
+            <view class="sp-pinglun-neirong ">{{shipin.list[index].listComm[1].comment}}</view>
+          </view>
+          <view style="height:10rpx;"></view>
+
         </view>
         <view class="sp-quanbupinglun margin-top-sm" bindtap="shipinChooseSezi" data-duixiang="{{50}}" data-dxid="{{shipin.list[index].id}}" data-index="{{index}}">全部评论({{shipin.list[index].commCnt}})</view>
       </view>
@@ -711,14 +717,14 @@
       <!-- 评论 -->
       <view class="cu-bar bg-white solid-bottom huodong-margin-top">
         <view class='action'>
-          <text class='cu-bar-title'>评论({{comment_detail.length}})</text>
+          <text class='cu-bar-title'>评论({{comment.list.length}})</text>
         </view>
       </view>
 
       <view class="cu-card case no-card bg-white">
         <view class="cu-item shadow">
           <view class="cu-list menu-avatar">
-            <view class="cu-item" wx:for="{{comment_detail}}" wx:for-index="index" wx:key>
+            <view class="cu-item" wx:for="{{comment.list}}" wx:for-index="index" wx:key>
               <view class="cu-avatar round lg" style="background-image:url({{item.createrHead}});"></view>
               <view class="content flex-sub">
                 <view class=" flex justify-between">

@@ -3,7 +3,7 @@ const app = getApp();
 var util = require("../../utils/util.js");
 Page({
   data: {
-    isagree:true
+    isagree: true
   },
   isagree(e) {
     this.setData({
@@ -28,12 +28,12 @@ Page({
     } else {
       var that = this
       wx.login({
-        success: function(res) {
+        success: function (res) {
           console.log(res);
           var code = res.code
           if (res.code) {
             wx.getUserInfo({
-              success: function(res) {
+              success: function (res) {
                 var userinfo = res.userInfo
                 console.log(userinfo);
                 let url = app.globalData.URL + '/auth/wclogin';
@@ -42,16 +42,14 @@ Page({
                   nickname: userinfo.nickName,
                   head: userinfo.avatarUrl
                 };
-                util.post(url, data).then(function(res) {
+                util.post(url, data).then(function (res) {
                   console.log('id', res)
                   if (res.data.code == 0) {
                     that.setData({
                       userInfoAll: res.data.data
                     })
-                    wx.setStorageSync({ //将用户信息存入缓存 名称为userinfo
-                      key: "userInfo",
-                      data: res.data.data
-                    });
+                    //将用户信息存入缓存 名称为userinfo
+                    wx.setStorageSync("userInfo", res.data.data);
                     wx.showToast({
                       title: '登录成功！',
                       duration: 500,
@@ -65,7 +63,7 @@ Page({
                           // })
                         }, 1000);
                       }
-                      
+
                     })
                   } else {
                     wx.showToast({
@@ -83,7 +81,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     // var user=wx.getStorageSync("userInfo")
     // if(user){
     //   wx.navigateTo({

@@ -53,8 +53,7 @@
     "backgroundColor": "#5454FF",
     "navigationBarTitleText": "友点乐",
     "navigationStyle": "custom",
-    "navigationBarTextStyle": "white",
-    "enablePullDownRefresh":true
+    "navigationBarTextStyle": "white"
   },
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom"

@@ -94,8 +94,7 @@
   </view>
 
   <view class="cu-form-group">
-
-    <view class="title">报名开始日期</view>
+    <view class="title">活动开始日期</view>
     <picker mode="date" value="{{timenow}}" start="2020.5.1" end="2020.09.01" bindchange="DateChange">
       <view class="picker text-grey">
         {{timenow}}
@@ -112,7 +111,7 @@
     </picker>
   </view>
   <view class="cu-form-group">
-    <view class="title">活动截止日期</view>
+    <view class="title">报名截止日期</view>
     <picker mode="date" value="{{timenow}}" start="2015-09-01" end="2020-09-01" bindchange="DateChange2">
       <view class="picker text-grey">
         {{timenow2}}
@@ -154,6 +153,29 @@
       </view>
     </view>
     <!-- <image class="icon" src="../../img/write.png"></image> -->
+  </view>
+
+  
+  <view class="cu-bar bg-white margin-top">
+    <view class="action">
+      LOGO
+    </view>
+    <view class="action">
+      {{imgList3.length}}/1
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{imgList3}}" wx:key="{{index}}" bindtap="ViewImage" data-id='3' data-url="{{imgList3[index]}}">
+        <image src='{{imgList3[index]}}' mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImg" data-id='3' data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" bindtap="ChooseImage" data-id='3' wx:if="{{imgList3.length<1}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
   </view>
   <view class="text-center margin-top3">
     <checkbox-group bindchange="checked">

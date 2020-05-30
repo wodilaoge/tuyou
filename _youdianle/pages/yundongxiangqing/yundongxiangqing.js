@@ -4,6 +4,7 @@ Page({
   data: {
     chooseSize: false,
     animationData: {},
+    isReflesh: true,
     Input: "",
     options: [],
     biaoti: "",
@@ -14,17 +15,19 @@ Page({
     fenzuindex: 0,
     iftongyi: true,
     yonghuxinxi: [],
+    count: 0,
 
     TabCur: 0,
     paimingCur: 0,
     shujuCur: 0,
     baomingCur: 0,
+    guanliCur: 0,
     shujuhide: true,
 
     SwiperList_zhaopian: [],
     detail: [],
     comment: [],
-    comment_detail: [],
+    //comment_detail: [],
     yibaomingList: [],
 
     tuanduipaiming: [],
@@ -106,7 +109,7 @@ Page({
       TabCur: 1
     })
   },
-  //发布评论
+  //弹框
   chooseSezi: function(e) {
     var that = this;
     var animation = wx.createAnimation({
@@ -151,6 +154,7 @@ Page({
       })
     }, 100)
   },
+  ///////////////////////////
   emailInput: function(e) { //input输入
     this.setData({
       Input: e.detail.value
@@ -263,6 +267,11 @@ Page({
   pinluntiaozhuan(e) { //评论跳转
     wx.navigateTo({
       url: '/pages/pinlunliebiao/pinlunliebiao?categoryId=' + this.data.categoryId + '&objtitle=' + this.data.detail.actname,
+    })
+  },
+  guanliSelect(e) {
+    this.setData({
+      guanliCur: e.currentTarget.dataset.id,
     })
   },
   baomingSelect(e) {
@@ -467,20 +476,28 @@ Page({
 
   comment() { //评论
     var self = this
-    let url = app.globalData.URL + '/comm/listCommByObj';
+    let url = app.globalData.URL + '/comm/countCommByObj';
     let data = {
       objid: this.data.categoryId,
       objtype: 30
     };
     app.wxRequest('GET', url, data, (res) => {
+      self.setData({
+        count: res.data
+      });
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+    url = app.globalData.URL + '/comm/listCommByObj';
+    app.wxRequest('GET', url, data, (res) => {
       this.setData({
         comment: res.data
       });
-      if (self.data.comment.list.length == 0)
-        self.setData({
-          loading: false,
-          comment_detail: self.data.comment.list
-        });
+      self.setData({
+        loading: false
+      });
+      /*if (self.data.comment.length == 0)
+        {}
       else {
         var list = self.data.comment.list
 
@@ -509,7 +526,7 @@ Page({
             });
           });
         }
-      }
+      }*/
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -686,18 +703,17 @@ Page({
           bofang_pid: '1'
         })
       }
-        let url = app.globalData.URL + '/video/updatePlayCnt';
+      let url = app.globalData.URL + '/video/updatePlayCnt';
       console.log(e.currentTarget.dataset.index)
-        let data = {
-          id: this.data.shipin.list[e.currentTarget.dataset.index].id,
-        };
-        app.wxRequest('GET', url, data, (res) => {
-        })
-        shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
-        self.setData({
-          shipin: shipintmp
-        })
-     
+      let data = {
+        id: this.data.shipin.list[e.currentTarget.dataset.index].id,
+      };
+      app.wxRequest('GET', url, data, (res) => {})
+      shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
+      self.setData({
+        shipin: shipintmp
+      })
+
       var now_id = e.currentTarget.id;
       var prev_id = this.data.video_id;
       this.setData({
@@ -780,7 +796,7 @@ Page({
         shipin: shipintmp
       })
       let url = app.globalData.URL + '/applaud/updateApplaud';
-     
+
       let data = {
         objtype: 50,
         objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
@@ -984,12 +1000,22 @@ Page({
         createrHead: self.data.user.head
       };
       app.wxRequest('POST', url, data, (res) => {
-        self.onLoad(self.data.options);
-        wx.showToast({
-          title: '评论成功！', // 标题
-          icon: 'success', // 图标类型，默认success
-          duration: 1500 // 提示窗停留时间，默认1500ms
-        })
+        self.comment();
+        console.log(res)
+        if (res.code == 0)
+          wx.showToast({
+            title: '评论成功！', // 标题
+            icon: 'success', // 图标类型，默认success
+            duration: 1500 // 提示窗停留时间，默认1500ms
+          })
+        else{
+          console.log(res.data)
+          wx.showToast({
+            title: res.data.msg, // 标题
+            image: '/img/fail.png', // 图标类型，默认success
+            duration: 1000 // 提示窗停留时间，默认1500ms
+          })
+        }
       }, (err) => {
         console.log(err.errMsg)
       });
@@ -1151,7 +1177,6 @@ Page({
           mbrId: self.data.user.id,
           mbrAlias: self.data.user.nickname,
           mbrHead: self.data.user.head,
-          mbrName: self.data.xingmingInput,
           signupType: self.data.canjiaorguankan,
           status: 10,
           creater: self.data.user.id
@@ -1163,11 +1188,11 @@ Page({
           mbrId: self.data.user.id,
           mbrAlias: self.data.user.nickname,
           mbrHead: self.data.user.head,
-          mbrName: self.data.xingmingInput,
           signupType: self.data.canjiaorguankan,
           status: 10,
           creater: self.data.user.id
         }
+      console.log(data)
       util.post_token(url, data).then(function(res) {
         wx.hideLoading()
         console.log(res)
@@ -1183,7 +1208,7 @@ Page({
           self.yibaoming()
         } else
           wx.showToast({
-            title: '报名失败！',
+            title: res.data.msg,
             image: '/img/fail.png',
             duration: 1000,
           })
@@ -1460,6 +1485,76 @@ Page({
     }
   },
   ////////////////////////////
+  delete_geren(e) { //管理删除
+    wx.showLoading({
+      title: '加载中...',
+      mask: true  //显示触摸蒙层  防止事件穿透触发
+    });
+    var self = this
+    var status
+    let url = app.globalData.URL + '/act/cancelActSignupIndByUser'
+    let data = {
+      actid: self.data.categoryId,
+      uid: e.currentTarget.dataset.id
+    }
+    console.log(e)
+    util.gets(url, data).then(function(res) {
+      wx.hideLoading()
+      if (res.data.code == 0) {
+        wx.showToast({
+          title: '操作成功！', // 标题
+          icon: 'success', // 图标类型，默认success
+          duration: 1500 // 提示窗停留时间，默认1500ms
+        })
+        self.setData({
+          isbaominggeren: 0
+        })
+        self.yibaoming()
+      } else {
+        console.log(res.data)
+        wx.showToast({
+          title: res.data.msg, // 标题
+          image: '/img/fail.png', // 图标类型，默认success
+          duration: 1000 // 提示窗停留时间，默认1500ms
+        })
+      }
+    })
+  },
+  //////////////////////
+  gerendianzan(e) {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true  //显示触摸蒙层  防止事件穿透触发
+    });
+    var self = this
+    let url = app.globalData.URL + '/applaud/updateApplaud'
+    let data = {
+      objtype: 10,
+      objid: e.currentTarget.dataset.members.mbrId,
+      creater: self.data.categoryId,
+      status: 1 - e.currentTarget.dataset.members.myApplaud
+    }
+    util.post_token(url, data).then(function(res) {
+      console.log(res.data)
+      if (res.data.code == 0) {
+        wx.showToast({
+          title: '操作成功！', // 标题
+          icon: 'success', // 图标类型，默认success
+          duration: 1500 // 提示窗停留时间，默认1500ms
+        })
+        self.gerenpaiming()
+      } else {
+        console.log(res.data)
+        wx.showToast({
+          title: res.data.msg, // 标题
+          image: '/img/fail.png', // 图标类型，默认success
+          duration: 1000 // 提示窗停留时间，默认1500ms
+        })
+      }
+      wx.hideLoading()
+    })
+  },
+  //////////////////////////
   gerenshuju() {
     var self = this
     var url = app.globalData.URL + '/act/updateActIndRank' //更新个人排名
@@ -1493,6 +1588,7 @@ Page({
           duration: 500,
         })
     })
+    self.gerenpaiming()
   },
   tuanduishuju() {
     var self = this
@@ -1534,6 +1630,7 @@ Page({
           duration: 500,
         })
     })
+    self.tuanduipaiming()
   },
   tijiao() {
     if (this.data.detail.signupway == "30") {
@@ -1698,8 +1795,40 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
-
+  onReachBottom: function () {
+    var self = this
+    if (self.data.isReflesh) {
+      wx.showLoading({
+        title: '加载中...',
+        mask: true //显示触摸蒙层  防止事件穿透触发
+      });
+      let data = {
+        objid: self.data.categoryId,
+        objtype: 30,
+        border: self.data.comment.border
+      };
+      let url = app.globalData.URL + '/comm/listCommByObj';
+      app.wxRequest('GET', url, data, (res) => {
+        console.log(res.data)
+        if (res.data.border == null) {
+          self.setData({
+            isReflesh: false
+          })
+        }
+        console.log('刷新评论中', res)
+        let t = 'comment'
+        var tmp = self.data.comment
+        tmp.border = res.data.border
+        for (let s of res.data.list)
+          tmp.list.push(s)
+        self.setData({
+          [t]: tmp,
+        })
+        wx.hideLoading()
+      }, (err) => {
+        console.log(err.errMsg)
+      });
+    }
   },
 
   /**
