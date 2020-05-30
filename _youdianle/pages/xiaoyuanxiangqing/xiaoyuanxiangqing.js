@@ -59,6 +59,8 @@ Page({
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
     shipinInit: 0,
     shipin_index: 0,
+    shipinBorder: '',
+    isRefleshshipin: true,
   },
   chooseSezi: function(e) {
     var that = this;
@@ -1370,20 +1372,43 @@ Page({
     let data = {
       actid: this.data.categoryId,
       pageSize:2,
+      border:this.data.shipinBorder,
     };
     app.wxRequest('GET', url, data, (res) => {
+      console.log(res)
       let shipintmp = res.data;
-      shipintmp.list[0].playCnt++;
       this.setData({
-        shipin: shipintmp
+        shipin: shipintmp,
+        shipinBorder:res.data.border,
       })
-      let url2 = app.globalData.URL + '/video/updatePlayCnt';
-      let data2 = {
-        id: self.data.shipin.list[0].id,
-      };
-      app.wxRequest('GET', url2, data2, (res) => {
-        console.log(res)
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  getShipinFenye() { //视频
+    var self = this;
+    let url = app.globalData.URL + '/video/listActVideo';
+    let data = {
+      actid: this.data.categoryId,
+      pageSize: 2,
+      border: this.data.shipinBorder,
+    };
+    console.log(data)
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res)
+      if (res.data.border == null) {
+        self.setData({
+          isRefleshshipin: false
+        })
+      }
+      let shipintmp = this.data.shipin;
+      for (let s of res.data.list)
+        shipintmp.list.push(s)
+      this.setData({
+        shipin: shipintmp,
+        shipinBorder: res.data.border,
       })
+     
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -1592,6 +1617,12 @@ Page({
       }, (err) => {
         console.log(err.errMsg)
       });
+    }
+
+    ////////
+    if (this.data.isRefleshshipin==true){
+
+      this.getShipinFenye()
     }
   },
   onShareAppMessage: function() {

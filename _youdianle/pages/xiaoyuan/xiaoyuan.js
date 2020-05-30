@@ -4,6 +4,7 @@ Page({
   data: {
     isReflesh: true,
     isRefleshyundong: true,
+    isRefleshshipin: true,
     bt: '校园活动',
     btdata: [{
         id: 0,
@@ -67,6 +68,8 @@ Page({
     shipinInit: 0,
     shipin_index: 0,
     user: [],
+    shipinBorder: '',
+    
   },
   tabSelect(e) {
     app.globalData.tabbar = e.currentTarget.dataset.id;
@@ -410,22 +413,44 @@ Page({
     var self = this;
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
+      pageSize: 2,
+      border: this.data.shipinBorder,
     };
     console.log(data)
     app.wxRequest('GET', url, data, (res) => {
       console.log(res.data)
       let shipintmp = res.data;
-      shipintmp.list[0].playCnt++;
       this.setData({
-        shipin: shipintmp
+        shipin: shipintmp,
+        shipinBorder: res.data.border,
       })
-      let url2 = app.globalData.URL + '/video/updatePlayCnt';
-      let data2 = {
-        id: self.data.shipin.list[0].id,
-      };
-      app.wxRequest('GET', url2, data2, (res) => {
-        console.log(res)
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  getShipinFenye() { //视频
+    var self = this;
+    let url = app.globalData.URL + '/video/listActVideo';
+    let data = {
+      pageSize: 2,
+      border: this.data.shipinBorder,
+    };
+    console.log(data)
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res)
+      if (res.data.border == null) {
+        that.setData({
+          isRefleshshipin: false,
+        })
+      }
+      let shipintmp = this.data.shipin;
+      for (let s of res.data.list)
+        shipintmp.list.push(s)
+      this.setData({
+        shipin: shipintmp,
+        shipinBorder: res.data.border,
       })
+
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -968,6 +993,16 @@ Page({
       }, (err) => {
         console.log(err.errMsg)
       });
+    }
+    ////shipin
+    else if (that.data.TabCur == 4 && that.data.isRefleshshipin){
+      wx.showLoading({
+        title: '加载中...',
+        mask: true //显示触摸蒙层  防止事件穿透触发
+      });
+      this.getShipinFenye()
+      wx.hideLoading()
+      
     }
   },
 
