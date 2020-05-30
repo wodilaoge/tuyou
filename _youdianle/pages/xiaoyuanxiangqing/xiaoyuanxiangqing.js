@@ -17,6 +17,7 @@ Page({
     shiminghide: false,
     iftongyi: true,
     yonghuxinxi:[],
+    count:0,
 
     tuanduipaiming: [],
     gerenpaiming: [],
@@ -420,11 +421,19 @@ Page({
   },
   comment() { //评论
     var self = this
-    let url = app.globalData.URL + '/comm/listCommByObj';
+    let url = app.globalData.URL + '/comm/countCommByObj';
     let data = {
       objid: this.data.categoryId,
       objtype: 30
     };
+    app.wxRequest('GET', url, data, (res) => {
+      self.setData({
+        count: res.data
+      });
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+    url = app.globalData.URL + '/comm/listCommByObj';
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
         comment: res.data

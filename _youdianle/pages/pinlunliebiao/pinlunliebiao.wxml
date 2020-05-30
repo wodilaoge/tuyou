@@ -10,7 +10,7 @@
 
 <view class="cu-bar bg-white solid-bottom">
   <view class='action'>
-    <text class='cu-bar-title'>评论({{comment.list.length}})</text>
+    <text class='cu-bar-title'>评论({{count}})</text>
   </view>
 </view>
 <view class="cu-card case no-card bg-white">

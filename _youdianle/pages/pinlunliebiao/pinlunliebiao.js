@@ -12,6 +12,7 @@ Page({
     Input: '',
     user: [],
     loading: true,
+    count:0
   },
   //弹框
   chooseSezi: function (e) {
@@ -72,11 +73,19 @@ Page({
   },
   comment() { //评论
     var self = this;
-    let url = app.globalData.URL + '/comm/listCommByObj';
+    let url = app.globalData.URL + '/comm/countCommByObj';
     let data = {
       objid: self.data.categoryId,
       objtype: 30
     };
+    app.wxRequest('GET', url, data, (res) => {
+      self.setData({
+        count: res.data
+      });
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+    url = app.globalData.URL + '/comm/listCommByObj';
     app.wxRequest('GET', url, data, (res) => {
       self.setData({
         comment: res.data
