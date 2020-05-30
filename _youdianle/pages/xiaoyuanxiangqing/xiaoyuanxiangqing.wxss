@@ -3,7 +3,7 @@ page {
   padding-bottom: 150rpx;
   letter-spacing: 2rpx;
 }
-
+ 
 .biaoti {
   overflow: hidden; /*隐藏溢出*/
   text-overflow: ellipsis; /*当文本溢出包含元素时显示省略符号来代表被修剪的文本*/

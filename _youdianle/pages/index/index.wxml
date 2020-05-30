@@ -170,7 +170,7 @@
               </view>
             </view>
             <button class="cu-btn bg-orange round btn" style="margin-left:250rpx;margin-top:-30rpx;"
-              bindtap="baomingtiaozhan">报名挑战</button>
+              bindtap="baomingtiaozhan" data-yundong="{{item}}">报名挑战</button>
             <!-- <button class="cu-btn line-orange round btn" style="margin-left:30rpx;margin-top:-30rpx;">群聊（8）</button> -->
           </view>
         </view>
