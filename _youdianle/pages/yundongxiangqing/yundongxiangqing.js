@@ -136,6 +136,9 @@ Page({
       dxtitle: e.currentTarget.dataset.dxtitle,
     })
   },
+  onPullDownRefresh(){
+    this.onLoad()
+  },
   hideModal: function(e) {
     var that = this;
     var animation = wx.createAnimation({
