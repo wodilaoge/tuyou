@@ -346,7 +346,20 @@ Page({
             that.setData({
               auth: res.data
             })
-            if (res.data.code) {
+            if(res.data.code==43){
+              wx.showToast({
+                title: '您已被禁言',
+                duration: 2000,
+                success: function () {
+                  setTimeout(function () {
+                    wx.switchTab({
+                      url: '/pages/index/index',
+                    })
+                  }, 2000);
+                }
+              })
+            }
+            else if (res.data.code) {
               wx.showToast({
                 title: '请先绑定手机！',
                 duration: 2000,
