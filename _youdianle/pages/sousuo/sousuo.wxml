@@ -243,7 +243,7 @@
 
 
     <view wx:if="{{sousuo_detail.listAct[0]}}">
-    <view class="bg-white padding margin-top ">
+      <view class="bg-white padding margin-top ">
         <view bindtap="jump" data-id="{{1}}">
           <text class="cu-bar-title text-bold text-black ">运动</text>
           <image class="icon" src="../../img/array.png"></image>

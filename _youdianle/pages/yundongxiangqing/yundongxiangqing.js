@@ -60,7 +60,9 @@ Page({
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '1', ///1表示有一个播放，0表示无播放
+    shipin_index:0,
     shipinBorder: '',
+    shipinPinglunBorder: '',
     isRefleshshipin: true,
     zhaopian: [],
     zhaopian_detail: [],
@@ -719,6 +721,32 @@ Page({
         shipinBorder: res.data.border,
       })
 
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  getShipinPinglunFenye: function (e) {
+    var shipintmp = this.data.shipin;
+    let url = app.globalData.URL + '/comm/listCommByObj';
+    let data = {
+      objtype: 50,
+      objid: this.data.shipin.list[this.data.shipin_index].id,
+      border: this.data.shipinPinglunBorder,
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res)
+      if (res.data.border == null) {
+        self.setData({
+          isRefleshshipinPinglun: false
+        })
+      }
+      for (let s of res.data.list) {
+        shipintmp.list[this.data.shipin_index].listComm.push(s);
+      }
+      this.setData({
+        shipin: shipintmp,
+        shipinPinglunBorder: res.data.border,
+      })
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -1834,6 +1862,15 @@ Page({
         console.log(err.errMsg)
       });
     }
+    if (this.data.isRefleshshipin == true) {
+
+      this.getShipinFenye()
+    }
+    if (this.data.isRefleshshipinPinglun == true && this.data.shipinChooseSize == true) {
+
+      this.getShipinPinglunFenye()
+    }
+
   },
 
   /**
