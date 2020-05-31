@@ -186,6 +186,7 @@ Page({
         var url2 = app.globalData.URL + '/secrot/listSecrotation';
         var data
         if (res.data.data[i].name == "校园活动") {
+          let url1 = app.globalData.URL + '/act/listCampusActivity';
           data = {
             sid: res.data.data[i].code,
             univ: self.data.univ,
@@ -193,13 +194,19 @@ Page({
             province: self.data.province,
             pageSize: 5
           };
-          app.wxRequest('GET', url, data, (res) => {
+          console.log(data)
+          app.wxRequest('POST', url, data, (res) => {
             self.setData({
               ActList: res.data
             })
           }, (err) => {
             console.log(err.errMsg)
           });
+          data = {
+            sid: res.data.data[i].code,
+            univ: self.data.univ,
+            city: self.data.univ
+          };
           app.wxRequest('GET', url2, data, (res) => {
             self.setData({
               xiaoyuanSwiperList: res.data
@@ -214,9 +221,10 @@ Page({
             yundongid: res.data.data[i].code
           })
           data = {
-            sid: res.data.data[i].code
+            sid: res.data.data[i].code,
+            univ: self.data.univ,
+            city: self.data.univ
           };
-
           app.wxRequest('GET', url2, data, (res) => {
             self.setData({
               yundongSwiperList: res.data
@@ -224,7 +232,9 @@ Page({
           }, (err) => {
             console.log(err.errMsg)
           });
-
+          data = {
+            sid: res.data.data[i].code
+          };
           var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
           util.gets(urldalei, data).then(function(res) {
             self.setData({
@@ -239,7 +249,7 @@ Page({
               province: self.data.province,
               pageSize: 5
             };
-            util.gets(url, data).then(function(res) {
+            util.post_token(url, data).then(function(res) {
               self.setData({
                 yundongList: res.data.data
               })
@@ -286,7 +296,7 @@ Page({
               province: self.data.province,
               pageSize: 5
             };
-             util.gets(url, data).then(function(res) {
+            util.post_token(url, data).then(function(res) {
               self.setData({
                 wenyuList: res.data.data
               })
@@ -333,7 +343,7 @@ Page({
               province: self.data.province,
               pageSize: 5
             };
-            util.gets(url, data).then(function(res) {
+            util.post_token(url, data).then(function(res) {
               self.setData({
                 aihaoList: res.data.data
               })
@@ -403,7 +413,6 @@ Page({
     let data = {
       pageSize: 2,
     };
-    console.log(data)
     app.wxRequest('GET', url, data, (res) => {
       console.log(res.data)
       let shipintmp = res.data;
@@ -422,7 +431,6 @@ Page({
       pageSize: 2,
       border: this.data.shipinBorder,
     };
-    console.log(data)
     app.wxRequest('GET', url, data, (res) => {
       console.log(res)
       if (res.data.border == null) {
@@ -577,7 +585,6 @@ Page({
       pageSize: 2,
       border: this.data.shipinBorder,
     };
-    console.log(data)
     app.wxRequest('GET', url, data, (res) => {
       console.log(res.data)
       let shipintmp = res.data;
@@ -596,7 +603,6 @@ Page({
       pageSize: 2,
       border: this.data.shipinBorder,
     };
-    console.log(data)
     app.wxRequest('GET', url, data, (res) => {
       console.log(res)
       if (res.data.border == null) {
@@ -979,7 +985,7 @@ Page({
         border: that.data.ActList.border,
         pageSize: 2
       };
-      app.wxRequest('GET', url, data, (res) => {
+      app.wxRequest('POST', url, data, (res) => {
         if (res.data.border == null) {
           that.setData({
             isReflesh: false
@@ -1015,7 +1021,7 @@ Page({
         border: that.data.yundongList.border,
         pageSize: 3
       };
-      app.wxRequest('GET', url, data, (res) => {
+      app.wxRequest('POST', url, data, (res) => {
         console.log(res.data)
         if (res.data.border == null) {
           that.setData({
