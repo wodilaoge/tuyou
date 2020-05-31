@@ -173,10 +173,10 @@
         <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
       </view>
       <view class="action">
-        <image class="img-icon" mode="aspectFit" style="margin-right:10rpx" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
+        <image class="img-icon" mode="aspectFit" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
       </view>
       <view class="action">
-        <image class="img-icon" mode="aspectFit" src="/img/icon_share.png"></image>
+        <button open-type='share' class="btn1" style="background-image:url(/img/icon_share.png);"></button>
       </view>
     </view>
   </view>
@@ -413,7 +413,7 @@
           <view class="yibaoming-text-content">{{item.groupname}}</view>
         </view>
         <view class="padding yundong-sp-center" wx:for="{{item.members}}" wx:for-item="members" style="flex-basis: 100%;">
-          <image class="icon-paiming" mode="aspectFit" data-id="{{members.mbrId}}" bindtap="delete_geren" src="/img/icon_delete.png"  wx:if="{{shujuhide==false}}"></image>
+          <image class="icon-paiming" mode="aspectFit" data-id="{{members.mbrId}}" bindtap="delete_geren" src="/img/icon_delete.png" wx:if="{{shujuhide==false}}"></image>
           <view class="cu-avatar round my" style="background-image:url({{members.mbrHead}});" data-id="{{members.mbrId}}" bindtap="gerenziliao"></view>
           <text class="paiming-name" decode="{{true}}">&ensp;{{members.mbrAlias}}</text>
           <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==1}}" data-members="{{members}}" bindtap="gerendianzan"></image>
@@ -484,10 +484,10 @@
         <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
       </view>
       <view class="action">
-        <image class="img-icon" mode="aspectFit" style="margin-right:10rpx" src="/img/icon_fabulous.png"></image>
+        <image class="img-icon" mode="aspectFit" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
       </view>
       <view class="action">
-        <image class="img-icon" mode="aspectFit" src="/img/icon_share.png"></image>
+        <button open-type='share' class="btn1" style="background-image:url(/img/icon_share.png);"></button>
       </view>
     </view>
   </view>
@@ -517,7 +517,7 @@
         </view>
 
         <view>
-          <video id="video_{{index}}" src="{{shipin.list[0].fileId}}"  controls style="width:100%;" bindtap="video_change" data-index="{{index}}"></video>
+          <video id="video_{{index}}" src="{{shipin.list[0].fileId}}" controls style="width:100%;" bindtap="video_change" data-index="{{index}}"></video>
         </view>
         <view class="flex  margin-top ">
           <view class="sp-bofang-times ">播放{{shipin.list[0].playCnt}}次</view>
@@ -807,10 +807,10 @@
         <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
       </view>
       <view class="action">
-        <image class="img-icon" mode="aspectFit" style="margin-right:10rpx" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
+        <image class="img-icon" mode="aspectFit" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
       </view>
       <view class="action">
-        <image class="img-icon" mode="aspectFit" src="/img/icon_share.png"></image>
+        <button open-type='share' class="btn1" style="background-image:url(/img/icon_share.png);"></button>
       </view>
     </view>
   </view>

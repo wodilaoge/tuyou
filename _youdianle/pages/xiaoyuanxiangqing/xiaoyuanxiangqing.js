@@ -1670,7 +1670,7 @@ Page({
     var that = this;
     return {
       title: '友点乐',
-      path: 'pages/xiaoyuanxiangqing/xiaoyuanxiangqing',
+      path: 'pages/xiaoyuanxiangqing/xiaoyuanxiangqing?TabCur=' + that.data.TabCur + '&Title=' + that.data.biaoti + '&categoryId='+that.data.categoryId,
       success: function(res) {
         console.log("转发成功:" + JSON.stringify(res));
         that.shareClick();

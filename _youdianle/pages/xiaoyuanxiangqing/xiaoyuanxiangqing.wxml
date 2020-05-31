@@ -148,7 +148,7 @@
         <image class="img-icon" mode="aspectFit" style="margin-left:5rpx" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
       </view>
       <view class="action">
-        <image class="img-icon" mode="aspectFit" src="/img/icon_share.png"></image>
+        <button open-type='share' class="btn1" style="background-image:url(/img/icon_share.png);"></button>
       </view>
     </view>
   </view>
@@ -459,7 +459,7 @@
         <image class="img-icon" mode="aspectFit" style="margin-left:5rpx" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
       </view>
       <view class="action">
-        <image class="img-icon" mode="aspectFit" src="/img/icon_share.png"></image>
+        <button open-type='share' class="btn1" style="background-image:url(/img/icon_share.png);"></button>
       </view>
     </view>
   </view>
@@ -763,7 +763,7 @@
         <image class="img-icon" mode="aspectFit" style="margin-right:10rpx" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
       </view>
       <view class="action">
-        <image class="img-icon" mode="aspectFit" src="/img/icon_share.png"></image>
+        <button open-type='share' class="btn1" style="background-image:url(/img/icon_share.png);"></button>
       </view>
     </view>
   </view>
