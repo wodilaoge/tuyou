@@ -204,9 +204,11 @@ Page({
 
     let t = 'information.timenow'
     let t2 = 'information.signupdeadline'
+    let t3='information.logo'
     this.setData({
       [t]: this.data.timenow + ' ' + this.data.time1,
-      [t2]: this.data.timenow2 + ' ' + this.data.time2
+      [t2]: this.data.timenow2 + ' ' + this.data.time2,
+      [t3]:this.data.url3[0]
     })
 
     wx.setStorage({ //将活动信息存入缓存
@@ -463,7 +465,7 @@ Page({
         sid: tmp.sid,
         acid1: tmp.acid1,
         acid2: tmp.acid2,
-        logo: null,
+        logo: this.data.url3[0],
         rotations: null,
         groups: null,
         fromtime: tmp.timenow,

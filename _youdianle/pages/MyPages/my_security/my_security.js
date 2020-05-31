@@ -8,10 +8,10 @@ Page({
 
 
   onLoad: function(options) {
-    var m=wx.getStorageSync('phone')
-    this.setData({
-      mobile:m
-    })
+    // var m=wx.getStorageSync('phone')
+    // this.setData({
+    //   mobile:m
+    // })
   },
   dead(e){
     let url = app.globalData.URL + '/hd/cancelaccount'
@@ -40,8 +40,11 @@ Page({
           duration: 2000,
           success: function() {
             setTimeout(function() {
-              wx.reLaunch({
-                url: '/pages/form/form',
+              // wx.reLaunch({
+              //   url: '/pages/form/form',
+              // })
+              wx.navigateBack({
+                delta:1
               })
             }, 2000);
           }

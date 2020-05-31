@@ -101,7 +101,7 @@
     <!-- 留白 -->
     <view class="white"></view>
   </view>
-  <view class="cu-bar bg-white margin-top">
+  <!-- <view class="cu-bar bg-white margin-top">
     <view class="action">
       LOGO
     </view>
@@ -121,7 +121,7 @@
         <text class="cuIcon-cameraadd"></text>
       </view>
     </view>
-  </view>
+  </view> -->
   <view class="cu-bar bg-white margin-top">
     <view class="action">
       轮播图
