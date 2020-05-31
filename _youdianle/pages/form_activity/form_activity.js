@@ -388,7 +388,7 @@ Page({
         sid: this.data.info.sid,
         acid1: this.data.info.acid1,
         acid2: this.data.info.acid2,
-        logo: this.data.url3.length != 0 ? this.data.url3[0] : null,
+        logo: this.data.info.logo==null ? this.data.info.logo : null,
         rotations: this.data.url4.length!=0?this.data.url4:null,
         groups: this.data.groups,
         fromtime: this.data.info.timenow,
