@@ -60,7 +60,9 @@ Page({
     shipinInit: 0,
     shipin_index: 0,
     shipinBorder: '',
+    shipinPinglunBorder: '',
     isRefleshshipin: true,
+    isRefleshshipinPinglun:true,
   },
   chooseSezi: function(e) {
     var that = this;
@@ -117,15 +119,43 @@ Page({
       objid: e.currentTarget.dataset.dxid,
     };
     app.wxRequest('GET', url, data, (res) => {
+      console.log(res)
       shipintmp.list[e.currentTarget.dataset.index].listComm = res.data.list;
       this.setData({
         shipin: shipintmp,
+        shipinPinglunBorder:res.data.border,
       })
     }, (err) => {
       console.log(err.errMsg)
     });
 
 
+  },
+  getShipinPinglunFenye:function(e){
+    var shipintmp = this.data.shipin;
+    let url = app.globalData.URL + '/comm/listCommByObj';
+    let data = {
+      objtype: 50,
+      objid: this.data.shipin.list[this.data.shipin_index].id,
+      border: this.data.shipinPinglunBorder,
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res)
+      if (res.data.border == null) {
+        self.setData({
+          isRefleshshipinPinglun: false
+        })
+      }
+      for(let s of res.data.list){
+        shipintmp.list[this.data.shipin_index].listComm.push(s);
+      }
+      this.setData({
+        shipin: shipintmp,
+        shipinPinglunBorder: res.data.border,
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
   },
   hideModal: function(e) {
     var that = this;
@@ -1628,6 +1658,12 @@ Page({
 
       this.getShipinFenye()
     }
+    if (this.data.isRefleshshipinPinglun == true && this.data.shipinChooseSize==true) {
+
+      this.getShipinPinglunFenye()
+    }
+    
+
   },
   onShareAppMessage: function() {
     var that = this;
