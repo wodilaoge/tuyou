@@ -46,6 +46,24 @@ Page({
     this.setLishi()
     this.getLishi()
   },
+  change_sousuo_lishi:function(e){
+      this.setData({
+        change_if: 1,
+      })
+    let url = app.globalData.URL + '/search/listAll';
+    let data = {
+      keywords: e.currentTarget.dataset.neirong,
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        sousuo_detail: res.data,
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+    this.setLishi()
+    this.getLishi()
+  },
   timeChange: function() { //////修改时间
     var obj = [];
     var time = '';
@@ -63,7 +81,7 @@ Page({
     this.setData({
       sousuo_neirong: res.detail.value,
     })
-    this.change_sousuo()
+    // this.change_sousuo()
   },
   getHotWords: function() {
     let url = app.globalData.URL + '/search/listHotWords';
@@ -103,7 +121,7 @@ Page({
     var that = this;
     if (this.data.sousuo_neirong != '') {
       var array = this.data.sousuo_lishi
-      array.push(this.data.sousuo_neirong)
+      array.splice(0,0,this.data.sousuo_neirong)
       wx.setStorageSync("lishi", array)
       that.getLishi()
     }
