@@ -49,7 +49,7 @@ page {
   left: 0;
   right: 0;
   padding: 30rpx;
-  height: 790rpx;
+  height: 667rpx;
   background-color: #fff;
 }
 
@@ -376,12 +376,19 @@ page {
 .sp-pinlun-content {
   display: flex;
   background-color: #f8f9fd;
+  height: 60rpx;
+  align-items: center;
 }
 
 .sp-pinglun-avatar {
   width: 42rpx;
   height: 42rpx;
   margin-left: 24rpx;
+}
+.sp-pinglun-avatar-2 {
+  width: 42rpx;
+  height: 42rpx;
+  /* margin-left: 24rpx; */
 }
 
 .sp-pinglun-name {

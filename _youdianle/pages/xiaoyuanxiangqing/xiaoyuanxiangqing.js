@@ -16,8 +16,8 @@ Page({
     guankanhide: false,
     shiminghide: false,
     iftongyi: true,
-    yonghuxinxi:[],
-    count:0,
+    yonghuxinxi: [],
+    count: 0,
 
     tuanduipaiming: [],
     gerenpaiming: [],
@@ -28,7 +28,7 @@ Page({
     paimingCur: 0,
     baomingCur: 0,
     shujuCur: 0,
-    guanliCur:0,
+    guanliCur: 0,
     shujuhide: true,
 
     categoryId: '',
@@ -62,7 +62,7 @@ Page({
     shipinBorder: '',
     shipinPinglunBorder: '',
     isRefleshshipin: true,
-    isRefleshshipinPinglun:true,
+    isRefleshshipinPinglun: true,
   },
   chooseSezi: function(e) {
     var that = this;
@@ -123,7 +123,7 @@ Page({
       shipintmp.list[e.currentTarget.dataset.index].listComm = res.data.list;
       this.setData({
         shipin: shipintmp,
-        shipinPinglunBorder:res.data.border,
+        shipinPinglunBorder: res.data.border,
       })
     }, (err) => {
       console.log(err.errMsg)
@@ -131,7 +131,7 @@ Page({
 
 
   },
-  getShipinPinglunFenye:function(e){
+  getShipinPinglunFenye: function(e) {
     var shipintmp = this.data.shipin;
     let url = app.globalData.URL + '/comm/listCommByObj';
     let data = {
@@ -146,7 +146,7 @@ Page({
           isRefleshshipinPinglun: false
         })
       }
-      for(let s of res.data.list){
+      for (let s of res.data.list) {
         shipintmp.list[this.data.shipin_index].listComm.push(s);
       }
       this.setData({
@@ -260,11 +260,11 @@ Page({
       app.wxRequest('POST', url, data, (res) => {
         // self.onLoad(self.data.options);
         self.getShipin(),
-        wx.showToast({
-          title: '评论成功！', // 标题
-          icon: 'success', // 图标类型，默认success
-          duration: 1500 // 提示窗停留时间，默认1500ms
-        })
+          wx.showToast({
+            title: '评论成功！', // 标题
+            icon: 'success', // 图标类型，默认success
+            duration: 1500 // 提示窗停留时间，默认1500ms
+          })
       }, (err) => {
         console.log(err.errMsg)
       });
@@ -336,7 +336,7 @@ Page({
       TabCur: e.currentTarget.dataset.id,
       options: op
     })
-    if (e.currentTarget.dataset.id==1)
+    if (e.currentTarget.dataset.id == 1)
       if (self.data.shiminghide == false)
         self.ifshiming()
   },
@@ -470,10 +470,10 @@ Page({
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
         comment: res.data
-      }); 
+      });
       self.setData({
         loading: false,
-        isReflesh:true
+        isReflesh: true
       });
       /*if (self.data.comment == 0)
         {}
@@ -894,7 +894,7 @@ Page({
         this.lijibaoming_do()
     }
   },
-  onPullDownRefresh(){
+  onPullDownRefresh() {
     this.onLoad()
   },
 
@@ -1042,7 +1042,7 @@ Page({
           status: 10,
           creater: self.data.user.id
         }
-      util.post_token(url, data).then(function (res) {
+      util.post_token(url, data).then(function(res) {
         if (res.data.code == 0) {
           wx.showToast({
             title: '报名成功！', // 标题
@@ -1098,7 +1098,7 @@ Page({
             creater: self.data.user.id,
             members: self.data.members,
           }
-        util.post_token(url, data).then(function (res) {
+        util.post_token(url, data).then(function(res) {
           if (res.data.code == 0) {
             wx.showToast({
               title: '报名成功！', // 标题
@@ -1259,7 +1259,7 @@ Page({
       wx.showModal({
         title: '提示',
         content: '该活动需要实名参加/观看，是否前往实名',
-        success: function (res) {
+        success: function(res) {
           if (res.confirm) { //这里是点击了确定以后
             wx.navigateTo({
               url: '/pages/MyPages/my_profile/my_profile',
@@ -1273,7 +1273,7 @@ Page({
       wx.showModal({
         title: '提示',
         content: '该活动参加/观看需要手机号，是否前往绑定',
-        success: function (res) {
+        success: function(res) {
           if (res.confirm) { //这里是点击了确定以后
             wx.navigateTo({
               url: '/pages/MyPages/my_security/my_security',
@@ -1298,7 +1298,7 @@ Page({
       uid: e.currentTarget.dataset.id
     }
     console.log(e)
-    util.gets(url, data).then(function (res) {
+    util.gets(url, data).then(function(res) {
       wx.hideLoading()
       if (res.data.code == 0) {
         wx.showToast({
@@ -1335,7 +1335,7 @@ Page({
       creater: self.data.categoryId,
       status: 1 - e.currentTarget.dataset.members.myApplaud
     }
-    util.post_token(url, data).then(function (res) {
+    util.post_token(url, data).then(function(res) {
       console.log(res.data)
       if (res.data.code == 0) {
         wx.showToast({
@@ -1367,12 +1367,12 @@ Page({
   },
 
   onLoad: async function(options) { //读取活动对应id
-  var self=this
+    var self = this
     self.setData({
       categoryId: options.categoryId,
       user: wx.getStorageSync('userInfo'),
       TabCur: options.TabCur,
-      biaoti:options.Title,
+      biaoti: options.Title,
       options: options
     })
     self.yonghuxinxi()
@@ -1406,7 +1406,7 @@ Page({
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
       actid: this.data.categoryId,
-      pageSize:2,
+      pageSize: 2,
     };
     console.log(data)
     app.wxRequest('GET', url, data, (res) => {
@@ -1414,7 +1414,7 @@ Page({
       let shipintmp = res.data;
       this.setData({
         shipin: shipintmp,
-        shipinBorder:res.data.border,
+        shipinBorder: res.data.border,
       })
     }, (err) => {
       console.log(err.errMsg)
@@ -1443,7 +1443,7 @@ Page({
         shipin: shipintmp,
         shipinBorder: res.data.border,
       })
-     
+
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -1588,7 +1588,7 @@ Page({
     var self = this
     self.yonghuxinxi()
     if (self.data.TabCur == 1)
-      setTimeout(function () {
+      setTimeout(function() {
         if (self.data.shiminghide == false)
           self.ifshiming()
       }, 1500)
@@ -1613,13 +1613,13 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    this.onLoad(this.data.options)
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     var self = this
     if (self.data.isReflesh) {
       wx.showLoading({
@@ -1655,15 +1655,15 @@ Page({
     }
 
     ////////
-    if (this.data.isRefleshshipin==true){
+    if (this.data.isRefleshshipin == true) {
 
       this.getShipinFenye()
     }
-    if (this.data.isRefleshshipinPinglun == true && this.data.shipinChooseSize==true) {
+    if (this.data.isRefleshshipinPinglun == true && this.data.shipinChooseSize == true) {
 
       this.getShipinPinglunFenye()
     }
-    
+
 
   },
   onShareAppMessage: function() {
