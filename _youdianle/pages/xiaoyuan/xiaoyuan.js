@@ -186,20 +186,25 @@ Page({
         var url2 = app.globalData.URL + '/secrot/listSecrotation';
         var data
         if (res.data.data[i].name == "校园活动") {
+          let url1 = app.globalData.URL + '/act/listCampusActivity';
           data = {
             sid: res.data.data[i].code,
             univ: self.data.univ,
             city: self.data.univ,
-            province: self.data.province,
-            pageSize: 5
+            province: self.data.province
           };
-          app.wxRequest('GET', url, data, (res) => {
+          app.wxRequest('POST', url, data, (res) => {
             self.setData({
               ActList: res.data
             })
           }, (err) => {
             console.log(err.errMsg)
           });
+          data = {
+            sid: res.data.data[i].code,
+            univ: self.data.univ,
+            city: self.data.univ
+          };
           app.wxRequest('GET', url2, data, (res) => {
             self.setData({
               xiaoyuanSwiperList: res.data
@@ -214,9 +219,10 @@ Page({
             yundongid: res.data.data[i].code
           })
           data = {
-            sid: res.data.data[i].code
+            sid: res.data.data[i].code,
+            univ: self.data.univ,
+            city: self.data.univ
           };
-
           app.wxRequest('GET', url2, data, (res) => {
             self.setData({
               yundongSwiperList: res.data
@@ -224,7 +230,9 @@ Page({
           }, (err) => {
             console.log(err.errMsg)
           });
-
+          data = {
+            sid: res.data.data[i].code
+          };
           var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
           util.gets(urldalei, data).then(function(res) {
             self.setData({
@@ -235,11 +243,11 @@ Page({
             data = {
               sid: self.data.yundongid,
               univ: self.data.univ,
-              city: self.data.univ,
-              province: self.data.province,
-              pageSize: 5
+              city: self.data.city,
+              province: self.data.province
             };
-            util.gets(url, data).then(function(res) {
+            console.log(data)
+            util.post_token(url, data).then(function(res) {
               self.setData({
                 yundongList: res.data.data
               })
@@ -282,11 +290,10 @@ Page({
             data = {
               sid: self.data.wenyuid,
               univ: self.data.univ,
-              city: self.data.univ,
-              province: self.data.province,
-              pageSize: 5
+              city: self.data.city,
+              province: self.data.province
             };
-             util.gets(url, data).then(function(res) {
+            util.post_token(url, data).then(function(res) {
               self.setData({
                 wenyuList: res.data.data
               })
@@ -329,11 +336,10 @@ Page({
             data = {
               sid: self.data.aihaoid,
               univ: self.data.univ,
-              city: self.data.univ,
-              province: self.data.province,
-              pageSize: 5
+              city: self.data.city,
+              province: self.data.province
             };
-            util.gets(url, data).then(function(res) {
+            util.post_token(url, data).then(function(res) {
               self.setData({
                 aihaoList: res.data.data
               })
@@ -403,9 +409,7 @@ Page({
     let data = {
       pageSize: 2,
     };
-    console.log(data)
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res.data)
       let shipintmp = res.data;
       this.setData({
         shipin: shipintmp,
@@ -422,7 +426,6 @@ Page({
       pageSize: 2,
       border: this.data.shipinBorder,
     };
-    console.log(data)
     app.wxRequest('GET', url, data, (res) => {
       console.log(res)
       if (res.data.border == null) {
@@ -577,7 +580,6 @@ Page({
       pageSize: 2,
       border: this.data.shipinBorder,
     };
-    console.log(data)
     app.wxRequest('GET', url, data, (res) => {
       console.log(res.data)
       let shipintmp = res.data;
@@ -596,7 +598,6 @@ Page({
       pageSize: 2,
       border: this.data.shipinBorder,
     };
-    console.log(data)
     app.wxRequest('GET', url, data, (res) => {
       console.log(res)
       if (res.data.border == null) {
@@ -977,12 +978,11 @@ Page({
       let data = {
         sid: '076002',
         univ: self.data.univ,
-        city: self.data.univ,
+        city: self.data.city,
         province: self.data.province,
-        border: that.data.ActList.border,
-        pageSize: 2
+        border: that.data.ActList.border
       };
-      app.wxRequest('GET', url, data, (res) => {
+      app.wxRequest('POST', url, data, (res) => {
         if (res.data.border == null) {
           that.setData({
             isReflesh: false
@@ -1013,12 +1013,11 @@ Page({
         sid: that.data.yundongid,
         acid1: that.data.yundongCur,
         univ: self.data.univ,
-        city: self.data.univ,
+        city: self.data.city,
         province: self.data.province,
-        border: that.data.yundongList.border,
-        pageSize: 3
+        border: that.data.yundongList.border
       };
-      app.wxRequest('GET', url, data, (res) => {
+      app.wxRequest('POST', url, data, (res) => {
         console.log(res.data)
         if (res.data.border == null) {
           that.setData({
