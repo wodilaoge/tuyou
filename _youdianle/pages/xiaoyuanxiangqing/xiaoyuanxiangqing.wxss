@@ -548,3 +548,13 @@ checkbox.tp-checkbox {
   color: #333;
   font-weight: bold;
 }
+
+.btn1{
+  width: 40rpx;
+  height: 40rpx;
+  background-size: 40rpx 40rpx;
+  background-repeat:no-repeat;
+  background-color: transparent;
+}
+
+.btn1::after{ border: none; } 

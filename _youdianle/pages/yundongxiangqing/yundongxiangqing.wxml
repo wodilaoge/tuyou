@@ -173,10 +173,10 @@
         <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
       </view>
       <view class="action">
-        <image class="img-icon" mode="aspectFit" style="margin-right:10rpx" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
+        <image class="img-icon" mode="aspectFit" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
       </view>
       <view class="action">
-        <image class="img-icon" mode="aspectFit" src="/img/icon_share.png"></image>
+        <button open-type='share' class="btn1" style="background-image:url(/img/icon_share.png);"></button>
       </view>
     </view>
   </view>
@@ -484,10 +484,10 @@
         <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
       </view>
       <view class="action">
-        <image class="img-icon" mode="aspectFit" style="margin-right:10rpx" src="/img/icon_fabulous.png"></image>
+        <image class="img-icon" mode="aspectFit" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
       </view>
       <view class="action">
-        <image class="img-icon" mode="aspectFit" src="/img/icon_share.png"></image>
+        <button open-type='share' class="btn1" style="background-image:url(/img/icon_share.png);"></button>
       </view>
     </view>
   </view>
@@ -726,14 +726,8 @@
   <block wx:if="{{paimingCur==0}}">
     <view class="bg-white padding yundong-sp-center " wx:for="{{gerenpaiming.list}}" wx:for-index="index">
       <view class="yundong-sp-center padding-bottom" wx:for="{{item.members}}" wx:for-item="members" style="flex-basis: 100%;">
-        <view wx:if="{{index==0}}">
-          <image class="icon-paiming " mode="aspectFit " src="/img/icon_one.png"></image>
-        </view>
-        <view wx:elif="{{index==1}}">
-          <image class="icon-paiming " mode="aspectFit " src="/img/icon_two.png"></image>
-        </view>
-        <view wx:elif="{{index==2}}">
-          <image class="icon-paiming " mode="aspectFit " src="/img/icon_three.png"></image>
+        <view wx:if="{{members.mbrRankLogo!=null}}">
+          <image class="icon-paiming " mode="aspectFit " src="{{members.mbrRankLogo}}"></image>
         </view>
         <view wx:else class="card-text-content margin-right-xl margin-left-xs">{{index+1}}</view>
 
@@ -812,10 +806,10 @@
         <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
       </view>
       <view class="action">
-        <image class="img-icon" mode="aspectFit" style="margin-right:10rpx" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
+        <image class="img-icon" mode="aspectFit" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
       </view>
       <view class="action">
-        <image class="img-icon" mode="aspectFit" src="/img/icon_share.png"></image>
+        <button open-type='share' class="btn1" style="background-image:url(/img/icon_share.png);"></button>
       </view>
     </view>
   </view>
