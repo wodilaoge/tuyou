@@ -186,17 +186,13 @@ Page({
         var url2 = app.globalData.URL + '/secrot/listSecrotation';
         var data
         if (res.data.data[i].name == "校园活动") {
-          if (self.data.city.length != 0)
-            data = {
-              sid: res.data.data[i].code,
-              city: self.data.city.code,
-              pageSize: 2
-            };
-          else
-            data = {
-              sid: res.data.data[i].code,
-              pageSize: 2
-            };
+          data = {
+            sid: res.data.data[i].code,
+            univ: self.data.univ,
+            city: self.data.univ,
+            province: self.data.province,
+            pageSize: 5
+          };
           app.wxRequest('GET', url, data, (res) => {
             self.setData({
               ActList: res.data
@@ -236,17 +232,13 @@ Page({
               yundongCur: res.data.data[0].code
             })
           }).then(function() {
-            if (self.data.city.length != 0)
-              data = {
-                sid: self.data.yundongid,
-                city: self.data.city.code,
-                pageSize: 5
-              };
-            else
-              data = {
-                sid: self.data.yundongid,
-                pageSize: 5
-              };
+            data = {
+              sid: self.data.yundongid,
+              univ: self.data.univ,
+              city: self.data.univ,
+              province: self.data.province,
+              pageSize: 5
+            };
             util.gets(url, data).then(function(res) {
               self.setData({
                 yundongList: res.data.data
@@ -287,16 +279,14 @@ Page({
               wenyuCur: res.data.data[0].code,
             })
           }).then(function() {
-            if (self.data.city.length != 0)
-              data = {
-                sid: self.data.wenyuid,
-                city: self.data.city.code
-              };
-            else
-              data = {
-                sid: self.data.wenyuid
-              };
-            util.gets(url, data).then(function(res) {
+            data = {
+              sid: self.data.wenyuid,
+              univ: self.data.univ,
+              city: self.data.univ,
+              province: self.data.province,
+              pageSize: 5
+            };
+             util.gets(url, data).then(function(res) {
               self.setData({
                 wenyuList: res.data.data
               })
@@ -336,15 +326,13 @@ Page({
               aihaoCur: res.data.data[0].code
             })
           }).then(function() {
-            if (self.data.city.length != 0)
-              data = {
-                sid: self.data.aihaoid,
-                city: self.data.city.code
-              };
-            else
-              data = {
-                sid: self.data.aihaoid
-              };
+            data = {
+              sid: self.data.aihaoid,
+              univ: self.data.univ,
+              city: self.data.univ,
+              province: self.data.province,
+              pageSize: 5
+            };
             util.gets(url, data).then(function(res) {
               self.setData({
                 aihaoList: res.data.data
@@ -796,11 +784,11 @@ Page({
       app.wxRequest('POST', url, data, (res) => {
         // self.onLoad();
         self.getShipin(),
-        wx.showToast({
-          title: '评论成功！', // 标题
-          icon: 'success', // 图标类型，默认success
-          duration: 1500 // 提示窗停留时间，默认1500ms
-        })
+          wx.showToast({
+            title: '评论成功！', // 标题
+            icon: 'success', // 图标类型，默认success
+            duration: 1500 // 提示窗停留时间，默认1500ms
+          })
       }, (err) => {
         console.log(err.errMsg)
       });
@@ -878,9 +866,30 @@ Page({
 
   },
   onShow() {
-    this.setData({
-      city: wx.getStorageSync('city')
-    })
+    if (wx.getStorageSync('city') != "")
+      this.setData({
+        city: wx.getStorageSync('city').code,
+      })
+    else
+      this.setData({
+        city: null,
+      })
+    if (wx.getStorageSync('province') != "")
+      this.setData({
+        province: wx.getStorageSync('province').code,
+      })
+    else
+      this.setData({
+        province: null,
+      })
+    if (wx.getStorageSync('school') != "")
+      this.setData({
+        univ: wx.getStorageSync('school').code,
+      })
+    else
+      this.setData({
+        univ: null,
+      })
     this.xuanran();
     //this.news()
     //this.news_detail()
@@ -902,7 +911,7 @@ Page({
       url: '../../pages/xiaoyuanxiangqing/xiaoyuanxiangqing?TabCur=0&Title=' + e.currentTarget.dataset.xiaoyuan.actname + '&categoryId=' + e.currentTarget.dataset.xiaoyuan.id,
     })
   },
-  onPullDownRefresh(){
+  onPullDownRefresh() {
     this.onLoad()
   },
 
@@ -964,6 +973,9 @@ Page({
       var url = app.globalData.URL + '/act/listActivity';
       let data = {
         sid: '076002',
+        univ: self.data.univ,
+        city: self.data.univ,
+        province: self.data.province,
         border: that.data.ActList.border,
         pageSize: 2
       };
@@ -997,6 +1009,9 @@ Page({
       let data = {
         sid: that.data.yundongid,
         acid1: that.data.yundongCur,
+        univ: self.data.univ,
+        city: self.data.univ,
+        province: self.data.province,
         border: that.data.yundongList.border,
         pageSize: 3
       };
