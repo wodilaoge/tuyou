@@ -721,14 +721,8 @@
   <block wx:if="{{paimingCur==0}}">
     <view class="bg-white padding yundong-sp-center " wx:for="{{gerenpaiming.list}}" wx:for-index="index">
       <view class="yundong-sp-center padding-bottom" wx:for="{{item.members}}" wx:for-item="members" style="flex-basis: 100%;">
-        <view wx:if="{{index==0}}">
-          <image class="icon-paiming " mode="aspectFit " src="/img/icon_one.png"></image>
-        </view>
-        <view wx:elif="{{index==1}}">
-          <image class="icon-paiming " mode="aspectFit " src="/img/icon_two.png"></image>
-        </view>
-        <view wx:elif="{{index==2}}">
-          <image class="icon-paiming " mode="aspectFit " src="/img/icon_three.png"></image>
+        <view wx:if="{{members.mbrRankLogo!=null}}">
+          <image class="icon-paiming " mode="aspectFit " src="{{members.mbrRankLogo}}"></image>
         </view>
         <view wx:else class="card-text-content margin-right-xl margin-left-xs">{{index+1}}</view>
 

@@ -345,11 +345,23 @@ Page({
     let url = app.globalData.URL + '/act/listActSignup';
     let data = {
       actid: this.data.categoryId,
-      signupType: 10
+      signupType: 10,
+      type:10
     };
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
         gerenpaiming: res.data,
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+    data = {
+      actid: this.data.categoryId,
+      signupType: 10,
+      type: 20
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
         gerenshuju: res.data
       })
     }, (err) => {
@@ -360,11 +372,23 @@ Page({
     let url = app.globalData.URL + '/act/listActSignup';
     let data = {
       actid: this.data.categoryId,
-      signupType: 20
+      signupType: 20,
+      type:10
     };
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
         tuanduipaiming: res.data,
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+      });
+    data = {
+      actid: this.data.categoryId,
+      signupType: 20,
+      type: 20
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
         tuanduishuju: res.data
       })
     }, (err) => {

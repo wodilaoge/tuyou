@@ -662,11 +662,11 @@
 创建时间：20200413
 创建内容：排名-->
 <block wx:if="{{TabCur==4}}">
-  <view class=" padding " style="margin-left:175rpx; " hidden="{{signupway}}">
-    <button class="cu-btn {{paimingCur==0? 'bg-orange': 'bg-grey2 text-grey'}} btn-paiming-left " bindtap="paimingSelect" data-id="0 ">
+  <view class="padding" style="margin-left:175rpx; " hidden="{{signupway}}">
+    <button class="cu-btn {{paimingCur==0? 'bg-orange': 'bg-grey2 text-grey'}} btn-paiming-left" bindtap="paimingSelect" data-id="0 ">
       个人排名
     </button>
-    <button class="cu-btn {{paimingCur==1? 'bg-orange': 'bg-grey2 text-grey'}} btn-paiming-right " bindtap="paimingSelect" data-id="1 ">
+    <button class="cu-btn {{paimingCur==1? 'bg-orange': 'bg-grey2 text-grey'}} btn-paiming-right" bindtap="paimingSelect" data-id="1">
       团队排名
     </button>
   </view>
@@ -674,20 +674,14 @@
   <block wx:if="{{paimingCur==0}}">
     <view class="bg-white padding yundong-sp-center " wx:for="{{gerenpaiming.list}}" wx:for-index="index">
       <view class="yundong-sp-center padding-bottom" wx:for="{{item.members}}" wx:for-item="members" style="flex-basis: 100%;">
-        <view wx:if="{{index==0}}">
-          <image class="icon-paiming " mode="aspectFit " src="/img/icon_one.png"></image>
-        </view>
-        <view wx:elif="{{index==1}}">
-          <image class="icon-paiming " mode="aspectFit " src="/img/icon_two.png"></image>
-        </view>
-        <view wx:elif="{{index==2}}">
-          <image class="icon-paiming " mode="aspectFit " src="/img/icon_three.png"></image>
+        <view wx:if="{{members.mbrRankLogo!=null}}">
+          <image class="icon-paiming " mode="aspectFit " src="{{members.mbrRankLogo}}"></image>
         </view>
         <view wx:else class="card-text-content margin-right-xl margin-left-xs">{{index+1}}</view>
 
         <view class="cu-avatar round my " style="background-image:url({{members.mbrHead}}); "></view>
-        <text class="paiming-name " decode="{{true}} ">&ensp;{{members.mbrAlias}}</text>
-        <view class="paiming-name text-orange " wx:if="{{members.mbrScore!=null}}" style="position: absolute;right:40rpx;">{{members.mbrScore}}分
+        <text class="paiming-name " decode="{{true}}">&ensp;{{members.mbrAlias}}</text>
+        <view class="paiming-name text-orange " wx:if="{{members.mbrScore!=null}}" style="position:absolute;right:40rpx; ">{{members.mbrScore}}分
         </view>
       </view>
     </view>
@@ -717,7 +711,7 @@
       <!-- 评论 -->
       <view class="cu-bar bg-white solid-bottom huodong-margin-top">
         <view class='action'>
-          <text class='cu-bar-title'>评论({{comment.list.length}})</text>
+          <text class='cu-bar-title'>评论({{count}})</text>
         </view>
       </view>
 
@@ -760,7 +754,7 @@
         <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
       </view>
       <view class="action">
-        <image class="img-icon" mode="aspectFit" style="margin-right:10rpx" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
+        <image class="img-icon" mode="aspectFit" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
       </view>
       <view class="action">
         <button open-type='share' class="btn1" style="background-image:url(/img/icon_share.png);"></button>
