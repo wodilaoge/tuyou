@@ -56,7 +56,7 @@ Page({
     shipin: [],
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
-    bofang_pid: '1', ///1表示有一个播放，0表示无播放
+    bofang_pid: '0', ///1表示有一个播放，0表示无播放
     shipinInit: 0,
     shipin_index: 0,
     shipinBorder: '',

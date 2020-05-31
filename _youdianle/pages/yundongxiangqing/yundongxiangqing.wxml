@@ -591,7 +591,7 @@
     </view>
   </view>
 
-  <view class="cu-bar input foot padding " hidden="{{shipinChooseSize}}">
+  <!-- <view class="cu-bar input foot padding " hidden="{{shipinChooseSize}}">
     <input class="solid-bottom " focus="{{false}} " maxlength="300 " cursor-spacing="10 " placeholder='来说点什么吧！' bindtap="pinluntiaozhuan"></input>
     <view class="action ">
       <image class="img-icon " mode="aspectFit " src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
@@ -602,7 +602,7 @@
     <view class="action ">
       <image class="img-icon " mode="aspectFit " src="/img/icon_upload_video@2x.png " bindtap="shipintiaozhuan"></image>
     </view>
-  </view>
+  </view> -->
 </block>
 
 <!--
