@@ -183,17 +183,12 @@
       <view class="paiming-paiming" style="margin-left:2rpx;width:180rpx;">日期</view>
       <view class="paiming-paiming" style="margin-left:2rpx;width:216rpx;">活动名称</view>
     </view>
-    <view class="flex" style="margin-top:44rpx;">
-      <text class="paiming-fenshu" style="padding-left:76rpx;">5</text>
-      <text class="paiming-fenshu" style="margin-left:129rpx;">80</text>
-      <text class="paiming-riqi" style="margin-left:97rpx;">2020/3/11</text>
-      <text class="paiming-huodong" style="margin-left:67rpx;margin-top:-13rpx;">XX篮球春季 赛第一轮</text>
-    </view>
-    <view class="flex" style="margin-top:50rpx;">
-      <text class="paiming-fenshu" style="padding-left:76rpx;">5</text>
-      <text class="paiming-fenshu" style="margin-left:129rpx;">80</text>
-      <text class="paiming-riqi" style="margin-left:97rpx;">2020/3/11</text>
-      <text class="paiming-huodong" style="margin-left:67rpx;margin-top:-13rpx;">XX篮球春季 赛第一轮</text>
+
+    <view class="flex" style="margin-top:44rpx;" wx:for="paimingDetail">
+      <text class="paiming-fenshu" style="padding-left:76rpx;">{{item.mbrRank}}</text>
+      <text class="paiming-fenshu" style="margin-left:129rpx;">{{item.mbrScore}}</text>
+      <text class="paiming-riqi" style="margin-left:97rpx;">{{item.acttime}}</text>
+      <text class="paiming-huodong" style="margin-left:67rpx;margin-top:-13rpx;">{{item.actname}}</text>
     </view>
   </view>
 
