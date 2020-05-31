@@ -12,6 +12,7 @@ Page({
     user: '',
     duiyuanDeatil: [],
     fensishu: 0,
+    fensiDetail: [],
     haoyoushu: 0,
     dianzanshu: 0,
     ifguanzhu: 0,
@@ -22,9 +23,12 @@ Page({
     chooseSize: false,
     ifzan: false,
     Input: "",
-    options:'',
+    options: '',
+    ziliaoDalei: [],
+    ziliaoDaleiCur: '',
+    paimingDetail: [],
   },
-///////////评论
+  ///////////评论
   comment() { //评论
     var self = this
     let url = app.globalData.URL + '/comm/countCommByObj';
@@ -84,7 +88,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-  chooseSezi: function (e) {
+  chooseSezi: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -96,7 +100,7 @@ Page({
       animationData: animation.export(),
       chooseSize: true
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export()
@@ -108,7 +112,7 @@ Page({
       dxtitle: e.currentTarget.dataset.dxtitle,
     })
   },
-  hideModal: function (e) {
+  hideModal: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -120,7 +124,7 @@ Page({
       animationData: animation.export()
 
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export(),
@@ -128,7 +132,7 @@ Page({
       })
     }, 100)
   },
-  emailInput: function (e) { //input输入
+  emailInput: function(e) { //input输入
     this.setData({
       Input: e.detail.value
     });
@@ -148,39 +152,39 @@ Page({
   },
   fasong() { //发送按钮
     var self = this;
-   
-      let url = app.globalData.URL + '/comm/addComment';
-      let data = {
-        pid: null,
-        objtype: 10,
-        objid: self.data.duiyuanID,
-        objtitle: "",
-        comment: self.data.Input,
-        creater: self.data.user.id,
-        createrAlias: self.data.user.nickname,
-        createrHead: self.data.user.head
-      };
+
+    let url = app.globalData.URL + '/comm/addComment';
+    let data = {
+      pid: null,
+      objtype: 10,
+      objid: self.data.duiyuanID,
+      objtitle: "",
+      comment: self.data.Input,
+      creater: self.data.user.id,
+      createrAlias: self.data.user.nickname,
+      createrHead: self.data.user.head
+    };
     console.log(data)
-      app.wxRequest('POST', url, data, (res) => {
-        self.onLoad(self.data.options);
-        if (res.code == 0)
-          wx.showToast({
-            title: '评论成功！', // 标题
-            icon: 'success', // 图标类型，默认success
-            duration: 1500 // 提示窗停留时间，默认1500ms
-          })
-        else {
-          console.log(res.data)
-          wx.showToast({
-            title: res.data.msg, // 标题
-            image: '/img/fail.png', // 图标类型，默认success
-            duration: 1000 // 提示窗停留时间，默认1500ms
-          })
-        }
-      }, (err) => {
-        console.log(err.errMsg)
-      });
-    
+    app.wxRequest('POST', url, data, (res) => {
+      self.onLoad(self.data.options);
+      if (res.code == 0)
+        wx.showToast({
+          title: '评论成功！', // 标题
+          icon: 'success', // 图标类型，默认success
+          duration: 1500 // 提示窗停留时间，默认1500ms
+        })
+      else {
+        console.log(res.data)
+        wx.showToast({
+          title: res.data.msg, // 标题
+          image: '/img/fail.png', // 图标类型，默认success
+          duration: 1000 // 提示窗停留时间，默认1500ms
+        })
+      }
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+
     self.setData({
       Input: '',
     })
@@ -191,7 +195,7 @@ Page({
       url: '/pages/pinlunliebiao/pinlunliebiao?categoryId=' + this.data.duiyuanID + '&objtitle=' + '',
     })
   },
- 
+
   zan() { //活动点赞或取消
     self = this;
     let url = app.globalData.URL + '/applaud/updateApplaud';
@@ -229,7 +233,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-/////////////
+  /////////////
   tabSelect(e) {
     console.log(e);
     this.setData({
@@ -259,6 +263,20 @@ Page({
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
         fensishu: res.data,
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  getFensiDetail() {
+    let url = app.globalData.URL + '/follow/listUserByObj';
+    let data = {
+      objid: this.data.duiyuanID,
+      objtype: 10,
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      this.setData({
+        fensiDetail: res.data,
       })
     }, (err) => {
       console.log(err.errMsg)
@@ -321,6 +339,58 @@ Page({
       console.log(err.errMsg)
     });
   },
+  getPaimingDalei() {
+    var self=this;
+    let url = app.globalData.URL + '/config/findAllActivityClass1';
+    let data = {
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res.data)
+      this.setData({
+        ziliaoDalei: res.data,
+        ziliaoDaleiCur: res.data[0].code,
+      })
+
+       url = app.globalData.URL + '/act/listMyRank'
+      data = {
+        uid: self.data.user.id,
+        acid1: res.data[0].code
+      }
+      console.log(data)
+      app.wxRequest('GET', url, data, (res) => {
+        console.log(res)
+        self.setData({
+          paimingDetail: res.data
+        })
+      })
+
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  ziliaoTabSelect(e) { 
+    this.setData({
+      ziliaoDaleiCur: e.currentTarget.dataset.cur,
+      // scrollLeft: (e.currentTarget.dataset.id - 1) * 60
+    })
+    var self = this
+    let url = app.globalData.URL + '/act/listMyRank'
+    let data = {
+      uid:self.data.user.id,
+      acid1: self.data.ziliaoDaleiCur
+    }
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res)
+      self.setData({
+        paimingDetail: res.data
+      })
+    })
+    // if (this.data.shipinCur == '0') {
+    //   this.getShipin()
+    // } else {
+    //   this.getShipinfenlei()
+    // }
+  },
   changeGuanzhu: function(e) {
 
     if (this.data.ifguanzhu == 0) {
@@ -357,6 +427,21 @@ Page({
       }, (err) => {});
     }
   },
+  //////////分享
+  onShareAppMessage: function(e) { 
+    console.log(ok)   
+    var  that  =  this;    
+    return  {      
+      title:   '友点乐',
+            success:   function (res)  {        
+        console.log("转发成功:"  +  JSON.stringify(res));        
+        that.shareClick();      
+      },
+            fail:   function (res)  {        
+        console.log("转发失败:"  +  JSON.stringify(res));      
+      }    
+    }  
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -365,7 +450,7 @@ Page({
     this.setData({
       duiyuanID: options.id,
       user: wx.getStorageSync('userInfo'),
-      options:options,
+      options: options,
     })
     this.getDuiyuan()
     this.getDianzan()
@@ -374,6 +459,8 @@ Page({
     this.getGuanzhu()
     this.getHuodong()
     this.comment()
+    this.getFensiDetail()
+    this.getPaimingDalei()
   },
 
   /**

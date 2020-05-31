@@ -194,7 +194,7 @@
 
         <view class=" sp-pinglun margin-top ">{{shipin.list[0].notes}}</view>
         <view class="sp-hotpinglun margin-top ">热门评论</view>
-        <view class="margin-top" style="background-color: #f8f9fd;">
+        <view class="margin-top" style="background-color: #fff;">
         
           <view class="margin-top sp-pinlun-content" wx:if="{{shipin.list[0].listComm[0]}}">
             <image class="sp-pinglun-avatar round " src="{{shipin.list[0].listComm[0].createrHead}} "></image>
@@ -236,7 +236,7 @@
 
         <view class=" sp-pinglun margin-top ">{{shipin.list[index].notes}}</view>
         <view class="sp-hotpinglun margin-top ">热门评论</view>
-        <view class="margin-top" style="background-color: #f8f9fd;">
+        <view class="margin-top" style="background-color: #fff;">
          
             <view class="margin-top sp-pinlun-content" wx:if="{{shipin.list[index].listComm[0]}}">
               <image class="sp-pinglun-avatar round " src="{{shipin.list[index].listComm[0].createrHead}} "></image>
@@ -318,8 +318,8 @@
       <text class="sp-quanbupinglun2">全部评论({{shipin.list[shipin_index].commCnt}})</text>
     </view>
     <view wx:for="{{shipin.list[shipin_index].listComm}}" wx:for-index="index2" style="background-color:white;">
-      <view class="margin-top sp-pinlun-content" style="background-color:white;">
-        <image class="sp-pinglun-avatar round " src="{{shipin.list[shipin_index].listComm[index2].createrHead}} "></image>
+      <view class="margin-top sp-pinlun-content">
+        <image class="sp-pinglun-avatar-2 round " src="{{shipin.list[shipin_index].listComm[index2].createrHead}} "></image>
         <view class="sp-pinglun-name ">{{shipin.list[shipin_index].listComm[index2].createrAlias}}</view>
         <view class="sp-pinglun-neirong ">{{shipin.list[shipin_index].listComm[index2].comment}}</view>
       </view>

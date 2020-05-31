@@ -108,6 +108,22 @@ Page({
     }]
 
   },
+  onShareAppMessage: function (e) {
+    console.log(ok)
+    var that = this;
+    return {
+      title: '友点乐',
+      path: 'pages/yundongxiangqing?categoryId=' + this.data.categoryId,
+      // success: function  (res) {
+      //   console.log("转发成功:" + JSON.stringify(res));
+      //   that.shareClick();
+      // },
+      // fail: function  (res) {
+      //   console.log("转发失败:" + JSON.stringify(res));
+      // }
+    }
+  },
+
   bmtz() {
     this.setData({
       TabCur: 1
@@ -1713,6 +1729,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    console.log(options)
     var self = this
     self.setData({
       categoryId: options.categoryId,
@@ -1781,7 +1798,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    this.onLoad(this.data.options)
   },
 
   /**
