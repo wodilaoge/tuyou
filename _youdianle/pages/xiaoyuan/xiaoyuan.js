@@ -191,10 +191,8 @@ Page({
             sid: res.data.data[i].code,
             univ: self.data.univ,
             city: self.data.univ,
-            province: self.data.province,
-            pageSize: 5
+            province: self.data.province
           };
-          console.log(data)
           app.wxRequest('POST', url, data, (res) => {
             self.setData({
               ActList: res.data
@@ -245,10 +243,10 @@ Page({
             data = {
               sid: self.data.yundongid,
               univ: self.data.univ,
-              city: self.data.univ,
-              province: self.data.province,
-              pageSize: 5
+              city: self.data.city,
+              province: self.data.province
             };
+            console.log(data)
             util.post_token(url, data).then(function(res) {
               self.setData({
                 yundongList: res.data.data
@@ -292,9 +290,8 @@ Page({
             data = {
               sid: self.data.wenyuid,
               univ: self.data.univ,
-              city: self.data.univ,
-              province: self.data.province,
-              pageSize: 5
+              city: self.data.city,
+              province: self.data.province
             };
             util.post_token(url, data).then(function(res) {
               self.setData({
@@ -339,9 +336,8 @@ Page({
             data = {
               sid: self.data.aihaoid,
               univ: self.data.univ,
-              city: self.data.univ,
-              province: self.data.province,
-              pageSize: 5
+              city: self.data.city,
+              province: self.data.province
             };
             util.post_token(url, data).then(function(res) {
               self.setData({
@@ -414,7 +410,6 @@ Page({
       pageSize: 2,
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res.data)
       let shipintmp = res.data;
       this.setData({
         shipin: shipintmp,
@@ -983,10 +978,9 @@ Page({
       let data = {
         sid: '076002',
         univ: self.data.univ,
-        city: self.data.univ,
+        city: self.data.city,
         province: self.data.province,
-        border: that.data.ActList.border,
-        pageSize: 2
+        border: that.data.ActList.border
       };
       app.wxRequest('POST', url, data, (res) => {
         if (res.data.border == null) {
@@ -1019,10 +1013,9 @@ Page({
         sid: that.data.yundongid,
         acid1: that.data.yundongCur,
         univ: self.data.univ,
-        city: self.data.univ,
+        city: self.data.city,
         province: self.data.province,
-        border: that.data.yundongList.border,
-        pageSize: 3
+        border: that.data.yundongList.border
       };
       app.wxRequest('POST', url, data, (res) => {
         console.log(res.data)
