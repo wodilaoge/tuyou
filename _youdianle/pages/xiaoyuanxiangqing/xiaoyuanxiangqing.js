@@ -258,7 +258,8 @@ Page({
         createrHead: self.data.user.head
       };
       app.wxRequest('POST', url, data, (res) => {
-        self.onLoad(self.data.options);
+        // self.onLoad(self.data.options);
+        self.getShipin(),
         wx.showToast({
           title: '评论成功！', // 标题
           icon: 'success', // 图标类型，默认success
@@ -1406,8 +1407,8 @@ Page({
     let data = {
       actid: this.data.categoryId,
       pageSize:2,
-      border:this.data.shipinBorder,
     };
+    console.log(data)
     app.wxRequest('GET', url, data, (res) => {
       console.log(res)
       let shipintmp = res.data;

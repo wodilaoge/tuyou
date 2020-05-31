@@ -414,7 +414,6 @@ Page({
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
       pageSize: 2,
-      border: this.data.shipinBorder,
     };
     console.log(data)
     app.wxRequest('GET', url, data, (res) => {
@@ -795,7 +794,8 @@ Page({
         createrHead: self.data.user.head
       };
       app.wxRequest('POST', url, data, (res) => {
-        self.onLoad();
+        // self.onLoad();
+        self.getShipin(),
         wx.showToast({
           title: '评论成功！', // 标题
           icon: 'success', // 图标类型，默认success
