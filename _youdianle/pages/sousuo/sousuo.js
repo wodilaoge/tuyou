@@ -154,6 +154,11 @@ Page({
       url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.yundong.id,
     })
   },
+  baomingtiaozhan(e) {
+    wx.navigateTo({
+      url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=1&categoryId=' + e.currentTarget.dataset.yundong.id,
+    })
+  },
   jump(e) {
     app.globalData.tabbar = e.currentTarget.dataset.id;
     wx.switchTab({
