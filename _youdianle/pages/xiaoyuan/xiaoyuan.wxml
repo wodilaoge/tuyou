@@ -74,7 +74,7 @@
           <view class="title-limit">{{item.actname}}</view>
           <view class="xiaoyuan-text-content text-gray"> {{item.fromtime}}</view>
           <view class="xiaoyuan-text-content text-gray"> {{item.address}}</view>
-          <button class="cu-btn round bg-orange btn-width" bindtap="baomingcanjia" id="{{item.id}}">报名参加</button>
+          <button class="cu-btn round bg-orange btn-width" bindtap="baomingcanjia" data-xiaoyuan="{{item}}">报名参加</button>
         </view>
       </view>
       <view style="background-color: #F8F9FD;height:20rpx;"></view>
