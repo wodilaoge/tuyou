@@ -12,7 +12,7 @@ Page({
     CustomBar: app.globalData.CustomBar,
     Custom: app.globalData.Custom,
     TabCur: 0,
-    MainCur: '0',
+    MainCur: '00333',
     VerticalNavTop: 0,
     options: 1,
     AllActivity: [],
@@ -102,7 +102,9 @@ Page({
   toschoool(e) {
     // console.log(e.currentTarget.dataset.index)
     if (e.currentTarget.dataset.id == "0000000") {
-      console.log('not choose school')
+      console.log('not choose city')
+      wx.removeStorageSync('city')
+      wx.removeStorageSync('school')
       var t = {
         code: '',
         name: ''
@@ -156,6 +158,9 @@ Page({
     if (t == '00000') {
       console.log('not choose provice')
       var mode = wx.getStorageSync('addressMode')
+      wx.removeStorageSync('province')
+      wx.removeStorageSync('city')
+      wx.removeStorageSync('school')
       if (mode == "1") {
         wx.switchTab({
           url: '/pages/index/index',

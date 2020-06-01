@@ -4,7 +4,7 @@ const app = getApp()
 var util = require("../../utils/util.js");
 Page({
   data: {
-    isshowparts:false,//文娱爱好是否显示
+    isshowparts: false, //文娱爱好是否显示
     loadModal: true,
     ActList: [],
     PageCur: 'basics',
@@ -101,9 +101,9 @@ Page({
     // console.log('t',t)
     var data = {
       sid: '076002',
-      province: wx.getStorageSync('province').code? wx.getStorageSync('province').code:null,
-      city: wx.getStorageSync('city').code?wx.getStorageSync('city').code:null,
-      univ: wx.getStorageSync('school').code?wx.getStorageSync('school').code:null,
+      province: wx.getStorageSync('province').code ? wx.getStorageSync('province').code : null,
+      city: wx.getStorageSync('city').code ? wx.getStorageSync('city').code : null,
+      univ: wx.getStorageSync('school').code ? wx.getStorageSync('school').code : null,
       pageSize: 5
     };
     app.wxRequest_notoken('POST', url, data, (res) => {
@@ -118,13 +118,13 @@ Page({
     var url = app.globalData.URL + '/act/listActivityHome';
     var data = {
       sid: '076003',
-      province: wx.getStorageSync('province').code? wx.getStorageSync('province').code:null,
-      city: wx.getStorageSync('city').code?wx.getStorageSync('city').code:null,
-      univ: wx.getStorageSync('school').code?wx.getStorageSync('school').code:null,
+      province: wx.getStorageSync('province').code ? wx.getStorageSync('province').code : null,
+      city: wx.getStorageSync('city').code ? wx.getStorageSync('city').code : null,
+      univ: wx.getStorageSync('school').code ? wx.getStorageSync('school').code : null,
 
-      province:null,
-      city:null,
-      univ:null
+      province: null,
+      city: null,
+      univ: null
     };
     app.wxRequest_notoken('POST', url, data, (res) => {
       this.setData({
@@ -138,9 +138,9 @@ Page({
     var url = app.globalData.URL + '/act/listActivityHome';
     var data = {
       sid: '076004',
-      province: wx.getStorageSync('province').code? wx.getStorageSync('province').code:null,
-      city: wx.getStorageSync('city').code?wx.getStorageSync('city').code:null,
-      univ: wx.getStorageSync('school').code?wx.getStorageSync('school').code:null,
+      province: wx.getStorageSync('province').code ? wx.getStorageSync('province').code : null,
+      city: wx.getStorageSync('city').code ? wx.getStorageSync('city').code : null,
+      univ: wx.getStorageSync('school').code ? wx.getStorageSync('school').code : null,
     };
     app.wxRequest_notoken('POST', url, data, (res) => {
       this.setData({
@@ -173,8 +173,8 @@ Page({
       this.setData({
         videolist: res.data,
         // province: wx.getStorageSync('province').code? wx.getStorageSync('province').code:null,
-        city: wx.getStorageSync('city').code?wx.getStorageSync('city').code:null,
-        univ: wx.getStorageSync('school').code?wx.getStorageSync('school').code:null,
+        city: wx.getStorageSync('city').code ? wx.getStorageSync('city').code : null,
+        univ: wx.getStorageSync('school').code ? wx.getStorageSync('school').code : null,
       })
     }, (err) => {
       console.log(err.errMsg)
@@ -238,12 +238,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onShow: function (e) {
-    
     var n = wx.getStorageSync('school')
     if (n) {
       this.setData({
         schoolname: n.name
       })
+    } else {
+      console.log('sdsd')
+      n = wx.getStorageSync('city')
+      if (n) {
+        this.setData({
+          schoolname: n.name
+        })
+      } else {
+        n = wx.getStorageSync('province')
+        if (n) {
+          this.setData({
+            schoolname: n.name
+          })
+        }
+      }
     }
     // this.school();
     this.getinfo(); //校园活动
@@ -253,7 +267,7 @@ Page({
     this.getvideoinfo(); //视频信息
     this.getuploadinfo(); //轮播图
     // this.getShipin();
-  
+
   },
   onLoad: function (options) {
     this.startReportHeart()
@@ -262,6 +276,21 @@ Page({
       this.setData({
         schoolname: n.name
       })
+    } else {
+      console.log('sdsd')
+      n = wx.getStorageSync('city')
+      if (n) {
+        this.setData({
+          schoolname: n.name
+        })
+      } else {
+        n = wx.getStorageSync('province')
+        if (n) {
+          this.setData({
+            schoolname: n.name
+          })
+        }
+      }
     }
     // this.school();
     this.getinfo(); //校园活动
@@ -374,7 +403,7 @@ Page({
    * 用户点击右上角分享
    */
 
-  onPullDownRefresh(){
+  onPullDownRefresh() {
     this.onLoad()
   },
   onShareAppMessage: function () {
