@@ -1636,6 +1636,9 @@ Page({
       this.tuanduishuju()
     this.gerenpaiming()
     this.taunduipaiming()
+    this.setData({
+      TabCur:4
+    })
   },
   jieshu() {
     var self = this
