@@ -387,7 +387,7 @@ Page({
     let data = {
       actid: this.data.categoryId,
       signupType: 10,
-      type: 10
+      type: 20
     };
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
@@ -399,7 +399,7 @@ Page({
     data = {
       actid: this.data.categoryId,
       signupType: 10,
-      type: 20
+      type: 10
     };
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
@@ -414,7 +414,7 @@ Page({
     let data = {
       actid: this.data.categoryId,
       signupType: 20,
-      type: 10
+      type: 20
     };
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
@@ -426,7 +426,7 @@ Page({
     data = {
       actid: this.data.categoryId,
       signupType: 20,
-      type: 20
+      type: 10
     };
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
@@ -1233,6 +1233,11 @@ Page({
       this.gerenshuju()
     else
       this.tuanduishuju()
+    this.gerenpaiming()
+    this.taunduipaiming()
+    this.setData({
+      TabCur: 4
+    })
   },
   jieshu() {
     var self = this
