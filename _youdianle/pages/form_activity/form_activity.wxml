@@ -250,7 +250,7 @@
   </view>
 </form>
 <view class="flex margin-top2">
-  <button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="commit" data-target="Modal">立即提交</button>
+  <button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="finish" data-target="Modal">立即提交</button>
 </view>
 <!-- <view class="cu-modal {{modalName=='Modal'?'show':''}}">
   <view class="cu-dialog">
@@ -265,3 +265,10 @@
     </view>
   </view>
 </view> -->
+<modal hidden="{{hiddenmodalput}}" title="友点乐" confirm-text="提交" cancel-text='取消' bindcancel="cancel2"
+  bindconfirm="commit2">
+  <view class="text-black">活动名称：{{infor.actname}}</view>
+  <view>将被发布到：{{info.proname}}{{info.cityname}}{{info.schoolname}}</view>
+  <view>{{info.big}}板块{{info.middle}}大类{{info.small}}小类</view>
+  <view>根据监管要求，通过必要的内容审核方能最终展示给大众，请耐心等待。确定提交吗？</view>
+</modal>

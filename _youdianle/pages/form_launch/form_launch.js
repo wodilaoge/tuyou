@@ -201,14 +201,27 @@ Page({
   },
 
   commit: function (e) {
+    var that=this.data
 
     let t = 'information.timenow'
     let t2 = 'information.signupdeadline'
     let t3='information.logo'
+    let t4='information.proname'
+    let t5='information.cityname'
+    let t6='information.schoolname'
+    let t7='information.big'
+    let t8='information.middle'
+    let t9='information.small'
     this.setData({
-      [t]: this.data.timenow + ' ' + this.data.time1,
-      [t2]: this.data.timenow2 + ' ' + this.data.time2,
-      [t3]:this.data.url3[0]
+      [t]: that.timenow + ' ' + that.time1,
+      [t2]: that.timenow2 + ' ' + that.time2,
+      [t3]:that.url3[0],
+      [t4]:that.pro.name,
+      [t5]:that.city.name,
+      [t6]:that.schoolinfo.name,
+      [t7]:that.pickerbig[that.indexbig].name,
+      [t8]:that.picker2[that.index].name,
+      [t9]:that.pickertiny[that.indextiny].name,
     })
 
     wx.setStorage({ //将活动信息存入缓存
