@@ -327,7 +327,7 @@
     <navigator url="?id={{item.id}}">
       <view class="video-list-info bg-white" index="{{index}}">
         <video class="video-list-photo radius" src="{{item.fileId}}" />
-        <text class="video_text">{{item.title}}</text>
+        <view class="video_text">{{item.title}}</view>
       </view>
     </navigator>
   </view>

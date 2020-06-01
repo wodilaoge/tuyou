@@ -237,7 +237,24 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onShow: function (e) {this.onLoad()},
+  onShow: function (e) {
+    
+    var n = wx.getStorageSync('school')
+    if (n) {
+      this.setData({
+        schoolname: n.name
+      })
+    }
+    // this.school();
+    this.getinfo(); //校园活动
+    this.getsportinfo(); //运动信息
+    this.getplayinfo(); //文娱信息
+    this.gethobbyinfo(); //爱好信息
+    this.getvideoinfo(); //视频信息
+    this.getuploadinfo(); //轮播图
+    // this.getShipin();
+  
+  },
   onLoad: function (options) {
     this.startReportHeart()
     var n = wx.getStorageSync('school')
