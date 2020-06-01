@@ -1634,6 +1634,8 @@ Page({
       this.gerenshuju()
     else
       this.tuanduishuju()
+    this.gerenpaiming()
+    this.taunduipaiming()
   },
   jieshu() {
     var self = this
