@@ -155,7 +155,8 @@ Page({
   shipinTabSelect(e) { //视频内导航栏
     this.setData({
       shipinCur: e.currentTarget.dataset.cur,
-      scrollLeft: (e.currentTarget.dataset.id - 1) * 60
+      scrollLeft: (e.currentTarget.dataset.id - 1) * 60,
+      shipinBorder: 0,
     })
     var self = this
     let url = app.globalData.URL + '/config/getActivityClass2'
@@ -409,7 +410,9 @@ Page({
     let data = {
       pageSize: 2,
     };
-    app.wxRequest('GET', url, data, (res) => {
+   
+    app.wxRequest('POST', url, data, (res) => {
+      console.log(res)
       let shipintmp = res.data;
       this.setData({
         shipin: shipintmp,
@@ -426,7 +429,7 @@ Page({
       pageSize: 2,
       border: this.data.shipinBorder,
     };
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
       console.log(res)
       if (res.data.border == null) {
         that.setData({
@@ -458,7 +461,7 @@ Page({
       let data = {
         id: this.data.shipin.list[e.currentTarget.dataset.index].id,
       };
-      app.wxRequest('GET', url, data, (res) => {})
+      app.wxRequest('POST', url, data, (res) => {})
       shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
       self.setData({
         shipin: shipintmp
@@ -578,9 +581,8 @@ Page({
     let data = {
       acid1: this.data.shipinCur,
       pageSize: 2,
-      border: this.data.shipinBorder,
     };
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
       console.log(res.data)
       let shipintmp = res.data;
       this.setData({
@@ -598,7 +600,7 @@ Page({
       pageSize: 2,
       border: this.data.shipinBorder,
     };
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
       console.log(res)
       if (res.data.border == null) {
         that.setData({
