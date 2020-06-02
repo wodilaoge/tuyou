@@ -71,6 +71,14 @@ Page({
     shipinBorder: '',
 
   },
+  //////////////////////
+  towebview3(e) {
+    if (e.currentTarget.dataset.item.link != null)
+      wx.navigateTo({
+        url: '/pages/webview3/webview3?url=' + e.currentTarget.dataset.item.link,
+      })
+  },
+  /////////////////////
   tabSelect(e) {
     app.globalData.tabbar = e.currentTarget.dataset.id;
     this.setData({
@@ -411,7 +419,7 @@ Page({
     let data = {
       pageSize: 2,
     };
-   
+
     app.wxRequest('POST', url, data, (res) => {
       console.log(res)
       let shipintmp = res.data;
@@ -967,7 +975,7 @@ Page({
    */
 
 
-  
+
   onReachBottom: function() {
     console.log("上拉刷新")
     let self = this;

@@ -64,6 +64,12 @@ Page({
     isRefleshshipin: true,
     isRefleshshipinPinglun: true,
   },
+  toagreepage() {
+    wx.navigateTo({
+      url: '/pages/webview/webview',
+    })
+  },
+/////////////////////////////////////
   chooseSezi: function(e) {
     var that = this;
     var animation = wx.createAnimation({

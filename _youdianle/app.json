@@ -45,7 +45,8 @@
     "pages/tuanduixinxi/tuanduixinxi",
     "pages/sousuo/sousuo",
     "pages/webview/webview",
-    "pages/webview2/webview2"
+    "pages/webview2/webview2",
+    "pages/webview3/webview3"
   ],
   "window": {
     "backgroundTextStyle": "light",

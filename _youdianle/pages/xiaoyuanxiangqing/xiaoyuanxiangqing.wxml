@@ -223,8 +223,8 @@
           <view class="queren margin-left-sm" style="color:#999999;">
             我已阅读并同意
           </view>
-          <view class="queren" style="color:#5C7CFF;">
-            《友点乐活动声明》
+          <view class="queren" style="color:#5C7CFF;" bindtap="toagreepage">
+            《友点乐用户协议》
           </view>
         </view>
 
@@ -232,7 +232,7 @@
           <button class="cu-btn bg-orange round btn-bm margin-top" bindtap="lijibaoming">立即报名</button>
         </view>
 
-        <view class="bg-white margin-top padding-top">
+        <!--<view class="bg-white margin-top padding-top">
           <view class="yibaoming-margin-top margin-left ">
             <text class="yibaoming-text-content">已报名</text>
             <text class="yibaoming-text-content"
@@ -245,7 +245,7 @@
                 bindtap="gerenziliao" wx:key style="background-image:url({{item.head}});" />
             </view>
           </view>
-        </view>
+        </view>-->
 
 
       </block>
@@ -271,12 +271,12 @@
             <text class='yibaoming-text-content'>已报名{{yibaomingList.length}}人</text>
           </view>
         </view>
-        <view class="yundong-content bg-white">
+        <!--<view class="yundong-content bg-white">
           <view class="padding-sm">
             <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" data-id="{{item.id}}"
               bindtap="gerenziliao" wx:key style="background-image:url({{item.head}});" />
           </view>
-        </view>
+        </view>-->
       </block>
     </block>
     <block wx:if="{{baomingCur==1}}">
@@ -329,8 +329,8 @@
           <view class="queren margin-left-sm" style="color:#999999;">
             我已阅读并同意
           </view>
-          <view class="queren" style="color:#5C7CFF;">
-            《友点乐活动声明》
+          <view class="queren" style="color:#5C7CFF;" bindtap="toagreepage">
+            《友点乐用户协议》
           </view>
         </view>
 
@@ -338,7 +338,7 @@
           <button class="cu-btn bg-orange round btn-bm margin-top" bindtap="lijibaoming">立即报名</button>
         </view>
 
-        <view class="bg-white margin-top padding-top">
+        <!--<view class="bg-white margin-top padding-top">
           <view class="yibaoming-margin-top margin-left ">
             <text class="yibaoming-text-content">已报名</text>
             <text class="yibaoming-text-content"
@@ -351,7 +351,7 @@
                 bindtap="gerenziliao" wx:key style="background-image:url({{item.head}});" />
             </view>
           </view>
-        </view>
+        </view>-->
       </block>
       <block wx:if="{{isbaomingtuandui==1}}">
         <view style="background-color:var(--white)">
@@ -375,12 +375,12 @@
               <text class='yibaoming-text-content'>已报名{{yibaomingList.length}}人</text>
             </view>
           </view>
-          <view class="yundong-content bg-white">
+          <!--<view class="yundong-content bg-white">
             <view class="padding-sm">
               <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" data-id="{{item.id}}"
                 bindtap="gerenziliao" wx:key style="background-image:url({{item.head}});" />
             </view>
-          </view>
+          </view>-->
         </view>
       </block>
     </block>

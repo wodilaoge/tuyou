@@ -4,7 +4,7 @@ Page({
   data: {
     chooseSize: false,
     animationData: {},
-    isReflesh: true,
+    isReflesh: false,
     Input: "",
     options: [],
     biaoti: "",
@@ -108,8 +108,19 @@ Page({
     }]
 
   },
- 
-
+  //////////////////////
+  towebview3(e) {
+    if (e.currentTarget.dataset.item.link != null)
+      wx.navigateTo({
+        url: '/pages/webview3/webview3?url=' + e.currentTarget.dataset.item.link,
+      })
+  },
+  toagreepage() {
+    wx.navigateTo({
+      url: '/pages/webview/webview',
+    })
+  },
+/////////////////////////////////////
   bmtz() {
     this.setData({
       TabCur: 1
@@ -463,7 +474,8 @@ Page({
         comment: res.data
       });
       self.setData({
-        loading: false
+        loading: false,
+        isReflesh: true
       });
       /*if (self.data.comment.length == 0)
         {}
