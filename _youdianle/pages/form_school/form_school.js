@@ -14,7 +14,7 @@ Page({
   },
   choose(e) {
     console.log(e.currentTarget.dataset.id)
-    if (e.currentTarget.dataset.id) {
+    if (e.currentTarget.dataset.id=='00000') {
       console.log('not choose school')
       wx.removeStorageSync('school')
       if (mode == "1") {

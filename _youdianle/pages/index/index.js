@@ -257,6 +257,11 @@ Page({
             schoolname: n.name
           })
         }
+        else{
+          this.setData({
+            schoolname: '请选择地区'
+          })
+        }
       }
     }
     // this.school();
@@ -288,6 +293,11 @@ Page({
         if (n) {
           this.setData({
             schoolname: n.name
+          })
+        }
+        else{
+          this.setData({
+            schoolname: '请选择地区'
           })
         }
       }
