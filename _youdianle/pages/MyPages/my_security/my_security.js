@@ -4,14 +4,24 @@ Page({
 
   data: {
     mobile:'',
+    userinfo:[]
   },
 
 
   onLoad: function(options) {
-    // var m=wx.getStorageSync('phone')
-    // this.setData({
-    //   mobile:m
-    // })
+    var that = this;
+    let url = app.globalData.URL + '/appuser/findUserByID';
+    this.setData({
+      userInfoAll: wx.getStorageSync('userInfo')
+    })
+    let data = {
+      'id': this.data.userInfoAll.id
+    }
+    util.gets(url, data).then(function (res) {
+      that.setData({
+        userinfo: res.data.data
+      })
+    })
   },
   dead(e){
     let url = app.globalData.URL + '/hd/cancelaccount'

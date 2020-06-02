@@ -186,10 +186,20 @@
         </view>
         <view class="flex  margin-top ">
           <view class="sp-bofang-times ">播放{{shipin.list[0].playCnt}}次</view>
-          <image src="{{shipin.list[0].myApplaud!=1?'/img/icon_like.png':'/img/icon_like_all.png'}}" style="width:44rpx;height:40rpx;margin-left:270rpx;" bindtap="shipinDianzan" data-index="{{index}}"></image>
-          <view class=" align-center " style="margin-left:16rpx;font-size:32rpx;width:55rpx; ">{{shipin.list[0].applaudCnt}}</view>
-          <button class="cu-btn round lines-orange  " style="margin-top:-2rpx; margin-left:16rpx;width:120rpx;height:48rpx;" bindtap="chooseSezi" data-duixiang="{{50}}" data-index="{{0}}" data-dxid="{{shipin.list[0].id}}" data-dxtitle="{{shipin.list[0].title}}">评论</button>
-          <image src="/img/icon_share_more.png " style="width:44rpx;height:40rpx;margin-left:16rpx; margin-right:20rpx; "></image>
+          <image src="{{shipin.list[0].myApplaud!=0?'/img/icon_like_all.png':'/img/icon_like.png'}}"
+            style="width:44rpx;height:40rpx;margin-left:270rpx;" bindtap="shipinDianzan" data-index="{{index}}"></image>
+          <view class=" align-center " style="margin-left:16rpx;font-size:32rpx;width:55rpx; ">
+            {{shipin.list[0].applaudCnt}}</view>
+          <image class="img-icon" mode="aspectFit " src="/img/icon_talk.png" bindtap="chooseSezi"
+            data-duixiang="{{50}}" data-index="{{0}}" data-dxid="{{shipin.list[0].id}}"
+            data-dxtitle="{{shipin.list[0].title}}"></image>
+          <view bindtap="share">
+            <button class="cu-btn round  buttonshare" style="background-color: white; margin-left: 20rpx;margin-top: -8rpx;" open-type="share">
+              <image class="img-icon" src="/img/icon_share_more.png "
+                style="width:44rpx;height:40rpx;margin-left:16rpx; margin-right:20rpx; "></image>
+            </button>
+          </view>
+
         </view>
 
         <view class=" sp-pinglun margin-top ">{{shipin.list[0].notes}}</view>
@@ -228,11 +238,20 @@
         </view>
         <view class="flex  margin-top ">
           <view class="sp-bofang-times ">播放{{shipin.list[index].playCnt}}次</view>
-          <image src="{{shipin.list[index].myApplaud!=1?'/img/icon_like.png':'/img/icon_like_all.png'}}" style="width:44rpx;height:40rpx;margin-left:270rpx;" bindtap="shipinDianzan" data-index="{{index}}"></image>
-          <view class=" align-center " style="margin-left:16rpx;font-size:32rpx;width:55rpx; ">{{shipin.list[index].applaudCnt}}</view>
-          <button class="cu-btn round lines-orange  " style="margin-top:-2rpx; margin-left:16rpx;width:120rpx;height:48rpx;" bindtap="chooseSezi" data-duixiang="{{50}}" data-index="{{index}}" data-dxid="{{shipin.list[index].id}}" data-dxtitle="{{shipin.list[index].title}}">评论</button>
-          <image src="/img/icon_share_more.png " style="width:44rpx;height:40rpx;margin-left:16rpx; margin-right:20rpx; "></image>
-        </view>
+          <image src="{{shipin.list[index].myApplaud!=0?'/img/icon_like_all.png':'/img/icon_like.png'}}"
+            style="width:44rpx;height:40rpx;margin-left:270rpx;" bindtap="shipinDianzan" data-index="{{index}}"></image>
+          <view class=" align-center " style="margin-left:16rpx;font-size:32rpx;width:55rpx; ">
+            {{shipin.list[index].applaudCnt}}</view>
+            <image class="img-icon" mode="aspectFit " src="/img/icon_talk.png" bindtap="chooseSezi"
+            data-duixiang="{{50}}" data-index="{{index}}" data-dxid="{{shipin.list[index].id}}"
+            data-dxtitle="{{shipin.list[index].title}}"></image>
+            <view bindtap="share">
+              <button class="cu-btn round  buttonshare" style="background-color: white; margin-left: 20rpx;margin-top: -8rpx;" open-type="share">
+                <image class="img-icon" src="/img/icon_share_more.png "
+                  style="width:44rpx;height:40rpx;margin-left:16rpx; margin-right:20rpx; "></image>
+              </button>
+            </view>
+         </view>
 
         <view class=" sp-pinglun margin-top ">{{shipin.list[index].notes}}</view>
         <view class="sp-hotpinglun margin-top ">热门评论</view>

@@ -3,6 +3,7 @@ var upload = require("../../utils/upload.js");
 var util = require("../../utils/util.js");
 Page({
   data: {
+    hiddenmodalput:true,
     actid: 1760034971189248,
     rule:null,
     award:null,
@@ -36,6 +37,19 @@ Page({
     tes: '',
     webinfo: []
   },
+  cancel2: function () {
+    this.setData({
+      hiddenmodalput: true
+    });
+  },
+  finish: function (e) {
+    var that=this
+    that.setData({
+      hiddenmodalput: !this.data.hiddenmodalput
+    })
+
+  },
+
   test(){
       let t=this.data.url1.length!=0?this.data.url1:null
       console.log(t)
@@ -368,7 +382,7 @@ Page({
     })
   },
 
-  commit: function(e) {
+  commit2: function(e) {
     var user = wx.getStorageSync('userInfo')
     user = 'Bearer ' + user.token;
     var urls = app.globalData.URL + '/act/pubActivity';
@@ -388,7 +402,7 @@ Page({
         sid: this.data.info.sid,
         acid1: this.data.info.acid1,
         acid2: this.data.info.acid2,
-        logo: this.data.info.logo==null ? this.data.info.logo : null,
+        logo: this.data.info.logo? this.data.info.logo : null,
         rotations: this.data.url4.length!=0?this.data.url4:null,
         groups: this.data.groups,
         fromtime: this.data.info.timenow,

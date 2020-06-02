@@ -646,7 +646,7 @@ Page({
       actid: this.data.categoryId,
       pageSize: 2,
     };
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
       console.log(res)
       let shipintmp = res.data;
       this.setData({
@@ -666,7 +666,7 @@ Page({
       border: this.data.shipinBorder,
     };
     console.log(data)
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
       console.log(res)
       if (res.data.border == null) {
         self.setData({

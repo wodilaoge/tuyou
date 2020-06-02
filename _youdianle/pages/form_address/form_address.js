@@ -12,7 +12,7 @@ Page({
     CustomBar: app.globalData.CustomBar,
     Custom: app.globalData.Custom,
     TabCur: 0,
-    MainCur:'00333',
+    MainCur: '00333',
     VerticalNavTop: 0,
     options: 1,
     AllActivity: [],
@@ -28,8 +28,13 @@ Page({
     let data = '';
     app.wxRequest('GET', url, data, (res) => {
       // console.log(res.data)
+      let tmp = res.data
+      let obj = {}
+      obj.code = '00000'
+      obj.name = '不选'
+      tmp.unshift(obj)
       this.setData({
-        provinceList: res.data
+        provinceList: tmp
       })
     }, (err) => {
       console.log(err.errMsg)
@@ -42,8 +47,13 @@ Page({
     };
     app.wxRequest('GET', url, data, (res) => {
       // console.log(res.data)
+      let tmp = res.data
+      let obj = {}
+      obj.code = '0000000'
+      obj.name = '不选'
+      tmp.unshift(obj)
       this.setData({
-        city: res.data
+        city: tmp
       })
     }, (err) => {
       console.log(err.errMsg)
@@ -56,8 +66,13 @@ Page({
     };
     app.wxRequest('GET', url, data, (res) => {
       // console.log(res.data)
+      let tmp = res.data
+      let obj = {}
+      obj.code = '0000000'
+      obj.name = '不选'
+      tmp.unshift(obj)
       this.setData({
-        city: res.data
+        city: tmp
       })
     }, (err) => {
       console.log(err.errMsg)
@@ -86,23 +101,52 @@ Page({
   },
   toschoool(e) {
     // console.log(e.currentTarget.dataset.index)
-    var t={
-      code: '',
-      name: ''
+    if (e.currentTarget.dataset.id == "0000000") {
+      console.log('not choose city')
+      wx.removeStorageSync('city')
+      wx.removeStorageSync('school')
+      var t = {
+        code: '',
+        name: ''
+      }
+      t.name = this.data.provinceList[this.data.TabCur].name
+      t.code = this.data.MainCur
+      wx.setStorageSync('province', t)
+      var mode = wx.getStorageSync('addressMode')
+      if (mode == "1") {
+        wx.switchTab({
+          url: '/pages/index/index',
+        })
+      } 
+      else if(mode=="2"){
+        wx.navigateTo({
+          url: '/pages/form_video/form_video',
+        })   
+      }
+      else {
+        wx.navigateBack({
+          delta:1
+        })
+      }
+    } else {
+      var t = {
+        code: '',
+        name: ''
+      }
+      t.name = this.data.provinceList[this.data.TabCur].name
+      t.code = this.data.MainCur
+      wx.setStorageSync('province', t)
+      var t2 = {
+        code: '',
+        name: ''
+      }
+      t2.name = this.data.city[e.currentTarget.dataset.index].name
+      t2.code = e.currentTarget.dataset.id
+      wx.setStorageSync('city', t2)
+      wx.navigateTo({
+        url: '/pages/form_school/form_school?id=' + e.currentTarget.dataset.id,
+      })
     }
-    t.name = this.data.provinceList[this.data.TabCur].name
-    t.code = this.data.MainCur
-    wx.setStorageSync('province',t)
-    var t2 = {
-      code: '',
-      name: ''
-    }
-    t2.name = this.data.city[e.currentTarget.dataset.index].name
-    t2.code = e.currentTarget.dataset.id
-    wx.setStorageSync('city', t2)
-    wx.navigateTo({
-      url: '/pages/form_school/form_school?id=' + e.currentTarget.dataset.id,
-    })
   },
   tabSelect(e) {
     this.setData({
@@ -110,7 +154,32 @@ Page({
       MainCur: e.currentTarget.dataset.id,
       // VerticalNavTop: (e.currentTarget.dataset.id - 1) * 50
     })
-    this.city(e.currentTarget.dataset.id)
+    let t = e.currentTarget.dataset.id
+    if (t == '00000') {
+      console.log('not choose provice')
+      var mode = wx.getStorageSync('addressMode')
+      wx.removeStorageSync('province')
+      wx.removeStorageSync('city')
+      wx.removeStorageSync('school')
+      if (mode == "1") {
+        wx.switchTab({
+          url: '/pages/index/index',
+        })
+      } 
+      else if(mode=="2"){
+        wx.navigateTo({
+          url: '/pages/form_video/form_video',
+        })   
+      }
+      else {
+        wx.navigateBack({
+          delta:1
+        })
+      }
+    }
+     else{
+      this.city(e.currentTarget.dataset.id)
+     }
   },
   VerticalMain(e) {
     let that = this;
