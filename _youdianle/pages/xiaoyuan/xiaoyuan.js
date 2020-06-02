@@ -188,7 +188,6 @@ Page({
         if (res.data.data[i].name == "校园活动") {
           let url1 = app.globalData.URL + '/act/listCampusActivity';
           data = {
-            sid: res.data.data[i].code,
             univ: self.data.univ,
             city: self.data.univ,
             province: self.data.province
@@ -203,9 +202,10 @@ Page({
           data = {
             sid: res.data.data[i].code,
             univ: self.data.univ,
-            city: self.data.univ
+            city: self.data.univ,
+            province: self.data.province
           };
-          app.wxRequest('GET', url2, data, (res) => {
+          app.wxRequest('POST', url2, data, (res) => {
             self.setData({
               xiaoyuanSwiperList: res.data
             })
@@ -221,9 +221,11 @@ Page({
           data = {
             sid: res.data.data[i].code,
             univ: self.data.univ,
-            city: self.data.univ
+            city: self.data.univ,
+            province: self.data.province
           };
-          app.wxRequest('GET', url2, data, (res) => {
+          console.log(data)
+          app.wxRequest('POST', url2, data, (res) => {
             self.setData({
               yundongSwiperList: res.data
             })
@@ -246,7 +248,6 @@ Page({
               city: self.data.city,
               province: self.data.province
             };
-            console.log(data)
             util.post_token(url, data).then(function(res) {
               self.setData({
                 yundongList: res.data.data
@@ -272,7 +273,7 @@ Page({
           let data = {
             sid: res.data.data[i].code
           };
-          app.wxRequest('GET', url2, data, (res) => {
+          app.wxRequest('POST', url2, data, (res) => {
             self.setData({
               wenyuSwiperList: res.data,
               shipinSwiperList: res.data
@@ -318,7 +319,7 @@ Page({
             sid: res.data.data[i].code
           };
 
-          app.wxRequest('GET', url2, data, (res) => {
+          app.wxRequest('POST', url2, data, (res) => {
             self.setData({
               aihaoSwiperList: res.data
             })
@@ -429,7 +430,7 @@ Page({
     app.wxRequest('GET', url, data, (res) => {
       console.log(res)
       if (res.data.border == null) {
-        that.setData({
+        self.setData({
           isRefleshshipin: false,
         })
       }
@@ -601,7 +602,7 @@ Page({
     app.wxRequest('GET', url, data, (res) => {
       console.log(res)
       if (res.data.border == null) {
-        that.setData({
+        self.setData({
           isRefleshshipin: false,
         })
       }
@@ -617,49 +618,49 @@ Page({
     });
   },
   chooseSezi: function(e) {
-    var that = this;
+    var self = this;
     var animation = wx.createAnimation({
       duration: 100,
       timingFunction: 'linear'
     })
-    that.animation = animation
+    self.animation = animation
     animation.translateY(200).step()
-    that.setData({
+    self.setData({
       animationData: animation.export(),
       chooseSize: true
     })
     setTimeout(function() {
       animation.translateY(0).step()
-      that.setData({
+      self.setData({
         animationData: animation.export()
       })
     }, 100)
 
-    that.setData({
+    self.setData({
       duixiang: e.currentTarget.dataset.duixiang,
       dxid: e.currentTarget.dataset.dxid,
       dxtitle: e.currentTarget.dataset.dxtitle,
     })
   },
   shipinChooseSezi: function(e) {
-    var that = this;
+    var self = this;
     var animation = wx.createAnimation({
       duration: 100,
       timingFunction: 'linear'
     })
-    that.animation = animation
+    self.animation = animation
     animation.translateY(200).step()
-    that.setData({
+    self.setData({
       shipinAnimationData: animation.export(),
       shipinChooseSize: true
     })
     setTimeout(function() {
       animation.translateY(0).step()
-      that.setData({
+      self.setData({
         shipinAnimationData: animation.export()
       })
     }, 100)
-    that.setData({
+    self.setData({
       shipin_index: e.currentTarget.dataset.index,
     })
 
@@ -682,39 +683,39 @@ Page({
 
   },
   hideModal: function(e) {
-    var that = this;
+    var self = this;
     var animation = wx.createAnimation({
       duration: 100,
       timingFunction: 'linear'
     })
-    that.animation = animation
+    self.animation = animation
     animation.translateY(200).step()
-    that.setData({
+    self.setData({
       animationData: animation.export()
 
     })
     setTimeout(function() {
       animation.translateY(0).step()
-      that.setData({
+      self.setData({
         animationData: animation.export(),
         chooseSize: false
       })
     }, 100)
   },
   shipinHideModal: function(e) {
-    var that = this;
+    var self = this;
     var animation = wx.createAnimation({
       duration: 100,
       timingFunction: 'linear'
     })
-    that.animation = animation
+    self.animation = animation
     animation.translateY(200).step()
-    that.setData({
+    self.setData({
       shipinAnimationData: animation.export()
     })
     setTimeout(function() {
       animation.translateY(0).step()
-      that.setData({
+      self.setData({
         shipinAnimationData: animation.export(),
         shipinChooseSize: false
       })
@@ -946,13 +947,13 @@ Page({
     })
   },
   onShareAppMessage: function() {
-    var that = this;
+    var self = this;
     return {
       title: '友点乐',
       path: 'pages/xiaoyuan/xiaoyuan',
       success: function(res) {
         console.log("转发成功:" + JSON.stringify(res));
-        that.shareClick();
+        self.shareClick();
       },
       fail: function(res) {
         console.log("转发失败:" + JSON.stringify(res));
@@ -967,34 +968,33 @@ Page({
   
   onReachBottom: function() {
     console.log("上拉刷新")
-    let that = this;
+    let self = this;
     //校园刷新数据
-    if (that.data.TabCur == 0 && that.data.isReflesh) {
+    if (self.data.TabCur == 0 && self.data.isReflesh) {
       wx.showLoading({
         title: '加载中...',
         mask: true //显示触摸蒙层  防止事件穿透触发
       });
       var url = app.globalData.URL + '/act/listActivity';
       let data = {
-        sid: '076002',
         univ: self.data.univ,
         city: self.data.city,
         province: self.data.province,
-        border: that.data.ActList.border
+        border: self.data.ActList.border
       };
       app.wxRequest('POST', url, data, (res) => {
         if (res.data.border == null) {
-          that.setData({
+          self.setData({
             isReflesh: false
           })
         }
         console.log('刷新校园中', res)
         let t = 'ActList'
-        var tmp = that.data.ActList
+        var tmp = self.data.ActList
         tmp.border = res.data.border
         for (let s of res.data.list)
           tmp.list.push(s)
-        that.setData({
+        self.setData({
           [t]: tmp,
         })
         wx.hideLoading()
@@ -1003,34 +1003,34 @@ Page({
       });
     }
     //运动刷新
-    else if (that.data.TabCur == 1 && that.data.isRefleshyundong) {
+    else if (self.data.TabCur == 1 && self.data.isRefleshyundong) {
       wx.showLoading({
         title: '加载中...',
         mask: true //显示触摸蒙层  防止事件穿透触发
       });
       var url = app.globalData.URL + '/act/listActivity';
       let data = {
-        sid: that.data.yundongid,
-        acid1: that.data.yundongCur,
+        sid: self.data.yundongid,
+        acid1: self.data.yundongCur,
         univ: self.data.univ,
         city: self.data.city,
         province: self.data.province,
-        border: that.data.yundongList.border
+        border: self.data.yundongList.border
       };
       app.wxRequest('POST', url, data, (res) => {
         console.log(res.data)
         if (res.data.border == null) {
-          that.setData({
+          self.setData({
             isRefleshyundong: false
           })
         }
         console.log('刷新运动中', res)
         let t = 'yundongList'
-        var tmp = that.data.yundongList
+        var tmp = self.data.yundongList
         tmp.border = res.data.border
         for (let s of res.data.list)
           tmp.list.push(s)
-        that.setData({
+        self.setData({
           [t]: tmp,
         })
         wx.hideLoading()
@@ -1039,7 +1039,7 @@ Page({
       });
     }
     ////shipin
-    else if (that.data.TabCur == 4 && that.data.isRefleshshipin) {
+    else if (self.data.TabCur == 4 && self.data.isRefleshshipin) {
       wx.showLoading({
         title: '加载中...',
         mask: true //显示触摸蒙层  防止事件穿透触发
