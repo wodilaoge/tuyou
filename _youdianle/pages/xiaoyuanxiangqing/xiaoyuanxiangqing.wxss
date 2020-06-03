@@ -98,6 +98,15 @@ page {
   max-width: 100%;
 }
 
+.cu-bar-updatashipin {
+	display: flex;
+	align-items: center;
+	min-height: 80rpx;
+  /* float: right; */
+  padding-left: 700rpx;
+  background-color: white;
+}
+
 .cu-bar-title {
   font-size: 32rpx;
   color: #333;

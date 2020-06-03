@@ -14,6 +14,9 @@ Page({
     hotWords: [],
     listCampus_timeChange: [],
     sousuo_lishi: [],
+    province: '',
+    city:'',
+    univ:'',
   },
   tabSelect(e) {
     this.setData({
@@ -33,9 +36,12 @@ Page({
     }
     let url = app.globalData.URL + '/search/listAll';
     let data = {
-      keywords: this.data.sousuo_neirong
+      keywords: this.data.sousuo_neirong,
+      province:this.data.province,
+      city:this.data.city,
+      univ:this.data.univ,
     };
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
       console.log(res)
       this.setData({
         sousuo_detail: res.data,
@@ -49,12 +55,18 @@ Page({
   change_sousuo_lishi:function(e){
       this.setData({
         change_if: 1,
+        sousuo_neirong: e.currentTarget.dataset.neirong,
       })
     let url = app.globalData.URL + '/search/listAll';
     let data = {
-      keywords: e.currentTarget.dataset.neirong,
+      keywords: this.data.sousuo_neirong,
+      province:this.data.province,
+      city:this.data.city,
+      univ:this.data.univ,
     };
-    app.wxRequest('GET', url, data, (res) => {
+    console.log(data)
+    app.wxRequest('POST', url, data, (res) => {
+      console.log(res)
       this.setData({
         sousuo_detail: res.data,
       })
@@ -170,6 +182,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.setData({
+        province: wx.getStorageSync('province').code ? wx.getStorageSync('province').name : null,
+        city: wx.getStorageSync('city').code ? wx.getStorageSync('city').name : null,
+        univ: wx.getStorageSync('school').code ? wx.getStorageSync('school').name : null,
+    })
     this.getHotWords()
     this.getLishi()
   },

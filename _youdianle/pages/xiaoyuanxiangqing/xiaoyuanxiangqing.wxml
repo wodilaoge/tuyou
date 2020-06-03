@@ -506,6 +506,9 @@
       <button class="cu-btn btn-yundong-cur round {{shipinCur==item.code?'bg-orange':'bg-gery'}} padding">{{item.name}}</button>
     </view>
   </scroll-view> -->
+  <view class="cu-bar-updatashipin ">
+    <image class="img-icon " mode="aspectFit " src="/img/icon_upload_video@2x.png " bindtap="shipintiaozhuan"></image>
+  </view>
 
   <view wx:for="{{shipin.list}}">
     <view wx:if="{{index==0}}">
