@@ -230,7 +230,7 @@
   display: block;
   text-align: center;
   color: black;
-  font-size: small;
+  font-size: 30rpx;
   flex-direction: row;
   flex-wrap: wrap;
   /*允许换行*/
