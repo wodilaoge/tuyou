@@ -82,7 +82,7 @@ Page({
     var url2 = app.globalData.URL + '/secrot/listSecrotation';
     let data = '';
     let data2 = {
-      sid: '076002'
+      
     };
     util.gets_notoken(url, {}).then(function (res) {
       that.setData({

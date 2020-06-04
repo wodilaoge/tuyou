@@ -79,7 +79,7 @@ Page({
     });
   },
   onLoad(options) {
-    this.city_initial();
+    // this.city_initial();
     this.province();
     wx.showLoading({
       title: '加载中...',
