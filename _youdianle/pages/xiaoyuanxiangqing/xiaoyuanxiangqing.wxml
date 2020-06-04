@@ -101,41 +101,30 @@
       <!-- 评论 -->
       <view class="cu-bar bg-white solid-bottom huodong-margin-top">
         <view class='action'>
-          <text class='cu-bar-title'>评论({{comment.list.length}})</text>
+          <text class='cu-bar-title'>评论({{count}})</text>
         </view>
       </view>
+    </view>
 
-      <view class="cu-card case no-card bg-white">
-        <view class="cu-item shadow">
-          <view class="cu-list menu-avatar">
-            <view class="cu-item" wx:for="{{comment.list}}" wx:for-index="index">
-              <view class="cu-avatar round lg" style="background-image:url({{item.createrHead}});"></view>
-              <view class="content flex-sub">
-                <view class=" flex justify-between">
-                  <view>
-                    <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
-                    <button class="cu-btn btn-hot bg-orange disabled" wx:if="{{item.hot}}">热门</button>
-                  </view>
-                  <!--<view class="text-gray text-sm">
-                    <image wx:if="{{false==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}' src="/img/weidianzan.png" mode="scaleToFill" style="width:24rpx;height:24rpx"></image>
-                    <image wx:if="{{true==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}' src="/img/yidianzan.png" mode="scaleToFill" style="width:24rpx;height:24rpx"></image>
-                    {{item.praiseCnt}}
-                  </view>-->
-                </view>
-                <view data-id="{{item.id}}">
-                  <view class="card-text-content">
-                    {{item.comment}}
-                  </view>
-                  <view class="card-text-content-time">
-                    {{item.strCreatetime}}
-                  </view>
-                </view>
-              </view>
-            </view>
+    <view class="bg-white">
+      <view class='talk-item' wx:for="{{comment.list}}" wx:key>
+        <view class='talk-item-left'>
+          <image class='talk-item-face' src='{{item.createrHead}}'></image>
+        </view>
+
+        <view class='talk-item-right'>
+          <view>
+            <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
+            <button class="cu-btn btn-hot bg-orange disabled" wx:if="{{item.hot}}">热门</button>
+          </view>
+          <text class='card-text-content'>{{item.comment}}</text>
+          <view>
+            <text class='card-text-content-time'>{{item.strCreatetime}}</text>
           </view>
         </view>
       </view>
     </view>
+
   </block>
 
   <view wx:if="{{!chooseSize}}">
@@ -436,47 +425,36 @@
       </block>
     </block>
 
-    <!-- 评论 -->
     <block>
-      <view class="huodong-margin-bottom">
-        <view class="cu-bar bg-white solid-bottom huodong-margin-top">
-          <view class='action'>
-            <text class='cu-bar-title'>评论({{comment.list.length}})</text>
-          </view>
+    <view class="huodong-margin-bottom">
+      <!-- 评论 -->
+      <view class="cu-bar bg-white solid-bottom huodong-margin-top">
+        <view class='action'>
+          <text class='cu-bar-title'>评论({{count}})</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="bg-white">
+      <view class='talk-item' wx:for="{{comment.list}}" wx:key>
+        <view class='talk-item-left'>
+          <image class='talk-item-face' src='{{item.createrHead}}'></image>
         </view>
 
-        <view class="cu-card case no-card bg-white">
-          <view class="cu-item shadow">
-            <view class="cu-list menu-avatar">
-              <view class="cu-item" wx:for="{{comment.list}}" wx:for-index="index">
-                <view class="cu-avatar round lg" style="background-image:url({{item.createrHead}});"></view>
-                <view class="content flex-sub">
-                  <view class=" flex justify-between">
-                    <view>
-                      <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
-                      <button class="cu-btn btn-hot bg-orange disabled" wx:if="{{item.hot}}">热门</button>
-                    </view>
-                    <!--<view class="text-gray text-sm">
-                      <image wx:if="{{false==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}' src="/img/weidianzan.png" mode="scaleToFill" style="width:24rpx;height:24rpx"></image>
-                      <image wx:if="{{true==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}' src="/img/yidianzan.png" mode="scaleToFill" style="width:24rpx;height:24rpx"></image>
-                      {{item.praiseCnt}}
-                    </view>-->
-                  </view>
-                  <view data-id="{{item.id}}">
-                    <view class="card-text-content">
-                      {{item.comment}}
-                    </view>
-                    <view class="card-text-content-time">
-                      {{item.strCreatetime}}
-                    </view>
-                  </view>
-                </view>
-              </view>
-            </view>
+        <view class='talk-item-right'>
+          <view>
+            <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
+            <button class="cu-btn btn-hot bg-orange disabled" wx:if="{{item.hot}}">热门</button>
+          </view>
+          <text class='card-text-content'>{{item.comment}}</text>
+          <view>
+            <text class='card-text-content-time'>{{item.strCreatetime}}</text>
           </view>
         </view>
       </view>
-    </block>
+    </view>
+
+  </block>
   </view>
   <view wx:if="{{!chooseSize}}">
     <view class="cu-bar input foot padding">
@@ -779,38 +757,27 @@
           <text class='cu-bar-title'>评论({{count}})</text>
         </view>
       </view>
+    </view>
 
-      <view class="cu-card case no-card bg-white">
-        <view class="cu-item shadow">
-          <view class="cu-list menu-avatar">
-            <view class="cu-item" wx:for="{{comment.list}}" wx:for-index="index" wx:key>
-              <view class="cu-avatar round lg" style="background-image:url({{item.createrHead}});"></view>
-              <view class="content flex-sub">
-                <view class=" flex justify-between">
-                  <view>
-                    <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
-                    <button class="cu-btn btn-hot bg-orange disabled" wx:if="{{item.hot}}">热门</button>
-                  </view>
-                  <!--<view class="text-gray text-sm">
-                    <image wx:if="{{false==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}' src="/img/weidianzan.png" mode="scaleToFill" style="width:24rpx;height:24rpx"></image>
-                    <image wx:if="{{true==item.ifzan}}" bindtap="zan_list" data-objid="{{item.id}}" data-ifzan="{{item.ifzan}}" data-index='{{index}}' src="/img/yidianzan.png" mode="scaleToFill" style="width:24rpx;height:24rpx"></image>
-                    {{item.praiseCnt}}
-                  </view>-->
-                </view>
-                <view data-id="{{item.id}}">
-                  <view class="card-text-content">
-                    {{item.comment}}
-                  </view>
-                  <view class="card-text-content-time">
-                    {{item.strCreatetime}}
-                  </view>
-                </view>
-              </view>
-            </view>
+    <view class="bg-white">
+      <view class='talk-item' wx:for="{{comment.list}}" wx:key>
+        <view class='talk-item-left'>
+          <image class='talk-item-face' src='{{item.createrHead}}'></image>
+        </view>
+
+        <view class='talk-item-right'>
+          <view>
+            <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
+            <button class="cu-btn btn-hot bg-orange disabled" wx:if="{{item.hot}}">热门</button>
+          </view>
+          <text class='card-text-content'>{{item.comment}}</text>
+          <view>
+            <text class='card-text-content-time'>{{item.strCreatetime}}</text>
           </view>
         </view>
       </view>
     </view>
+
   </block>
   <view wx:if="{{!chooseSize}}">
     <view class="cu-bar input foot padding">

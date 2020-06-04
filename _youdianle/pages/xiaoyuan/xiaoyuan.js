@@ -214,6 +214,7 @@ Page({
             city: self.data.univ,
             province: self.data.province
           };
+          console.log(data)
           app.wxRequest('POST', url2, data, (res) => {
             self.setData({
               xiaoyuanSwiperList: res.data
