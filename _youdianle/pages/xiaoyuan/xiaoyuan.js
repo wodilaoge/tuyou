@@ -201,7 +201,7 @@ Page({
             city: self.data.univ,
             province: self.data.province
           };
-          app.wxRequest('POST', url, data, (res) => {
+          app.wxRequest('POST', url1, data, (res) => {
             self.setData({
               ActList: res.data
             })
