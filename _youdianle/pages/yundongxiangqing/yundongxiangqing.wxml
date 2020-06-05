@@ -91,13 +91,13 @@
     </view>
 
   </view>
-  <view hidden="{{detail.rule}}==null&&{{detail.rulepic}}==null">
+  <view hidden="{{detail.rule==null&&detail.rulepic==null}}">
     <view class="bg-white padding">
       <view class="cu-bar bg-white ">
         <view class="cu-bar-title">活动介绍</view>
       </view>
       <view class="text-guize " style="width:625rpx;">
-        <text hidden="{{detail.rule}}=='null'">{{detail.rule}}</text>
+        <text hidden="{{detail.rule=='null'}}">{{detail.rule}}</text>
         <wxparse data="{{ detail.rulepic }}"></wxparse>
         <view class="margin-top">
           <text class="cuIcon-attention lg text-gray">\t23456</text>
@@ -106,21 +106,21 @@
       </view>
     </view>
   </view>
-  <view hidden="{{detail.award}}==null&&{{detail.awardpic}}==null">
+  <view hidden="{{detail.award==null&&detail.awardpic==null}}">
     <view class="bg-white padding margin-top">
       <view class="cu-bar bg-white ">
         <view class="cu-bar-title">奖品设置</view>
       </view>
-      <text hidden="{{detail.award}}=='null'">{{detail.award}}</text>
+      <text hidden="{{detail.award=='null'}}">{{detail.award}}</text>
       <image src="{{detail.awardpic}}" mode="scaleToFill" style="width:700rpx;"></image>
     </view>
   </view>
-  <view hidden="{{detail.sponsor}}==null&&{{detail.sponsorpic}}==null">
+  <view hidden="{{detail.sponsor==null&&detail.sponsorpic==null}}">
     <view class="bg-white padding margin-top">
       <view class="cu-bar bg-white ">
         <view class="cu-bar-title">赞助商</view>
       </view>
-      <text hidden="{{detail.sponsor}}=='null'">{{detail.sponsor}}</text>
+      <text hidden="{{detail.sponsor=='null'}}">{{detail.sponsor}}</text>
       <image src="{{detail.sponsorpic}}" mode="scaleToFill" style="width:700rpx;"></image>
     </view>
   </view>
