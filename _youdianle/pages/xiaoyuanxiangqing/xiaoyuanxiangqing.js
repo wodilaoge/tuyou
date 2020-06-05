@@ -443,6 +443,10 @@ Page({
     });
   },
   detail() { //页面项目信息
+    wx.showLoading({
+      title: '加载中...',
+      mask: true //显示触摸蒙层  防止事件穿透触发
+    });
     let url = app.globalData.URL + '/act/findCampusActivity';
     let data = {
       id: this.data.categoryId
@@ -482,11 +486,16 @@ Page({
         })
       }
       self.baomingkongzhi()
+      wx.hideLoading()
     }, (err) => {
       console.log(err.errMsg)
     });
   },
   comment() { //评论
+    wx.showLoading({
+      title: '加载中...',
+      mask: true //显示触摸蒙层  防止事件穿透触发
+    });
     var self = this
     let url = app.globalData.URL + '/comm/countCommByObj';
     let data = {
@@ -540,7 +549,9 @@ Page({
           });
         }
       }*/
+      wx.hideLoading()
     }, (err) => {
+      wx.hideLoading()
       console.log(err.errMsg)
     });
   },
@@ -1618,7 +1629,9 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {},
+  onReady: function() {
+
+  },
 
   /**
    * 生命周期函数--监听页面显示

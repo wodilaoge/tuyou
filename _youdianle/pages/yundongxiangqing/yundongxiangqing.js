@@ -60,7 +60,7 @@ Page({
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '0', ///1表示有一个播放，0表示无播放
-    shipin_index:0,
+    shipin_index: 0,
     shipinBorder: '',
     shipinPinglunBorder: '',
     isRefleshshipin: true,
@@ -120,7 +120,7 @@ Page({
       url: '/pages/webview/webview',
     })
   },
-/////////////////////////////////////
+  /////////////////////////////////////
   bmtz() {
     this.setData({
       TabCur: 1
@@ -151,7 +151,7 @@ Page({
       dxtitle: e.currentTarget.dataset.dxtitle,
     })
   },
-  onPullDownRefresh(){
+  onPullDownRefresh() {
     this.onLoad()
   },
   hideModal: function(e) {
@@ -359,7 +359,7 @@ Page({
     let data = {
       actid: this.data.categoryId,
       signupType: 10,
-      type:20
+      type: 20
     };
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
@@ -386,7 +386,7 @@ Page({
     let data = {
       actid: this.data.categoryId,
       signupType: 20,
-      type:20
+      type: 20
     };
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
@@ -394,7 +394,7 @@ Page({
       })
     }, (err) => {
       console.log(err.errMsg)
-      });
+    });
     data = {
       actid: this.data.categoryId,
       signupType: 20,
@@ -409,6 +409,10 @@ Page({
     });
   },
   detail() { //页面项目信息
+    wx.showLoading({
+      title: '加载中...',
+      mask: true //显示触摸蒙层  防止事件穿透触发
+    });
     var self = this
     let url = app.globalData.URL + '/act/findActivity';
     let data = {
@@ -449,12 +453,18 @@ Page({
         })
       }
       self.baomingkongzhi()
+      wx.hideLoading()
     }, (err) => {
+      wx.hideLoading()
       console.log(err.errMsg)
     });
   },
 
   comment() { //评论
+    wx.showLoading({
+      title: '加载中...',
+      mask: true //显示触摸蒙层  防止事件穿透触发
+    });
     var self = this
     let url = app.globalData.URL + '/comm/countCommByObj';
     let data = {
@@ -477,6 +487,7 @@ Page({
         loading: false,
         isReflesh: true
       });
+      wx.hideLoading()
       /*if (self.data.comment.length == 0)
         {}
       else {
@@ -697,7 +708,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-  getShipinPinglunFenye: function (e) {
+  getShipinPinglunFenye: function(e) {
     var shipintmp = this.data.shipin;
     let url = app.globalData.URL + '/comm/listCommByObj';
     let data = {
@@ -854,7 +865,7 @@ Page({
     }
   },
 
-  
+
   shipinChooseSezi: function(e) {
     var that = this;
     var animation = wx.createAnimation({
@@ -1014,7 +1025,7 @@ Page({
             icon: 'success', // 图标类型，默认success
             duration: 1500 // 提示窗停留时间，默认1500ms
           })
-        else{
+        else {
           console.log(res.data)
           wx.showToast({
             title: res.data.msg, // 标题
@@ -1503,7 +1514,6 @@ Page({
       actid: self.data.categoryId,
       uid: e.currentTarget.dataset.id
     }
-    console.log(e)
     util.gets(url, data).then(function(res) {
       wx.hideLoading()
       if (res.data.code == 0) {
@@ -1517,7 +1527,6 @@ Page({
         })
         self.yibaoming()
       } else {
-        console.log(res.data)
         wx.showToast({
           title: res.data.msg, // 标题
           image: '/img/fail.png', // 图标类型，默认success
@@ -1649,7 +1658,7 @@ Page({
     this.gerenpaiming()
     this.taunduipaiming()
     this.setData({
-      TabCur:4
+      TabCur: 4
     })
   },
   jieshu() {
@@ -1732,7 +1741,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options)
     var self = this
     self.setData({
       categoryId: options.categoryId,
@@ -1807,13 +1815,9 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     var self = this
     if (self.data.isReflesh) {
-      wx.showLoading({
-        title: '加载中...',
-        mask: true //显示触摸蒙层  防止事件穿透触发
-      });
       let data = {
         objid: self.data.categoryId,
         objtype: 30,
@@ -1836,7 +1840,6 @@ Page({
         self.setData({
           [t]: tmp,
         })
-        wx.hideLoading()
       }, (err) => {
         console.log(err.errMsg)
       });

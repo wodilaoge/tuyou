@@ -3,11 +3,11 @@ page {
   padding-bottom: 150rpx;
   letter-spacing: 2rpx;
 }
- 
+
 .biaoti {
   overflow: hidden; /*隐藏溢出*/
   text-overflow: ellipsis; /*当文本溢出包含元素时显示省略符号来代表被修剪的文本*/
-  white-space: nowrap;/*规定段落中的文本不进行换行*/
+  white-space: nowrap; /*规定段落中的文本不进行换行*/
 }
 
 /*模态框*/
@@ -99,9 +99,9 @@ page {
 }
 
 .cu-bar-updatashipin {
-	display: flex;
-	align-items: center;
-	min-height: 80rpx;
+  display: flex;
+  align-items: center;
+  min-height: 80rpx;
   /* float: right; */
   padding-left: 680rpx;
   background-color: white;
@@ -235,6 +235,8 @@ page {
 .card-text-content {
   font-size: 32rpx;
   font-weight: normal;
+  word-break: break-all;
+  color: #333333;
 }
 
 .card-text-content-time {
@@ -394,6 +396,7 @@ page {
   height: 42rpx;
   margin-left: 24rpx;
 }
+
 .sp-pinglun-avatar-2 {
   width: 42rpx;
   height: 42rpx;
@@ -558,12 +561,63 @@ checkbox.tp-checkbox {
   font-weight: bold;
 }
 
-.btn1{
+.btn1 {
   width: 40rpx;
   height: 40rpx;
   background-size: 40rpx 40rpx;
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   background-color: transparent;
 }
 
-.btn1::after{ border: none; } 
+.btn1::after {
+  border: none;
+}
+
+.talk-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  color: white;
+}
+
+.talk-item-left {
+  display: flex;
+  flex-direction: row;
+  margin: 20rpx 30rpx;
+}
+
+.talk-item-face {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.talk-item-right {
+  width: 100%;
+  margin-right: 30rpx;
+  margin-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+
+.right-left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.talk-item-nickname {
+  font-size: 28rpx;
+  color: #aaa8a9;
+}
+
+.talk-item-content {
+  display: block;
+  font-size: 30rpx;
+  margin-right: 30rpx;
+  width: 92%;
+  white-space: pre-line;
+  word-break: break-all;
+  word-wrap: break-word；;
+}

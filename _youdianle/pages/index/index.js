@@ -76,13 +76,18 @@ Page({
       url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=1&categoryId=' + e.currentTarget.dataset.yundong.id,
     })
   },
+  towebview(e){
+    wx.navigateTo({
+      url: '/pages/webview4/webview4?url='+e.currentTarget.dataset.url,
+    })
+  },
   getuploadinfo() {
     var that = this
     let url = app.globalData.URL + '/config/getSections';
     var url2 = app.globalData.URL + '/secrot/listSecrotation';
     let data = '';
     let data2 = {
-      sid: '076002'
+      
     };
     util.gets_notoken(url, {}).then(function (res) {
       that.setData({

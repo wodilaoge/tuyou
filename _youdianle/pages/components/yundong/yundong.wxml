@@ -6,10 +6,10 @@
     </block>
     <text class=" title-time" style="position:absolute;width:100%;left:180rpx;" wx:if="{{item.lefttime!=null}}">{{item.lefttime.day}} 天 {{item.lefttime.hr}}:{{item.lefttime.min}} </text>
   </view>
-  <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-yundong="{{item}}">
+  <view class="background" style="margin-bottom:20rpx;">
     <view class="cu-card article ">
       <view class="cu-item">
-        <view class="shadow" style="background-color:#F8F9FD;padding:19rpx 0 19rpx 0;">
+        <view class="shadow" style="background-color:#F8F9FD;padding:19rpx 0 19rpx 0;"  bindtap="yundongxiangqing" data-yundong="{{item}}">
           <view class="yundong-content">
             <image src="{{item.logo}}" mode="aspectFill"></image>
             <view class="desc">
@@ -29,7 +29,7 @@
             </view>
           </view>
         </view>
-        <view class="yundong-content title-text-content" style="margin-top:28rpx;" wx:if="{{item.slogan!=''||null}}">
+        <view class="yundong-content title-text-content" style="margin-top:28rpx;" wx:if="{{item.slogan!=''||null}}"  bindtap="yundongxiangqing" data-yundong="{{item}}">
           <image class="icon-size" src="/img/icon_title.png" mode="heightFix"></image>
           <text decode="{{true}}">{{item.slogan}}</text>
         </view>

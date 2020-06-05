@@ -35,10 +35,10 @@
   <button class="cu-btn round bg-blue buttonshare" open-type="share">分享</button>
   <!-- <image class="icon" src="/img/array.png"></image> -->
 </view>
-<view class="cu-form-group">
+<navigator class="cu-form-group" url="/pages/about/about">
   <view class="title">关于友点乐</view>
   <image class="icon" src="/img/array.png"></image>
-</view>
+</navigator>
 <view class="padding flex flex-direction margin-lg justify-between ">
   <!-- <navigator open-type="exit" target="miniProgram">关闭小程序</navigator> -->
   <navigator open-type="exit" bindtap="dead" target="miniProgram" class="cu-btn bg-orange lg" >注销登录</navigator>

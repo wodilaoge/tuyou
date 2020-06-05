@@ -1284,7 +1284,7 @@ button.icon.lg {
 	position: relative;
 	display: flex;
 	padding-right: 10rpx;
-	height: 140rpx;
+	min-height: 140rpx;
 	background-color: var(--white);
 	justify-content: flex-end;
 	align-items: center
@@ -1308,6 +1308,7 @@ button.icon.lg {
 
 .cu-list.menu-avatar>.cu-item .content.flex-sub {
 	width: calc(100% - 96rpx - 60rpx - 20rpx);
+  height: 100%;
 }
 
 .cu-list.menu-avatar>.cu-item .content>view:first-child {
