@@ -60,7 +60,7 @@ Page({
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '0', ///1表示有一个播放，0表示无播放
-    shipin_index:0,
+    shipin_index: 0,
     shipinBorder: '',
     shipinPinglunBorder: '',
     isRefleshshipin: true,
@@ -120,7 +120,7 @@ Page({
       url: '/pages/webview/webview',
     })
   },
-/////////////////////////////////////
+  /////////////////////////////////////
   bmtz() {
     this.setData({
       TabCur: 1
@@ -151,7 +151,7 @@ Page({
       dxtitle: e.currentTarget.dataset.dxtitle,
     })
   },
-  onPullDownRefresh(){
+  onPullDownRefresh() {
     this.onLoad()
   },
   hideModal: function(e) {
@@ -359,7 +359,7 @@ Page({
     let data = {
       actid: this.data.categoryId,
       signupType: 10,
-      type:20
+      type: 20
     };
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
@@ -386,7 +386,7 @@ Page({
     let data = {
       actid: this.data.categoryId,
       signupType: 20,
-      type:20
+      type: 20
     };
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
@@ -394,7 +394,7 @@ Page({
       })
     }, (err) => {
       console.log(err.errMsg)
-      });
+    });
     data = {
       actid: this.data.categoryId,
       signupType: 20,
@@ -697,7 +697,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-  getShipinPinglunFenye: function (e) {
+  getShipinPinglunFenye: function(e) {
     var shipintmp = this.data.shipin;
     let url = app.globalData.URL + '/comm/listCommByObj';
     let data = {
@@ -854,7 +854,7 @@ Page({
     }
   },
 
-  
+
   shipinChooseSezi: function(e) {
     var that = this;
     var animation = wx.createAnimation({
@@ -1014,7 +1014,7 @@ Page({
             icon: 'success', // 图标类型，默认success
             duration: 1500 // 提示窗停留时间，默认1500ms
           })
-        else{
+        else {
           console.log(res.data)
           wx.showToast({
             title: res.data.msg, // 标题
@@ -1649,7 +1649,7 @@ Page({
     this.gerenpaiming()
     this.taunduipaiming()
     this.setData({
-      TabCur:4
+      TabCur: 4
     })
   },
   jieshu() {
@@ -1732,7 +1732,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options)
     var self = this
     self.setData({
       categoryId: options.categoryId,
@@ -1807,7 +1806,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     var self = this
     if (self.data.isReflesh) {
       wx.showLoading({
