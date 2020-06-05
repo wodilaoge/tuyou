@@ -46,7 +46,8 @@
     "pages/sousuo/sousuo",
     "pages/webview/webview",
     "pages/webview2/webview2",
-    "pages/webview3/webview3"
+    "pages/webview3/webview3",
+    "pages/webview4/webview4"
   ],
   "window": {
     "backgroundTextStyle": "light",

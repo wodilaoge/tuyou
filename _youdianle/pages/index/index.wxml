@@ -17,8 +17,8 @@
     <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000"
       duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#FE538F">
       <swiper-item wx:for="{{swiperList}}" wx:key="key" class="{{cardCur==index?'cur':''}}">
-        <view class="swiper-item">
-          <image src="{{item.path}}" mode="aspectFill"></image>
+        <view class="swiper-item" bindtap="towebview" data-url="{{item.link}}">
+          <image src="{{item.path}}" mode="aspectFill" ></image>
         </view>
       </swiper-item>
     </swiper>
@@ -48,7 +48,7 @@
         <text class="menu-name text-bold">爱好</text>
       </view>
     </block>
-    
+
     <view bindtap="jump" data-id="4" class="menu-item">
       <image src="/img/index/video.png" class="menu-img"></image>
       <text class="menu-name text-bold">视频</text>
@@ -128,7 +128,8 @@
       <block wx:for="{{yundongxiaolei}}" wx:for-item="cell" wx:if="{{item.acid2==cell.code}}">
         <text style="position:absolute;left:110rpx;">{{cell.name}}</text>
       </block>
-      <text class=" title-time" style="position:absolute;width:100%;left:180rpx;" wx:if="{{item.lefttime!=null}}">{{item.lefttime.day}} 天 {{item.lefttime.hr}}:{{item.lefttime.min}} </text>
+      <text class=" title-time" style="position:absolute;width:100%;left:180rpx;"
+        wx:if="{{item.lefttime!=null}}">{{item.lefttime.day}} 天 {{item.lefttime.hr}}:{{item.lefttime.min}} </text>
     </view>
     <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-yundong="{{item}}">
       <view class="cu-card article ">
@@ -323,14 +324,37 @@
       <image class="icon" src="../../img/array.png"></image>
     </view>
   </view>
-  <view wx:for="{{videolist.list}}" wx:if="{{index<4}}" class="bg-white video" wx:key="item">
-    <navigator url="?id={{item.id}}">
-      <view class="video-list-info bg-white" index="{{index}}">
-        <video class="video-list-photo radius" src="{{item.fileId}}" />
-        <view class="video_text">{{item.title}}</view>
-      </view>
-    </navigator>
+  <!-- <view wx:for="{{videolist.list}}" wx:if="{{index<4}}" class="bg-white video" wx:key="item">
+    <view class="video-list-info bg-white" index="{{index}}">
+      <video class="video-list-photo radius" src="{{item.fileId}}" />
+      <view class="video_text">{{item.title}}</view>
+    </view>
+  </view> -->
+
+
+  <view class="menu bg-white">
+    <!-- <view bindtap="jump" data-id="5" class="menu-item">
+      <image src="/img/index/news.png" class="menu-img"></image>
+      <text class="menu-name text-bold">新闻</text>
+    </view> -->
+    <view bindtap="jump" data-id="0" class="video-item">
+      <video class="video-list-photo radius" src="{{videolist.list[0].fileId}}" />
+      <view class="video_text">{{videolist.list[0].title}}</view>
+    </view>
+    <view bindtap="jump" data-id="1" class="video-item">
+      <video class="video-list-photo radius" src="{{videolist.list[1].fileId}}" />
+      <view class="video_text">{{videolist.list[1].title}}</view>
+    </view>
+    <view bindtap="jump" data-id="4" class="video-item">
+      <video class="video-list-photo radius" src="{{videolist.list[2].fileId}}" />
+      <view class="video_text">{{videolist.list[2].title}}</view>
+    </view>
+    <view bindtap="jump" data-id="4" class="video-item">
+      <video class="video-list-photo radius" src="{{videolist.list[3].fileId}}" />
+      <view class="video_text">{{videolist.list[3].title}}</view>
+    </view>
   </view>
+
 </view>
 <view class='cu-load load-modal' wx:if="{{loadModal}}">
   <view class='gray-text'>加载中...</view>
