@@ -88,10 +88,6 @@ App({
     }
   },
   wxRequest(method, url, data, callback, errFun) {
-    wx.showLoading({
-      title: '加载中...',
-      mask: true //显示触摸蒙层  防止事件穿透触发
-    });
     var user = wx.getStorageSync('userInfo')
     // var user = this.globalData.userInfo
     // if (user == null) {
@@ -121,7 +117,6 @@ App({
         },
         dataType: 'json',
         success: function(res) {
-          wx.hideLoading()
           if (res.data.code == '109') {
             console.log('appjs code 109',res.data)
             wx.showToast({
@@ -167,7 +162,6 @@ App({
           callback(res.data);
         },
         fail: function(err) {
-          wx.hideLoading()
           errFun(res);
         }
       })

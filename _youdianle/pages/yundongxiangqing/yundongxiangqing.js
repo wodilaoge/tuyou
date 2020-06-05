@@ -409,6 +409,10 @@ Page({
     });
   },
   detail() { //页面项目信息
+    wx.showLoading({
+      title: '加载中...',
+      mask: true //显示触摸蒙层  防止事件穿透触发
+    });
     var self = this
     let url = app.globalData.URL + '/act/findActivity';
     let data = {
@@ -449,12 +453,18 @@ Page({
         })
       }
       self.baomingkongzhi()
+      wx.hideLoading()
     }, (err) => {
+      wx.hideLoading()
       console.log(err.errMsg)
     });
   },
 
   comment() { //评论
+    wx.showLoading({
+      title: '加载中...',
+      mask: true //显示触摸蒙层  防止事件穿透触发
+    });
     var self = this
     let url = app.globalData.URL + '/comm/countCommByObj';
     let data = {
@@ -477,6 +487,7 @@ Page({
         loading: false,
         isReflesh: true
       });
+      wx.hideLoading()
       /*if (self.data.comment.length == 0)
         {}
       else {
@@ -1503,7 +1514,6 @@ Page({
       actid: self.data.categoryId,
       uid: e.currentTarget.dataset.id
     }
-    console.log(e)
     util.gets(url, data).then(function(res) {
       wx.hideLoading()
       if (res.data.code == 0) {
@@ -1517,7 +1527,6 @@ Page({
         })
         self.yibaoming()
       } else {
-        console.log(res.data)
         wx.showToast({
           title: res.data.msg, // 标题
           image: '/img/fail.png', // 图标类型，默认success
@@ -1809,10 +1818,6 @@ Page({
   onReachBottom: function() {
     var self = this
     if (self.data.isReflesh) {
-      wx.showLoading({
-        title: '加载中...',
-        mask: true //显示触摸蒙层  防止事件穿透触发
-      });
       let data = {
         objid: self.data.categoryId,
         objtype: 30,
@@ -1835,7 +1840,6 @@ Page({
         self.setData({
           [t]: tmp,
         })
-        wx.hideLoading()
       }, (err) => {
         console.log(err.errMsg)
       });
