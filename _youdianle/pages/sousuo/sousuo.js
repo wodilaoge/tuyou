@@ -37,9 +37,9 @@ Page({
     let url = app.globalData.URL + '/search/listAll';
     let data = {
       keywords: this.data.sousuo_neirong,
-      province:this.data.province,
-      city:this.data.city,
-      univ:this.data.univ,
+      province:this.data.province==='不选'?null:this.data.province,
+      city:this.data.city==='不选'?null:this.data.city,
+      univ:this.data.univ==='不选'?null:this.data.univ,
     };
     app.wxRequest('POST', url, data, (res) => {
       console.log(res)
@@ -60,9 +60,9 @@ Page({
     let url = app.globalData.URL + '/search/listAll';
     let data = {
       keywords: this.data.sousuo_neirong,
-      province:this.data.province,
-      city:this.data.city,
-      univ:this.data.univ,
+      province:this.data.province==='不选'?null:this.data.province,
+      city:this.data.city==='不选'?null:this.data.city,
+      univ:this.data.univ==='不选'?null:this.data.univ,
     };
     console.log(data)
     app.wxRequest('POST', url, data, (res) => {

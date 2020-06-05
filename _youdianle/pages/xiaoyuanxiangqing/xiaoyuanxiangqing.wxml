@@ -507,7 +507,7 @@
     </view>
   </scroll-view> -->
   <view class="cu-bar-updatashipin ">
-    <image class="img-icon " mode="aspectFit " src="/img/icon_upload_video@2x.png " bindtap="shipintiaozhuan"></image>
+    <image class="img-icon " mode="aspectFit " src="/img/tabbar/add2.png " bindtap="shipintiaozhuan"></image>
   </view>
 
   <view wx:for="{{shipin.list}}">
