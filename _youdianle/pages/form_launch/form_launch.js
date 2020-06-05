@@ -3,6 +3,7 @@ var upload = require("../../utils/upload.js");
 var util = require("../../utils/util.js");
 Page({
   data: {
+    isagree: true,
     hiddenmodalput:true,
     information: {
       actname: '',
@@ -52,7 +53,12 @@ Page({
     imgList3: [],
     url3: [],
   },
-
+  isagree(e) {
+    console.log('fuck')
+    this.setData({
+      isagree: !this.data.isagree
+    })
+  },
   PickerChange(e) { //报名方式
     let t = 'information.way'
     this.setData({
@@ -544,7 +550,12 @@ Page({
       hiddenmodalput: true
     });
   },
-  finish: function (e) {
+  toagreepage(){
+    wx.navigateTo({
+      url: '/pages/webview/webview',
+    })
+  },
+    finish: function (e) {
     var that=this
     that.setData({
       hiddenmodalput: !this.data.hiddenmodalput

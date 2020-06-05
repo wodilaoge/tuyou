@@ -16,7 +16,7 @@
   	<view class="cu-form-group">
 		<view class="title">昵称</view>
 		<input class="input text-grey" placeholder="{{userinfo.wcalias}}" type='text' name="name" bindinput="getnick"></input>
-    	<image class="icon" src="/img/array.png"></image>
+    	<image class="icon" src="/img/write.png"></image>
 	</view>
    <view class="cu-form-group">
 		<view class="title">性别</view>
@@ -29,22 +29,22 @@
   <view class="cu-form-group">
 		<view class="title">姓名</view>
 		<input class="input text-grey" placeholder="{{userinfo.name}}" type='text' name="name" bindinput="getname"></input>
-    	<image class="icon" src="/img/array.png"></image>
+    	<image class="icon" src="/img/write.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">手机号码</view>
 		<input class="input text-grey" placeholder="{{userinfo.mobile}}" type='text' name="name" bindinput="getphone"></input>
-    	<image class="icon" src="/img/array.png"></image>
+    	<image class="icon" src="/img/write.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">证件类型</view>
 		<input class="input text-grey" placeholder="身份证" type='text' name="name" bindinput="name"></input>
-    	<image class="icon" src="/img/array.png"></image>
+    	<image class="icon" src="/img/write.png"></image>
 	</view>
     <view class="cu-form-group">
 		<view class="title">证件号码</view>
 		<input class="input text-grey" placeholder="{{userinfo.idno}}" type='text' name="name" bindinput="getidno"></input>
-    	<image class="icon" src="/img/array.png"></image>
+    	<image class="icon" src="/img/write.png"></image>
 	</view>
   	<view class="cu-form-group">
 		<view class="title">出生日期</view>
@@ -57,7 +57,7 @@
   <view class="cu-form-group">
 		<view class="title">国籍</view>
 		<input class="input text-grey" placeholder="{{userinfo.nationality}}" type='text' name="name" bindinput="getnationality"></input>
-    	<image class="icon" src="/img/array.png"></image>
+    	<image class="icon" src="/img/write.png"></image>
 	</view>
      <!-- <view class="cu-form-group margin-top">
     <view class="title">省</view>
@@ -85,47 +85,47 @@
   <view class="cu-form-group">
 		<view class="title">学校简称</view>
 		<input class="input text-grey" placeholder="{{userinfo.univname}}" type='text' name="name" bindinput="getunivshort"></input>
-    	<image class="icon" src="/img/array.png"></image>
+    	<image class="icon" src="/img/write.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">专业</view>
 		<input class="input text-grey" placeholder="{{userinfo.major}}" type='text' name="name" bindinput="getmajor"></input>
-    	<image class="icon" src="/img/array.png"></image>
+    	<image class="icon" src="/img/write.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">学生证号</view>
 		<input class="input text-grey" placeholder="{{userinfo.studentno}}" type='text' name="name" bindinput="getstudentno"></input>
-    	<image class="icon" src="/img/array.png"></image>
+    	<image class="icon" src="/img/write.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">身高</view>
 		<input class="input text-grey" placeholder="{{userinfo.height}}" type='text' name="name" bindinput="getheight"></input>
-    	<image class="icon" src="/img/array.png"></image>
+    	<image class="icon" src="/img/write.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">体重</view>
 		<input class="input text-grey" placeholder="{{userinfo.weight}}" type='text' name="name" bindinput="getweight"></input>
-    	<image class="icon" src="/img/array.png"></image>
+    	<image class="icon" src="/img/write.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">活动角色</view>
 		<input class="input text-grey" placeholder="{{userinfo.actrole}}" type='text' name="name" bindinput="getactrole"></input>
-    	<image class="icon" src="/img/array.png"></image>
+    	<image class="icon" src="/img/write.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">特长</view>
 		<input class="input text-grey" placeholder="{{userinfo.speciality}}" type='text' name="name" bindinput="getspeciality"></input>
-    	<image class="icon" src="/img/array.png"></image>
+    	<image class="icon" src="/img/write.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">个性签名</view>
 		<input class="input text-grey" placeholder="{{userinfo.slogan}}" type='text' name="name" bindinput="getslogan"></input>
-    	<image class="icon" src="/img/array.png"></image>
+    	<image class="icon" src="/img/write.png"></image>
 	</view>
   <view class="cu-form-group">
 		<view class="title">工作单位</view>
 		<input class="input text-grey" placeholder="{{userinfo.workunit}}" type='text' name="name" bindinput="getworkunit"></input>
-    	<image class="icon" src="/img/array.png"></image>
+    	<image class="icon" src="/img/write.png"></image>
 	</view>
 
 <view class="text-center margin-top3">
