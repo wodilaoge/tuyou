@@ -10,13 +10,13 @@
   </cu-custom>
 </view>
 <scroll-view scroll-x class="bg-blue nav text-center">
-  <view class="cu-item {{0==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="0"> 校园
+  <!--<view class="cu-item {{0==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="0"> 校园
     <view class="tab_item_img">
       <block wx:if="{{TabCur==0}}">
         <image class="tab_item_img" mode="aspectFit" src="/img/img_selection.png"></image>
       </block>
     </view>
-  </view>
+  </view>-->
   <view class="cu-item {{1==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="1"> 运动
     <view class="tab_item_img">
       <block wx:if="{{TabCur==1}}">
@@ -24,7 +24,7 @@
       </block>
     </view>
   </view>
-  <!--<view class="cu-item {{2==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="2"> 文娱
+  <view class="cu-item {{2==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="2"> 文娱
     <view class="tab_item_img">
       <block wx:if="{{TabCur==2}}">
         <image class="tab_item_img" mode="aspectFit" src="/img/img_selection.png"></image>
@@ -37,7 +37,7 @@
         <image class="tab_item_img" mode="aspectFit" src="/img/img_selection.png"></image>
       </block>
     </view>
-  </view>-->
+  </view>
   <view class="cu-item {{4==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="4"> 视频
     <view class="tab_item_img">
       <block wx:if="{{TabCur==4}}">

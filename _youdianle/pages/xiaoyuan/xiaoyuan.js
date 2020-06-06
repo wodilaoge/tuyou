@@ -4,6 +4,8 @@ Page({
   data: {
     isReflesh: true,
     isRefleshyundong: true,
+    isRefleshwenyu: true,
+    isRefleshaihao: true,
     isRefleshshipin: true,
     bt: '校园活动',
     btdata: [{
@@ -1038,6 +1040,78 @@ Page({
         console.log('刷新运动中', res)
         let t = 'yundongList'
         var tmp = self.data.yundongList
+        tmp.border = res.data.border
+        for (let s of res.data.list)
+          tmp.list.push(s)
+        self.setData({
+          [t]: tmp,
+        })
+        wx.hideLoading()
+      }, (err) => {
+        console.log(err.errMsg)
+      });
+    }
+    //文娱刷新
+    else if (self.data.TabCur == 2 && self.data.isRefleshwenyu) {
+      wx.showLoading({
+        title: '加载中...',
+        mask: true //显示触摸蒙层  防止事件穿透触发
+      });
+      var url = app.globalData.URL + '/act/listActivity';
+      let data = {
+        sid: self.data.wenyuid,
+        acid1: self.data.wenyuCur,
+        univ: self.data.univ,
+        city: self.data.city,
+        province: self.data.province,
+        border: self.data.wenyuList.border
+      };
+      app.wxRequest('POST', url, data, (res) => {
+        console.log(res.data)
+        if (res.data.border == null) {
+          self.setData({
+            isRefleshwenyu: false
+          })
+        }
+        console.log('刷新文娱中', res)
+        let t = 'wenyuList'
+        var tmp = self.data.wenyuList
+        tmp.border = res.data.border
+        for (let s of res.data.list)
+          tmp.list.push(s)
+        self.setData({
+          [t]: tmp,
+        })
+        wx.hideLoading()
+      }, (err) => {
+        console.log(err.errMsg)
+      });
+    }
+    //爱好刷新
+    else if (self.data.TabCur == 3 && self.data.isRefleshaihao) {
+      wx.showLoading({
+        title: '加载中...',
+        mask: true //显示触摸蒙层  防止事件穿透触发
+      });
+      var url = app.globalData.URL + '/act/listActivity';
+      let data = {
+        sid: self.data.aihaoid,
+        acid1: self.data.aihaoCur,
+        univ: self.data.univ,
+        city: self.data.city,
+        province: self.data.province,
+        border: self.data.aihaoList.border
+      };
+      app.wxRequest('POST', url, data, (res) => {
+        console.log(res.data)
+        if (res.data.border == null) {
+          self.setData({
+            isRefleshaihao: false
+          })
+        }
+        console.log('刷新爱好中', res)
+        let t = 'aihaoList'
+        var tmp = self.data.aihaoList
         tmp.border = res.data.border
         for (let s of res.data.list)
           tmp.list.push(s)
