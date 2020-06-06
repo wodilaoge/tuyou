@@ -16,6 +16,7 @@ Page({
     haoyoushu: 0,
     dianzanshu: 0,
     ifguanzhu: 0,
+    ifziji: 0,
     huodongshu: 0,
 
     count: 0,
@@ -250,6 +251,20 @@ Page({
       this.setData({
         duiyuanDeatil: res.data,
       })
+      // if(this.data.duiyuanDeatil.sex==0){
+      //   this.data.duiyuanDeatil.sext='男'
+      // }else if(this.data.duiyuanDeatil.sex==1){
+      //   this.data.duiyuanDeatil.sext='女'
+      // }else{
+      //   this.data.duiyuanDeatil.sext='暂无'
+      // }
+
+      if(this.data.duiyuanDeatil.id==this.data.user.id){
+        this.setData({
+          ifziji:1,
+        })
+      }
+      console.log(this.data.duiyuanDeatil)
     }, (err) => {
       console.log(err.errMsg)
     });

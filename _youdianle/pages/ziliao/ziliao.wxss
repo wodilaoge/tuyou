@@ -7,7 +7,8 @@
 
 .ziliao-name {
   padding-left: 323rpx;
-  width: 110rpx;
+  /* width: 110rpx; */
+  display: flex;
   font-size: 36rpx;
   font-family: PingFang SC;
   font-weight: bold;
