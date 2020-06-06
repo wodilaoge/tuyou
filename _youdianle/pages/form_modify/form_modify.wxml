@@ -90,7 +90,7 @@
 <view class="text-center margin-top3">
 	<checkbox checked class="blue checkicon" ></checkbox>
 	<text class="text-grey">我已阅读并同意</text>
-	<text class="text-blue">《友点乐活动声明》</text>
+	<text class="text-blue">《友点乐用户协议》</text>
 </view>
 </form>
 <view class="flex margin-top">

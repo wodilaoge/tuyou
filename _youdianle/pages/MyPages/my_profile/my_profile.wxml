@@ -7,59 +7,79 @@
 	<view slot="content">个人资料</view>
 </cu-custom>
 <form>
-    <view class="cu-form-group margin-top">
+	<view class="cu-form-group margin-top">
 		<view class="title">头像</view>
-    <view class="cu-avatar xl round margin-r" bindtap="ChooseImage"  style="background-image:url({{userinfo.head}})"></view>
-    
-    	<image class="icon" src="/img/array.png"></image>
+		<view class="cu-avatar xl round margin-r" bindtap="ChooseImage" style="background-image:url({{userinfo.head}})">
+		</view>
+
+		<image class="icon" src="/img/array.png"></image>
 	</view>
-  	<view class="cu-form-group">
+	<view class="cu-form-group">
 		<view class="title">昵称</view>
-		<input class="input text-grey" placeholder="{{userinfo.wcalias}}" type='text' name="name" bindinput="getnick"></input>
-    	<image class="icon" src="/img/write.png"></image>
+		<input class="input text-grey" placeholder="{{userinfo.wcalias}}" type='text' name="name"
+			bindinput="getnick"></input>
+		<image class="icon" src="/img/write.png"></image>
 	</view>
-   <view class="cu-form-group">
+	<view class="cu-form-group">
 		<view class="title">性别</view>
 		<picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
 			<view class="picker text-grey">
 				{{userinfo.sex==1?'女':'男'}}
 			</view>
 		</picker>
-  </view>
-  <view class="cu-form-group">
+	</view>
+	<view class="cu-form-group">
 		<view class="title">姓名</view>
 		<input class="input text-grey" placeholder="{{userinfo.name}}" type='text' name="name" bindinput="getname"></input>
-    	<image class="icon" src="/img/write.png"></image>
+		<image class="icon" src="/img/write.png"></image>
 	</view>
-  <view class="cu-form-group">
+	<view class="cu-form-group">
 		<view class="title">手机号码</view>
-		<input class="input text-grey" placeholder="{{userinfo.mobile}}" type='text' name="name" bindinput="getphone"></input>
-    	<image class="icon" src="/img/write.png"></image>
+		<input class="input text-grey" placeholder="{{userinfo.mobile}}" type='text' name="name"
+			bindinput="getphone"></input>
+		<image class="icon" src="/img/write.png"></image>
 	</view>
-  <view class="cu-form-group">
+	<view class="cu-form-group">
 		<view class="title">证件类型</view>
 		<input class="input text-grey" placeholder="身份证" type='text' name="name" bindinput="name"></input>
-    	<image class="icon" src="/img/write.png"></image>
+		<image class="icon" src="/img/write.png"></image>
 	</view>
-    <view class="cu-form-group">
+	<view class="cu-form-group">
 		<view class="title">证件号码</view>
 		<input class="input text-grey" placeholder="{{userinfo.idno}}" type='text' name="name" bindinput="getidno"></input>
-    	<image class="icon" src="/img/write.png"></image>
+		<image class="icon" src="/img/write.png"></image>
 	</view>
-  	<view class="cu-form-group">
+	<view class="cu-form-group">
 		<view class="title">出生日期</view>
-		<picker mode="date" value="{{userinfo.birthday}}" start="2015-09-01" end="2020-09-01" bindchange="DateChange">
+		<picker mode="date" value="{{userinfo.birthday}}" start="1900-09-01" end="2020-09-01" bindchange="DateChange">
 			<view class="picker">
-				{{date}}
+				{{userinfo.birthday}}
 			</view>
 		</picker>
 	</view>
-  <view class="cu-form-group">
-		<view class="title">国籍</view>
-		<input class="input text-grey" placeholder="{{userinfo.nationality}}" type='text' name="name" bindinput="getnationality"></input>
-    	<image class="icon" src="/img/write.png"></image>
+	<view class="cu-form-group">
+		<view class="title">入学年份</view>
+		<picker mode="date" value="{{userinfo.enrolyear}}" start="2000-09-01" end="2020-09-01" bindchange="DateChange2">
+			<view class="picker">
+				{{userinfo.enrolyear}}
+			</view>
+		</picker>
 	</view>
-     <!-- <view class="cu-form-group margin-top">
+	<view class="cu-form-group">
+		<view class="title">毕业年份</view>
+		<picker mode="date" value="{{userinfo.graduateyear}}" start="2000-09-01" end="2050-09-01" bindchange="DateChange3">
+			<view class="picker">
+				{{userinfo.graduateyear}}
+			</view>
+		</picker>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">国籍</view>
+		<input class="input text-grey" placeholder="{{userinfo.nationality}}" type='text' name="name"
+			bindinput="getnationality"></input>
+		<image class="icon" src="/img/write.png"></image>
+	</view>
+	<!-- <view class="cu-form-group margin-top">
     <view class="title">省</view>
     <picker bindchange="PickerPro" value="{{indexp}}" range="{{provinceList}}"  range-key="name">
       <view class="picker text-grey">
@@ -82,59 +102,71 @@
       </view>
     </picker>
   </view> -->
-  <view class="cu-form-group">
+	<view class="cu-form-group">
 		<view class="title">学校简称</view>
-		<input class="input text-grey" placeholder="{{userinfo.univname}}" type='text' name="name" bindinput="getunivshort"></input>
-    	<image class="icon" src="/img/write.png"></image>
+		<input class="input text-grey" placeholder="{{userinfo.univname}}" type='text' name="name"
+			bindinput="getunivshort"></input>
+		<image class="icon" src="/img/write.png"></image>
 	</view>
-  <view class="cu-form-group">
+	<view class="cu-form-group">
 		<view class="title">专业</view>
-		<input class="input text-grey" placeholder="{{userinfo.major}}" type='text' name="name" bindinput="getmajor"></input>
-    	<image class="icon" src="/img/write.png"></image>
+		<input class="input text-grey" placeholder="{{userinfo.major}}" type='text' name="name"
+			bindinput="getmajor"></input>
+		<image class="icon" src="/img/write.png"></image>
 	</view>
-  <view class="cu-form-group">
+	<view class="cu-form-group">
 		<view class="title">学生证号</view>
-		<input class="input text-grey" placeholder="{{userinfo.studentno}}" type='text' name="name" bindinput="getstudentno"></input>
-    	<image class="icon" src="/img/write.png"></image>
+		<input class="input text-grey" placeholder="{{userinfo.studentno}}" type='text' name="name"
+			bindinput="getstudentno"></input>
+		<image class="icon" src="/img/write.png"></image>
 	</view>
-  <view class="cu-form-group">
-		<view class="title">身高</view>
-		<input class="input text-grey" placeholder="{{userinfo.height}}" type='text' name="name" bindinput="getheight"></input>
-    	<image class="icon" src="/img/write.png"></image>
+	<view class="cu-form-group">
+		<view class="title">身高（cm）</view>
+		<input class="input text-grey" placeholder="{{userinfo.height}}" type='text' name="name"
+			bindinput="getheight"></input>
+		<image class="icon" src="/img/write.png"></image>
 	</view>
-  <view class="cu-form-group">
-		<view class="title">体重</view>
-		<input class="input text-grey" placeholder="{{userinfo.weight}}" type='text' name="name" bindinput="getweight"></input>
-    	<image class="icon" src="/img/write.png"></image>
+	<view class="cu-form-group">
+		<view class="title">体重（kg）</view>
+		<input class="input text-grey" placeholder="{{userinfo.weight}}" type='text' name="name"
+			bindinput="getweight"></input>
+		<image class="icon" src="/img/write.png"></image>
 	</view>
-  <view class="cu-form-group">
+	<view class="cu-form-group">
 		<view class="title">活动角色</view>
-		<input class="input text-grey" placeholder="{{userinfo.actrole}}" type='text' name="name" bindinput="getactrole"></input>
-    	<image class="icon" src="/img/write.png"></image>
+		<picker bindchange="PickerChange3" value="{{userinfo.defaultTeam}}" range="{{picker3}}">
+			<view class="picker text-grey">
+				{{picker3[index3]}}
+			</view>
+		</picker>
 	</view>
-  <view class="cu-form-group">
+	<view class="cu-form-group">
 		<view class="title">特长</view>
-		<input class="input text-grey" placeholder="{{userinfo.speciality}}" type='text' name="name" bindinput="getspeciality"></input>
-    	<image class="icon" src="/img/write.png"></image>
+		<input class="input text-grey" placeholder="{{userinfo.speciality}}" type='text' name="name"
+			bindinput="getspeciality"></input>
+		<image class="icon" src="/img/write.png"></image>
 	</view>
-  <view class="cu-form-group">
+	<view class="cu-form-group">
 		<view class="title">个性签名</view>
-		<input class="input text-grey" placeholder="{{userinfo.slogan}}" type='text' name="name" bindinput="getslogan"></input>
-    	<image class="icon" src="/img/write.png"></image>
+		<input class="input text-grey" placeholder="{{userinfo.slogan}}" type='text' name="name"
+			bindinput="getslogan"></input>
+		<image class="icon" src="/img/write.png"></image>
 	</view>
-  <view class="cu-form-group">
+	<view class="cu-form-group">
 		<view class="title">工作单位</view>
-		<input class="input text-grey" placeholder="{{userinfo.workunit}}" type='text' name="name" bindinput="getworkunit"></input>
-    	<image class="icon" src="/img/write.png"></image>
+		<input class="input text-grey" placeholder="{{userinfo.workunit}}" type='text' name="name"
+			bindinput="getworkunit"></input>
+		<image class="icon" src="/img/write.png"></image>
 	</view>
 
-<view class="text-center margin-top3">
-	<checkbox checked class="blue checkicon" ></checkbox>
+	<view class="text-center margin-top3">
+		<!-- <checkbox checked class="blue checkicon" ></checkbox>
 	<text class="text-grey">我已阅读并同意</text>
-	<text class="text-blue">《友点乐活动声明》</text>
-  <view class="flex margin-top2">
-    <!-- <button class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="cancel" >取消修改</button> -->
-    <button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="commit"  data-target="Modal">保存修改</button>
-  </view>
-</view>
+	<text class="text-blue">《友点乐用户协议》</text> -->
+		<view class="flex margin-top2">
+			<!-- <button class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="cancel" >取消修改</button> -->
+			<button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="commit"
+				data-target="Modal">保存修改</button>
+		</view>
+	</view>
 </form>

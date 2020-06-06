@@ -8,9 +8,10 @@ Page({
     userinfo: [],
     index: null,
     name: '',
+    index3:0,
     picker: ['男', '女'],
     picker2: ['匿名参赛', '实名参赛'],
-    picker3: ['观看无需报名', '匿名报名观看', '实名报名观看'],
+    picker3: ['默认团队', '默认角色'],
     picker4: ['篮球', '足球', '排球', '羽毛球', '乒乓球', '其他'],
     multiIndex: [0, 0, 0],
     time: '12:01',
@@ -60,6 +61,21 @@ Page({
       [t]: e.detail.value
     })
   },
+
+  PickerChange2(e) {
+    console.log(e);
+    let t = 'userinfo.defaultTeam'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
+  PickerChange3(e) {
+    console.log(e);
+    let t = 'userinfo.defaultTeam'
+    this.setData({
+      index3: e.detail.value
+    })
+  },
   MultiChange(e) {
     this.setData({
       multiIndex: e.detail.value
@@ -78,6 +94,18 @@ Page({
   },
   DateChange(e) {
     let t = 'userinfo.birthday'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
+  DateChange2(e) {
+    let t = 'userinfo.enrolyear'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
+  DateChange3(e) {
+    let t = 'userinfo.graduateyear'
     this.setData({
       [t]: e.detail.value
     })
@@ -272,6 +300,13 @@ Page({
     // wx.navigateTo({
     //   url: "../../pages/form_activity/form_activity"
     // })
+    if(this.data.userinfo.index3)
+    {
+      let ttt='默认角色'
+    }
+    else{
+      let ttt='默认团队'
+    }
     var user = wx.getStorageSync('userInfo')
     let url = app.globalData.URL + '/appuser/updateMyInfo';
     var tmp = this.data.userinfo
@@ -297,7 +332,8 @@ Page({
       graduateyear: tmp.graduateyear,
       height: tmp.height,
       weight: tmp.weight,
-      actrole: tmp.actrole,
+      defaultTeam:ttt,
+      defaultRole:ttt,
       speciality: tmp.speciality,
       slogan: tmp.slogan,
       workunit: tmp.workunit

@@ -57,7 +57,7 @@
   <view class="cu-form-group-yuedu margin-top">
     <checkbox class="yuedu-logo blue" checked></checkbox>
     <view class="yuedu1">我已阅读并同意</view>
-    <view class="yuedu2">《友点乐活动声明》</view>
+    <view class="yuedu2">《友点乐用户协议》</view>
   </view>
   <view class="button-pos1">
     <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx">开始报名</button>
