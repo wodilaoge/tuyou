@@ -50,10 +50,10 @@ Page({
       })
     })
     let data = {
-      'type':10,
-      'acid1':'076002001'
+      'type':20,
+      'acid1':'076003001'
     };
-    util.gets(url2, data).then(function (res) {
+    util.post(url2, data).then(function (res) {
       console.log('res',res.data)
       that.setData({
         MyActivity: res.data.data

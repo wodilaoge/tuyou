@@ -294,9 +294,11 @@ Page({
     let data = {
       'cid': code
     };
+    let tt='information.acid2'
     util.gets(url, data).then(function (res) {
       that.setData({
-        pickertiny: res.data.data
+        pickertiny: res.data.data,
+        [tt]:res.data.data[0].code
       })
       console.log(res.data)
       if (!res.data.data.length) {
