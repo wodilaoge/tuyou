@@ -4,7 +4,7 @@ var util = require("../../utils/util.js");
 Page({
   data: {
     isagree: true,
-    hiddenmodalput:true,
+    hiddenmodalput: true,
     information: {
       actname: '',
       sid: '',
@@ -207,27 +207,27 @@ Page({
   },
 
   commit: function (e) {
-    var that=this.data
+    var that = this.data
 
     let t = 'information.timenow'
     let t2 = 'information.signupdeadline'
-    let t3='information.logo'
-    let t4='information.proname'
-    let t5='information.cityname'
-    let t6='information.schoolname'
-    let t7='information.big'
-    let t8='information.middle'
-    let t9='information.small'
+    let t3 = 'information.logo'
+    let t4 = 'information.proname'
+    let t5 = 'information.cityname'
+    let t6 = 'information.schoolname'
+    let t7 = 'information.big'
+    let t8 = 'information.middle'
+    let t9 = 'information.small'
     this.setData({
       [t]: that.timenow + ' ' + that.time1,
       [t2]: that.timenow2 + ' ' + that.time2,
-      [t3]:that.url3[0],
-      [t4]:that.pro.name,
-      [t5]:that.city.name,
-      [t6]:that.schoolinfo.name,
-      [t7]:that.pickerbig[that.indexbig].name,
-      [t8]:that.picker2[that.index].name,
-      [t9]:that.pickertiny[that.indextiny].name,
+      [t3]: that.url3[0],
+      [t4]: that.pro.name,
+      [t5]: that.city.name,
+      [t6]: that.schoolinfo.name,
+      [t7]: that.pickerbig[that.indexbig].name,
+      [t8]: that.picker2[that.index].name,
+      [t9]: that.pickertiny[that.indextiny].name,
     })
 
     wx.setStorage({ //将活动信息存入缓存
@@ -294,9 +294,11 @@ Page({
     let data = {
       'cid': code
     };
+    let tt = 'information.acid2'
     util.gets(url, data).then(function (res) {
       that.setData({
-        pickertiny: res.data.data
+        pickertiny: res.data.data,
+        [tt]: res.data.data[0].code
       })
       console.log(res.data)
       if (!res.data.data.length) {
@@ -367,7 +369,7 @@ Page({
             that.setData({
               auth: res.data
             })
-            if(res.data.code==43){
+            if (res.data.code == 43) {
               wx.showToast({
                 title: '您已被禁言',
                 duration: 2000,
@@ -379,8 +381,7 @@ Page({
                   }, 2000);
                 }
               })
-            }
-            else if (res.data.code) {
+            } else if (res.data.code) {
               wx.showToast({
                 title: '请先绑定手机！',
                 duration: 2000,
@@ -463,107 +464,113 @@ Page({
     })
   },
 
-  commit2(e){
+  commit2(e) {
     console.log('confirm')
-    let t = 'information.timenow'
-    let t2 = 'information.signupdeadline'
-    this.setData({
-      [t]: this.data.timenow + ' ' + this.data.time1,
-      [t2]: this.data.timenow2 + ' ' + this.data.time2
-    })
-    var user = wx.getStorageSync('userInfo')
-    user = 'Bearer ' + user.token;
-    var urls = app.globalData.URL + '/act/pubActivity';
-    var tmp = this.data.information
-    wx.request({
-      url: urls,
-      method: "POST",
-      data: {
-        id: '',
-        actname: tmp.actname,
-        sid: tmp.sid,
-        acid1: tmp.acid1,
-        acid2: tmp.acid2,
-        logo: this.data.url3[0],
-        rotations: null,
-        groups: null,
-        fromtime: tmp.timenow,
-        totime: null,
-        signupdeadline: tmp.signupdeadline,
-        signupmax: tmp.entrylimit,
-        audiencemax: null,
-        slogan: tmp.slogan,
-        entrylimit: null,
-        audiencelimit: null,
-        rule: null,
-        rulepic: null,
-        award: null,
-        awardpic: null,
-        sponsor: null,
-        sponsorpic: null,
-        signupway: (parseInt(tmp.way) + 1) * 10,
-        chatid: null,
-        univid: tmp.univid,
-        province: tmp.province,
-        city: tmp.city,
-        address: tmp.venue,
-        venue: tmp.venue,
-        creater: user.id,
-        createralias: user.nickname,
-        createrhead: user.head,
-        status: 10,
-      },
-      header: {
-        "Content-Type": "application/json",
-        'Authorization': user
-      },
-      success: function (res) {
-        console.log(res.data);
-        if (res.data.code == 0) {
-          wx.showToast({
-            title: '提交成功',
-            duration: 2000,
-            success: function () {
-              setTimeout(function () {
-                wx.reLaunch({
-                  url: '/pages/index/index',
-                })
-              }, 2000);
-            }
-          })
-        } else {
-          wx.showToast({
-            title: res.data.msg,
-            image: '/img/fail.png',
-            icon: 'success',
-            duration: 2000
-          })
-        }
-      },
-    })
-    // this.setData({
-    //   modalName: e.currentTarget.dataset.target
-    // })
+    if (!this.data.title) {
+      wx.showToast({
+        title: '请填写标题',
+      })
+    } else {
+      let t = 'information.timenow'
+      let t2 = 'information.signupdeadline'
+      this.setData({
+        [t]: this.data.timenow + ' ' + this.data.time1,
+        [t2]: this.data.timenow2 + ' ' + this.data.time2
+      })
+      var user = wx.getStorageSync('userInfo')
+      user = 'Bearer ' + user.token;
+      var urls = app.globalData.URL + '/act/pubActivity';
+      var tmp = this.data.information
+      wx.request({
+        url: urls,
+        method: "POST",
+        data: {
+          id: '',
+          actname: tmp.actname,
+          sid: tmp.sid,
+          acid1: tmp.acid1,
+          acid2: tmp.acid2,
+          logo: this.data.url3[0],
+          rotations: null,
+          groups: null,
+          fromtime: tmp.timenow,
+          totime: null,
+          signupdeadline: tmp.signupdeadline,
+          signupmax: tmp.entrylimit,
+          audiencemax: null,
+          slogan: tmp.slogan,
+          entrylimit: null,
+          audiencelimit: null,
+          rule: null,
+          rulepic: null,
+          award: null,
+          awardpic: null,
+          sponsor: null,
+          sponsorpic: null,
+          signupway: (parseInt(tmp.way) + 1) * 10,
+          chatid: null,
+          univid: tmp.univid,
+          province: tmp.province,
+          city: tmp.city,
+          address: tmp.venue,
+          venue: tmp.venue,
+          creater: user.id,
+          createralias: user.nickname,
+          createrhead: user.head,
+          status: 10,
+        },
+        header: {
+          "Content-Type": "application/json",
+          'Authorization': user
+        },
+        success: function (res) {
+          console.log(res.data);
+          if (res.data.code == 0) {
+            wx.showToast({
+              title: '提交成功',
+              duration: 2000,
+              success: function () {
+                setTimeout(function () {
+                  wx.reLaunch({
+                    url: '/pages/index/index',
+                  })
+                }, 2000);
+              }
+            })
+          } else {
+            wx.showToast({
+              title: res.data.msg,
+              image: '/img/fail.png',
+              icon: 'success',
+              duration: 2000
+            })
+          }
+        },
+      })
+      // this.setData({
+      //   modalName: e.currentTarget.dataset.target
+      // })
+    }
   },
   cancel2: function () {
     this.setData({
       hiddenmodalput: true
     });
   },
-  toagreepage(){
+  toagreepage() {
     wx.navigateTo({
       url: '/pages/webview/webview',
     })
   },
-    finish: function (e) {
-    var that=this
+  finish: function (e) {
+    var that = this
     that.setData({
       hiddenmodalput: !this.data.hiddenmodalput
     })
 
   },
 
-  
+
   ChooseImage(e) {
     var t = e.currentTarget.dataset.id
     var that = this
@@ -572,7 +579,7 @@ Page({
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], //从相册选择
       success: (res) => {
-        
+
         if (t == 3) {
           if (this.data.imgList3.length != 0) {
             this.setData({
@@ -588,7 +595,7 @@ Page({
             loadModal: true
           })
         }
-   
+
       }
     });
 

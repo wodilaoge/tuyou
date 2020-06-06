@@ -198,7 +198,7 @@ Page({
           let url1 = app.globalData.URL + '/act/listCampusActivity';
           data = {
             univ: self.data.univ,
-            city: self.data.univ,
+            city: self.data.city,
             province: self.data.province
           };
           app.wxRequest('POST', url1, data, (res) => {
@@ -211,7 +211,7 @@ Page({
           data = {
             sid: res.data.data[i].code,
             univ: self.data.univ,
-            city: self.data.univ,
+            city: self.data.city,
             province: self.data.province
           };
           console.log(data)
@@ -231,7 +231,7 @@ Page({
           data = {
             sid: res.data.data[i].code,
             univ: self.data.univ,
-            city: self.data.univ,
+            city: self.data.city,
             province: self.data.province
           };
           console.log(data)
@@ -986,7 +986,7 @@ Page({
         title: '加载中...',
         mask: true //显示触摸蒙层  防止事件穿透触发
       });
-      var url = app.globalData.URL + '/act/listActivity';
+      var url = app.globalData.URL + '/act/listCampusActivity';
       let data = {
         univ: self.data.univ,
         city: self.data.city,
