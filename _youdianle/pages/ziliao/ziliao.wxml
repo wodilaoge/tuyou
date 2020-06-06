@@ -5,10 +5,10 @@
   </cu-custom>
   <view class="flex">
     <text class="ziliao-name">{{duiyuanDeatil.name}}</text>
-    <block wx:if="{{ifguanzhu==0}}">
+    <block wx:if="{{ifguanzhu==0&&ifziji==0}}">
       <button class="cu-btn round lines-white " style="width:100rpx;height:42rpx;margin-left:197rpx;" bindtap="changeGuanzhu">关注</button>
     </block>
-    <block wx:if="{{ifguanzhu==1}}">
+    <block wx:if="{{ifguanzhu==1&&ifziji==0}}">
       <button class="cu-btn round lines-white " style="width:100rpx;height:42rpx;margin-left:197rpx;" bindtap="changeGuanzhu">已关注</button>
     </block>
   </view>
@@ -21,7 +21,7 @@
         <view class="weizhi ">{{duiyuanDeatil.defaultRole===null?'暂无':duiyuanDeatil.defaultRole}}</view>
       </view>
       <view class="flex">
-        <text class="ziliao-ziliao">{{duiyuanDeatil.birthday===null?'':duiyuanDeatil.birthday}}岁 | {{duiyuanDeatil.height===null?'':duiyuanDeatil.height}}米 | {{duiyuanDeatil.weight===null?'':duiyuanDeatil.weight}}公斤</text>
+        <text class="ziliao-ziliao">{{duiyuanDeatil.birthday===null?'':duiyuanDeatil.birthday}}岁 | {{duiyuanDeatil.height===null?'':duiyuanDeatil.height}}cm | {{duiyuanDeatil.weight===null?'':duiyuanDeatil.weight}}公斤</text>
       </view>
     </view>
   </view>
@@ -53,7 +53,7 @@
   <view style="margin-top:20rpx;background-color:white;">
     <view class="ziliao-content justify-between" style="height:73rpx;">
       <view class="ziliao-content1">性别</view>
-      <view class="ziliao-content2">{{duiyuanDeatil.sex===null?'暂无':duiyuanDeatil.sex}}</view>
+      <view class="ziliao-content2">{{duiyuanDeatil.sex==0?'男':(duiyuanDeatil.sex==1?'女':'暂无')}}</view>
     </view>
   </view>
   <view style="margin-top:2rpx;background-color:white;">
