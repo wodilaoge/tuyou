@@ -1,0 +1,55 @@
+/*start.wxss*/
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+.checkicon{
+  transform: scale(0.5,0.5);
+}
+.logo {
+  position: relative;
+  width: 250rpx;
+  height: 250rpx;
+  margin-top: 150rpx;
+}
+.bottom{
+  position: relative;
+  margin-top: 100rpx;
+  text-align: center;
+  justify-content: center;
+}
+.userName {
+  position: relative;
+  font-size: 45rpx;
+  font-family: MicroSoft Yahei;
+  font-weight: bolder;
+  margin-top: 30rpx;
+}
+.userName2 {
+  font-size: 33rpx;
+  font-family: MicroSoft Yahei;
+  font-weight: bolder;
+  margin-top: 80rpx;
+}
+.lg{
+  color: white;
+  background-color: #5454FF;
+}
+
+.start-container {
+  margin-top: 150rpx;
+  /* border: 2px solid darkorchid; */
+  width: 500rpx;
+  height: 88rpx;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #5454FF;
+  color: white;
+}
+
+page {
+  height: 100%;
+  background-color: white;
+}

@@ -22,7 +22,7 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -225,6 +225,12 @@
 					"name": "pages/form_picture/form_picture",
 					"pathName": "pages/form_picture/form_picture",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "关于",
+					"pathName": "pages/about/about",
 					"scene": null
 				}
 			]

@@ -155,7 +155,6 @@
     <!-- <image class="icon" src="../../img/write.png"></image> -->
   </view>
 
-  
   <view class="cu-bar bg-white margin-top">
     <view class="action">
       LOGO
@@ -179,13 +178,15 @@
   </view>
   <view class="text-center margin-top3">
     <checkbox-group bindchange="checked">
-      <checkbox checked="{{ischecked2}}" class="blue checkicon"></checkbox>
+      <checkbox checked="{{isagree}}" bindtap="isagree" class="blue checkicon"></checkbox>
+
+      <!-- <checkbox checked="{{ischecked2}}" bindtap="isagree" class="blue checkicon"></checkbox> -->
       <text class="text-grey">我已阅读并同意</text>
-      <text class="text-blue" bindtap="toagreepage">《友点乐活动声明》</text>
+      <text class="text-blue" bindtap="toagreepage">《友点乐用户协议》</text>
     </checkbox-group>
     <view class="flex margin-top2">
-      <button class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="commit">补充信息</button>
-      <button class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="finish"
+      <button disabled="{{!isagree}}" class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="commit">补充信息</button>
+      <button disabled="{{!isagree}}" class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="finish"
         data-target="Modal">立即提交</button>
     </view>
   </view>

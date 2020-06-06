@@ -103,7 +103,7 @@ page {
   align-items: center;
   min-height: 80rpx;
   /* float: right; */
-  padding-left: 700rpx;
+  padding-left: 680rpx;
   background-color: white;
 }
 
