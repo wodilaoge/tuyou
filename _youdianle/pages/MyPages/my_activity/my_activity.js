@@ -177,6 +177,7 @@ Page({
     })
     //我创建的
     url = app.globalData.URL + '/act/listMyActivity';
+    let num
     let data = {
       'type': 10,
       'acid1': '076003001'
@@ -185,6 +186,14 @@ Page({
       console.log('create', res.data)
       that.setData({
         Mycreate: res.data.data
+      })
+      for(i of res.data.data.list)
+      {
+        if(i.status==20)
+        num++
+      }
+      that.setData({
+        createnum:num
       })
     })
     //我参加的

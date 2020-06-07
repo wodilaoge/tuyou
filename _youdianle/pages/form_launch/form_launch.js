@@ -208,7 +208,6 @@ Page({
 
   commit: function (e) {
     var that = this.data
-
     let t = 'information.timenow'
     let t2 = 'information.signupdeadline'
     let t3 = 'information.logo'
@@ -218,6 +217,9 @@ Page({
     let t7 = 'information.big'
     let t8 = 'information.middle'
     let t9 = 'information.small'
+    // let fuck= that.pickertiny.length
+    console.log(that.pickertiny.length)
+    
     this.setData({
       [t]: that.timenow + ' ' + that.time1,
       [t2]: that.timenow2 + ' ' + that.time2,
@@ -227,7 +229,7 @@ Page({
       [t6]: that.schoolinfo.name,
       [t7]: that.pickerbig[that.indexbig].name,
       [t8]: that.picker2[that.index].name,
-      [t9]: that.pickertiny[that.indextiny].name,
+      [t9]: that.pickertiny.length?that.pickertiny[that.indextiny].name:null,
     })
 
     wx.setStorage({ //将活动信息存入缓存
