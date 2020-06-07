@@ -3,6 +3,7 @@ var upload = require("../../utils/upload.js");
 var util = require("../../utils/util.js");
 Page({
   data: {
+    isagree:true,
     hiddenmodalput:true,
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
@@ -23,6 +24,12 @@ Page({
     modalName: null,
     textareaAValue: '',
     textareaBValue: ''
+  },
+  isagree(e) {
+    console.log('fuck')
+    this.setData({
+      isagree: !this.data.isagree
+    })
   },
   toagreepage() {
     wx.navigateTo({

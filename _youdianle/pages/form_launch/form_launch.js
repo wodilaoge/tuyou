@@ -184,7 +184,7 @@ Page({
     })
   },
   getvenue(e) {
-    let t = 'information.venue'
+    let t = 'information.address'
     this.setData({
       [t]: e.detail.value
     })
@@ -512,8 +512,7 @@ Page({
           univid: tmp.univid,
           province: tmp.province,
           city: tmp.city,
-          address: tmp.venue,
-          venue: tmp.venue,
+          address: tmp.address,
           creater: user.id,
           createralias: user.nickname,
           createrhead: user.head,

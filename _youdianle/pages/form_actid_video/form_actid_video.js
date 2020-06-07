@@ -4,11 +4,12 @@ var upload = require("../../utils/upload.js");
 var util = require("../../utils/util.js");
 Page({
   data: {
-    hiddenmodalput:true,
+    isagree:true,
+    hiddenmodalput: true,
     group: 0,
     videonum: 0,
     index: null,
-    actid:'',
+    actid: '',
     picker4: ['篮球', '足球', '排球', '羽毛球', '乒乓球', '其他'],
     multiIndex: [0, 0, 0],
     fileName: '',
@@ -102,67 +103,79 @@ Page({
     })
   },
   commit: function (e) {
-    var user = wx.getStorageSync('userInfo')
-    let pro = wx.getStorageSync('province')
-    let city = wx.getStorageSync('city')
-    let school = wx.getStorageSync('school')
-    let url = app.globalData.URL + '/video/updateActVideo';
-    var data = this.data
-    var data = {
-      id: null,
-      actid: this.data.actid,
-      sid: null,
-      acid1: null,
-      acid2: null,
-      title: this.data.title,
-      author: user.id,
-      authorAlias: user.nickname,
-      authorHead: user.head,
-      fileId: this.data.video,
-      notes: this.data.notes,
-      univ: pro.code,
-      province: city.code,
-      city: school.code,
-      status: '10',
-      creater:user.id,
-      mender: ''
-    }
-    util.post_token(url, data).then(function (res) {
-      if (!res.data.code) {
-        wx.showToast({
-          title: '提交成功',
-          duration: 2000,
-          success: function () {
-            setTimeout(function () {
-              // wx.reLaunch({
-              //   url: '/pages/index/index',
-              // })
-              wx.navigateBack({
-                delta:1
-              })
-            }, 2000);
-          }
-        })
-      } else {
+    if (!this.data.title) {
+      wx.showToast({
+        title: '请填写标题',
+      })
+    } else {
+      var user = wx.getStorageSync('userInfo')
+      let pro = wx.getStorageSync('province')
+      let city = wx.getStorageSync('city')
+      let school = wx.getStorageSync('school')
+      let url = app.globalData.URL + '/video/updateActVideo';
+      var data = this.data
+      var data = {
+        id: null,
+        actid: this.data.actid,
+        sid: null,
+        acid1: null,
+        acid2: null,
+        title: this.data.title,
+        author: user.id,
+        authorAlias: user.nickname,
+        authorHead: user.head,
+        fileId: this.data.video,
+        notes: this.data.notes,
+        univ: pro.code,
+        province: city.code,
+        city: school.code,
+        status: '10',
+        creater: user.id,
+        mender: ''
+      }
+      util.post_token(url, data).then(function (res) {
+        if (!res.data.code) {
+          wx.showToast({
+            title: '提交成功',
+            duration: 2000,
+            success: function () {
+              setTimeout(function () {
+                // wx.reLaunch({
+                //   url: '/pages/index/index',
+                // })
+                wx.navigateBack({
+                  delta: 1
+                })
+              }, 2000);
+            }
+          })
+        } else {
+          console.log(res)
+          wx.showToast({
+            title: '提交失败！',
+            icon: 'success',
+            image: '/img/fail.png',
+            duration: 2000
+          })
+        }
+      }).catch(function (res) {
         console.log(res)
         wx.showToast({
           title: '提交失败！',
-          icon: 'success',
-          image: '/img/fail.png',
+          icon: 'fail',
+          image: '../../img/fail.png',
           duration: 2000
         })
-      }
-    }).catch(function (res) {
-      console.log(res)
-      wx.showToast({
-        title: '提交失败！',
-        icon: 'fail',
-        image: '../../img/fail.png',
-        duration: 2000
       })
-    })
+      this.setData({
+        modalName: e.currentTarget.dataset.target
+      })
+    }
+  },
+  isagree(e) {
+    console.log('fuck')
     this.setData({
-      modalName: e.currentTarget.dataset.target
+      isagree: !this.data.isagree
     })
   },
   firstcommit() {
@@ -200,7 +213,7 @@ Page({
     })
   },
   onLoad: function (options) {
-    var that=this
+    var that = this
     let url = app.globalData.URL + '/config/findVodParam'
     util.gets(url, {}).then(function (res) {
       console.log('authurl', res.data.data.authUrl)
