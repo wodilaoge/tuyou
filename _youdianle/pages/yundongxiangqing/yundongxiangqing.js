@@ -56,6 +56,7 @@ Page({
     duixiang: '',
     dxid: '',
     dxtitle: '',
+    dxindex:0,
 
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
@@ -151,6 +152,7 @@ Page({
       duixiang: e.currentTarget.dataset.duixiang,
       dxid: e.currentTarget.dataset.dxid,
       dxtitle: e.currentTarget.dataset.dxtitle,
+      dxindex:e.currentTarget.dataset.index,
     })
   },
   onPullDownRefresh() {
@@ -998,14 +1000,16 @@ Page({
         createrAlias: self.data.user.nickname,
         createrHead: self.data.user.head
       };
+      let inputtmp=self.data.Input;
       app.wxRequest('POST', url, data, (res) => {
-        // self.onLoad(self.data.options);
-        self.getShipin();
+        ///////////////////本地添加评论内容
+        self.data.shipin.list[self.data.dxindex].listComm.splice(0,0,{'createrHead':self.data.user.head,'createrAlias':self.data.user.nickname,'comment':inputtmp})
         wx.showToast({
           title: '评论成功！', // 标题
           icon: 'success', // 图标类型，默认success
           duration: 1500 // 提示窗停留时间，默认1500ms
         })
+
       }, (err) => {
         console.log(err.errMsg)
       });
