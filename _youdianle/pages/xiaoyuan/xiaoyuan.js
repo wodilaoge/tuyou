@@ -194,7 +194,6 @@ Page({
       self.setData({
         bkData: res.data.data
       })
-      console.log(res.data)
       for (var i in res.data.data) {
         var url = app.globalData.URL + '/act/listActivity';
         var url2 = app.globalData.URL + '/secrot/listSecrotation';
@@ -219,7 +218,6 @@ Page({
             city: self.data.city,
             province: self.data.province
           };
-          console.log(data)
           app.wxRequest('POST', url2, data, (res) => {
             self.setData({
               xiaoyuanSwiperList: res.data
@@ -239,7 +237,6 @@ Page({
             city: self.data.city,
             province: self.data.province
           };
-          console.log(data)
           app.wxRequest('POST', url2, data, (res) => {
             self.setData({
               yundongSwiperList: res.data
@@ -387,7 +384,6 @@ Page({
           }, (err) => {
             console.log(err.errMsg)
           });
-          console.log('////////////////////////////')
           var urldalei = app.globalData.URL + '/config/findAllActivityClass1'; //查询大类
           util.gets(urldalei, data).then(function(res) {
             self.setData({
@@ -450,7 +446,6 @@ Page({
       univ: this.data.univ === '不选' ? null : this.data.univ,
     };
     app.wxRequest('POST', url, data, (res) => {
-      console.log(res)
       if (res.data.border == null) {
         self.setData({
           isRefleshshipin: false,
@@ -563,7 +558,6 @@ Page({
       self.setData({
         shipin: shipintmp
       })
-      console.log(self.data.shipin.list[e.currentTarget.dataset.index].id)
       let url = app.globalData.URL + '/applaud/updateApplaud';
       let data = {
         objtype: 50,
@@ -582,7 +576,6 @@ Page({
       self.setData({
         shipin: shipintmp
       })
-      console.log(self.data.shipin.list[e.currentTarget.dataset.index].id)
       let url = app.globalData.URL + '/applaud/updateApplaud';
       let data = {
         objtype: 50,
@@ -605,7 +598,6 @@ Page({
       univ: this.data.univ === '不选' ? null : this.data.univ,
     };
     app.wxRequest('POST', url, data, (res) => {
-      console.log(res.data)
       let shipintmp = res.data;
       this.setData({
         shipin: shipintmp,
@@ -894,7 +886,7 @@ Page({
     this.towerSwiper('xiaoyuanSwiperList')
 
   },
-  onShow() {
+  onShow: function() {
     if (wx.getStorageSync('city') != "")
       this.setData({
         city: wx.getStorageSync('city').code,
@@ -922,6 +914,10 @@ Page({
     this.xuanran();
     //this.news()
     //this.news_detail()
+    this.setData({
+      TabCur: app.globalData.tabbar,
+    })
+    console.log('111111111111111111S')
   },
   DotStyle(e) {
     this.setData({
@@ -935,7 +931,6 @@ Page({
     })
   },
   xiaoyuanxiangqing(e) { //其他位置跳转
-    console.log(e)
     wx.navigateTo({
       url: '../../pages/xiaoyuanxiangqing/xiaoyuanxiangqing?TabCur=0&Title=' + e.currentTarget.dataset.xiaoyuan.actname + '&categoryId=' + e.currentTarget.dataset.xiaoyuan.id,
     })
@@ -1045,7 +1040,6 @@ Page({
         border: self.data.yundongList.border
       };
       app.wxRequest('POST', url, data, (res) => {
-        console.log(res.data)
         if (res.data.border == null) {
           self.setData({
             isRefleshyundong: false
@@ -1117,7 +1111,6 @@ Page({
         border: self.data.aihaoList.border
       };
       app.wxRequest('POST', url, data, (res) => {
-        console.log(res.data)
         if (res.data.border == null) {
           self.setData({
             isRefleshaihao: false
