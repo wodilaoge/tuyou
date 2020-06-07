@@ -300,12 +300,13 @@ Page({
     // wx.navigateTo({
     //   url: "../../pages/form_activity/form_activity"
     // })
+    let ttt
     if(this.data.userinfo.index3)
     {
-      let ttt='默认角色'
+      ttt='默认角色'
     }
     else{
-      let ttt='默认团队'
+      ttt='默认团队'
     }
     var user = wx.getStorageSync('userInfo')
     let url = app.globalData.URL + '/appuser/updateMyInfo';
