@@ -54,7 +54,7 @@
                 {{detail.fromtime}}
               </view>
             </view>
-            <view>
+            <view hidden="true">
               <image class="icon_add" src="/img/icon_add.png" mode="aspectFill" style="margin-top:52rpx;margin-right:83rpx;">
               </image>
               <view class="text-blue margin-top-xs" style="font-size: 24rpx;margin-left:-8rpx;">1.1Km</view>
@@ -62,8 +62,8 @@
           </view>
         </view>
         <view class="yundong-content padding-xs" style="margin-bottom:18rpx;">
-          <image class="icon-size" style="margin-top:28rpx;" src="/img/icon_title.png" mode="heightFix"></image>
-          <text class="title-text-content" style="margin-top:28rpx;" decode="{{true}}">{{detail.slogan}}</text>
+          <image  wx:if="{{detail.slogan!=''}}" class="icon-size" style="margin-top:28rpx;" src="/img/icon_title.png" mode="heightFix"></image>
+          <text wx:if="{{detail.slogan!=''}}" class="title-text-content" style="margin-top:28rpx;" decode="{{true}}" >{{detail.slogan}}</text>
           <block wx:if="{{isguanzhu==false}}">
             <button class="cu-btn line-orange round btn-guanzhu" bindtap="guanzhu">关注</button>
           </block>
@@ -165,7 +165,7 @@
         <image class="img-icon" mode="aspectFit" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
       </view>
       <view class="action">
-        <button open-type='share' class="btn1" style="background-image:url(/img/icon_share.png);"></button>
+        <button open-type='share' class="btn1 img_share"></button>
       </view>
     </view>
   </view>
@@ -415,6 +415,7 @@
           <text class="paiming-name" decode="{{true}}">&ensp;{{members.mbrAlias}}</text>
           <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==1}}" data-members="{{members}}" bindtap="gerendianzan"></image>
           <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==0}}" data-members="{{members}}" bindtap="gerendianzan"></image>
+          <text class="paiming-name" style="position: absolute;right:30rpx;">{{members.applaudCnt}}</text>
         </view>
       </view>
     </block>
@@ -473,7 +474,7 @@
         <image class="img-icon" mode="aspectFit" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
       </view>
       <view class="action">
-        <button open-type='share' class="btn1" style="background-image:url(/img/icon_share.png);"></button>
+        <button open-type='share' class="btn1 img_share"></button>
       </view>
     </view>
   </view>
@@ -793,7 +794,7 @@
         <image class="img-icon" mode="aspectFit" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
       </view>
       <view class="action">
-        <button open-type='share' class="btn1" style="background-image:url(/img/icon_share.png);"></button>
+        <button open-type='share' class="btn1 img_share"></button>
       </view>
     </view>
   </view>

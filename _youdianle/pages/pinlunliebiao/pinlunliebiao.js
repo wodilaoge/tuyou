@@ -214,8 +214,8 @@ Page({
     var self = this;
     new Promise(function(resolve, reject) {
       setTimeout(function() {
-
-      }, 1000)
+        wx.hideLoading()
+      }, 2000)
       resolve();
     })
   },
@@ -236,14 +236,12 @@ Page({
     })
     self.comment();
     await self.TBcontroll();
-    wx.hideLoading()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: async function() {
-
   },
 
   /**

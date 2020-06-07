@@ -63,14 +63,16 @@ Page({
     shipinPinglunBorder: '',
     isRefleshshipin: true,
     isRefleshshipinPinglun: true,
+    city: '',
+    univ: '',
   },
   toagreepage() {
     wx.navigateTo({
       url: '/pages/webview/webview',
     })
   },
-/////////////////////////////////////
-  chooseSezi: function(e) {
+  /////////////////////////////////////
+  chooseSezi: function (e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -82,7 +84,7 @@ Page({
       animationData: animation.export(),
       chooseSize: true
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export()
@@ -95,7 +97,7 @@ Page({
       dxtitle: e.currentTarget.dataset.dxtitle,
     })
   },
-  shipinChooseSezi: function(e) {
+  shipinChooseSezi: function (e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -107,7 +109,7 @@ Page({
       shipinAnimationData: animation.export(),
       shipinChooseSize: true
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.translateY(0).step()
       that.setData({
         shipinAnimationData: animation.export()
@@ -137,7 +139,7 @@ Page({
 
 
   },
-  getShipinPinglunFenye: function(e) {
+  getShipinPinglunFenye: function (e) {
     var shipintmp = this.data.shipin;
     let url = app.globalData.URL + '/comm/listCommByObj';
     let data = {
@@ -163,7 +165,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-  hideModal: function(e) {
+  hideModal: function (e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -175,7 +177,7 @@ Page({
       animationData: animation.export()
 
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export(),
@@ -183,7 +185,7 @@ Page({
       })
     }, 100)
   },
-  shipinHideModal: function(e) {
+  shipinHideModal: function (e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -194,7 +196,7 @@ Page({
     that.setData({
       shipinAnimationData: animation.export()
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.translateY(0).step()
       that.setData({
         shipinAnimationData: animation.export(),
@@ -202,12 +204,12 @@ Page({
       })
     }, 100)
   },
-  emailInput: function(e) { //input输入
+  emailInput: function (e) { //input输入
     this.setData({
       Input: e.detail.value
     });
   },
-  paimingInput: function(e) { //input输入
+  paimingInput: function (e) { //input输入
     if (e.target.dataset.flag == 0) {
       var member = this.data.gerenshuju
       member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrRank = e.detail.value
@@ -222,7 +224,7 @@ Page({
       })
     }
   },
-  defenInput: function(e) { //input输入
+  defenInput: function (e) { //input输入
     if (e.target.dataset.flag == 0) {
       var member = this.data.gerenshuju
       member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrScore = e.detail.value
@@ -303,12 +305,12 @@ Page({
     self.hideModal()
   },
   //报名
-  bindPickerChange: function(e) {
+  bindPickerChange: function (e) {
     this.setData({
       fenzuindex: e.detail.id
     })
   },
-  bindRadioChange: function(e) {
+  bindRadioChange: function (e) {
     if (e.currentTarget.dataset.id == 10 || e.currentTarget.dataset.id == 20)
       this.setData({
         canjiaorguankan: e.currentTarget.dataset.id,
@@ -322,7 +324,7 @@ Page({
     if (self.data.shiminghide == false)
       self.ifshiming()
   },
-  iftongyiRadioChange: function(e) {
+  iftongyiRadioChange: function (e) {
     this.setData({
       iftongyi: !this.data.iftongyi
     })
@@ -382,7 +384,7 @@ Page({
       url: '/pages/pinlunliebiao/pinlunliebiao?categoryId=' + this.data.categoryId + '&objtitle=' + this.data.detail.actname,
     })
   },
-  chakanhuifu: function(e) { //查看回放跳转
+  chakanhuifu: function (e) { //查看回放跳转
     wx.navigateTo({
       url: '/pages/chakanhuifu/chakanhuifu?id=' + e.currentTarget.dataset.id,
     })
@@ -757,11 +759,11 @@ Page({
       actid: self.data.categoryId,
       signup: true
     }
-    util.gets(url, data).then(function(res) {
+    util.gets(url, data).then(function (res) {
       self.setData({
         huodongfenzu: res.data.data
       })
-    }).then(function() {
+    }).then(function () {
       if (self.data.huodongfenzu.length == 0)
         self.setData({
           fenzuhide: true
@@ -789,7 +791,7 @@ Page({
       actid: self.data.categoryId,
       lid: self.data.user.id
     }
-    util.gets(url, data).then(function(res) {
+    util.gets(url, data).then(function (res) {
       if (res.data.data == null) {} else if (res.data.data.status == 10)
         self.setData({
           isbaomingtuandui: 1
@@ -800,7 +802,7 @@ Page({
       actid: self.data.categoryId,
       uid: self.data.user.id
     }
-    util.gets(url, data).then(function(res) {
+    util.gets(url, data).then(function (res) {
       if (res.data.data == null) {} else if (res.data.data.status == 10)
         self.setData({
           isbaominggeren: 1
@@ -852,7 +854,7 @@ Page({
   quxiaobaoming(e) {
     wx.showLoading({
       title: '加载中...',
-      mask: true  //显示触摸蒙层  防止事件穿透触发
+      mask: true //显示触摸蒙层  防止事件穿透触发
     });
     var self = this
     var status
@@ -862,7 +864,7 @@ Page({
         actid: self.data.categoryId,
         uid: self.data.user.id
       }
-      util.gets(url, data).then(function(res) {
+      util.gets(url, data).then(function (res) {
         wx.hideLoading()
         if (res.data.code == 0) {
           wx.showToast({
@@ -888,15 +890,15 @@ Page({
         actid: self.data.categoryId,
         lid: self.data.user.id
       }
-      util.gets(url, data).then(function(res) {
+      util.gets(url, data).then(function (res) {
         status = res.data.data
-      }).then(function() {
+      }).then(function () {
         url = app.globalData.URL + '/act/cancelActSignupByTeam'
         data = {
           actid: self.data.categoryId,
           tid: status.tid
         }
-        util.gets(url, data).then(function(res) {
+        util.gets(url, data).then(function (res) {
           wx.hideLoading()
           if (res.data.code == 0) {
             wx.showToast({
@@ -947,7 +949,7 @@ Page({
     var self = this
     wx.showLoading({
       title: '加载中...',
-      mask: true  //显示触摸蒙层  防止事件穿透触发
+      mask: true //显示触摸蒙层  防止事件穿透触发
     });
     let url
     let data
@@ -975,7 +977,7 @@ Page({
           status: 10,
           creater: self.data.user.id
         }
-      util.post_token(url, data).then(function(res) {
+      util.post_token(url, data).then(function (res) {
         if (res.data.code == 0) {
           wx.showToast({
             title: '报名成功！', // 标题
@@ -1004,7 +1006,7 @@ Page({
       else {
         wx.showLoading({
           title: '加载中...',
-          mask: true  //显示触摸蒙层  防止事件穿透触发
+          mask: true //显示触摸蒙层  防止事件穿透触发
         });
         url = app.globalData.URL + '/act/addActSignupTeam'
         if (self.data.fenzuhide)
@@ -1031,7 +1033,7 @@ Page({
             creater: self.data.user.id,
             members: self.data.members,
           }
-        util.post_token(url, data).then(function(res) {
+        util.post_token(url, data).then(function (res) {
           if (res.data.code == 0) {
             wx.showToast({
               title: '报名成功！', // 标题
@@ -1057,7 +1059,7 @@ Page({
     var self = this
     wx.showLoading({
       title: '加载中...',
-      mask: true  //显示触摸蒙层  防止事件穿透触发
+      mask: true //显示触摸蒙层  防止事件穿透触发
     });
     let url
     let data
@@ -1087,7 +1089,7 @@ Page({
           status: 10,
           creater: self.data.user.id
         }
-      util.post_token(url, data).then(function(res) {
+      util.post_token(url, data).then(function (res) {
         if (res.data.code == 0) {
           wx.showToast({
             title: '报名成功！', // 标题
@@ -1116,7 +1118,7 @@ Page({
       else {
         wx.showLoading({
           title: '加载中...',
-          mask: true  //显示触摸蒙层  防止事件穿透触发
+          mask: true //显示触摸蒙层  防止事件穿透触发
         });
         url = app.globalData.URL + '/act/addActSignupTeam'
         if (self.data.fenzuhide)
@@ -1143,7 +1145,7 @@ Page({
             creater: self.data.user.id,
             members: self.data.members,
           }
-        util.post_token(url, data).then(function(res) {
+        util.post_token(url, data).then(function (res) {
           if (res.data.code == 0) {
             wx.showToast({
               title: '报名成功！', // 标题
@@ -1184,7 +1186,7 @@ Page({
       actid: self.data.categoryId,
       members: mlist
     }
-    util.post_token(url, data).then(function(res) {
+    util.post_token(url, data).then(function (res) {
       if (res.data.code == 0)
         wx.showToast({
           title: '操作成功！', // 标题
@@ -1226,7 +1228,7 @@ Page({
       teams: tlist,
       members: mlist
     }
-    util.post_token(url, data).then(function(res) {
+    util.post_token(url, data).then(function (res) {
       if (res.data.code == 0)
         wx.showToast({
           title: '操作成功！', // 标题
@@ -1309,7 +1311,7 @@ Page({
       wx.showModal({
         title: '提示',
         content: '该活动需要实名参加/观看，是否前往实名',
-        success: function(res) {
+        success: function (res) {
           if (res.confirm) { //这里是点击了确定以后
             wx.navigateTo({
               url: '/pages/MyPages/my_profile/my_profile',
@@ -1323,7 +1325,7 @@ Page({
       wx.showModal({
         title: '提示',
         content: '该活动参加/观看需要手机号，是否前往绑定',
-        success: function(res) {
+        success: function (res) {
           if (res.confirm) { //这里是点击了确定以后
             wx.navigateTo({
               url: '/pages/MyPages/my_security/my_security',
@@ -1338,7 +1340,7 @@ Page({
   delete_geren(e) { //管理删除
     wx.showLoading({
       title: '加载中...',
-      mask: true  //显示触摸蒙层  防止事件穿透触发
+      mask: true //显示触摸蒙层  防止事件穿透触发
     });
     var self = this
     var status
@@ -1348,7 +1350,7 @@ Page({
       uid: e.currentTarget.dataset.id
     }
     console.log(e)
-    util.gets(url, data).then(function(res) {
+    util.gets(url, data).then(function (res) {
       wx.hideLoading()
       if (res.data.code == 0) {
         wx.showToast({
@@ -1375,7 +1377,7 @@ Page({
   gerendianzan(e) {
     wx.showLoading({
       title: '加载中...',
-      mask: true  //显示触摸蒙层  防止事件穿透触发
+      mask: true //显示触摸蒙层  防止事件穿透触发
     });
     var self = this
     let url = app.globalData.URL + '/applaud/updateApplaud'
@@ -1385,7 +1387,7 @@ Page({
       creater: self.data.categoryId,
       status: 1 - e.currentTarget.dataset.members.myApplaud
     }
-    util.post_token(url, data).then(function(res) {
+    util.post_token(url, data).then(function (res) {
       console.log(res.data)
       if (res.data.code == 0) {
         wx.showToast({
@@ -1408,22 +1410,24 @@ Page({
   //////////////////////////////
   TBcontroll() { //同步控制
     var self = this;
-    return new Promise(function(resolve, reject) {
-      setTimeout(function() {
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
 
         resolve();
       }, 1000)
     })
   },
 
-  onLoad: async function(options) { //读取活动对应id
+  onLoad: async function (options) { //读取活动对应id
     var self = this
     self.setData({
       categoryId: options.categoryId,
       user: wx.getStorageSync('userInfo'),
       TabCur: options.TabCur,
       biaoti: options.Title,
-      options: options
+      options: options,
+      city: wx.getStorageSync('city').code ? wx.getStorageSync('city').name : null,
+      univ: wx.getStorageSync('school').code ? wx.getStorageSync('school').name : null,
     })
     self.yonghuxinxi()
     self.fenzu()
@@ -1436,7 +1440,7 @@ Page({
     //this.news()
     //this.news_detail()
     self.yibaoming()
-    setTimeout(function() {
+    setTimeout(function () {
       if (self.data.detail.length == 0)
         wx.showToast({
           title: '暂无活动数据！', // 标题
@@ -1457,6 +1461,8 @@ Page({
     let data = {
       actid: this.data.categoryId,
       pageSize: 2,
+      // city: this.data.city === '不选' ? null : this.data.city,
+      // univ: this.data.univ === '不选' ? null : this.data.univ,
     };
     console.log(data)
     app.wxRequest('POST', url, data, (res) => {
@@ -1477,6 +1483,8 @@ Page({
       actid: this.data.categoryId,
       pageSize: 2,
       border: this.data.shipinBorder,
+      // city: this.data.city === '不选' ? null : this.data.city,
+      // univ: this.data.univ === '不选' ? null : this.data.univ,
     };
     console.log(data)
     app.wxRequest('POST', url, data, (res) => {
@@ -1498,7 +1506,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-  video_change: function(e) { ////视频切换
+  video_change: function (e) { ////视频切换
 
     var shipintmp = this.data.shipin;
     if (this.data.bofang_if_id != e.currentTarget.id) { ///相等表示点击和播放不匹配
@@ -1550,7 +1558,7 @@ Page({
       }
     }
   },
-  shipinguanzhu: function(e) {
+  shipinguanzhu: function (e) {
     var self = this;
     let shipintmp = this.data.shipin;
     if (shipintmp.list[e.currentTarget.dataset.index].myFollow == 1) {
@@ -1584,7 +1592,7 @@ Page({
       app.wxRequest('POST', url, data, (res) => {}, (err) => {});
     }
   },
-  shipinDianzan: function(e) {
+  shipinDianzan: function (e) {
     var self = this;
     let shipintmp = this.data.shipin;
     if (shipintmp.list[e.currentTarget.dataset.index].myApplaud == 1) {
@@ -1629,18 +1637,18 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function(options) {
+  onShow: function (options) {
     var self = this
     self.yonghuxinxi()
     if (self.data.TabCur == 1)
-      setTimeout(function() {
+      setTimeout(function () {
         if (self.data.shiminghide == false)
           self.ifshiming()
       }, 1500)
@@ -1650,28 +1658,28 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     this.onLoad(this.data.options)
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
     var self = this
     if (self.data.isReflesh) {
       wx.showLoading({
@@ -1718,16 +1726,16 @@ Page({
 
 
   },
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
     var that = this;
     return {
       title: '友点乐',
-      path: 'pages/xiaoyuanxiangqing/xiaoyuanxiangqing?TabCur=' + that.data.TabCur + '&Title=' + that.data.biaoti + '&categoryId='+that.data.categoryId,
-      success: function(res) {
+      path: 'pages/xiaoyuanxiangqing/xiaoyuanxiangqing?TabCur=' + that.data.TabCur + '&Title=' + that.data.biaoti + '&categoryId=' + that.data.categoryId,
+      success: function (res) {
         console.log("转发成功:" + JSON.stringify(res));
         that.shareClick();
       },
-      fail: function(res) {
+      fail: function (res) {
         console.log("转发失败:" + JSON.stringify(res));
       }
     }
