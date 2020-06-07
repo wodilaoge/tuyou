@@ -76,6 +76,8 @@ Page({
     user: [],
     swiperList: [],
     rotationhide: true,
+    city:'',
+    univ:'',
 
     swiperList_zhaopian: [{
       id: 0,
@@ -668,6 +670,8 @@ Page({
     let data = {
       actid: this.data.categoryId,
       pageSize: 2,
+      city: this.data.city === '不选' ? null : this.data.city,
+      univ: this.data.univ === '不选' ? null : this.data.univ,
     };
     app.wxRequest('POST', url, data, (res) => {
       console.log(res)
@@ -687,6 +691,8 @@ Page({
       actid: this.data.categoryId,
       pageSize: 2,
       border: this.data.shipinBorder,
+      city: this.data.city === '不选' ? null : this.data.city,
+      univ: this.data.univ === '不选' ? null : this.data.univ,
     };
     console.log(data)
     app.wxRequest('POST', url, data, (res) => {
@@ -1747,7 +1753,9 @@ Page({
       user: wx.getStorageSync('userInfo'),
       TabCur: options.TabCur,
       biaoti: options.Title,
-      options: options
+      options: options,
+      city: wx.getStorageSync('city').code ? wx.getStorageSync('city').name : null,
+      univ: wx.getStorageSync('school').code ? wx.getStorageSync('school').name : null,
     })
     self.yonghuxinxi()
     self.detail()

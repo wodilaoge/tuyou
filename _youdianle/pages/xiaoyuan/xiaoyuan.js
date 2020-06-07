@@ -71,6 +71,8 @@ Page({
     shipin_index: 0,
     user: [],
     shipinBorder: '',
+    city: '',
+    univ:'',
 
   },
   //////////////////////
@@ -423,6 +425,8 @@ Page({
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
       pageSize: 2,
+      city: this.data.city === '不选' ? null : this.data.city,
+      univ: this.data.univ === '不选' ? null : this.data.univ,
     };
 
     app.wxRequest('POST', url, data, (res) => {
@@ -442,6 +446,8 @@ Page({
     let data = {
       pageSize: 2,
       border: this.data.shipinBorder,
+      city: this.data.city === '不选' ? null : this.data.city,
+      univ: this.data.univ === '不选' ? null : this.data.univ,
     };
     app.wxRequest('POST', url, data, (res) => {
       console.log(res)
@@ -595,6 +601,8 @@ Page({
     let data = {
       acid1: this.data.shipinCur,
       pageSize: 2,
+      city: this.data.city === '不选' ? null : this.data.city,
+      univ: this.data.univ === '不选' ? null : this.data.univ,
     };
     app.wxRequest('POST', url, data, (res) => {
       console.log(res.data)
@@ -613,6 +621,8 @@ Page({
       acid1: this.data.shipinCur,
       pageSize: 2,
       border: this.data.shipinBorder,
+      city: this.data.city === '不选' ? null : this.data.city,
+      univ: this.data.univ === '不选' ? null : this.data.univ,
     };
     app.wxRequest('POST', url, data, (res) => {
       console.log(res)
@@ -873,6 +883,8 @@ Page({
     })
     this.setData({
       user: wx.getStorageSync('userInfo'),
+      city: wx.getStorageSync('city').code ? wx.getStorageSync('city').name : null,
+      univ: wx.getStorageSync('school').code ? wx.getStorageSync('school').name : null,
     })
     this.xuanran(); //初始化
     this.getShipin();
