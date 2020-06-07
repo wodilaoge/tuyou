@@ -31,13 +31,30 @@
 }
 
 .weizhi {
-  width: 88rpx;
+  /* width: 88rpx; */
+  display: flex;
   height: 36rpx;
   background: rgba(254, 96, 4, 1);
-  border-radius: 18rpx;
-  margin-left: 15rpx;
   color: rgba(255, 255, 255, 1);
   text-align: center;
+  align-items: center;
+}
+.weizhi-left {
+  width: 20rpx;
+  height: 36rpx;
+  background: rgba(254, 96, 4, 1);
+  border-top-left-radius: 18rpx;
+  border-bottom-left-radius: 18rpx;
+  margin-left: 15rpx;
+  color: rgba(255, 255, 255, 1);
+}
+.weizhi-right {
+  width: 20rpx;
+  height: 36rpx;
+  background: rgba(254, 96, 4, 1);
+  border-top-right-radius: 18rpx;
+  border-bottom-right-radius: 18rpx;
+  color: rgba(255, 255, 255, 1);
 }
 
 .ziliao-ziliao {
