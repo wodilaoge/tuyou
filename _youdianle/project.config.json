@@ -63,7 +63,7 @@
 					"id": 0,
 					"name": "校园活动",
 					"pathName": "pages/xiaoyuan/xiaoyuan",
-					"query": "",
+					"query": "TabCur=1",
 					"scene": null
 				},
 				{
