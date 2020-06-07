@@ -1556,7 +1556,7 @@ Page({
     let data = {
       objtype: 10,
       objid: e.currentTarget.dataset.members.mbrId,
-      creater: self.data.categoryId,
+      creater: self.data.user.id,
       status: 1 - e.currentTarget.dataset.members.myApplaud
     }
     console.log(data)

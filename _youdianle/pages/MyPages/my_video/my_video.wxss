@@ -1,3 +1,6 @@
+@import "../../yundongxiangqing/yundongxiangqing.wxss";
+@import "../../xiaoyuanxiangqing/xiaoyuanxiangqing.wxss";
+@import "../../index/index.wxss";
 .width {
   width: 130rpx;
 }
@@ -5,4 +8,49 @@
 .pad {
   padding-left: 20rpx;
   padding-right: 20rpx;
+}
+
+.top{
+  background: #5454FF
+}
+.top-gradul-blue{
+  background: linear-gradient(to bottom,#5454FF,rgba(255, 255, 255, 255));
+}
+
+.title-limit{
+  font-size: 36rpx;
+	font-weight: 800;
+	color: var(--black);
+	line-height: 44rpx;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+}
+.xiaoyuan-text-content {
+	line-height: 23rpx;
+  font-size: 24rpx;
+}
+.btn-width{
+  width: 168rpx;
+  height: 54rpx;
+}
+
+.btn-yundong-cur{
+  width: 100rpx;
+  height: 40rpx;
+}
+.xinwen-liubai{
+height: 500rpx;
+font-size:28rpx;
+font-family:PingFang SC;
+font-weight:500;
+color:rgba(164,169,188,1);
+}
+.xinwen-liubai-img{
+  height:200rpx;
+  width:148rpx;
+  padding-top:94rpx;
+  margin-left: 313rpx;
 }
