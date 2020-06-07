@@ -466,7 +466,7 @@ Page({
 
   commit2(e) {
     console.log('confirm')
-    if (!this.data.title) {
+    if (!this.data.information.actname) {
       wx.showToast({
         title: '请填写标题',
       })
