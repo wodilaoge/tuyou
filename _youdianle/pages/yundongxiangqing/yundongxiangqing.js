@@ -746,6 +746,7 @@ Page({
   },
   video_change: function (e) { ////视频切换
     var shipintmp = this.data.shipin;
+    shipintmp.list[e.currentTarget.dataset.index].src2=shipintmp.list[e.currentTarget.dataset.index].fileId;
     if (this.data.bofang_if_id != e.currentTarget.id) { ///相等表示点击和播放不匹配
       if (this.data.bofang_pid == '0') {
         this.setData({
