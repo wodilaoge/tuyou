@@ -1,5 +1,6 @@
 // pages/ziliao/ziliao.js
 const app = getApp();
+var utils = require('../../utils/util.js');
 Page({
 
   /**
@@ -28,6 +29,7 @@ Page({
     ziliaoDalei: [],
     ziliaoDaleiCur: '',
     paimingDetail: [],
+    duiyuanAge: 0,
   },
   ///////////评论
   comment() { //评论
@@ -89,7 +91,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-  chooseSezi: function(e) {
+  chooseSezi: function (e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -101,7 +103,7 @@ Page({
       animationData: animation.export(),
       chooseSize: true
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export()
@@ -113,7 +115,7 @@ Page({
       dxtitle: e.currentTarget.dataset.dxtitle,
     })
   },
-  hideModal: function(e) {
+  hideModal: function (e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -125,7 +127,7 @@ Page({
       animationData: animation.export()
 
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export(),
@@ -133,7 +135,7 @@ Page({
       })
     }, 100)
   },
-  emailInput: function(e) { //input输入
+  emailInput: function (e) { //input输入
     this.setData({
       Input: e.detail.value
     });
@@ -259,16 +261,47 @@ Page({
       //   this.data.duiyuanDeatil.sext='暂无'
       // }
 
-      if(this.data.duiyuanDeatil.id==this.data.user.id){
+      if (this.data.duiyuanDeatil.id == this.data.user.id) {
         this.setData({
-          ifziji:1,
+          ifziji: 1,
         })
       }
-      console.log(this.data.duiyuanDeatil)
+      /////////////修改age
+      let year=this.data.duiyuanDeatil.birthday.slice(0,4);
+      let mon=this.data.duiyuanDeatil.birthday.slice(5,7);
+      let day=this.data.duiyuanDeatil.birthday.slice(8,10);
+      console.log(year,mon,day)
+      let nowtime=utils.formatTime(new Date());
+      console.log(nowtime)
+      let nyear=nowtime.slice(0,4);
+      let nmon=nowtime.slice(5,7);
+      let nday=nowtime.slice(8,10);
+      console.log(this.getAge(year,mon,day,nyear,nmon,nday));
+      this.setData({
+        duiyuanAge:this.getAge(year,mon,day,nyear,nmon,nday)
+      })
+      //////////////////////////
     }, (err) => {
       console.log(err.errMsg)
     });
   },
+ getAge(year,mon,day,nyear,nmon,nday){
+  let age=0;
+  if(nday>=day){
+    if(nmon>=mon){
+      age=nyear-year
+    }else(
+      age=nyear-year-1
+    )
+  }else{
+    if(nmon>mon){
+      age=nyear-year
+    }else (
+      age=nyear-year-1
+    )
+  }
+  return age;
+ },
   getFensi() {
     let url = app.globalData.URL + '/follow/countByObj';
     let data = {
@@ -355,10 +388,9 @@ Page({
     });
   },
   getPaimingDalei() {
-    var self=this;
+    var self = this;
     let url = app.globalData.URL + '/config/findAllActivityClass1';
-    let data = {
-    };
+    let data = {};
     app.wxRequest('GET', url, data, (res) => {
       console.log(res.data)
       this.setData({
@@ -366,7 +398,7 @@ Page({
         ziliaoDaleiCur: res.data[0].code,
       })
 
-       url = app.globalData.URL + '/act/listMyRank'
+      url = app.globalData.URL + '/act/listMyRank'
       data = {
         uid: self.data.user.id,
         acid1: res.data[0].code
@@ -383,7 +415,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-  ziliaoTabSelect(e) { 
+  ziliaoTabSelect(e) {
     this.setData({
       ziliaoDaleiCur: e.currentTarget.dataset.cur,
       // scrollLeft: (e.currentTarget.dataset.id - 1) * 60
@@ -391,7 +423,7 @@ Page({
     var self = this
     let url = app.globalData.URL + '/act/listMyRank'
     let data = {
-      uid:self.data.user.id,
+      uid: self.data.user.id,
       acid1: self.data.ziliaoDaleiCur
     }
     app.wxRequest('GET', url, data, (res) => {
@@ -406,7 +438,7 @@ Page({
     //   this.getShipinfenlei()
     // }
   },
-  changeGuanzhu: function(e) {
+  changeGuanzhu: function (e) {
 
     if (this.data.ifguanzhu == 0) {
       this.setData({
@@ -443,25 +475,25 @@ Page({
     }
   },
   //////////分享
-  onShareAppMessage: function(e) { 
-    console.log(ok)   
-    var  that  =  this;    
-    return  {      
-      title:   '友点乐',
-            success:   function (res)  {        
-        console.log("转发成功:"  +  JSON.stringify(res));        
-        that.shareClick();      
+  onShareAppMessage: function (e) {
+    console.log(ok)
+    var that = this;
+    return {
+      title: '友点乐',
+      success: function (res) {
+        console.log("转发成功:" + JSON.stringify(res));
+        that.shareClick();
       },
-            fail:   function (res)  {        
-        console.log("转发失败:"  +  JSON.stringify(res));      
-      }    
-    }  
+      fail: function (res) {
+        console.log("转发失败:" + JSON.stringify(res));
+      }
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     this.setData({
       duiyuanID: options.id,
       user: wx.getStorageSync('userInfo'),
@@ -481,49 +513,49 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

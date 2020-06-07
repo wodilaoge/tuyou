@@ -192,6 +192,7 @@ Page({
       self.setData({
         bkData: res.data.data
       })
+      console.log(res.data)
       for (var i in res.data.data) {
         var url = app.globalData.URL + '/act/listActivity';
         var url2 = app.globalData.URL + '/secrot/listSecrotation';
@@ -384,6 +385,7 @@ Page({
           }, (err) => {
             console.log(err.errMsg)
           });
+          console.log('////////////////////////////')
           var urldalei = app.globalData.URL + '/config/findAllActivityClass1'; //查询大类
           util.gets(urldalei, data).then(function(res) {
             self.setData({
