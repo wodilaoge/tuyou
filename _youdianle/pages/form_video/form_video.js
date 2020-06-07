@@ -4,6 +4,7 @@ var upload = require("../../utils/upload.js");
 var util = require("../../utils/util.js");
 Page({
   data: {
+    isagree:true,
     hiddenmodalput: true,
     group: 0,
     videonum: 0,
@@ -268,6 +269,12 @@ Page({
         modalName: e.currentTarget.dataset.target
       })
     }
+  },
+  isagree(e) {
+    console.log('fuck')
+    this.setData({
+      isagree: !this.data.isagree
+    })
   },
   getSignature: function (callback) {
     var user = wx.getStorageSync('userInfo')
