@@ -241,13 +241,13 @@ Page({
       this.setData({
         baomingCur: e.currentTarget.dataset.id,
         canjiaorguankan: 10,
-        shiminghide: cansaiset
+        shiminghide: self.data.cansaiset
       })
     else
       this.setData({
         baomingCur: e.currentTarget.dataset.id,
         canjiaorguankan: 20,
-        shiminghide: cansaiset
+        shiminghide: self.data.cansaiset
       })
     if (self.data.shiminghide == false)
       self.ifshiming()
