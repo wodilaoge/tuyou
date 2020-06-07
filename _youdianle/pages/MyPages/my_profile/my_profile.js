@@ -170,6 +170,18 @@ Page({
       [t]: e.detail.value
     })
   },
+  getenrolyear(e) {
+    let t = 'userinfo.enrolyear'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
+  getgraduateyear(e) {
+    let t = 'userinfo.graduateyear'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
   RegionChange: function (e) {
     this.setData({
       region: e.detail.value
@@ -204,6 +216,7 @@ Page({
       [t]: this.data.school[this.data.indexs].code
     })
   },
+
   school(pid) {
     let url = app.globalData.URL + '/config/getUniv';
     let data = {
