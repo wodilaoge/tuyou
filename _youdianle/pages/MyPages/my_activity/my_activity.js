@@ -50,10 +50,10 @@ Page({
       })
     })
     let data = {
-      'type':20,
+      'type':10,
       'acid1':'076003001'
     };
-    util.post(url2, data).then(function (res) {
+    util.post_token(url2, data).then(function (res) {
       console.log('res',res.data)
       that.setData({
         MyActivity: res.data.data

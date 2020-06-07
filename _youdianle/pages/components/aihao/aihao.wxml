@@ -1,4 +1,4 @@
-<view wx:for="{{aihaoList.list}}" wx:key wx:if="{{item.acid1==aihaoCur}}">
+<!--<view wx:for="{{aihaoList.list}}" wx:key wx:if="{{item.acid1==aihaoCur}}">
   <view class="cu-bar bg-white solid-bottom" style="display:fixed;position: relative;">
     <image class="cu-avatar round my margin-left" src="{{item.createrhead}}" mode="heightFix"></image>
     <block wx:for="{{aihaoxiaolei}}" wx:for-item="cell" wx:if="{{item.acid2==cell.code}}">
@@ -41,6 +41,57 @@
         <view class="yundong-content margin-top">
           <view class="cu-avatar-group">
             <view class="cu-avatar round my" wx:for="{{5}}" wx:key style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{index+1}}.jpg);"></view>
+          </view>
+          <button class="cu-btn bg-orange round btn" style="margin-left:280rpx;margin-top:-30rpx;" bindtap="baomingtiaozhan" data-aihao="{{item}}">报名挑战</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>-->
+
+<view wx:for="{{aihaoList.list}}" wx:key wx:if="{{item.acid1==aihaoCur}}">
+  <view class="cu-bar bg-white solid-bottom" style="display:fixed;position: relative;">
+    <image class="cu-avatar round my margin-left" src="{{item.createrhead}}" mode="heightFix"></image>
+    <block wx:for="{{aihaoxiaolei}}" wx:for-item="cell" wx:if="{{item.acid2==cell.code}}">
+      <text style="position:absolute;left:110rpx;">{{cell.name}}</text>
+    </block>
+    <text class=" title-time" style="position:absolute;width:100%;left:180rpx;" wx:if="{{item.lefttime!=null}}">{{item.lefttime.day}} 天 {{item.lefttime.hr}}:{{item.lefttime.min}} </text>
+  </view>
+  <view class="background" style="margin-bottom:20rpx;">
+    <view class="cu-card article ">
+      <view class="cu-item">
+        <view class="shadow" style="background-color:#F8F9FD;padding:19rpx 0 19rpx 0;"  bindtap="yundongxiangqing" data-aihao="{{item}}">
+          <view class="yundong-content">
+            <image src="{{item.logo}}" mode="aspectFill"></image>
+            <view class="desc">
+              <view class="title-limit">{{item.actname}}</view>
+              <view class="text-content">
+                <image class="icon-size" src="/img/icon_location.png" mode="heightFix"></image>
+                <text decode="{{true}}">\t{{item.city}}{{item.address}}</text>
+              </view>
+              <view class="text-content">
+                <image class="icon-size"></image>
+                <text decode="{{true}}">\t{{item.venue}}</text>
+              </view>
+              <view class="time-text-content">
+                <image class="icon-size" src="/img/icon_time.png" mode="heightFix"></image>
+                {{item.fromtime}}
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="yundong-content title-text-content" style="margin-top:28rpx;" wx:if="{{item.slogan!=''||null}}"  bindtap="yundongxiangqing" data-aihao="{{item}}">
+          <image class="icon-size" src="/img/icon_title.png" mode="heightFix"></image>
+          <text decode="{{true}}">{{item.slogan}}</text>
+        </view>
+        <view class="yundong-content yibaoming-margin-top">
+          <text class="yibaoming-text-content">已报名</text>
+          <text class="yibaoming-text-content" style="color:var(--blue)">{{item.signupcnt}}/{{item.signupmax}}</text>
+          <text class="yibaoming-text-content">人</text>
+        </view>
+        <view class="yundong-content margin-top">
+          <view class="cu-avatar-group">
+            <view class="cu-avatar round my" wx:for="{{6}}" wx:key style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{index+1}}.jpg);"></view>
           </view>
           <button class="cu-btn bg-orange round btn" style="margin-left:280rpx;margin-top:-30rpx;" bindtap="baomingtiaozhan" data-aihao="{{item}}">报名挑战</button>
         </view>
