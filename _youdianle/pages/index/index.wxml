@@ -247,7 +247,7 @@
                 </view>
               </view>
               <button class="cu-btn bg-orange round btn" style="margin-left:250rpx;margin-top:-30rpx;"
-                bindtap="baomingtiaozhan">报名挑战</button>
+              bindtap="baomingtiaozhan" data-yundong="{{item}}">报名挑战</button>
               <!-- <button class="cu-btn line-orange round btn" style="margin-left:30rpx;margin-top:-30rpx;">群聊（8）</button> -->
             </view>
           </view>
@@ -307,8 +307,8 @@
                   style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{index+1}}.jpg);">
                 </view>
               </view>
-              <button class="cu-btn bg-orange round btn" style="margin-left:300rpx;margin-top:-30rpx;"
-                bindtap="baomingtiaozhan">报名挑战</button>
+              <button class="cu-btn bg-orange round btn" style="margin-left:250rpx;margin-top:-30rpx;"
+              bindtap="baomingtiaozhan" data-yundong="{{item}}">报名挑战</button>
               <!-- <button class="cu-btn line-orange round btn" style="margin-left:50rpx;margin-top:-30rpx;">群聊（8）</button> -->
             </view>
             <view class="white"></view>
