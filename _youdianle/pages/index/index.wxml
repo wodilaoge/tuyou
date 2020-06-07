@@ -29,7 +29,7 @@
       <image src="/img/index/news.png" class="menu-img"></image>
       <text class="menu-name text-bold">新闻</text>
     </view> -->
-    <view bindtap="jump" data-id="0" class="menu-item">
+    <view bindtap="jump" data-id="0" class="menu-item" wx:if="{{isshowcampus}}">
       <image src="/img/index/activity.png" class="menu-img"></image>
       <text class="menu-name text-bold">活动</text>
     </view>
@@ -80,14 +80,14 @@
     </view>
   </view> -->
 
-  <view class="bg-white padding margin-top ">
+  <view class="bg-white padding margin-top " wx:if="{{isshowcampus}}">
     <view bindtap="jump" data-id="{{0}}">
       <text class="cu-bar-title text-bold text-black ">校园活动</text>
       <image class="icon2" src="../../img/array.png"></image>
     </view>
   </view>
 
-  <view class="bg-white">
+  <view class="bg-white" wx:if="{{isshowcampus}}">
     <scroll-view scroll-x="true">
       <view class="banner" scroll-x="true">
         <view class="banner_basic" bindtap="todetail" id="{{ActList.list[0].id}}">
@@ -193,8 +193,8 @@
     <text class="word4 text-bold" bindtap="toteam">组团队</text>
   </view>
 </view> -->
-
-  <block wx:if="{{isshowparts}}">//文娱爱好是否显示
+<!-- //文娱爱好是否显示 -->
+  <block wx:if="{{isshowparts}}">
     <view class="bg-white padding margin-top ">
       <view bindtap="jump" data-id="{{2}}">
         <text class="cu-bar-title text-bold text-black ">文娱</text>
@@ -247,7 +247,7 @@
                 </view>
               </view>
               <button class="cu-btn bg-orange round btn" style="margin-left:250rpx;margin-top:-30rpx;"
-                bindtap="baomingtiaozhan">报名挑战</button>
+              bindtap="baomingtiaozhan" data-yundong="{{item}}">报名挑战</button>
               <!-- <button class="cu-btn line-orange round btn" style="margin-left:30rpx;margin-top:-30rpx;">群聊（8）</button> -->
             </view>
           </view>
@@ -307,8 +307,8 @@
                   style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{index+1}}.jpg);">
                 </view>
               </view>
-              <button class="cu-btn bg-orange round btn" style="margin-left:300rpx;margin-top:-30rpx;"
-                bindtap="baomingtiaozhan">报名挑战</button>
+              <button class="cu-btn bg-orange round btn" style="margin-left:250rpx;margin-top:-30rpx;"
+              bindtap="baomingtiaozhan" data-yundong="{{item}}">报名挑战</button>
               <!-- <button class="cu-btn line-orange round btn" style="margin-left:50rpx;margin-top:-30rpx;">群聊（8）</button> -->
             </view>
             <view class="white"></view>

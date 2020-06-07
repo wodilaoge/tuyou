@@ -88,7 +88,7 @@
   </view>
   <view class="cu-form-group">
     <!-- <view class=" text-red text-xl star" style="position: relative; right: 80rpx;">*</view> -->
-    <view class="title ">场馆</view>
+    <view class="title ">详细地址</view>
     <input class="input text-grey" placeholder="请输入场馆" bindinput="getvenue"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>

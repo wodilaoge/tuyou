@@ -184,7 +184,7 @@ Page({
     })
   },
   getvenue(e) {
-    let t = 'information.venue'
+    let t = 'information.address'
     this.setData({
       [t]: e.detail.value
     })
@@ -466,7 +466,7 @@ Page({
 
   commit2(e) {
     console.log('confirm')
-    if (!this.data.title) {
+    if (!this.data.information.actname) {
       wx.showToast({
         title: '请填写标题',
       })
@@ -512,8 +512,7 @@ Page({
           univid: tmp.univid,
           province: tmp.province,
           city: tmp.city,
-          address: tmp.venue,
-          venue: tmp.venue,
+          address: tmp.address,
           creater: user.id,
           createralias: user.nickname,
           createrhead: user.head,
