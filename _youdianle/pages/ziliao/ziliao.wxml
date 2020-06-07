@@ -18,7 +18,9 @@
     <view>
       <view class="flex">
         <text class="duiming">{{duiyuanDeatil.defaultTeam===null?'暂无':duiyuanDeatil.defaultTeam}}</text>
+        <view class="weizhi-left"></view>
         <view class="weizhi ">{{duiyuanDeatil.defaultRole===null?'暂无':duiyuanDeatil.defaultRole}}</view>
+        <view class="weizhi-right"></view>
       </view>
       <view class="flex">
         <text class="ziliao-ziliao">{{duiyuanAge}}岁 | {{duiyuanDeatil.height===null?'':duiyuanDeatil.height}}cm | {{duiyuanDeatil.weight===null?'':duiyuanDeatil.weight}}公斤</text>
