@@ -138,7 +138,7 @@
           src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
       </view>
       <view class="action">
-        <button open-type='share' class="btn1" style="background-image:url(/img/icon_share.png);"></button>
+        <button open-type='share' class="btn1 img_share"></button>
       </view>
     </view>
   </view>
@@ -467,7 +467,7 @@
           src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
       </view>
       <view class="action">
-        <button open-type='share' class="btn1" style="background-image:url(/img/icon_share.png);"></button>
+        <button open-type='share' class="btn1 img_share"></button>
       </view>
     </view>
   </view>
@@ -790,7 +790,7 @@
           src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
       </view>
       <view class="action">
-        <button open-type='share' class="btn1" style="background-image:url(/img/icon_share.png);"></button>
+        <button open-type='share' class="btn1 img_share"></button>
       </view>
     </view>
   </view>

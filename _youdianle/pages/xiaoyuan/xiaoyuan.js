@@ -51,7 +51,7 @@ Page({
     aihaoid: '',
     wenyuid: '',
     CustomBar: app.globalData.CustomBar,
-    TabCur: 0,
+    TabCur: 1,
     bkData: [],
     yundongCur: '', //运动内导航栏
     wenyuCur: '', //文娱内导航栏
