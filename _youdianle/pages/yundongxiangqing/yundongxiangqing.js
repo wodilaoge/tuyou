@@ -1555,6 +1555,7 @@ Page({
       creater: self.data.categoryId,
       status: 1 - e.currentTarget.dataset.members.myApplaud
     }
+    console.log(data)
     util.post_token(url, data).then(function(res) {
       console.log(res.data)
       if (res.data.code == 0) {

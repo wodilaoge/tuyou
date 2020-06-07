@@ -165,7 +165,7 @@
         <image class="img-icon" mode="aspectFit" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
       </view>
       <view class="action">
-        <button open-type='share' class="btn1" style="background-image:url(/img/icon_share.png);"></button>
+        <button open-type='share' class="btn1 img_share"></button>
       </view>
     </view>
   </view>
@@ -415,6 +415,7 @@
           <text class="paiming-name" decode="{{true}}">&ensp;{{members.mbrAlias}}</text>
           <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==1}}" data-members="{{members}}" bindtap="gerendianzan"></image>
           <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==0}}" data-members="{{members}}" bindtap="gerendianzan"></image>
+          <text class="paiming-name" style="position: absolute;right:30rpx;">{{members.applaudCnt}}</text>
         </view>
       </view>
     </block>
@@ -473,7 +474,7 @@
         <image class="img-icon" mode="aspectFit" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
       </view>
       <view class="action">
-        <button open-type='share' class="btn1" style="background-image:url(/img/icon_share.png);"></button>
+        <button open-type='share' class="btn1 img_share"></button>
       </view>
     </view>
   </view>
@@ -793,7 +794,7 @@
         <image class="img-icon" mode="aspectFit" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
       </view>
       <view class="action">
-        <button open-type='share' class="btn1" style="background-image:url(/img/icon_share.png);"></button>
+        <button open-type='share' class="btn1 img_share"></button>
       </view>
     </view>
   </view>
