@@ -3,7 +3,7 @@
 App({
   globalData: {
     loadModal:true,
-    tabbar: 0,
+    tabbar: 1,
     userInfo: [],
     URL: 'https://api.udianle.com/kt',
     systemInfo: null, //客户端设备信息，
