@@ -9,7 +9,25 @@ Page({
     TabCur: 0,
     AllActivity: [],
     MyActivity: [],
+    hiddenmodalput: true,
+    //可以通过hidden是否掩藏弹出框的属性，来指定那个弹出框  
     scrollLeft: 0
+  },
+  modalinput: function (e) {
+    this.setData({
+      hiddenmodalput: !this.data.hiddenmodalput,
+      tmpactid:e.currentTarget.dataset.id
+    })
+  },
+  getans(e) {
+    this.setData({
+      ans: e.detail.value
+    })
+  },
+  cancel2: function () {
+    this.setData({
+      hiddenmodalput: true
+    });
   },
   tabSelect(e) {
     this.setData({
@@ -33,9 +51,7 @@ Page({
           Myjoin: res.data.data
         })
       })
-    }
-    else if(that.data.options==2)
-    {
+    } else if (that.data.options == 2) {
       let url = app.globalData.URL + '/act/listMyActivity';
       let data = {
         'type': 20,
@@ -81,22 +97,44 @@ Page({
           var that = this
           let url = app.globalData.URL + '/act/cancelActivity';
           let tmp = wx.getStorageSync('userInfo')
-          console.log(e.currentTarget.dataset.id)
           let data = {
-            actid: e.currentTarget.dataset.id,
-            uid: tmp.id
+            actid: that.data.tmpactid,
+            reason:that.data.ans
           }
           util.gets(url, data).then(function (res) {
-            console.log('delete success')
-            console.log(res.data)
-            that.onLoad()
-            wx.showToast({
-              title: '取消成功',
-              duration: 2000,
+            that.setData({
+              hiddenmodalput: !that.data.hiddenmodalput,
             })
+            if (res.data.code!=0) {
+              console.log(res.data)
+              wx.showToast({
+                title: '取消失败',
+                duration: 2000,
+              })
+            } else {
+              console.log('delete success')
+              console.log(res.data)
+              that.onLoad()
+              wx.showToast({
+                title: '取消成功',
+                duration: 2000,
+              })
+            }
           })
         }
       }
+    })
+  },
+  yundongxiangqing(e) {
+    app.globalData.tabbar = 1;
+    wx.navigateTo({
+      url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&Title=' + e.currentTarget.dataset.yundong.actname +'&categoryId=' + e.currentTarget.dataset.yundong.id,
+    })
+  },
+  baomingtiaozhan(e) {
+    app.globalData.tabbar = 1;
+    wx.navigateTo({
+      url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=1&Title=' + e.currentTarget.dataset.yundong.actname +'&categoryId=' + e.currentTarget.dataset.yundong.id,
     })
   },
   cancel(e) {
@@ -139,6 +177,7 @@ Page({
     })
     //我创建的
     url = app.globalData.URL + '/act/listMyActivity';
+    let num
     let data = {
       'type': 10,
       'acid1': '076003001'
@@ -147,6 +186,14 @@ Page({
       console.log('create', res.data)
       that.setData({
         Mycreate: res.data.data
+      })
+      for(i of res.data.data.list)
+      {
+        if(i.status==20)
+        num++
+      }
+      that.setData({
+        createnum:num
       })
     })
     //我参加的
