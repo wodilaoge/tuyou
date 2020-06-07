@@ -56,6 +56,12 @@
       <view class="ziliao-content2">{{duiyuanDeatil.sex==0?'男':(duiyuanDeatil.sex==1?'女':'暂无')}}</view>
     </view>
   </view>
+  <!-- <view style="margin-top:20rpx;background-color:white;">
+    <view class="ziliao-content justify-between" style="height:73rpx;">
+      <view class="ziliao-content1">性别</view>
+      <view class="ziliao-content2">{{duiyuanDeatil.sext}}</view>
+    </view>
+  </view> -->
   <view style="margin-top:2rpx;background-color:white;">
     <view class="ziliao-content justify-between" style="height:73rpx;">
       <view class="ziliao-content1">国籍</view>
