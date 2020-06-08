@@ -99,10 +99,10 @@
       <view class="text-guize " style="width:625rpx;">
         <text hidden="{{detail.rule==null}}">{{detail.rule}}</text>
         <wxparse data="{{ detail.rulepic }}"></wxparse>
-        <view class="margin-top">
+        <!--<view class="margin-top">
           <text class="cuIcon-attention lg text-gray">\t23456</text>
           <text class="cuIcon-appreciate lg text-gray text-right" decode="{{true}}">\t赞&emsp;{{likecount}}</text>
-        </view>
+        </view>-->
       </view>
     </view>
   </view>
