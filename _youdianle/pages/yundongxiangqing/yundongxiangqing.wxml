@@ -97,7 +97,7 @@
         <view class="cu-bar-title">玩法规则</view>
       </view>
       <view class="text-guize " style="width:625rpx;">
-        <wxparse hidden="{{detail.rule==null}}">{{detail.rule}}</wxparse>
+        <rich-text hidden="{{detail.rule==null}}" nodes="{{detail.rule}}"></rich-text>
         <image hidden="{{detail.rulepic==null}}" src="{{detail.rulepic}}" mode="scaleToFill" style="width:700rpx;"></image>
         <!--<view class="margin-top">
           <text class="cuIcon-attention lg text-gray">\t23456</text>
@@ -111,7 +111,7 @@
       <view class="cu-bar bg-white ">
         <view class="cu-bar-title">奖品设置</view>
       </view>
-      <wxparse hidden="{{detail.award==null}}">{{detail.award}}</wxparse>
+      <rich-text hidden="{{detail.award==null}}" nodes="{{detail.award}}"></rich-text>
       <image hidden="{{detail.awardpic==null}}" src="{{detail.awardpic}}" mode="scaleToFill" style="width:700rpx;"></image>
     </view>
   </view>
@@ -120,7 +120,7 @@
       <view class="cu-bar bg-white ">
         <view class="cu-bar-title">赞助商</view>
       </view>
-      <wxparse hidden="{{detail.sponsor==null}}">{{detail.sponsor}}</wxparse>
+      <rich-text hidden="{{detail.sponsor==null}}" nodes="{{detail.sponsor}}"></rich-text>
       <image hidden="{{detail.sponsorpic==null}}"  src="{{detail.sponsorpic}}" mode="scaleToFill" style="width:700rpx;"></image>
     </view>
   </view>
