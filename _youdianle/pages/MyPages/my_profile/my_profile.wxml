@@ -57,21 +57,19 @@
 			</view>
 		</picker>
 	</view>
+
 	<view class="cu-form-group">
 		<view class="title">入学年份</view>
-		<picker mode="date" value="{{userinfo.enrolyear}}" start="2000-09-01" end="2020-09-01" bindchange="DateChange2">
-			<view class="picker">
-				{{userinfo.enrolyear}}
-			</view>
-		</picker>
+		<input class="input text-grey" placeholder="{{userinfo.enrolyear}}" type='text' name="name"
+			bindinput="getenrolyear"></input>
+		<image class="icon" src="/img/write.png"></image>
 	</view>
+	
 	<view class="cu-form-group">
 		<view class="title">毕业年份</view>
-		<picker mode="date" value="{{userinfo.graduateyear}}" start="2000-09-01" end="2050-09-01" bindchange="DateChange3">
-			<view class="picker">
-				{{userinfo.graduateyear}}
-			</view>
-		</picker>
+		<input class="input text-grey" placeholder="{{userinfo.graduateyear}}" type='text' name="name"
+			bindinput="getgraduateyear"></input>
+		<image class="icon" src="/img/write.png"></image>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">国籍</view>

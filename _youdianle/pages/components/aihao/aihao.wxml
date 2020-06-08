@@ -55,7 +55,7 @@
     <block wx:for="{{aihaoxiaolei}}" wx:for-item="cell" wx:if="{{item.acid2==cell.code}}">
       <text style="position:absolute;left:110rpx;">{{cell.name}}</text>
     </block>
-    <text class=" title-time" style="position:absolute;width:100%;left:210rpx;" wx:if="{{item.lefttime!=null}}">{{item.lefttime.day}} 天{{item.lefttime.hr}}:{{item.lefttime.min}} </text>
+    <text class=" title-time" style="position:absolute;width:100%;left:250rpx;" wx:if="{{item.lefttime!=null}}">{{item.lefttime.day}} 天{{item.lefttime.hr}}:{{item.lefttime.min}} </text>
     <text class=" title-time" style="position:absolute;width:100%;left:310rpx;" wx:if="{{item.lefttime==null}}">{{item.statusText}} </text>
   </view>
   <view class="background" style="margin-bottom:20rpx;">
