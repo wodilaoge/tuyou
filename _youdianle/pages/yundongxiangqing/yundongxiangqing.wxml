@@ -98,7 +98,7 @@
       </view>
       <view class="text-guize " style="width:625rpx;">
         <text hidden="{{detail.rule==null}}">{{detail.rule}}</text>
-        <wxparse hidden="{{detail.rulepic==null}}" data="{{detail.rulepic}}"></wxparse>
+        <image hidden="{{detail.rulepic==null}}" src="{{detail.rulepic}}" mode="scaleToFill" style="width:700rpx;"></image>
         <!--<view class="margin-top">
           <text class="cuIcon-attention lg text-gray">\t23456</text>
           <text class="cuIcon-appreciate lg text-gray text-right" decode="{{true}}">\t赞&emsp;{{likecount}}</text>
@@ -112,7 +112,7 @@
         <view class="cu-bar-title">奖品设置</view>
       </view>
       <text hidden="{{detail.award==null}}">{{detail.award}}</text>
-      <image src="{{detail.awardpic}}" mode="scaleToFill" style="width:700rpx;"></image>
+      <image hidden="{{detail.awardpic==null}}" src="{{detail.awardpic}}" mode="scaleToFill" style="width:700rpx;"></image>
     </view>
   </view>
   <view hidden="{{detail.sponsor==null&&detail.sponsorpic==null}}">
@@ -121,7 +121,7 @@
         <view class="cu-bar-title">赞助商</view>
       </view>
       <text hidden="{{detail.sponsor==null}}">{{detail.sponsor}}</text>
-      <image src="{{detail.sponsorpic}}" mode="scaleToFill" style="width:700rpx;"></image>
+      <image hidden="{{detail.sponsorpic==null}}" s src="{{detail.sponsorpic}}" mode="scaleToFill" style="width:700rpx;"></image>
     </view>
   </view>
 
