@@ -121,3 +121,18 @@
   width: 27rpx;
   height: 27rpx;
 }
+.video-item {
+  width: 50%;
+  padding: 5px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.menu {
+  display: flex;
+  /*弹性布局*/
+  flex-wrap: wrap;
+  /*允许换行*/
+  flex-direction: row;
+}
