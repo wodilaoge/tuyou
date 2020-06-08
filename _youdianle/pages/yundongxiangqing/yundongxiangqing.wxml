@@ -94,11 +94,11 @@
   <view hidden="{{detail.rule==null&&detail.rulepic==null}}">
     <view class="bg-white padding">
       <view class="cu-bar bg-white ">
-        <view class="cu-bar-title">活动介绍</view>
+        <view class="cu-bar-title">玩法规则</view>
       </view>
       <view class="text-guize " style="width:625rpx;">
         <text hidden="{{detail.rule==null}}">{{detail.rule}}</text>
-        <wxparse data="{{ detail.rulepic }}"></wxparse>
+        <wxparse hidden="{{detail.rulepic==null}}" data="{{detail.rulepic}}"></wxparse>
         <!--<view class="margin-top">
           <text class="cuIcon-attention lg text-gray">\t23456</text>
           <text class="cuIcon-appreciate lg text-gray text-right" decode="{{true}}">\t赞&emsp;{{likecount}}</text>
