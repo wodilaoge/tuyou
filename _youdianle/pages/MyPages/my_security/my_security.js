@@ -4,10 +4,15 @@ Page({
 
   data: {
     mobile:'',
-    userinfo:[]
+    userinfo:[],
+    isphone:false
   },
 
-
+  tochange(){
+    wx.navigateTo({
+      url: '/pages/MyPages/my_profile/my_profile',
+    })
+  },
   onLoad: function(options) {
     var that = this;
     let url = app.globalData.URL + '/appuser/findUserByID';
@@ -18,9 +23,17 @@ Page({
       'id': this.data.userInfoAll.id
     }
     util.gets(url, data).then(function (res) {
+
       that.setData({
         userinfo: res.data.data
       })
+      if(res.data.data.mobile)
+      {
+        that.setData({
+          isphone:true
+        })
+ 
+      }
     })
   },
   dead(e){
