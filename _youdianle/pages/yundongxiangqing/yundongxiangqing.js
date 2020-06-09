@@ -1563,12 +1563,12 @@ Page({
     let data = {
       objtype: 10,
       objid: e.currentTarget.dataset.members.mbrId,
+      objtitle:null,
       creater: self.data.user.id,
       status: 1 - e.currentTarget.dataset.members.myApplaud
     }
     console.log(data)
     util.post_token(url, data).then(function (res) {
-      console.log(res.data)
       if (res.data.code == 0) {
         wx.showToast({
           title: '操作成功！', // 标题

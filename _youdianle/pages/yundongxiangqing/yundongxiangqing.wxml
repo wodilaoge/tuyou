@@ -394,7 +394,7 @@
   </block>
   <block>
     <!-- 管理 -->
-    <view style="background-color:var(--white)" wx:if="{{signupway==false&&gerenpaiming.list.members.length!=0}}" hidden="true">
+    <view style="background-color:var(--white)" wx:if="{{signupway==false&&gerenshuju.list.members.length!=0}}" hidden="true">
       <view class=" padding " style="margin-left:175rpx;">
         <button class="cu-btn {{baomingCur==0?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-left" bindtap="guanliSelect" data-id="0">
           个人管理
@@ -405,7 +405,7 @@
       </view>
     </view>
     <block wx:if="{{guanliCur==0}}">
-      <view class="bg-white" wx:for="{{gerenpaiming.list}}" wx:for-index="index">
+      <view class="bg-white" wx:for="{{gerenshuju.list}}" wx:for-index="index">
         <view class="cu-bar bg-white padding" wx:if="{{item.groupname!=null}}">
           <view class="yibaoming-text-content">{{item.groupname}}</view>
         </view>
