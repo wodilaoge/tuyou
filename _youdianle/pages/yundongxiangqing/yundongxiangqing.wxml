@@ -507,7 +507,7 @@
         </view>
 
         <view>
-          <video id="video_{{index}}" src="{{shipin.list[0].src2}}" autoplay="true" controls style="width:100%;" bindtap="video_change" data-index="{{index}}"></video>
+          <video id="video_{{index}}" src="{{shipin.list[0].filed}}"  controls style="width:100%;" bindtap="video_change" data-index="{{index}}"></video>
         </view>
         <view class="flex  margin-top ">
           <view class="sp-bofang-times ">播放{{shipin.list[0].playCnt}}次</view>
@@ -516,7 +516,7 @@
             {{shipin.list[0].applaudCnt}}</view>
           <image class="img-icon" mode="aspectFit " src="/img/icon_talk.png" bindtap="chooseSezi" data-duixiang="{{50}}" data-index="{{0}}" data-dxid="{{shipin.list[0].id}}" data-dxtitle="{{shipin.list[0].title}}"></image>
           <view bindtap="share">
-            <button class="cu-btn round  buttonshare" style="background-color: white; margin-left: 20rpx;margin-top: -8rpx;" open-type="share">
+            <button class="cu-btn round  buttonshare" style="background-color: white; margin-left: 20rpx;margin-top: -8rpx;" open-type="share" data-index="{{index}}"  data-duixiang="{{50}}">
               <image class="img-icon" src="/img/icon_share_more.png " style="width:44rpx;height:40rpx;margin-left:16rpx; margin-right:20rpx; "></image>
             </button>
           </view>
@@ -555,7 +555,7 @@
         </view>
 
         <view>
-          <video id="video_{{index}}"src="{{shipin.list[index].src2}}" autoplay="true" controls style="width:100%;" bindtap="video_change" data-index="{{index}}"></video>
+          <video id="video_{{index}}"src="{{shipin.list[index].filed}}"  controls style="width:100%;" bindtap="video_change" data-index="{{index}}"></video>
         </view>
         <view class="flex  margin-top ">
           <view class="sp-bofang-times ">播放{{shipin.list[index].playCnt}}次</view>
@@ -564,7 +564,7 @@
             {{shipin.list[index].applaudCnt}}</view>
           <image class="img-icon" mode="aspectFit " src="/img/icon_talk.png" bindtap="chooseSezi" data-duixiang="{{50}}" data-index="{{index}}" data-dxid="{{shipin.list[index].id}}" data-dxtitle="{{shipin.list[index].title}}"></image>
           <view bindtap="share">
-            <button class="cu-btn round  buttonshare" style="background-color: white; margin-left: 20rpx;margin-top: -8rpx;" open-type="share">
+            <button class="cu-btn round  buttonshare" style="background-color: white; margin-left: 20rpx;margin-top: -8rpx;" open-type="share" data-index="{{index}}"  data-duixiang="{{50}}">
               <image class="img-icon" src="/img/icon_share_more.png " style="width:44rpx;height:40rpx;margin-left:16rpx; margin-right:20rpx; "></image>
             </button>
           </view>

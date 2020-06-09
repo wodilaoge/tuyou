@@ -193,8 +193,8 @@
           <image class="img-icon" mode="aspectFit " src="/img/icon_talk.png" bindtap="chooseSezi"
             data-duixiang="{{50}}" data-index="{{0}}" data-dxid="{{shipin.list[0].id}}"
             data-dxtitle="{{shipin.list[0].title}}"></image>
-          <view bindtap="share">
-            <button class="cu-btn round  buttonshare" style="background-color: white; margin-left: 20rpx;margin-top: -8rpx;" open-type="share">
+          <view bindtap="share" >
+            <button class="cu-btn round  buttonshare" style="background-color: white; margin-left: 20rpx;margin-top: -8rpx;" open-type="share" data-index="{{index}}"  data-duixiang="{{50}}">
               <image class="img-icon" src="/img/icon_share_more.png "
                 style="width:44rpx;height:40rpx;margin-left:16rpx; margin-right:20rpx; "></image>
             </button>
@@ -245,8 +245,8 @@
             <image class="img-icon" mode="aspectFit " src="/img/icon_talk.png" bindtap="chooseSezi"
             data-duixiang="{{50}}" data-index="{{index}}" data-dxid="{{shipin.list[index].id}}"
             data-dxtitle="{{shipin.list[index].title}}"></image>
-            <view bindtap="share">
-              <button class="cu-btn round  buttonshare" style="background-color: white; margin-left: 20rpx;margin-top: -8rpx;" open-type="share">
+            <view bindtap="share" >
+              <button class="cu-btn round  buttonshare" style="background-color: white; margin-left: 20rpx;margin-top: -8rpx;" open-type="share"  data-index="{{index}}"  data-duixiang="{{50}}">
                 <image class="img-icon" src="/img/icon_share_more.png "
                   style="width:44rpx;height:40rpx;margin-left:16rpx; margin-right:20rpx; "></image>
               </button>
