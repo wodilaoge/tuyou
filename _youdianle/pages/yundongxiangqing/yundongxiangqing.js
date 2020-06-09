@@ -673,7 +673,7 @@ Page({
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
       actid: this.data.categoryId,
-      pageSize: 2,
+      pageSize: 1,
       // city: this.data.city === '不选' ? null : this.data.city,
       // univ: this.data.univ === '不选' ? null : this.data.univ,
     };
@@ -693,7 +693,7 @@ Page({
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
       actid: this.data.categoryId,
-      pageSize: 2,
+      pageSize: 1,
       border: this.data.shipinBorder,
       // city: this.data.city === '不选' ? null : this.data.city,
       // univ: this.data.univ === '不选' ? null : this.data.univ,
@@ -1878,18 +1878,33 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function (e) {
     var that = this;
-    return {
-      title: '友点乐',
-      path: 'pages/yundongxiangqing/yundongxiangqing?TabCur=' + that.data.TabCur + '&Title=' + that.data.biaoti + '&categoryId=' + that.data.categoryId,
-      success: function (res) {
-        console.log("转发成功:" + JSON.stringify(res));
-        that.shareClick();
-      },
-      fail: function (res) {
-        console.log("转发失败:" + JSON.stringify(res));
+    if(e.target.dataset.duixiang==50){
+      return {
+        title: '友点乐',
+        path: 'pages/yundongxiangqing/yundongxiangqing?TabCur=' + that.data.TabCur + '&Title=' + that.data.biaoti + '&categoryId=' + that.data.categoryId + '&',
+        success: function (res) {
+          console.log("转发成功:" + JSON.stringify(res));
+          that.shareClick();
+        },
+        fail: function (res) {
+          console.log("转发失败:" + JSON.stringify(res));
+        }
+      }
+    }else{
+      return {
+        title: '友点乐',
+        path: 'pages/yundongxiangqing/yundongxiangqing?TabCur=' + that.data.TabCur + '&Title=' + that.data.biaoti + '&categoryId=' + that.data.categoryId,
+        success: function (res) {
+          console.log("转发成功:" + JSON.stringify(res));
+          that.shareClick();
+        },
+        fail: function (res) {
+          console.log("转发失败:" + JSON.stringify(res));
+        }
       }
     }
+    
   }
 })

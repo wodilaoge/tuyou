@@ -73,6 +73,7 @@ Page({
     shipinBorder: '',
     city: '',
     univ: '',
+    ssss: '',
 
   },
   //////////////////////
@@ -416,11 +417,37 @@ Page({
   },
 
   /////////////////////////
+  getOneShipin:function(e){
+    var self = this;
+    let url = app.globalData.URL + '/video/findActVideo';
+    let data = {
+      id:e,
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      console.log(res)
+      let shipintt={};
+      shipintt.border=0;
+      shipintt.list=[];
+      shipintt.list.splice(0,0,res.data)
+      console.log(shipintt)
+      let shipintmp = JSON.stringify(shipintt);
+      console.log(shipintmp)
+      var jsonObj = JSON.parse(shipintmp);
+ 
+      self.setData({
+        shipin: jsonObj,
+        ssss:123,
+      })
+      console.log(self.data.shipin)
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
   getShipin() { //视频
     var self = this;
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
-      pageSize: 2,
+      pageSize: 1,
       city: this.data.city ,
       univ: this.data.univ ,
     }
@@ -439,7 +466,7 @@ Page({
     var self = this;
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
-      pageSize: 2,
+      pageSize: 1,
       border: this.data.shipinBorder,
       city: this.data.city,
       univ: this.data.univ,
@@ -592,7 +619,7 @@ Page({
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
       acid1: this.data.shipinCur,
-      pageSize: 2,
+      pageSize: 1,
       city: this.data.city,
       univ: this.data.univ ,
     };
@@ -610,7 +637,7 @@ Page({
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
       acid1: this.data.shipinCur,
-      pageSize: 2,
+      pageSize: 1,
       border: this.data.shipinBorder,
       city: this.data.city,
       univ: this.data.univ ,
@@ -854,7 +881,8 @@ Page({
       url: '../sousuo/sousuo',
     })
   },
-  onLoad: function () {
+  onLoad: function (options) {
+    console.log(options)
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
@@ -881,16 +909,30 @@ Page({
         }
       }
     })
+    console.log(this.data)
     this.setData({
       user: wx.getStorageSync('userInfo'),
       city: wx.getStorageSync('city').code ? wx.getStorageSync('city').code : null,
       univ: wx.getStorageSync('school').code ? wx.getStorageSync('school').code : null,
+      TabCur: options.TabCur,
     })
+    
     this.xuanran(); //初始化
-    this.getShipin();
-    this.setData({ //读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
-      TabCur: app.globalData.tabbar
-    })
+    console.log(options.shipinID)
+    if(options.shipinID){
+      this.getOneShipin(options.shipinID);
+      this.setData({ 
+        TabCur: options.TabCur,
+        shipinCur:'076003002'
+      })
+    }else{
+      console.log('//////////////////////////////////')
+      this.getShipin();
+      this.setData({ //读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
+        TabCur: app.globalData.tabbar
+      })
+    }
+    
     this.towerSwiper('xiaoyuanSwiperList')
 
   },
@@ -976,19 +1018,35 @@ Page({
       direction: e.touches[0].pageX - this.data.towerStart > 0 ? 'right' : 'left'
     })
   },
-  onShareAppMessage: function () {
+  onShareAppMessage: function (e) {
     var self = this;
-    return {
-      title: '友点乐',
-      path: 'pages/xiaoyuan/xiaoyuan',
-      success: function (res) {
-        console.log("转发成功:" + JSON.stringify(res));
-        self.shareClick();
-      },
-      fail: function (res) {
-        console.log("转发失败:" + JSON.stringify(res));
+    console.log(e)
+    if(e.target.dataset.duixiang==50){
+      return {
+        title: '友点乐',
+        path: 'pages/xiaoyuan/xiaoyuan?TabCur='+self.data.TabCur+'&shipinID='+self.data.shipin.list[e.target.dataset.index].id+'&shipinCur='+self.data.shipinCur,
+        success: function (res) {
+          console.log("转发成功:" + JSON.stringify(res));
+          self.shareClick();
+        },
+        fail: function (res) {
+          console.log("转发失败:" + JSON.stringify(res));
+        }
+      }
+    }else{
+      return {
+        title: '友点乐',
+        path: 'pages/xiaoyuan/xiaoyuan',
+        success: function (res) {
+          console.log("转发成功:" + JSON.stringify(res));
+          self.shareClick();
+        },
+        fail: function (res) {
+          console.log("转发失败:" + JSON.stringify(res));
+        }
       }
     }
+   
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
