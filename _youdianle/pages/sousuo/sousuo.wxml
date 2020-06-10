@@ -685,19 +685,16 @@
           <image class="icon" src="../../img/array.png"></image>
         </view>
       </view>
-      <view wx:for="{{sousuo_detail.listVideo}}" class="bg-white video">
-        <navigator url="?id={{sousuo_detail.listVideo[index].id}}">
+      <view class="menu bg-white" wx:for="{{sousuo_detail.listVideo}}" >
+        <!-- <navigator url="?id={{sousuo_detail.listVideo[index].id}}">
           <view class="video-list-info bg-white" index="{{index}}">
             <video class="video-list-photo radius" src="{{sousuo_detail.listVideo[index].fileId}}" />
             <text class="video_text">{{sousuo_detail.listVideo[index].title}}</text>
           </view>
-        </navigator>
-      </view>
-
-      <view wx:for="sousuo_deatil.listVideo">
-        <view class="banner_basic " bindtap="todetail" id="{{sousuo_deatil.listVideo[index].id}}">
-          <image src="{{sousuo_deatil.listVideo[index].logo}}" class="banner_img"></image>
-          <text class="banner_text">{{sousuo_deatil.listVideo[index].actname}}</text>
+        </navigator> -->
+        <view class="video-item">
+          <video class="video-list-photo radius" src="{{item.fileId}}" />
+          <view class="video_text">{{item.title}}</view>
         </view>
       </view>
     </view>

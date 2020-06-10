@@ -387,8 +387,10 @@ page {
 .sp-pinlun-content {
   display: flex;
   background-color: #f8f9fd;
-  height: 60rpx;
+  min-height: 60rpx;
+  height: auto;
   align-items: center;
+  word-wrap:break-word;
 }
 
 .sp-pinglun-avatar {
@@ -412,12 +414,28 @@ page {
 }
 
 .sp-pinglun-neirong {
-  /* width: 524rpx; */
+  width: 600rpx;
   font-size: 24rpx;
   font-family: PingFang-SC-Medium;
   color: #666;
   font-weight: normal;
   margin-left: 21rpx;
+  /* word-break: break-all;
+  display: flex; */
+  /* overflow: hidden;
+  text-overflow: ellipsis; */
+}
+.sp-pinglun-neirong-2 {
+  width: 550rpx;
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  color: #666;
+  font-weight: normal;
+  margin-left: 21rpx;
+  /* word-break: break-all;
+  display: flex; */
+  /* overflow: hidden;
+  text-overflow: ellipsis; */
 }
 
 .sp-quanbupinglun {

@@ -503,7 +503,8 @@
 
         <view>
           <video id="video_{{index}}" src="{{shipin.list[0].fileId}}" controls style="width:100%;"
-            bindtap="video_change" data-index="{{index}}"></video>
+            bindtap="video_change" data-index="{{index}}" custom-cache="{{false}}"
+            ></video>
         </view>
         <view class="flex  margin-top ">
           <view class="sp-bofang-times ">播放{{shipin.list[0].playCnt}}次</view>
@@ -559,7 +560,8 @@
 
         <view>
           <video id="video_{{index}}" src="{{shipin.list[index].fileId}}" controls style="width:100%;"
-            bindtap="video_change" data-index="{{index}}"></video>
+            bindtap="video_change" data-index="{{index}}" custom-cache="{{false}}"
+            ></video>
         </view>
         <view class="flex  margin-top ">
           <view class="sp-bofang-times ">播放{{shipin.list[index].playCnt}}次</view>
@@ -918,11 +920,11 @@
       <text class="sp-quanbupinglun2">全部评论({{shipin.list[shipin_index].commCnt}})</text>
     </view>
     <view wx:for="{{shipin.list[shipin_index].listComm}}" wx:for-index="index2" style="background-color:white;">
-      <view class="margin-top sp-pinlun-content">
+      <view class="margin-top sp-pinlun-content" >
         <image class="sp-pinglun-avatar-2 round " src="{{shipin.list[shipin_index].listComm[index2].createrHead}} ">
         </image>
         <view class="sp-pinglun-name ">{{shipin.list[shipin_index].listComm[index2].createrAlias}}</view>
-        <view class="sp-pinglun-neirong ">{{shipin.list[shipin_index].listComm[index2].comment}}</view>
+        <view class="sp-pinglun-neirong-2 ">{{shipin.list[shipin_index].listComm[index2].comment}}</view>
       </view>
     </view>
   </scroll-view>

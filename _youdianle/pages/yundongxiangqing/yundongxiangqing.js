@@ -1883,7 +1883,7 @@ Page({
     if(e.target.dataset.duixiang==50){
       return {
         title: '友点乐',
-        path: 'pages/xiaoyuan/xiaoyuan?TabCur=' + that.data.TabCur +'&shipinID='+that.data.shipin.list[e.target.dataset.index].id,
+        path: 'pages/fenxiangshipin/fenxiang?Tabcur=' + that.data.TabCur +'&shipinID='+that.data.shipin.list[e.target.dataset.index].id,
         success: function (res) {
           console.log("转发成功:" + JSON.stringify(res));
           that.shareClick();
