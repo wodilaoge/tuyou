@@ -380,6 +380,7 @@ Page({
       type: 10
     };
     app.wxRequest('GET', url, data, (res) => {
+      console(res.data)
       this.setData({
         gerenshuju: res.data
       })
@@ -1192,6 +1193,7 @@ Page({
           this.lijibaoming_do_shiming()
       } else
         this.lijibaoming_do()
+      this.gerenpaiming()
     }
   },
   lijibaoming_do() {
