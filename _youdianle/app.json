@@ -48,8 +48,8 @@
     "pages/webview2/webview2",
     "pages/webview3/webview3",
     "pages/webview4/webview4",
-    "pages/about/about"
-
+    "pages/about/about",
+    "pages/fenxiangshipin/fenxiang"
   ],
   "window": {
     "backgroundTextStyle": "light",

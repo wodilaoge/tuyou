@@ -1,0 +1,13 @@
+/* pages/fenxiangshipin/fenxiang.wxss */
+@import "../xiaoyuan/xiaoyuan.wxss";
+.fanhui{
+  margin-top: 100rpx;
+height: 100rpx;
+background-color: #5353FF;
+
+}
+.shouye{
+  color: white;
+  margin-left: 10rpx;
+ padding-top: 30rpx;
+}
