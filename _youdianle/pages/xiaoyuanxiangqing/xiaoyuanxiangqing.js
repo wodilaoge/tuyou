@@ -939,6 +939,7 @@ Page({
           this.lijibaoming_do_shiming()
       } else
         this.lijibaoming_do()
+      this.gerenpaiming()
     }
   },
   onPullDownRefresh() {
