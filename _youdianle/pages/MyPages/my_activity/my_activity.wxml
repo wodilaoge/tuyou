@@ -15,7 +15,7 @@
     <view class="{{options=='2'?'orange cur':''}}"></view>
   </view>
   <view class="menu-item {{options=='3'?'text-orange cur':''}}" bindtap="select3">
-    <text class="menu-name text-lg">8</text>
+    <text class="menu-name text-lg">0</text>
     <text class="menu-name text-lg">关注</text>
     <view class="{{options=='3'?'orange cur':''}}"></view>
   </view>

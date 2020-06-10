@@ -22,7 +22,7 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -239,6 +239,12 @@
 					"name": "pages/MyPages/my_activity/my_activity",
 					"pathName": "pages/MyPages/my_activity/my_activity",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "分享视频",
+					"pathName": "pages/fenxiangshipin/fenxiang",
 					"scene": null
 				}
 			]

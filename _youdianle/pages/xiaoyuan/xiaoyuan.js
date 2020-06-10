@@ -417,37 +417,12 @@ Page({
   },
 
   /////////////////////////
-  getOneShipin:function(e){
-    var self = this;
-    let url = app.globalData.URL + '/video/findActVideo';
-    let data = {
-      id:e,
-    };
-    app.wxRequest('GET', url, data, (res) => {
-      console.log(res)
-      let shipintt={};
-      shipintt.border=0;
-      shipintt.list=[];
-      shipintt.list.splice(0,0,res.data)
-      console.log(shipintt)
-      let shipintmp = JSON.stringify(shipintt);
-      console.log(shipintmp)
-      var jsonObj = JSON.parse(shipintmp);
- 
-      self.setData({
-        shipin: jsonObj,
-        ssss:123,
-      })
-      console.log(self.data.shipin)
-    }, (err) => {
-      console.log(err.errMsg)
-    });
-  },
+  
   getShipin() { //视频
     var self = this;
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
-      pageSize: 1,
+      pageSize: 2,
       city: this.data.city ,
       univ: this.data.univ ,
     }
@@ -466,7 +441,7 @@ Page({
     var self = this;
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
-      pageSize: 1,
+      pageSize: 2,
       border: this.data.shipinBorder,
       city: this.data.city,
       univ: this.data.univ,
@@ -619,7 +594,7 @@ Page({
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
       acid1: this.data.shipinCur,
-      pageSize: 1,
+      pageSize: 2,
       city: this.data.city,
       univ: this.data.univ ,
     };
@@ -637,7 +612,7 @@ Page({
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
       acid1: this.data.shipinCur,
-      pageSize: 1,
+      pageSize: 2,
       border: this.data.shipinBorder,
       city: this.data.city,
       univ: this.data.univ ,
@@ -909,30 +884,17 @@ Page({
         }
       }
     })
-    console.log(this.data)
     this.setData({
       user: wx.getStorageSync('userInfo'),
       city: wx.getStorageSync('city').code ? wx.getStorageSync('city').code : null,
       univ: wx.getStorageSync('school').code ? wx.getStorageSync('school').code : null,
       TabCur: options.TabCur,
     })
-    
     this.xuanran(); //初始化
-    console.log(options.shipinID)
-    if(options.shipinID){
-      this.getOneShipin(options.shipinID);
-      this.setData({ 
-        TabCur: options.TabCur,
-        shipinCur:'076003002'
-      })
-    }else{
-      console.log('//////////////////////////////////')
       this.getShipin();
       this.setData({ //读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
         TabCur: app.globalData.tabbar
       })
-    }
-    
     this.towerSwiper('xiaoyuanSwiperList')
 
   },
@@ -1024,7 +986,7 @@ Page({
     if(e.target.dataset.duixiang==50){
       return {
         title: '友点乐',
-        path: 'pages/xiaoyuan/xiaoyuan?TabCur='+self.data.TabCur+'&shipinID='+self.data.shipin.list[e.target.dataset.index].id+'&shipinCur='+self.data.shipinCur,
+        path: 'pages/fenxiangshipin/fenxiang?&shipinID='+self.data.shipin.list[e.target.dataset.index].id,
         success: function (res) {
           console.log("转发成功:" + JSON.stringify(res));
           self.shareClick();
