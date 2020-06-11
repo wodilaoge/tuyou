@@ -685,14 +685,14 @@
           <image class="icon" src="../../img/array.png"></image>
         </view>
       </view>
-      <view class="menu bg-white" wx:for="{{sousuo_detail.listVideo}}" >
+      <view class="menu bg-white" >
         <!-- <navigator url="?id={{sousuo_detail.listVideo[index].id}}">
           <view class="video-list-info bg-white" index="{{index}}">
             <video class="video-list-photo radius" src="{{sousuo_detail.listVideo[index].fileId}}" />
             <text class="video_text">{{sousuo_detail.listVideo[index].title}}</text>
           </view>
         </navigator> -->
-        <view class="video-item">
+        <view class="video-item"  wx:for="{{sousuo_detail.listVideo}}">
           <video class="video-list-photo radius" src="{{item.fileId}}" />
           <view class="video_text">{{item.title}}</view>
         </view>
