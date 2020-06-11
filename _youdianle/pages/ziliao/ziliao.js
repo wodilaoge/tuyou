@@ -30,6 +30,8 @@ Page({
     ziliaoDaleiCur: '',
     paimingDetail: [],
     duiyuanAge: 0,
+    ifFX:'0',
+    ifTrue: '1',
   },
   ///////////评论
   comment() { //评论
@@ -361,7 +363,7 @@ Page({
   getHuodong() {
     let url = app.globalData.URL + '/act/countActByUser';
     let data = {
-      objid: this.data.duiyuanID,
+      uid: this.data.duiyuanID,
     };
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
@@ -451,6 +453,7 @@ Page({
         objtype: 10,
         objid: this.data.duiyuanID,
         creater: this.data.user.id,
+        objtitle:this.data.duiyuanDeatil.name,
         status: 1,
       };
       app.wxRequest('POST', url, data, (res) => {
@@ -476,10 +479,10 @@ Page({
   },
   //////////分享
   onShareAppMessage: function (e) {
-    console.log(ok)
     var that = this;
     return {
       title: '友点乐',
+      path: 'pages/ziliao/ziliao?ifFX=' + that.data.ifTrue + '&id='+ that.data.options.id,
       success: function (res) {
         console.log("转发成功:" + JSON.stringify(res));
         that.shareClick();
@@ -489,15 +492,21 @@ Page({
       }
     }
   },
-
+  navshouye() {
+      wx.reLaunch({
+        url: '../index/index'
+      })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     this.setData({
       duiyuanID: options.id,
       user: wx.getStorageSync('userInfo'),
       options: options,
+      ifFX: options.ifFX,
     })
     this.getDuiyuan()
     this.getDianzan()
@@ -555,7 +564,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {
 
-  }
+  // }
 })

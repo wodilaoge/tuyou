@@ -278,3 +278,8 @@ color:rgba(153,153,153,1);
 .zixun-right{
 margin-right:24rpx;
 }
+.shouye{
+  color: white;
+  margin-left: 10rpx;
+ padding-top: 100rpx;
+}
