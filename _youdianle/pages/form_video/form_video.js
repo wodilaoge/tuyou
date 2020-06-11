@@ -4,7 +4,7 @@ var upload = require("../../utils/upload.js");
 var util = require("../../utils/util.js");
 Page({
   data: {
-    isagree:true,
+    isagree: true,
     hiddenmodalput: true,
     group: 0,
     videonum: 0,
@@ -213,61 +213,69 @@ Page({
         }
       })
     } else {
-      let url = app.globalData.URL + '/video/updateActVideo';
-      var data = this.data
-      var datas = {
-        id: null,
-        actid: '',
-        sid: this.data.information.sid,
-        acid1: this.data.information.acid1,
-        acid2: this.data.information.acid2,
-        title: this.data.title,
-        author: user.id,
-        authorAlias: user.nickname,
-        authorHead: user.head,
-        fileId: this.data.video,
-        notes: this.data.notes,
-        univ: pro.code,
-        province: city.code,
-        city: school.code,
-        status: '10',
-        creater: user.id,
-        mender: ''
-      }
-      util.post_token(url, datas).then(function (res) {
-        if (!res.data.code) {
-          wx.showToast({
-            title: '提交成功',
-            duration: 2000,
-            success: function () {
-              setTimeout(function () {
-                wx.reLaunch({
-                  url: '/pages/index/index',
-                })
-              }, 2000);
-            }
-          })
-        } else {
+      if (this.data.title) {
+        let url = app.globalData.URL + '/video/updateActVideo';
+        var data = this.data
+        var datas = {
+          id: null,
+          actid: '',
+          sid: this.data.information.sid,
+          acid1: this.data.information.acid1,
+          acid2: this.data.information.acid2,
+          title: this.data.title,
+          author: user.id,
+          authorAlias: user.nickname,
+          authorHead: user.head,
+          fileId: this.data.video,
+          notes: this.data.notes,
+          univ: pro.code,
+          province: city.code,
+          city: school.code,
+          status: '10',
+          creater: user.id,
+          mender: ''
+        }
+        util.post_token(url, datas).then(function (res) {
+          if (!res.data.code) {
+            wx.showToast({
+              title: '提交成功',
+              duration: 2000,
+              success: function () {
+                setTimeout(function () {
+                  wx.reLaunch({
+                    url: '/pages/index/index',
+                  })
+                }, 2000);
+              }
+            })
+          } else {
+            console.log(res)
+            wx.showToast({
+              title: res.data.msg,
+              icon: 'success',
+              image: '/img/fail.png',
+              duration: 2000
+            })
+          }
+        }).catch(function (res) {
           console.log(res)
           wx.showToast({
-            title: res.data.msg,
-            icon: 'success',
-            image: '/img/fail.png',
+            title: '提交失败！',
+            icon: 'fail',
+            image: '../../img/fail.png',
             duration: 2000
           })
-        }
-      }).catch(function (res) {
-        console.log(res)
-        wx.showToast({
-          title: '提交失败！',
-          icon: 'fail',
-          image: '../../img/fail.png',
-          duration: 2000
         })
-      })
-      this.setData({
-        modalName: e.currentTarget.dataset.target
-      })
+        this.setData({
+          modalName: e.currentTarget.dataset.target
+        })
+      }
+      else{
+        wx.showToast({
+          title:'请先输入标题',
+          duration:2000
+        })
+      }
     }
   },
   isagree(e) {
