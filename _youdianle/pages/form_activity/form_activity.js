@@ -418,7 +418,7 @@ Page({
         award: this.data.award,
         awardpic: this.data.url2.length!=0?this.data.url2[0]:null,
         sponsor: this.data.spon,
-        sponsorpic: this.data.url5.length != 0 ? this.data.url2[0] : null,
+        sponsorpic: this.data.url5.length != 0 ? this.data.url5[0] : null,
         signupway: this.data.opinion3,
         chatid: null,
         univid: this.data.info.univid,
