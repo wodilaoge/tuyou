@@ -380,7 +380,7 @@ Page({
       type: 10
     };
     app.wxRequest('GET', url, data, (res) => {
-      console(res.data)
+      console.log(res.data)
       this.setData({
         gerenshuju: res.data
       })
@@ -1565,7 +1565,7 @@ Page({
     let data = {
       objtype: 10,
       objid: e.currentTarget.dataset.members.mbrId,
-      objtitle:null,
+      objtitle: e.currentTarget.dataset.members.mbrAlias,
       creater: self.data.user.id,
       status: 1 - e.currentTarget.dataset.members.myApplaud
     }
