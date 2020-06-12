@@ -2,6 +2,7 @@ const app = getApp();
 var util = require("../../utils/util.js");
 Page({
   data: {
+    tzpd:'',//回退跳转判断
     chooseSize: false,
     animationData: {},
     isReflesh: false,
@@ -1771,6 +1772,18 @@ Page({
       city: wx.getStorageSync('city').code ? wx.getStorageSync('city').name : null,
       univ: wx.getStorageSync('school').code ? wx.getStorageSync('school').name : null,
     })
+    if(options.tzpd)
+    {
+      console.log(options.tzpd)
+      app.globalData.tabbar = options.tzpd;
+      self.setData({
+        tzpd:'/pages/xiaoyuan/xiaoyuan'
+      })
+    }
+    else
+      self.setData({
+        tzpd: '/pages/index/index'
+      })
     self.yonghuxinxi()
     self.detail()
     self.yibaoming()

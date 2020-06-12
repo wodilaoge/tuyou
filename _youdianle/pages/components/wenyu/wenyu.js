@@ -27,13 +27,13 @@ Component({
     yundongxiangqing(e) {
       app.globalData.tabbar = 2;
       wx.navigateTo({
-        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=0&Title=' + e.currentTarget.dataset.wenyu.actname +'&categoryId=' + e.currentTarget.dataset.wenyu.id,
+        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=0&tzpd=2&Title=' + e.currentTarget.dataset.wenyu.actname +'&categoryId=' + e.currentTarget.dataset.wenyu.id,
       })
     },
     baomingtiaozhan(e) {
       app.globalData.tabbar = 2;
       wx.navigateTo({
-        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=1&Title=' + e.currentTarget.dataset.wenyu.actname +'&categoryId=' + e.currentTarget.dataset.wenyu.id,
+        url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=1&tzpd=2&Title=' + e.currentTarget.dataset.wenyu.actname +'&categoryId=' + e.currentTarget.dataset.wenyu.id,
       })
     },
   }

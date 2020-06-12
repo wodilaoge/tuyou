@@ -4,7 +4,7 @@
 创建内容：运动详情-->
 
 <view class="top">
-  <cu-custom isBack="{{true}}" bgColor="bg-blue">
+  <cu-custom isBack="{{true}}" url='{{tzpd}}' bgColor="bg-blue">
     <view slot="content" class="biaoti">{{biaoti}}</view>
   </cu-custom>
 </view>

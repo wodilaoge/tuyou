@@ -857,7 +857,6 @@ Page({
     })
   },
   onLoad: function (options) {
-    console.log(options)
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
@@ -929,7 +928,6 @@ Page({
     this.setData({
       TabCur: app.globalData.tabbar,
     })
-    console.log('111111111111111111S')
   },
   DotStyle(e) {
     this.setData({
