@@ -298,7 +298,9 @@ Page({
     let url = app.globalData.URL + '/video/listActVideo';
     let tmp = wx.getStorageSync('userInfo')
     let data = {
-      'uid': tmp.id
+      'uid': tmp.id,
+      'city': wx.getStorageSync('city').code,
+      'univ': wx.getStorageSync('school').code
     };
     util.post_token(url, data).then(function (res) {
       console.log('video', res.data)

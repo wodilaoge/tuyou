@@ -66,7 +66,7 @@
   <!-- <navigator url="/pages/MyPages/my_team/my_team" class="menu-item">
     <image src="/img/my/05.png" class="menu-img"></image>
     <text class="menu-name">团队</text>
-  </navigator> -->
+  </navigator> 
   <navigator url="/pages/MyPages/my_rank/my_rank" class="menu-item">
     <image src="/img/my/06.png" class="menu-img"></image>
     <text class="menu-name">排名</text>
@@ -86,16 +86,17 @@
   <navigator url="/pages/MyPages/my_discuss/my_discuss" class="menu-item">
     <image src="/img/my/10.png" class="menu-img"></image>
     <text class="menu-name">评论</text>
-  </navigator>
+  </navigator>-->
   <navigator url="/pages/MyPages/my_video/my_video" class="menu-item">
     <image src="/img/my/11.png" class="menu-img"></image>
     <text class="menu-name">视频</text>
-  </navigator>
+  </navigator> 
+  <!-- 
   <navigator url="/pages/MyPages/my_pic/my_pic" class="menu-item">
     <image src="/img/my/12.png" class="menu-img"></image>
     <text class="menu-name">照片</text>
   </navigator>
-  <!-- <navigator url="/pages/MyPages/my_news/my_news" class="menu-item">
+<navigator url="/pages/MyPages/my_news/my_news" class="menu-item">
     <image src="/img/my/13.png" class="menu-img"></image>
     <text class="menu-name">新闻</text>
   </navigator> -->
