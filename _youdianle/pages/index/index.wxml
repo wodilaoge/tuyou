@@ -338,19 +338,19 @@
       <text class="menu-name text-bold">新闻</text>
     </view> -->
     <view class="video-item">
-      <video class="video-list-photo radius" src="{{videolist.list[0].fileId}}" />
-      <view class="video_text">{{videolist.list[0].title}}</view>
+      <video class="video-list-photo radius" custom-cache="{{false}}" src="{{videolist.list[0].fileId}}" />
+      <view class="video_text" >{{videolist.list[0].title}}</view>
     </view>
     <view  class="video-item">
-      <video class="video-list-photo radius" src="{{videolist.list[1].fileId}}" />
+      <video class="video-list-photo radius" custom-cache="{{false}}" src="{{videolist.list[1].fileId}}" />
       <view class="video_text">{{videolist.list[1].title}}</view>
     </view>
     <view  class="video-item">
-      <video class="video-list-photo radius" src="{{videolist.list[2].fileId}}" />
+      <video class="video-list-photo radius" custom-cache="{{false}}" src="{{videolist.list[2].fileId}}" />
       <view class="video_text">{{videolist.list[2].title}}</view>
     </view>
     <view class="video-item">
-      <video class="video-list-photo radius" src="{{videolist.list[3].fileId}}" />
+      <video class="video-list-photo radius" custom-cache="{{false}}" src="{{videolist.list[3].fileId}}" />
       <view class="video_text">{{videolist.list[3].title}}</view>
     </view>
   </view>
