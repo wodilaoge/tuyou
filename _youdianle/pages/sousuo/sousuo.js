@@ -17,6 +17,7 @@ Page({
     province: '',
     city:'',
     univ:'',
+    isRefle:false,
   },
   tabSelect(e) {
     this.setData({
@@ -177,6 +178,9 @@ Page({
       url: '/pages/xiaoyuan/xiaoyuan',
     })
   },
+  sousuo_fenye(){
+    
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -231,7 +235,13 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
+    var self = this
+    
+    if (this.data.isRefle == true) {
+
+      this.sousuo_fenye()
+    }
 
   },
 

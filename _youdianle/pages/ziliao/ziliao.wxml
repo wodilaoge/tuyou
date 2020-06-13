@@ -29,14 +29,14 @@
     </view>
   </view>
   <view class="flex" style="margin-top:41rpx;">
-    <text class="ziliao-shuzi" style="margin-left:112rpx;">{{huodongshu}}</text>
-    <text class="ziliao-shuzi" style="margin-left:228rpx;">{{fensishu}}</text>
-    <text class="ziliao-shuzi" style="margin-left:250rpx;">{{dianzanshu}}</text>
+    <text class="ziliao-shuzi flex-sub text-center" >{{huodongshu}}</text>
+    <text class="ziliao-shuzi flex-sub text-center" >{{fensishu}}</text>
+    <text class="ziliao-shuzi flex-sub text-center" >{{dianzanshu}}</text>
   </view>
   <view class="flex" style="margin-top:26rpx;">
-    <text class="ziliao-fensi" style="margin-left:100rpx;">活动</text>
-    <text class="ziliao-fensi" style="margin-left:197rpx;">粉丝</text>
-    <text class="ziliao-fensi" style="margin-left:210rpx;">点赞</text>
+    <view class="ziliao-fensi flex-sub text-center" >活动</view>
+    <view class="ziliao-fensi flex-sub text-center" >粉丝</view>
+    <view class="ziliao-fensi flex-sub text-center" >点赞</view>
   </view>
 </view>
 <view class="ziliao-back" wx:if="{{ifFX==1}}">
@@ -67,14 +67,14 @@
     </view>
   </view>
   <view class="flex" style="margin-top:41rpx;">
-    <text class="ziliao-shuzi" style="margin-left:112rpx;">{{huodongshu}}</text>
-    <text class="ziliao-shuzi" style="margin-left:228rpx;">{{fensishu}}</text>
-    <text class="ziliao-shuzi" style="margin-left:250rpx;">{{dianzanshu}}</text>
+    <text class="ziliao-shuzi flex-sub text-center" >{{huodongshu}}</text>
+    <text class="ziliao-shuzi flex-sub text-center" >{{fensishu}}</text>
+    <text class="ziliao-shuzi flex-sub text-center" >{{dianzanshu}}</text>
   </view>
   <view class="flex" style="margin-top:26rpx;">
-    <text class="ziliao-fensi" style="margin-left:100rpx;">活动</text>
-    <text class="ziliao-fensi" style="margin-left:197rpx;">粉丝</text>
-    <text class="ziliao-fensi" style="margin-left:210rpx;">点赞</text>
+    <view class="ziliao-fensi flex-sub text-center" >活动</view>
+    <view class="ziliao-fensi flex-sub text-center" >粉丝</view>
+    <view class="ziliao-fensi flex-sub text-center" >点赞</view>
   </view>
 </view>
 

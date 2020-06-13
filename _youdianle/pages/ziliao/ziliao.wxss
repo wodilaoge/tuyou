@@ -76,7 +76,7 @@
 }
 
 .ziliao-fensi {
-  /* width:54rpx; */
+  width:33%;
   height: 26rpx;
   font-size: 28rpx;
   font-family: PingFang SC;

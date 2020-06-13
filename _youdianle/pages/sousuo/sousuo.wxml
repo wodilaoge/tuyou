@@ -393,7 +393,7 @@
           </view>
         </navigator> -->
         <view class="video-item" wx:for="{{sousuo_detail.listVideo}}">
-          <video class="video-list-photo radius" src="{{item.fileId}}" />
+          <video class="video-list-photo radius" src="{{item.fileId}}" custom-cache="{{false}}"/>
           <view class="video_text">{{item.title}}</view>
         </view>
       </view>
@@ -693,7 +693,7 @@
           </view>
         </navigator> -->
         <view class="video-item"  wx:for="{{sousuo_detail.listVideo}}">
-          <video class="video-list-photo radius" src="{{item.fileId}}" />
+          <video class="video-list-photo radius" src="{{item.fileId}}" custom-cache="{{false}}" />
           <view class="video_text">{{item.title}}</view>
         </view>
       </view>
