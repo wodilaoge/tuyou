@@ -217,7 +217,7 @@
         <view class="cu-card article ">
           <view class="cu-item">
             <view class="shadow" style="background-color:#F8F9FD;padding:19rpx 0 19rpx 0;" bindtap="yundongxiangqing"
-              data-wenyu="{{item}}">
+              data-yundong="{{item}}">
               <view class="yundong-content">
                 <image src="{{item.logo}}" mode="aspectFill"></image>
                 <view class="desc">
@@ -238,7 +238,7 @@
               </view>
             </view>
             <view class="yundong-content title-text-content" style="margin-top:28rpx;" wx:if="{{item.slogan!=''||null}}"
-              bindtap="yundongxiangqing" data-wenyu="{{item}}">
+              bindtap="yundongxiangqing" data-yundong="{{item}}">
               <image class="icon-size" src="/img/icon_title.png" mode="heightFix"></image>
               <text decode="{{true}}">{{item.slogan}}</text>
             </view>
@@ -282,7 +282,7 @@
         <view class="cu-card article ">
           <view class="cu-item">
             <view class="shadow" style="background-color:#F8F9FD;padding:19rpx 0 19rpx 0;" bindtap="yundongxiangqing"
-              data-aihao="{{item}}">
+              data-yundong="{{item}}">
               <view class="yundong-content">
                 <image src="{{item.logo}}" mode="aspectFill"></image>
                 <view class="desc">
@@ -303,7 +303,7 @@
               </view>
             </view>
             <view class="yundong-content title-text-content" style="margin-top:28rpx;" wx:if="{{item.slogan!=''||null}}"
-              bindtap="yundongxiangqing" data-aihao="{{item}}">
+              bindtap="yundongxiangqing" data-yundong="{{item}}">
               <image class="icon-size" src="/img/icon_title.png" mode="heightFix"></image>
               <text decode="{{true}}">{{item.slogan}}</text>
             </view>
