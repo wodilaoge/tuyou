@@ -5,6 +5,9 @@
 page{
   padding-bottom: 0rpx;
 }
+.hidden {
+  overflow-x: hidden;
+}
 .top{
   background: #5454FF
 }
