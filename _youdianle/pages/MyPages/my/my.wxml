@@ -23,11 +23,11 @@
         <text class="text"></text>{{activitynum}}
         <text class="text2"></text>活动
       </navigator>
-      <navigator class="text-item" url="/pages/MyPages/my_discuss/my_discuss" hover-class="btn-hover" >
+      <navigator class="text-item"  hover-class="btn-hover" >
         <text class="text"></text>{{commentNum}}
         <text class="text2"></text>评论
       </navigator>
-      <navigator class="text-item" url="/pages/MyPages/my_follow/my_follow"  hover-class="btn-hover">
+      <navigator class="text-item"  hover-class="btn-hover">
         <text class="text"></text>{{attentiontNum}}
         <text class="text2"></text>关注
       </navigator>
