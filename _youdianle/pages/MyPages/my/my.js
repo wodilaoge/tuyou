@@ -81,24 +81,34 @@ Page({
             objtype: 10
           };
           util.gets(url, data).then(function (res) {
-            console.log('commentNum',res.data)
+            console.log('commentNum', res.data)
             that.setData({
               commentNum: res.data.data
             })
           })
-           //统计关注数
-           url = app.globalData.URL + '/follow/countByObj';
-           data = {
-             objid: wx.getStorageSync('userInfo').id,
-             objtype: 10
-           };
-           util.gets(url, data).then(function (res) {
-             console.log('attentiontNum',res.data)
-             that.setData({
+          //统计关注数
+          url = app.globalData.URL + '/follow/countByObj';
+          data = {
+            objid: wx.getStorageSync('userInfo').id,
+            objtype: 10
+          };
+          util.gets(url, data).then(function (res) {
+            console.log('attentiontNum', res.data)
+            that.setData({
               attentiontNum: res.data.data
-             })
-           })
-
+            })
+          })
+          //统计加入天数
+          url = app.globalData.URL + '/appuser/findUserByID';
+          data = {
+            id: wx.getStorageSync('userInfo').id,
+          };
+          util.gets(url, data).then(function (res) {
+            console.log('welcome', res.data)
+            that.setData({
+              welcome: res.data.data.welcome
+            })
+          })
           console.log('wx auth finished')
 
         } else {

@@ -9,7 +9,7 @@
       <view class="content ">
         <view class="text-black right text-bold">{{userInfoAll.nickname}}</view>
         <view class="text-black text-sm flex right2">
-          <text class="text-black margin-right-xs "></text> 已加入友点乐100天
+          <text class="text-black margin-right-xs "></text> {{welcome}}
         </view>
       </view>
     </view>
