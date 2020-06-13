@@ -355,14 +355,14 @@
       <video class="video-list-photo radius" custom-cache="{{false}}" src="{{videolist.list[1].fileId}}" />
       <view class="video_text">{{videolist.list[1].title}}</view>
     </view>
-    <view class="video-item">
+    <!-- <view class="video-item">
       <video class="video-list-photo radius" custom-cache="{{false}}" src="{{videolist.list[2].fileId}}" />
       <view class="video_text">{{videolist.list[2].title}}</view>
     </view>
     <view class="video-item">
       <video class="video-list-photo radius" custom-cache="{{false}}" src="{{videolist.list[3].fileId}}" />
       <view class="video_text">{{videolist.list[3].title}}</view>
-    </view>
+    </view> -->
   </view>
 
 </view>
