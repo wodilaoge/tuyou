@@ -79,7 +79,7 @@ Page({
   },
   towebview(e){
     wx.navigateTo({
-      url: '/pages/webview4/webview4?url='+e.currentTarget.dataset.url,
+      url: '/pages/webview3/webview3?url='+e.currentTarget.dataset.url,
     })
   },
   getuploadinfo() {

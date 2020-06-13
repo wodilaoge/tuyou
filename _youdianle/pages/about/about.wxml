@@ -12,6 +12,6 @@
   <view class="padding bottom">
     <navigator class="text-blue padding" url="/pages/webview/webview" >用户服务协议</navigator>
     <navigator class="text-blue padding" url="/pages/webview2/webview2">隐私条款</navigator>
-    <navigator class="text-blue padding" url="/pages/webview/webview">注销协议</navigator>
+    <navigator class="text-blue padding" url="/pages/webview4/webview4">注销协议</navigator>
   </view>
 </view>
