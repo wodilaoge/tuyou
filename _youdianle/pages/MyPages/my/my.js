@@ -29,7 +29,7 @@ Page({
       date: e.detail.value
     })
   },
-  RegionChange: function(e) {
+  RegionChange: function (e) {
     this.setData({
       region: e.detail.value
     })
@@ -53,15 +53,55 @@ Page({
     });
   },
 
-  toUserInfo(e){
+  toUserInfo(e) {
     wx.navigateTo({
       url: '/pages/MyPages/my_profile/my_profile',
     })
   },
-  onLoad: function() {
+  onLoad: function () {
+    var that = this
     wx.getSetting({
       success: res => {
-        if (res.authSetting['scope.userInfo']) { console.log('wx auth finished') } else {
+        if (res.authSetting['scope.userInfo']) {
+          //查询个人活动数（发起和参与的）
+          let url = app.globalData.URL + '/act/countActByUser';
+          let data = {
+
+          };
+          util.gets(url, data).then(function (res) {
+            console.log('activitynum', res.data)
+            that.setData({
+              activitynum: res.data.data
+            })
+          })
+          //统计评论数
+          url = app.globalData.URL + '/comm/countCommByObj';
+          data = {
+            objid: wx.getStorageSync('userInfo').id,
+            objtype: 10
+          };
+          util.gets(url, data).then(function (res) {
+            console.log('commentNum',res.data)
+            that.setData({
+              commentNum: res.data.data
+            })
+          })
+           //统计关注数
+           url = app.globalData.URL + '/follow/countByObj';
+           data = {
+             objid: wx.getStorageSync('userInfo').id,
+             objtype: 10
+           };
+           util.gets(url, data).then(function (res) {
+             console.log('attentiontNum',res.data)
+             that.setData({
+              attentiontNum: res.data.data
+             })
+           })
+
+          console.log('wx auth finished')
+
+        } else {
           console.log('no auth')
           wx.showModal({
             title: '友点乐',
@@ -99,12 +139,12 @@ Page({
       //   userInfoAll: e.detail.userInfo
       // })
       wx.login({
-        success: function(res) {
+        success: function (res) {
           console.log(res);
           var code = res.code
           if (res.code) {
             wx.getUserInfo({
-              success: function(res) {
+              success: function (res) {
                 var userinfo = res.userInfo
                 console.log(userinfo);
                 let url = app.globalData.URL + '/auth/wclogin';
@@ -113,7 +153,7 @@ Page({
                   nickname: userinfo.nickName,
                   head: userinfo.avatarUrl
                 };
-                util.post(url, data).then(function(res) {
+                util.post(url, data).then(function (res) {
                   console.log('id', res)
                   if (res.data.code == 0) {
                     that.setData({
@@ -141,7 +181,7 @@ Page({
   },
   lg() {
     wx.getUserInfo({
-      success: function(res) {
+      success: function (res) {
         var userinfo = res.userInfo
         console.log(userinfo);
         wx.setStorage({ //将活动信息存入缓存

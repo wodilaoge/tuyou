@@ -16,7 +16,7 @@ Page({
   modalinput: function (e) {
     this.setData({
       hiddenmodalput: !this.data.hiddenmodalput,
-      tmpactid:e.currentTarget.dataset.id
+      tmpactid: e.currentTarget.dataset.id
     })
   },
   getans(e) {
@@ -99,13 +99,13 @@ Page({
           let tmp = wx.getStorageSync('userInfo')
           let data = {
             actid: that.data.tmpactid,
-            reason:that.data.ans
+            reason: that.data.ans
           }
           util.gets(url, data).then(function (res) {
             that.setData({
               hiddenmodalput: !that.data.hiddenmodalput,
             })
-            if (res.data.code!=0) {
+            if (res.data.code != 0) {
               console.log(res.data)
               wx.showToast({
                 title: '取消失败',
@@ -128,13 +128,13 @@ Page({
   yundongxiangqing(e) {
     app.globalData.tabbar = 1;
     wx.navigateTo({
-      url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&Title=' + e.currentTarget.dataset.yundong.actname +'&categoryId=' + e.currentTarget.dataset.yundong.id,
+      url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&Title=' + e.currentTarget.dataset.yundong.actname + '&categoryId=' + e.currentTarget.dataset.yundong.id,
     })
   },
   baomingtiaozhan(e) {
     app.globalData.tabbar = 1;
     wx.navigateTo({
-      url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=1&Title=' + e.currentTarget.dataset.yundong.actname +'&categoryId=' + e.currentTarget.dataset.yundong.id,
+      url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=1&Title=' + e.currentTarget.dataset.yundong.actname + '&categoryId=' + e.currentTarget.dataset.yundong.id,
     })
   },
   cancel(e) {
@@ -183,17 +183,16 @@ Page({
       'acid1': '076003001'
     };
     util.post_token(url, data).then(function (res) {
-      console.log('create', res.data)
+      console.log('Mycreate', res.data)
       that.setData({
         Mycreate: res.data.data
       })
-      for(i of res.data.data.list)
-      {
-        if(i.status==20)
-        num++
+      for (i of res.data.data.list) {
+        if (i.status == 20)
+          num++
       }
       that.setData({
-        createnum:num
+        createnum: num
       })
     })
     //我参加的
@@ -203,11 +202,24 @@ Page({
       'acid1': '076003001'
     };
     util.post_token(url, data).then(function (res) {
-      console.log('join', res.data)
+      console.log('Myjoin', res.data)
       that.setData({
         Myjoin: res.data.data
       })
     })
+    //我关注的
+    url = app.globalData.URL + '/act/listMyActivity';
+    data = {
+      'type': 30,
+      'acid1': '076003001'
+    };
+    util.post_token(url, data).then(function (res) {
+      console.log('Myattention', res.data)
+      that.setData({
+        Myattention: res.data.data
+      })
+    })
+
   },
 
 })
