@@ -255,7 +255,7 @@
                 </view>
               </view>
               <button class="cu-btn bg-orange round btn" style="margin-left:280rpx;margin-top:-30rpx;"
-                bindtap="baomingtiaozhan" data-wenyu="{{item}}">报名挑战</button>
+                bindtap="baomingtiaozhan" data-yundong="{{item}}">报名挑战</button>
             </view>
           </view>
         </view>
@@ -320,7 +320,7 @@
                 </view>
               </view>
               <button class="cu-btn bg-orange round btn" style="margin-left:280rpx;margin-top:-30rpx;"
-                bindtap="baomingtiaozhan" data-aihao="{{item}}">报名挑战</button>
+                bindtap="baomingtiaozhan" data-yundong="{{item}}">报名挑战</button>
             </view>
           </view>
         </view>
