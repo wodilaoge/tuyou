@@ -26,6 +26,10 @@ Page({
     })
   },
   change_sousuo() {
+    wx.showLoading({
+      title: '搜索中...',
+      mask: true //显示触摸蒙层  防止事件穿透触发
+    });
     if (this.data.sousuo_neirong) {
       this.setData({
         change_if: 1,
@@ -52,8 +56,15 @@ Page({
     });
     this.setLishi()
     this.getLishi()
+    wx.hideLoading({
+      complete: (res) => {},
+    })
   },
   change_sousuo_lishi:function(e){
+    wx.showLoading({
+      title: '搜索中...',
+      mask: true //显示触摸蒙层  防止事件穿透触发
+    });
       this.setData({
         change_if: 1,
         sousuo_neirong: e.currentTarget.dataset.neirong,
@@ -76,6 +87,9 @@ Page({
     });
     this.setLishi()
     this.getLishi()
+    wx.hideLoading({
+      complete: (res) => {},
+    })
   },
   timeChange: function() { //////修改时间
     var obj = [];
@@ -179,7 +193,7 @@ Page({
     })
   },
   sousuo_fenye(){
-    
+
   },
 
   /**
