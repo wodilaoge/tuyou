@@ -2,7 +2,7 @@
   <view slot="backText">返回</view>
   <view slot="content">设置</view>
 </cu-custom>
-<view class="cu-form-group" bindtap="tomessage">
+<!-- <view class="cu-form-group" bindtap="tomessage">
   <view class="title">推送通知</view>
   <image class="icon" src="/img/array.png"></image>
 </view>
@@ -29,13 +29,13 @@
 <view class="cu-form-group">
   <view class="title">赏一个五星好评</view>
   <image class="icon" src="/img/array.png"></image>
-</view>
-<view class="cu-form-group" bindtap="share">
+</view> -->
+<view class="cu-form-group margin-top" bindtap="share">
   <view class="title">分享给好友</view>
   <button class="cu-btn round bg-blue buttonshare" open-type="share">分享</button>
   <!-- <image class="icon" src="/img/array.png"></image> -->
 </view>
-<navigator class="cu-form-group" url="/pages/about/about">
+<navigator class="cu-form-group margin-top" url="/pages/about/about">
   <view class="title">关于友点乐</view>
   <image class="icon" src="/img/array.png"></image>
 </navigator>

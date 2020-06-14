@@ -180,9 +180,18 @@ Page({
   },
   firstcommit() {
     var that = this
-    that.setData({
-      hiddenmodalput: !this.data.hiddenmodalput
-    })
+    if(that.data.title)
+    {
+      that.setData({
+        hiddenmodalput: !this.data.hiddenmodalput
+      })
+    }
+    else{
+      wx.showToast({
+        title:'请先输入标题',
+        duration:2000
+      })
+    }
   },
   cancel2: function () {
     this.setData({

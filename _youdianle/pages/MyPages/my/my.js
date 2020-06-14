@@ -58,13 +58,19 @@ Page({
       url: '/pages/MyPages/my_profile/my_profile',
     })
   },
+  none(){
+    wx.showToast({
+      title: '敬请期待',
+      
+    })
+  },
   onLoad: function () {
     var that = this
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
           //查询个人活动数（发起和参与的）
-          let url = app.globalData.URL + '/act/countActByUser';
+          let url = app.globalData.URL + '/appuser/countByUser';
           let data = {
 
           };

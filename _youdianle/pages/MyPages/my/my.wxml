@@ -20,17 +20,17 @@
       <!-- <image src="/img/my/img_bar.png" class="bkimg"></image> -->
 
       <navigator class="text-item" url="/pages/MyPages/my_activity/my_activity"  hover-class="btn-hover">
-        <text class="text"></text>{{activitynum}}
+        <text class="text"></text>{{activitynum.cntAct}}
         <text class="text2"></text>活动
       </navigator>
-      <navigator class="text-item"  hover-class="btn-hover" >
-        <text class="text"></text>{{commentNum}}
+      <view class="text-item" bindtap="none" hover-class="btn-hover" >
+        <text class="text"></text>{{activitynum.cntComm}}
         <text class="text2"></text>评论
-      </navigator>
-      <navigator class="text-item"  hover-class="btn-hover">
-        <text class="text"></text>{{attentiontNum}}
+      </view>
+      <view class="text-item" bindtap="none" hover-class="btn-hover">
+        <text class="text"></text>{{activitynum.cntFollow}}
         <text class="text2"></text>关注
-      </navigator>
+      </view>
     </view>
   </view>
 </view>
