@@ -4,8 +4,12 @@ page {
   /*页面布局*/
   padding-bottom: 150rpx;
   letter-spacing: 2rpx;
+  width: 100%;
+  overflow-x: hidden;
 }
-
+.hidden {
+  overflow-x: hidden;
+}
 
 .icon_add {
   width: 58rpx;

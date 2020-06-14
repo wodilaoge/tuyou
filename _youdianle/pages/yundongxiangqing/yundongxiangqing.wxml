@@ -2,599 +2,597 @@
 创建者：陈雨豪
 创建时间：20200416
 创建内容：运动详情-->
-
-<view class="top">
-  <cu-custom isBack="{{true}}" url='{{tzpd}}' bgColor="bg-blue">
-    <view slot="content" class="biaoti">{{biaoti}}</view>
-  </cu-custom>
-</view>
-<view hidden="{{rotationhide}}">
-  <swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
-    <swiper-item wx:for="{{swiperList}}" wx:key bindtap="towebview3" data-item="{{item}}">
-      <image src="{{item.rotation}}" mode="aspectFill"></image>
-      <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
-    </swiper-item>
-  </swiper>
-</view>
-
-<scroll-view scroll-x class="bg-white nav text-center">
-  <view class="cu-item {{0==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="0"> 详情</view>
-  <view class="cu-item {{1==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="1"> 报名 </view>
-  <view class="cu-item {{2==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="2"> 视频</view>
-  <!--<view class="cu-item {{3==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="3"> 照片 </view>-->
-  <view class="cu-item {{4==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="4"> 排名 </view>
-  <view class="cu-item {{5==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="5" wx:if="{{shujuhide==false}}"> 数据</view>
-  <!--<view class="cu-item {{6==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="6"> 资讯</view>-->
-</scroll-view>
-
-<block wx:if="{{TabCur==0}}">
-  <view class="cu-bar bg-white solid-bottom margin-top-sm" style="display:fixed;position: relative;">
-    <image class="cu-avatar round my" src="{{detail.createrhead}}" mode="heightFix"></image>
-    <!--<text style="position:absolute;left:110rpx;">三分赛</text>-->
-    <text class=" title-time" style="position:absolute;width:100%;left:310rpx;" wx:if="{{detail.lefttime.left!=null}}">{{detail.lefttime.left}}</text>
+<view class="hidden">
+  <view class="top">
+    <cu-custom isBack="{{true}}" url='{{tzpd}}' bgColor="bg-blue">
+      <view slot="content" class="biaoti">{{biaoti}}</view>
+    </cu-custom>
+  </view>
+  <view hidden="{{rotationhide}}">
+    <swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+      <swiper-item wx:for="{{swiperList}}" wx:key bindtap="towebview3" data-item="{{item}}">
+        <image src="{{item.rotation}}" mode="aspectFill"></image>
+        <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+      </swiper-item>
+    </swiper>
   </view>
 
-  <view style="margin-bottom:20rpx;">
-    <view class="cu-card article no-card" style="margin-top:-20rpx;">
-      <view class="cu-item bg-white">
-        <view class="shadow" style="background-color:#F8F9FD;">
-          <view class="yundong-content">
-            <view class="desc padding-xs">
-              <view class="title-limit">{{detail.actname}}</view>
-              <view class="text-content">
-                <image class="icon-size" src="/img/icon_location.png" mode="heightFix"></image>
-                <text decode="{{true}}">\t{{detail.city}}{{detail.address}}</text>
-              </view>
-              <view class="text-content">
-                <image class="icon-size"></image>
-                <text decode="{{true}}">\t{{detail.venue}}</text>
-              </view>
-              <view class="time-text-content">
-                <image class="icon-size" src="/img/icon_time.png" mode="heightFix"></image>
-                {{detail.fromtime}}
-              </view>
-            </view>
-            <view hidden="true">
-              <image class="icon_add" src="/img/icon_add.png" mode="aspectFill" style="margin-top:52rpx;margin-right:83rpx;">
-              </image>
-              <view class="text-blue margin-top-xs" style="font-size: 24rpx;margin-left:-8rpx;">1.1Km</view>
-            </view>
-          </view>
-        </view>
-        <view class="yundong-content padding-xs" style="margin-bottom:18rpx;">
-          <image hidden="{{detail.slogan==''||detail.slogan==null}}" class="icon-size" style="margin-top:28rpx;" src="/img/icon_title.png" mode="heightFix"></image>
-          <text hidden="{{detail.slogan==''||detail.slogan==null}}" class="title-text-content" style="margin-top:28rpx;" decode="{{true}}" >{{detail.slogan}}</text>
-          <block wx:if="{{isguanzhu==false}}">
-            <button class="cu-btn line-orange round btn-guanzhu" bindtap="guanzhu">关注</button>
-          </block>
-          <block wx:if="{{isguanzhu==true}}">
-            <button class="cu-btn line-orange round btn-guanzhu" bindtap="guanzhu">已关注</button>
-          </block>
-        </view>
+  <scroll-view scroll-x class="bg-white nav text-center">
+    <view class="cu-item {{0==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="0"> 详情</view>
+    <view class="cu-item {{1==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="1"> 报名 </view>
+    <view class="cu-item {{2==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="2"> 视频</view>
+    <!--<view class="cu-item {{3==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="3"> 照片 </view>-->
+    <view class="cu-item {{4==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="4"> 排名 </view>
+    <view class="cu-item {{5==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="5" wx:if="{{shujuhide==false}}"> 数据</view>
+    <!--<view class="cu-item {{6==TabCur?'text-bold text-blue cur':''}}" bindtap="tabSelect" data-id="6"> 资讯</view>-->
+  </scroll-view>
 
-
-
-      </view>
-      <view class="bg-white">
-        <view class="yibaoming-margin-top margin-left " style="display: flex;position: relative;">
-          <text class="yibaoming-text-content margin-top">已报名</text>
-          <text class="yibaoming-text-content margin-top" style="color:var(--blue)">{{yibaomingList.length}}/{{detail.signupmax}}</text>
-          <text class="yibaoming-text-content margin-top">人</text>
-          <button class="cu-btn bg-orange round btn-baomingtiaozhan margin-top-sm" bindtap="bmtz">报名挑战</button>
-        </view>
-        <view class="yundong-content bg-white">
-          <view class="padding-sm">
-            <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" data-id="{{item.id}}" bindtap="gerenziliao" wx:key style="background-image:url({{item.head}});" />
-          </view>
-        </view>
-      </view>
+  <block wx:if="{{TabCur==0}}">
+    <view class="cu-bar bg-white solid-bottom margin-top-sm" style="display:fixed;position: relative;">
+      <image class="cu-avatar round my" src="{{detail.createrhead}}" mode="heightFix"></image>
+      <!--<text style="position:absolute;left:110rpx;">三分赛</text>-->
+      <text class=" title-time" style="position:absolute;width:100%;left:310rpx;" wx:if="{{detail.lefttime.left!=null}}">{{detail.lefttime.left}}</text>
     </view>
 
-  </view>
-  <view hidden="{{detail.rule==null&&detail.rulepic==null}}">
-    <view class="bg-white padding">
-      <view class="cu-bar bg-white ">
-        <view class="cu-bar-title">玩法规则</view>
+    <view style="margin-bottom:20rpx;">
+      <view class="cu-card article no-card" style="margin-top:-20rpx;">
+        <view class="cu-item bg-white">
+          <view class="shadow" style="background-color:#F8F9FD;">
+            <view class="yundong-content">
+              <view class="desc padding-xs">
+                <view class="title-limit">{{detail.actname}}</view>
+                <view class="text-content">
+                  <image class="icon-size" src="/img/icon_location.png" mode="heightFix"></image>
+                  <text decode="{{true}}">\t{{detail.city}}{{detail.address}}</text>
+                </view>
+                <view class="text-content">
+                  <image class="icon-size"></image>
+                  <text decode="{{true}}">\t{{detail.venue}}</text>
+                </view>
+                <view class="time-text-content">
+                  <image class="icon-size" src="/img/icon_time.png" mode="heightFix"></image>
+                  {{detail.fromtime}}
+                </view>
+              </view>
+              <view hidden="true">
+                <image class="icon_add" src="/img/icon_add.png" mode="aspectFill" style="margin-top:52rpx;margin-right:83rpx;">
+                </image>
+                <view class="text-blue margin-top-xs" style="font-size: 24rpx;margin-left:-8rpx;">1.1Km</view>
+              </view>
+            </view>
+          </view>
+          <view class="yundong-content padding-xs" style="margin-bottom:18rpx;">
+            <image hidden="{{detail.slogan==''||detail.slogan==null}}" class="icon-size" style="margin-top:28rpx;" src="/img/icon_title.png" mode="heightFix"></image>
+            <text hidden="{{detail.slogan==''||detail.slogan==null}}" class="title-text-content" style="margin-top:28rpx;" decode="{{true}}">{{detail.slogan}}</text>
+            <block wx:if="{{isguanzhu==false}}">
+              <button class="cu-btn line-orange round btn-guanzhu" bindtap="guanzhu">关注</button>
+            </block>
+            <block wx:if="{{isguanzhu==true}}">
+              <button class="cu-btn line-orange round btn-guanzhu" bindtap="guanzhu">已关注</button>
+            </block>
+          </view>
+
+
+
+        </view>
+        <view class="bg-white">
+          <view class="yibaoming-margin-top margin-left " style="display: flex;position: relative;">
+            <text class="yibaoming-text-content margin-top">已报名</text>
+            <text class="yibaoming-text-content margin-top" style="color:var(--blue)">{{yibaomingList.length}}/{{detail.signupmax}}</text>
+            <text class="yibaoming-text-content margin-top">人</text>
+            <button class="cu-btn bg-orange round btn-baomingtiaozhan margin-top-sm" bindtap="bmtz">报名挑战</button>
+          </view>
+          <view class="yundong-content bg-white">
+            <view class="padding-sm">
+              <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" data-id="{{item.id}}" bindtap="gerenziliao" wx:key style="background-image:url({{item.head}});" />
+            </view>
+          </view>
+        </view>
       </view>
-      <view class="text-guize " style="width:625rpx;">
-        <rich-text hidden="{{detail.rule==null}}" nodes="{{detail.rule}}"></rich-text>
-        <image hidden="{{detail.rulepic==null}}" src="{{detail.rulepic}}" mode="scaleToFill" style="width:700rpx;"></image>
-        <!--<view class="margin-top">
+
+    </view>
+    <view hidden="{{detail.rule==null&&detail.rulepic==null}}">
+      <view class="bg-white padding">
+        <view class="cu-bar bg-white ">
+          <view class="cu-bar-title">玩法规则</view>
+        </view>
+        <view class="text-guize " style="width:625rpx;">
+          <rich-text hidden="{{detail.rule==null}}" nodes="{{detail.rule}}"></rich-text>
+          <image hidden="{{detail.rulepic==null}}" src="{{detail.rulepic}}" mode="scaleToFill" style="width:700rpx;"></image>
+          <!--<view class="margin-top">
           <text class="cuIcon-attention lg text-gray">\t23456</text>
           <text class="cuIcon-appreciate lg text-gray text-right" decode="{{true}}">\t赞&emsp;{{likecount}}</text>
         </view>-->
-      </view>
-    </view>
-  </view>
-  <view hidden="{{detail.award==null&&detail.awardpic==null}}">
-    <view class="bg-white padding margin-top">
-      <view class="cu-bar bg-white ">
-        <view class="cu-bar-title">奖品设置</view>
-      </view>
-      <rich-text hidden="{{detail.award==null}}" nodes="{{detail.award}}"></rich-text>
-      <image hidden="{{detail.awardpic==null}}" src="{{detail.awardpic}}" mode="scaleToFill" style="width:700rpx;"></image>
-    </view>
-  </view>
-  <view hidden="{{detail.sponsor==null&&detail.sponsorpic==null}}">
-    <view class="bg-white padding margin-top">
-      <view class="cu-bar bg-white ">
-        <view class="cu-bar-title">赞助商</view>
-      </view>
-      <rich-text hidden="{{detail.sponsor==null}}" nodes="{{detail.sponsor}}"></rich-text>
-      <image hidden="{{detail.sponsorpic==null}}"  src="{{detail.sponsorpic}}" mode="scaleToFill" style="width:700rpx;"></image>
-    </view>
-  </view>
-
-  <block>
-    <view class="huodong-margin-bottom">
-      <!-- 评论 -->
-      <view class="cu-bar bg-white solid-bottom huodong-margin-top">
-        <view class='action'>
-          <text class='cu-bar-title'>评论({{count}})</text>
         </view>
       </view>
     </view>
-
-    <view class="bg-white">
-      <view class='talk-item' wx:for="{{comment.list}}" wx:key>
-        <view class='talk-item-left'>
-          <image class='talk-item-face' src='{{item.createrHead}}'></image>
+    <view hidden="{{detail.award==null&&detail.awardpic==null}}">
+      <view class="bg-white padding margin-top">
+        <view class="cu-bar bg-white ">
+          <view class="cu-bar-title">奖品设置</view>
         </view>
+        <rich-text hidden="{{detail.award==null}}" nodes="{{detail.award}}"></rich-text>
+        <image hidden="{{detail.awardpic==null}}" src="{{detail.awardpic}}" mode="scaleToFill" style="width:700rpx;"></image>
+      </view>
+    </view>
+    <view hidden="{{detail.sponsor==null&&detail.sponsorpic==null}}">
+      <view class="bg-white padding margin-top">
+        <view class="cu-bar bg-white ">
+          <view class="cu-bar-title">赞助商</view>
+        </view>
+        <rich-text hidden="{{detail.sponsor==null}}" nodes="{{detail.sponsor}}"></rich-text>
+        <image hidden="{{detail.sponsorpic==null}}" src="{{detail.sponsorpic}}" mode="scaleToFill" style="width:700rpx;"></image>
+      </view>
+    </view>
 
-        <view class='talk-item-right'>
-          <view>
-            <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
-            <button class="cu-btn btn-hot bg-orange disabled" wx:if="{{item.hot}}">热门</button>
-          </view>
-          <text class='card-text-content'>{{item.comment}}</text>
-          <view>
-            <text class='card-text-content-time'>{{item.strCreatetime}}</text>
+    <block>
+      <view class="huodong-margin-bottom">
+        <!-- 评论 -->
+        <view class="cu-bar bg-white solid-bottom huodong-margin-top">
+          <view class='action'>
+            <text class='cu-bar-title'>评论({{count}})</text>
           </view>
         </view>
       </view>
-    </view>
 
+      <view class="bg-white">
+        <view class='talk-item' wx:for="{{comment.list}}" wx:key>
+          <view class='talk-item-left'>
+            <image class='talk-item-face' src='{{item.createrHead}}'></image>
+          </view>
+
+          <view class='talk-item-right'>
+            <view>
+              <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
+              <button class="cu-btn btn-hot bg-orange disabled" wx:if="{{item.hot}}">热门</button>
+            </view>
+            <text class='card-text-content'>{{item.comment}}</text>
+            <view>
+              <text class='card-text-content-time'>{{item.strCreatetime}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </block>
+    <view wx:if="{{!chooseSize}}">
+      <view class="cu-bar input foot padding">
+        <image class="img-input" mode="scaleToFill" src="/img/input.png" bindtap="chooseSezi"></image>
+        <view class="action">
+          <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
+        </view>
+        <view class="action">
+          <image class="img-icon" mode="aspectFit" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
+        </view>
+        <view class="action">
+          <button open-type='share' class="btn1 img_share"></button>
+        </view>
+      </view>
+    </view>
   </block>
-  <view wx:if="{{!chooseSize}}">
-    <view class="cu-bar input foot padding">
-      <image class="img-input" mode="scaleToFill" src="/img/input.png" bindtap="chooseSezi"></image>
-      <view class="action">
-        <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
-      </view>
-      <view class="action">
-        <image class="img-icon" mode="aspectFit" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
-      </view>
-      <view class="action">
-        <button open-type='share' class="btn1 img_share"></button>
-      </view>
-    </view>
-  </view>
-</block>
 
 
-<!--
+  <!--
 创建者：陈雨豪
 创建时间：20200418
 创建内容：报名-->
-<block wx:if="{{TabCur==1}}">
-  <view class="bg-white margin-top-sm">
-    <view class="cu-bar bg-white padding">
-      <view class="cu-bar-title">报名</view>
+  <block wx:if="{{TabCur==1}}">
+    <view class="bg-white margin-top-sm">
+      <view class="cu-bar bg-white padding">
+        <view class="cu-bar-title">报名</view>
+      </view>
     </view>
-  </view>
-  <view style="background-color:var(--white)" hidden="{{signupway}}">
-    <view class=" padding " style="margin-left:175rpx;">
-      <button class="cu-btn {{baomingCur==0?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-left" bindtap="baomingSelect" data-id="0">
-        个人报名
-      </button>
-      <button class="cu-btn  {{baomingCur==1?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-right" bindtap="baomingSelect" data-id="1">
-        团队报名
-      </button>
-    </view>
-  </view>
-  <block wx:if="{{baomingCur==0}}">
-    <block wx:if="{{isbaominggeren==0}}">
-      <view class="bg-white">
-        <form>
-          <view class="cu-form-group" hidden="{{guankanhide}}">
-            <radio-group class="block" style="margin-left:240rpx;">
-              <view class="flex">
-                <view>
-                  <checkbox class="round blue " style="zoom: 80%;" data-id="10" bindtap='bindRadioChange' checked>
-                  </checkbox>
-                </view>
-                <view class="tp-select ">报名参加</view>
-                <view style="margin-left:40rpx;">
-                  <checkbox class="round blue " style="zoom: 80%;" data-id="30" bindtap='bindRadioChange'></checkbox>
-                </view>
-                <view class="tp-select">报名观看</view>
-              </view>
-            </radio-group>
-          </view>
-          <view class="cu-form-group" hidden="{{shiminghide}}">
-            <view class="title" style="margin-right:65rpx;">姓名 </view>
-            <input class="form-text" placeholder="{{yonghuxinxi.name==null||''?'请完善个人信息':yonghuxinxi.name}}" disabled></input>
-          </view>
-          <view class="cu-form-group " hidden="{{shiminghide}}">
-            <view class="title" style="margin-right:65rpx;">手机</view>
-            <input class="form-text" placeholder="{{yonghuxinxi.mobile==null||''?'请绑定手机':yonghuxinxi.mobile}}" disabled></input>
-          </view>
-          <view class="cu-form-group " hidden="{{fenzuhide}}">
-            <view class="title">选择分组</view>
-            <picker bindchange="bindPickerChange" range="{{picker}}">
-              <view class="picker">
-                {{picker[fenzuindex]}}
-              </view>
-            </picker>
-          </view>
-        </form>
-      </view>
-      <view class="bg-white flex" style="align-items: center;justify-content: center;">
-        <checkbox class="blue yuedu-logo" checked bindtap='iftongyiRadioChange'></checkbox>
-        <view class="queren margin-left-sm" style="color:#999999;">
-          我已阅读并同意
-        </view>
-        <view class="queren" style="color:#5C7CFF;" bindtap="toagreepage">
-          《友点乐用户协议》
-        </view>
-      </view>
-
-      <view class="bg-white flex padding" style="align-items: center;justify-content: center;">
-        <button class="cu-btn bg-orange round btn-bm margin-top" bindtap="lijibaoming">立即报名</button>
-      </view>
-
-      <!--<view class="bg-white margin-top padding-top">
-        <view class="yibaoming-margin-top margin-left ">
-          <text class="yibaoming-text-content">已报名</text>
-          <text class="yibaoming-text-content"
-            style="color:var(--blue)">{{yibaomingList.length}}/{{detail.signupmax}}</text>
-          <text class="yibaoming-text-content">人</text>
-        </view>
-        <view class="yundong-content bg-white">
-          <view class="padding-sm">
-            <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" data-id="{{item.id}}"
-              bindtap="gerenziliao" wx:key style="background-image:url({{item.head}});" />
-          </view>
-        </view>
-      </view>-->
-
-
-    </block>
-
-    <block wx:if="{{isbaominggeren==1}}">
-      <view style="background-color:var(--white)">
-        <view>
-          <image class="img-success " src="/img/img_success.png"></image>
-        </view>
-
-        <view class="flex justify-center">
-          <text class="baoming_text_ok">报名成功</text>
-        </view>
-        <view class="flex justify-center">
-          <text class="baoming_text_wait">请耐心等待活动开始</text>
-        </view>
-        <view class="flex justify-center padding-lg">
-          <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx" bindtap="quxiaobaoming" data-obj="0">取消报名</button>
-        </view>
-        <view class="fenge-bg"></view>
-        <view class="cu-bar bg-white solid-bottom">
-          <view class='action'>
-            <text class='yibaoming-text-content'>已报名{{yibaomingList.length}}人</text>
-          </view>
-        </view>
-        <!--<view class="yundong-content bg-white">
-          <view class="padding-sm">
-            <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" data-id="{{item.id}}"
-              bindtap="gerenziliao" wx:key style="background-image:url({{item.head}});" />
-          </view>
-        </view>-->
-      </view>
-    </block>
-  </block>
-  <block wx:if="{{baomingCur==1}}">
-    <block wx:if="{{isbaomingtuandui==0}}">
-      <view class="bg-white">
-        <form>
-          <view class="cu-form-group" hidden="{{guankanhide}}">
-            <radio-group class="block" style="margin-left:240rpx;">
-              <view class="flex">
-                <view>
-                  <checkbox class="round blue " style="zoom: 80%;" checked data-id="20" bindtap='bindRadioChange'>
-                  </checkbox>
-                </view>
-                <view class="tp-select ">报名参加</view>
-
-                <view style="margin-left:40rpx;">
-                  <checkbox class="round blue " style="zoom: 80%;" data-id="40" bindtap='bindRadioChange'></checkbox>
-                </view>
-                <view class="tp-select">报名观看</view>
-              </view>
-            </radio-group>
-          </view>
-          <view class="cu-form-group" hidden="{{shiminghide}}">
-            <view class="title" style="margin-right:65rpx;">姓名 </view>
-            <input class="form-text" placeholder="{{yonghuxinxi.name==null||''?'请完善个人信息':yonghuxinxi.name}}" disabled></input>
-          </view>
-          <view class="cu-form-group " hidden="{{shiminghide}}">
-            <view class="title" style="margin-right:65rpx;">手机</view>
-            <input class="form-text" placeholder="{{yonghuxinxi.mobile==null||''?'请绑定手机':yonghuxinxi.mobile}}" disabled></input>
-          </view>
-          <view class="cu-form-group " hidden="{{fenzuhide}}">
-            <view class="title">选择分组</view>
-            <picker bindchange="bindPickerChange" range="{{picker}}">
-              <view class="picker">
-                {{picker[fenzuindex]}}
-              </view>
-            </picker>
-          </view>
-          <view class="cu-form-group ">
-            <view class="title">报名团队</view>
-            <input class="form-text" placeholder='点击选择团队' bindtap="xuanzetuandui" value="{{tuanduiSelect.name}}" disable></input>
-          </view>
-        </form>
-      </view>
-      <view class="bg-white flex" style="align-items: center;justify-content: center;">
-        <checkbox class="blue yuedu-logo" checked bindtap='iftongyiRadioChange'></checkbox>
-        <view class="queren margin-left-sm" style="color:#999999;">
-          我已阅读并同意
-        </view>
-        <view class="queren" style="color:#5C7CFF;" bindtap="toagreepage">
-          《友点乐用户协议》
-        </view>
-      </view>
-
-      <view class="bg-white flex padding" style="align-items: center;justify-content: center;">
-        <button class="cu-btn bg-orange round btn-bm margin-top" bindtap="lijibaoming">立即报名</button>
-      </view>
-
-      <!--<view class="bg-white margin-top padding-top">
-        <view class="yibaoming-margin-top margin-left ">
-          <text class="yibaoming-text-content">已报名</text>
-          <text class="yibaoming-text-content"
-            style="color:var(--blue)">{{yibaomingList.length}}/{{detail.signupmax}}</text>
-          <text class="yibaoming-text-content">人</text>
-        </view>
-        <view class="yundong-content bg-white">
-          <view class="padding-sm">
-            <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" data-id="{{item.id}}"
-              bindtap="gerenziliao" wx:key style="background-image:url({{item.head}});" />
-          </view>
-        </view>
-      </view>-->
-    </block>
-    <block wx:if="{{isbaomingtuandui==1}}">
-      <view style="background-color:var(--white)">
-        <view>
-          <image class="img-success " src="/img/img_success.png"></image>
-        </view>
-
-        <view class="flex justify-center">
-          <text class="baoming_text_ok">报名成功</text>
-        </view>
-        <view class="flex justify-center">
-          <text class="baoming_text_wait">请耐心等待活动开始</text>
-        </view>
-        <view class="flex justify-center padding-lg">
-          <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx" bindtap="quxiaobaoming" data-obj="1">取消报名</button>
-        </view>
-        <view class="fenge-bg"></view>
-        <view class="cu-bar bg-white solid-bottom">
-          <view class='action'>
-            <text class='yibaoming-text-content'>已报名{{yibaomingList.length}}人</text>
-          </view>
-        </view>
-        <!--<view class="yundong-content bg-white">
-          <view class="padding-sm">
-            <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" data-id="{{item.id}}"
-              bindtap="gerenziliao" wx:key style="background-image:url({{item.head}});" />
-          </view>
-        </view>-->
-      </view>
-    </block>
-  </block>
-  <block>
-    <!-- 管理 -->
-    <view style="background-color:var(--white)" wx:if="{{signupway==false&&gerenshuju.list.members.length!=0}}" hidden="true">
+    <view style="background-color:var(--white)" hidden="{{signupway}}">
       <view class=" padding " style="margin-left:175rpx;">
-        <button class="cu-btn {{baomingCur==0?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-left" bindtap="guanliSelect" data-id="0">
-          个人管理
+        <button class="cu-btn {{baomingCur==0?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-left" bindtap="baomingSelect" data-id="0">
+          个人报名
         </button>
-        <button class="cu-btn  {{baomingCur==1?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-right" bindtap="guanliSelect" data-id="1">
-          团队管理
+        <button class="cu-btn  {{baomingCur==1?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-right" bindtap="baomingSelect" data-id="1">
+          团队报名
         </button>
       </view>
     </view>
-    <block wx:if="{{guanliCur==0}}">
-      <view class="bg-white" wx:for="{{gerenshuju.list}}" wx:for-index="index">
-        <view class="cu-bar bg-white padding" wx:if="{{item.groupname!=null}}">
-          <view class="yibaoming-text-content">{{item.groupname}}</view>
+    <block wx:if="{{baomingCur==0}}">
+      <block wx:if="{{isbaominggeren==0}}">
+        <view class="bg-white">
+          <form>
+            <view class="cu-form-group" hidden="{{guankanhide}}">
+              <radio-group class="block" style="margin-left:240rpx;">
+                <view class="flex">
+                  <view>
+                    <checkbox class="round blue " style="zoom: 80%;" data-id="10" bindtap='bindRadioChange' checked>
+                    </checkbox>
+                  </view>
+                  <view class="tp-select ">报名参加</view>
+                  <view style="margin-left:40rpx;">
+                    <checkbox class="round blue " style="zoom: 80%;" data-id="30" bindtap='bindRadioChange'></checkbox>
+                  </view>
+                  <view class="tp-select">报名观看</view>
+                </view>
+              </radio-group>
+            </view>
+            <view class="cu-form-group" hidden="{{shiminghide}}">
+              <view class="title" style="margin-right:65rpx;">姓名 </view>
+              <input class="form-text" placeholder="{{yonghuxinxi.name==null||''?'请完善个人信息':yonghuxinxi.name}}" disabled></input>
+            </view>
+            <view class="cu-form-group " hidden="{{shiminghide}}">
+              <view class="title" style="margin-right:65rpx;">手机</view>
+              <input class="form-text" placeholder="{{yonghuxinxi.mobile==null||''?'请绑定手机':yonghuxinxi.mobile}}" disabled></input>
+            </view>
+            <view class="cu-form-group " hidden="{{fenzuhide}}">
+              <view class="title">选择分组</view>
+              <picker bindchange="bindPickerChange" range="{{picker}}">
+                <view class="picker">
+                  {{picker[fenzuindex]}}
+                </view>
+              </picker>
+            </view>
+          </form>
         </view>
-        <view class="padding yundong-sp-center" wx:for="{{item.members}}" wx:for-item="members" style="flex-basis: 100%;">
+        <view class="bg-white flex" style="align-items: center;justify-content: center;">
+          <checkbox class="blue yuedu-logo" checked bindtap='iftongyiRadioChange'></checkbox>
+          <view class="queren margin-left-sm" style="color:#999999;">
+            我已阅读并同意
+          </view>
+          <view class="queren" style="color:#5C7CFF;" bindtap="toagreepage">
+            《友点乐用户协议》
+          </view>
+        </view>
+
+        <view class="bg-white flex padding" style="align-items: center;justify-content: center;">
+          <button class="cu-btn bg-orange round btn-bm margin-top" bindtap="lijibaoming">立即报名</button>
+        </view>
+
+        <!--<view class="bg-white margin-top padding-top">
+        <view class="yibaoming-margin-top margin-left ">
+          <text class="yibaoming-text-content">已报名</text>
+          <text class="yibaoming-text-content"
+            style="color:var(--blue)">{{yibaomingList.length}}/{{detail.signupmax}}</text>
+          <text class="yibaoming-text-content">人</text>
+        </view>
+        <view class="yundong-content bg-white">
+          <view class="padding-sm">
+            <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" data-id="{{item.id}}"
+              bindtap="gerenziliao" wx:key style="background-image:url({{item.head}});" />
+          </view>
+        </view>
+      </view>-->
+
+
+      </block>
+
+      <block wx:if="{{isbaominggeren==1}}">
+        <view style="background-color:var(--white)">
+          <view>
+            <image class="img-success " src="/img/img_success.png"></image>
+          </view>
+
+          <view class="flex justify-center">
+            <text class="baoming_text_ok">报名成功</text>
+          </view>
+          <view class="flex justify-center">
+            <text class="baoming_text_wait">请耐心等待活动开始</text>
+          </view>
+          <view class="flex justify-center padding-lg">
+            <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx" bindtap="quxiaobaoming" data-obj="0">取消报名</button>
+          </view>
+          <view class="fenge-bg"></view>
+          <view class="cu-bar bg-white solid-bottom">
+            <view class='action'>
+              <text class='yibaoming-text-content'>已报名{{yibaomingList.length}}人</text>
+            </view>
+          </view>
+          <!--<view class="yundong-content bg-white">
+          <view class="padding-sm">
+            <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" data-id="{{item.id}}"
+              bindtap="gerenziliao" wx:key style="background-image:url({{item.head}});" />
+          </view>
+        </view>-->
+        </view>
+      </block>
+    </block>
+    <block wx:if="{{baomingCur==1}}">
+      <block wx:if="{{isbaomingtuandui==0}}">
+        <view class="bg-white">
+          <form>
+            <view class="cu-form-group" hidden="{{guankanhide}}">
+              <radio-group class="block" style="margin-left:240rpx;">
+                <view class="flex">
+                  <view>
+                    <checkbox class="round blue " style="zoom: 80%;" checked data-id="20" bindtap='bindRadioChange'>
+                    </checkbox>
+                  </view>
+                  <view class="tp-select ">报名参加</view>
+
+                  <view style="margin-left:40rpx;">
+                    <checkbox class="round blue " style="zoom: 80%;" data-id="40" bindtap='bindRadioChange'></checkbox>
+                  </view>
+                  <view class="tp-select">报名观看</view>
+                </view>
+              </radio-group>
+            </view>
+            <view class="cu-form-group" hidden="{{shiminghide}}">
+              <view class="title" style="margin-right:65rpx;">姓名 </view>
+              <input class="form-text" placeholder="{{yonghuxinxi.name==null||''?'请完善个人信息':yonghuxinxi.name}}" disabled></input>
+            </view>
+            <view class="cu-form-group " hidden="{{shiminghide}}">
+              <view class="title" style="margin-right:65rpx;">手机</view>
+              <input class="form-text" placeholder="{{yonghuxinxi.mobile==null||''?'请绑定手机':yonghuxinxi.mobile}}" disabled></input>
+            </view>
+            <view class="cu-form-group " hidden="{{fenzuhide}}">
+              <view class="title">选择分组</view>
+              <picker bindchange="bindPickerChange" range="{{picker}}">
+                <view class="picker">
+                  {{picker[fenzuindex]}}
+                </view>
+              </picker>
+            </view>
+            <view class="cu-form-group ">
+              <view class="title">报名团队</view>
+              <input class="form-text" placeholder='点击选择团队' bindtap="xuanzetuandui" value="{{tuanduiSelect.name}}" disable></input>
+            </view>
+          </form>
+        </view>
+        <view class="bg-white flex" style="align-items: center;justify-content: center;">
+          <checkbox class="blue yuedu-logo" checked bindtap='iftongyiRadioChange'></checkbox>
+          <view class="queren margin-left-sm" style="color:#999999;">
+            我已阅读并同意
+          </view>
+          <view class="queren" style="color:#5C7CFF;" bindtap="toagreepage">
+            《友点乐用户协议》
+          </view>
+        </view>
+
+        <view class="bg-white flex padding" style="align-items: center;justify-content: center;">
+          <button class="cu-btn bg-orange round btn-bm margin-top" bindtap="lijibaoming">立即报名</button>
+        </view>
+
+        <!--<view class="bg-white margin-top padding-top">
+        <view class="yibaoming-margin-top margin-left ">
+          <text class="yibaoming-text-content">已报名</text>
+          <text class="yibaoming-text-content"
+            style="color:var(--blue)">{{yibaomingList.length}}/{{detail.signupmax}}</text>
+          <text class="yibaoming-text-content">人</text>
+        </view>
+        <view class="yundong-content bg-white">
+          <view class="padding-sm">
+            <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" data-id="{{item.id}}"
+              bindtap="gerenziliao" wx:key style="background-image:url({{item.head}});" />
+          </view>
+        </view>
+      </view>-->
+      </block>
+      <block wx:if="{{isbaomingtuandui==1}}">
+        <view style="background-color:var(--white)">
+          <view>
+            <image class="img-success " src="/img/img_success.png"></image>
+          </view>
+
+          <view class="flex justify-center">
+            <text class="baoming_text_ok">报名成功</text>
+          </view>
+          <view class="flex justify-center">
+            <text class="baoming_text_wait">请耐心等待活动开始</text>
+          </view>
+          <view class="flex justify-center padding-lg">
+            <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx" bindtap="quxiaobaoming" data-obj="1">取消报名</button>
+          </view>
+          <view class="fenge-bg"></view>
+          <view class="cu-bar bg-white solid-bottom">
+            <view class='action'>
+              <text class='yibaoming-text-content'>已报名{{yibaomingList.length}}人</text>
+            </view>
+          </view>
+          <!--<view class="yundong-content bg-white">
+          <view class="padding-sm">
+            <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" data-id="{{item.id}}"
+              bindtap="gerenziliao" wx:key style="background-image:url({{item.head}});" />
+          </view>
+        </view>-->
+        </view>
+      </block>
+    </block>
+    <block>
+      <!-- 管理 -->
+      <view style="background-color:var(--white)" wx:if="{{signupway==false&&gerenshuju.list.members.length!=0}}" hidden="true">
+        <view class=" padding " style="margin-left:175rpx;">
+          <button class="cu-btn {{baomingCur==0?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-left" bindtap="guanliSelect" data-id="0">
+            个人管理
+          </button>
+          <button class="cu-btn  {{baomingCur==1?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-right" bindtap="guanliSelect" data-id="1">
+            团队管理
+          </button>
+        </view>
+      </view>
+      <block wx:if="{{guanliCur==0}}">
+        <view class="bg-white" wx:for="{{gerenshuju.list}}" wx:for-index="index">
+          <view class="cu-bar bg-white padding" wx:if="{{item.groupname!=null}}">
+            <view class="yibaoming-text-content">{{item.groupname}}</view>
+          </view>
+          <view class="padding yundong-sp-center" wx:for="{{item.members}}" wx:for-item="members" style="flex-basis: 100%;">
+            <image class="icon-paiming" mode="aspectFit" data-id="{{members.mbrId}}" bindtap="delete_geren" src="/img/icon_delete.png" wx:if="{{shujuhide==false}}"></image>
+            <view class="cu-avatar round my" style="background-image:url({{members.mbrHead}});" data-id="{{members.mbrId}}" bindtap="gerenziliao"></view>
+            <text class="paiming-name" decode="{{true}}">&ensp;{{members.mbrAlias}}</text>
+            <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==1}}" data-members="{{members}}" bindtap="gerendianzan"></image>
+            <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==0}}" data-members="{{members}}" bindtap="gerendianzan"></image>
+            <text class="paiming-name" style="position: absolute;right:30rpx;">{{members.applaudCnt}}</text>
+          </view>
+        </view>
+      </block>
+      <block wx:if="{{guanliCur==1}}">
+        <view class="bg-white yundong-sp-center padding" wx:for="{{tuanduipaiming.list}}" wx:for-index="index">
+          <view class="cu-bar bg-white padding" wx:if="{{item.groupname!=null}}">
+            <view class="yibaoming-text-content">{{item.groupname}}</view>
+          </view>
           <image class="icon-paiming" mode="aspectFit" data-id="{{members.mbrId}}" bindtap="delete_geren" src="/img/icon_delete.png" wx:if="{{shujuhide==false}}"></image>
-          <view class="cu-avatar round my" style="background-image:url({{members.mbrHead}});" data-id="{{members.mbrId}}" bindtap="gerenziliao"></view>
-          <text class="paiming-name" decode="{{true}}">&ensp;{{members.mbrAlias}}</text>
-          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==1}}" data-members="{{members}}" bindtap="gerendianzan"></image>
-          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==0}}" data-members="{{members}}" bindtap="gerendianzan"></image>
-          <text class="paiming-name" style="position: absolute;right:30rpx;">{{members.applaudCnt}}</text>
-        </view>
-      </view>
-    </block>
-    <block wx:if="{{guanliCur==1}}">
-      <view class="bg-white yundong-sp-center padding" wx:for="{{tuanduipaiming.list}}" wx:for-index="index">
-        <view class="cu-bar bg-white padding" wx:if="{{item.groupname!=null}}">
-          <view class="yibaoming-text-content">{{item.groupname}}</view>
-        </view>
-        <image class="icon-paiming" mode="aspectFit" data-id="{{members.mbrId}}" bindtap="delete_geren" src="/img/icon_delete.png" wx:if="{{shujuhide==false}}"></image>
-        <view class="cu-avatar round my" style="background-image:url({{item.teamLogo}});"></view>
-        <text class="paiming-name" decode="{{true}}">&ensp;{{item.team}}</text>
-        <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==1}}" data-members="{{members}}"></image>
+          <view class="cu-avatar round my" style="background-image:url({{item.teamLogo}});"></view>
+          <text class="paiming-name" decode="{{true}}">&ensp;{{item.team}}</text>
+          <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous_z.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==1}}" data-members="{{members}}"></image>
           <image class="icon-paiming" mode="aspectFit" src="/img/icon_fabulous.png" style="position: absolute;right:40rpx;" wx:if="{{members.myApplaud==0}}" data-members="{{members}}"></image>
-      </view>
+        </view>
+      </block>
     </block>
-  </block>
 
-  <block>
-    <view class="huodong-margin-bottom">
-      <!-- 评论 -->
-      <view class="cu-bar bg-white solid-bottom huodong-margin-top">
-        <view class='action'>
-          <text class='cu-bar-title'>评论({{count}})</text>
-        </view>
-      </view>
-    </view>
-
-    <view class="bg-white">
-      <view class='talk-item' wx:for="{{comment.list}}" wx:key>
-        <view class='talk-item-left'>
-          <image class='talk-item-face' src='{{item.createrHead}}'></image>
-        </view>
-
-        <view class='talk-item-right'>
-          <view>
-            <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
-            <button class="cu-btn btn-hot bg-orange disabled" wx:if="{{item.hot}}">热门</button>
-          </view>
-          <text class='card-text-content'>{{item.comment}}</text>
-          <view>
-            <text class='card-text-content-time'>{{item.strCreatetime}}</text>
+    <block>
+      <view class="huodong-margin-bottom">
+        <!-- 评论 -->
+        <view class="cu-bar bg-white solid-bottom huodong-margin-top">
+          <view class='action'>
+            <text class='cu-bar-title'>评论({{count}})</text>
           </view>
         </view>
       </view>
-    </view>
 
+      <view class="bg-white">
+        <view class='talk-item' wx:for="{{comment.list}}" wx:key>
+          <view class='talk-item-left'>
+            <image class='talk-item-face' src='{{item.createrHead}}'></image>
+          </view>
+
+          <view class='talk-item-right'>
+            <view>
+              <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
+              <button class="cu-btn btn-hot bg-orange disabled" wx:if="{{item.hot}}">热门</button>
+            </view>
+            <text class='card-text-content'>{{item.comment}}</text>
+            <view>
+              <text class='card-text-content-time'>{{item.strCreatetime}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </block>
+
+    <view wx:if="{{!chooseSize}}">
+      <view class="cu-bar input foot padding">
+        <image class="img-input" mode="scaleToFill" src="/img/input.png" bindtap="chooseSezi"></image>
+        <view class="action">
+          <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
+        </view>
+        <view class="action">
+          <image class="img-icon" mode="aspectFit" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
+        </view>
+        <view class="action">
+          <button open-type='share' class="btn1 img_share"></button>
+        </view>
+      </view>
+    </view>
   </block>
 
-  <view wx:if="{{!chooseSize}}">
-    <view class="cu-bar input foot padding">
-      <image class="img-input" mode="scaleToFill" src="/img/input.png" bindtap="chooseSezi"></image>
-      <view class="action">
-        <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
-      </view>
-      <view class="action">
-        <image class="img-icon" mode="aspectFit" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
-      </view>
-      <view class="action">
-        <button open-type='share' class="btn1 img_share"></button>
-      </view>
-    </view>
-  </view>
-</block>
 
-
-<!--
+  <!--
 创建者：朱娇龙
 创建时间：20200418
 创建内容：视频-->
-<block wx:if="{{TabCur==2}}">
-  <!-- <scroll-view scroll-x class="bg-white nav text-center">
+  <block wx:if="{{TabCur==2}}">
+    <!-- <scroll-view scroll-x class="bg-white nav text-center">
     <view class="cu-item" bindtap="shipinTabSelect" data-cur="{{item.code}}" wx:for="{{shipindalei}}" wx:key="code">
       <button class="cu-btn btn-yundong-cur round {{shipinCur==item.code?'bg-orange':'bg-gery'}} padding">{{item.name}}</button>
     </view>
   </scroll-view> -->
-  <view class="cu-bar-updatashipin ">
-    <image class="img-icon " mode="aspectFit " src="/img/tabbar/add2.png " bindtap="shipintiaozhuan"></image>
-  </view>
+    <view class="cu-bar-updatashipin ">
+      <image class="img-icon " mode="aspectFit " src="/img/tabbar/add2.png " bindtap="shipintiaozhuan"></image>
+    </view>
 
-  <view wx:for="{{shipin.list}}">
-    <view wx:if="{{index==0}}">
-      <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx;">{{shipin.list[0].title}}</view>
-      <view class="content-white">
-        <view class=" sp-cu-bar cu-bar-radius bg-white  ">
-          <image class="sp-avatar round " src="{{shipin.list[0].authorHead}}"></image>
-          <view class="sp-avatar-name">{{shipin.list[0].authorAlias}}</view>
-          <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{shipin.list[index].myFollow==1}}">关注</button>
-          <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{!shipin.list[index].myFollow==1}}">已关注</button>
-        </view>
-
-        <view>
-          <video id="video_{{index}}" src="{{shipin.list[0].fileId}}"  controls style="width:100%;" bindtap="video_change" data-index="{{index}}" custom-cache="{{false}}"
-          ></video>
-        </view>
-        <view class="flex  margin-top ">
-          <view class="sp-bofang-times ">播放{{shipin.list[0].playCnt}}次</view>
-          <image src="{{shipin.list[0].myApplaud!=0?'/img/icon_like_all.png':'/img/icon_like.png'}}" style="width:44rpx;height:40rpx;margin-left:270rpx;" bindtap="shipinDianzan" data-index="{{index}}"></image>
-          <view class=" align-center " style="margin-left:16rpx;font-size:32rpx;width:55rpx; ">
-            {{shipin.list[0].applaudCnt}}</view>
-          <image class="img-icon" mode="aspectFit " src="/img/icon_talk.png" bindtap="chooseSezi" data-duixiang="{{50}}" data-index="{{0}}" data-dxid="{{shipin.list[0].id}}" data-dxtitle="{{shipin.list[0].title}}"></image>
-          <view bindtap="share">
-            <button class="cu-btn round  buttonshare" style="background-color: white; margin-left: 20rpx;margin-top: -8rpx;" open-type="share" data-index="{{index}}"  data-duixiang="{{50}}">
-              <image class="img-icon" src="/img/icon_share_more.png " style="width:44rpx;height:40rpx;margin-left:16rpx; margin-right:20rpx; "></image>
-            </button>
+    <view wx:for="{{shipin.list}}">
+      <view wx:if="{{index==0}}">
+        <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx;">{{shipin.list[0].title}}</view>
+        <view class="content-white">
+          <view class=" sp-cu-bar cu-bar-radius bg-white  ">
+            <image class="sp-avatar round " src="{{shipin.list[0].authorHead}}"></image>
+            <view class="sp-avatar-name">{{shipin.list[0].authorAlias}}</view>
+            <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{shipin.list[index].myFollow==1}}">关注</button>
+            <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{!shipin.list[index].myFollow==1}}">已关注</button>
           </view>
 
-        </view>
-
-        <view class=" sp-pinglun margin-top ">{{shipin.list[0].notes}}</view>
-        <view class="sp-hotpinglun margin-top ">热门评论</view>
-        <view class="margin-top" style="background-color: #fff;">
-
-          <view class="margin-top sp-pinlun-content" wx:if="{{shipin.list[0].listComm[0]}}">
-            <image class="sp-pinglun-avatar round " src="{{shipin.list[0].listComm[0].createrHead}} "></image>
-            <view class="sp-pinglun-name ">{{shipin.list[0].listComm[0].createrAlias}}</view>
-            <view class="sp-pinglun-neirong ">{{shipin.list[0].listComm[0].comment}}</view>
+          <view>
+            <video id="video_{{index}}" src="{{shipin.list[0].fileId}}" controls style="width:100%;" bindtap="video_change" data-index="{{index}}" custom-cache="{{false}}"></video>
           </view>
-          <view class="margin-top sp-pinlun-content" wx:if="{{shipin.list[0].listComm[1]}}">
-            <image class="sp-pinglun-avatar round " src="{{shipin.list[0].listComm[1].createrHead}} "></image>
-            <view class="sp-pinglun-name ">{{shipin.list[0].listComm[1].createrAlias}}</view>
-            <view class="sp-pinglun-neirong ">{{shipin.list[0].listComm[1].comment}}</view>
-          </view>
-          <view style="height:10rpx;"></view>
+          <view class="flex  margin-top ">
+            <view class="sp-bofang-times ">播放{{shipin.list[0].playCnt}}次</view>
+            <image src="{{shipin.list[0].myApplaud!=0?'/img/icon_like_all.png':'/img/icon_like.png'}}" style="width:44rpx;height:40rpx;margin-left:270rpx;" bindtap="shipinDianzan" data-index="{{index}}"></image>
+            <view class=" align-center " style="margin-left:16rpx;font-size:32rpx;width:55rpx; ">
+              {{shipin.list[0].applaudCnt}}</view>
+            <image class="img-icon" mode="aspectFit " src="/img/icon_talk.png" bindtap="chooseSezi" data-duixiang="{{50}}" data-index="{{0}}" data-dxid="{{shipin.list[0].id}}" data-dxtitle="{{shipin.list[0].title}}"></image>
+            <view bindtap="share">
+              <button class="cu-btn round  buttonshare" style="background-color: white; margin-left: 20rpx;margin-top: -8rpx;" open-type="share" data-index="{{index}}" data-duixiang="{{50}}">
+                <image class="img-icon" src="/img/icon_share_more.png " style="width:44rpx;height:40rpx;margin-left:16rpx; margin-right:20rpx; "></image>
+              </button>
+            </view>
 
+          </view>
+
+          <view class=" sp-pinglun margin-top ">{{shipin.list[0].notes}}</view>
+          <view class="sp-hotpinglun margin-top ">热门评论</view>
+          <view class="margin-top" style="background-color: #fff;">
+
+            <view class="margin-top sp-pinlun-content" wx:if="{{shipin.list[0].listComm[0]}}">
+              <image class="sp-pinglun-avatar round " src="{{shipin.list[0].listComm[0].createrHead}} "></image>
+              <view class="sp-pinglun-name ">{{shipin.list[0].listComm[0].createrAlias}}</view>
+              <view class="sp-pinglun-neirong ">{{shipin.list[0].listComm[0].comment}}</view>
+            </view>
+            <view class="margin-top sp-pinlun-content" wx:if="{{shipin.list[0].listComm[1]}}">
+              <image class="sp-pinglun-avatar round " src="{{shipin.list[0].listComm[1].createrHead}} "></image>
+              <view class="sp-pinglun-name ">{{shipin.list[0].listComm[1].createrAlias}}</view>
+              <view class="sp-pinglun-neirong ">{{shipin.list[0].listComm[1].comment}}</view>
+            </view>
+            <view style="height:10rpx;"></view>
+
+          </view>
+          <view class="sp-quanbupinglun margin-top-sm" bindtap="shipinChooseSezi" data-duixiang="{{50}}" data-dxid="{{shipin.list[0].id}}" data-index="{{0}}">全部评论({{shipin.list[0].commCnt}})</view>
         </view>
-        <view class="sp-quanbupinglun margin-top-sm" bindtap="shipinChooseSezi" data-duixiang="{{50}}" data-dxid="{{shipin.list[0].id}}" data-index="{{0}}">全部评论({{shipin.list[0].commCnt}})</view>
+      </view>
+
+      <view wx:else>
+        <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx;">{{shipin.list[index].title}}</view>
+        <view class="content-white">
+          <view class=" sp-cu-bar cu-bar-radius bg-white  ">
+            <image class="sp-avatar round " src="{{shipin.list[index].authorHead}} "></image>
+            <view class="sp-avatar-name">{{shipin.list[index].authorAlias}}</view>
+            <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{shipin.list[index].myFollow==1}}">关注</button>
+            <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{!shipin.list[index].myFollow==1}}">已关注</button>
+          </view>
+
+          <view>
+            <video id="video_{{index}}" src="{{shipin.list[index].fileId}}" controls style="width:100%;" bindtap="video_change" data-index="{{index}}" custom-cache="{{false}}"></video>
+          </view>
+          <view class="flex  margin-top ">
+            <view class="sp-bofang-times ">播放{{shipin.list[index].playCnt}}次</view>
+            <image src="{{shipin.list[index].myApplaud!=0?'/img/icon_like_all.png':'/img/icon_like.png'}}" style="width:44rpx;height:40rpx;margin-left:270rpx;" bindtap="shipinDianzan" data-index="{{index}}"></image>
+            <view class=" align-center " style="margin-left:16rpx;font-size:32rpx;width:55rpx; ">
+              {{shipin.list[index].applaudCnt}}</view>
+            <image class="img-icon" mode="aspectFit " src="/img/icon_talk.png" bindtap="chooseSezi" data-duixiang="{{50}}" data-index="{{index}}" data-dxid="{{shipin.list[index].id}}" data-dxtitle="{{shipin.list[index].title}}"></image>
+            <view bindtap="share">
+              <button class="cu-btn round  buttonshare" style="background-color: white; margin-left: 20rpx;margin-top: -8rpx;" open-type="share" data-index="{{index}}" data-duixiang="{{50}}">
+                <image class="img-icon" src="/img/icon_share_more.png " style="width:44rpx;height:40rpx;margin-left:16rpx; margin-right:20rpx; "></image>
+              </button>
+            </view>
+          </view>
+
+          <view class=" sp-pinglun margin-top ">{{shipin.list[index].notes}}</view>
+          <view class="sp-hotpinglun margin-top ">热门评论</view>
+          <view class="margin-top" style="background-color: #fff;">
+
+            <view class="margin-top sp-pinlun-content" wx:if="{{shipin.list[index].listComm[0]}}">
+              <image class="sp-pinglun-avatar round " src="{{shipin.list[index].listComm[0].createrHead}} "></image>
+              <view class="sp-pinglun-name ">{{shipin.list[index].listComm[0].createrAlias}}</view>
+              <view class="sp-pinglun-neirong ">{{shipin.list[index].listComm[0].comment}}</view>
+            </view>
+            <view class="margin-top sp-pinlun-content" wx:if="{{shipin.list[index].listComm[1]}}">
+              <image class="sp-pinglun-avatar round " src="{{shipin.list[index].listComm[1].createrHead}} "></image>
+              <view class="sp-pinglun-name ">{{shipin.list[index].listComm[1].createrAlias}}</view>
+              <view class="sp-pinglun-neirong ">{{shipin.list[index].listComm[1].comment}}</view>
+            </view>
+            <view style="height:10rpx;"></view>
+
+          </view>
+          <view class="sp-quanbupinglun margin-top-sm" bindtap="shipinChooseSezi" data-duixiang="{{50}}" data-dxid="{{shipin.list[index].id}}" data-index="{{index}}">全部评论({{shipin.list[index].commCnt}})</view>
+        </view>
       </view>
     </view>
 
-    <view wx:else>
-      <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx;">{{shipin.list[index].title}}</view>
-      <view class="content-white">
-        <view class=" sp-cu-bar cu-bar-radius bg-white  ">
-          <image class="sp-avatar round " src="{{shipin.list[index].authorHead}} "></image>
-          <view class="sp-avatar-name">{{shipin.list[index].authorAlias}}</view>
-          <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{shipin.list[index].myFollow==1}}">关注</button>
-          <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{!shipin.list[index].myFollow==1}}">已关注</button>
-        </view>
-
-        <view>
-          <video id="video_{{index}}"src="{{shipin.list[index].fileId}}"  controls style="width:100%;" bindtap="video_change" data-index="{{index}}" custom-cache="{{false}}"
-          ></video>
-        </view>
-        <view class="flex  margin-top ">
-          <view class="sp-bofang-times ">播放{{shipin.list[index].playCnt}}次</view>
-          <image src="{{shipin.list[index].myApplaud!=0?'/img/icon_like_all.png':'/img/icon_like.png'}}" style="width:44rpx;height:40rpx;margin-left:270rpx;" bindtap="shipinDianzan" data-index="{{index}}"></image>
-          <view class=" align-center " style="margin-left:16rpx;font-size:32rpx;width:55rpx; ">
-            {{shipin.list[index].applaudCnt}}</view>
-          <image class="img-icon" mode="aspectFit " src="/img/icon_talk.png" bindtap="chooseSezi" data-duixiang="{{50}}" data-index="{{index}}" data-dxid="{{shipin.list[index].id}}" data-dxtitle="{{shipin.list[index].title}}"></image>
-          <view bindtap="share">
-            <button class="cu-btn round  buttonshare" style="background-color: white; margin-left: 20rpx;margin-top: -8rpx;" open-type="share" data-index="{{index}}"  data-duixiang="{{50}}">
-              <image class="img-icon" src="/img/icon_share_more.png " style="width:44rpx;height:40rpx;margin-left:16rpx; margin-right:20rpx; "></image>
-            </button>
-          </view>
-        </view>
-
-        <view class=" sp-pinglun margin-top ">{{shipin.list[index].notes}}</view>
-        <view class="sp-hotpinglun margin-top ">热门评论</view>
-        <view class="margin-top" style="background-color: #fff;">
-
-          <view class="margin-top sp-pinlun-content" wx:if="{{shipin.list[index].listComm[0]}}">
-            <image class="sp-pinglun-avatar round " src="{{shipin.list[index].listComm[0].createrHead}} "></image>
-            <view class="sp-pinglun-name ">{{shipin.list[index].listComm[0].createrAlias}}</view>
-            <view class="sp-pinglun-neirong ">{{shipin.list[index].listComm[0].comment}}</view>
-          </view>
-          <view class="margin-top sp-pinlun-content" wx:if="{{shipin.list[index].listComm[1]}}">
-            <image class="sp-pinglun-avatar round " src="{{shipin.list[index].listComm[1].createrHead}} "></image>
-            <view class="sp-pinglun-name ">{{shipin.list[index].listComm[1].createrAlias}}</view>
-            <view class="sp-pinglun-neirong ">{{shipin.list[index].listComm[1].comment}}</view>
-          </view>
-          <view style="height:10rpx;"></view>
-
-        </view>
-        <view class="sp-quanbupinglun margin-top-sm" bindtap="shipinChooseSezi" data-duixiang="{{50}}" data-dxid="{{shipin.list[index].id}}" data-index="{{index}}">全部评论({{shipin.list[index].commCnt}})</view>
-      </view>
-    </view>
-  </view>
-
-  <!-- <view class="cu-bar input foot padding " hidden="{{shipinChooseSize}}">
+    <!-- <view class="cu-bar input foot padding " hidden="{{shipinChooseSize}}">
     <input class="solid-bottom " focus="{{false}} " maxlength="300 " cursor-spacing="10 " placeholder='来说点什么吧！' bindtap="pinluntiaozhuan"></input>
     <view class="action ">
       <image class="img-icon " mode="aspectFit " src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
@@ -606,13 +604,13 @@
       <image class="img-icon " mode="aspectFit " src="/img/icon_upload_video@2x.png " bindtap="shipintiaozhuan"></image>
     </view>
   </view> -->
-</block>
+  </block>
 
-<!--
+  <!--
 创建者：朱娇龙
 创建时间：20200418
 创建内容：照片-->
-<!--<block wx:if="{{TabCur==3}}">
+  <!--<block wx:if="{{TabCur==3}}">
   <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx; ">{{zhaopian[0].title}}</view>
   <view class="content-white ">
     <view class=" sp-cu-bar cu-bar-radius bg-white ">
@@ -707,189 +705,189 @@
   </view>
 </block>-->
 
-<!--
+  <!--
 创建者：陈雨豪
 创建时间：20200417
 创建内容：排名-->
-<block wx:if="{{TabCur==4}}">
-  <view class="padding" style="margin-left:175rpx; " hidden="{{signupway}}">
-    <button class="cu-btn {{paimingCur==0? 'bg-orange': 'bg-grey2 text-grey'}} btn-paiming-left" bindtap="paimingSelect" data-id="0 ">
-      个人排名
-    </button>
-    <button class="cu-btn {{paimingCur==1? 'bg-orange': 'bg-grey2 text-grey'}} btn-paiming-right" bindtap="paimingSelect" data-id="1">
-      团队排名
-    </button>
-  </view>
+  <block wx:if="{{TabCur==4}}">
+    <view class="padding" style="margin-left:175rpx; " hidden="{{signupway}}">
+      <button class="cu-btn {{paimingCur==0? 'bg-orange': 'bg-grey2 text-grey'}} btn-paiming-left" bindtap="paimingSelect" data-id="0 ">
+        个人排名
+      </button>
+      <button class="cu-btn {{paimingCur==1? 'bg-orange': 'bg-grey2 text-grey'}} btn-paiming-right" bindtap="paimingSelect" data-id="1">
+        团队排名
+      </button>
+    </view>
 
-  <block wx:if="{{paimingCur==0}}">
-    <view class="bg-white padding yundong-sp-center " wx:for="{{gerenpaiming.list}}" wx:for-index="index">
-      <view class="yundong-sp-center padding-bottom" wx:for="{{item.members}}" wx:for-item="members" style="flex-basis: 100%;">
-        <view wx:if="{{members.mbrRankLogo!=null}}">
-          <image class="icon-paiming " mode="aspectFit " src="{{members.mbrRankLogo}}"></image>
+    <block wx:if="{{paimingCur==0}}">
+      <view class="bg-white padding yundong-sp-center " wx:for="{{gerenpaiming.list}}" wx:for-index="index">
+        <view class="yundong-sp-center padding-bottom" wx:for="{{item.members}}" wx:for-item="members" style="flex-basis: 100%;">
+          <view wx:if="{{members.mbrRankLogo!=null}}">
+            <image class="icon-paiming " mode="aspectFit " src="{{members.mbrRankLogo}}"></image>
+          </view>
+          <view wx:else class="card-text-content margin-right-xl margin-left-xs">{{index+1}}</view>
+
+          <view class="cu-avatar round my " style="background-image:url({{members.mbrHead}}); "></view>
+          <text class="paiming-name " decode="{{true}}">&ensp;{{members.mbrAlias}}</text>
+          <view class="paiming-name text-orange " wx:if="{{members.mbrScore!=null}}" style="position:absolute;right:40rpx; ">{{members.mbrScore}}分
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <block wx:if="{{paimingCur==1}}">
+      <view class="bg-white padding yundong-sp-center " wx:for="{{tuanduipaiming.list}}" wx:for-index="index">
+        <view wx:if="{{index==0}}">
+          <image class="icon-paiming " mode="aspectFit " src="/img/icon_champion@3x.png"></image>
+        </view>
+        <view wx:elif="{{index==1}}">
+          <image class="icon-paiming " mode="aspectFit " src="/img/icon_runner_up@3x.png"></image>
+        </view>
+        <view wx:elif="{{index==2}}">
+          <image class="icon-paiming " mode="aspectFit " src="/img/icon_second_runner_up@3x.png"></image>
         </view>
         <view wx:else class="card-text-content margin-right-xl margin-left-xs">{{index+1}}</view>
 
-        <view class="cu-avatar round my " style="background-image:url({{members.mbrHead}}); "></view>
-        <text class="paiming-name " decode="{{true}}">&ensp;{{members.mbrAlias}}</text>
-        <view class="paiming-name text-orange " wx:if="{{members.mbrScore!=null}}" style="position:absolute;right:40rpx; ">{{members.mbrScore}}分
+        <view class="cu-avatar round my " style="background-image:url({{item.teamLogo}}); "></view>
+        <text class="paiming-name " decode="{{true}} ">&ensp;{{item.team}}</text>
+        <view class="paiming-name text-orange " wx:if="{{members.mbrScore!=null}}" style="position: absolute;right:40rpx;">{{item.teamScore}}
         </view>
       </view>
-    </view>
-  </block>
-
-  <block wx:if="{{paimingCur==1}}">
-    <view class="bg-white padding yundong-sp-center " wx:for="{{tuanduipaiming.list}}" wx:for-index="index">
-      <view wx:if="{{index==0}}">
-        <image class="icon-paiming " mode="aspectFit " src="/img/icon_champion@3x.png"></image>
-      </view>
-      <view wx:elif="{{index==1}}">
-        <image class="icon-paiming " mode="aspectFit " src="/img/icon_runner_up@3x.png"></image>
-      </view>
-      <view wx:elif="{{index==2}}">
-        <image class="icon-paiming " mode="aspectFit " src="/img/icon_second_runner_up@3x.png"></image>
-      </view>
-      <view wx:else class="card-text-content margin-right-xl margin-left-xs">{{index+1}}</view>
-
-      <view class="cu-avatar round my " style="background-image:url({{item.teamLogo}}); "></view>
-      <text class="paiming-name " decode="{{true}} ">&ensp;{{item.team}}</text>
-      <view class="paiming-name text-orange " wx:if="{{members.mbrScore!=null}}" style="position: absolute;right:40rpx;">{{item.teamScore}}
-      </view>
-    </view>
-  </block>
-  <block>
-    <view class="huodong-margin-bottom">
-      <!-- 评论 -->
-      <view class="cu-bar bg-white solid-bottom huodong-margin-top">
-        <view class='action'>
-          <text class='cu-bar-title'>评论({{count}})</text>
-        </view>
-      </view>
-    </view>
-
-    <view class="bg-white">
-      <view class='talk-item' wx:for="{{comment.list}}" wx:key>
-        <view class='talk-item-left'>
-          <image class='talk-item-face' src='{{item.createrHead}}'></image>
-        </view>
-
-        <view class='talk-item-right'>
-          <view>
-            <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
-            <button class="cu-btn btn-hot bg-orange disabled" wx:if="{{item.hot}}">热门</button>
-          </view>
-          <text class='card-text-content'>{{item.comment}}</text>
-          <view>
-            <text class='card-text-content-time'>{{item.strCreatetime}}</text>
+    </block>
+    <block>
+      <view class="huodong-margin-bottom">
+        <!-- 评论 -->
+        <view class="cu-bar bg-white solid-bottom huodong-margin-top">
+          <view class='action'>
+            <text class='cu-bar-title'>评论({{count}})</text>
           </view>
         </view>
       </view>
-    </view>
 
-  </block>
-  <view wx:if="{{!chooseSize}}">
-    <view class="cu-bar input foot padding">
-      <image class="img-input" mode="scaleToFill" src="/img/input.png" bindtap="chooseSezi"></image>
-      <view class="action">
-        <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
+      <view class="bg-white">
+        <view class='talk-item' wx:for="{{comment.list}}" wx:key>
+          <view class='talk-item-left'>
+            <image class='talk-item-face' src='{{item.createrHead}}'></image>
+          </view>
+
+          <view class='talk-item-right'>
+            <view>
+              <text class="card-text-grey" decode="{{true}}">{{item.createrAlias}}&emsp;</text>
+              <button class="cu-btn btn-hot bg-orange disabled" wx:if="{{item.hot}}">热门</button>
+            </view>
+            <text class='card-text-content'>{{item.comment}}</text>
+            <view>
+              <text class='card-text-content-time'>{{item.strCreatetime}}</text>
+            </view>
+          </view>
+        </view>
       </view>
-      <view class="action">
-        <image class="img-icon" mode="aspectFit" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
-      </view>
-      <view class="action">
-        <button open-type='share' class="btn1 img_share"></button>
+
+    </block>
+    <view wx:if="{{!chooseSize}}">
+      <view class="cu-bar input foot padding">
+        <image class="img-input" mode="scaleToFill" src="/img/input.png" bindtap="chooseSezi"></image>
+        <view class="action">
+          <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
+        </view>
+        <view class="action">
+          <image class="img-icon" mode="aspectFit" src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
+        </view>
+        <view class="action">
+          <button open-type='share' class="btn1 img_share"></button>
+        </view>
       </view>
     </view>
-  </view>
-</block>
-<!--
+  </block>
+  <!--
 创建者：陈雨豪
 创建时间：20200417
 创建内容：数据-->
-<block wx:if="{{TabCur==5}}">
-  <view>
-    <view class=" bg-white cu-bar-title padding ">活动数据录入</view>
-  </view>
-  <view class="content-white">
-    <view class=" padding " style="margin-left:175rpx; " hidden="{{signupway}}">
-      <button class="cu-btn {{shujuCur==0? 'bg-orange': 'bg-grey2 text-grey'}} btn-paiming-left " bindtap="shujuSelect" data-id="0 ">
-        个人数据
-      </button>
-      <button class="cu-btn {{shujuCur==1? 'bg-orange': 'bg-grey2 text-grey'}} btn-paiming-right " bindtap="shujuSelect" data-id="1 ">
-        团队数据
-      </button>
+  <block wx:if="{{TabCur==5}}">
+    <view>
+      <view class=" bg-white cu-bar-title padding ">活动数据录入</view>
     </view>
-  </view>
+    <view class="content-white">
+      <view class=" padding " style="margin-left:175rpx; " hidden="{{signupway}}">
+        <button class="cu-btn {{shujuCur==0? 'bg-orange': 'bg-grey2 text-grey'}} btn-paiming-left " bindtap="shujuSelect" data-id="0 ">
+          个人数据
+        </button>
+        <button class="cu-btn {{shujuCur==1? 'bg-orange': 'bg-grey2 text-grey'}} btn-paiming-right " bindtap="shujuSelect" data-id="1 ">
+          团队数据
+        </button>
+      </view>
+    </view>
 
-  <block wx:if="{{shujuCur==0}}">
-    <view class="margin-bottom">
-      <view class="padding-left bg-white yundong-sp-center " wx:for="{{gerenshuju.list}}" wx:key="groupid" wx:for-index="index">
-        <view class="bg-blue " style="width:300rpx;height:42rpx; ">
-          <text wx:if="{{item.groupname!=null}}" style="margin-left:36rpx; ">{{item.groupname}}</text>
-        </view>
-        <view class="bg-blue " style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-          <text style="margin-left:65rpx; ">排名</text>
-        </view>
-        <view class="bg-blue " style="margin-left:1rpx;width:208rpx;height:42rpx; ">
-          <text style="margin-left:81rpx; ">得分</text>
-        </view>
-
-
-        <view class="bg-white padding-top-lg padding-bottom-lg yundong-sp-center " wx:for="{{item.members}}" wx:key="id" wx:for-item="members" wx:for-index="index2">
-          <view style="width:300rpx;height:42rpx; ">
-            <view class="cu-avatar round my " style="background-image:url({{members.mbrHead}}); "></view>
-            <text class="paiming-name " decode="{{true}} ">&ensp;{{members.mbrAlias}}</text>
+    <block wx:if="{{shujuCur==0}}">
+      <view class="margin-bottom">
+        <view class="padding-left bg-white yundong-sp-center " wx:for="{{gerenshuju.list}}" wx:key="groupid" wx:for-index="index">
+          <view class="bg-blue " style="width:300rpx;height:42rpx; ">
+            <text wx:if="{{item.groupname!=null}}" style="margin-left:36rpx; ">{{item.groupname}}</text>
           </view>
-          <view class="view-active" style="margin-left:64rpx;width:60rpx;height:42rpx;">
-            <input placeholder="{{members.mbrRank==null?'':members.mbrRank}}" bindinput="paimingInput" data-flag="0" data-index2="{{index2}}" data-index="{{index}}" />
+          <view class="bg-blue " style="margin-left:1rpx;width:180rpx;height:42rpx; ">
+            <text style="margin-left:65rpx; ">排名</text>
           </view>
-          <view class="view-active" style="margin-left:150rpx;width:60rpx;height:42rpx;">
-            <input placeholder="{{members.mbrScore==null?'':members.mbrScore}}" bindinput="defenInput" data-flag="0" data-index2="{{index2}}" data-index="{{index}}" />
+          <view class="bg-blue " style="margin-left:1rpx;width:208rpx;height:42rpx; ">
+            <text style="margin-left:81rpx; ">得分</text>
+          </view>
+
+
+          <view class="bg-white padding-top-lg padding-bottom-lg yundong-sp-center " wx:for="{{item.members}}" wx:key="id" wx:for-item="members" wx:for-index="index2">
+            <view style="width:300rpx;height:42rpx; ">
+              <view class="cu-avatar round my " style="background-image:url({{members.mbrHead}}); "></view>
+              <text class="paiming-name " decode="{{true}} ">&ensp;{{members.mbrAlias}}</text>
+            </view>
+            <view class="view-active" style="margin-left:64rpx;width:60rpx;height:42rpx;">
+              <input placeholder="{{members.mbrRank==null?'':members.mbrRank}}" bindinput="paimingInput" data-flag="0" data-index2="{{index2}}" data-index="{{index}}" />
+            </view>
+            <view class="view-active" style="margin-left:150rpx;width:60rpx;height:42rpx;">
+              <input placeholder="{{members.mbrScore==null?'':members.mbrScore}}" bindinput="defenInput" data-flag="0" data-index2="{{index2}}" data-index="{{index}}" />
+            </view>
           </view>
         </view>
       </view>
-    </view>
-  </block>
-  <block wx:if="{{shujuCur==1}}">
-    <view class="margin-bottom">
-      <view class="padding-left bg-white yundong-sp-center " wx:for="{{tuanduishuju.list}}" wx:key="groupid" wx:for-index="index">
-        <view class="bg-blue " style="width:300rpx;height:42rpx; ">
-          <text style="margin-left:36rpx;" wx:if="{{item.groupname!=null}}">{{item.team}}/{{item.groupname}}</text>
-          <text style="margin-left:36rpx;" wx:if="{{item.groupname==null}}">{{item.team}}</text>
-        </view>
-        <view class="bg-blue " style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-          <text style="margin-left:65rpx; ">排名</text>
-        </view>
-        <view class="bg-blue " style="margin-left:1rpx;width:208rpx;height:42rpx; ">
-          <text style="margin-left:81rpx; ">得分</text>
-        </view>
+    </block>
+    <block wx:if="{{shujuCur==1}}">
+      <view class="margin-bottom">
+        <view class="padding-left bg-white yundong-sp-center " wx:for="{{tuanduishuju.list}}" wx:key="groupid" wx:for-index="index">
+          <view class="bg-blue " style="width:300rpx;height:42rpx; ">
+            <text style="margin-left:36rpx;" wx:if="{{item.groupname!=null}}">{{item.team}}/{{item.groupname}}</text>
+            <text style="margin-left:36rpx;" wx:if="{{item.groupname==null}}">{{item.team}}</text>
+          </view>
+          <view class="bg-blue " style="margin-left:1rpx;width:180rpx;height:42rpx; ">
+            <text style="margin-left:65rpx; ">排名</text>
+          </view>
+          <view class="bg-blue " style="margin-left:1rpx;width:208rpx;height:42rpx; ">
+            <text style="margin-left:81rpx; ">得分</text>
+          </view>
 
 
-        <view class="bg-white padding-top-lg padding-bottom-lg yundong-sp-center " wx:for="{{item.members}}" wx:key="id" wx:for-item="members" wx:for-index="index2">
-          <view style="width:300rpx;height:42rpx; ">
-            <view class="cu-avatar round my " style="background-image:url({{members.mbrHead}}); "></view>
-            <text class="paiming-name " decode="{{true}} ">&ensp;{{members.mbrAlias}}</text>
-          </view>
-          <view class="view-active" style="margin-left:64rpx;width:60rpx;height:42rpx;">
-            <input placeholder="{{members.mbrRank==null?'':members.mbrRank}}" bindinput="paimingInput" data-flag="1" data-index2="{{index2}}" data-index="{{index}}" />
-          </view>
-          <view class="view-active" style="margin-left:150rpx;width:60rpx;height:42rpx;">
-            <input placeholder="{{members.mbrScore==null?'':members.mbrScore}}" bindinput="defenInput" data-flag="1" data-index2="{{index2}}" data-index="{{index}}" />
+          <view class="bg-white padding-top-lg padding-bottom-lg yundong-sp-center " wx:for="{{item.members}}" wx:key="id" wx:for-item="members" wx:for-index="index2">
+            <view style="width:300rpx;height:42rpx; ">
+              <view class="cu-avatar round my " style="background-image:url({{members.mbrHead}}); "></view>
+              <text class="paiming-name " decode="{{true}} ">&ensp;{{members.mbrAlias}}</text>
+            </view>
+            <view class="view-active" style="margin-left:64rpx;width:60rpx;height:42rpx;">
+              <input placeholder="{{members.mbrRank==null?'':members.mbrRank}}" bindinput="paimingInput" data-flag="1" data-index2="{{index2}}" data-index="{{index}}" />
+            </view>
+            <view class="view-active" style="margin-left:150rpx;width:60rpx;height:42rpx;">
+              <input placeholder="{{members.mbrScore==null?'':members.mbrScore}}" bindinput="defenInput" data-flag="1" data-index2="{{index2}}" data-index="{{index}}" />
+            </view>
           </view>
         </view>
       </view>
+    </block>
+
+    <view style="margin-top:140rpx; ">
+      <view class="yundong-sp-center " style="margin-left:39rpx;margin-bottom:44rpx;width: 668rpx; height: 80rpx; ">
+        <button class="shuju-btn1 line-red " bindtap="jieshu">结束本场活动</button>
+        <button class="shuju-btn1 line-orange " bindtap="tijiao">提交</button>
+      </view>
+      <button class="shuju-btn1 bg-orange round " style="width: 668rpx; height: 80rpx;" bindtap="tijiaobingjieshu">提交并结束本场活动</button>
     </view>
   </block>
 
-  <view style="margin-top:140rpx; ">
-    <view class="yundong-sp-center " style="margin-left:39rpx;margin-bottom:44rpx;width: 668rpx; height: 80rpx; ">
-      <button class="shuju-btn1 line-red " bindtap="jieshu">结束本场活动</button>
-      <button class="shuju-btn1 line-orange " bindtap="tijiao">提交</button>
-    </view>
-    <button class="shuju-btn1 bg-orange round " style="width: 668rpx; height: 80rpx;" bindtap="tijiaobingjieshu">提交并结束本场活动</button>
-  </view>
-</block>
-
-<!--
+  <!--
 创建者：陈雨豪
 创建时间：20200420
 创建内容：资讯
@@ -986,34 +984,35 @@
 </block>-->
 
 
-<!--隐藏区域  -->
-<view fixed class="modals modals-bottom-dialog" hidden="{{!chooseSize}}">
-  <view class="modals-cancel" bindtap="hideModal" catchtouchmove="true"></view>
-  <view class="bottom-dialog-body bottom-pos " animation="{{animationData}}" style="display:block">
-    <view>
-      <text class="cu-bar-title " style="margin-left:300rpx ">写评论</text>
-      <button class="cu-btn bg-orange shadow-blur padding-sm margin-left-sm btn-fasong " bindtap="pd_fasong" style="margin-left:100rpx ">发送</button>
-    </view>
-    <textarea class="form-text2 margin-top-sm margin-buttom " style="height:160rpx;width:100% " value="{{Input}}" maxlength="4000 " bindinput="emailInput" cursor-spacing="65" fixed="true"></textarea>
-  </view>
-</view>
-
-
-<!--shipin隐藏区域  -->
-<view fixed class="modals modals-bottom-dialog" hidden="{{!shipinChooseSize}}">
-  <view class="modals-cancel" bindtap="shipinHideModal" catchtouchmove="true"></view>
-  <scroll-view class="shipin-bottom-dialog-body bottom-pos" animation="{{shipinAnimationData}}" style="display:block" scroll-y="true">
-    <view>
-      <text class="cuIcon-close lg text-black" bindtap="shipinHideModal"></text>
-      <text class="sp-quanbupinglun2">全部评论({{shipin.list[shipin_index].commCnt}})</text>
-    </view>
-    <view wx:for="{{shipin.list[shipin_index].listComm}}" wx:for-index="index2" style="background-color:white;">
-      <view class="margin-top-sm sp-pinlun-content">
-        <image class="sp-pinglun-avatar-2 round " src="{{shipin.list[shipin_index].listComm[index2].createrHead}} ">
-        </image>
-        <view class="sp-pinglun-name ">{{shipin.list[shipin_index].listComm[index2].createrAlias}}</view>
-        <view class="sp-pinglun-neirong ">{{shipin.list[shipin_index].listComm[index2].comment}}</view>
+  <!--隐藏区域  -->
+  <view fixed class="modals modals-bottom-dialog" hidden="{{!chooseSize}}">
+    <view class="modals-cancel" bindtap="hideModal" catchtouchmove="true"></view>
+    <view class="bottom-dialog-body bottom-pos " animation="{{animationData}}" style="display:block">
+      <view>
+        <text class="cu-bar-title " style="margin-left:300rpx ">写评论</text>
+        <button class="cu-btn bg-orange shadow-blur padding-sm margin-left-sm btn-fasong " bindtap="pd_fasong" style="margin-left:100rpx ">发送</button>
       </view>
+      <textarea class="form-text2 margin-top-sm margin-buttom " style="height:160rpx;width:100% " value="{{Input}}" maxlength="4000 " bindinput="emailInput" cursor-spacing="65" fixed="true"></textarea>
     </view>
-  </scroll-view>
+  </view>
+
+
+  <!--shipin隐藏区域  -->
+  <view fixed class="modals modals-bottom-dialog" hidden="{{!shipinChooseSize}}">
+    <view class="modals-cancel" bindtap="shipinHideModal" catchtouchmove="true"></view>
+    <scroll-view class="shipin-bottom-dialog-body bottom-pos" animation="{{shipinAnimationData}}" style="display:block" scroll-y="true">
+      <view>
+        <text class="cuIcon-close lg text-black" bindtap="shipinHideModal"></text>
+        <text class="sp-quanbupinglun2">全部评论({{shipin.list[shipin_index].commCnt}})</text>
+      </view>
+      <view wx:for="{{shipin.list[shipin_index].listComm}}" wx:for-index="index2" style="background-color:white;">
+        <view class="margin-top-sm sp-pinlun-content">
+          <image class="sp-pinglun-avatar-2 round " src="{{shipin.list[shipin_index].listComm[index2].createrHead}} ">
+          </image>
+          <view class="sp-pinglun-name ">{{shipin.list[shipin_index].listComm[index2].createrAlias}}</view>
+          <view class="sp-pinglun-neirong ">{{shipin.list[shipin_index].listComm[index2].comment}}</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
 </view>
