@@ -324,7 +324,7 @@ Page({
     let pro = wx.getStorageSync('province')
     let city = wx.getStorageSync('city')
     let schoolinfo = wx.getStorageSync('school')
-    if (schoolinfo) {
+    if (pro) {
       this.setData({
         pro: pro,
         city: city,
@@ -429,7 +429,7 @@ Page({
     let pro = wx.getStorageSync('province')
     let city = wx.getStorageSync('city')
     let schoolinfo = wx.getStorageSync('school')
-    if (schoolinfo) {
+    if (pro) {
       this.setData({
         pro: pro,
         city: city,
