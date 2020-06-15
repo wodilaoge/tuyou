@@ -80,7 +80,7 @@
             <text class="yibaoming-text-content margin-top">已报名</text>
             <text class="yibaoming-text-content margin-top" style="color:var(--blue)">{{yibaomingList.length}}/{{detail.signupmax}}</text>
             <text class="yibaoming-text-content margin-top">人</text>
-            <button class="cu-btn bg-orange round btn-baomingtiaozhan margin-top-sm" bindtap="bmtz">报名挑战</button>
+            <button class="cu-btn bg-orange round btn-baomingtiaozhan margin-top-sm" bindtap="bmtz" hidden="{{detail.button.signup==null}}">{{detail.button.signup}}</button>
           </view>
           <view class="yundong-content bg-white">
             <view class="padding-sm">
