@@ -247,6 +247,12 @@
 					"pathName": "pages/fenxiangshipin/fenxiang",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/MyPages/my_activity/my_activity",
+					"pathName": "pages/MyPages/my_activity/my_activity",
+					"scene": null
 				}
 			]
 		}

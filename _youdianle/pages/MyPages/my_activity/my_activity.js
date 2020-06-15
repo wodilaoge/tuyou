@@ -3,6 +3,8 @@ const app = getApp();
 var util = require("../../../utils/util.js");
 Page({
 
+  // 10：待审核，14：内容违规，20：正常，30：已结束，40：主动取消，44：审核驳回，50：平台取消
+
   data: {
     swip: ['活动审核', '新闻审核', '图片审核', '视频审核'],
     options: 1,
@@ -11,7 +13,8 @@ Page({
     MyActivity: [],
     hiddenmodalput: true,
     //可以通过hidden是否掩藏弹出框的属性，来指定那个弹出框  
-    scrollLeft: 0
+    scrollLeft: 0,
+    initialcode:'076003001'
   },
   modalinput: function (e) {
     this.setData({
@@ -36,31 +39,48 @@ Page({
     this.flesh(e.currentTarget.dataset.id)
   },
   flesh(tab) {
+    console.log('flesh')
     var that = this
     console.log(that.data.AllActivity[tab].code)
     //我创建的
     if (that.data.options == 1) {
       let url = app.globalData.URL + '/act/listMyActivity';
       let data = {
-        'type': 10,
+        'type': 20,
         'acid1': that.data.AllActivity[tab].code
       };
       util.post_token(url, data).then(function (res) {
         console.log('join', res.data)
         that.setData({
-          Myjoin: res.data.data
+          Myjoin: res.data.data,
+          nowActNum:res.data.data.list.length
         })
       })
     } else if (that.data.options == 2) {
       let url = app.globalData.URL + '/act/listMyActivity';
       let data = {
-        'type': 20,
+        'type': 10,
         'acid1': that.data.AllActivity[tab].code
       };
       util.post_token(url, data).then(function (res) {
         console.log('create', res.data)
         that.setData({
-          Mycreate: res.data.data
+          Mycreate: res.data.data,
+          nowActNum:res.data.data.list.length
+        })
+      })
+    }
+    else if (that.data.options == 3) {
+      let url = app.globalData.URL + '/act/listMyActivity';
+      let data = {
+        'type': 30,
+        'acid1': that.data.AllActivity[tab].code
+      };
+      util.post_token(url, data).then(function (res) {
+        console.log('attention', res.data)
+        that.setData({
+          Myattention: res.data.data,
+          nowActNum:res.data.data.list.length
         })
       })
     }
@@ -140,7 +160,7 @@ Page({
   cancel(e) {
     wx.showModal({
       title: '退出该活动',
-      // content: '确定要删除这张照片吗',
+      content: '活动取消后不能恢复。确定取消吗？',
       cancelText: '取消',
       confirmText: '确认',
       success: res => {
@@ -180,7 +200,7 @@ Page({
     let num
     let data = {
       'type': 10,
-      'acid1': '076003001'
+      'acid1': that.data.initialcode
     };
     util.post_token(url, data).then(function (res) {
       console.log('Mycreate', res.data)
@@ -199,19 +219,20 @@ Page({
     url = app.globalData.URL + '/act/listMyActivity';
     data = {
       'type': 20,
-      'acid1': '076003001'
+      'acid1': that.data.initialcode
     };
     util.post_token(url, data).then(function (res) {
       console.log('Myjoin', res.data)
       that.setData({
-        Myjoin: res.data.data
+        Myjoin: res.data.data,
+        nowActNum:res.data.data.list.length
       })
     })
     //我关注的
     url = app.globalData.URL + '/act/listMyActivity';
     data = {
       'type': 30,
-      'acid1': '076003001'
+      'acid1': that.data.initialcode
     };
     util.post_token(url, data).then(function (res) {
       console.log('Myattention', res.data)
@@ -219,7 +240,48 @@ Page({
         Myattention: res.data.data
       })
     })
-
+    //查询参与活动数量
+    url = app.globalData.URL + '/act/countMyActivity';
+    data = {
+      'type': 10,
+      'univ': wx.getStorageSync('school').code,
+      'province': wx.getStorageSync('province').code,
+      'city': wx.getStorageSync('city').code,
+    };
+    util.post_token(url, data).then(function (res) {
+      console.log('joinnum', res.data)
+      that.setData({
+        joinnum: res.data.data
+      })
+    })
+    //查询创建活动数量
+    url = app.globalData.URL + '/act/countMyActivity';
+    data = {
+      'type': 20,
+      'univ': wx.getStorageSync('school').code,
+      'province': wx.getStorageSync('province').code,
+      'city': wx.getStorageSync('city').code,
+    };
+    util.post_token(url, data).then(function (res) {
+      console.log('createnum', res.data)
+      that.setData({
+        createnum: res.data.data
+      })
+    })
+    //查询关注活动数量
+    url = app.globalData.URL + '/act/countMyActivity';
+    data = {
+      'type': 30,
+      'univ': wx.getStorageSync('school').code,
+      'province': wx.getStorageSync('province').code,
+      'city': wx.getStorageSync('city').code,
+    };
+    util.post_token(url, data).then(function (res) {
+      console.log('attentionnum', res.data)
+      that.setData({
+        attentionnum: res.data.data
+      })
+    })
   },
 
 })
