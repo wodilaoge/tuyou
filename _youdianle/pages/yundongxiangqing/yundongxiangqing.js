@@ -1564,8 +1564,8 @@ Page({
     var self = this
     let url = app.globalData.URL + '/applaud/updateApplaud'
     let data = {
-      objtype: 10,
-      objid: e.currentTarget.dataset.members.mbrId,
+      objtype: 80,
+      objid: e.currentTarget.dataset.members.id,
       objtitle: e.currentTarget.dataset.members.mbrAlias,
       creater: self.data.user.id,
       status: 1 - e.currentTarget.dataset.members.myApplaud
@@ -1580,7 +1580,6 @@ Page({
         })
         self.gerenpaiming()
       } else {
-        console.log(res.data)
         wx.showToast({
           title: res.data.msg, // 标题
           image: '/img/fail.png', // 图标类型，默认success
