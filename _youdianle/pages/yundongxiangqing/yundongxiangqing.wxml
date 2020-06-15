@@ -30,7 +30,6 @@
   <block wx:if="{{TabCur==0}}">
     <view class="cu-bar bg-white solid-bottom margin-top-sm" style="display:fixed;position: relative;">
       <image class="cu-avatar round my" src="{{detail.createrhead}}" mode="heightFix"></image>
-      <!--<text style="position:absolute;left:110rpx;">三分赛</text>-->
       <text class=" title-time" style="position:absolute;width:100%;left:310rpx;" wx:if="{{detail.lefttime.left!=null}}">{{detail.lefttime.left}}</text>
     </view>
 
@@ -41,11 +40,12 @@
             <view class="yundong-content">
               <view class="desc padding-xs">
                 <view class="title-limit">{{detail.actname}}</view>
-                <view class="text-content">
+                <view class="text-content" hidden="{{(detail.city==''||detail.city==null)&&(detail.address==''||detail.address==null)}}">
                   <image class="icon-size" src="/img/icon_location.png" mode="heightFix"></image>
-                  <text decode="{{true}}">\t{{detail.city}}{{detail.address}}</text>
+                  <text decode="{{true}}" hidden="{{detail.city==''||detail.city==null}}">\t{{detail.city}}</text>
+                  <text decode="{{true}}" hidden="{{detail.address==''||detail.address==null}}">{{detail.address}}</text>
                 </view>
-                <view class="text-content">
+                <view class="text-content" hidden="{{detail.venue==''||detail.venue==null}}">
                   <image class="icon-size"></image>
                   <text decode="{{true}}">\t{{detail.venue}}</text>
                 </view>

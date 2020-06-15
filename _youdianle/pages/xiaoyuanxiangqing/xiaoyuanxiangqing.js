@@ -1385,7 +1385,8 @@ Page({
     let data = {
       objtype: 10,
       objid: e.currentTarget.dataset.members.mbrId,
-      creater: self.data.categoryId,
+      objtitle: e.currentTarget.dataset.members.mbrAlias,
+      creater: self.data.user.id,
       status: 1 - e.currentTarget.dataset.members.myApplaud
     }
     util.post_token(url, data).then(function (res) {

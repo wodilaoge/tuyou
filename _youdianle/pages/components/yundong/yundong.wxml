@@ -14,11 +14,12 @@
             <image src="{{item.logo}}" mode="aspectFill"></image>
             <view class="desc">
               <view class="title-limit">{{item.actname}}</view>
-              <view class="text-content">
+              <view class="text-content" hidden="{{(item.city==''||item.city==null)&&(item.address==''||item.address==null)}}">
                 <image class="icon-size" src="/img/icon_location.png" mode="heightFix"></image>
-                <text decode="{{true}}">\t{{item.city}}{{item.address}}</text>
+                <text decode="{{true}}" hidden="{{item.city==''||item.city==null}}">\t{{item.city}}</text>
+                <text decode="{{true}}" hidden="{{item.address==''||item.address==null}}">{{item.address}}</text>
               </view>
-              <view class="text-content">
+              <view class="text-content" hidden="{{item.venue==''||item.venue==null}}">
                 <image class="icon-size"></image>
                 <text decode="{{true}}">\t{{item.venue}}</text>
               </view>
