@@ -12,9 +12,9 @@
         <button class="cu-btn round lines-orange shadow soft" wx:if="{{!isphone}}" open-type="getPhoneNumber"  bindgetphonenumber="getPhoneNumber">绑定</button>
         <!-- <button class="cu-btn round lines-orange shadow soft" wx:else style="width: 150rpx;" bindtap="tochange">更换手机号</button> -->
 </view>
-<view class="cu-form-group">
+<!-- <view class="cu-form-group">
   <image class="icon2" src="/img/my/icon_cancellation@3x.png"></image>
   <view class="title text-left" bindtap="dead">账号注销</view>
   <input class="input text-grey" placeholder="" type='text'  bindinput="kill"></input>
     <image class="icon2" src="/img/array.png"></image>
-</view>
+</view> -->
