@@ -3,7 +3,7 @@
   <view slot="content">视频</view>
 </cu-custom>
 
-<view wx:for="{{shipin.list}}">
+<view wx:for="{{shipin.list}}" wx:if="{{shipin.list.length}}">
   <view wx:if="{{index==0}}">
     <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx;">{{shipin.list[0].title}}</view>
     <view class="content-white">
@@ -112,3 +112,4 @@
     </view>
   </view>
 </view>
+<view class="text-center text-bold text-xxl padding-xl" wx:if="{{!shipin.list.length}}">您暂未发布视频</view>
