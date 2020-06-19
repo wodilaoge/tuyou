@@ -310,4 +310,30 @@ Page({
       })
     })
   },
+  delvideo(e)
+  {
+    console.log(e.currentTarget.dataset.id)
+    let url = app.globalData.URL + '/video/cancelActVideo';
+    var data = {
+      id: e.currentTarget.dataset.id,
+    }
+    wx.showModal({
+      title: '删除视频',
+      content: '确定要删除这段视频吗',
+      cancelText: '取消',
+      confirmText: '确认',
+      success: res => {
+        if (res.confirm) {
+          console.log('delete video confirm')
+          util.gets(url, data).then(function (res) {
+            console.log(res)
+            if(res.data.code==0)
+            wx.showToast({
+              title: '删除成功',
+            })
+          })
+        }
+      }
+    })
+  }
 })

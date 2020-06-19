@@ -54,3 +54,7 @@ color:rgba(164,169,188,1);
   padding-top:94rpx;
   margin-left: 313rpx;
 }
+.del{
+  font-size: 40rpx;
+  
+}

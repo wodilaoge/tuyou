@@ -249,9 +249,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/MyPages/my_activity/my_activity",
-					"pathName": "pages/MyPages/my_activity/my_activity",
+					"id": 27,
+					"name": "pages/MyPages/my_video/my_video",
+					"pathName": "pages/MyPages/my_video/my_video",
 					"query": "",
 					"scene": null
 				}
