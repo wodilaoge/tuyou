@@ -427,6 +427,11 @@ Page({
       univ: this.data.univ ,
     }
     app.wxRequest('POST', url, data, (res) => {
+      if (res.data.border == null) {
+        self.setData({
+          isRefleshshipin: false,
+        })
+      }
       console.log(res)
       let shipintmp = res.data;
       this.setData({
