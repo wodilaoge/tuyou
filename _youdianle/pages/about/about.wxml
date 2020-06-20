@@ -9,7 +9,7 @@
   <text class="padding-xl">版本{{info.verWc}}</text>
 
   <image class="logo" src="https://sys-1301681474.cos.ap-shanghai.myqcloud.com/web/my/udltg258.jpg"></image>
-  <view class="padding text-lg">扫描二维码，推荐朋友下载友点乐APP</view>
+  <view class="padding">扫描二维码，推荐朋友下载友点乐APP</view>
   <view class="padding bottom">
     <navigator class="text-blue padding" url="/pages/webview/webview" >用户服务协议</navigator>
     <navigator class="text-blue padding" url="/pages/webview2/webview2">隐私条款</navigator>
