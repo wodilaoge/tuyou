@@ -432,14 +432,14 @@
     </view>
   </block> -->
   <block wx:if="{{TabCur==1}}">
-    <view wx:if="{{sousuo_detail.listAct[0]}}">
+    <view wx:if="{{sousuo_detail_dalei[0]}}">
       <view class="bg-white padding margin-top ">
         <view bindtap="jump" data-id="{{1}}">
           <text class="cu-bar-title text-bold text-black ">运动</text>
           <image class="icon" src="../../img/array.png"></image>
         </view>
       </view>
-      <view wx:for="{{sousuo_detail.listAct}}" wx:key="key">
+      <view wx:for="{{sousuo_detail_dalei}}" wx:key="key">
         <view class="cu-bar bg-white solid-bottom" style="display:fixed;position: relative;">
           <image class="cu-avatar round my margin-left" src="{{item.createrhead}}" mode="heightFix"></image>
           <block wx:for="{{yundongxiaolei}}" wx:for-item="cell" wx:if="{{item.acid2==cell.code}}">
@@ -499,14 +499,14 @@
     </view>
   </block>
   <block wx:if="{{TabCur==2}}">
-    <view wx:if="{{sousuo_detail.listAmuse[0]}}">
+    <view wx:if="{{sousuo_detail_dalei[0]}}">
       <view class="bg-white padding margin-top ">
         <view bindtap="jump" data-id="{{2}}">
           <text class="cu-bar-title text-bold text-black ">文娱</text>
           <image class="icon" src="../../img/array.png"></image>
         </view>
       </view>
-      <view wx:for="{{sousuo_detail.listAmuse}}" wx:key="key">
+      <view wx:for="{{sousuo_detail_dalei}}" wx:key="key">
         <view class="cu-bar bg-white solid-bottom">
           <image class="cu-avatar my margin-left" src="{{item.logo}}" mode="heightFix"></image>
           <text>吉他</text>
@@ -612,14 +612,14 @@
 
   </block>
   <block wx:if="{{TabCur==3}}">
-    <view wx:if="{{sousuo_detail.listHobby[0]}}">
+    <view wx:if="{{sousuo_detail_dalei[0]}}">
       <view class="bg-white padding margin-top ">
         <view bindtap="jump" data-id="{{3}}">
           <text class="cu-bar-title text-bold text-black ">爱好</text>
           <image class="icon" src="../../img/array.png"></image>
         </view>
       </view>
-      <view wx:for="{{sousuo_deatil.listHobby}}" wx:key="key">
+      <view wx:for="{{sousuo_detail_dalei}}" wx:key="key">
         <view class="cu-bar bg-white solid-bottom">
           <image class="cu-avatar my margin-left" src="{{item.logo}}" mode="heightFix"></image>
           <text style="">英雄联盟</text>
@@ -677,7 +677,7 @@
     </view>
   </block>
   <block wx:if="{{TabCur==4}}">
-    <view wx:if="{{sousuo_detail.listVideo[0]}}">
+    <view wx:if="{{sousuo_detail_dalei[0]}}">
 
       <view class="bg-white padding margin-top ">
         <view bindtap="jump" data-id="{{4}}">
@@ -692,7 +692,7 @@
             <text class="video_text">{{sousuo_detail.listVideo[index].title}}</text>
           </view>
         </navigator> -->
-        <view class="video-item"  wx:for="{{sousuo_detail.listVideo}}">
+        <view class="video-item"  wx:for="{{sousuo_detail_dalei}}">
           <video class="video-list-photo radius" src="{{item.fileId}}" custom-cache="{{false}}" />
           <view class="video_text">{{item.title}}</view>
         </view>

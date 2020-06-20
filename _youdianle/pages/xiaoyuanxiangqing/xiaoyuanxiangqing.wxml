@@ -526,14 +526,15 @@
 
         <view class=" sp-pinglun margin-top ">{{shipin.list[0].notes}}</view>
         <view class="sp-hotpinglun margin-top ">热门评论</view>
+        
         <view class="margin-top" style="background-color: #fff;">
 
-          <view class="margin-top sp-pinlun-content" wx:if="{{shipin.list[0].listComm[0]}}">
+          <view class="margin-top sp-pinlun-content" bindtap="shipinChooseSezi" wx:if="{{shipin.list[0].listComm[0]}}">
             <image class="sp-pinglun-avatar round " src="{{shipin.list[0].listComm[0].createrHead}} "></image>
             <view class="sp-pinglun-name ">{{shipin.list[0].listComm[0].createrAlias}}</view>
             <view class="sp-pinglun-neirong ">{{shipin.list[0].listComm[0].comment}}</view>
           </view>
-          <view class="margin-top sp-pinlun-content" wx:if="{{shipin.list[0].listComm[1]}}">
+          <view class="margin-top sp-pinlun-content" bindtap="shipinChooseSezi" wx:if="{{shipin.list[0].listComm[1]}}">
             <image class="sp-pinglun-avatar round " src="{{shipin.list[0].listComm[1].createrHead}} "></image>
             <view class="sp-pinglun-name ">{{shipin.list[0].listComm[1].createrAlias}}</view>
             <view class="sp-pinglun-neirong ">{{shipin.list[0].listComm[1].comment}}</view>

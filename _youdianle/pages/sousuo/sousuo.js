@@ -15,14 +15,88 @@ Page({
     listCampus_timeChange: [],
     sousuo_lishi: [],
     province: '',
-    city:'',
-    univ:'',
-    isRefle:false,
+    city: '',
+    univ: '',
+    isRefle: true,
+    bkData: [],
   },
   tabSelect(e) {
     this.setData({
       TabCur: e.currentTarget.dataset.id,
-      scrollLeft: (e.currentTarget.dataset.id - 1) * 60
+      scrollLeft: (e.currentTarget.dataset.id - 1) * 60,
+      isRefle: true,
+    })
+    if (this.data.change_if == 1&&this.data.TabCur<4) {
+      this.sousuo_dalei()
+    }else if(this.data.change_if == 1&&this.data.TabCur==4){
+      this.sousuo_dalei_shipin()
+    }else{
+      this.change_sousuo()
+    }
+  },
+  sousuo_dalei() {
+    var self=this;
+    wx.showLoading({
+      title: '搜索中...',
+      mask: true //显示触摸蒙层  防止事件穿透触发
+    });
+    let url = app.globalData.URL + '/search/listAct';
+    let data = {
+      keywords: this.data.sousuo_neirong,
+      province: this.data.province === '不选' ? null : this.data.province,
+      city: this.data.city === '不选' ? null : this.data.city,
+      univ: this.data.univ === '不选' ? null : this.data.univ,
+      sid: this.data.bkData[this.data.TabCur-1].code,
+    };
+    app.wxRequest('POST', url, data, (res) => {
+      console.log(res)
+      if (res.data.border == null) {
+        self.setData({
+          isRefle: false,
+        })
+      }
+      this.setData({
+        sousuo_detail_dalei: res.data.list,
+        daleiBorder: res.data.border,
+      })
+      
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+    wx.hideLoading({
+      complete: (res) => {},
+    })
+  },
+  sousuo_dalei_shipin(){
+    var self=this;
+    wx.showLoading({
+      title: '搜索中...',
+      mask: true //显示触摸蒙层  防止事件穿透触发
+    });
+    let url = app.globalData.URL + '/search/listVideo';
+    let data = {
+      keywords: this.data.sousuo_neirong,
+      province: this.data.province === '不选' ? null : this.data.province,
+      city: this.data.city === '不选' ? null : this.data.city,
+      univ: this.data.univ === '不选' ? null : this.data.univ,
+    };
+    app.wxRequest('POST', url, data, (res) => {
+      console.log(res)
+      if (res.data.border == null) {
+        self.setData({
+          isRefle: false,
+        })
+      }
+      this.setData({
+        sousuo_detail_dalei: res.data.list,
+        daleiBorder: res.data.border,
+      })
+      
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+    wx.hideLoading({
+      complete: (res) => {},
     })
   },
   change_sousuo() {
@@ -42,9 +116,9 @@ Page({
     let url = app.globalData.URL + '/search/listAll';
     let data = {
       keywords: this.data.sousuo_neirong,
-      province:this.data.province==='不选'?null:this.data.province,
-      city:this.data.city==='不选'?null:this.data.city,
-      univ:this.data.univ==='不选'?null:this.data.univ,
+      province: this.data.province === '不选' ? null : this.data.province,
+      city: this.data.city === '不选' ? null : this.data.city,
+      univ: this.data.univ === '不选' ? null : this.data.univ,
     };
     app.wxRequest('POST', url, data, (res) => {
       console.log(res)
@@ -60,21 +134,21 @@ Page({
       complete: (res) => {},
     })
   },
-  change_sousuo_lishi:function(e){
+  change_sousuo_lishi: function (e) {
     wx.showLoading({
       title: '搜索中...',
       mask: true //显示触摸蒙层  防止事件穿透触发
     });
-      this.setData({
-        change_if: 1,
-        sousuo_neirong: e.currentTarget.dataset.neirong,
-      })
+    this.setData({
+      change_if: 1,
+      sousuo_neirong: e.currentTarget.dataset.neirong,
+    })
     let url = app.globalData.URL + '/search/listAll';
     let data = {
       keywords: this.data.sousuo_neirong,
-      province:this.data.province==='不选'?null:this.data.province,
-      city:this.data.city==='不选'?null:this.data.city,
-      univ:this.data.univ==='不选'?null:this.data.univ,
+      province: this.data.province === '不选' ? null : this.data.province,
+      city: this.data.city === '不选' ? null : this.data.city,
+      univ: this.data.univ === '不选' ? null : this.data.univ,
     };
     console.log(data)
     app.wxRequest('POST', url, data, (res) => {
@@ -91,7 +165,7 @@ Page({
       complete: (res) => {},
     })
   },
-  timeChange: function() { //////修改时间
+  timeChange: function () { //////修改时间
     var obj = [];
     var time = '';
     for (var i in this.data.sousuo_detail.listCampus) {
@@ -103,14 +177,14 @@ Page({
       listCampus_timeChange: obj
     })
   },
-  value_sousuo: function(res) {
+  value_sousuo: function (res) {
     console.log(res)
     this.setData({
       sousuo_neirong: res.detail.value,
     })
     // this.change_sousuo()
   },
-  getHotWords: function() {
+  getHotWords: function () {
     let url = app.globalData.URL + '/search/listHotWords';
     let data = {}
     app.wxRequest('GET', url, data, (res) => {
@@ -122,7 +196,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-  remen_sousuo_neirong: function(e) {
+  remen_sousuo_neirong: function (e) {
     console.log(e)
     this.setData({
       sousuo_neirong: this.data.hotWords[e.currentTarget.id].keyword,
@@ -130,11 +204,11 @@ Page({
     this.change_sousuo()
   },
   /////////////搜索历史
-  getLishi: function() {
+  getLishi: function () {
     var that = this;
     wx.getStorage({
       key: 'lishi',
-      success: function(res) {
+      success: function (res) {
         console.log(res)
         if (res.data) {
           that.setData({
@@ -144,16 +218,22 @@ Page({
       },
     })
   },
-  setLishi: function() {
+  setLishi: function () {
     var that = this;
     if (this.data.sousuo_neirong != '') {
       var array = this.data.sousuo_lishi
-      array.splice(0,0,this.data.sousuo_neirong)
+      array.splice(0, 0, this.data.sousuo_neirong)
+      wx.setStorageSync("lishi", array)
+      that.getLishi()
+    }
+    if(this.data.sousuo_lishi.length>7){
+      var array = this.data.sousuo_lishi
+      array.splice(6, this.data.sousuo_lishi.length-5,)
       wx.setStorageSync("lishi", array)
       that.getLishi()
     }
   },
-  remAll: function(e) {
+  remAll: function (e) {
     console.log(e)
     var that = this;
     var array = this.data.sousuo_lishi
@@ -162,13 +242,30 @@ Page({
     that.getLishi()
 
   },
-  remOne:function(e){
+  remOne: function (e) {
     console.log(e)
     var that = this;
     var array = this.data.sousuo_lishi
     array.splice(e.currentTarget.id, 1)
     wx.setStorageSync("lishi", array)
     that.getLishi()
+  },
+  remHuanCun:function(){
+    var that = this;
+    wx.getStorage({
+      key: 'lishi',
+      success: function (res) {
+        if (res.data) {
+          that.setData({
+            sousuo_lishi: res.data,
+          })
+        }
+      },
+    })
+      var array = this.data.sousuo_lishi
+      array.splice(6, 10)
+      wx.setStorageSync("lishi", array)
+    
   },
   /////////
   todetail(e) { //报名参加按钮跳转 带着活动id跳转 校园活动
@@ -192,25 +289,109 @@ Page({
       url: '/pages/xiaoyuan/xiaoyuan',
     })
   },
-  sousuo_fenye(){
-
+  sousuo_fenye() {
+    console.log('分页')
+    var self=this;
+    wx.showLoading({
+      title: '搜索中...',
+      mask: true //显示触摸蒙层  防止事件穿透触发
+    });
+    let url = app.globalData.URL + '/search/listAct';
+    let data = {
+      keywords: this.data.sousuo_neirong,
+      province: this.data.province === '不选' ? null : this.data.province,
+      city: this.data.city === '不选' ? null : this.data.city,
+      univ: this.data.univ === '不选' ? null : this.data.univ,
+      sid: this.data.bkData[this.data.TabCur].code,
+      border: this.data.daleiBorder,
+    };
+    app.wxRequest('POST', url, data, (res) => {
+      console.log(res)
+      if (res.data.border == null) {
+        self.setData({
+          isRefle: false,
+        })
+      }
+      let sousuotmp = this.data.sousuo_detail_dalei;
+      for (let s of res.data.list)
+      sousuotmp.list.push(s)
+      this.setData({
+        sousuo_detail_dalei: sousuotmp,
+        daleiBorder: res.data.border,
+      })
+      
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+    wx.hideLoading({
+      complete: (res) => {},
+    })
   },
-
+  sousuo_shipin_fenye() {
+    console.log('分页')
+    var self=this;
+    wx.showLoading({
+      title: '搜索中...',
+      mask: true //显示触摸蒙层  防止事件穿透触发
+    });
+    let url = app.globalData.URL + '/search/listAct';
+    let data = {
+      keywords: this.data.sousuo_neirong,
+      province: this.data.province === '不选' ? null : this.data.province,
+      city: this.data.city === '不选' ? null : this.data.city,
+      univ: this.data.univ === '不选' ? null : this.data.univ,
+      border: this.data.daleiBorder,
+    };
+    app.wxRequest('POST', url, data, (res) => {
+      console.log(res)
+      if (res.data.border == null) {
+        self.setData({
+          isRefle: false,
+        })
+      }
+      let sousuotmp = this.data.sousuo_detail_dalei;
+      for (let s of res.data.list)
+      sousuotmp.list.push(s)
+      this.setData({
+        sousuo_detail_dalei: sousuotmp,
+        daleiBorder: res.data.border,
+      })
+      
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+    wx.hideLoading({
+      complete: (res) => {},
+    })
+  },
+  getBankuai() {
+    var self = this;
+    let url = app.globalData.URL + '/config/getSections';
+    let data={};
+    app.wxRequest('GET', url, data, (res) => {
+      console.log('/////////,',res.data)
+      self.setData({
+        bkData: res.data
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     wx.showLoading({
       title: '加载中...',
       mask: true //显示触摸蒙层  防止事件穿透触发
     });
     this.setData({
-        province: wx.getStorageSync('province').code ? wx.getStorageSync('province').name : null,
-        city: wx.getStorageSync('city').code ? wx.getStorageSync('city').name : null,
-        univ: wx.getStorageSync('school').code ? wx.getStorageSync('school').name : null,
+      province: wx.getStorageSync('province').code ? wx.getStorageSync('province').name : null,
+      city: wx.getStorageSync('city').code ? wx.getStorageSync('city').name : null,
+      univ: wx.getStorageSync('school').code ? wx.getStorageSync('school').name : null,
     })
     this.getHotWords()
     this.getLishi()
+    this.getBankuai()
+    // this.remHuanCun()
     wx.hideLoading({
       complete: (res) => {},
     })
@@ -219,14 +400,14 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     this.timeChange()
     this.getLishi()
 
@@ -235,21 +416,21 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
@@ -258,10 +439,12 @@ Page({
    */
   onReachBottom: function () {
     var self = this
-    
-    if (this.data.isRefle == true) {
+
+    if (this.data.isRefle == true&&this.data.TabCur<4) {
 
       this.sousuo_fenye()
+    }else if(this.data.isRefle == true&&this.data.TabCur==4){
+      this.sousuo_shipin_fenye()
     }
 
   },
@@ -269,7 +452,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

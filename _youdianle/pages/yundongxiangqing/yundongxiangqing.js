@@ -68,6 +68,7 @@ Page({
     shipinBorder: '',
     shipinPinglunBorder: '',
     isRefleshshipin: true,
+    isRefleshshipinPinglun: true,
     zhaopian: [],
     zhaopian_detail: [],
     pinglunall: 0,
@@ -681,6 +682,11 @@ Page({
     };
     app.wxRequest('POST', url, data, (res) => {
       console.log(res)
+      if (res.data.border == null) {
+        self.setData({
+          isRefleshshipin: false,
+        })
+      }
       let shipintmp = res.data;
       this.setData({
         shipin: shipintmp,
@@ -708,10 +714,10 @@ Page({
           isRefleshshipin: false
         })
       }
-      let shipintmp = this.data.shipin;
+      let shipintmp = self.data.shipin;
       for (let s of res.data.list)
         shipintmp.list.push(s)
-      this.setData({
+        self.setData({
         shipin: shipintmp,
         shipinBorder: res.data.border,
       })
@@ -909,9 +915,15 @@ Page({
       objid: e.currentTarget.dataset.dxid,
     };
     app.wxRequest('GET', url, data, (res) => {
+      if (res.data.border == null) {
+        that.setData({
+          isRefleshshipinPinglun: false
+        })
+      }
       shipintmp.list[e.currentTarget.dataset.index].listComm = res.data.list;
-      this.setData({
+      that.setData({
         shipin: shipintmp,
+        shipinPinglunBorder: res.data.border,
       })
     }, (err) => {
       console.log(err.errMsg)
