@@ -1,6 +1,7 @@
 // pages/ziliao/ziliao.js
 const app = getApp();
 var utils = require('../../utils/util.js');
+var util = require("../../utils/util.js");
 Page({
 
   /**
@@ -32,6 +33,221 @@ Page({
     duiyuanAge: 0,
     ifFX:'0',
     ifTrue: '1',
+    /////////////活动
+    scrollLeft: 0,
+    AllActivity: [],
+    TabCur2: 0,
+    createnum:0,
+    initialcode:'076003001',
+    Mycreate: [],
+    huodongXuanze:2,
+    nowActNum:0,
+    //////////////
+    shipin: [],
+    uid: '',
+    city: '',
+    univ: '',
+    shipinBorder: 0,
+    isRefleshshipin: true,
+    video_id: 'video_0', ///用于切换视频
+    bofang_if_id: 'video_0', /////用数字来表示匹配
+    bofang_pid: '0', ///1表示有一个播放，0表示无播放
+    shipin_xiaolei: 0,
+  },
+/////////////////////视频
+getShipinFenye() { //视频分页
+  var self = this;
+  let url = app.globalData.URL + '/video/listActVideo';
+  let data = {
+    pageSize: 2,
+    acid1: self.data.AllActivity[self.data.shipin_xiaolei].code===null?'076003001':self.data.AllActivity[self.data.shipin_xiaolei].code,
+    uid: self.data.duiyuanID,
+    border: this.data.shipinBorder,
+    // city: this.data.city,
+    // univ: this.data.univ,
+  };
+  app.wxRequest('POST', url, data, (res) => {
+    if (res.data.border == null) {
+      self.setData({
+        isRefleshshipin: false,
+      })
+    }
+    let shipintmp = this.data.shipin;
+    for (let s of res.data.list)
+      shipintmp.list.push(s)
+    this.setData({
+      shipin: shipintmp,
+      shipinBorder: res.data.border,
+    })
+
+  }, (err) => {
+    console.log(err.errMsg)
+  });
+},
+video_change: function (e) { ////视频切换
+  var self = this;
+  var shipintmp = this.data.shipin;
+  if (this.data.bofang_if_id != e.currentTarget.id) { ///相等表示点击和播放不匹配
+    if (this.data.bofang_pid == '0') {
+      this.setData({
+        bofang_pid: '1'
+      })
+    }
+    let url = app.globalData.URL + '/video/updatePlayCnt';
+    let data = {
+      id: this.data.shipin.list[e.currentTarget.dataset.index].id,
+    };
+    app.wxRequest('POST', url, data, (res) => {})
+    shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
+    self.setData({
+      shipin: shipintmp
+    })
+
+    let now_id = e.currentTarget.id;
+    let prev_id = this.data.video_id;
+    this.setData({
+      video_id: now_id,
+      bofang_if_id: now_id
+    })
+    wx.createVideoContext(prev_id).pause();
+    wx.createVideoContext(now_id).play();
+
+
+  } else { //////////当点击同一个，一次播放一次暂停
+    if (this.data.bofang_pid == '1') {
+      wx.createVideoContext(e.currentTarget.id).pause();
+      this.setData({
+        bofang_pid: '0'
+      })
+    } else {
+      wx.createVideoContext(e.currentTarget.id).play();
+      this.setData({
+        bofang_pid: '1'
+      })
+      let url = app.globalData.URL + '/video/updatePlayCnt';
+      let data = {
+        id: this.data.shipin.list[e.currentTarget.dataset.index].id,
+      };
+      app.wxRequest('GET', url, data, (res) => {})
+      shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
+      self.setData({
+        shipin: shipintmp
+      })
+    }
+  }
+},
+  ///////////////////////活动
+  getHuodongDetail(){
+    var that=this;
+    let url = app.globalData.URL + '/config/findAllActivityClass1';
+    // 所有活动
+    util.gets(url, {}).then(function (res) {
+      that.setData({
+        AllActivity: res.data.data
+      })
+    })
+    
+    //我创建的
+    url = app.globalData.URL + '/act/listMyActivity';
+    let num
+    let data = {
+      'type': 10,
+      'acid1': that.data.initialcode
+    };
+    console.log(data)
+    util.post_token(url, data).then(function (res) {
+      console.log('Mycreate', res.data)
+      that.setData({
+        Mycreate: res.data.data
+      })
+      for (i of res.data.data.list) {
+        if (i.status == 20)
+          num++
+      }
+      that.setData({
+        createnum: num
+      })
+    })
+  },
+  flesh(tab) {
+    console.log('flesh')
+    var that = this
+    console.log(that.data.AllActivity[tab].code)
+    //我创建的活动
+    if (that.data.huodongXuanze == 1) {
+      let url = app.globalData.URL + '/act/listMyActivity';
+      let data = {
+        'type': 20,
+        'acid1': that.data.AllActivity[tab].code
+      };
+      util.post_token(url, data).then(function (res) {
+        console.log('join', res.data)
+        that.setData({
+          Myjoin: res.data.data,
+          nowActNum:res.data.data.list.length
+        })
+      })
+    } else if (that.data.huodongXuanze == 2) {
+      let url = app.globalData.URL + '/act/listMyActivity';
+      let data = {
+        'type': 10,
+        'acid1': that.data.AllActivity[tab].code
+      };
+      util.post_token(url, data).then(function (res) {
+        console.log('create', res.data)
+        that.setData({
+          Mycreate: res.data.data,
+          nowActNum:res.data.data.list.length
+        })
+      })
+    }
+    else if (that.data.huodongXuanze == 3) {
+      let url = app.globalData.URL + '/act/listMyActivity';
+      let data = {
+        'type': 30,
+        'acid1': that.data.AllActivity[tab].code
+      };
+      util.post_token(url, data).then(function (res) {
+        console.log('attention', res.data)
+        that.setData({
+          Myattention: res.data.data,
+          nowActNum:res.data.data.list.length
+        })
+      })
+    }
+    ////////////视频
+    if(that.data.TabCur==5){
+        let url = app.globalData.URL + '/video/listActVideo';
+        let data = {
+          acid1: that.data.AllActivity[tab].code,
+          pageSize: 2,
+          uid: that.data.duiyuanID,
+          // city: this.data.city,
+          // univ: this.data.univ ,
+        };
+        app.wxRequest('POST', url, data, (res) => {
+          if (res.data.border == null) {
+            self.setData({
+              isRefleshshipin: false,
+            })
+          }
+          let shipintmp = res.data;
+          this.setData({
+            shipin: shipintmp,
+            shipinBorder: res.data.border,
+            shipin_xiaolei: tab,
+          })
+        }, (err) => {
+          console.log(err.errMsg)
+        });
+     
+    }
+  },
+  tabSelect2(e) {
+    this.setData({
+      TabCur2: e.currentTarget.dataset.id,
+    })
+    this.flesh(e.currentTarget.dataset.id)
   },
   ///////////评论
   comment() { //评论
@@ -247,6 +463,8 @@ Page({
   },
 
   getDuiyuan() {
+    var that=this;
+    var self=this;
     let url = app.globalData.URL + '/appuser/findUserByID';
     let data = {
       id: this.data.duiyuanID,
@@ -282,7 +500,34 @@ Page({
       this.setData({
         duiyuanAge:this.getAge(year,mon,day,nyear,nmon,nday)
       })
-      //////////////////////////
+      //////////////////////////获得视频
+        wx.showLoading({
+          title: '加载中...',
+          mask: true //显示触摸蒙层  防止事件穿透触发
+        });
+         url = app.globalData.URL + '/video/listActVideo';
+         data = {
+          acid1: '076003001',
+          'uid': res.data.id,
+          pageSize: 2,
+          // 'city': res.data.city===null?'':res.data.city,
+          // 'univ':res.data.univ===null?'':res.data.univ
+        };
+        console.log(data)
+        util.post_token(url, data).then(function (res) {
+          console.log('video', res.data)
+          wx.hideLoading()
+          if (res.data.data.border == null) {
+            self.setData({
+              isRefleshshipin: false,
+            })
+          }
+          that.setData({
+            shipin: res.data.data,
+            shipinBorder:res.data.data.border,
+          })
+        })
+     
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -501,6 +746,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
     console.log(options)
     this.setData({
       duiyuanID: options.id,
@@ -508,6 +754,7 @@ Page({
       options: options,
       ifFX: options.ifFX,
     })
+    this.getHuodongDetail()
     this.getDuiyuan()
     this.getDianzan()
     this.getFensi()
@@ -558,7 +805,16 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    var self=this;
+   if (self.data.TabCur == 5 && self.data.isRefleshshipin) {
+      wx.showLoading({
+        title: '加载中...',
+        mask: true //显示触摸蒙层  防止事件穿透触发
+      });
+      this.getShipinFenye()
+      wx.hideLoading()
 
+    }
   },
 
   /**
