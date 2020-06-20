@@ -1476,7 +1476,7 @@ Page({
           self.setData({
             isbaominggeren: 0
           })
-          self.yibaoming()
+          self.gerenpaiming()
         } else
           wx.showToast({
             title: res.data.msg, // 标题
