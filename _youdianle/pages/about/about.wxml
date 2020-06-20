@@ -4,10 +4,11 @@
 </cu-custom>
 <view class="container">
   <!-- <text class="userName">友点乐</text> -->
-  <text class="userName2">友点乐</text>
-  <text class="padding">版本{{info.verWc}}</text>
+  <!-- <text class="userName2">友点乐</text> -->
+  <image src="/img/友点乐@3x.png" class="icon padding" ></image>
+  <text class="padding-xl">版本{{info.verWc}}</text>
 
-  <image class="logo" src="/img/login/icon.png"></image>
+  <image class="logo" src="https://sys-1301681474.cos.ap-shanghai.myqcloud.com/web/my/udltg258.jpg"></image>
   <view class="padding text-lg">扫描二维码，推荐朋友下载友点乐APP</view>
   <view class="padding bottom">
     <navigator class="text-blue padding" url="/pages/webview/webview" >用户服务协议</navigator>
