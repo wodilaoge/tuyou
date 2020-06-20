@@ -68,6 +68,7 @@
         <view class="sp-avatar-name">{{shipin.list[index].authorAlias}}</view>
         <!-- <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{shipin.list[index].myFollow==1}}">关注</button>
         <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{!shipin.list[index].myFollow==1}}">已关注</button> -->
+        <text class="cuIcon-delete lg text-gray del padding-right" bindtap="delvideo" data-id="{{item.id}}"></text>
       </view>
 
       <view>

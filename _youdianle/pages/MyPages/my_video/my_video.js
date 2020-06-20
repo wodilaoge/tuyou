@@ -312,6 +312,7 @@ Page({
   },
   delvideo(e)
   {
+    var that=this
     console.log(e.currentTarget.dataset.id)
     let url = app.globalData.URL + '/video/cancelActVideo';
     var data = {
@@ -331,6 +332,7 @@ Page({
             wx.showToast({
               title: '删除成功',
             })
+            that.onLoad()
           })
         }
       }
