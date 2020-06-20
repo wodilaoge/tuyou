@@ -185,7 +185,7 @@
       <text class="text-blue" bindtap="toagreepage">《友点乐用户协议》</text>
     </checkbox-group>
     <view class="flex margin-top2">
-      <button disabled="{{!isagree}}" class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="commit">补充信息</button>
+      <button disabled="{{!isagree}}" class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="finish2">补充信息</button>
       <button disabled="{{!isagree}}" class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="finish"
         data-target="Modal">立即提交</button>
     </view>
@@ -197,4 +197,12 @@
   <view>将被发布到：{{pro.name}}{{city.name}}{{schoolinfo.name}}</view>
   <view>{{pickerbig[indexbig].name}}板块{{picker2[index].name}}大类{{pickertiny[indextiny].name}}</view>
   <view>根据监管要求，通过必要的内容审核方能最终展示给大众，请耐心等待。确定提交吗？</view>
+</modal>
+
+<modal hidden="{{hiddenmodalput2}}" title="友点乐" confirm-text="确认" cancel-text='取消' bindcancel="cancel3"
+  bindconfirm="commit">
+  <view class="text-black">活动名称：{{information.actname}}</view>
+  <view>将被发布到：{{pro.name}}{{city.name}}{{schoolinfo.name}}</view>
+  <view>{{pickerbig[indexbig].name}}板块{{picker2[index].name}}大类{{pickertiny[indextiny].name}}</view>
+  <view>点击确认补充信息页面</view>
 </modal>
