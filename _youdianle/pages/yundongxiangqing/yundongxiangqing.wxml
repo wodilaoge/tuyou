@@ -112,7 +112,7 @@
           <view class="cu-bar-title">奖品设置</view>
         </view>
         <rich-text hidden="{{detail.award==null}}" nodes="{{detail.award}}"></rich-text>
-        <image hidden="{{detail.awardpic==null}}" src="{{detail.awardpic}}" mode="scaleToFill" style="width:700rpx; "data-imgurl="{{detail.rulepic}}" bindtap="dianjifangda"></image>
+        <image hidden="{{detail.awardpic==null}}" src="{{detail.awardpic}}" mode="scaleToFill" style="width:700rpx; "data-imgurl="{{detail.awardpic}}" bindtap="dianjifangda"></image>
       </view>
     </view>
     <view hidden="{{detail.sponsor==null&&detail.sponsorpic==null}}">
@@ -121,7 +121,7 @@
           <view class="cu-bar-title">赞助商</view>
         </view>
         <rich-text hidden="{{detail.sponsor==null}}" nodes="{{detail.sponsor}}"></rich-text>
-        <image hidden="{{detail.sponsorpic==null}}" src="{{detail.sponsorpic}}" mode="scaleToFill" style="width:700rpx;" data-imgurl="{{detail.rulepic}}" bindtap="dianjifangda"></image>
+        <image hidden="{{detail.sponsorpic==null}}" src="{{detail.sponsorpic}}" mode="scaleToFill" style="width:700rpx;" data-imgurl="{{detail.sponsorpic}}" bindtap="dianjifangda"></image>
       </view>
     </view>
 
