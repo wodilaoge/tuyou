@@ -42,6 +42,9 @@ Page({
     Mycreate: [],
     huodongXuanze: 2,
     nowActNum: 0,
+    huodongBorder: 0,
+    isRefleshHuodong: true,
+    huodongXiaoleiIndex:0,
     //////////////
     shipin: [],
     uid: '',
@@ -330,8 +333,9 @@ Page({
     });
   },
   ///////////////////////活动
-  getHuodongDetail() {
+  getHuodongDetail(e) {
     var that = this;
+    var self = this;
     let url = app.globalData.URL + '/config/findAllActivityClass1';
     // 所有活动
     util.gets(url, {}).then(function (res) {
@@ -340,26 +344,90 @@ Page({
       })
     })
 
-    //我创建的
-    url = app.globalData.URL + '/act/listMyActivity';
+
+    url = app.globalData.URL + '/act/listActivity';
     let num
     let data = {
-      'type': 10,
-      'acid1': that.data.initialcode
+      uid:e.id,
+      acid1: '076003001',
+
     };
     console.log(data)
     util.post_token(url, data).then(function (res) {
+
       console.log('Mycreate', res.data)
-      that.setData({
-        Mycreate: res.data.data
-      })
-      for (i of res.data.data.list) {
-        if (i.status == 20)
-          num++
+      if (res.data.data.border == null) {
+        that.setData({
+          isRefleshHuodong: false
+        })
       }
       that.setData({
-        createnum: num
+        Mycreate: res.data.data,
+        nowActNum: res.data.data.list.length,
+        huodongBorder:res.data.data.border,
       })
+      console.log('Mycreate', that.data.Mycreate)
+     
+    })
+  },
+  getHuodongDetailXiaolei(e) {
+    var that = this;
+    var self = this;
+    let url = app.globalData.URL + '/act/listActivity';
+    let num
+    let data = {
+      uid:self.data.duiyuanID,
+      acid1: that.data.AllActivity[e].code,
+
+    };
+    console.log(data)
+    util.post_token(url, data).then(function (res) {
+
+      console.log('Mycreate', res.data)
+      if (res.data.data.border == null) {
+        that.setData({
+          isRefleshHuodong: false
+        })
+      }
+      that.setData({
+        Mycreate: res.data.data,
+        nowActNum: res.data.data.list.length,
+        huodongBorder:res.data.data.border,
+      })
+      console.log('Mycreate', that.data.Mycreate)
+     
+    })
+  },
+  getHuodongDetailXiaoleiFenye() {
+    console.log('/////////////////////////////')
+    var that = this;
+    var self = this;
+    let url = app.globalData.URL + '/act/listActivity';
+    let num
+    let data = {
+      uid:self.data.duiyuanID,
+      acid1: that.data.AllActivity[self.data.huodongXiaoleiIndex].code,
+      border: that.data.huodongBorder,
+    };
+    console.log(data)
+    util.post_token(url, data).then(function (res) {
+
+      console.log('Mycreate', res.data)
+      if (res.data.data.border == null) {
+        that.setData({
+          isRefleshHuodong: false
+        })
+      }
+      let huodongtmp = self.data.Mycreate;
+      for (let s of res.data.data.list)
+      huodongtmp.list.push(s)
+      that.setData({
+        Mycreate: huodongtmp,
+        nowActNum: self.data.nowActNum+res.data.data.list.length,
+        huodongBorder: res.data.data.border,
+      })
+      console.log('Mycreate', that.data.Mycreate)
+     
     })
   },
   flesh(tab) {
@@ -367,46 +435,46 @@ Page({
     var that = this
     console.log(that.data.AllActivity[tab].code)
     //我创建的活动
-    if (that.data.huodongXuanze == 1) {
-      let url = app.globalData.URL + '/act/listMyActivity';
-      let data = {
-        'type': 20,
-        'acid1': that.data.AllActivity[tab].code
-      };
-      util.post_token(url, data).then(function (res) {
-        console.log('join', res.data)
-        that.setData({
-          Myjoin: res.data.data,
-          nowActNum: res.data.data.list.length
-        })
-      })
-    } else if (that.data.huodongXuanze == 2) {
-      let url = app.globalData.URL + '/act/listMyActivity';
-      let data = {
-        'type': 10,
-        'acid1': that.data.AllActivity[tab].code
-      };
-      util.post_token(url, data).then(function (res) {
-        console.log('create', res.data)
-        that.setData({
-          Mycreate: res.data.data,
-          nowActNum: res.data.data.list.length
-        })
-      })
-    } else if (that.data.huodongXuanze == 3) {
-      let url = app.globalData.URL + '/act/listMyActivity';
-      let data = {
-        'type': 30,
-        'acid1': that.data.AllActivity[tab].code
-      };
-      util.post_token(url, data).then(function (res) {
-        console.log('attention', res.data)
-        that.setData({
-          Myattention: res.data.data,
-          nowActNum: res.data.data.list.length
-        })
-      })
-    }
+    // if (that.data.huodongXuanze == 1) {
+    //   let url = app.globalData.URL + '/act/listMyActivity';
+    //   let data = {
+    //     'type': 20,
+    //     'acid1': that.data.AllActivity[tab].code
+    //   };
+    //   util.post_token(url, data).then(function (res) {
+    //     console.log('join', res.data)
+    //     that.setData({
+    //       Myjoin: res.data.data,
+    //       nowActNum: res.data.data.list.length
+    //     })
+    //   })
+    // } else if (that.data.huodongXuanze == 2) {
+    //   let url = app.globalData.URL + '/act/listMyActivity';
+    //   let data = {
+    //     'type': 10,
+    //     'acid1': that.data.AllActivity[tab].code
+    //   };
+    //   util.post_token(url, data).then(function (res) {
+    //     console.log('create', res.data)
+    //     that.setData({
+    //       Mycreate: res.data.data,
+    //       nowActNum: res.data.data.list.length
+    //     })
+    //   })
+    // } else if (that.data.huodongXuanze == 3) {
+    //   let url = app.globalData.URL + '/act/listMyActivity';
+    //   let data = {
+    //     'type': 30,
+    //     'acid1': that.data.AllActivity[tab].code
+    //   };
+    //   util.post_token(url, data).then(function (res) {
+    //     console.log('attention', res.data)
+    //     that.setData({
+    //       Myattention: res.data.data,
+    //       nowActNum: res.data.data.list.length
+    //     })
+    //   })
+    // }
     ////////////视频
     if (that.data.TabCur == 5) {
       let url = app.globalData.URL + '/video/listActVideo';
@@ -434,10 +502,14 @@ Page({
       });
 
     }
+    if(that.data.TabCur==4)(
+      this.getHuodongDetailXiaolei(tab)
+    )
   },
   tabSelect2(e) {
     this.setData({
       TabCur2: e.currentTarget.dataset.id,
+      huodongXiaoleiIndex:e.currentTarget.dataset.id,
     })
     this.flesh(e.currentTarget.dataset.id)
   },
@@ -962,7 +1034,7 @@ Page({
       options: options,
       ifFX: options.ifFX,
     })
-    this.getHuodongDetail()
+    this.getHuodongDetail(options)
     this.getDuiyuan()
     this.getDianzan()
     this.getFensi()
@@ -1026,6 +1098,9 @@ Page({
     if (this.data.isRefleshshipinPinglun == true && this.data.shipinChooseSize == true) {
 
       this.getShipinPinglunFenye()
+    }
+    if(self.data.TabCur == 4 && self.data.isRefleshHuodong){
+      this.getHuodongDetailXiaoleiFenye()
     }
   },
 

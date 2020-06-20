@@ -385,7 +385,7 @@
       </view>
     </scroll-view>
   </view>
-  <view wx:for="{{Mycreate.list}}" class="bg-white" wx:key="key" wx:if="{{options==2}}">
+  <view wx:for="{{Mycreate.list}}" class="bg-white" wx:key="key">
     <view class="cu-bar bg-white solid-bottom" style="display:fixed;position: relative;">
       <image class="cu-avatar round my margin-left" src="{{item.createrhead}}" mode="heightFix"></image>
       <block wx:for="{{AllActivity}}" wx:for-item="cell" wx:if="{{item.acid2==cell.code}}">
