@@ -1488,7 +1488,7 @@ Page({
           self.setData({
             isbaominggeren: 0
           })
-          self.yibaoming()
+          self.gerenpaiming()
         } else
           wx.showToast({
             title: res.data.msg, // 标题
@@ -1767,6 +1767,13 @@ Page({
           }
         }
       })
+  },
+  ///////////////////////////
+  dianjifangda(e){
+    wx.previewImage({
+      current: e.currentTarget.dataset.imgurl, // 当前显示图片的http链接
+      urls: [e.currentTarget.dataset.imgurl] // 需要预览的图片http链接列表
+    })
   },
   /////////////////////////////
   /**

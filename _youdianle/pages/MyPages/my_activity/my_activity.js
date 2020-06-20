@@ -14,7 +14,7 @@ Page({
     hiddenmodalput: true,
     //可以通过hidden是否掩藏弹出框的属性，来指定那个弹出框  
     scrollLeft: 0,
-    initialcode:'076003001'
+    initialcode: '076003001'
   },
   modalinput: function (e) {
     this.setData({
@@ -53,7 +53,7 @@ Page({
         console.log('join', res.data)
         that.setData({
           Myjoin: res.data.data,
-          nowActNum:res.data.data.list.length
+          nowActNum: res.data.data.list.length
         })
       })
     } else if (that.data.options == 2) {
@@ -66,11 +66,10 @@ Page({
         console.log('create', res.data)
         that.setData({
           Mycreate: res.data.data,
-          nowActNum:res.data.data.list.length
+          nowActNum: res.data.data.list.length
         })
       })
-    }
-    else if (that.data.options == 3) {
+    } else if (that.data.options == 3) {
       let url = app.globalData.URL + '/act/listMyActivity';
       let data = {
         'type': 30,
@@ -80,7 +79,7 @@ Page({
         console.log('attention', res.data)
         that.setData({
           Myattention: res.data.data,
-          nowActNum:res.data.data.list.length
+          nowActNum: res.data.data.list.length
         })
       })
     }
@@ -225,7 +224,7 @@ Page({
       console.log('Myjoin', res.data)
       that.setData({
         Myjoin: res.data.data,
-        nowActNum:res.data.data.list.length
+        nowActNum: res.data.data.list.length
       })
     })
     //我关注的
@@ -240,10 +239,11 @@ Page({
         Myattention: res.data.data
       })
     })
-    //查询参与活动数量
+    //查询创建活动数量
+
     url = app.globalData.URL + '/act/countMyActivity';
     data = {
-      'type': 10,
+      'type': 20,
       'univ': wx.getStorageSync('school').code,
       'province': wx.getStorageSync('province').code,
       'city': wx.getStorageSync('city').code,
@@ -254,10 +254,10 @@ Page({
         joinnum: res.data.data
       })
     })
-    //查询创建活动数量
+    //查询参与活动数量
     url = app.globalData.URL + '/act/countMyActivity';
     data = {
-      'type': 20,
+      'type': 10,
       'univ': wx.getStorageSync('school').code,
       'province': wx.getStorageSync('province').code,
       'city': wx.getStorageSync('city').code,

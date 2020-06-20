@@ -5,6 +5,7 @@ Page({
   data: {
     isagree: true,
     hiddenmodalput: true,
+    hiddenmodalput2: true,
     information: {
       actname: '',
       sid: '',
@@ -208,37 +209,42 @@ Page({
 
   commit: function (e) {
     var that = this.data
-    let t = 'information.timenow'
-    let t2 = 'information.signupdeadline'
-    let t3 = 'information.logo'
-    let t4 = 'information.proname'
-    let t5 = 'information.cityname'
-    let t6 = 'information.schoolname'
-    let t7 = 'information.big'
-    let t8 = 'information.middle'
-    let t9 = 'information.small'
-    // let fuck= that.pickertiny.length
-    console.log(that.pickertiny.length)
+    if (that.actname) {
+      let t = 'information.timenow'
+      let t2 = 'information.signupdeadline'
+      let t3 = 'information.logo'
+      let t4 = 'information.proname'
+      let t5 = 'information.cityname'
+      let t6 = 'information.schoolname'
+      let t7 = 'information.big'
+      let t8 = 'information.middle'
+      let t9 = 'information.small'
+      // let fuck= that.pickertiny.length
+      console.log(that.pickertiny.length)
+      this.setData({
+        [t]: that.timenow + ' ' + that.time1,
+        [t2]: that.timenow2 + ' ' + that.time2,
+        [t3]: that.url3[0],
+        [t4]: that.pro.name,
+        [t5]: that.city.name,
+        [t6]: that.schoolinfo.name,
+        [t7]: that.pickerbig[that.indexbig].name,
+        [t8]: that.picker2[that.index].name,
+        [t9]: that.pickertiny.length ? that.pickertiny[that.indextiny].name : null,
+      })
 
-    this.setData({
-      [t]: that.timenow + ' ' + that.time1,
-      [t2]: that.timenow2 + ' ' + that.time2,
-      [t3]: that.url3[0],
-      [t4]: that.pro.name,
-      [t5]: that.city.name,
-      [t6]: that.schoolinfo.name,
-      [t7]: that.pickerbig[that.indexbig].name,
-      [t8]: that.picker2[that.index].name,
-      [t9]: that.pickertiny.length ? that.pickertiny[that.indextiny].name : null,
-    })
-
-    wx.setStorage({ //将活动信息存入缓存
-      key: "information",
-      data: this.data.information
-    });
-    wx.navigateTo({
-      url: '../../pages/form_activity/form_activity'
-    })
+      wx.setStorage({ //将活动信息存入缓存
+        key: "information",
+        data: this.data.information
+      });
+      wx.navigateTo({
+        url: '../../pages/form_activity/form_activity'
+      })
+    } else {
+      wx.showToast({
+        title: '请填写活动名称！',
+      })
+    }
   },
 
   school(pid) {
@@ -558,6 +564,11 @@ Page({
       hiddenmodalput: true
     });
   },
+  cancel3: function () {
+    this.setData({
+      hiddenmodalput2: true
+    });
+  },
   toagreepage() {
     wx.navigateTo({
       url: '/pages/webview/webview',
@@ -569,13 +580,32 @@ Page({
       wx.showToast({
         title: '请填写标题',
       })
+    } else if (!this.data.information.sid || !this.data.information.acid1) {
+      wx.showToast({
+        title: '请选择活动类型',
+      })
     } else {
       that.setData({
         hiddenmodalput: !this.data.hiddenmodalput
       })
     }
   },
-
+  finish2: function (e) {
+    var that = this
+    if (!this.data.information.actname) {
+      wx.showToast({
+        title: '请填写标题',
+      })
+    } else if (!this.data.information.sid || !this.data.information.acid1) {
+      wx.showToast({
+        title: '请选择活动类型',
+      })
+    } else {
+      that.setData({
+        hiddenmodalput2: !this.data.hiddenmodalput2
+      })
+    }
+  },
 
   ChooseImage(e) {
     var t = e.currentTarget.dataset.id
