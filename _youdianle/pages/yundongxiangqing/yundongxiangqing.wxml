@@ -500,7 +500,7 @@
         <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx;">{{shipin.list[0].title}}</view>
         <view class="content-white">
           <view class=" sp-cu-bar cu-bar-radius bg-white  ">
-            <image class="sp-avatar round " src="{{shipin.list[0].authorHead}}"></image>
+            <image class="sp-avatar round " data-id="{{item.author}}" bindtap="gerenziliao" src="{{shipin.list[0].authorHead}}"></image>
             <view class="sp-avatar-name">{{shipin.list[0].authorAlias}}</view>
             <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{shipin.list[index].myFollow==1}}">关注</button>
             <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{!shipin.list[index].myFollow==1}}">已关注</button>
@@ -543,7 +543,7 @@
               <view>
                 <view class="sp-pinglun-neirong ">{{shipin.list[0].listComm[1].comment}}</view>
                 <view>
-                  <text class='card-text-content-time2'>{{shipin.list[0].listComm[0].strCreatetime}}</text>
+                  <text class='card-text-content-time2'>{{shipin.list[0].listComm[1].strCreatetime}}</text>
                 </view>
               </view>
             </view>
@@ -558,7 +558,7 @@
         <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx;">{{shipin.list[index].title}}</view>
         <view class="content-white">
           <view class=" sp-cu-bar cu-bar-radius bg-white  ">
-            <image class="sp-avatar round " src="{{shipin.list[index].authorHead}} "></image>
+            <image class="sp-avatar round " data-id="{{item.author}}" bindtap="gerenziliao" src="{{shipin.list[index].authorHead}} "></image>
             <view class="sp-avatar-name">{{shipin.list[index].authorAlias}}</view>
             <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{shipin.list[index].myFollow==1}}">关注</button>
             <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{!shipin.list[index].myFollow==1}}">已关注</button>

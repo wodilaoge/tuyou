@@ -193,7 +193,6 @@ Page({
         creater: self.data.user.id,
         status: 0,
       };
-      console.log(data)
       app.wxRequest('POST', url, data, (res) => {}, (err) => {});
 
     } else {
@@ -210,7 +209,6 @@ Page({
         creater: self.data.user.id,
         status: 1,
       };
-      console.log(data)
       app.wxRequest('POST', url, data, (res) => {}, (err) => {});
     }
   },
@@ -271,7 +269,6 @@ Page({
       border: this.data.shipinPinglunBorder,
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res)
       if (res.data.border == null) {
         self.setData({
           isRefleshshipinPinglun: false
@@ -657,8 +654,10 @@ Page({
         shipintmp.list[self.data.dxindex].listComm.splice(0, 0, {
           'createrHead': self.data.user.head,
           'createrAlias': self.data.user.nickname,
-          'comment': inputtmp
+          'comment': inputtmp,
+          'strCreatetime': '刚刚',
         })
+        shipintmp.list[self.data.dxindex].commCnt=shipintmp.list[self.data.dxindex].commCnt+1,
         self.setData({
           shipin: shipintmp,
         })
@@ -768,18 +767,13 @@ Page({
     let data = {
       id: this.data.duiyuanID,
     };
+    console.log(data)
     app.wxRequest('GET', url, data, (res) => {
       self.setData({
         duiyuanDeatil: res.data,
       })
-      // if(this.data.duiyuanDeatil.sex==0){
-      //   this.data.duiyuanDeatil.sext='男'
-      // }else if(this.data.duiyuanDeatil.sex==1){
-      //   this.data.duiyuanDeatil.sext='女'
-      // }else{
-      //   this.data.duiyuanDeatil.sext='暂无'
-      // }
-
+      console.log(res.data)
+      console.log(self.data.duiyuanDeatil)
       if (self.data.duiyuanDeatil.id == self.data.user.id) {
         self.setData({
           ifziji: 1,
@@ -1021,6 +1015,11 @@ Page({
       }, (err) => {});
     }
   },
+  // yundongxiangqing(e) {
+  //   wx.navigateTo({
+  //     url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.yundong.id +'&tzpd='+ 'ziliao',
+  //   })
+  // },
 
   /**
    * 生命周期函数--监听页面加载
@@ -1096,11 +1095,24 @@ Page({
 
     }
     if (this.data.isRefleshshipinPinglun == true && this.data.shipinChooseSize == true) {
-
+      wx.showLoading({
+        title: '加载中...',
+        mask: true //显示触摸蒙层  防止事件穿透触发
+      });
       this.getShipinPinglunFenye()
+      wx.hideLoading({
+        complete: (res) => {},
+      })
     }
     if(self.data.TabCur == 4 && self.data.isRefleshHuodong){
+      wx.showLoading({
+        title: '加载中...',
+        mask: true //显示触摸蒙层  防止事件穿透触发
+      });
       this.getHuodongDetailXiaoleiFenye()
+      wx.hideLoading({
+        complete: (res) => {},
+      })
     }
   },
 

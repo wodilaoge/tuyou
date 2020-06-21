@@ -1,8 +1,17 @@
 /* pages/ziliao/ziliao.wxss */
 @import "../yundongxiangqing/yundongxiangqing.wxss";
+
+
+.page {
+  /*页面布局*/
+  width: 100%;
+  overflow: hidden;
+}
+
 .ziliao-back {
   background-color: #5454ff;
   height: 490rpx;
+  overflow: hidden;
 }
 
 .ziliao-name {
@@ -187,6 +196,7 @@
   height: 100%;
   justify-content: center;
   max-width: 100%;
+  overflow: hidden;
 }
 
 .img-icon {

@@ -265,6 +265,8 @@ Page({
     if (e.currentTarget.dataset.id == 1)
       if (self.data.shiminghide == false)
         self.ifshiming()
+    if (e.currentTarget.dataset.id==4)
+      self.gerenpaiming()
   },
   paimingSelect(e) {
     this.setData({
@@ -282,7 +284,7 @@ Page({
     })
   },
   bindRadioChange: function (e) {
-    if (e.currentTarget.dataset.id == 10 || e.currentTarget.dataset.id == 20)
+    if (e.currentTarget.dataset.id == 10 || e.currentTarget.dataset.id == 30)
       this.setData({
         canjiaorguankan: e.currentTarget.dataset.id,
         shiminghide: this.data.cansaiset
@@ -1021,7 +1023,13 @@ Page({
       let shipintmp=self.data.shipin
       app.wxRequest('POST', url, data, (res) => {
         ///////////////////本地添加评论内容
-        shipintmp.list[self.data.dxindex].listComm.splice(0,0,{'createrHead':self.data.user.head,'createrAlias':self.data.user.nickname,'comment':inputtmp})
+        shipintmp.list[self.data.dxindex].listComm.splice(0, 0, {
+          'createrHead': self.data.user.head,
+          'createrAlias': self.data.user.nickname,
+          'comment': inputtmp,
+          'strCreatetime': '刚刚',
+        })
+        shipintmp.list[self.data.dxindex].commCnt=shipintmp.list[self.data.dxindex].commCnt+1,
         self.setData({
           shipin:shipintmp,
         })
@@ -1899,12 +1907,24 @@ Page({
       });
     }
     if (this.data.isRefleshshipin == true) {
-
+      wx.showLoading({
+        title: '加载中...',
+        mask: true //显示触摸蒙层  防止事件穿透触发
+      });
       this.getShipinFenye()
+      wx.hideLoading({
+        complete: (res) => {},
+      })
     }
     if (this.data.isRefleshshipinPinglun == true && this.data.shipinChooseSize == true) {
-
+      wx.showLoading({
+        title: '加载中...',
+        mask: true //显示触摸蒙层  防止事件穿透触发
+      });
       this.getShipinPinglunFenye()
+      wx.hideLoading({
+        complete: (res) => {},
+      })
     }
 
   },
