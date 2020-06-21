@@ -11,7 +11,7 @@ Page({
     index3:0,
     picker: ['男', '女'],
     picker2: ['匿名参赛', '实名参赛'],
-    picker3: ['默认团队', '默认角色'],
+    picker3: ['身份证'],
     picker4: ['篮球', '足球', '排球', '羽毛球', '乒乓球', '其他'],
     multiIndex: [0, 0, 0],
     time: '12:01',
@@ -71,9 +71,10 @@ Page({
   },
   PickerChange3(e) {
     console.log(e);
-    let t = 'userinfo.defaultTeam'
+    let t = 'userinfo.idtype'
     this.setData({
-      index3: e.detail.value
+      [t]: e.detail.value,
+      index3:e.detail.value
     })
   },
   MultiChange(e) {
@@ -152,12 +153,19 @@ Page({
       [t]: e.detail.value
     })
   },
-  getspeciality(e) {
-    let t = 'userinfo.speciality'
+  getdefaultTeam(e) {
+    let t = 'userinfo.defaultTeam'
     this.setData({
       [t]: e.detail.value
     })
   },
+  getdefaultRole(e) {
+    let t = 'userinfo.defaultRole'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
+
   getslogan(e) {
     let t = 'userinfo.slogan'
     this.setData({
@@ -256,19 +264,16 @@ Page({
   },
   ChooseImage() {
     wx.chooseImage({
-      count: 4, //默认9
+      count: 1, //默认9
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], //从相册选择
       success: (res) => {
-        if (this.data.imgList.length != 0) {
+        let t='userinfo.head'
           this.setData({
-            imgList: this.data.imgList.concat(res.tempFilePaths)
+            imgList: res.tempFilePaths,
+            [t]:res.tempFilePaths[0]
           })
-        } else {
-          this.setData({
-            imgList: res.tempFilePaths
-          })
-        }
+        
       }
     });
   },
@@ -309,18 +314,6 @@ Page({
 
   },
   commit: function (e) {
-    console.log(e.detail.value)
-    // wx.navigateTo({
-    //   url: "../../pages/form_activity/form_activity"
-    // })
-    let ttt
-    if(this.data.userinfo.index3)
-    {
-      ttt='默认角色'
-    }
-    else{
-      ttt='默认团队'
-    }
     var user = wx.getStorageSync('userInfo')
     let url = app.globalData.URL + '/appuser/updateMyInfo';
     var tmp = this.data.userinfo
@@ -346,8 +339,8 @@ Page({
       graduateyear: tmp.graduateyear,
       height: tmp.height,
       weight: tmp.weight,
-      defaultTeam:ttt,
-      defaultRole:ttt,
+      defaultTeam:tmp.defaultTeam,
+      defaultRole:tmp.defaultRole,
       speciality: tmp.speciality,
       slogan: tmp.slogan,
       workunit: tmp.workunit

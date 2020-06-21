@@ -4,7 +4,7 @@ const app = getApp()
 var util = require("../../utils/util.js");
 Page({
   data: {
-    isshowcampus:false,
+    isshowcampus: false,
     isshowparts: true, //文娱爱好是否显示
     loadModal: true,
     ActList: [],
@@ -77,18 +77,22 @@ Page({
       url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=1&categoryId=' + e.currentTarget.dataset.yundong.id,
     })
   },
-  towebview(e){
-    wx.navigateTo({
-      url: '/pages/webview3/webview3?url='+e.currentTarget.dataset.url,
-    })
+  towebview(e) {
+    let t = e.currentTarget.dataset.url
+    if (t.length > 20) {
+      wx.navigateTo({
+        url: '/pages/webview3/webview3?url=' + e.currentTarget.dataset.url,
+      })
+    } else
+      wx.navigateTo({
+        url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.url,
+      })
   },
   getuploadinfo() {
     var that = this
     let url = app.globalData.URL + '/config/getSections';
     var url2 = app.globalData.URL + '/secrot/listSecrotation';
-    let data = '';
     let data2 = {
-      
     };
     util.gets_notoken(url, {}).then(function (res) {
       that.setData({
@@ -262,8 +266,7 @@ Page({
           this.setData({
             schoolname: n.name
           })
-        }
-        else{
+        } else {
           this.setData({
             schoolname: '请选择地区'
           })
@@ -298,8 +301,7 @@ Page({
           this.setData({
             schoolname: n.name
           })
-        }
-        else{
+        } else {
           this.setData({
             schoolname: '请选择地区'
           })
