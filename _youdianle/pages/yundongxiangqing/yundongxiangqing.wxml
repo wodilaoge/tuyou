@@ -29,7 +29,7 @@
 
   <block wx:if="{{TabCur==0}}">
     <view class="cu-bar bg-white solid-bottom margin-top-sm" style="display:fixed;position: relative;">
-      <image class="cu-avatar round my" src="{{detail.createrhead}}" mode="heightFix"></image>
+      <image class="cu-avatar round my" src="{{detail.createrhead}}" mode="heightFix" data-id="{{detail.creater}}" bindtap="gerenziliao"></image>
       <text class=" title-time" style="position:absolute;width:100%;left:310rpx;" wx:if="{{detail.lefttime.left!=null}}">{{detail.lefttime.left}}</text>
     </view>
 

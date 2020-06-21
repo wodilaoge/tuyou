@@ -35,5 +35,12 @@ Component({
         url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=1&tzpd=3&Title=' + e.currentTarget.dataset.aihao.actname +'&categoryId=' + e.currentTarget.dataset.aihao.id,
       })
     },
+    ///////////////////////////////
+    gerenziliao(e) {
+      wx.navigateTo({
+        url: '/pages/ziliao/ziliao?id=' + e.currentTarget.dataset.id,
+      })
+    },
+  ////////////////////////
   }
 })
