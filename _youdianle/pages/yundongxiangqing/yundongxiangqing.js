@@ -265,6 +265,8 @@ Page({
     if (e.currentTarget.dataset.id == 1)
       if (self.data.shiminghide == false)
         self.ifshiming()
+    if (e.currentTarget.dataset.id==4)
+      self.gerenpaiming()
   },
   paimingSelect(e) {
     this.setData({
