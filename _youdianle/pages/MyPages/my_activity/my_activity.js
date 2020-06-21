@@ -283,5 +283,8 @@ Page({
       })
     })
   },
-
+  onReachBottom: function () {
+    console.log("上拉刷新")
+    
+  }
 })

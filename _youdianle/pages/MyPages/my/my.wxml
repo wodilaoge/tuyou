@@ -5,7 +5,7 @@
   <view class="white"></view>
   <view class="cu-list menu-avatar" bindtap="toUserInfo">
     <view class="cu-item">
-      <view class="cu-avatar round xl" style="background-image:url({{userInfoAll.head}})"></view>
+      <view class="cu-avatar round xl" style="background-image:url({{userinfototaol.head}})"></view>
       <view class="content ">
         <view class="text-black right text-bold">{{userInfoAll.nickname}}</view>
         <view class="text-black text-sm flex right2">

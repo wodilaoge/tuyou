@@ -1,14 +1,17 @@
 const app = getApp()
 var util = require("../../../utils/util.js");
+var upload = require("../../../utils/upload.js");
+
 Page({
   data: {
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
     userInfoAll: [],
     userinfo: [],
+    other:0,
     index: null,
     name: '',
-    index3:0,
+    index3: 0,
     picker: ['男', '女'],
     picker2: ['匿名参赛', '实名参赛'],
     picker3: ['身份证'],
@@ -74,7 +77,7 @@ Page({
     let t = 'userinfo.idtype'
     this.setData({
       [t]: e.detail.value,
-      index3:e.detail.value
+      index3: e.detail.value
     })
   },
   MultiChange(e) {
@@ -263,17 +266,18 @@ Page({
     });
   },
   ChooseImage() {
+    var that = this
     wx.chooseImage({
       count: 1, //默认9
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], //从相册选择
       success: (res) => {
-        let t='userinfo.head'
-          this.setData({
-            imgList: res.tempFilePaths,
-            [t]:res.tempFilePaths[0]
-          })
-        
+        let t = 'userinfo.head'
+        this.setData({
+          imgList: res.tempFilePaths,
+          [t]: res.tempFilePaths[0]
+        })
+        upload.uploadFile(this.data.imgList[this.data.imgList.length - 1], 'other', that)
       }
     });
   },
@@ -314,12 +318,13 @@ Page({
 
   },
   commit: function (e) {
+    var that=this
     var user = wx.getStorageSync('userInfo')
     let url = app.globalData.URL + '/appuser/updateMyInfo';
     var tmp = this.data.userinfo
     var data = {
-      id:tmp.id,
-      head:tmp.head,
+      id: tmp.id,
+      head: that.data.other==0?tmp.head:that.data.other,
       nickname: tmp.nickname,
       name: tmp.name,
       sex: tmp.sex,
@@ -339,8 +344,8 @@ Page({
       graduateyear: tmp.graduateyear,
       height: tmp.height,
       weight: tmp.weight,
-      defaultTeam:tmp.defaultTeam,
-      defaultRole:tmp.defaultRole,
+      defaultTeam: tmp.defaultTeam,
+      defaultRole: tmp.defaultRole,
       speciality: tmp.speciality,
       slogan: tmp.slogan,
       workunit: tmp.workunit
@@ -353,10 +358,10 @@ Page({
           duration: 2000,
           success: function () {
             setTimeout(function () {
-              wx.reLaunch({
-                url: '/pages/MyPages/my/my',
+              wx.navigateBack({
+               delta:1
               })
-            }, 2000);
+            }, 1000);
           }
         })
       } else {
