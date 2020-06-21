@@ -282,7 +282,7 @@ Page({
     })
   },
   bindRadioChange: function (e) {
-    if (e.currentTarget.dataset.id == 10 || e.currentTarget.dataset.id == 20)
+    if (e.currentTarget.dataset.id == 10 || e.currentTarget.dataset.id == 30)
       this.setData({
         canjiaorguankan: e.currentTarget.dataset.id,
         shiminghide: this.data.cansaiset
