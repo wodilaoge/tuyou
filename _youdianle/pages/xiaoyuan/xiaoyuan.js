@@ -7,6 +7,7 @@ Page({
     isRefleshwenyu: true,
     isRefleshaihao: true,
     isRefleshshipin: true,
+    isRefleshshipinPinglun: true,
     bt: '校园活动',
     btdata: [{
         id: 0,
@@ -74,6 +75,7 @@ Page({
     city: '',
     univ: '',
     ssss: '',
+    dxindex: 0,
 
   },
   //////////////////////
@@ -608,6 +610,11 @@ Page({
     };
     app.wxRequest('POST', url, data, (res) => {
       let shipintmp = res.data;
+      if (res.data.border == null) {
+        self.setData({
+          isRefleshshipin: false,
+        })
+      }
       this.setData({
         shipin: shipintmp,
         shipinBorder: res.data.border,
@@ -666,6 +673,7 @@ Page({
       duixiang: e.currentTarget.dataset.duixiang,
       dxid: e.currentTarget.dataset.dxid,
       dxtitle: e.currentTarget.dataset.dxtitle,
+      dxindex: e.currentTarget.dataset.index,
     })
   },
   shipinChooseSezi: function (e) {
@@ -811,6 +819,8 @@ Page({
       };
       let inputtmp = self.data.Input;
       let shipintmp = self.data.shipin
+      console.log(shipintmp)
+      console.log(self.data.dxindex)
       app.wxRequest('POST', url, data, (res) => {
         ///////////////////本地添加评论内容
         shipintmp.list[self.data.dxindex].listComm.splice(0, 0, {
@@ -826,6 +836,7 @@ Page({
           icon: 'success', // 图标类型，默认success
           duration: 1500 // 提示窗停留时间，默认1500ms
         })
+        
       }, (err) => {
         console.log(err.errMsg)
       });

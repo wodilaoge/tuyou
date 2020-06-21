@@ -10,9 +10,14 @@
 }
 .logo {
   position: relative;
+  width: 300rpx;
+  height: 300rpx;
+  margin-top: 70rpx;
+}
+.icon{
+  top: 60rpx;
   width: 250rpx;
-  height: 250rpx;
-  margin-top: 150rpx;
+  height: 130rpx;
 }
 .bottom{
   position: relative;
