@@ -209,7 +209,7 @@ Page({
 
   commit: function (e) {
     var that = this.data
-    if (that.actname) {
+    if (this.data.information.actname) {
       let t = 'information.timenow'
       let t2 = 'information.signupdeadline'
       let t3 = 'information.logo'
