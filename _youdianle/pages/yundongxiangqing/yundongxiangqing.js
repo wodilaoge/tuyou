@@ -1711,6 +1711,7 @@ Page({
     }, (err) => {
       console.log(err.errMsg)
     });
+    this.onLoad(this.data.options)
   },
   tijiaobingjieshu() {
     this.tijiao()

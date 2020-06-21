@@ -60,8 +60,8 @@
     <view class="top-gradul-blue" style="margin-top:-30rpx" wx:if="{{xiaoyuanSwiperList!=''}}">
       <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000"
         duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#FE538F">
-        <swiper-item wx:for="{{xiaoyuanSwiperList}}" wx:key bindtap="towebview3" data-item="{{item}}">
-          <view class="swiper-item">
+        <swiper-item wx:for="{{xiaoyuanSwiperList}}" wx:key>
+          <view class="swiper-item"  bindtap="towebview3" data-item="{{item}}">
             <image src="{{item.path}}" mode="scaleToFill"></image>
           </view>
         </swiper-item>

@@ -36,5 +36,12 @@ Component({
         url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=1&tzpd=2&Title=' + e.currentTarget.dataset.wenyu.actname +'&categoryId=' + e.currentTarget.dataset.wenyu.id,
       })
     },
+    ///////////////////////////////
+    gerenziliao(e) {
+      wx.navigateTo({
+        url: '/pages/ziliao/ziliao?id=' + e.currentTarget.dataset.id,
+      })
+    },
+  ////////////////////////
   }
 })
