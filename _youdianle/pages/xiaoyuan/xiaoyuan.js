@@ -831,8 +831,10 @@ Page({
         shipintmp.list[self.data.dxindex].listComm.splice(0, 0, {
           'createrHead': self.data.user.head,
           'createrAlias': self.data.user.nickname,
-          'comment': inputtmp
+          'comment': inputtmp,
+          'strCreatetime': '刚刚',
         })
+        shipintmp.list[self.data.dxindex].commCnt=shipintmp.list[self.data.dxindex].commCnt+1,
         self.setData({
           shipin: shipintmp,
         })

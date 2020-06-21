@@ -654,8 +654,10 @@ Page({
         shipintmp.list[self.data.dxindex].listComm.splice(0, 0, {
           'createrHead': self.data.user.head,
           'createrAlias': self.data.user.nickname,
-          'comment': inputtmp
+          'comment': inputtmp,
+          'strCreatetime': '刚刚',
         })
+        shipintmp.list[self.data.dxindex].commCnt=shipintmp.list[self.data.dxindex].commCnt+1,
         self.setData({
           shipin: shipintmp,
         })
@@ -772,14 +774,6 @@ Page({
       })
       console.log(res.data)
       console.log(self.data.duiyuanDeatil)
-      // if(this.data.duiyuanDeatil.sex==0){
-      //   this.data.duiyuanDeatil.sext='男'
-      // }else if(this.data.duiyuanDeatil.sex==1){
-      //   this.data.duiyuanDeatil.sext='女'
-      // }else{
-      //   this.data.duiyuanDeatil.sext='暂无'
-      // }
-
       if (self.data.duiyuanDeatil.id == self.data.user.id) {
         self.setData({
           ifziji: 1,
