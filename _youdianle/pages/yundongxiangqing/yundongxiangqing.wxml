@@ -10,8 +10,8 @@
   </view>
   <view hidden="{{rotationhide}}">
     <swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
-      <swiper-item wx:for="{{swiperList}}" wx:key bindtap="towebview3" data-item="{{item}}">
-        <image src="{{item.rotation}}" mode="aspectFill"></image>
+      <swiper-item wx:for="{{swiperList}}" wx:key >
+        <image src="{{item.rotation}}" mode="aspectFill" bindtap="towebview3" data-item="{{item}}"></image>
         <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
       </swiper-item>
     </swiper>
@@ -29,7 +29,7 @@
 
   <block wx:if="{{TabCur==0}}">
     <view class="cu-bar bg-white solid-bottom margin-top-sm" style="display:fixed;position: relative;">
-      <image class="cu-avatar round my" src="{{detail.createrhead}}" mode="heightFix"></image>
+      <image class="cu-avatar round my" src="{{detail.createrhead}}" mode="heightFix" data-id="{{detail.creater}}" bindtap="gerenziliao"></image>
       <text class=" title-time" style="position:absolute;width:100%;left:310rpx;" wx:if="{{detail.lefttime.left!=null}}">{{detail.lefttime.left}}</text>
     </view>
 

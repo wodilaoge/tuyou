@@ -476,7 +476,7 @@ Page({
     console.log('confirm')
     if (!this.data.information.actname) {
       wx.showToast({
-        title: '请填写标题',
+        title: '请填写活动名称',
       })
     } else {
       let t = 'information.timenow'
@@ -578,7 +578,7 @@ Page({
     var that = this
     if (!this.data.information.actname) {
       wx.showToast({
-        title: '请填写标题',
+        title: '请填写活动名称',
       })
     } else if (!this.data.information.sid || !this.data.information.acid1) {
       wx.showToast({
@@ -594,7 +594,7 @@ Page({
     var that = this
     if (!this.data.information.actname) {
       wx.showToast({
-        title: '请填写标题',
+        title: '请填写活动名称',
       })
     } else if (!this.data.information.sid || !this.data.information.acid1) {
       wx.showToast({

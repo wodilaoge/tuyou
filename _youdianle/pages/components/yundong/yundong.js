@@ -36,5 +36,12 @@ Component({
         url: '../../pages/yundongxiangqing/yundongxiangqing?TabCur=1&tzpd=1&Title=' + e.currentTarget.dataset.yundong.actname +'&categoryId=' + e.currentTarget.dataset.yundong.id,
       })
     },
+    ///////////////////////////////
+    gerenziliao(e) {
+      wx.navigateTo({
+        url: '/pages/ziliao/ziliao?id=' + e.currentTarget.dataset.id,
+      })
+    },
+  ////////////////////////
   }
 })

@@ -16,7 +16,7 @@
 	</view>
 	<view class="cu-form-group">
 		<view class="title">昵称</view>
-		<input class="input text-grey" placeholder="{{userinfo.wcalias}}" type='text' name="name"
+		<input class="input text-grey" placeholder="{{userinfo.nickname}}" type='text' name="name"
 			bindinput="getnick"></input>
 		<image class="icon" src="/img/write.png"></image>
 	</view>
@@ -39,10 +39,18 @@
 			bindinput="getphone"></input>
 		<image class="icon" src="/img/write.png"></image>
 	</view>
-	<view class="cu-form-group">
+	<!-- <view class="cu-form-group">
 		<view class="title">证件类型</view>
 		<input class="input text-grey" placeholder="身份证" type='text' name="name" bindinput="name"></input>
 		<image class="icon" src="/img/write.png"></image>
+	</view> -->
+	<view class="cu-form-group">
+		<view class="title">证件类型</view>
+		<picker bindchange="PickerChange3" value="{{userinfo.defaultTeam}}" range="{{picker3}}">
+			<view class="picker text-grey">
+				{{picker3[index3]}}
+			</view>
+		</picker>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">证件号码</view>
@@ -77,29 +85,6 @@
 			bindinput="getnationality"></input>
 		<image class="icon" src="/img/write.png"></image>
 	</view>
-	<!-- <view class="cu-form-group margin-top">
-    <view class="title">省</view>
-    <picker bindchange="PickerPro" value="{{indexp}}" range="{{provinceList}}"  range-key="name">
-      <view class="picker text-grey">
-        {{indexp?provinceList[indexp].name:'浙江'}}
-      </view>
-    </picker>
-  </view>
-   <view class="cu-form-group">
-    <view class="title">市</view>
-    <picker bindchange="PickerCity" value="{{indexc}}" range="{{citys}}"  range-key="name">
-      <view class="picker text-grey">
-        {{indexc?citys[indexc].name:'杭州'}}
-      </view>
-    </picker>
-  </view> <view class="cu-form-group">
-    <view class="title">学校</view>
-    <picker bindchange="PickerSchool" value="{{indexs}}" range="{{school}}"  range-key="name">
-      <view class="picker text-grey">
-        {{indexs?school[indexs].name:'浙江大学'}}
-      </view>
-    </picker>
-  </view> -->
 	<view class="cu-form-group">
 		<view class="title">学校简称</view>
 		<input class="input text-grey" placeholder="{{userinfo.univname}}" type='text' name="name"
@@ -130,13 +115,18 @@
 			bindinput="getweight"></input>
 		<image class="icon" src="/img/write.png"></image>
 	</view>
+
 	<view class="cu-form-group">
-		<view class="title">活动角色</view>
-		<picker bindchange="PickerChange3" value="{{userinfo.defaultTeam}}" range="{{picker3}}">
-			<view class="picker text-grey">
-				{{picker3[index3]}}
-			</view>
-		</picker>
+		<view class="title">默认团队</view>
+		<input class="input text-grey" placeholder="{{userinfo.defaultTeam}}" type='text' name="name"
+			bindinput="getdefaultTeam"></input>
+		<image class="icon" src="/img/write.png"></image>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">默认角色</view>
+		<input class="input text-grey" placeholder="{{userinfo.defaultRole}}" type='text' name="name"
+			bindinput="getdefaultRole"></input>
+		<image class="icon" src="/img/write.png"></image>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">特长</view>
@@ -144,6 +134,7 @@
 			bindinput="getspeciality"></input>
 		<image class="icon" src="/img/write.png"></image>
 	</view>
+
 	<view class="cu-form-group">
 		<view class="title">个性签名</view>
 		<input class="input text-grey" placeholder="{{userinfo.slogan}}" type='text' name="name"

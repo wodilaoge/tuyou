@@ -336,6 +336,9 @@ Page({
             aihaoid: res.data.data[i].code
           })
           let data = {
+            univ: self.data.univ,
+            city: self.data.city,
+            province: self.data.province,
             sid: res.data.data[i].code
           };
 
