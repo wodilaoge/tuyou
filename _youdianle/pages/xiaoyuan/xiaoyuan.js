@@ -85,6 +85,11 @@ Page({
         url: '/pages/webview3/webview3?url=' + e.currentTarget.dataset.item.link,
       })
   },
+  gerenziliao(e) {
+    wx.navigateTo({
+      url: '/pages/ziliao/ziliao?id=' + e.currentTarget.dataset.id,
+    })
+  },
   /////////////////////
   tabSelect(e) {
     app.globalData.tabbar = e.currentTarget.dataset.id;

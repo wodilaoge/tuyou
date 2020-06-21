@@ -768,10 +768,13 @@ Page({
     let data = {
       id: this.data.duiyuanID,
     };
+    console.log(data)
     app.wxRequest('GET', url, data, (res) => {
       self.setData({
         duiyuanDeatil: res.data,
       })
+      console.log(res.data)
+      console.log(self.data.duiyuanDeatil)
       // if(this.data.duiyuanDeatil.sex==0){
       //   this.data.duiyuanDeatil.sext='男'
       // }else if(this.data.duiyuanDeatil.sex==1){

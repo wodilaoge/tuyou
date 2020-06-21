@@ -458,7 +458,7 @@
       <!-- 不显示个数 -->
       <view class="cu-item {{index==TabCur2?'text-blue cur':''}}" wx:for="{{AllActivity}}" wx:key="key"
         bindtap="tabSelect2" data-id="{{index}}">
-        {{item.name}}
+        {{item.name}}{{index==TabCur2?'('+nowActNum+')':''}}
       </view>
     </scroll-view>
   </view>

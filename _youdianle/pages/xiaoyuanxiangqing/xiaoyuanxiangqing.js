@@ -71,6 +71,11 @@ Page({
       url: '/pages/webview/webview',
     })
   },
+  gerenziliao(e) {
+    wx.navigateTo({
+      url: '/pages/ziliao/ziliao?id=' + e.currentTarget.dataset.id,
+    })
+  },
   /////////////////////////////////////
   chooseSezi: function (e) {
     var that = this;
