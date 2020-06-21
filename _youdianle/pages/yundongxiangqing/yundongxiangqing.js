@@ -1899,12 +1899,24 @@ Page({
       });
     }
     if (this.data.isRefleshshipin == true) {
-
+      wx.showLoading({
+        title: '加载中...',
+        mask: true //显示触摸蒙层  防止事件穿透触发
+      });
       this.getShipinFenye()
+      wx.hideLoading({
+        complete: (res) => {},
+      })
     }
     if (this.data.isRefleshshipinPinglun == true && this.data.shipinChooseSize == true) {
-
+      wx.showLoading({
+        title: '加载中...',
+        mask: true //显示触摸蒙层  防止事件穿透触发
+      });
       this.getShipinPinglunFenye()
+      wx.hideLoading({
+        complete: (res) => {},
+      })
     }
 
   },
