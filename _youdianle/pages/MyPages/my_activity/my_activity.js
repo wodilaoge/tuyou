@@ -299,6 +299,7 @@ Page({
     // console.log(that.data.AllActivity[that.data.options].code)
     //我参与的
     if (that.data.options == 1&&that.data.needflesh==true) {
+      console.log('join')
       let url = app.globalData.URL + '/act/listMyActivity';
       let data = {
         'type': 20,
@@ -310,8 +311,8 @@ Page({
         //有数据传回
         if (res.data.data.border != null) {
           var tmp = that.data.Myjoin
-          tmp.border = res.data.border
-          for (let s of res.data.list)
+          tmp.border = res.data.data.border
+          for (let s of res.data.data.list)
             tmp.list.push(s)
           that.setData({
             Myjoin: tmp,
@@ -339,9 +340,9 @@ Page({
         console.log('Mycreate flesh', res.data)
         //有数据传回
         if (res.data.data.border != null) {
-          var tmp = that.data.Mycreate
-          tmp.border = res.data.border
-          for (let s of res.data.list)
+          var tmp = that.data.Myjoin
+          tmp.border = res.data.data.border
+          for (let s of res.data.data.list)
             tmp.list.push(s)
           that.setData({
             Mycreate: tmp,
@@ -374,8 +375,8 @@ Page({
         //有数据传回
         if (res.data.data.border != null) {
           var tmp = that.data.Myattention
-          tmp.border = res.data.border
-          for (let s of res.data.list)
+          tmp.border = res.data.data.border
+          for (let s of res.data.data.list)
             tmp.list.push(s)
           that.setData({
             Myattention: tmp,
