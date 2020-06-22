@@ -236,22 +236,23 @@
 
 
 
-    <view class="bg-white" style="height:259rpx;">
+    <view class="bg-white" style="height:auto;">
       <view class="flex" style="height:42rpx;">
         <view class="paiming-paiming" style="margin-left:24rpx;width:120rpx;">排名</view>
         <view class="paiming-paiming" style="margin-left:2rpx;width:180rpx;">得分</view>
         <view class="paiming-paiming" style="margin-left:2rpx;width:180rpx;">日期</view>
         <view class="paiming-paiming" style="margin-left:2rpx;width:216rpx;">活动名称</view>
       </view>
-
-      <view class="flex" style="margin-top:44rpx;" wx:for="paimingDetail">
-        <text class="paiming-fenshu" style="padding-left:76rpx;">{{item.mbrRank}}</text>
-        <text class="paiming-fenshu" style="margin-left:129rpx;">{{item.mbrScore}}</text>
-        <text class="paiming-riqi" style="margin-left:97rpx;">{{item.acttime}}</text>
-        <text class="paiming-huodong" style="margin-left:67rpx;margin-top:-13rpx;">{{item.actname}}</text>
+      <view wx:for="paimingDetail">
+        <view class="flex" style="margin-top:44rpx;">
+          <text class="paiming-fenshu" style="margin-left:24rpx;width:120rpx;">{{paimingDetail[index].mbrRank}}</text>
+          <text class="paiming-fenshu" style="margin-left:2rpx;width:180rpx;">{{paimingDetail[index].mbrScore}}</text>
+          <text class="paiming-riqi" style="margin-left:2rpx;width:180rpx;">{{paimingDetail[index].acttime}}</text>
+          <text class="paiming-huodong" style="margin-left:2rpx;width:216rpx;">{{paimingDetail[index].actname}}</text>
+        </view>
       </view>
     </view>
-
+    
 
     <block>
       <view class="huodong-margin-bottom">

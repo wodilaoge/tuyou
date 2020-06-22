@@ -932,7 +932,6 @@ Page({
     let url = app.globalData.URL + '/config/findAllActivityClass1';
     let data = {};
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res.data)
       this.setData({
         ziliaoDalei: res.data,
         ziliaoDaleiCur: res.data[0].code,
@@ -943,9 +942,8 @@ Page({
         uid: self.data.user.id,
         acid1: res.data[0].code
       }
-      console.log(data)
       app.wxRequest('GET', url, data, (res) => {
-        console.log(res)
+     
         self.setData({
           paimingDetail: res.data
         })
