@@ -30,7 +30,11 @@ Component({
     url: {
       type: String,
       default: ''
-    }
+    },
+    ziliaoID: {
+      type: String,
+      default: ''
+    },
   },
   /**
    * 组件的初始数据
@@ -46,7 +50,7 @@ Component({
   methods: {
     BackPage() {
       console.log(this.properties.url)
-      if (this.properties.url) {
+      if (this.properties.url&&!this.properties.ziliaoID) {/////朱修改
         wx.switchTab({ url: this.properties.url })
       }
       else{

@@ -1013,11 +1013,11 @@ Page({
       }, (err) => {});
     }
   },
-  // yundongxiangqing(e) {
-  //   wx.navigateTo({
-  //     url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.yundong.id +'&tzpd='+ 'ziliao',
-  //   })
-  // },
+  yundongxiangqing(e) {
+    wx.navigateTo({
+      url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.yundong.id+'&ziliaoID='+this.data.duiyuanID,
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

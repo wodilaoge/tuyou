@@ -3,6 +3,7 @@ var util = require("../../utils/util.js");
 Page({
   data: {
     tzpd:'',//回退跳转判断
+    ziliaoID2:'',////回退到资料
     chooseSize: false,
     animationData: {},
     isReflesh: false,
@@ -1792,6 +1793,7 @@ Page({
     var self = this
     self.setData({
       categoryId: options.categoryId,
+      ziliaoID2:options.ziliaoID,
       user: wx.getStorageSync('userInfo'),
       TabCur: options.TabCur,
       biaoti: options.Title,
@@ -1807,6 +1809,12 @@ Page({
         tzpd:'/pages/xiaoyuan/xiaoyuan'
       })
     }
+    // else if(options.tzpd=='ziliao'){
+    //   console.log(options.tzpd)
+    //   self.setData({
+    //     tzpd:'/pages/ziliao/ziliao?'
+    //   })
+    // }
     else
       self.setData({
         tzpd: '/pages/index/index'
