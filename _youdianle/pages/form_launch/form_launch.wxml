@@ -185,7 +185,7 @@
       <text class="text-blue" bindtap="toagreepage">《友点乐用户协议》</text>
     </checkbox-group>
     <view class="flex margin-top2">
-      <button disabled="{{!isagree}}" class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="finish2">补充信息</button>
+      <button disabled="{{!isagree}}" class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="commit">补充信息</button>
       <button disabled="{{!isagree}}" class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="finish"
         data-target="Modal">立即提交</button>
     </view>

@@ -21,7 +21,7 @@
         <video id="video_{{index}}" custom-cache="{{false}}" src="{{shipin.list[0].fileId}}" controls
           style="width:100%;" bindtap="video_change" data-index="{{index}}"></video>
       </view>
-      <view class="flex  margin-top ">
+      <view class="flex  margin-top justify-between">
         <view class="sp-bofang-times ">播放{{shipin.list[0].playCnt}}次</view>
         <!-- <image src="{{shipin.list[0].myApplaud!=0?'/img/icon_like_all.png':'/img/icon_like.png'}}"
           style="width:44rpx;height:40rpx;margin-left:270rpx;" bindtap="shipinDianzan" data-index="{{index}}"></image>
@@ -29,13 +29,14 @@
           {{shipin.list[0].applaudCnt}}</view> -->
         <!-- <image class="img-icon" mode="aspectFit " src="/img/icon_talk.png" bindtap="chooseSezi"
           data-duixiang="{{50}}" data-index="{{0}}" data-dxid="{{shipin.list[0].id}}"
-          data-dxtitle="{{shipin.list[0].title}}"></image>
-        <view bindtap="share">
-          <button class="cu-btn round  buttonshare" style="background-color: white; margin-left: 20rpx;margin-top: -8rpx;" open-type="share">
-            <image class="img-icon" src="/img/icon_share_more.png "
+          data-dxtitle="{{shipin.list[0].title}}"></image>-->
+        <view bindtap="share margin-right">
+          <button class="cu-btn round  buttonshare"
+            style="background-color: white; margin-left: 20rpx;margin-top: -8rpx;" open-type="share">
+            <image class="img-icon margin-right" src="/img/icon_share_more.png "
               style="width:44rpx;height:40rpx;margin-left:16rpx; margin-right:20rpx; "></image>
           </button>
-        </view> -->
+        </view>
 
       </view>
 
@@ -63,19 +64,21 @@
   <view wx:else>
     <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx;">{{shipin.list[index].title}}</view>
     <view class="content-white">
-      <view class=" sp-cu-bar cu-bar-radius bg-white  ">
-        <image class="sp-avatar round " src="{{shipin.list[index].authorHead}} "></image>
-        <view class="sp-avatar-name">{{shipin.list[index].authorAlias}}</view>
+      <view class=" sp-cu-bar cu-bar-radius bg-white justify-between">
+        <view class="flex">
+          <image class="sp-avatar round " src="{{shipin.list[index].authorHead}} "></image>
+          <view class="sp-avatar-name">{{shipin.list[index].authorAlias}}</view>
+        </view>
         <!-- <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{shipin.list[index].myFollow==1}}">关注</button>
         <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{!shipin.list[index].myFollow==1}}">已关注</button> -->
-        <text class="cuIcon-delete lg text-gray del padding-right" bindtap="delvideo" data-id="{{item.id}}"></text>
+        <text class="cuIcon-delete lg text-gray del margin-right " bindtap="delvideo" data-id="{{item.id}}"></text>
       </view>
 
       <view>
         <video id="video_{{index}}" custom-cache="{{false}}" src="{{shipin.list[index].fileId}}" controls
           style="width:100%;" bindtap="video_change" data-index="{{index}}"></video>
       </view>
-      <view class="flex  margin-top ">
+      <view class="flex  margin-top justify-between">
         <view class="sp-bofang-times ">播放{{shipin.list[index].playCnt}}次</view>
         <!-- <image src="{{shipin.list[index].myApplaud!=0?'/img/icon_like_all.png':'/img/icon_like.png'}}"
           style="width:44rpx;height:40rpx;margin-left:270rpx;" bindtap="shipinDianzan" data-index="{{index}}"></image>
@@ -83,13 +86,14 @@
           {{shipin.list[index].applaudCnt}}</view>
           <image class="img-icon" mode="aspectFit " src="/img/icon_talk.png" bindtap="chooseSezi"
           data-duixiang="{{50}}" data-index="{{index}}" data-dxid="{{shipin.list[index].id}}"
-          data-dxtitle="{{shipin.list[index].title}}"></image>
-          <view bindtap="share">
-            <button class="cu-btn round  buttonshare" style="background-color: white; margin-left: 20rpx;margin-top: -8rpx;" open-type="share">
-              <image class="img-icon" src="/img/icon_share_more.png "
-                style="width:44rpx;height:40rpx;margin-left:16rpx; margin-right:20rpx; "></image>
-            </button>
-          </view> -->
+          data-dxtitle="{{shipin.list[index].title}}"></image>-->
+        <view bindtap="share">
+          <button class="cu-btn round  buttonshare"
+            style="background-color: white; margin-left: 20rpx;margin-top: -8rpx;" open-type="share">
+            <image class="img-icon margin-right" src="/img/icon_share_more.png "
+              style="width:44rpx;height:40rpx;margin-left:16rpx; margin-right:20rpx; "></image>
+          </button>
+        </view>
       </view>
 
       <view class=" sp-pinglun margin-top ">{{shipin.list[index].notes}}</view>

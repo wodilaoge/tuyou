@@ -209,7 +209,15 @@ Page({
 
   commit: function (e) {
     var that = this.data
-    if (this.data.information.actname) {
+    if (!this.data.information.actname) {
+      wx.showToast({
+        title: '请填写活动名称',
+      })
+    } else if (!this.data.information.sid || !this.data.information.acid1) {
+      wx.showToast({
+        title: '请选择活动类型',
+      })
+    } else if (this.data.information.actname) {
       let t = 'information.timenow'
       let t2 = 'information.signupdeadline'
       let t3 = 'information.logo'
@@ -592,19 +600,7 @@ Page({
   },
   finish2: function (e) {
     var that = this
-    if (!this.data.information.actname) {
-      wx.showToast({
-        title: '请填写活动名称',
-      })
-    } else if (!this.data.information.sid || !this.data.information.acid1) {
-      wx.showToast({
-        title: '请选择活动类型',
-      })
-    } else {
-      that.setData({
-        hiddenmodalput2: !this.data.hiddenmodalput2
-      })
-    }
+ 
   },
 
   ChooseImage(e) {
