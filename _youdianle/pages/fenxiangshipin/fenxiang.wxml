@@ -23,11 +23,11 @@
         <view class=" align-center " style="margin-left:16rpx;font-size:32rpx;width:55rpx; ">
           {{shipin.list[0].applaudCnt}}</view>
         <image class="img-icon" mode="aspectFit " src="/img/icon_talk.png" bindtap="chooseSezi" data-duixiang="{{50}}" data-index="{{0}}" data-dxid="{{shipin.list[0].id}}" data-dxtitle="{{shipin.list[0].title}}"></image>
-        <view bindtap="share">
+        <!-- <view bindtap="share">
           <button class="cu-btn round  buttonshare" style="background-color: white; margin-left: 20rpx;margin-top: -8rpx;" open-type="share" data-index="{{index}}" data-duixiang="{{50}}">
             <image class="img-icon" src="/img/icon_share_more.png " style="width:44rpx;height:40rpx;margin-left:16rpx; margin-right:20rpx; "></image>
           </button>
-        </view>
+        </view> -->
 
       </view>
 
@@ -51,7 +51,7 @@
           <view>
             <view class="sp-pinglun-neirong ">{{shipin.list[0].listComm[1].comment}}</view>
             <view>
-              <text class='card-text-content-time2'>{{shipin.list[0].listComm[0].strCreatetime}}</text>
+              <text class='card-text-content-time2'>{{shipin.list[0].listComm[1].strCreatetime}}</text>
             </view>
           </view>
         </view>
@@ -81,11 +81,11 @@
         <view class=" align-center " style="margin-left:16rpx;font-size:32rpx;width:55rpx; ">
           {{shipin.list[index].applaudCnt}}</view>
         <image class="img-icon" mode="aspectFit " src="/img/icon_talk.png" bindtap="chooseSezi" data-duixiang="{{50}}" data-index="{{index}}" data-dxid="{{shipin.list[index].id}}" data-dxtitle="{{shipin.list[index].title}}"></image>
-        <view bindtap="share">
+        <!-- <view bindtap="share">
           <button class="cu-btn round  buttonshare" style="background-color: white; margin-left: 20rpx;margin-top: -8rpx;" open-type="share" data-index="{{index}}" data-duixiang="{{50}}">
             <image class="img-icon" src="/img/icon_share_more.png " style="width:44rpx;height:40rpx;margin-left:16rpx; margin-right:20rpx; "></image>
           </button>
-        </view>
+        </view> -->
       </view>
 
       <view class=" sp-pinglun margin-top ">{{shipin.list[index].notes}}</view>
@@ -115,6 +115,17 @@
   </view>
 </view>
 
+  <!--隐藏区域  -->
+  <view fixed class="modals modals-bottom-dialog" hidden="{{!chooseSize}}">
+    <view class="modals-cancel" bindtap="hideModal" catchtouchmove="true"></view>
+    <view class="bottom-dialog-body bottom-pos " animation="{{animationData}}" style="display:block">
+      <view>
+        <text class="cu-bar-title " style="margin-left:300rpx ">写评论</text>
+        <button class="cu-btn bg-orange shadow-blur padding-sm margin-left-sm btn-fasong " bindtap="pd_fasong" style="margin-left:100rpx ">发送</button>
+      </view>
+      <textarea class="form-text2 margin-top-sm margin-buttom " style="height:160rpx;width:100% " value="{{Input}}" maxlength="4000 " bindinput="emailInput" cursor-spacing="65" fixed="true"></textarea>
+    </view>
+  </view>
 
   <!--shipin隐藏区域  -->
   <view fixed class="modals modals-bottom-dialog" hidden="{{!shipinChooseSize}}">

@@ -4,7 +4,7 @@ var util = require("../../../utils/util.js");
 Page({
 
   // 10：待审核，14：内容违规，20：正常，30：已结束，40：主动取消，44：审核驳回，50：平台取消
-
+  //活动类型，10：发起的，20：参加的，30：关注的
   data: {
     swip: ['活动审核', '新闻审核', '图片审核', '视频审核'],
     options: 1,
@@ -14,6 +14,7 @@ Page({
     hiddenmodalput: true,
     //可以通过hidden是否掩藏弹出框的属性，来指定那个弹出框  
     scrollLeft: 0,
+    needflesh:true,
     initialcode: '076003001'
   },
   modalinput: function (e) {
@@ -35,6 +36,7 @@ Page({
   tabSelect(e) {
     this.setData({
       TabCur: e.currentTarget.dataset.id,
+      needflesh:true
     })
     this.flesh(e.currentTarget.dataset.id)
   },
@@ -42,7 +44,7 @@ Page({
     console.log('flesh')
     var that = this
     console.log(that.data.AllActivity[tab].code)
-    //我创建的
+    //我参与的
     if (that.data.options == 1) {
       let url = app.globalData.URL + '/act/listMyActivity';
       let data = {
@@ -56,7 +58,9 @@ Page({
           nowActNum: res.data.data.list.length
         })
       })
-    } else if (that.data.options == 2) {
+    }
+    //我创建的
+    else if (that.data.options == 2) {
       let url = app.globalData.URL + '/act/listMyActivity';
       let data = {
         'type': 10,
@@ -69,7 +73,9 @@ Page({
           nowActNum: res.data.data.list.length
         })
       })
-    } else if (that.data.options == 3) {
+    }
+    //我关注的
+    else if (that.data.options == 3) {
       let url = app.globalData.URL + '/act/listMyActivity';
       let data = {
         'type': 30,
@@ -89,18 +95,21 @@ Page({
    */
   select1() {
     this.setData({
-      options: 1
+      options: 1,
+      needflesh:true
     })
   },
 
   select2() {
     this.setData({
-      options: 2
+      options: 2,
+      needflesh:true
     })
   },
   select3() {
     this.setData({
-      options: 3
+      options: 3,
+      needflesh:true
     })
   },
   cancelact(e) {
@@ -284,4 +293,103 @@ Page({
     })
   },
 
+  onReachBottom: function () {
+    console.log("上拉刷新初始化查询")
+    var that = this
+    // console.log(that.data.AllActivity[that.data.options].code)
+    //我参与的
+    if (that.data.options == 1&&that.data.needflesh==true) {
+      let url = app.globalData.URL + '/act/listMyActivity';
+      let data = {
+        'type': 20,
+        'acid1': that.data.AllActivity[that.data.TabCur].code,
+        'border': that.data.Myjoin.border
+      };
+      util.post_token(url, data).then(function (res) {
+        console.log('Myjoin flesh', res.data)
+        //有数据传回
+        if (res.data.data.border != null) {
+          var tmp = that.data.Myjoin
+          tmp.border = res.data.border
+          for (let s of res.data.list)
+            tmp.list.push(s)
+          that.setData({
+            Myjoin: tmp,
+            nowActNum: res.data.data.list.length + that.data.nowActNum
+          })
+        }
+        //无数据传回
+        else{
+          that.setData({
+            needflesh:false
+          })
+        }
+        wx.hideLoading()
+      })
+    }
+    //我创建的
+    else if (that.data.options == 2&&that.data.needflesh==true) {
+      let url = app.globalData.URL + '/act/listMyActivity';
+      let data = {
+        'type': 10,
+        'acid1': that.data.AllActivity[that.data.TabCur].code,
+        'border': that.data.Mycreate.border
+      };
+      util.post_token(url, data).then(function (res) {
+        console.log('Mycreate flesh', res.data)
+        //有数据传回
+        if (res.data.data.border != null) {
+          var tmp = that.data.Mycreate
+          tmp.border = res.data.border
+          for (let s of res.data.list)
+            tmp.list.push(s)
+          that.setData({
+            Mycreate: tmp,
+            nowActNum: res.data.data.list.length + that.data.nowActNum
+          })
+        }
+        //无数据传回
+        else{
+          that.setData({
+            needflesh:false
+          })
+        }
+        wx.hideLoading()
+      })
+    }
+    //我关注的
+    else if (that.data.options == 3&&that.data.needflesh==true) {
+      wx.showLoading({
+        title: '加载中...',
+        mask: true //显示触摸蒙层  防止事件穿透触发
+      });
+      let url = app.globalData.URL + '/act/listMyActivity';
+      let data = {
+        'type': 30,
+        'acid1': that.data.AllActivity[that.data.TabCur].code,
+        'border': that.data.Myattention.border
+      };
+      util.post_token(url, data).then(function (res) {
+        console.log('Myattention flesh', res.data)
+        //有数据传回
+        if (res.data.data.border != null) {
+          var tmp = that.data.Myattention
+          tmp.border = res.data.border
+          for (let s of res.data.list)
+            tmp.list.push(s)
+          that.setData({
+            Myattention: tmp,
+            nowActNum: res.data.data.list.length + that.data.nowActNum
+          })
+        }
+        //无数据传回
+        else{
+          that.setData({
+            needflesh:false
+          })
+        }
+        wx.hideLoading()
+      })
+    }
+  }
 })

@@ -1023,7 +1023,13 @@ Page({
       let shipintmp=self.data.shipin
       app.wxRequest('POST', url, data, (res) => {
         ///////////////////本地添加评论内容
-        shipintmp.list[self.data.dxindex].listComm.splice(0,0,{'createrHead':self.data.user.head,'createrAlias':self.data.user.nickname,'comment':inputtmp})
+        shipintmp.list[self.data.dxindex].listComm.splice(0, 0, {
+          'createrHead': self.data.user.head,
+          'createrAlias': self.data.user.nickname,
+          'comment': inputtmp,
+          'strCreatetime': '刚刚',
+        })
+        shipintmp.list[self.data.dxindex].commCnt=shipintmp.list[self.data.dxindex].commCnt+1,
         self.setData({
           shipin:shipintmp,
         })

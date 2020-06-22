@@ -543,7 +543,7 @@
               <view>
                 <view class="sp-pinglun-neirong ">{{shipin.list[0].listComm[1].comment}}</view>
                 <view>
-                  <text class='card-text-content-time2'>{{shipin.list[0].listComm[0].strCreatetime}}</text>
+                  <text class='card-text-content-time2'>{{shipin.list[0].listComm[1].strCreatetime}}</text>
                 </view>
               </view>
             </view>

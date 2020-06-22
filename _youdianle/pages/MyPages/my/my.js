@@ -66,13 +66,13 @@ Page({
   },
   onLoad: function () {
     var that = this
+    console.log('onload')
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
           //查询个人活动数（发起和参与的）
           let url = app.globalData.URL + '/appuser/countByUser';
           let data = {
-
           };
           util.gets(url, data).then(function (res) {
             console.log('activitynum', res.data)
@@ -112,7 +112,8 @@ Page({
           util.gets(url, data).then(function (res) {
             console.log('welcome', res.data)
             that.setData({
-              welcome: res.data.data.welcome
+              welcome: res.data.data.welcome,
+              userinfototaol:res.data.data
             })
           })
           console.log('wx auth finished')
@@ -226,5 +227,10 @@ Page({
         console.log("转发失败:" + JSON.stringify(res));
       }
     }
+  },
+  onShow()
+  {
+    this.onLoad()
+    console.log('onshow')
   }
 })
