@@ -236,7 +236,9 @@
   padding: 10rpx;
   box-sizing: border-box;
 }
-
+.zindex{
+  z-index: 9000;
+}
 .video_text {
   text-align: center;
   overflow: hidden;
