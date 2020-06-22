@@ -57,7 +57,6 @@
     "backgroundColor": "#5454FF",
     "navigationBarTitleText": "友点乐",
     "navigationStyle": "custom",
-    "enablePullDownRefresh": true,
     "navigationBarTextStyle": "white"
   },
   "usingComponents": {
