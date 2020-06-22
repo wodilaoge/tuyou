@@ -42,7 +42,8 @@
 .weizhi {
   /* width: 88rpx; */
   display: flex;
-  height: 36rpx;
+  height: 40rpx;
+  font-size: 30rpx;
   background: rgba(254, 96, 4, 1);
   color: rgba(255, 255, 255, 1);
   text-align: center;
@@ -50,7 +51,7 @@
 }
 .weizhi-left {
   width: 20rpx;
-  height: 36rpx;
+  height: 40rpx;
   background: rgba(254, 96, 4, 1);
   border-top-left-radius: 18rpx;
   border-bottom-left-radius: 18rpx;
@@ -59,7 +60,7 @@
 }
 .weizhi-right {
   width: 20rpx;
-  height: 36rpx;
+  height: 40rpx;
   background: rgba(254, 96, 4, 1);
   border-top-right-radius: 18rpx;
   border-bottom-right-radius: 18rpx;

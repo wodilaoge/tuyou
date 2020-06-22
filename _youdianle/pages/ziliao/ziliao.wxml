@@ -27,8 +27,7 @@
           <view class="weizhi-right"></view>
         </view>
         <view class="flex">
-          <text class="ziliao-ziliao">{{duiyuanAge}}岁 | {{duiyuanDeatil.height===null?'':duiyuanDeatil.height}}cm |
-            {{duiyuanDeatil.weight===null?'':duiyuanDeatil.weight}}公斤</text>
+          <text class="ziliao-ziliao">{{duiyuanAge}}岁 | {{duiyuanDeatil.height===null?'':duiyuanDeatil.height}}cm | {{duiyuanDeatil.weight===null?'':duiyuanDeatil.weight}}公斤</text>
         </view>
       </view>
     </view>
