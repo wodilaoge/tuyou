@@ -225,6 +225,7 @@
   font-family: PingFang SC;
   font-weight: bold;
   color: rgba(51, 51, 51, 1);
+  text-align: center;
 }
 
 .paiming-riqi {
@@ -232,6 +233,7 @@
   font-family: PingFang SC;
   font-weight: 500;
   color: rgba(51, 51, 51, 1);
+  text-align: center;
 }
 
 .paiming-huodong {
@@ -240,6 +242,8 @@
   font-family: PingFang SC;
   font-weight: 500;
   color: rgba(84, 84, 255, 1);
+  text-align: center;
+  word-wrap: break-word;
 }
 .fensi-name{
 margin-left: 18rpx;
