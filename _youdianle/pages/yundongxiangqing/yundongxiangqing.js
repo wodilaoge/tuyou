@@ -1792,6 +1792,7 @@ Page({
   onLoad: function (options) {
     var self = this
     self.setData({
+      isMypageJmp:options.yes,
       categoryId: options.categoryId,
       ziliaoID2:options.ziliaoID,
       user: wx.getStorageSync('userInfo'),

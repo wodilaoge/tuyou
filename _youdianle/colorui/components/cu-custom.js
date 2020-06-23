@@ -14,7 +14,7 @@ Component({
     bgColor: {
       type: String,
       default: ''
-    }, 
+    },
     isCustom: {
       type: [Boolean, String],
       default: false
@@ -35,6 +35,10 @@ Component({
       type: String,
       default: ''
     },
+    isMypageJmp:{
+      type: String,
+      default: ''
+    }
   },
   /**
    * 组件的初始数据
@@ -49,23 +53,28 @@ Component({
    */
   methods: {
     BackPage() {
-      console.log(this.properties.url)
-      if (this.properties.url&&!this.properties.ziliaoID) {/////朱修改
-        wx.switchTab({ url: this.properties.url })
-      }
-      else{
+      // console.log(this.properties.url)
+      // console.log(this.properties.isMypageJmp)
+      if (this.properties.url && !this.properties.ziliaoID&&!this.properties.isMypageJmp) { /////朱修改
+        console.log('1')
+        wx.switchTab({
+          url: this.properties.url
+        })
+      } else {
         if (getCurrentPages().length < 2 && 'undefined' !== typeof __wxConfig) {
-            let url = '/' + __wxConfig.pages[0]
+          console.log('2')
+          let url = '/' + __wxConfig.pages[0]
           return wx.redirectTo({
-                url
-            })
+            url
+          })
         }
-      wx.navigateBack({
-        delta: 1
+        console.log('3')
+        wx.navigateBack({
+          delta: 1
         });
       }
     },
-    toHome(){
+    toHome() {
       wx.reLaunch({
         url: '/pages/index/index',
       })
