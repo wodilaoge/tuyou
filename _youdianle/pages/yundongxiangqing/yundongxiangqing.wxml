@@ -4,7 +4,7 @@
 创建内容：运动详情-->
 <view class="hidden">
   <view class="top">
-    <cu-custom isBack="{{true}}" url='{{tzpd}}' bgColor="bg-blue" ziliaoID="{{ziliaoID2}}">
+    <cu-custom isBack="{{true}}" url='{{tzpd}}' bgColor="bg-blue" ziliaoID="{{ziliaoID2}}" isMypageJmp="{{isMypageJmp}}">
       <view slot="content" class="biaoti">{{biaoti}}</view>
     </cu-custom>
   </view>
