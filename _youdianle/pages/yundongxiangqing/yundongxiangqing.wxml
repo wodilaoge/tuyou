@@ -893,12 +893,12 @@
       </view>
     </block>
 
-    <view style="margin-top:140rpx; ">
+    <view style="margin-top:140rpx;">
       <view class="yundong-sp-center " style="margin-left:39rpx;margin-bottom:44rpx;width: 668rpx; height: 80rpx; ">
         <button class="shuju-btn1 line-red " bindtap="jieshu" hidden="{{detail.lefttime.left=='进行中'||detail.lefttime.left=='报名中'}}">结束本场活动</button>
         <button class="shuju-btn1 line-orange " bindtap="tijiao">提交</button>
       </view>
-      <button class="shuju-btn1 bg-orange round " style="width: 668rpx; height: 80rpx;" bindtap="tijiaobingjieshu" hidden="{{detail.lefttime.left=='进行中'||detail.lefttime.left=='报名中'}}">提交并结束本场活动</button>
+      <button class="shuju-btn1 bg-orange round " style="width: 668rpx; height: 80rpx;" bindtap="tijiaobingjieshu" hidden="{{detail.lefttime.left!='进行中'&& detail.lefttime.left!='报名中'}}">提交并结束本场活动</button>
     </view>
   </block>
 
