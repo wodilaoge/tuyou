@@ -168,7 +168,12 @@ Page({
       [t]: e.detail.value
     })
   },
-
+  getspeciality(e){
+    let t = 'userinfo.speciality'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
   getslogan(e) {
     let t = 'userinfo.slogan'
     this.setData({
