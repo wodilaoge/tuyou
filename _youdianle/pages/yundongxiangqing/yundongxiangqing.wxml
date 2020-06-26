@@ -753,14 +753,8 @@
 
     <block wx:if="{{paimingCur==1}}">
       <view class="bg-white padding yundong-sp-center " wx:for="{{tuanduipaiming.list}}" wx:for-index="index">
-        <view wx:if="{{index==0}}">
-          <image class="icon-paiming " mode="aspectFit " src="/img/icon_champion@3x.png"></image>
-        </view>
-        <view wx:elif="{{index==1}}">
-          <image class="icon-paiming " mode="aspectFit " src="/img/icon_runner_up@3x.png"></image>
-        </view>
-        <view wx:elif="{{index==2}}">
-          <image class="icon-paiming " mode="aspectFit " src="/img/icon_second_runner_up@3x.png"></image>
+        <view wx:if="{{members.mbrRankLogo!=null}}">
+          <image class="icon-paiming " mode="aspectFit " src="{{item.mbrRankLogo}}"></image>
         </view>
         <view wx:else class="card-text-content margin-right-xl margin-left-xs">{{index+1}}</view>
 
