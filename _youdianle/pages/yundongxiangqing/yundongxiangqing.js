@@ -2,6 +2,7 @@ const app = getApp();
 var util = require("../../utils/util.js");
 Page({
   data: {
+    zfpd:false,//判断数据页面按钮状态
     tzpd:'',//回退跳转判断
     ziliaoID2:'',////回退到资料
     chooseSize: false,
@@ -432,7 +433,8 @@ Page({
     };
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
-        detail: res.data
+        detail: res.data,
+        zfpd: res.data.left != '进行中' &&(res.data.lefttime.left.indexOf(':') < '0')
       })
       this.setData({
         biaoti: res.data.actname
@@ -1445,7 +1447,6 @@ Page({
   },
   baomingkongzhi() {
     let detail = this.data.detail
-    console.log(detail.entrylimit)
     if (detail.entrylimit == 10) {
       this.setData({
         cansaiset: true,
