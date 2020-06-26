@@ -10,7 +10,7 @@
   </view>
   <view hidden="{{rotationhide}}">
     <swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
-      <swiper-item wx:for="{{swiperList}}" wx:key >
+      <swiper-item wx:for="{{swiperList}}" wx:key>
         <image src="{{item.rotation}}" mode="aspectFill" bindtap="towebview3" data-item="{{item}}"></image>
         <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
       </swiper-item>
@@ -112,7 +112,7 @@
           <view class="cu-bar-title">奖品设置</view>
         </view>
         <rich-text hidden="{{detail.award==null}}" nodes="{{detail.award}}"></rich-text>
-        <image hidden="{{detail.awardpic==null}}" src="{{detail.awardpic}}" mode="scaleToFill" style="width:700rpx; "data-imgurl="{{detail.awardpic}}" bindtap="dianjifangda"></image>
+        <image hidden="{{detail.awardpic==null}}" src="{{detail.awardpic}}" mode="scaleToFill" style="width:700rpx; " data-imgurl="{{detail.awardpic}}" bindtap="dianjifangda"></image>
       </view>
     </view>
     <view hidden="{{detail.sponsor==null&&detail.sponsorpic==null}}">
@@ -536,7 +536,8 @@
                 <view>
                   <text class='card-text-content-time2'>{{shipin.list[0].listComm[0].strCreatetime}}</text>
                 </view>
-              </view>            </view>
+              </view>
+            </view>
             <view class="margin-top sp-pinlun-content" bindtap="shipinChooseSezi" data-duixiang="{{50}}" data-dxid="{{shipin.list[0].id}}" data-index="{{0}}" wx:if="{{shipin.list[0].listComm[1]}}">
               <image class="sp-pinglun-avatar round " src="{{shipin.list[0].listComm[1].createrHead}} "></image>
               <view class="sp-pinglun-name ">{{shipin.list[0].listComm[1].createrAlias}}</view>
@@ -821,6 +822,21 @@
   <block wx:if="{{TabCur==5}}">
     <view>
       <view class=" bg-white cu-bar-title padding ">活动数据录入</view>
+      <view class="cu-form-group">
+        <radio-group class="block" style="margin-left:240rpx;">
+          <view class="flex">
+            <view>
+              <checkbox class="round blue " style="zoom: 80%;" data-id="10" bindtap='bindRadioChangeshuju' checked="{{lurushuju==10}}">
+              </checkbox>
+            </view>
+            <view class="tp-select">录入排名</view>
+            <view style="margin-left:40rpx;">
+              <checkbox class="round blue " style="zoom: 80%;" data-id="20" bindtap='bindRadioChangeshuju' checked="{{lurushuju==20}}"></checkbox>
+            </view>
+            <view class="tp-select">录入得分</view>
+          </view>
+        </radio-group>
+      </view>
     </view>
     <view class="content-white">
       <view class=" padding " style="margin-left:175rpx; " hidden="{{signupway}}">
@@ -839,11 +855,9 @@
           <view class="bg-blue " style="width:300rpx;height:42rpx; ">
             <text wx:if="{{item.groupname!=null}}" style="margin-left:36rpx; ">{{item.groupname}}</text>
           </view>
-          <view class="bg-blue " style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-            <text style="margin-left:65rpx; ">排名</text>
-          </view>
-          <view class="bg-blue " style="margin-left:1rpx;width:208rpx;height:42rpx; ">
-            <text style="margin-left:81rpx; ">得分</text>
+          <view class="bg-blue " style="margin-left:1rpx;width:380rpx;height:42rpx; ">
+            <text style="margin-left:160rpx;" wx:if="{{lurushuju==10}}">排名</text>
+            <text style="margin-left:160rpx;" wx:if="{{lurushuju==20}}">得分</text>
           </view>
 
 
@@ -852,10 +866,10 @@
               <view class="cu-avatar round my " style="background-image:url({{members.mbrHead}}); "></view>
               <text class="paiming-name " decode="{{true}} ">&ensp;{{members.mbrAlias}}</text>
             </view>
-            <view class="view-active" style="margin-left:64rpx;width:60rpx;height:42rpx;">
+            <view class="view-active" style="margin-left:114rpx;width:160rpx;height:42rpx;" wx:if="{{lurushuju==10}}">
               <input placeholder="{{members.mbrRank==null?'':members.mbrRank}}" bindinput="paimingInput" data-flag="0" data-index2="{{index2}}" data-index="{{index}}" />
             </view>
-            <view class="view-active" style="margin-left:150rpx;width:60rpx;height:42rpx;">
+            <view class="view-active" style="margin-left:114rpx;width:160rpx;height:42rpx;" wx:if="{{lurushuju==20}}">
               <input placeholder="{{members.mbrScore==null?'':members.mbrScore}}" bindinput="defenInput" data-flag="0" data-index2="{{index2}}" data-index="{{index}}" />
             </view>
           </view>
@@ -1027,8 +1041,8 @@
           <view class="sp-pinglun-name ">{{shipin.list[shipin_index].listComm[index2].createrAlias}}</view>
           <view>
             <view class="sp-pinglun-neirong-2 ">{{shipin.list[shipin_index].listComm[index2].comment}}</view>
-              <text class='card-text-content-time2'>{{shipin.list[shipin_index].listComm[index2].strCreatetime}}</text>
-            
+            <text class='card-text-content-time2'>{{shipin.list[shipin_index].listComm[index2].strCreatetime}}</text>
+
           </view>
         </view>
       </view>

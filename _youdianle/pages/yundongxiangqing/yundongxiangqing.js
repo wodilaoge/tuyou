@@ -2,9 +2,10 @@ const app = getApp();
 var util = require("../../utils/util.js");
 Page({
   data: {
-    zfpd:false,//判断数据页面按钮状态
-    tzpd:'',//回退跳转判断
-    ziliaoID2:'',////回退到资料
+    zfpd: false, //判断数据页面按钮状态
+    lurushuju: 10, //录入排名或得分
+    tzpd: '', //回退跳转判断
+    ziliaoID2: '', ////回退到资料
     chooseSize: false,
     animationData: {},
     isReflesh: false,
@@ -136,7 +137,7 @@ Page({
     })
   },
   //弹框
-  chooseSezi: function (e) {
+  chooseSezi: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -148,7 +149,7 @@ Page({
       animationData: animation.export(),
       chooseSize: true
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export()
@@ -164,7 +165,7 @@ Page({
   onPullDownRefresh() {
     this.onLoad()
   },
-  hideModal: function (e) {
+  hideModal: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -176,7 +177,7 @@ Page({
       animationData: animation.export()
 
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export(),
@@ -185,12 +186,12 @@ Page({
     }, 100)
   },
   ///////////////////////////
-  emailInput: function (e) { //input输入
+  emailInput: function(e) { //input输入
     this.setData({
       Input: e.detail.value
     });
   },
-  paimingInput: function (e) { //input输入
+  paimingInput: function(e) { //input输入
     if (e.target.dataset.flag == 0) {
       var member = this.data.gerenshuju
       member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrRank = e.detail.value
@@ -205,7 +206,7 @@ Page({
       })
     }
   },
-  defenInput: function (e) { //input输入
+  defenInput: function(e) { //input输入
     if (e.target.dataset.flag == 0) {
       var member = this.data.gerenshuju
       member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrScore = e.detail.value
@@ -267,7 +268,7 @@ Page({
     if (e.currentTarget.dataset.id == 1)
       if (self.data.shiminghide == false)
         self.ifshiming()
-    if (e.currentTarget.dataset.id==4)
+    if (e.currentTarget.dataset.id == 4)
       self.gerenpaiming()
   },
   paimingSelect(e) {
@@ -280,12 +281,12 @@ Page({
       shujuCur: e.currentTarget.dataset.id,
     })
   },
-  bindPickerChange: function (e) {
+  bindPickerChange: function(e) {
     this.setData({
       fenzuindex: e.detail.value
     })
   },
-  bindRadioChange: function (e) {
+  bindRadioChange: function(e) {
     if (e.currentTarget.dataset.id == 10 || e.currentTarget.dataset.id == 30)
       this.setData({
         canjiaorguankan: e.currentTarget.dataset.id,
@@ -299,7 +300,12 @@ Page({
     if (self.data.shiminghide == false)
       self.ifshiming()
   },
-  iftongyiRadioChange: function (e) {
+  bindRadioChangeshuju: function(e) {
+    this.setData({
+      lurushuju: e.currentTarget.dataset.id
+    })
+  },
+  iftongyiRadioChange: function(e) {
     this.setData({
       iftongyi: !this.data.iftongyi
     })
@@ -330,7 +336,7 @@ Page({
       console.log(err.errMsg)
     });
   },*/
-  chakanhuifu: function (e) { //查看回放跳转
+  chakanhuifu: function(e) { //查看回放跳转
     wx.navigateTo({
       url: '/pages/chakanhuifu/chakanhuifu?id=' + e.currentTarget.dataset.id,
     })
@@ -342,7 +348,7 @@ Page({
     let data = {
       actid: self.data.categoryId
     }
-    util.gets(url, data).then(function (res) {
+    util.gets(url, data).then(function(res) {
       self.setData({
         swiperList: res.data.data
       })
@@ -434,7 +440,7 @@ Page({
     app.wxRequest('GET', url, data, (res) => {
       this.setData({
         detail: res.data,
-        zfpd: res.data.left != '进行中' &&(res.data.lefttime.left.indexOf(':') < '0')
+        zfpd: res.data.left != '进行中' && (res.data.lefttime.left.indexOf(':') < '0')
       })
       this.setData({
         biaoti: res.data.actname
@@ -544,11 +550,11 @@ Page({
     let data = {
       actid: self.data.categoryId,
     }
-    util.gets(url, data).then(function (res) {
+    util.gets(url, data).then(function(res) {
       self.setData({
         huodongfenzu: res.data.data,
       })
-    }).then(function () {
+    }).then(function() {
       if (self.data.huodongfenzu.length == 0)
         self.setData({
           fenzuhide: true
@@ -722,7 +728,7 @@ Page({
       let shipintmp = self.data.shipin;
       for (let s of res.data.list)
         shipintmp.list.push(s)
-        self.setData({
+      self.setData({
         shipin: shipintmp,
         shipinBorder: res.data.border,
       })
@@ -731,7 +737,7 @@ Page({
       console.log(err.errMsg)
     });
   },
-  getShipinPinglunFenye: function (e) {
+  getShipinPinglunFenye: function(e) {
     var shipintmp = this.data.shipin;
     let url = app.globalData.URL + '/comm/listCommByObj';
     let data = {
@@ -757,9 +763,9 @@ Page({
       console.log(err.errMsg)
     });
   },
-  video_change: function (e) { ////视频切换
+  video_change: function(e) { ////视频切换
     var shipintmp = this.data.shipin;
-    shipintmp.list[e.currentTarget.dataset.index].src2=shipintmp.list[e.currentTarget.dataset.index].fileId;
+    shipintmp.list[e.currentTarget.dataset.index].src2 = shipintmp.list[e.currentTarget.dataset.index].fileId;
     if (this.data.bofang_if_id != e.currentTarget.id) { ///相等表示点击和播放不匹配
       if (this.data.bofang_pid == '0') {
         this.setData({
@@ -815,7 +821,7 @@ Page({
     }
   },
 
-  shipinguanzhu: function (e) {
+  shipinguanzhu: function(e) {
     var self = this;
     let shipintmp = this.data.shipin;
     if (shipintmp.list[e.currentTarget.dataset.index].myFollow == 1) {
@@ -849,7 +855,7 @@ Page({
       app.wxRequest('POST', url, data, (res) => {}, (err) => {});
     }
   },
-  shipinDianzan: function (e) {
+  shipinDianzan: function(e) {
     var self = this;
     let shipintmp = this.data.shipin;
     if (shipintmp.list[e.currentTarget.dataset.index].myApplaud == 1) {
@@ -890,7 +896,7 @@ Page({
   },
 
 
-  shipinChooseSezi: function (e) {
+  shipinChooseSezi: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -902,7 +908,7 @@ Page({
       shipinAnimationData: animation.export(),
       shipinChooseSize: true
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         shipinAnimationData: animation.export()
@@ -936,7 +942,7 @@ Page({
 
 
   },
-  hideModal: function (e) {
+  hideModal: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -948,7 +954,7 @@ Page({
       animationData: animation.export()
 
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export(),
@@ -956,7 +962,7 @@ Page({
       })
     }, 100)
   },
-  shipinHideModal: function (e) {
+  shipinHideModal: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -967,7 +973,7 @@ Page({
     that.setData({
       shipinAnimationData: animation.export()
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         shipinAnimationData: animation.export(),
@@ -975,13 +981,13 @@ Page({
       })
     }, 100)
   },
-  emailInput: function (e) { //input输入
+  emailInput: function(e) { //input输入
     this.setData({
       Input: e.detail.value
     });
   },
 
-  defenInput: function (e) { //input输入
+  defenInput: function(e) { //input输入
     if (e.target.dataset.flag == 0) {
       var member = this.data.gerenshuju
       member.list[e.target.dataset.index].members[e.target.dataset.index2].mbrScore = e.detail.value
@@ -1023,7 +1029,7 @@ Page({
         createrHead: self.data.user.head
       };
       let inputtmp = self.data.Input;
-      let shipintmp=self.data.shipin
+      let shipintmp = self.data.shipin
       app.wxRequest('POST', url, data, (res) => {
         ///////////////////本地添加评论内容
         shipintmp.list[self.data.dxindex].listComm.splice(0, 0, {
@@ -1032,10 +1038,10 @@ Page({
           'comment': inputtmp,
           'strCreatetime': '刚刚',
         })
-        shipintmp.list[self.data.dxindex].commCnt=shipintmp.list[self.data.dxindex].commCnt+1,
-        self.setData({
-          shipin:shipintmp,
-        })
+        shipintmp.list[self.data.dxindex].commCnt = shipintmp.list[self.data.dxindex].commCnt + 1,
+          self.setData({
+            shipin: shipintmp,
+          })
         wx.showToast({
           title: '评论成功！', // 标题
           icon: 'success', // 图标类型，默认success
@@ -1180,7 +1186,7 @@ Page({
       actid: self.data.categoryId,
       lid: self.data.user.id
     }
-    util.gets(url, data).then(function (res) {
+    util.gets(url, data).then(function(res) {
       if (res.data.data == null) {} else if (res.data.data.status == 10)
         self.setData({
           isbaomingtuandui: 1
@@ -1191,7 +1197,7 @@ Page({
       actid: self.data.categoryId,
       uid: self.data.user.id
     }
-    util.gets(url, data).then(function (res) {
+    util.gets(url, data).then(function(res) {
       if (res.data.data == null) {} else if (res.data.data.status == 10)
         self.setData({
           isbaominggeren: 1
@@ -1253,7 +1259,7 @@ Page({
           creater: self.data.user.id
         }
       console.log(data)
-      util.post_token(url, data).then(function (res) {
+      util.post_token(url, data).then(function(res) {
         wx.hideLoading()
         console.log(res)
         if (res.data.code == 0) {
@@ -1310,7 +1316,7 @@ Page({
             creater: self.data.user.id,
             members: self.data.members,
           }
-        util.post_token(url, data).then(function (res) {
+        util.post_token(url, data).then(function(res) {
           wx.hideLoading()
           console.log(res)
           if (res.data.code == 0) {
@@ -1367,7 +1373,7 @@ Page({
           status: 10,
           creater: self.data.user.id
         }
-      util.post_token(url, data).then(function (res) {
+      util.post_token(url, data).then(function(res) {
         if (res.data.code == 0) {
           wx.showToast({
             title: '报名成功！', // 标题
@@ -1423,7 +1429,7 @@ Page({
             creater: self.data.user.id,
             members: self.data.members,
           }
-        util.post_token(url, data).then(function (res) {
+        util.post_token(url, data).then(function(res) {
           if (res.data.code == 0) {
             wx.showToast({
               title: '报名成功！', // 标题
@@ -1487,7 +1493,7 @@ Page({
         actid: self.data.categoryId,
         uid: self.data.user.id
       }
-      util.gets(url, data).then(function (res) {
+      util.gets(url, data).then(function(res) {
         wx.hideLoading()
         if (res.data.code == 0) {
           wx.showToast({
@@ -1513,15 +1519,15 @@ Page({
         actid: self.data.categoryId,
         lid: self.data.user.id
       }
-      util.gets(url, data).then(function (res) {
+      util.gets(url, data).then(function(res) {
         status = res.data.data
-      }).then(function () {
+      }).then(function() {
         url = app.globalData.URL + '/act/cancelActSignupByTeam'
         data = {
           actid: self.data.categoryId,
           tid: status.tid
         }
-        util.gets(url, data).then(function (res) {
+        util.gets(url, data).then(function(res) {
           wx.hideLoading()
           if (res.data.code == 0) {
             wx.showToast({
@@ -1556,7 +1562,7 @@ Page({
       actid: self.data.categoryId,
       uid: e.currentTarget.dataset.id
     }
-    util.gets(url, data).then(function (res) {
+    util.gets(url, data).then(function(res) {
       wx.hideLoading()
       if (res.data.code == 0) {
         wx.showToast({
@@ -1593,7 +1599,7 @@ Page({
       status: 1 - e.currentTarget.dataset.members.myApplaud
     }
     console.log(data)
-    util.post_token(url, data).then(function (res) {
+    util.post_token(url, data).then(function(res) {
       if (res.data.code == 0) {
         wx.showToast({
           title: '操作成功！', // 标题
@@ -1616,22 +1622,33 @@ Page({
     var self = this
     var url = app.globalData.URL + '/act/updateActIndRank' //更新个人排名
     var mlist = []
-    for (let i in self.data.gerenshuju.list) {
-      for (let j in self.data.gerenshuju.list[i].members) {
-        let mem = {
-          mbrId: self.data.gerenshuju.list[i].members[j].mbrId,
-          mbrRank: self.data.gerenshuju.list[i].members[j].mbrRank,
-          mbrScore: self.data.gerenshuju.list[i].members[j].mbrScore
+    if (self.data.lurushuju == 10)
+      for (let i in self.data.gerenshuju.list) {
+        for (let j in self.data.gerenshuju.list[i].members) {
+          let mem = {
+            mbrId: self.data.gerenshuju.list[i].members[j].mbrId,
+            mbrRank: self.data.gerenshuju.list[i].members[j].mbrRank
+          }
+          mlist.push(mem)
         }
-        mlist.push(mem)
       }
-    }
+    else if (self.data.lurushuju == 20)
+      for (let i in self.data.gerenshuju.list) {
+        for (let j in self.data.gerenshuju.list[i].members) {
+          let mem = {
+            mbrId: self.data.gerenshuju.list[i].members[j].mbrId,
+            mbrScore: self.data.gerenshuju.list[i].members[j].mbrScore
+          }
+          mlist.push(mem)
+        }
+      }
     var data = {
       actid: self.data.categoryId,
+      mode:self.data.lurushuju,
       members: mlist
     }
-    console.log(data)
-    util.post_token(url, data).then(function (res) {
+    console.log(mlist)
+    util.post_token(url, data).then(function(res) {
       if (res.data.code == 0)
         wx.showToast({
           title: '操作成功！', // 标题
@@ -1673,7 +1690,7 @@ Page({
       teams: tlist,
       members: mlist
     }
-    util.post_token(url, data).then(function (res) {
+    util.post_token(url, data).then(function(res) {
       if (res.data.code == 0)
         wx.showToast({
           title: '操作成功！', // 标题
@@ -1698,7 +1715,7 @@ Page({
     else
       this.tuanduishuju()
     this.gerenpaiming()
-    this.taunduipaiming()
+    this.tuanduipaiming()
     this.setData({
       TabCur: 4
     })
@@ -1754,7 +1771,7 @@ Page({
       wx.showModal({
         title: '提示',
         content: '该活动需要实名参加/观看，是否前往实名',
-        success: function (res) {
+        success: function(res) {
           if (res.confirm) { //这里是点击了确定以后
             wx.navigateTo({
               url: '/pages/MyPages/my_profile/my_profile',
@@ -1768,7 +1785,7 @@ Page({
       wx.showModal({
         title: '提示',
         content: '该活动参加/观看需要手机号，是否前往绑定',
-        success: function (res) {
+        success: function(res) {
           if (res.confirm) { //这里是点击了确定以后
             wx.navigateTo({
               url: '/pages/MyPages/my_security/my_security',
@@ -1780,7 +1797,7 @@ Page({
       })
   },
   ///////////////////////////
-  dianjifangda(e){
+  dianjifangda(e) {
     wx.previewImage({
       current: e.currentTarget.dataset.imgurl, // 当前显示图片的http链接
       urls: [e.currentTarget.dataset.imgurl] // 需要预览的图片http链接列表
@@ -1790,12 +1807,12 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var self = this
     self.setData({
-      isMypageJmp:options.yes,
+      isMypageJmp: options.yes,
       categoryId: options.categoryId,
-      ziliaoID2:options.ziliaoID,
+      ziliaoID2: options.ziliaoID,
       user: wx.getStorageSync('userInfo'),
       TabCur: options.TabCur,
       biaoti: options.Title,
@@ -1803,12 +1820,11 @@ Page({
       city: wx.getStorageSync('city').code ? wx.getStorageSync('city').name : null,
       univ: wx.getStorageSync('school').code ? wx.getStorageSync('school').name : null,
     })
-    if(options.tzpd)
-    {
+    if (options.tzpd) {
       console.log(options.tzpd)
       app.globalData.tabbar = options.tzpd;
       self.setData({
-        tzpd:'/pages/xiaoyuan/xiaoyuan'
+        tzpd: '/pages/xiaoyuan/xiaoyuan'
       })
     }
     // else if(options.tzpd=='ziliao'){
@@ -1834,7 +1850,7 @@ Page({
     //this.news_detail()
     self.getShipin()
     self.getZhaopian()
-    setTimeout(function () {
+    setTimeout(function() {
       if (self.data.detail.length == 0)
         wx.showToast({
           title: '暂无活动数据！', // 标题
@@ -1846,18 +1862,18 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     var self = this
     self.yonghuxinxi()
     if (self.data.TabCur == 1)
-      setTimeout(function () {
+      setTimeout(function() {
         if (self.data.shiminghide == false)
           self.ifshiming()
       }, 1500)
@@ -1866,28 +1882,28 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     this.onLoad(this.data.options)
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     var self = this
     if (self.data.isReflesh) {
       let data = {
@@ -1942,33 +1958,33 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function (e) {
+  onShareAppMessage: function(e) {
     var that = this;
-    if(e.target.dataset.duixiang==50){
+    if (e.target.dataset.duixiang == 50) {
       return {
         title: '友点乐',
-        path: 'pages/fenxiangshipin/fenxiang?Tabcur=' + that.data.TabCur +'&shipinID='+that.data.shipin.list[e.target.dataset.index].id,
-        success: function (res) {
+        path: 'pages/fenxiangshipin/fenxiang?Tabcur=' + that.data.TabCur + '&shipinID=' + that.data.shipin.list[e.target.dataset.index].id,
+        success: function(res) {
           console.log("转发成功:" + JSON.stringify(res));
           that.shareClick();
         },
-        fail: function (res) {
+        fail: function(res) {
           console.log("转发失败:" + JSON.stringify(res));
         }
       }
-    }else{
+    } else {
       return {
         title: '友点乐',
         path: 'pages/yundongxiangqing/yundongxiangqing?TabCur=' + that.data.TabCur + '&Title=' + that.data.biaoti + '&categoryId=' + that.data.categoryId,
-        success: function (res) {
+        success: function(res) {
           console.log("转发成功:" + JSON.stringify(res));
           that.shareClick();
         },
-        fail: function (res) {
+        fail: function(res) {
           console.log("转发失败:" + JSON.stringify(res));
         }
       }
     }
-    
+
   }
 })
