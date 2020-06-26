@@ -759,7 +759,7 @@
         <view wx:else class="card-text-content margin-right-xl margin-left-xs">{{index+1}}</view>
 
         <view class="cu-avatar round my " style="background-image:url({{item.teamLogo}}); "></view>
-        <text class="paiming-name " decode="{{true}} ">&ensp;{{item.team}}</text>
+        <text class="paiming-name" decode="{{true}} ">&ensp;{{item.team}}</text>
         <view class="paiming-name text-orange " wx:if="{{members.mbrScore!=null}}" style="position: absolute;right:40rpx;">{{item.teamScore}}
         </view>
       </view>
