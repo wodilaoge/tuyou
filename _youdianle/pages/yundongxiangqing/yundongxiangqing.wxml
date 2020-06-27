@@ -10,7 +10,7 @@
   </view>
   <view hidden="{{rotationhide}}">
     <swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
-      <swiper-item wx:for="{{swiperList}}" wx:key >
+      <swiper-item wx:for="{{swiperList}}" wx:key>
         <image src="{{item.rotation}}" mode="aspectFill" bindtap="towebview3" data-item="{{item}}"></image>
         <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
       </swiper-item>
@@ -112,7 +112,7 @@
           <view class="cu-bar-title">奖品设置</view>
         </view>
         <rich-text hidden="{{detail.award==null}}" nodes="{{detail.award}}"></rich-text>
-        <image hidden="{{detail.awardpic==null}}" src="{{detail.awardpic}}" mode="scaleToFill" style="width:700rpx; "data-imgurl="{{detail.awardpic}}" bindtap="dianjifangda"></image>
+        <image hidden="{{detail.awardpic==null}}" src="{{detail.awardpic}}" mode="scaleToFill" style="width:700rpx; " data-imgurl="{{detail.awardpic}}" bindtap="dianjifangda"></image>
       </view>
     </view>
     <view hidden="{{detail.sponsor==null&&detail.sponsorpic==null}}">
@@ -539,7 +539,8 @@
                 <view>
                   <text class='card-text-content-time2'>{{shipin.list[0].listComm[0].strCreatetime}}</text>
                 </view>
-              </view>            </view>
+              </view>
+            </view>
             <view class="margin-top sp-pinlun-content" bindtap="shipinChooseSezi" data-duixiang="{{50}}" data-dxid="{{shipin.list[0].id}}" data-index="{{0}}" wx:if="{{shipin.list[0].listComm[1]}}">
               <image class="sp-pinglun-avatar round " src="{{shipin.list[0].listComm[1].createrHead}} "></image>
               <view class="sp-pinglun-name ">{{shipin.list[0].listComm[1].createrAlias}}</view>
@@ -748,7 +749,7 @@
           </view>
           <view wx:else class="card-text-content margin-right-xl margin-left-xs">{{index+1}}</view>
 
-          <view class="cu-avatar round my " style="background-image:url({{members.mbrHead}}); "></view>
+          <view class="cu-avatar round my " style="background-image:url({{members.mbrHead}});" data-id="{{members.mbrId}}" bindtap="gerenziliao"></view>
           <text class="paiming-name " decode="{{true}}">&ensp;{{members.mbrAlias}}</text>
           <view class="paiming-name text-orange " wx:if="{{members.mbrScore!=null}}" style="position:absolute;right:40rpx; ">{{members.mbrScore}}分
           </view>
@@ -758,19 +759,13 @@
 
     <block wx:if="{{paimingCur==1}}">
       <view class="bg-white padding yundong-sp-center " wx:for="{{tuanduipaiming.list}}" wx:for-index="index">
-        <view wx:if="{{index==0}}">
-          <image class="icon-paiming " mode="aspectFit " src="/img/icon_champion@3x.png"></image>
-        </view>
-        <view wx:elif="{{index==1}}">
-          <image class="icon-paiming " mode="aspectFit " src="/img/icon_runner_up@3x.png"></image>
-        </view>
-        <view wx:elif="{{index==2}}">
-          <image class="icon-paiming " mode="aspectFit " src="/img/icon_second_runner_up@3x.png"></image>
+        <view wx:if="{{members.mbrRankLogo!=null}}">
+          <image class="icon-paiming " mode="aspectFit " src="{{item.mbrRankLogo}}"></image>
         </view>
         <view wx:else class="card-text-content margin-right-xl margin-left-xs">{{index+1}}</view>
 
         <view class="cu-avatar round my " style="background-image:url({{item.teamLogo}}); "></view>
-        <text class="paiming-name " decode="{{true}} ">&ensp;{{item.team}}</text>
+        <text class="paiming-name" decode="{{true}} ">&ensp;{{item.team}}</text>
         <view class="paiming-name text-orange " wx:if="{{members.mbrScore!=null}}" style="position: absolute;right:40rpx;">{{item.teamScore}}
         </view>
       </view>
@@ -827,6 +822,21 @@
   <block wx:if="{{TabCur==5}}">
     <view>
       <view class=" bg-white cu-bar-title padding ">活动数据录入</view>
+      <view class="cu-form-group">
+        <radio-group class="block" style="margin-left:240rpx;">
+          <view class="flex">
+            <view>
+              <checkbox class="round blue " style="zoom: 80%;" data-id="10" bindtap='bindRadioChangeshuju' checked="{{lurushuju==10}}">
+              </checkbox>
+            </view>
+            <view class="tp-select">录入排名</view>
+            <view style="margin-left:40rpx;">
+              <checkbox class="round blue " style="zoom: 80%;" data-id="20" bindtap='bindRadioChangeshuju' checked="{{lurushuju==20}}"></checkbox>
+            </view>
+            <view class="tp-select">录入得分</view>
+          </view>
+        </radio-group>
+      </view>
     </view>
     <view class="content-white">
       <view class=" padding " style="margin-left:175rpx; " hidden="{{signupway}}">
@@ -845,11 +855,9 @@
           <view class="bg-blue " style="width:300rpx;height:42rpx; ">
             <text wx:if="{{item.groupname!=null}}" style="margin-left:36rpx; ">{{item.groupname}}</text>
           </view>
-          <view class="bg-blue " style="margin-left:1rpx;width:180rpx;height:42rpx; ">
-            <text style="margin-left:65rpx; ">排名</text>
-          </view>
-          <view class="bg-blue " style="margin-left:1rpx;width:208rpx;height:42rpx; ">
-            <text style="margin-left:81rpx; ">得分</text>
+          <view class="bg-blue " style="margin-left:1rpx;width:380rpx;height:42rpx; ">
+            <text style="margin-left:160rpx;" wx:if="{{lurushuju==10}}">排名</text>
+            <text style="margin-left:160rpx;" wx:if="{{lurushuju==20}}">得分</text>
           </view>
 
 
@@ -858,10 +866,10 @@
               <view class="cu-avatar round my " style="background-image:url({{members.mbrHead}}); "></view>
               <text class="paiming-name " decode="{{true}} ">&ensp;{{members.mbrAlias}}</text>
             </view>
-            <view class="view-active" style="margin-left:64rpx;width:60rpx;height:42rpx;">
+            <view class="view-active" style="margin-left:114rpx;width:160rpx;height:42rpx;" wx:if="{{lurushuju==10}}">
               <input placeholder="{{members.mbrRank==null?'':members.mbrRank}}" bindinput="paimingInput" data-flag="0" data-index2="{{index2}}" data-index="{{index}}" />
             </view>
-            <view class="view-active" style="margin-left:150rpx;width:60rpx;height:42rpx;">
+            <view class="view-active" style="margin-left:114rpx;width:160rpx;height:42rpx;" wx:if="{{lurushuju==20}}">
               <input placeholder="{{members.mbrScore==null?'':members.mbrScore}}" bindinput="defenInput" data-flag="0" data-index2="{{index2}}" data-index="{{index}}" />
             </view>
           </view>
@@ -901,10 +909,10 @@
 
     <view style="margin-top:140rpx;">
       <view class="yundong-sp-center " style="margin-left:39rpx;margin-bottom:44rpx;width: 668rpx; height: 80rpx; ">
-        <button class="shuju-btn1 line-red " bindtap="jieshu" hidden="{{detail.lefttime.left=='进行中'||detail.lefttime.left=='报名中'}}">结束本场活动</button>
+        <button class="shuju-btn1 line-red " bindtap="jieshu" hidden="{{zfpd}}">结束本场活动</button>
         <button class="shuju-btn1 line-orange " bindtap="tijiao">提交</button>
       </view>
-      <button class="shuju-btn1 bg-orange round " style="width: 668rpx; height: 80rpx;" bindtap="tijiaobingjieshu" hidden="{{detail.lefttime.left!='进行中'&& detail.lefttime.left!='报名中'}}">提交并结束本场活动</button>
+      <button class="shuju-btn1 bg-orange round " style="width: 668rpx; height: 80rpx;" bindtap="tijiaobingjieshu" hidden="{{zfpd}}">提交并结束本场活动</button>
     </view>
   </block>
 
@@ -1033,8 +1041,8 @@
           <view class="sp-pinglun-name ">{{shipin.list[shipin_index].listComm[index2].createrAlias}}</view>
           <view>
             <view class="sp-pinglun-neirong-2 ">{{shipin.list[shipin_index].listComm[index2].comment}}</view>
-              <text class='card-text-content-time2'>{{shipin.list[shipin_index].listComm[index2].strCreatetime}}</text>
-            
+            <text class='card-text-content-time2'>{{shipin.list[shipin_index].listComm[index2].strCreatetime}}</text>
+
           </view>
         </view>
       </view>

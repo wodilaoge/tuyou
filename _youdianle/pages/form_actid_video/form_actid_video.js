@@ -296,18 +296,34 @@ Page({
   },
   chooseVideo2(e) {
     var that = this
-    wx.chooseVideo({
-      success: (res) => {
-        console.log(res.tempFilePath)
-        this.setData({
-          imgList: res.tempFilePath,
-          videonum: 1
-        })
-        upload.uploadFile(this.data.imgList, 'video', that)
-        this.setData({
-          loadModal: true,
-        })
-      }
-    });
+    let url = app.globalData.URL + '/config/findVideoSize';
+    util.gets(url, {}).then(function (res) {
+      console.log(res.data)
+      let limitVideoSize = res.data.data
+      wx.chooseVideo({
+        success: (res) => {
+          console.log(res.tempFilePath)
+          // console.log("视频信息-大小" + res.size)
+          // console.log("视频信息-时长" + res.duration)
+          if (res.size > 1024 * 1024 * limitVideoSize) {
+            wx.showToast({
+              title: "视频不能超过" + limitVideoSize + "MB!",
+              icon: 'none',
+              duration: 1000 * 2,
+              mask: true
+            })
+            return;
+          }
+          this.setData({
+            imgList: res.tempFilePath,
+            videonum: 1
+          })
+          upload.uploadFile(this.data.imgList, 'video', that)
+          this.setData({
+            loadModal: true,
+          })
+        }
+      });
+    })
   }
 })

@@ -22,7 +22,7 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -119,7 +119,7 @@
 					"id": 8,
 					"name": "运动详情",
 					"pathName": "pages/yundongxiangqing/yundongxiangqing",
-					"query": "categoryId= 31681827760504832&Title=运动详情&TabCur=0",
+					"query": "categoryId= 31681827760504832&Title=运动详情&TabCur=5",
 					"scene": null
 				},
 				{
