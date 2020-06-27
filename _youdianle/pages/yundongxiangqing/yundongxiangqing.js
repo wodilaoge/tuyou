@@ -821,7 +821,6 @@ Page({
       }
     }
   },
-<<<<<<< HEAD
   yingChangShipin:function(e){
     console.log(e)
     let shipintmp=this.data.shipin;
@@ -833,10 +832,6 @@ Page({
     this.video_change(e)
   },
   shipinguanzhu: function (e) {
-=======
-
-  shipinguanzhu: function(e) {
->>>>>>> 42313c7d70670b64324a3b88f0b3f7ed60f52a08
     var self = this;
     let shipintmp = this.data.shipin;
     if (shipintmp.list[e.currentTarget.dataset.index].myFollow == 1) {
