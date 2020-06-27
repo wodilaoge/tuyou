@@ -76,7 +76,8 @@ Page({
     univ: '',
     ssss: '',
     dxindex: 0,
-
+    // defaultPoster: '../../img/login/icon.png',
+    defaultPoster: 'https://kt-1301681474.cos.ap-shanghai.myqcloud.com/app/logo/10.289c78db97b3b9badc37a9bd4b0d8f6a.png',
   },
   //////////////////////
   towebview3(e) {
@@ -427,14 +428,14 @@ Page({
   },
 
   /////////////////////////
-  
+
   getShipin() { //视频
     var self = this;
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
       pageSize: 2,
-      city: this.data.city ,
-      univ: this.data.univ ,
+      city: this.data.city,
+      univ: this.data.univ,
     }
     app.wxRequest('POST', url, data, (res) => {
       if (res.data.border == null) {
@@ -442,8 +443,8 @@ Page({
           isRefleshshipin: false,
         })
       }
-      console.log(res)
       let shipintmp = res.data;
+      console.log(shipintmp)
       this.setData({
         shipin: shipintmp,
         shipinBorder: res.data.border,
@@ -485,7 +486,7 @@ Page({
     if (this.data.bofang_if_id != e.currentTarget.id) { ///相等表示点击和播放不匹配
       if (this.data.bofang_pid == '0') {
         this.setData({
-          bofang_pid: '1'
+          bofang_pid: '1',
         })
       }
       let url = app.globalData.URL + '/video/updatePlayCnt';
@@ -497,7 +498,6 @@ Page({
       self.setData({
         shipin: shipintmp
       })
-
       let now_id = e.currentTarget.id;
       let prev_id = this.data.video_id;
       this.setData({
@@ -530,6 +530,16 @@ Page({
         })
       }
     }
+  },
+  yingChangShipin:function(e){
+    console.log(e)
+    let shipintmp=this.data.shipin;
+    shipintmp.list[e.currentTarget.dataset.index].yingChang=1;
+    shipintmp.list[e.currentTarget.dataset.index].shipinSRC = shipintmp.list[e.currentTarget.dataset.index].fileId; /////////点击再加载
+    this.setData({
+      shipin: shipintmp
+    })
+    this.video_change(e)
   },
   shipinguanzhu: function (e) {
     var self = this;
@@ -611,7 +621,7 @@ Page({
       acid1: this.data.shipinCur,
       pageSize: 2,
       city: this.data.city,
-      univ: this.data.univ ,
+      univ: this.data.univ,
     };
     app.wxRequest('POST', url, data, (res) => {
       let shipintmp = res.data;
@@ -635,7 +645,7 @@ Page({
       pageSize: 2,
       border: this.data.shipinBorder,
       city: this.data.city,
-      univ: this.data.univ ,
+      univ: this.data.univ,
     };
     app.wxRequest('POST', url, data, (res) => {
       console.log(res)
@@ -834,16 +844,16 @@ Page({
           'comment': inputtmp,
           'strCreatetime': '刚刚',
         })
-        shipintmp.list[self.data.dxindex].commCnt=shipintmp.list[self.data.dxindex].commCnt+1,
-        self.setData({
-          shipin: shipintmp,
-        })
+        shipintmp.list[self.data.dxindex].commCnt = shipintmp.list[self.data.dxindex].commCnt + 1,
+          self.setData({
+            shipin: shipintmp,
+          })
         wx.showToast({
           title: '评论成功！', // 标题
           icon: 'success', // 图标类型，默认success
           duration: 1500 // 提示窗停留时间，默认1500ms
         })
-        
+
       }, (err) => {
         console.log(err.errMsg)
       });
@@ -916,14 +926,14 @@ Page({
       TabCur: options.TabCur,
     })
     this.xuanran(); //初始化
-      this.getShipin();
-      this.setData({ //读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
-        TabCur: app.globalData.tabbar
-      })
+    this.getShipin();
+    this.setData({ //读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
+      TabCur: app.globalData.tabbar
+    })
     this.towerSwiper('xiaoyuanSwiperList')
 
   },
-  onShow: function() {
+  onShow: function () {
     if (wx.getStorageSync('city') != "")
       this.setData({
         city: wx.getStorageSync('city').code,
@@ -1007,10 +1017,10 @@ Page({
   onShareAppMessage: function (e) {
     var self = this;
     console.log(e)
-    if(e.target.dataset.duixiang==50){
+    if (e.target.dataset.duixiang == 50) {
       return {
         title: '友点乐',
-        path: 'pages/fenxiangshipin/fenxiang?&shipinID='+self.data.shipin.list[e.target.dataset.index].id,
+        path: 'pages/fenxiangshipin/fenxiang?&shipinID=' + self.data.shipin.list[e.target.dataset.index].id,
         success: function (res) {
           console.log("转发成功:" + JSON.stringify(res));
           self.shareClick();
@@ -1019,7 +1029,7 @@ Page({
           console.log("转发失败:" + JSON.stringify(res));
         }
       }
-    }else{
+    } else {
       return {
         title: '友点乐',
         path: 'pages/xiaoyuan/xiaoyuan',
@@ -1032,7 +1042,7 @@ Page({
         }
       }
     }
-   
+
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作

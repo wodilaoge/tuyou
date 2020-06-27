@@ -12,7 +12,7 @@ Page({
     biaoti: "",
     yibaomingList: [],
     cansaiset: false,
-    guankanset: false,
+    guankanset: false,  
     guankanhide: false,
     shiminghide: false,
     iftongyi: true,
