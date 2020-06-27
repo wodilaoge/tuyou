@@ -63,6 +63,7 @@ Page({
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '0', ///1表示有一个播放，0表示无播放
+    defaultPoster: 'https://kt-1301681474.cos.ap-shanghai.myqcloud.com/app/logo/10.289c78db97b3b9badc37a9bd4b0d8f6a.png',
     shipin_index: 0,
     shipinListComm: [],
     ifshipinListComm: 0,
@@ -812,7 +813,16 @@ Page({
       }
     }
   },
-
+  yingChangShipin:function(e){
+    console.log(e)
+    let shipintmp=this.data.shipin;
+    shipintmp.list[e.currentTarget.dataset.index].yingChang=1;
+    shipintmp.list[e.currentTarget.dataset.index].shipinSRC = shipintmp.list[e.currentTarget.dataset.index].fileId; /////////点击再加载
+    this.setData({
+      shipin: shipintmp
+    })
+    this.video_change(e)
+  },
   shipinguanzhu: function (e) {
     var self = this;
     let shipintmp = this.data.shipin;
