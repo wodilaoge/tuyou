@@ -265,9 +265,9 @@ Page({
           cover:this.data.other,
           size:this.data.videosize.toFixed(1).toString()+'M',
           notes: this.data.notes,
-          univ: pro.code,
-          province: city.code,
-          city: school.code,
+          univ: school.code,
+          province: pro.code,
+          city: city.code,
           status: '10',
           creater: user.id,
           mender: ''

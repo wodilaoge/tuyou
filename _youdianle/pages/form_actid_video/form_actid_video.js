@@ -4,7 +4,7 @@ var upload = require("../../utils/upload.js");
 var util = require("../../utils/util.js");
 Page({
   data: {
-    isagree:true,
+    isagree: true,
     hiddenmodalput: true,
     group: 0,
     videonum: 0,
@@ -111,19 +111,19 @@ Page({
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], //从相册选择
       success: (res) => {
-          if (this.data.imgList2.length != 0) {
-            this.setData({
-              imgList2: this.data.imgList2.concat(res.tempFilePaths)
-            })
-          } else {
-            this.setData({
-              imgList2: res.tempFilePaths
-            })
-          }
-          upload.uploadFile(this.data.imgList2[this.data.imgList2.length - 1], 'other', that)
+        if (this.data.imgList2.length != 0) {
           this.setData({
-            loadModal: true
+            imgList2: this.data.imgList2.concat(res.tempFilePaths)
           })
+        } else {
+          this.setData({
+            imgList2: res.tempFilePaths
+          })
+        }
+        upload.uploadFile(this.data.imgList2[this.data.imgList2.length - 1], 'other', that)
+        this.setData({
+          loadModal: true
+        })
       }
     });
   },
@@ -150,12 +150,12 @@ Page({
         authorAlias: user.nickname,
         authorHead: user.head,
         fileId: this.data.video,
-        cover:this.data.other,
-        size:this.data.videosize.toFixed(1).toString()+'M',
+        cover: this.data.other,
+        size: this.data.videosize.toFixed(1).toString() + 'M',
         notes: this.data.notes,
-        univ: pro.code,
-        province: city.code,
-        city: school.code,
+        univ: school.code,
+        province: pro.code,
+        city: city.code,
         status: '10',
         creater: user.id,
         mender: ''
@@ -207,21 +207,17 @@ Page({
   },
   firstcommit() {
     var that = this
-    if(!that.data.title){
+    if (!that.data.title) {
       wx.showToast({
-        title:'请先输入标题',
-        duration:2000
+        title: '请先输入标题',
+        duration: 2000
       })
-    }
-    else if(!that.data.video)
-    {
+    } else if (!that.data.video) {
       wx.showToast({
         title: '请上传视频',
         duration: 2000
       })
-    }
-    else
-    {
+    } else {
       that.setData({
         hiddenmodalput: !this.data.hiddenmodalput
       })
@@ -348,10 +344,10 @@ Page({
             })
             return;
           }
-          let sizevideo=res.size
-          sizevideo=sizevideo/1024/1024
+          let sizevideo = res.size
+          sizevideo = sizevideo / 1024 / 1024
           that.setData({
-            videosize:sizevideo,
+            videosize: sizevideo,
             imgList: res.tempFilePath,
             videonum: 1
           })
