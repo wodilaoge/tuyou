@@ -20,6 +20,7 @@ Page({
     videoFile: null,
     coverFile: null,
     imgList: [],
+    imgList2: [],
     modalName: null,
     textareaAValue: '',
     textareaBValue: ''
@@ -102,6 +103,30 @@ Page({
       url: "../../pages/form_modify/form_modify"
     })
   },
+  chooseCover(e) {
+    var t = e.currentTarget.dataset.id
+    var that = this
+    wx.chooseImage({
+      count: 1, //默认9
+      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album'], //从相册选择
+      success: (res) => {
+          if (this.data.imgList2.length != 0) {
+            this.setData({
+              imgList2: this.data.imgList2.concat(res.tempFilePaths)
+            })
+          } else {
+            this.setData({
+              imgList2: res.tempFilePaths
+            })
+          }
+          upload.uploadFile(this.data.imgList2[this.data.imgList2.length - 1], 'other', that)
+          this.setData({
+            loadModal: true
+          })
+      }
+    });
+  },
   commit: function (e) {
     if (!this.data.title) {
       wx.showToast({
@@ -125,6 +150,8 @@ Page({
         authorAlias: user.nickname,
         authorHead: user.head,
         fileId: this.data.video,
+        cover:this.data.other,
+        size:this.data.videosize.toFixed(1).toString()+'M',
         notes: this.data.notes,
         univ: pro.code,
         province: city.code,
@@ -180,16 +207,23 @@ Page({
   },
   firstcommit() {
     var that = this
-    if(that.data.title)
-    {
-      that.setData({
-        hiddenmodalput: !this.data.hiddenmodalput
-      })
-    }
-    else{
+    if(!that.data.title){
       wx.showToast({
         title:'请先输入标题',
         duration:2000
+      })
+    }
+    else if(!that.data.video)
+    {
+      wx.showToast({
+        title: '请上传视频',
+        duration: 2000
+      })
+    }
+    else
+    {
+      that.setData({
+        hiddenmodalput: !this.data.hiddenmodalput
       })
     }
   },
@@ -314,12 +348,15 @@ Page({
             })
             return;
           }
-          this.setData({
+          let sizevideo=res.size
+          sizevideo=sizevideo/1024/1024
+          that.setData({
+            videosize:sizevideo,
             imgList: res.tempFilePath,
             videonum: 1
           })
-          upload.uploadFile(this.data.imgList, 'video', that)
-          this.setData({
+          upload.uploadFile(that.data.imgList, 'video', that)
+          that.setData({
             loadModal: true,
           })
         }

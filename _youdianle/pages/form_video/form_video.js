@@ -186,14 +186,36 @@ Page({
 
   firstcommit() {
     var that = this
-    if (that.data.title) {
-      that.setData({
-        hiddenmodalput: !this.data.hiddenmodalput
+    if(!that.data.information.sid)
+    {
+      wx.showToast({
+        title: '请选择板块',
+        duration: 2000
       })
-    } else {
+    }
+    else if(!that.data.information.acid1)
+    {
+      wx.showToast({
+        title: '请选择大类',
+        duration: 2000
+      })
+    }
+    else if (!that.data.title) {
       wx.showToast({
         title: '请先输入标题',
         duration: 2000
+      })
+    } 
+    else if(!that.data.video)
+    {
+      wx.showToast({
+        title: '请上传视频',
+        duration: 2000
+      })
+    }
+    else {
+      that.setData({
+        hiddenmodalput: !this.data.hiddenmodalput
       })
     }
 
@@ -226,9 +248,9 @@ Page({
         let url = app.globalData.URL + '/video/updateActVideo';
         var data = this.data
         let tmp=this.data.videosize
-        console.log(tmp)
-        tmp=tmp.toString()+'M'
-        console.log(tmp)
+        // console.log(tmp)
+        // tmp=tmp.toFixed(1).toString()+'M'
+        // console.log(tmp)
         var datas = {
           id: null,
           actid: '',
@@ -241,7 +263,7 @@ Page({
           authorHead: user.head,
           fileId: this.data.video,
           cover:this.data.other,
-          size:tmp,
+          size:this.data.videosize.toFixed(1).toString()+'M',
           notes: this.data.notes,
           univ: pro.code,
           province: city.code,
@@ -398,7 +420,6 @@ Page({
           })
       }
     });
-
   },
   chooseVideo: function (e) {
     const self = this;
@@ -426,7 +447,7 @@ Page({
           console.log(res.tempFilePath)
           // console.log("视频信息-大小" + res.size)
           // console.log("视频信息-时长" + res.duration)
-          if (res.size > 1024 * 1024 * 50) {
+          if (res.size > 1024 * 1024 * limitVideoSize) {
             wx.showToast({
               title: "视频不能超过" + limitVideoSize + "MB!",
               icon: 'none',

@@ -59,34 +59,37 @@
   <view class="cu-form-group margin-top">
     <text class="text">说明</text>
     <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput"
-      placeholder=" 清输入视频说明"></textarea>
+      placeholder=" 请输入视频说明"></textarea>
     <image class="icon2" src="../../img/write.png"></image>
   </view>
 
   <view class="cu-bar bg-white margin-top">
-		<view class="action">
-			封面图
-		</view>
-		<view class="action">
-			{{imgList.length}}/1
-		</view>
-	</view>
-	<view class="cu-form-group">
-		<view class="grid col-4 grid-square flex-sub">
-			<view class="bg-img" wx:for="{{imgList2}}" wx:key="{{index}}" bindtap="ViewImage" data-id="1" data-url="{{imgList2[index]}}">
-				<image src='{{imgList2[index]}}' mode='aspectFill'></image>
-				<view class="cu-tag bg-red" catchtap="DelImg" data-id='1' data-index="{{index}}">
-					<text class="cuIcon-close"></text>
-				</view>
-			</view>
-			<view class="solids" bindtap="chooseCover" data-id='1' wx:if="{{imgList2.length<1}}">
-				<text class="cuIcon-cameraadd"></text>
-			</view>
-		</view>    
-	</view>
-  <view class="cu-bar bg-white margin-top">
     <view class="action">
-      视频
+      封面图
+    </view>
+    <view class="action">
+      {{imgList2.length}}/1
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{imgList2}}" wx:key="{{index}}" bindtap="ViewImage" data-id="1"
+        data-url="{{imgList2[index]}}">
+        <image src='{{imgList2[index]}}' mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImg" data-id='1' data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" bindtap="chooseCover" data-id='1' wx:if="{{imgList2.length<1}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+  <view class="cu-bar bg-white margin-top">
+
+    <view class="action">
+      <view class=" text-red text-xl star">*</view>
+      <view>视频</view>
     </view>
     <view class="action">
       {{videonum}}/1
@@ -116,7 +119,8 @@
   </view>
 </form>
 <view class="padding flex flex-direction justify-between ">
-  <button class="cu-btn bg-orange margin-tb-sm lg round"  disabled="{{!isagree}}"  bindtap="firstcommit" data-target="Modal">提交</button>
+  <button class="cu-btn bg-orange margin-tb-sm lg round" disabled="{{!isagree}}" bindtap="firstcommit"
+    data-target="Modal">提交</button>
 </view>
 
 <modal hidden="{{hiddenmodalput}}" title="友点乐" confirm-text="提交" cancel-text='取消' bindcancel="cancel2"
