@@ -63,7 +63,7 @@
     <image class="icon2" src="../../img/write.png"></image>
   </view>
 
-  <!-- <view class="cu-bar bg-white margin-top">
+  <view class="cu-bar bg-white margin-top">
 		<view class="action">
 			封面图
 		</view>
@@ -73,17 +73,17 @@
 	</view>
 	<view class="cu-form-group">
 		<view class="grid col-4 grid-square flex-sub">
-			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-id="1" data-url="{{imgList[index]}}">
-				<image src='{{imgList[index]}}' mode='aspectFill'></image>
+			<view class="bg-img" wx:for="{{imgList2}}" wx:key="{{index}}" bindtap="ViewImage" data-id="1" data-url="{{imgList2[index]}}">
+				<image src='{{imgList2[index]}}' mode='aspectFill'></image>
 				<view class="cu-tag bg-red" catchtap="DelImg" data-id='1' data-index="{{index}}">
 					<text class="cuIcon-close"></text>
 				</view>
 			</view>
-			<view class="solids" bindtap="chooseCover" data-id='1' wx:if="{{imgList.length<1}}">
+			<view class="solids" bindtap="chooseCover" data-id='1' wx:if="{{imgList2.length<1}}">
 				<text class="cuIcon-cameraadd"></text>
 			</view>
 		</view>    
-	</view> -->
+	</view>
   <view class="cu-bar bg-white margin-top">
     <view class="action">
       视频

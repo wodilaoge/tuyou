@@ -18,6 +18,7 @@ Page({
     videoFile: null,
     coverFile: null,
     imgList: [],
+    imgList2: [],
     modalName: null,
     textareaAValue: null,
     textareaBValue: null,
@@ -224,6 +225,10 @@ Page({
       if (this.data.title) {
         let url = app.globalData.URL + '/video/updateActVideo';
         var data = this.data
+        let tmp=this.data.videosize
+        console.log(tmp)
+        tmp=tmp.toString()+'M'
+        console.log(tmp)
         var datas = {
           id: null,
           actid: '',
@@ -235,6 +240,8 @@ Page({
           authorAlias: user.nickname,
           authorHead: user.head,
           fileId: this.data.video,
+          cover:this.data.other,
+          size:tmp,
           notes: this.data.notes,
           univ: pro.code,
           province: city.code,
@@ -368,6 +375,31 @@ Page({
       }
     });
   },
+  chooseCover(e) {
+    var t = e.currentTarget.dataset.id
+    var that = this
+    wx.chooseImage({
+      count: 1, //默认9
+      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album'], //从相册选择
+      success: (res) => {
+          if (this.data.imgList2.length != 0) {
+            this.setData({
+              imgList2: this.data.imgList2.concat(res.tempFilePaths)
+            })
+          } else {
+            this.setData({
+              imgList2: res.tempFilePaths
+            })
+          }
+          upload.uploadFile(this.data.imgList2[this.data.imgList2.length - 1], 'other', that)
+          this.setData({
+            loadModal: true
+          })
+      }
+    });
+
+  },
   chooseVideo: function (e) {
     const self = this;
     wx.chooseVideo({
@@ -394,7 +426,7 @@ Page({
           console.log(res.tempFilePath)
           // console.log("视频信息-大小" + res.size)
           // console.log("视频信息-时长" + res.duration)
-          if (res.size > 1024 * 1024 * limitVideoSize) {
+          if (res.size > 1024 * 1024 * 50) {
             wx.showToast({
               title: "视频不能超过" + limitVideoSize + "MB!",
               icon: 'none',
@@ -403,12 +435,15 @@ Page({
             })
             return;
           }
-          this.setData({
+          let sizevideo=res.size
+          sizevideo=sizevideo/1024/1024
+          that.setData({
+            videosize:sizevideo,
             imgList: res.tempFilePath,
             videonum: 1
           })
-          upload.uploadFile(this.data.imgList, 'video', that)
-          this.setData({
+          upload.uploadFile(that.data.imgList, 'video', that)
+          that.setData({
             loadModal: true,
           })
         }
