@@ -297,7 +297,7 @@ Page({
         }).catch(function (res) {
           console.log(res)
           wx.showToast({
-            title: '提交失败！',
+            title: res.data.msg,
             icon: 'fail',
             image: '../../img/fail.png',
             duration: 2000
