@@ -65,7 +65,7 @@ Page({
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '0', ///1表示有一个播放，0表示无播放
-    defaultPoster: 'https://kt-1301681474.cos.ap-shanghai.myqcloud.com/app/logo/10.289c78db97b3b9badc37a9bd4b0d8f6a.png',
+    defaultPoster: '../../img/login/poster.png',
     shipin_index: 0,
     shipinListComm: [],
     ifshipinListComm: 0,
@@ -688,7 +688,7 @@ Page({
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
       actid: this.data.categoryId,
-      pageSize: 1,
+      pageSize: 5,
       // city: this.data.city === '不选' ? null : this.data.city,
       // univ: this.data.univ === '不选' ? null : this.data.univ,
     };
@@ -713,7 +713,7 @@ Page({
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
       actid: this.data.categoryId,
-      pageSize: 1,
+      pageSize: 5,
       border: this.data.shipinBorder,
       // city: this.data.city === '不选' ? null : this.data.city,
       // univ: this.data.univ === '不选' ? null : this.data.univ,
@@ -1900,7 +1900,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-
+console.log('////////////')
   },
 
   /**
