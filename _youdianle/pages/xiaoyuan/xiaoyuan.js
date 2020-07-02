@@ -76,8 +76,7 @@ Page({
     univ: '',
     ssss: '',
     dxindex: 0,
-    // defaultPoster: '../../img/login/icon.png',
-    defaultPoster: 'https://kt-1301681474.cos.ap-shanghai.myqcloud.com/app/logo/10.289c78db97b3b9badc37a9bd4b0d8f6a.png',
+    defaultPoster: '../../img/login/poster.png',
   },
   //////////////////////
   towebview3(e) {
@@ -430,12 +429,16 @@ Page({
   /////////////////////////
 
   getShipin() { //视频
+    wx.showLoading({
+      title: '加载中...',
+      mask: true //显示触摸蒙层  防止事件穿透触发
+    });
     var self = this;
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
-      pageSize: 2,
       city: this.data.city,
       univ: this.data.univ,
+      pageSize: 5,
     }
     app.wxRequest('POST', url, data, (res) => {
       if (res.data.border == null) {
@@ -452,15 +455,22 @@ Page({
     }, (err) => {
       console.log(err.errMsg)
     });
+    wx.hideLoading({
+      complete: (res) => {},
+    })
   },
   getShipinFenye() { //视频
+    wx.showLoading({
+      title: '加载中...',
+      mask: true //显示触摸蒙层  防止事件穿透触发
+    });
     var self = this;
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
-      pageSize: 2,
       border: this.data.shipinBorder,
       city: this.data.city,
       univ: this.data.univ,
+      pageSize: 5,
     };
     app.wxRequest('POST', url, data, (res) => {
       if (res.data.border == null) {
@@ -479,6 +489,9 @@ Page({
     }, (err) => {
       console.log(err.errMsg)
     });
+    wx.hideLoading({
+      complete: (res) => {},
+    })
   },
   video_change: function (e) { ////视频切换
     var self = this;
@@ -515,6 +528,7 @@ Page({
           bofang_pid: '0'
         })
       } else {
+        console.log(e.currentTarget.id)
         wx.createVideoContext(e.currentTarget.id).play();
         this.setData({
           bofang_pid: '1'
@@ -532,7 +546,7 @@ Page({
     }
   },
   yingChangShipin:function(e){
-    console.log(e)
+    console.log(e,'/////')
     let shipintmp=this.data.shipin;
     shipintmp.list[e.currentTarget.dataset.index].yingChang=1;
     shipintmp.list[e.currentTarget.dataset.index].shipinSRC = shipintmp.list[e.currentTarget.dataset.index].fileId; /////////点击再加载
@@ -616,12 +630,16 @@ Page({
     }
   },
   getShipinfenlei() { //视频
+    wx.showLoading({
+      title: '加载中...',
+      mask: true //显示触摸蒙层  防止事件穿透触发
+    });
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
       acid1: this.data.shipinCur,
-      pageSize: 2,
       city: this.data.city,
       univ: this.data.univ,
+      pageSize: 5,
     };
     app.wxRequest('POST', url, data, (res) => {
       let shipintmp = res.data;
@@ -637,15 +655,22 @@ Page({
     }, (err) => {
       console.log(err.errMsg)
     });
+    wx.hideLoading({
+      complete: (res) => {},
+    })
   },
   getShipinfenleiFenye() { //视频
+    wx.showLoading({
+      title: '加载中...',
+      mask: true //显示触摸蒙层  防止事件穿透触发
+    });
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
       acid1: this.data.shipinCur,
-      pageSize: 2,
       border: this.data.shipinBorder,
       city: this.data.city,
       univ: this.data.univ,
+      pageSize: 5,
     };
     app.wxRequest('POST', url, data, (res) => {
       console.log(res)
@@ -664,6 +689,9 @@ Page({
     }, (err) => {
       console.log(err.errMsg)
     });
+    wx.hideLoading({
+      complete: (res) => {},
+    })
   },
   chooseSezi: function (e) {
     var self = this;
@@ -925,13 +953,13 @@ Page({
       univ: wx.getStorageSync('school').code ? wx.getStorageSync('school').code : null,
       TabCur: options.TabCur,
     })
+  
     this.xuanran(); //初始化
     this.getShipin();
     this.setData({ //读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
       TabCur: app.globalData.tabbar
     })
     this.towerSwiper('xiaoyuanSwiperList')
-
   },
   onShow: function () {
     if (wx.getStorageSync('city') != "")
@@ -1207,5 +1235,5 @@ Page({
 
     }
   },
-
+ 
 })

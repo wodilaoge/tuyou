@@ -61,8 +61,11 @@
 
 .ss_remen_kuang {
   background-color: white;
-  height: 100rpx;
+  min-height: 100rpx;
+  height: auto;
   display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 30rpx;
 }
 
 .ss_remen_bt {

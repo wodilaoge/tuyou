@@ -508,9 +508,9 @@
 
           <view>
             <video id="video_{{index}}" src="{{shipin.list[0].shipinSRC}}" 
-            controls="{{true}}" style="width:100%;" hidden="{{!shipin.list[0].yingChang}}" autoplay="true"
+            controls="{{true}}" style="width:100%;" hidden="{{!shipin.list[0].yingChang}}" 
              bindtap="video_change" data-index="{{index}}" custom-cache="{{false}}"></video>
-             <image id="video_{{index}}" src="{{shipin.list[0].shipinPoster?shipin.list[0].shipinPoster:defaultPoster}}" style="width: 100%;height: 450rpx;" bindtap="yingChangShipin" data-index="{{index}}" hidden="{{shipin.list[0].yingChang}}"></image>
+             <image id="video_{{index}}" src="{{shipin.list[0].cover?shipin.list[0].cover:defaultPoster}}" style="width: 100%;height: 450rpx;" bindtap="yingChangShipin" data-index="{{index}}" hidden="{{shipin.list[0].yingChang}}"></image>
           </view>
           <view class="flex  margin-top ">
             <view class="sp-bofang-times ">播放{{shipin.list[0].playCnt}}次</view>
@@ -570,9 +570,9 @@
 
           <view>
             <video id="video_{{index}}" src="{{shipin.list[index].shipinSRC}}" 
-            controls="{{true}}" style="width:100%;" hidden="{{!shipin.list[index].yingChang}}" autoplay="true"
+            controls="{{true}}" style="width:100%;" hidden="{{!shipin.list[index].yingChang}}" 
              bindtap="video_change" data-index="{{index}}" custom-cache="{{false}}"></video>
-             <image id="video_{{index}}" src="{{shipin.list[index].shipinPoster?shipin.list[index].shipinPoster:defaultPoster}}" style="width: 100%;height: 450rpx;" bindtap="yingChangShipin" data-index="{{index}}" hidden="{{shipin.list[index].yingChang}}"></image>
+             <image id="video_{{index}}" src="{{shipin.list[index].cover?shipin.list[index].cover:defaultPoster}}" style="width: 100%;height: 450rpx;" bindtap="yingChangShipin" data-index="{{index}}" hidden="{{shipin.list[index].yingChang}}"></image>
           </view>
           <view class="flex  margin-top ">
             <view class="sp-bofang-times ">播放{{shipin.list[index].playCnt}}次</view>
@@ -594,7 +594,14 @@
             <view class="margin-top sp-pinlun-content" bindtap="shipinChooseSezi" data-duixiang="{{50}}" data-dxid="{{shipin.list[0].id}}" data-index="{{0}}" wx:if="{{shipin.list[index].listComm[0]}}">
               <image class="sp-pinglun-avatar round " src="{{shipin.list[index].listComm[0].createrHead}} "></image>
               <view class="sp-pinglun-name ">{{shipin.list[index].listComm[0].createrAlias}}</view>
-              <view class="sp-pinglun-neirong ">{{shipin.list[index].listComm[0].comment}}</view>
+              
+              <view>
+
+                <view class="sp-pinglun-neirong ">{{shipin.list[index].listComm[0].comment}}</view>
+                <view>
+                  <text class='card-text-content-time2'>{{shipin.list[index].listComm[0].strCreatetime}}</text>
+                </view>
+              </view>
             </view>
             <view class="margin-top sp-pinlun-content" bindtap="shipinChooseSezi" data-duixiang="{{50}}" data-dxid="{{shipin.list[0].id}}" data-index="{{0}}" wx:if="{{shipin.list[index].listComm[1]}}">
               <image class="sp-pinglun-avatar round " src="{{shipin.list[index].listComm[1].createrHead}} "></image>

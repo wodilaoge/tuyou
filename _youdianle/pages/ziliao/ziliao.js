@@ -57,13 +57,14 @@ Page({
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '0', ///1表示有一个播放，0表示无播放
     shipin_xiaolei: 0,
+    defaultPoster: '../../img/login/poster.png',
   },
   /////////////////////视频
   getShipinFenye() { //视频分页
     var self = this;
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
-      pageSize: 2,
+      pageSize: 5,
       acid1: self.data.AllActivity[self.data.shipin_xiaolei].code === null ? '076003001' : self.data.AllActivity[self.data.shipin_xiaolei].code,
       uid: self.data.duiyuanID,
       border: this.data.shipinBorder,
@@ -140,7 +141,16 @@ Page({
       }
     }
   },
-
+  yingChangShipin:function(e){
+    console.log(e)
+    let shipintmp=this.data.shipin;
+    shipintmp.list[e.currentTarget.dataset.index].yingChang=1;
+    shipintmp.list[e.currentTarget.dataset.index].shipinSRC = shipintmp.list[e.currentTarget.dataset.index].fileId; /////////点击再加载
+    this.setData({
+      shipin: shipintmp
+    })
+    this.video_change(e)
+  },
   shipinguanzhu: function (e) {
     var self = this;
     let shipintmp = this.data.shipin;
@@ -477,7 +487,7 @@ Page({
       let url = app.globalData.URL + '/video/listActVideo';
       let data = {
         acid1: that.data.AllActivity[tab].code,
-        pageSize: 2,
+        pageSize: 5,
         uid: that.data.duiyuanID,
         // city: this.data.city,
         // univ: this.data.univ ,
@@ -802,7 +812,7 @@ Page({
       data = {
         acid1: '076003001',
         'uid': res.data.id,
-        pageSize: 2,
+        pageSize: 5,
         // 'city': res.data.city===null?'':res.data.city,
         // 'univ':res.data.univ===null?'':res.data.univ
       };

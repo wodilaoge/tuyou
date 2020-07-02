@@ -51,7 +51,7 @@
 
   <view class="ss_remen_kuang">
     <view wx:for="{{hotWords}}">
-      <view class="flex" style="margin-left:36rpx;" bindtap="remen_sousuo_neirong" id="{{index}}">
+      <view class="flex" style="margin-left:36rpx;margin-top: 30rpx;" bindtap="remen_sousuo_neirong" id="{{index}}">
         <view class="ss_remen_bt_left"></view>
         <view class="ss_remen_bt">{{hotWords[index].keyword}}</view>
         <view class="ss_remen_bt_right"></view>
