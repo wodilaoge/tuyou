@@ -588,7 +588,7 @@ Page({
       wx.showToast({
         title: '请填写活动名称',
       })
-    } else if (!this.data.information.sid || !this.data.information.acid1) {
+    } else if (!this.data.information.sid) {
       wx.showToast({
         title: '请选择活动类型',
       })
