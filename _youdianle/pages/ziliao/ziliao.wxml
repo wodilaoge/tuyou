@@ -245,7 +245,7 @@
       <view wx:for="paimingDetail">
         <view class="flex" style="margin-top:44rpx;">
           <text class="paiming-fenshu" style="margin-left:24rpx;width:120rpx;">{{paimingDetail[index].mbrRank}}</text>
-          <text class="paiming-fenshu" style="margin-left:2rpx;width:180rpx;">{{paimingDetail[index].mbrScore}}</text>
+          <text class="paiming-fenshu" style="margin-left:2rpx;width:180rpx;">{{paimingDetail[index].mbrScore?paimingDetail[index].mbrScore:''}}</text>
           <text class="paiming-riqi" style="margin-left:2rpx;width:180rpx;">{{paimingDetail[index].acttime}}</text>
           <text class="paiming-huodong" style="margin-left:2rpx;width:216rpx;">{{paimingDetail[index].actname}}</text>
         </view>
@@ -491,7 +491,8 @@
             <video id="video_{{index}}" src="{{shipin.list[0].shipinSRC}}" 
             controls="{{true}}" style="width:100%;" hidden="{{!shipin.list[0].yingChang}}" 
              bindtap="video_change" data-index="{{index}}" custom-cache="{{false}}"></video>
-             <image id="video_{{index}}" src="{{shipin.list[0].cover?shipin.list[0].cover:defaultPoster}}" style="width: 100%;height: 450rpx;" bindtap="yingChangShipin" data-index="{{index}}" hidden="{{shipin.list[0].yingChang}}"></image>
+             <image id="video_{{index}}" src="{{shipin.list[0].cover?shipin.list[0].cover:defaultPoster}}" mode="{{shipin.list[0].cover?'scaleToFill':'center'}}"
+             style="width: 100%;height: 450rpx;background-color: black;" bindtap="yingChangShipin" data-index="{{index}}" hidden="{{shipin.list[0].yingChang}}"></image>
           </view>
           <view class="flex  margin-top ">
             <view class="sp-bofang-times ">播放{{shipin.list[0].playCnt}}次</view>
@@ -553,7 +554,8 @@
             <video id="video_{{index}}" src="{{shipin.list[index].shipinSRC}}" 
             controls="{{true}}" style="width:100%;" hidden="{{!shipin.list[index].yingChang}}" 
              bindtap="video_change" data-index="{{index}}" custom-cache="{{false}}"></video>
-             <image id="video_{{index}}" src="{{shipin.list[index].cover?shipin.list[index].cover:defaultPoster}}" style="width: 100%;height: 450rpx;" bindtap="yingChangShipin" data-index="{{index}}" hidden="{{shipin.list[index].yingChang}}"></image>
+             <image id="video_{{index}}" src="{{shipin.list[index].cover?shipin.list[index].cover:defaultPoster}}" mode="{{shipin.list[index].cover?'scaleToFill':'center'}}"
+             style="width: 100%;height: 450rpx;background-color: black;" bindtap="yingChangShipin" data-index="{{index}}" hidden="{{shipin.list[index].yingChang}}"></image>
           </view>
           <view class="flex  margin-top ">
             <view class="sp-bofang-times ">播放{{shipin.list[index].playCnt}}次</view>

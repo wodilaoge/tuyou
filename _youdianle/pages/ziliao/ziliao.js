@@ -949,7 +949,7 @@ Page({
 
       url = app.globalData.URL + '/act/listMyRank'
       data = {
-        uid: self.data.user.id,
+        uid: self.data.duiyuanID,
         acid1: res.data[0].code
       }
       app.wxRequest('GET', url, data, (res) => {
@@ -971,7 +971,7 @@ Page({
     var self = this
     let url = app.globalData.URL + '/act/listMyRank'
     let data = {
-      uid: self.data.user.id,
+      uid: self.data.duiyuanID,
       acid1: self.data.ziliaoDaleiCur
     }
     app.wxRequest('GET', url, data, (res) => {

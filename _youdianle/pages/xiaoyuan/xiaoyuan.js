@@ -517,6 +517,7 @@ Page({
         video_id: now_id,
         bofang_if_id: now_id
       })
+      console.log(prev_id,now_id)
       wx.createVideoContext(prev_id).pause();
       wx.createVideoContext(now_id).play();
 
