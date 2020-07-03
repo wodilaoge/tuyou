@@ -1823,6 +1823,7 @@ Page({
       isMypageJmp: options.yes,
       categoryId: options.categoryId,
       ziliaoID2: options.ziliaoID,
+      sousuo: options.sousuo,
       user: wx.getStorageSync('userInfo'),
       TabCur: options.TabCur,
       biaoti: options.Title,

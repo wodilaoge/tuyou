@@ -284,7 +284,7 @@ Page({
   },
   yundongxiangqing(e) {
     wx.navigateTo({
-      url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.yundong.id,
+      url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.yundong.id+'&sousuo=1',
     })
   },
   baomingtiaozhan(e) {

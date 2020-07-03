@@ -35,6 +35,10 @@ Component({
       type: String,
       default: ''
     },
+    sousuo: {
+      type: String,
+      default: ''
+    },
     isMypageJmp:{
       type: String,
       default: ''
@@ -55,7 +59,7 @@ Component({
     BackPage() {
       // console.log(this.properties.url)
       // console.log(this.properties.isMypageJmp)
-      if (this.properties.url && !this.properties.ziliaoID&&!this.properties.isMypageJmp) { /////朱修改
+      if (this.properties.url && !this.properties.ziliaoID&&!this.properties.isMypageJmp&& !this.properties.sousuo) { /////朱修改
         console.log('1')
         wx.switchTab({
           url: this.properties.url
