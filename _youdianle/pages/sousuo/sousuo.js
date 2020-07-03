@@ -19,6 +19,7 @@ Page({
     univ: '',
     isRefle: true,
     bkData: [],
+    shipin: [],
   },
   tabSelect(e) {
     this.setData({
@@ -66,6 +67,7 @@ Page({
     wx.hideLoading({
       complete: (res) => {},
     })
+  
   },
   sousuo_dalei_shipin(){
     var self=this;
@@ -88,7 +90,7 @@ Page({
         })
       }
       this.setData({
-        sousuo_detail_dalei: res.data.list,
+        shipin: res.data,
         daleiBorder: res.data.border,
       })
       
@@ -100,6 +102,7 @@ Page({
     })
   },
   change_sousuo() {
+    if (this.data.TabCur==6) {
     wx.showLoading({
       title: '搜索中...',
       mask: true //显示触摸蒙层  防止事件穿透触发
@@ -133,6 +136,12 @@ Page({
     wx.hideLoading({
       complete: (res) => {},
     })
+      
+  }else if(this.data.TabCur==4){
+    this.sousuo_dalei_shipin()
+  }else{
+    this.sousuo_dalei()
+  }
   },
   change_sousuo_lishi: function (e) {
     wx.showLoading({
@@ -334,7 +343,7 @@ Page({
       title: '搜索中...',
       mask: true //显示触摸蒙层  防止事件穿透触发
     });
-    let url = app.globalData.URL + '/search/listAct';
+    let url = app.globalData.URL + '/search/listVideo';
     let data = {
       keywords: this.data.sousuo_neirong,
       province: this.data.province === '不选' ? null : this.data.province,
@@ -353,7 +362,7 @@ Page({
       for (let s of res.data.list)
       sousuotmp.list.push(s)
       this.setData({
-        sousuo_detail_dalei: sousuotmp,
+        shipin: sousuotmp,
         daleiBorder: res.data.border,
       })
       
@@ -374,6 +383,102 @@ Page({
         bkData: res.data
       })
     })
+  },
+  video_change: function (e) { ////视频切换
+    //////////////////专门的转换为shipin
+    if(this.data.TabCur==6){
+      let shipintmp1=this.data.shipin;
+      shipintmp1.list=this.data.sousuo_detail.listVideo;
+      this.setData({
+        shipin:shipintmp1
+      })
+    }
+    var self = this;
+    var shipintmp = this.data.shipin;
+    if (this.data.bofang_if_id != e.currentTarget.id) { ///相等表示点击和播放不匹配
+      if (this.data.bofang_pid == '0') {
+        this.setData({
+          bofang_pid: '1',
+        })
+      }
+      let url = app.globalData.URL + '/video/updatePlayCnt';
+      let data = {
+        id: this.data.shipin.list[e.currentTarget.dataset.index].id,
+      };
+      app.wxRequest('POST', url, data, (res) => {})
+      shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
+      self.setData({
+        shipin: shipintmp
+      })
+      let now_id = e.currentTarget.id;
+      let prev_id = this.data.video_id;
+      this.setData({
+        video_id: now_id,
+        bofang_if_id: now_id
+      })
+      console.log(prev_id,now_id)
+      wx.createVideoContext(prev_id).pause();
+      // setTimeout(function () {//自动播放不行因为视频下载没有加载完整
+      //   wx.createVideoContext(now_id).play();
+      // }, 2000)
+      wx.createVideoContext(now_id).play();
+
+
+    } else { //////////当点击同一个，一次播放一次暂停
+      if (this.data.bofang_pid == '1') {
+        wx.createVideoContext(e.currentTarget.id).pause();
+        this.setData({
+          bofang_pid: '0'
+        })
+      } else {
+        console.log(e.currentTarget.id)
+        wx.createVideoContext(e.currentTarget.id).play();
+        this.setData({
+          bofang_pid: '1'
+        })
+        let url = app.globalData.URL + '/video/updatePlayCnt';
+        let data = {
+          id: this.data.shipin.list[e.currentTarget.dataset.index].id,
+        };
+        app.wxRequest('GET', url, data, (res) => {})
+        shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
+        self.setData({
+          shipin: shipintmp
+        })
+      }
+    }
+    if(this.data.TabCur==6){
+      let tmp=this.data.sousuo_detail;
+      tmp.listVideo=this.data.shipin.list;
+      this.setData({
+        sousuo_detail:tmp
+      })
+    }
+  },
+  yingChangShipin:function(e){
+    console.log(e,'/////',this.data.sousuo_detail)
+     //////////////////专门的转换为shipin
+     if(this.data.TabCur==6){
+      let shipintmp1=this.data.shipin;
+      shipintmp1.list=this.data.sousuo_detail.listVideo;
+      this.setData({
+        shipin:shipintmp1
+      })
+    }
+    let shipintmp=this.data.shipin;
+    shipintmp.list[e.currentTarget.dataset.index].yingChang=1;
+    shipintmp.list[e.currentTarget.dataset.index].shipinSRC = shipintmp.list[e.currentTarget.dataset.index].fileId; /////////点击再加载
+    this.setData({
+      shipin: shipintmp
+    })
+    if(this.data.TabCur==6){
+      let tmp=this.data.sousuo_detail;
+      tmp.listVideo=this.data.shipin.list;
+      this.setData({
+        sousuo_detail:tmp
+      })
+    }
+    this.video_change(e)
   },
   /**
    * 生命周期函数--监听页面加载
@@ -439,7 +544,7 @@ Page({
    */
   onReachBottom: function () {
     var self = this
-
+console.log('上拉刷新',this.data.isRefle)
     if (this.data.isRefle == true&&this.data.TabCur<4) {
 
       this.sousuo_fenye()

@@ -3,7 +3,11 @@ var util = require("../../../utils/util.js");
 Page({
   data: {
     Lists: ['全部', '校园', '聚会', '装扮', '摄影'],
-    TabCur: 0
+    TabCur: 0,
+    defaultPoster: '../../../img/login/poster.png',
+    video_id: 'video_0', ///用于切换视频
+    bofang_if_id: 'video_0', /////用数字来表示匹配
+    bofang_pid: '0', ///1表示有一个播放，0表示无播放
   },
   tabSelect(e) {
     this.setData({
@@ -60,7 +64,7 @@ Page({
     if (this.data.bofang_if_id != e.currentTarget.id) { ///相等表示点击和播放不匹配
       if (this.data.bofang_pid == '0') {
         this.setData({
-          bofang_pid: '1'
+          bofang_pid: '1',
         })
       }
       let url = app.globalData.URL + '/video/updatePlayCnt';
@@ -72,13 +76,13 @@ Page({
       self.setData({
         shipin: shipintmp
       })
-
       let now_id = e.currentTarget.id;
       let prev_id = this.data.video_id;
       this.setData({
         video_id: now_id,
         bofang_if_id: now_id
       })
+      console.log(prev_id,now_id)
       wx.createVideoContext(prev_id).pause();
       wx.createVideoContext(now_id).play();
 
@@ -90,6 +94,7 @@ Page({
           bofang_pid: '0'
         })
       } else {
+        console.log(e.currentTarget.id)
         wx.createVideoContext(e.currentTarget.id).play();
         this.setData({
           bofang_pid: '1'
@@ -105,6 +110,16 @@ Page({
         })
       }
     }
+  },
+  yingChangShipin:function(e){
+    console.log(e,'/////')
+    let shipintmp=this.data.shipin;
+    shipintmp.list[e.currentTarget.dataset.index].yingChang=1;
+    shipintmp.list[e.currentTarget.dataset.index].shipinSRC = shipintmp.list[e.currentTarget.dataset.index].fileId; /////////点击再加载
+    this.setData({
+      shipin: shipintmp
+    })
+    this.video_change(e)
   },
   shipinguanzhu: function (e) {
     var self = this;
@@ -337,5 +352,35 @@ Page({
         }
       }
     })
-  }
+  },
+  onShareAppMessage: function (e) {
+    var self = this;
+    console.log(e)
+    if (e.target.dataset.duixiang == 50) {
+      return {
+        title: '友点乐',
+        path: 'pages/fenxiangshipin/fenxiang?&shipinID=' + self.data.shipin.list[e.target.dataset.index].id,
+        success: function (res) {
+          console.log("转发成功:" + JSON.stringify(res));
+          self.shareClick();
+        },
+        fail: function (res) {
+          console.log("转发失败:" + JSON.stringify(res));
+        }
+      }
+    } else {
+      return {
+        title: '友点乐',
+        path: 'pages/xiaoyuan/xiaoyuan',
+        success: function (res) {
+          console.log("转发成功:" + JSON.stringify(res));
+          self.shareClick();
+        },
+        fail: function (res) {
+          console.log("转发失败:" + JSON.stringify(res));
+        }
+      }
+    }
+
+  },
 })

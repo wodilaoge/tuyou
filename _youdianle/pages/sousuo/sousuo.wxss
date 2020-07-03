@@ -139,3 +139,18 @@
   /*允许换行*/
   flex-direction: row;
 }
+.nothing{
+  width: 178rpx;
+  height: 207rpx;
+  margin-left: 270rpx;
+  margin-top: 298rpx;
+}
+.nothing_words{
+margin-top: 50rpx;
+margin-left: 250rpx;
+font-size:36rpx;
+font-family:PingFang SC;
+font-weight:500;
+color:rgba(102,102,102,1);
+}
+
