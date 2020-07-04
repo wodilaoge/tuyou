@@ -452,12 +452,16 @@ Page({
         shipin: shipintmp,
         shipinBorder: res.data.border,
       })
+      wx.hideLoading({
+        complete: (res) => {},
+      })
     }, (err) => {
       console.log(err.errMsg)
+      wx.hideLoading({
+        complete: (res) => {},
+      })
     });
-    wx.hideLoading({
-      complete: (res) => {},
-    })
+  
   },
   getShipinFenye() { //视频
     wx.showLoading({
@@ -635,6 +639,7 @@ Page({
       title: '加载中...',
       mask: true //显示触摸蒙层  防止事件穿透触发
     });
+    var self =this;
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
       acid1: this.data.shipinCur,
@@ -653,12 +658,16 @@ Page({
         shipin: shipintmp,
         shipinBorder: res.data.border,
       })
+      wx.hideLoading({
+        complete: (res) => {},
+      })
     }, (err) => {
       console.log(err.errMsg)
+      wx.hideLoading({
+        complete: (res) => {},
+      })
     });
-    wx.hideLoading({
-      complete: (res) => {},
-    })
+   
   },
   getShipinfenleiFenye() { //视频
     wx.showLoading({

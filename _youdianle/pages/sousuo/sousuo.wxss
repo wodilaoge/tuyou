@@ -154,3 +154,11 @@ font-weight:500;
 color:rgba(102,102,102,1);
 }
 
+.video-list-photo {
+  width: 330rpx;
+  height: 250rpx;
+  padding: 10rpx;
+  box-sizing: border-box;
+  background-color: black;
+}
+

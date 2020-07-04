@@ -398,7 +398,7 @@
             hidden="{{!item.yingChang}}" bindtap="video_change" data-index="{{index}}" custom-cache="{{false}}" />
           <image id="video_{{index}}"  class="video-list-photo radius" src="{{item.cover?item.cover:defaultPoster}}"
             mode="{{item.cover?'scaleToFill':'center'}}" bindtap="yingChangShipin" data-index="{{index}}"
-            hidden="{{item.yingChang}}"></image>
+        hidden="{{item.yingChang}}" ></image>
           <view class="video_text">{{item.title}}</view>
         </view>
       </view>

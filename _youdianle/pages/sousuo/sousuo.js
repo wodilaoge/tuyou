@@ -50,6 +50,9 @@ Page({
       sid: this.data.bkData[this.data.TabCur-1].code,
     };
     app.wxRequest('POST', url, data, (res) => {
+      wx.hideLoading({
+        complete: (res) => {},
+      })
       console.log(res)
       if (res.data.border == null) {
         self.setData({
@@ -60,14 +63,14 @@ Page({
         sousuo_detail_dalei: res.data.list,
         daleiBorder: res.data.border,
       })
-      
+    
     }, (err) => {
+      wx.hideLoading({
+        complete: (res) => {},
+      })
       console.log(err.errMsg)
     });
-    wx.hideLoading({
-      complete: (res) => {},
-    })
-  
+   
   },
   sousuo_dalei_shipin(){
     var self=this;
@@ -102,11 +105,6 @@ Page({
     })
   },
   change_sousuo() {
-    if (this.data.TabCur==6) {
-    wx.showLoading({
-      title: '搜索中...',
-      mask: true //显示触摸蒙层  防止事件穿透触发
-    });
     if (this.data.sousuo_neirong) {
       this.setData({
         change_if: 1,
@@ -116,6 +114,11 @@ Page({
         change_if: 0,
       })
     }
+    if (this.data.TabCur==6) {
+    wx.showLoading({
+      title: '搜索中...',
+      mask: true //显示触摸蒙层  防止事件穿透触发
+    });
     let url = app.globalData.URL + '/search/listAll';
     let data = {
       keywords: this.data.sousuo_neirong,
@@ -144,35 +147,17 @@ Page({
   }
   },
   change_sousuo_lishi: function (e) {
-    wx.showLoading({
-      title: '搜索中...',
-      mask: true //显示触摸蒙层  防止事件穿透触发
-    });
     this.setData({
       change_if: 1,
       sousuo_neirong: e.currentTarget.dataset.neirong,
     })
-    let url = app.globalData.URL + '/search/listAll';
-    let data = {
-      keywords: this.data.sousuo_neirong,
-      province: this.data.province === '不选' ? null : this.data.province,
-      city: this.data.city === '不选' ? null : this.data.city,
-      univ: this.data.univ === '不选' ? null : this.data.univ,
-    };
-    console.log(data)
-    app.wxRequest('POST', url, data, (res) => {
-      console.log(res)
-      this.setData({
-        sousuo_detail: res.data,
-      })
-    }, (err) => {
-      console.log(err.errMsg)
-    });
-    this.setLishi()
-    this.getLishi()
-    wx.hideLoading({
-      complete: (res) => {},
-    })
+    if(this.data.TabCur==6){
+      this.change_sousuo()
+    }else if(this.data.TabCur==4){
+      this.sousuo_dalei_shipin()
+    }else{
+      this.sousuo_dalei()
+    }
   },
   timeChange: function () { //////修改时间
     var obj = [];
@@ -208,9 +193,17 @@ Page({
   remen_sousuo_neirong: function (e) {
     console.log(e)
     this.setData({
+      change_if: 1,
       sousuo_neirong: this.data.hotWords[e.currentTarget.id].keyword,
     })
-    this.change_sousuo()
+    if(this.data.TabCur==6){
+
+      this.change_sousuo()
+    }else if(this.data.TabCur==4){
+      this.sousuo_dalei_shipin()
+    }else{
+      this.sousuo_dalei()
+    }
   },
   /////////////搜索历史
   getLishi: function () {
