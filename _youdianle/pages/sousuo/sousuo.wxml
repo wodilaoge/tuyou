@@ -8,7 +8,7 @@
   <view class="ss_icon_kuang" bindtap="change_sousuo">
     <image class="ss_icon" src="/img/icon_search.png"></image>
   </view>
-  <input class="ss_kuang" placeholder="搜索你感兴趣的内容" value="{{sousuo_neirong}}" bindchange="value_sousuo"></input>
+  <input class="ss_kuang" placeholder="搜索你感兴趣的内容" value="{{sousuo_neirong}}" bindinput="value_sousuo"></input>
   <view class="text_sousuo" bindtap="change_sousuo">搜索</view>
 
 </view>

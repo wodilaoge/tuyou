@@ -49,6 +49,7 @@ Page({
       univ: this.data.univ === '不选' ? null : this.data.univ,
       sid: this.data.bkData[this.data.TabCur-1].code,
     };
+    console.log(data)
     app.wxRequest('POST', url, data, (res) => {
       wx.hideLoading({
         complete: (res) => {},

@@ -430,7 +430,7 @@ Page({
       huodongtmp.list.push(s)
       that.setData({
         Mycreate: huodongtmp,
-        nowActNum: self.data.nowActNum+res.data.data.list.length,
+        nowActNum: that.data.nowActNum+res.data.data.list.length,
         huodongBorder: res.data.data.border,
       })
       console.log('Mycreate', that.data.Mycreate)
@@ -493,6 +493,7 @@ Page({
         // univ: this.data.univ ,
       };
       app.wxRequest('POST', url, data, (res) => {
+        console.log(res)
         if (res.data.border == null) {
           that.setData({
             isRefleshshipin: false,
@@ -502,6 +503,7 @@ Page({
         that.setData({
           shipin: shipintmp,
           shipinBorder: res.data.border,
+          nowActNum: res.data.list.length,
           shipin_xiaolei: tab,
         })
       }, (err) => {
@@ -514,6 +516,7 @@ Page({
     )
   },
   tabSelect2(e) {
+    console.log(e)
     this.setData({
       TabCur2: e.currentTarget.dataset.id,
       huodongXiaoleiIndex:e.currentTarget.dataset.id,
