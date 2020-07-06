@@ -470,9 +470,9 @@
         {{item.name}}{{index==TabCur2?'('+nowActNum+')':''}}
       </view> -->
         <!-- 不显示个数 -->
-        <view class="cu-item {{index==TabCur2?'text-blue cur':''}}" wx:for="{{AllActivity}}" wx:key="key"
+        <view class="cu-item {{index==TabCur3?'text-blue cur':''}}" wx:for="{{AllActivity}}" wx:key="key"
           bindtap="tabSelect2" data-id="{{index}}">
-          {{item.name}}{{index==TabCur2?'('+nowActNum+')':''}}
+          {{item.name}}{{index==TabCur3?'('+nowActNum2+')':''}}
         </view>
       </scroll-view>
     </view>

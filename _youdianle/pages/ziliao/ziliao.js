@@ -36,12 +36,14 @@ Page({
     /////////////活动
     scrollLeft: 0,
     AllActivity: [],
-    TabCur2: 0,
+    TabCur2: 0,//////////huodong
+    TabCur3: 0,//////////shipin
     createnum: 0,
     initialcode: '076003001',
     Mycreate: [],
     huodongXuanze: 2,
     nowActNum: 0,
+    nowActNum2: 0,
     huodongBorder: 0,
     isRefleshHuodong: true,
     huodongXiaoleiIndex:0,
@@ -83,6 +85,7 @@ Page({
       self.setData({
         shipin: shipintmp,
         shipinBorder: res.data.border,
+        nowActNum2: self.data.nowActNum2+res.data.list.length,
       })
 
     }, (err) => {
@@ -503,7 +506,7 @@ Page({
         that.setData({
           shipin: shipintmp,
           shipinBorder: res.data.border,
-          nowActNum: res.data.list.length,
+          nowActNum2: res.data.list.length,
           shipin_xiaolei: tab,
         })
       }, (err) => {
@@ -517,10 +520,17 @@ Page({
   },
   tabSelect2(e) {
     console.log(e)
-    this.setData({
-      TabCur2: e.currentTarget.dataset.id,
-      huodongXiaoleiIndex:e.currentTarget.dataset.id,
-    })
+    if(this.data.TabCur==4){
+      this.setData({
+        TabCur2: e.currentTarget.dataset.id,
+        huodongXiaoleiIndex:e.currentTarget.dataset.id,
+      })
+    }else if(this.data.TabCur==5){
+      this.setData({
+        TabCur3: e.currentTarget.dataset.id,
+      })
+    }
+    
     this.flesh(e.currentTarget.dataset.id)
   },
   ///////////评论
@@ -771,6 +781,7 @@ Page({
     this.setData({
       TabCur: e.currentTarget.dataset.id,
     })
+    
   },
 
   getDuiyuan() {
@@ -831,6 +842,7 @@ Page({
         that.setData({
           shipin: res.data.data,
           shipinBorder: res.data.data.border,
+          nowActNum2: res.data.data.list.length,
         })
       })
 
