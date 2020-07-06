@@ -6,7 +6,7 @@
     </cu-custom>
 
     <view class="flex">
-      <text class="ziliao-name">{{duiyuanDeatil.name}}</text>
+      <text class="ziliao-name">{{duiyuanDeatil.name===null?'暂无':duiyuanDeatil.name}}</text>
       <block wx:if="{{ifguanzhu==0&&ifziji==0}}">
         <button class="cu-btn round lines-white " style="width:100rpx;height:42rpx;margin-left:197rpx;"
           bindtap="changeGuanzhu">关注</button>
@@ -37,7 +37,7 @@
       <text class="ziliao-shuzi flex-sub text-center">{{dianzanshu}}</text>
     </view>
     <view class="flex" style="margin-top:26rpx;">
-      <view class="ziliao-fensi flex-sub text-center">活动</view>
+      <view class="ziliao-fensi flex-sub text-center">发起</view>
       <view class="ziliao-fensi flex-sub text-center">粉丝</view>
       <view class="ziliao-fensi flex-sub text-center">点赞</view>
     </view>

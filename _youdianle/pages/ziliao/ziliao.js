@@ -924,11 +924,12 @@ Page({
     });
   },
   getHuodong() {
-    let url = app.globalData.URL + '/act/countActByUser';
+    let url = app.globalData.URL + '/act/countActPubByUser';
     let data = {
       uid: this.data.duiyuanID,
     };
     app.wxRequest('GET', url, data, (res) => {
+      console.log(res)
       this.setData({
         huodongshu: res.data,
       })
