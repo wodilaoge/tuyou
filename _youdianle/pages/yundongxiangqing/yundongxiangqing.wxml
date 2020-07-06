@@ -752,7 +752,7 @@
           <view wx:if="{{members.mbrRankLogo!=null}}">
             <image class="icon-paiming " mode="aspectFit " src="{{members.mbrRankLogo}}"></image>
           </view>
-          <view wx:else class="card-text-content margin-right-xl margin-left-xs">{{index+1}}</view>
+          <view wx:else class="card-text-content margin-right-xl margin-left-xs">{{members.mbrRank}}</view>
 
           <view class="cu-avatar round my " style="background-image:url({{members.mbrHead}});" data-id="{{members.mbrId}}" bindtap="gerenziliao"></view>
           <text class="paiming-name " decode="{{true}}">&ensp;{{members.mbrAlias}}</text>
@@ -767,7 +767,7 @@
         <view wx:if="{{members.mbrRankLogo!=null}}">
           <image class="icon-paiming " mode="aspectFit " src="{{item.mbrRankLogo}}"></image>
         </view>
-        <view wx:else class="card-text-content margin-right-xl margin-left-xs">{{index+1}}</view>
+        <view wx:else class="card-text-content margin-right-xl margin-left-xs">{{item.teamRank}}</view>
 
         <view class="cu-avatar round my " style="background-image:url({{item.teamLogo}}); "></view>
         <text class="paiming-name" decode="{{true}} ">&ensp;{{item.team}}</text>
