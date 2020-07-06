@@ -324,7 +324,6 @@ Page({
   },
   commit: function (e) {
     var that=this
-    var user = wx.getStorageSync('userInfo')
     let url = app.globalData.URL + '/appuser/updateMyInfo';
     var tmp = this.data.userinfo
     var data = {
@@ -358,6 +357,10 @@ Page({
     util.post_token(url, data).then(function (res) {
       console.log(res.data)
       if (res.data.code == 0) {
+        var obj=wx.getStorageSync('userInfo')
+        obj.nickname=that.data.userinfo.nickname
+        obj.head=that.data.other==0?tmp.head:that.data.other
+        wx.setStorageSync('userInfo', obj)
         wx.showToast({
           title: '修改成功',
           duration: 2000,

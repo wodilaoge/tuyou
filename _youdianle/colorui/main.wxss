@@ -972,7 +972,7 @@ button.icon.lg {
 }
 
 .cu-avatar.my {
-	width: 70rpx;
+	width: 70rpx !important;
 	height: 70rpx;
 }
 
