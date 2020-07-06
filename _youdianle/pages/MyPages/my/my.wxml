@@ -7,7 +7,7 @@
     <view class="cu-item">
       <view class="cu-avatar round xl" style="background-image:url({{userinfototaol.head}})"></view>
       <view class="content ">
-        <view class="text-black right text-bold">{{userInfoAll.nickname}}</view>
+        <view class="text-black right text-bold">{{userinfototaol.nickname}}</view>
         <view class="text-black text-sm flex right2">
           <text class="text-black margin-right-xs "></text> {{welcome}}
         </view>
