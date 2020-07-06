@@ -78,7 +78,7 @@
         <view class="bg-white">
           <view class="yibaoming-margin-top margin-left " style="display: flex;position: relative;">
             <text class="yibaoming-text-content margin-top">已报名</text>
-            <text class="yibaoming-text-content margin-top" style="color:var(--blue)">{{yibaomingList.length}}/{{detail.signupmax}}</text>
+            <text class="yibaoming-text-content margin-top" style="color:var(--blue)">{{gerenshuju.count}}/{{detail.signupmax}}</text>
             <text class="yibaoming-text-content margin-top">人</text>
             <button class="cu-btn bg-orange round btn-baomingtiaozhan margin-top-sm" bindtap="bmtz" hidden="{{detail.button.signup==null}}">{{detail.button.signup}}</button>
           </view>
@@ -277,11 +277,6 @@
             <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx" bindtap="quxiaobaoming" data-obj="0">取消报名</button>
           </view>
           <view class="fenge-bg"></view>
-          <view class="cu-bar bg-white solid-bottom">
-            <view class='action'>
-              <text class='yibaoming-text-content'>已报名{{yibaomingList.length}}人</text>
-            </view>
-          </view>
           <!--<view class="yundong-content bg-white">
           <view class="padding-sm">
             <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" data-id="{{item.id}}"
@@ -380,7 +375,7 @@
           <view class="fenge-bg"></view>
           <view class="cu-bar bg-white solid-bottom">
             <view class='action'>
-              <text class='yibaoming-text-content'>已报名{{yibaomingList.length}}人</text>
+              <text class='yibaoming-text-content'>已报名{{gerenshuju.count}}人</text>
             </view>
           </view>
           <!--<view class="yundong-content bg-white">
@@ -405,6 +400,11 @@
         </view>
       </view>
       <block wx:if="{{guanliCur==0}}">
+        <view class="cu-bar bg-white solid-bottom" wx:if="{{gerenshuju.count!=0}}">
+          <view class='action'>
+            <text class='yibaoming-text-content'>已报名{{gerenshuju.count}}人</text>
+          </view>
+        </view>
         <view class="bg-white" wx:for="{{gerenshuju.list}}" wx:for-index="index">
           <view class="cu-bar bg-white padding" wx:if="{{item.groupname!=null}}">
             <view class="yibaoming-text-content">{{item.groupname}}</view>
@@ -507,11 +507,9 @@
           </view>
 
           <view>
-            <video id="video_{{index}}" src="{{shipin.list[0].shipinSRC}}" 
-            controls="{{true}}" style="width:100%;" hidden="{{!shipin.list[0].yingChang}}" 
-             bindtap="video_change" data-index="{{index}}" custom-cache="{{false}}"></video>
-             <image id="video_{{index}}" src="{{shipin.list[0].cover?shipin.list[0].cover:defaultPoster}}" mode="{{shipin.list[0].cover?'scaleToFill':'center'}}"
-             style="width: 100%;height: 450rpx;background-color: black;" bindtap="yingChangShipin" data-index="{{index}}" hidden="{{shipin.list[0].yingChang}}"></image>
+            <video id="video_{{index}}" src="{{shipin.list[0].shipinSRC}}" controls="{{true}}" style="width:100%;" hidden="{{!shipin.list[0].yingChang}}" bindtap="video_change" data-index="{{index}}" custom-cache="{{false}}"></video>
+            <image id="video_{{index}}" src="{{shipin.list[0].cover?shipin.list[0].cover:defaultPoster}}" mode="{{shipin.list[0].cover?'scaleToFill':'center'}}" style="width: 100%;height: 450rpx;background-color: black;" bindtap="yingChangShipin" data-index="{{index}}"
+              hidden="{{shipin.list[0].yingChang}}"></image>
           </view>
           <view class="flex  margin-top ">
             <view class="sp-bofang-times ">播放{{shipin.list[0].playCnt}}次</view>
@@ -570,11 +568,9 @@
           </view>
 
           <view>
-            <video id="video_{{index}}" src="{{shipin.list[index].shipinSRC}}" 
-            controls="{{true}}" style="width:100%;" hidden="{{!shipin.list[index].yingChang}}" 
-             bindtap="video_change" data-index="{{index}}" custom-cache="{{false}}"></video>
-             <image id="video_{{index}}" src="{{shipin.list[index].cover?shipin.list[index].cover:defaultPoster}}" mode="{{shipin.list[index].cover?'scaleToFill':'center'}}"
-             style="width: 100%;height: 450rpx;background-color: black;" bindtap="yingChangShipin" data-index="{{index}}" hidden="{{shipin.list[index].yingChang}}"></image>
+            <video id="video_{{index}}" src="{{shipin.list[index].shipinSRC}}" controls="{{true}}" style="width:100%;" hidden="{{!shipin.list[index].yingChang}}" bindtap="video_change" data-index="{{index}}" custom-cache="{{false}}"></video>
+            <image id="video_{{index}}" src="{{shipin.list[index].cover?shipin.list[index].cover:defaultPoster}}" mode="{{shipin.list[index].cover?'scaleToFill':'center'}}" style="width: 100%;height: 450rpx;background-color: black;" bindtap="yingChangShipin" data-index="{{index}}"
+              hidden="{{shipin.list[index].yingChang}}"></image>
           </view>
           <view class="flex  margin-top ">
             <view class="sp-bofang-times ">播放{{shipin.list[index].playCnt}}次</view>
@@ -596,7 +592,7 @@
             <view class="margin-top sp-pinlun-content" bindtap="shipinChooseSezi" data-duixiang="{{50}}" data-dxid="{{shipin.list[0].id}}" data-index="{{0}}" wx:if="{{shipin.list[index].listComm[0]}}">
               <image class="sp-pinglun-avatar round " src="{{shipin.list[index].listComm[0].createrHead}} "></image>
               <view class="sp-pinglun-name ">{{shipin.list[index].listComm[0].createrAlias}}</view>
-              
+
               <view>
 
                 <view class="sp-pinglun-neirong ">{{shipin.list[index].listComm[0].comment}}</view>
