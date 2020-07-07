@@ -92,8 +92,7 @@ Page({
     var that = this
     let url = app.globalData.URL + '/config/getSections';
     var url2 = app.globalData.URL + '/secrot/listSecrotation';
-    let data2 = {
-    };
+    let data2 = {};
     util.gets_notoken(url, {}).then(function (res) {
       that.setData({
         sectioninfo: res.data
@@ -125,6 +124,7 @@ Page({
     });
   },
   getsportinfo() {
+    var that=this
     var url = app.globalData.URL + '/act/listActivityHome';
     var data = {
       sid: '076003',
@@ -134,6 +134,29 @@ Page({
 
     };
     app.wxRequest_notoken('POST', url, data, (res) => {
+      console.log(res.data)
+      let t = res.data.list[0].button
+      console.log(t)
+      if (t.signup != null)
+        that.setData({
+          button1: t.signup
+        })
+      else if (t.modify)
+        that.setData({
+          button1: t.modify
+        })
+      else if (t.cancel)
+        that.setData({
+          button1: t.cancel
+        })
+      else if (t.sendSignup)
+        that.setData({
+          button1: t.sendSignup
+        })
+      else
+        that.setData({
+          button1: null
+        })
       this.setData({
         SportList: res.data
       })
@@ -141,7 +164,9 @@ Page({
       console.log(err.errMsg)
     });
   },
+  //文娱
   getplayinfo() {
+    var that=this
     var url = app.globalData.URL + '/act/listActivityHome';
     var data = {
       sid: '076004',
@@ -150,6 +175,28 @@ Page({
       univ: wx.getStorageSync('school').code ? wx.getStorageSync('school').code : null,
     };
     app.wxRequest_notoken('POST', url, data, (res) => {
+      let t = res.data.list[0].button
+      console.log(t)
+      if (t.signup != null)
+        that.setData({
+          button2: t.signup
+        })
+      else if (t.modify)
+        that.setData({
+          button2: t.modify
+        })
+      else if (t.cancel)
+        that.setData({
+          button2: t.cancel
+        })
+      else if (t.sendSignup)
+        that.setData({
+          button2: t.sendSignup
+        })
+      else
+        that.setData({
+          button2: null
+        })
       this.setData({
         wenyuList: res.data
       })
@@ -157,15 +204,39 @@ Page({
       console.log(err.errMsg)
     });
   },
+  // 爱好
   gethobbyinfo() {
+    var that=this
     var url = app.globalData.URL + '/act/listActivityHome';
     var data = {
       sid: '076005',
-      province: wx.getStorageSync('province').code? wx.getStorageSync('province').code:null,
-      city: wx.getStorageSync('city').code?wx.getStorageSync('city').code:null,
-      univ: wx.getStorageSync('school').code?wx.getStorageSync('school').code:null,
+      province: wx.getStorageSync('province').code ? wx.getStorageSync('province').code : null,
+      city: wx.getStorageSync('city').code ? wx.getStorageSync('city').code : null,
+      univ: wx.getStorageSync('school').code ? wx.getStorageSync('school').code : null,
     };
     app.wxRequest_notoken('POST', url, data, (res) => {
+      let t = res.data.list[0].button
+      console.log(t)
+      if (t.signup != null)
+        that.setData({
+          button3: t.signup
+        })
+      else if (t.modify)
+        that.setData({
+          button3: t.modify
+        })
+      else if (t.cancel)
+        that.setData({
+          button3: t.cancel
+        })
+      else if (t.sendSignup)
+        that.setData({
+          button3: t.sendSignup
+        })
+      else
+        that.setData({
+          button3: null
+        })
       this.setData({
         aihaoList: res.data
       })
@@ -174,6 +245,7 @@ Page({
     });
   },
   getvideoinfo() {
+    var that=this
     var url = app.globalData.URL + '/video/listActVideoHome';
     var data = {};
     app.wxRequest_notoken('POST', url, data, (res) => {
