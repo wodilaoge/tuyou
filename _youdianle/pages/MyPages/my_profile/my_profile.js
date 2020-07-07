@@ -327,7 +327,7 @@ Page({
     let url = app.globalData.URL + '/appuser/updateMyInfo';
     var tmp = this.data.userinfo
     var data = {
-      id: tmp.id,
+      id: wx.getStorageSync('userInfo').id,
       head: that.data.other==0?tmp.head:that.data.other,
       nickname: tmp.nickname,
       name: tmp.name,
@@ -397,8 +397,9 @@ Page({
       userInfoAll: wx.getStorageSync('userInfo')
     })
     let data = {
-      'id': this.data.userInfoAll.id
+      'id': wx.getStorageSync('userInfo').id
     }
+    console.log(data)
     util.gets(url, data).then(function (res) {
       that.setData({
         userinfo: res.data.data

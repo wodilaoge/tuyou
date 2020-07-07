@@ -174,6 +174,7 @@ Page({
     
     wx.getSetting({
       success: res => {
+        console.log('success')
         if (res.authSetting['scope.userInfo']) {
           //查询个人活动数（发起和参与的）
           let url = app.globalData.URL + '/appuser/countByUser';
