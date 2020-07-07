@@ -58,22 +58,47 @@ Page({
       url: '/pages/MyPages/my_profile/my_profile',
     })
   },
-  none(){
+  none() {
     wx.showToast({
       title: '敬请期待',
-      
+
     })
   },
   onLoad: function () {
     var that = this
     console.log('onload')
+    //判断是否登录
+    let url = app.globalData.URL + '/appuser/getMyinfoPerm';
+    util.gets(url, {}).then(function (res) {
+      console.log('auth--mypage', res.data.data)
+      if (!res.data.data) {
+        console.log('no auth')
+        wx.showModal({
+          title: '友点乐',
+          content: '请先进行微信登录',
+          cancelText: '取消',
+          confirmText: '授权',
+          success: res => {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '/pages/login/login',
+              })
+            } else {
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          }
+        })
+      }
+    })
+    
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
           //查询个人活动数（发起和参与的）
           let url = app.globalData.URL + '/appuser/countByUser';
-          let data = {
-          };
+          let data = {};
           util.gets(url, data).then(function (res) {
             console.log('activitynum', res.data)
             that.setData({
@@ -113,7 +138,7 @@ Page({
             console.log('welcome', res.data)
             that.setData({
               welcome: res.data.data.welcome,
-              userinfototaol:res.data.data
+              userinfototaol: res.data.data
             })
           })
           console.log('wx auth finished')
@@ -228,8 +253,7 @@ Page({
       }
     }
   },
-  onShow()
-  {
+  onShow() {
     this.onLoad()
     console.log('onshow')
   }
