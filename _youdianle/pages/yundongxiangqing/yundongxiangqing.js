@@ -821,17 +821,17 @@ Page({
       }
     }
   },
-  yingChangShipin:function(e){
+  yingChangShipin: function(e) {
     console.log(e)
-    let shipintmp=this.data.shipin;
-    shipintmp.list[e.currentTarget.dataset.index].yingChang=1;
+    let shipintmp = this.data.shipin;
+    shipintmp.list[e.currentTarget.dataset.index].yingChang = 1;
     shipintmp.list[e.currentTarget.dataset.index].shipinSRC = shipintmp.list[e.currentTarget.dataset.index].fileId; /////////点击再加载
     this.setData({
       shipin: shipintmp
     })
     this.video_change(e)
   },
-  shipinguanzhu: function (e) {
+  shipinguanzhu: function(e) {
     var self = this;
     let shipintmp = this.data.shipin;
     if (shipintmp.list[e.currentTarget.dataset.index].myFollow == 1) {
@@ -1014,6 +1014,7 @@ Page({
   },
   //评论
   pd_fasong() {
+    let self=this
     if (this.data.Input == "") {
       wx.showToast({
         title: '请输入回复内容', // 标题
@@ -1021,7 +1022,30 @@ Page({
         duration: 1500 // 提示窗停留时间，默认1500ms
       })
     } else {
-      this.fasong()
+      let urlq = app.globalData.URL + '/appuser/getSpeakPerm';
+      util.gets(urlq, {}).then(function(res) {
+        if (res.data.code == 43) {
+          wx.showToast({
+            title: '暂无发言权限', 
+            image: '/img/fail.png',
+            duration: 1000 
+          })
+        } else if (res.data.code == 126){
+          wx.showToast({
+            title: '请重新登录！',
+            image: '/img/fail.png',
+            duration: 500,
+            success: function() {
+              wx.redirectTo({
+                url: '/pages/login/login',
+              })
+            }
+          })
+        }
+        else{
+          self.fasong()
+        }
+      })
     }
   },
   fasong() { //发送按钮
@@ -1215,6 +1239,7 @@ Page({
     })
   },
   lijibaoming() {
+    let self = this
     if (this.data.iftongyi == false)
       wx.showToast({
         title: '请同意声明！',
@@ -1222,17 +1247,40 @@ Page({
         duration: 1000,
       })
     else {
-      if (this.data.shiminghide == false) {
-        if (this.data.yonghuxinxi.name == null || this.data.yonghuxinxi.name == '' || this.data.yonghuxinxi.mobile == '' || this.data.yonghuxinxi.mobile == null)
+      let urlq = app.globalData.URL + '/appuser/getSpeakPerm';
+      util.gets(urlq, {}).then(function (res) {
+        if (res.data.code == 43) {
           wx.showToast({
-            title: '完善信息/绑定手机号！',
+            title: '暂无报名权限',
             image: '/img/fail.png',
-            duration: 1000,
+            duration: 1000
           })
-        else
-          this.lijibaoming_do_shiming()
-      } else
-        this.lijibaoming_do()
+        } else if (res.data.code == 126) {
+          wx.showToast({
+            title: '请重新登录！',
+            image: '/img/fail.png',
+            duration: 500,
+            success: function () {
+              wx.redirectTo({
+                url: '/pages/login/login',
+              })
+            }
+          })
+        }
+        else {
+          if (this.data.shiminghide == false) {
+            if (this.data.yonghuxinxi.name == null || this.data.yonghuxinxi.name == '' || this.data.yonghuxinxi.mobile == '' || this.data.yonghuxinxi.mobile == null)
+              wx.showToast({
+                title: '完善信息/绑定手机号！',
+                image: '/img/fail.png',
+                duration: 1000,
+              })
+            else
+              this.lijibaoming_do_shiming()
+          } else
+            this.lijibaoming_do()
+        }
+      })
       this.gerenpaiming()
     }
   },
@@ -1654,7 +1702,7 @@ Page({
       }
     var data = {
       actid: self.data.categoryId,
-      mode:self.data.lurushuju,
+      mode: self.data.lurushuju,
       members: mlist
     }
     console.log(mlist)
@@ -1901,7 +1949,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-console.log('////////////')
+    console.log('////////////')
   },
 
   /**
