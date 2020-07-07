@@ -421,7 +421,7 @@ Page({
         sponsorpic: this.data.url5.length != 0 ? this.data.url5[0] : null,
         signupway: this.data.opinion3,
         chatid: null,
-        univid: this.data.info.univid,
+        univ: this.data.info.univid,
         province: this.data.info.province,
         city: this.data.info.city,
         address: this.data.info.venue,

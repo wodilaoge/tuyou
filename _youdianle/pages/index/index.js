@@ -132,9 +132,6 @@ Page({
       city: wx.getStorageSync('city').code ? wx.getStorageSync('city').code : null,
       univ: wx.getStorageSync('school').code ? wx.getStorageSync('school').code : null,
 
-      province: null,
-      city: null,
-      univ: null
     };
     app.wxRequest_notoken('POST', url, data, (res) => {
       this.setData({
@@ -164,9 +161,9 @@ Page({
     var url = app.globalData.URL + '/act/listActivityHome';
     var data = {
       sid: '076005',
-      // province: wx.getStorageSync('province').code? wx.getStorageSync('province').code:null,
-      // city: wx.getStorageSync('city').code?wx.getStorageSync('city').code:null,
-      // univ: wx.getStorageSync('school').code?wx.getStorageSync('school').code:null,
+      province: wx.getStorageSync('province').code? wx.getStorageSync('province').code:null,
+      city: wx.getStorageSync('city').code?wx.getStorageSync('city').code:null,
+      univ: wx.getStorageSync('school').code?wx.getStorageSync('school').code:null,
     };
     app.wxRequest_notoken('POST', url, data, (res) => {
       this.setData({
