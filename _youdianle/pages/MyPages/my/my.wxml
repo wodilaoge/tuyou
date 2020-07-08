@@ -55,11 +55,11 @@
 </view>
 
 <view class="menu bg-white">
-  <view bingtap="tosecurity" class="menu-item">
+  <view bindtap="tosecurity" class="menu-item">
     <image src="/img/my/01.png" class="menu-img"></image>
     <text class="menu-name">账号安全</text>
   </view>
-  <view bingtap="toact" class="menu-item">
+  <view bindtap="toact" class="menu-item">
     <image src="/img/my/04.png" class="menu-img"></image>
     <text class="menu-name">活动</text>
   </view>
@@ -87,10 +87,10 @@
     <image src="/img/my/10.png" class="menu-img"></image>
     <text class="menu-name">评论</text>
   </navigator>-->
-  <navigator bindtap="tovideo" class="menu-item">
+  <view bindtap="tovideo" class="menu-item">
     <image src="/img/my/11.png" class="menu-img"></image>
     <text class="menu-name">视频</text>
-  </navigator> 
+  </view> 
   <!-- 
   <navigator url="/pages/MyPages/my_pic/my_pic" class="menu-item">
     <image src="/img/my/12.png" class="menu-img"></image>
