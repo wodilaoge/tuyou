@@ -96,9 +96,12 @@ Page({
   tovideo()
   {
     if(this.data.isauth)
-    wx.navigateTo({
+
+   {
+     console.log('to video')
+     wx.navigateTo({
       url: '/pages/MyPages/my_video/my_video',
-    })
+    })}
     else{
       wx.showModal({
         title: '友点乐',
@@ -116,10 +119,11 @@ Page({
     }
   },
   toact(){
-    if(this.data.isauth)
+    if(this.data.isauth){
+      console.log('to act')
     wx.navigateTo({
       url: '/pages/MyPages/my_activity/my_activity',
-    })
+    })}
     else{
       wx.showModal({
         title: '友点乐',
