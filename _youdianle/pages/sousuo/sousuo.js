@@ -127,6 +127,7 @@ Page({
       city: this.data.city === '不选' ? null : this.data.city,
       univ: this.data.univ === '不选' ? null : this.data.univ,
     };
+    console.log(data)
     app.wxRequest('POST', url, data, (res) => {
       console.log(res)
       this.setData({
