@@ -501,6 +501,7 @@ Page({
     });
     url = app.globalData.URL + '/comm/listCommByObj';
     app.wxRequest('GET', url, data, (res) => {
+      console.log("评论  "+res.data)
       this.setData({
         comment: res.data
       });
@@ -1014,7 +1015,7 @@ Page({
   },
   //评论
   pd_fasong() {
-    let self=this
+    let self = this
     if (this.data.Input == "") {
       wx.showToast({
         title: '请输入回复内容', // 标题
@@ -1026,11 +1027,11 @@ Page({
       util.gets(urlq, {}).then(function(res) {
         if (res.data.code == 43) {
           wx.showToast({
-            title: '暂无发言权限', 
+            title: '暂无发言权限',
             image: '/img/fail.png',
-            duration: 1000 
+            duration: 1000
           })
-        } else if (res.data.code == 126){
+        } else if (res.data.code == 126) {
           wx.showToast({
             title: '请重新登录！',
             image: '/img/fail.png',
@@ -1041,8 +1042,7 @@ Page({
               })
             }
           })
-        }
-        else{
+        } else {
           self.fasong()
         }
       })
@@ -1167,7 +1167,33 @@ Page({
       console.log(err.errMsg)
     });
   },
-  guanzhu() { //活动关注或取消关注
+  guanzhu() { //判断关注权限
+    let self = this
+    let urlq = app.globalData.URL + '/appuser/getSpeakPerm';
+    util.gets(urlq, {}).then(function(res) {
+      if (res.data.code == 43) {
+        wx.showToast({
+          title: '暂无关注权限',
+          image: '/img/fail.png',
+          duration: 1000
+        })
+      } else if (res.data.code == 126) {
+        wx.showToast({
+          title: '请重新登录！',
+          image: '/img/fail.png',
+          duration: 500,
+          success: function() {
+            wx.redirectTo({
+              url: '/pages/login/login',
+            })
+          }
+        })
+      } else {
+        self.guanzhu_do()
+      }
+    })
+  },
+  guanzhu_do() { //活动关注或取消关注
     self = this;
     let url = app.globalData.URL + '/follow/updateFollow';
     if (self.data.isguanzhu)
@@ -1248,7 +1274,7 @@ Page({
       })
     else {
       let urlq = app.globalData.URL + '/appuser/getSpeakPerm';
-      util.gets(urlq, {}).then(function (res) {
+      util.gets(urlq, {}).then(function(res) {
         if (res.data.code == 43) {
           wx.showToast({
             title: '暂无报名权限',
@@ -1260,25 +1286,24 @@ Page({
             title: '请重新登录！',
             image: '/img/fail.png',
             duration: 500,
-            success: function () {
+            success: function() {
               wx.redirectTo({
                 url: '/pages/login/login',
               })
             }
           })
-        }
-        else {
-          if (this.data.shiminghide == false) {
-            if (this.data.yonghuxinxi.name == null || this.data.yonghuxinxi.name == '' || this.data.yonghuxinxi.mobile == '' || this.data.yonghuxinxi.mobile == null)
+        } else {
+          if (self.data.shiminghide == false) {
+            if (self.data.yonghuxinxi.name == null || self.data.yonghuxinxi.name == '' || self.data.yonghuxinxi.mobile == '' || self.data.yonghuxinxi.mobile == null)
               wx.showToast({
                 title: '完善信息/绑定手机号！',
                 image: '/img/fail.png',
                 duration: 1000,
               })
             else
-              this.lijibaoming_do_shiming()
+              self.lijibaoming_do_shiming()
           } else
-            this.lijibaoming_do()
+            self.lijibaoming_do()
         }
       })
       this.gerenpaiming()
