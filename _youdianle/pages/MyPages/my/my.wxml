@@ -19,10 +19,10 @@
     <view class="text1 bk ">
       <!-- <image src="/img/my/img_bar.png" class="bkimg"></image> -->
 
-      <navigator class="text-item" url="/pages/MyPages/my_activity/my_activity"  hover-class="btn-hover">
+      <view bindtap="toact" class="text-item"   hover-class="btn-hover">
         <text class="text"></text>{{activitynum.cntAct}}
         <text class="text2"></text>活动
-      </navigator>
+      </view>
       <view class="text-item" bindtap="none" hover-class="btn-hover" >
         <text class="text"></text>{{activitynum.cntComm}}
         <text class="text2"></text>评论
@@ -55,14 +55,14 @@
 </view>
 
 <view class="menu bg-white">
-  <navigator url="/pages/MyPages/my_security/my_security" class="menu-item">
+  <view bingtap="tosecurity" class="menu-item">
     <image src="/img/my/01.png" class="menu-img"></image>
     <text class="menu-name">账号安全</text>
-  </navigator>
-  <navigator url="/pages/MyPages/my_activity/my_activity" class="menu-item">
+  </view>
+  <view bingtap="toact" class="menu-item">
     <image src="/img/my/04.png" class="menu-img"></image>
     <text class="menu-name">活动</text>
-  </navigator>
+  </view>
   <!-- <navigator url="/pages/MyPages/my_team/my_team" class="menu-item">
     <image src="/img/my/05.png" class="menu-img"></image>
     <text class="menu-name">团队</text>
@@ -87,7 +87,7 @@
     <image src="/img/my/10.png" class="menu-img"></image>
     <text class="menu-name">评论</text>
   </navigator>-->
-  <navigator url="/pages/MyPages/my_video/my_video" class="menu-item">
+  <navigator bindtap="tovideo" class="menu-item">
     <image src="/img/my/11.png" class="menu-img"></image>
     <text class="menu-name">视频</text>
   </navigator> 

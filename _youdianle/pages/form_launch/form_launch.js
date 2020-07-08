@@ -525,7 +525,7 @@ Page({
           sponsorpic: null,
           signupway: (parseInt(tmp.way) + 1) * 10,
           chatid: null,
-          univid: tmp.univid,
+          univ: tmp.univid,
           province: tmp.province,
           city: tmp.city,
           address: tmp.address,
