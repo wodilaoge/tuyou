@@ -600,7 +600,7 @@ Page({
   }
   },
   shipinDianzan: function (e) {
-    if(this.data.quanxianCode==0){
+    // if(this.data.quanxianCode==0){
     var self = this;
     let shipintmp = this.data.shipin;
     if (shipintmp.list[e.currentTarget.dataset.index].myApplaud == 1) {
@@ -632,16 +632,16 @@ Page({
         objtype: 50,
         objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
         objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
-        creater: self.data.user.id,
+        // creater: self.data.user.id,
         status: 1,
       };
       app.wxRequest('POST', url, data, (res) => {
         console.log(res)
       }, (err) => {});
     }
-  }else{
-    this.userPanduan()
-  }
+  // }else{
+  //   this.userPanduan()
+  // }
   },
   getShipinfenlei() { //视频
     wx.showLoading({
