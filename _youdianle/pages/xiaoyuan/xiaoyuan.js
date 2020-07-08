@@ -77,6 +77,7 @@ Page({
     ssss: '',
     dxindex: 0,
     defaultPoster: '../../img/login/poster.png',
+    quanxianCode: -1,//权限控制
   },
   //////////////////////
   towebview3(e) {
@@ -461,7 +462,7 @@ Page({
         complete: (res) => {},
       })
     });
-  
+
   },
   getShipinFenye() { //视频
     wx.showLoading({
@@ -521,7 +522,7 @@ Page({
         video_id: now_id,
         bofang_if_id: now_id
       })
-      console.log(prev_id,now_id)
+      console.log(prev_id, now_id)
       wx.createVideoContext(prev_id).pause();
       wx.createVideoContext(now_id).play();
 
@@ -550,10 +551,10 @@ Page({
       }
     }
   },
-  yingChangShipin:function(e){
-    console.log(e,'/////')
-    let shipintmp=this.data.shipin;
-    shipintmp.list[e.currentTarget.dataset.index].yingChang=1;
+  yingChangShipin: function (e) {
+    console.log(e, '/////')
+    let shipintmp = this.data.shipin;
+    shipintmp.list[e.currentTarget.dataset.index].yingChang = 1;
     shipintmp.list[e.currentTarget.dataset.index].shipinSRC = shipintmp.list[e.currentTarget.dataset.index].fileId; /////////点击再加载
     this.setData({
       shipin: shipintmp
@@ -561,6 +562,7 @@ Page({
     this.video_change(e)
   },
   shipinguanzhu: function (e) {
+    if(this.data.quanxianCode==0){
     var self = this;
     let shipintmp = this.data.shipin;
     if (shipintmp.list[e.currentTarget.dataset.index].myFollow == 1) {
@@ -593,8 +595,12 @@ Page({
       };
       app.wxRequest('POST', url, data, (res) => {}, (err) => {});
     }
+  }else{
+    this.userPanduan()
+  }
   },
   shipinDianzan: function (e) {
+    if(this.data.quanxianCode==0){
     var self = this;
     let shipintmp = this.data.shipin;
     if (shipintmp.list[e.currentTarget.dataset.index].myApplaud == 1) {
@@ -633,13 +639,16 @@ Page({
         console.log(res)
       }, (err) => {});
     }
+  }else{
+    this.userPanduan()
+  }
   },
   getShipinfenlei() { //视频
     wx.showLoading({
       title: '加载中...',
       mask: true //显示触摸蒙层  防止事件穿透触发
     });
-    var self =this;
+    var self = this;
     let url = app.globalData.URL + '/video/listActVideo';
     let data = {
       acid1: this.data.shipinCur,
@@ -667,7 +676,7 @@ Page({
         complete: (res) => {},
       })
     });
-   
+
   },
   getShipinfenleiFenye() { //视频
     wx.showLoading({
@@ -857,6 +866,7 @@ Page({
     }
   },
   fasong() { //发送按钮
+    if(this.data.quanxianCode==0){
     var self = this;
     if (this.data.duixiang == '50') {
       let url = app.globalData.URL + '/comm/addComment';
@@ -922,6 +932,9 @@ Page({
       Input: '',
     })
     self.hideModal()
+  }else{
+    this.userPanduan()
+  }
   },
   ////////////
 
@@ -929,6 +942,77 @@ Page({
     wx.navigateTo({
       url: '../sousuo/sousuo',
     })
+  },
+  userPanduan:function() {
+    var self=this;
+    //判断是否登录
+    let url = app.globalData.URL + '/appuser/getSpeakPerm';
+    util.gets(url, {}).then(function (res) {
+      console.log('auth--mypage', res)
+      self.setData({
+        quanxianCode:res.data.code
+      })
+      if (res.data.code == 0) {
+        console.log("已授权")
+        return 0;
+      } else if (res.data.code == 126) {
+        console.log('no auth')
+        wx.showModal({
+          title: '友点乐',
+          content: '请先进行微信登录',
+          cancelText: '取消',
+          confirmText: '授权',
+          success: res => {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '/pages/login/login',
+              })
+            } else {
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          }
+        })
+        return "{code:126}";
+      } else {
+        // wx.navigateTo({
+        //   url: '/pages/MyPages/my_profile/my_profile',
+        // })
+        console.log('no speak')
+        wx.showModal({
+          title: '友点乐',
+          content: '请先进行微信登录',
+          cancelText: '取消',
+          confirmText: '授权',
+          success: res => {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '/pages/login/login',
+              })
+            } else {
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          }
+        })
+        return -1
+      }
+    })
+
+  },
+  userPanduan2:function() {
+    //刚进入赋值权限code
+    var self=this;
+    let url = app.globalData.URL + '/appuser/getSpeakPerm';
+    util.gets(url, {}).then(function (res) {
+      console.log(res)
+      self.setData({
+        quanxianCode:res.data.code
+      })
+    })
+
   },
   onLoad: function (options) {
     wx.getSetting({
@@ -945,7 +1029,7 @@ Page({
             success: res => {
               if (res.confirm) {
                 wx.navigateTo({
-                  url: '/pages/login/login',
+                  url: '/pages/login/login?',
                 })
               } else {
                 wx.navigateBack({
@@ -963,8 +1047,9 @@ Page({
       univ: wx.getStorageSync('school').code ? wx.getStorageSync('school').code : null,
       TabCur: options.TabCur,
     })
-  
+
     this.xuanran(); //初始化
+    this.userPanduan2();////权限赋初值
     this.getShipin();
     this.setData({ //读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
       TabCur: app.globalData.tabbar
@@ -1245,5 +1330,5 @@ Page({
 
     }
   },
- 
+
 })

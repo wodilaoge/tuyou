@@ -257,6 +257,7 @@ Page({
     }
   },
   fasong() { //发送按钮
+    this.userPanduan()
     var self = this;
     if (this.data.duixiang == '50') {
       let url = app.globalData.URL + '/comm/addComment';
@@ -1566,6 +1567,7 @@ Page({
     }
   },
   shipinguanzhu: function (e) {
+    this.userPanduan()
     var self = this;
     let shipintmp = this.data.shipin;
     if (shipintmp.list[e.currentTarget.dataset.index].myFollow == 1) {
@@ -1600,6 +1602,7 @@ Page({
     }
   },
   shipinDianzan: function (e) {
+  this.userPanduan()
     var self = this;
     let shipintmp = this.data.shipin;
     if (shipintmp.list[e.currentTarget.dataset.index].myApplaud == 1) {
@@ -1640,7 +1643,59 @@ Page({
     }
   },
 
+  userPanduan(e) {
+    //判断是否登录
+    let url = app.globalData.URL + '/appuser/getSpeakPerm';
+    util.gets(url, {}).then(function (res) {
+      console.log('auth--mypage', res)
+      if (res.data.code == 0) {
+        console.log("已授权")
+        return
+      } else if (res.data.code == 126) {
+        console.log('no auth')
+        wx.showModal({
+          title: '友点乐',
+          content: '请先进行微信登录',
+          cancelText: '取消',
+          confirmText: '授权',
+          success: res => {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '/pages/login/login',
+              })
+            } else {
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          }
+        })
+      } else {
+        // wx.navigateTo({
+        //   url: '/pages/MyPages/my_profile/my_profile',
+        // })
+        console.log('no auth')
+        wx.showModal({
+          title: '友点乐',
+          content: '请先进行微信登录',
+          cancelText: '取消',
+          confirmText: '授权',
+          success: res => {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '/pages/login/login',
+              })
+            } else {
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          }
+        })
+      }
+    })
 
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

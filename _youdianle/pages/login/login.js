@@ -3,7 +3,8 @@ const app = getApp();
 var util = require("../../utils/util.js");
 Page({
   data: {
-    isagree: true
+    isagree: true,
+    shouye: '',
   },
   isagree(e) {
     this.setData({
@@ -82,6 +83,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
+   
     // var user=wx.getStorageSync("userInfo")
     // if(user){
     //   wx.navigateTo({

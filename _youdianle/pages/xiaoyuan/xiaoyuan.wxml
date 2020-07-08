@@ -294,7 +294,7 @@
           </view>
 
           <view class=" sp-pinglun margin-top ">{{shipin.list[index].notes}}</view>
-          <view class="sp-hotpinglun margin-top ">热门评论</view>
+          <view class="sp-hotpinglun margin-top " >热门评论</view>
           <view class="margin-top" style="background-color: #fff;">
 
             <view class="margin-top sp-pinlun-content" bindtap="shipinChooseSezi" data-duixiang="{{50}}"

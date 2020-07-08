@@ -87,6 +87,7 @@ Page({
     rotationhide: true,
     city: '',
     univ: '',
+    quanxianCode: -1,
 
     swiperList_zhaopian: [{
       id: 0,
@@ -831,7 +832,8 @@ Page({
     })
     this.video_change(e)
   },
-  shipinguanzhu: function(e) {
+  shipinguanzhu: function (e) {
+    if(this.data.quanxianCode==0){
     var self = this;
     let shipintmp = this.data.shipin;
     if (shipintmp.list[e.currentTarget.dataset.index].myFollow == 1) {
@@ -864,8 +866,12 @@ Page({
       };
       app.wxRequest('POST', url, data, (res) => {}, (err) => {});
     }
+  }else{
+    this.userPanduan()
+  }
   },
-  shipinDianzan: function(e) {
+  shipinDianzan: function (e) {
+    if(this.data.quanxianCode==0){
     var self = this;
     let shipintmp = this.data.shipin;
     if (shipintmp.list[e.currentTarget.dataset.index].myApplaud == 1) {
@@ -875,7 +881,6 @@ Page({
         shipin: shipintmp
       })
       let url = app.globalData.URL + '/applaud/updateApplaud';
-
       let data = {
         objtype: 50,
         objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
@@ -883,8 +888,9 @@ Page({
         creater: self.data.user.id,
         status: 0,
       };
-      console.log(data)
-      app.wxRequest('POST', url, data, (res) => {}, (err) => {});
+      app.wxRequest('POST', url, data, (res) => {
+        console.log(res)
+      }, (err) => {});
 
     } else {
       shipintmp.list[e.currentTarget.dataset.index].myApplaud = 1;
@@ -900,9 +906,13 @@ Page({
         creater: self.data.user.id,
         status: 1,
       };
-      console.log(data)
-      app.wxRequest('POST', url, data, (res) => {}, (err) => {});
+      app.wxRequest('POST', url, data, (res) => {
+        console.log(res)
+      }, (err) => {});
     }
+  }else{
+    this.userPanduan()
+  }
   },
 
 
@@ -1049,6 +1059,7 @@ Page({
     }
   },
   fasong() { //发送按钮
+    if(this.data.quanxianCode==0){
     var self = this;
     if (this.data.duixiang == '50') {
       let url = app.globalData.URL + '/comm/addComment';
@@ -1064,6 +1075,8 @@ Page({
       };
       let inputtmp = self.data.Input;
       let shipintmp = self.data.shipin
+      console.log(shipintmp)
+      console.log(self.data.dxindex)
       app.wxRequest('POST', url, data, (res) => {
         ///////////////////本地添加评论内容
         shipintmp.list[self.data.dxindex].listComm.splice(0, 0, {
@@ -1097,24 +1110,13 @@ Page({
         createrAlias: self.data.user.nickname,
         createrHead: self.data.user.head
       };
-      console.log(data)
       app.wxRequest('POST', url, data, (res) => {
-        self.comment();
-        console.log(res)
-        if (res.code == 0)
-          wx.showToast({
-            title: '评论成功！', // 标题
-            icon: 'success', // 图标类型，默认success
-            duration: 1500 // 提示窗停留时间，默认1500ms
-          })
-        else {
-          console.log(res.data)
-          wx.showToast({
-            title: res.data.msg, // 标题
-            image: '/img/fail.png', // 图标类型，默认success
-            duration: 1000 // 提示窗停留时间，默认1500ms
-          })
-        }
+        self.onLoad();
+        wx.showToast({
+          title: '评论成功！', // 标题
+          icon: 'success', // 图标类型，默认success
+          duration: 1500 // 提示窗停留时间，默认1500ms
+        })
       }, (err) => {
         console.log(err.errMsg)
       });
@@ -1123,6 +1125,9 @@ Page({
       Input: '',
     })
     self.hideModal()
+  }else{
+    this.userPanduan()
+  }
   },
   /////////////
   getZhaopian() { //照片
@@ -1141,9 +1146,13 @@ Page({
   },
   ////////////
   shipintiaozhuan() {
+    if(this.data.quanxianCode==0){
     wx.navigateTo({
       url: '../form_actid_video/form_actid_video?actid=' + this.data.categoryId
     })
+  }else{
+    this.userPanduan()
+  }
   },
   zhaopiantiaozhuan() {
     wx.navigateTo({
@@ -1861,6 +1870,77 @@ Page({
       urls: [e.currentTarget.dataset.imgurl] // 需要预览的图片http链接列表
     })
   },
+  userPanduan:function() {
+    var self=this;
+    //判断是否登录
+    let url = app.globalData.URL + '/appuser/getSpeakPerm';
+    util.gets(url, {}).then(function (res) {
+      console.log('auth--mypage', res)
+      self.setData({
+        quanxianCode:res.data.code
+      })
+      if (res.data.code == 0) {
+        console.log("已授权")
+        return 0;
+      } else if (res.data.code == 126) {
+        console.log('no auth')
+        wx.showModal({
+          title: '友点乐',
+          content: '请先进行微信登录',
+          cancelText: '取消',
+          confirmText: '授权',
+          success: res => {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '/pages/login/login',
+              })
+            } else {
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          }
+        })
+        return "{code:126}";
+      } else {
+        // wx.navigateTo({
+        //   url: '/pages/MyPages/my_profile/my_profile',
+        // })
+        console.log('no speak')
+        wx.showModal({
+          title: '友点乐',
+          content: '请先进行微信登录',
+          cancelText: '取消',
+          confirmText: '授权',
+          success: res => {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '/pages/login/login',
+              })
+            } else {
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          }
+        })
+        return -1
+      }
+    })
+
+  },
+  userPanduan2:function() {
+    //刚进入赋值权限code
+    var self=this;
+    let url = app.globalData.URL + '/appuser/getSpeakPerm';
+    util.gets(url, {}).then(function (res) {
+      console.log(res)
+      self.setData({
+        quanxianCode:res.data.code
+      })
+    })
+
+  },
   /////////////////////////////
   /**
    * 生命周期函数--监听页面加载
@@ -1902,6 +1982,7 @@ Page({
     self.rotation()
     self.baomingzhuangtai()
     self.ifguanzhu()
+    self.userPanduan2()
     self.ifzan()
     self.comment()
     self.fenzu()
