@@ -76,7 +76,7 @@
       <view class="bg-img" wx:for="{{imgList2}}" wx:key="{{index}}" bindtap="ViewImage" data-id="1"
         data-url="{{imgList2[index]}}">
         <image src='{{imgList2[index]}}' mode='aspectFill'></image>
-        <view class="cu-tag bg-red" catchtap="DelImg" data-id='1' data-index="{{index}}">
+        <view class="cu-tag bg-red" catchtap="DelImg2" data-id='1' data-index="{{index}}">
           <text class="cuIcon-close"></text>
         </view>
       </view>
