@@ -182,68 +182,69 @@
         <view class="cu-bar-title">报名</view>
       </view>
     </view>
-    <view style="background-color:var(--white)" hidden="{{signupway}}">
-      <view class=" padding " style="margin-left:175rpx;">
-        <button class="cu-btn {{baomingCur==0?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-left" bindtap="baomingSelect" data-id="0">
-          个人报名
-        </button>
-        <button class="cu-btn  {{baomingCur==1?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-right" bindtap="baomingSelect" data-id="1">
-          团队报名
-        </button>
+    <block wx:if="{{detail.lefttime.left!='已结束'&& detail.lefttime.left!='进行中'}}">
+      <view style="background-color:var(--white)" hidden="{{signupway}}">
+        <view class=" padding " style="margin-left:175rpx;">
+          <button class="cu-btn {{baomingCur==0?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-left" bindtap="baomingSelect" data-id="0">
+            个人报名
+          </button>
+          <button class="cu-btn  {{baomingCur==1?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-right" bindtap="baomingSelect" data-id="1">
+            团队报名
+          </button>
+        </view>
       </view>
-    </view>
-    <block wx:if="{{baomingCur==0}}">
-      <block wx:if="{{isbaominggeren==0}}">
-        <view class="bg-white">
-          <form>
-            <view class="cu-form-group" hidden="{{guankanhide}}">
-              <radio-group class="block" style="margin-left:240rpx;">
-                <view class="flex">
-                  <view>
-                    <checkbox class="round blue " style="zoom: 80%;" data-id="10" bindtap='bindRadioChange' checked>
-                    </checkbox>
+      <block wx:if="{{baomingCur==0}}">
+        <block wx:if="{{isbaominggeren==0}}">
+          <view class="bg-white">
+            <form>
+              <view class="cu-form-group" hidden="{{guankanhide}}">
+                <radio-group class="block" style="margin-left:240rpx;">
+                  <view class="flex">
+                    <view>
+                      <checkbox class="round blue " style="zoom: 80%;" data-id="10" bindtap='bindRadioChange' checked>
+                      </checkbox>
+                    </view>
+                    <view class="tp-select ">报名参加</view>
+                    <view style="margin-left:40rpx;">
+                      <checkbox class="round blue " style="zoom: 80%;" data-id="30" bindtap='bindRadioChange'></checkbox>
+                    </view>
+                    <view class="tp-select">报名观看</view>
                   </view>
-                  <view class="tp-select ">报名参加</view>
-                  <view style="margin-left:40rpx;">
-                    <checkbox class="round blue " style="zoom: 80%;" data-id="30" bindtap='bindRadioChange'></checkbox>
+                </radio-group>
+              </view>
+              <view class="cu-form-group" hidden="{{shiminghide}}">
+                <view class="title" style="margin-right:65rpx;">姓名 </view>
+                <input class="form-text" placeholder="{{yonghuxinxi.name==null||''?'请完善个人信息':yonghuxinxi.name}}" disabled></input>
+              </view>
+              <view class="cu-form-group " hidden="{{shiminghide}}">
+                <view class="title" style="margin-right:65rpx;">手机</view>
+                <input class="form-text" placeholder="{{yonghuxinxi.mobile==null||''?'请绑定手机':yonghuxinxi.mobile}}" disabled></input>
+              </view>
+              <view class="cu-form-group " hidden="{{fenzuhide}}">
+                <view class="title">选择分组</view>
+                <picker bindchange="bindPickerChange" range="{{picker}}">
+                  <view class="picker">
+                    {{picker[fenzuindex]}}
                   </view>
-                  <view class="tp-select">报名观看</view>
-                </view>
-              </radio-group>
-            </view>
-            <view class="cu-form-group" hidden="{{shiminghide}}">
-              <view class="title" style="margin-right:65rpx;">姓名 </view>
-              <input class="form-text" placeholder="{{yonghuxinxi.name==null||''?'请完善个人信息':yonghuxinxi.name}}" disabled></input>
-            </view>
-            <view class="cu-form-group " hidden="{{shiminghide}}">
-              <view class="title" style="margin-right:65rpx;">手机</view>
-              <input class="form-text" placeholder="{{yonghuxinxi.mobile==null||''?'请绑定手机':yonghuxinxi.mobile}}" disabled></input>
-            </view>
-            <view class="cu-form-group " hidden="{{fenzuhide}}">
-              <view class="title">选择分组</view>
-              <picker bindchange="bindPickerChange" range="{{picker}}">
-                <view class="picker">
-                  {{picker[fenzuindex]}}
-                </view>
-              </picker>
-            </view>
-          </form>
-        </view>
-        <view class="bg-white flex" style="align-items: center;justify-content: center;">
-          <checkbox class="blue yuedu-logo" checked bindtap='iftongyiRadioChange'></checkbox>
-          <view class="queren margin-left-sm" style="color:#999999;">
-            我已阅读并同意
+                </picker>
+              </view>
+            </form>
           </view>
-          <view class="queren" style="color:#5C7CFF;" bindtap="toagreepage">
-            《友点乐用户协议》
+          <view class="bg-white flex" style="align-items: center;justify-content: center;">
+            <checkbox class="blue yuedu-logo" checked bindtap='iftongyiRadioChange'></checkbox>
+            <view class="queren margin-left-sm" style="color:#999999;">
+              我已阅读并同意
+            </view>
+            <view class="queren" style="color:#5C7CFF;" bindtap="toagreepage">
+              《友点乐用户协议》
+            </view>
           </view>
-        </view>
 
-        <view class="bg-white flex padding" style="align-items: center;justify-content: center;">
-          <button class="cu-btn bg-orange round btn-bm margin-top" bindtap="lijibaoming">立即报名</button>
-        </view>
+          <view class="bg-white flex padding" style="align-items: center;justify-content: center;">
+            <button class="cu-btn bg-orange round btn-bm margin-top" bindtap="lijibaoming">立即报名</button>
+          </view>
 
-        <!--<view class="bg-white margin-top padding-top">
+          <!--<view class="bg-white margin-top padding-top">
         <view class="yibaoming-margin-top margin-left ">
           <text class="yibaoming-text-content">已报名</text>
           <text class="yibaoming-text-content"
@@ -259,90 +260,90 @@
       </view>-->
 
 
-      </block>
+        </block>
 
-      <block wx:if="{{isbaominggeren==1}}">
-        <view style="background-color:var(--white)">
-          <view>
-            <image class="img-success " src="/img/img_success.png"></image>
-          </view>
+        <block wx:if="{{isbaominggeren==1}}">
+          <view style="background-color:var(--white)">
+            <view>
+              <image class="img-success " src="/img/img_success.png"></image>
+            </view>
 
-          <view class="flex justify-center">
-            <text class="baoming_text_ok">报名成功</text>
-          </view>
-          <view class="flex justify-center">
-            <text class="baoming_text_wait">请耐心等待活动开始</text>
-          </view>
-          <view class="flex justify-center padding-lg">
-            <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx" bindtap="quxiaobaoming" data-obj="0">取消报名</button>
-          </view>
-          <view class="fenge-bg"></view>
-          <!--<view class="yundong-content bg-white">
+            <view class="flex justify-center">
+              <text class="baoming_text_ok">报名成功</text>
+            </view>
+            <view class="flex justify-center">
+              <text class="baoming_text_wait">请耐心等待活动开始</text>
+            </view>
+            <view class="flex justify-center padding-lg">
+              <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx" bindtap="quxiaobaoming" data-obj="0">取消报名</button>
+            </view>
+            <view class="fenge-bg"></view>
+            <!--<view class="yundong-content bg-white">
           <view class="padding-sm">
             <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" data-id="{{item.id}}"
               bindtap="gerenziliao" wx:key style="background-image:url({{item.head}});" />
           </view>
         </view>-->
-        </view>
+          </view>
+        </block>
       </block>
-    </block>
-    <block wx:if="{{baomingCur==1}}">
-      <block wx:if="{{isbaomingtuandui==0}}">
-        <view class="bg-white">
-          <form>
-            <view class="cu-form-group" hidden="{{guankanhide}}">
-              <radio-group class="block" style="margin-left:240rpx;">
-                <view class="flex">
-                  <view>
-                    <checkbox class="round blue " style="zoom: 80%;" checked data-id="20" bindtap='bindRadioChange'>
-                    </checkbox>
+      <block wx:if="{{baomingCur==1}}">
+        <block wx:if="{{isbaomingtuandui==0}}">
+          <view class="bg-white">
+            <form>
+              <view class="cu-form-group" hidden="{{guankanhide}}">
+                <radio-group class="block" style="margin-left:240rpx;">
+                  <view class="flex">
+                    <view>
+                      <checkbox class="round blue " style="zoom: 80%;" checked data-id="20" bindtap='bindRadioChange'>
+                      </checkbox>
+                    </view>
+                    <view class="tp-select ">报名参加</view>
+
+                    <view style="margin-left:40rpx;">
+                      <checkbox class="round blue " style="zoom: 80%;" data-id="40" bindtap='bindRadioChange'></checkbox>
+                    </view>
+                    <view class="tp-select">报名观看</view>
                   </view>
-                  <view class="tp-select ">报名参加</view>
-
-                  <view style="margin-left:40rpx;">
-                    <checkbox class="round blue " style="zoom: 80%;" data-id="40" bindtap='bindRadioChange'></checkbox>
+                </radio-group>
+              </view>
+              <view class="cu-form-group" hidden="{{shiminghide}}">
+                <view class="title" style="margin-right:65rpx;">姓名 </view>
+                <input class="form-text" placeholder="{{yonghuxinxi.name==null||''?'请完善个人信息':yonghuxinxi.name}}" disabled></input>
+              </view>
+              <view class="cu-form-group " hidden="{{shiminghide}}">
+                <view class="title" style="margin-right:65rpx;">手机</view>
+                <input class="form-text" placeholder="{{yonghuxinxi.mobile==null||''?'请绑定手机':yonghuxinxi.mobile}}" disabled></input>
+              </view>
+              <view class="cu-form-group " hidden="{{fenzuhide}}">
+                <view class="title">选择分组</view>
+                <picker bindchange="bindPickerChange" range="{{picker}}">
+                  <view class="picker">
+                    {{picker[fenzuindex]}}
                   </view>
-                  <view class="tp-select">报名观看</view>
-                </view>
-              </radio-group>
-            </view>
-            <view class="cu-form-group" hidden="{{shiminghide}}">
-              <view class="title" style="margin-right:65rpx;">姓名 </view>
-              <input class="form-text" placeholder="{{yonghuxinxi.name==null||''?'请完善个人信息':yonghuxinxi.name}}" disabled></input>
-            </view>
-            <view class="cu-form-group " hidden="{{shiminghide}}">
-              <view class="title" style="margin-right:65rpx;">手机</view>
-              <input class="form-text" placeholder="{{yonghuxinxi.mobile==null||''?'请绑定手机':yonghuxinxi.mobile}}" disabled></input>
-            </view>
-            <view class="cu-form-group " hidden="{{fenzuhide}}">
-              <view class="title">选择分组</view>
-              <picker bindchange="bindPickerChange" range="{{picker}}">
-                <view class="picker">
-                  {{picker[fenzuindex]}}
-                </view>
-              </picker>
-            </view>
-            <view class="cu-form-group ">
-              <view class="title">报名团队</view>
-              <input class="form-text" placeholder='点击选择团队' bindtap="xuanzetuandui" value="{{tuanduiSelect.name}}" disable></input>
-            </view>
-          </form>
-        </view>
-        <view class="bg-white flex" style="align-items: center;justify-content: center;">
-          <checkbox class="blue yuedu-logo" checked bindtap='iftongyiRadioChange'></checkbox>
-          <view class="queren margin-left-sm" style="color:#999999;">
-            我已阅读并同意
+                </picker>
+              </view>
+              <view class="cu-form-group ">
+                <view class="title">报名团队</view>
+                <input class="form-text" placeholder='点击选择团队' bindtap="xuanzetuandui" value="{{tuanduiSelect.name}}" disable></input>
+              </view>
+            </form>
           </view>
-          <view class="queren" style="color:#5C7CFF;" bindtap="toagreepage">
-            《友点乐用户协议》
+          <view class="bg-white flex" style="align-items: center;justify-content: center;">
+            <checkbox class="blue yuedu-logo" checked bindtap='iftongyiRadioChange'></checkbox>
+            <view class="queren margin-left-sm" style="color:#999999;">
+              我已阅读并同意
+            </view>
+            <view class="queren" style="color:#5C7CFF;" bindtap="toagreepage">
+              《友点乐用户协议》
+            </view>
           </view>
-        </view>
 
-        <view class="bg-white flex padding" style="align-items: center;justify-content: center;">
-          <button class="cu-btn bg-orange round btn-bm margin-top" bindtap="lijibaoming">立即报名</button>
-        </view>
+          <view class="bg-white flex padding" style="align-items: center;justify-content: center;">
+            <button class="cu-btn bg-orange round btn-bm margin-top" bindtap="lijibaoming">立即报名</button>
+          </view>
 
-        <!--<view class="bg-white margin-top padding-top">
+          <!--<view class="bg-white margin-top padding-top">
         <view class="yibaoming-margin-top margin-left ">
           <text class="yibaoming-text-content">已报名</text>
           <text class="yibaoming-text-content"
@@ -356,35 +357,36 @@
           </view>
         </view>
       </view>-->
-      </block>
-      <block wx:if="{{isbaomingtuandui==1}}">
-        <view style="background-color:var(--white)">
-          <view>
-            <image class="img-success " src="/img/img_success.png"></image>
-          </view>
-
-          <view class="flex justify-center">
-            <text class="baoming_text_ok">报名成功</text>
-          </view>
-          <view class="flex justify-center">
-            <text class="baoming_text_wait">请耐心等待活动开始</text>
-          </view>
-          <view class="flex justify-center padding-lg">
-            <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx" bindtap="quxiaobaoming" data-obj="1">取消报名</button>
-          </view>
-          <view class="fenge-bg"></view>
-          <view class="cu-bar bg-white solid-bottom">
-            <view class='action'>
-              <text class='yibaoming-text-content'>已报名{{gerenshuju.count}}人</text>
+        </block>
+        <block wx:if="{{isbaomingtuandui==1}}">
+          <view style="background-color:var(--white)">
+            <view>
+              <image class="img-success " src="/img/img_success.png"></image>
             </view>
-          </view>
-          <!--<view class="yundong-content bg-white">
+
+            <view class="flex justify-center">
+              <text class="baoming_text_ok">报名成功</text>
+            </view>
+            <view class="flex justify-center">
+              <text class="baoming_text_wait">请耐心等待活动开始</text>
+            </view>
+            <view class="flex justify-center padding-lg">
+              <button class="cu-btn round bg-orange" style="width:400rpx;heigh:80rpx" bindtap="quxiaobaoming" data-obj="1">取消报名</button>
+            </view>
+            <view class="fenge-bg"></view>
+            <view class="cu-bar bg-white solid-bottom">
+              <view class='action'>
+                <text class='yibaoming-text-content'>已报名{{gerenshuju.count}}人</text>
+              </view>
+            </view>
+            <!--<view class="yundong-content bg-white">
           <view class="padding-sm">
             <view class="cu-avatar round lg margin-sm" wx:for="{{yibaomingList}}" data-id="{{item.id}}"
               bindtap="gerenziliao" wx:key style="background-image:url({{item.head}});" />
           </view>
         </view>-->
-        </view>
+          </view>
+        </block>
       </block>
     </block>
     <block>
