@@ -199,6 +199,22 @@ Page({
       })
     }
   },
+  DelImg2(e){
+    wx.showModal({
+      title: '确定',
+      content: '确定要删除这张封面图？',
+      cancelText: '取消',
+      confirmText: '确认删除',
+      success: res => {
+        if (res.confirm) {
+          this.setData({
+            imgList2: [],
+            other: ''
+          })
+        }
+      }
+    })
+  },
   isagree(e) {
     console.log('fuck')
     this.setData({

@@ -217,7 +217,20 @@ Page({
       wx.showToast({
         title: '请选择活动类型',
       })
-    } else if (this.data.information.actname) {
+    }else if (!this.data.information.province) {
+      wx.showToast({ 
+        title: '请先选择地区',
+         duration: 2000,
+         success: function() { 
+          setTimeout(function() { 
+            wx.navigateTo({
+              url: '/pages/form_address/form_address',
+            }) 
+          }, 2000); 
+        }
+      })
+    }
+     else if (this.data.information.actname) {
       let t = 'information.timenow'
       let t2 = 'information.signupdeadline'
       let t3 = 'information.logo'
@@ -592,7 +605,20 @@ Page({
       wx.showToast({
         title: '请选择活动类型',
       })
-    } else {
+    }else if (!this.data.information.province) {
+      wx.showToast({ 
+        title: '请先选择地区',
+         duration: 2000,
+         success: function() { 
+          setTimeout(function() { 
+            wx.navigateTo({
+              url: '/pages/form_address/form_address',
+            }) 
+          }, 2000); 
+        }
+      })
+    }
+     else {
       that.setData({
         hiddenmodalput: !this.data.hiddenmodalput
       })

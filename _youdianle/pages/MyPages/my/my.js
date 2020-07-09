@@ -168,7 +168,7 @@ Page({
     let url = app.globalData.URL + '/appuser/getMyinfoPerm';
     util.gets(url, {}).then(function (res) {
       console.log('auth--mypage', res.data.data)
-      if (!res.data.data) {
+      if (res.data.data==false||res.data.data==null) {
         console.log('no auth')
         that.setData({
           isauth:false
