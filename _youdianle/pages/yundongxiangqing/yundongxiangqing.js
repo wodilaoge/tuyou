@@ -1111,7 +1111,7 @@ Page({
         createrHead: self.data.user.head
       };
       app.wxRequest('POST', url, data, (res) => {
-        self.onLoad();
+        self.comment();
         wx.showToast({
           title: '评论成功！', // 标题
           icon: 'success', // 图标类型，默认success
