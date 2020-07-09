@@ -105,6 +105,7 @@ Page({
     })
   },
   getinfo() {
+    var self=this
     var url = app.globalData.URL + '/act/listCampusActivityHome';
     // let t= wx.getStorageSync('province').code?wx.getStorageSync('province').code:null
     // console.log('t',t)
@@ -122,6 +123,15 @@ Page({
     }, (err) => {
       console.log(err.errMsg)
     });
+    url = app.globalData.URL + '/config/getActivityClass2'
+    data = {
+      cid: '076003001'
+    }
+    util.gets(url, data).then(function (res) {
+      self.setData({
+        yundongxiaolei: res.data.data
+      })
+    })
   },
   getsportinfo() {
     var that=this
@@ -348,7 +358,7 @@ Page({
     this.gethobbyinfo(); //爱好信息
     this.getvideoinfo(); //视频信息
     this.getuploadinfo(); //轮播图
-
+   
   },
   onLoad: function (options) {
     this.startReportHeart()
