@@ -259,8 +259,8 @@
         <view wx:for="{{sousuo_detail.listAmuse}}" wx:key="key">
           <view class="cu-bar bg-white solid-bottom">
             <image class="cu-avatar my margin-left" src="{{item.logo}}" mode="heightFix"></image>
-            <text>吉他</text>
-            <text class=" title-time margin-right">1 天 01: 02 </text>
+            <!-- <text>吉他</text>
+            <text class=" title-time margin-right">1 天 01: 02 </text> -->
           </view>
           <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-yundong="{{item}}">
             <view class="cu-card article ">
@@ -520,8 +520,8 @@
       <view wx:for="{{sousuo_detail_dalei}}" wx:key="key">
         <view class="cu-bar bg-white solid-bottom">
           <image class="cu-avatar my margin-left" src="{{item.logo}}" mode="heightFix"></image>
-          <text>吉他</text>
-          <text class=" title-time margin-right">1 天 01: 02 </text>
+          <!-- <text>吉他</text>
+          <text class=" title-time margin-right">1 天 01: 02 </text> -->
         </view>
         <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-yundong="{{item}}">
           <view class="cu-card article ">

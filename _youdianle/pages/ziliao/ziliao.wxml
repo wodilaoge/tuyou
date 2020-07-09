@@ -482,7 +482,7 @@
         <view class="content-white">
           <view class=" sp-cu-bar cu-bar-radius bg-white  ">
             <image class="sp-avatar round " data-id="{{item.author}}" bindtap="gerenziliao" src="{{shipin.list[0].authorHead}}"></image>
-            <view class="sp-avatar-name">{{shipin.list[0].authorAlias}}</view>
+            <view class="sp-avatar-name">{{shipin.list[0].authorAlias===null?'':shipin.list[0].authorAlias}}</view>
             <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{shipin.list[index].myFollow==1}}">关注</button>
             <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{!shipin.list[index].myFollow==1}}">已关注</button>
           </view>
@@ -545,7 +545,7 @@
         <view class="content-white">
           <view class=" sp-cu-bar cu-bar-radius bg-white  ">
             <image class="sp-avatar round " data-id="{{item.author}}" bindtap="gerenziliao" src="{{shipin.list[index].authorHead}} "></image>
-            <view class="sp-avatar-name">{{shipin.list[index].authorAlias}}</view>
+            <view class="sp-avatar-name">{{shipin.list[index].authorAlias===null?'':shipin.list[index].authorAlias}}</view>
             <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{shipin.list[index].myFollow==1}}">关注</button>
             <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu" data-index="{{index}}" hidden="{{!shipin.list[index].myFollow==1}}">已关注</button>
           </view>
