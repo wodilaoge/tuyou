@@ -61,7 +61,7 @@
       <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000"
         duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#FE538F">
         <swiper-item wx:for="{{xiaoyuanSwiperList}}" wx:key>
-          <view class="swiper-item"  bindtap="towebview3" data-item="{{item}}">
+          <view class="swiper-item" bindtap="towebview3" data-item="{{item}}">
             <image src="{{item.path}}" mode="scaleToFill"></image>
           </view>
         </swiper-item>
@@ -184,7 +184,8 @@
         <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx;">{{shipin.list[0].title}}</view>
         <view class="content-white">
           <view class=" sp-cu-bar cu-bar-radius bg-white  ">
-            <image class="sp-avatar round " data-id="{{item.author}}" bindtap="gerenziliao"src="{{shipin.list[0].authorHead}}"></image>
+            <image class="sp-avatar round " data-id="{{item.author}}" bindtap="gerenziliao"
+              src="{{shipin.list[0].authorHead}}"></image>
             <view class="sp-avatar-name">{{shipin.list[0].authorAlias===null?'':shipin.list[0].authorAlias}}</view>
             <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu"
               data-index="{{index}}" hidden="{{shipin.list[index].myFollow==1}}">关注</button>
@@ -192,11 +193,13 @@
               data-index="{{index}}" hidden="{{!shipin.list[index].myFollow==1}}">已关注</button>
           </view>
           <view>
-            <video id="video_0" src="{{shipin.list[0].shipinSRC}}" 
-             controls="{{true}}" style="width:100%;" hidden="{{!shipin.list[0].yingChang}}"
-              bindtap="video_change" data-index="{{index}}" custom-cache="{{false}}"></video>
-              <image id="video_{{index}}" src="{{shipin.list[0].cover?shipin.list[0].cover:defaultPoster}}" mode="{{shipin.list[0].cover?'scaleToFill':'center'}}"
-              style="background-color: black; width: 100% ;height: 450rpx;" bindtap="yingChangShipin" data-index="{{index}}" hidden="{{shipin.list[0].yingChang}}"></image>
+            <video id="video_0" src="{{shipin.list[0].shipinSRC}}" controls="{{true}}" style="width:100%;"
+              hidden="{{!shipin.list[0].yingChang}}" bindtap="video_change" data-index="{{index}}"
+              custom-cache="{{false}}"></video>
+            <image id="video_{{index}}" src="{{shipin.list[0].cover?shipin.list[0].cover:defaultPoster}}"
+              mode="{{shipin.list[0].cover?'scaleToFill':'center'}}"
+              style="background-color: black; width: 100% ;height: 450rpx;" bindtap="yingChangShipin"
+              data-index="{{index}}" hidden="{{shipin.list[0].yingChang}}"></image>
           </view>
           <view class="flex  margin-top ">
             <view class="sp-bofang-times ">播放{{shipin.list[0].playCnt}}次</view>
@@ -225,25 +228,34 @@
 
             <view class="margin-top sp-pinlun-content" bindtap="shipinChooseSezi" data-duixiang="{{50}}"
               data-dxid="{{shipin.list[0].id}}" data-index="{{0}}" wx:if="{{shipin.list[0].listComm[0]}}">
-              <image class="sp-pinglun-avatar round " src="{{shipin.list[0].listComm[0].createrHead}} "></image>
-              <view class="sp-pinglun-name ">{{shipin.list[0].listComm[0].createrAlias}}</view>
               <view>
-                <view class="sp-pinglun-neirong ">{{shipin.list[0].listComm[0].comment}}
+                <image class="sp-pinglun-avatar round " src="{{shipin.list[0].listComm[0].createrHead}} "></image>
+              </view>
+              <view>
+                <view class="flex">
+                  <view class="sp-pinglun-name">{{shipin.list[0].listComm[0].createrAlias}}</view>
+                  <view>
+                    <text class='card-text-content-time2'>{{shipin.list[0].listComm[0].strCreatetime}}</text>
+                  </view>
                 </view>
-                <view>
-                  <text class='card-text-content-time2'>{{shipin.list[0].listComm[0].strCreatetime}}</text>
+                <view class="sp-pinglun-neirong ">{{shipin.list[0].listComm[0].comment}}
                 </view>
               </view>
             </view>
 
             <view class="margin-top sp-pinlun-content" bindtap="shipinChooseSezi" data-duixiang="{{50}}"
               data-dxid="{{shipin.list[0].id}}" data-index="{{0}}" wx:if="{{shipin.list[0].listComm[1]}}">
-              <image class="sp-pinglun-avatar round " src="{{shipin.list[0].listComm[1].createrHead}} "></image>
-              <view class="sp-pinglun-name ">{{shipin.list[0].listComm[1].createrAlias}}</view>
               <view>
-                <view class="sp-pinglun-neirong ">{{shipin.list[0].listComm[1].comment}}</view>
-                <view>
-                  <text class='card-text-content-time2'>{{shipin.list[0].listComm[1].strCreatetime}}</text>
+                <image class="sp-pinglun-avatar round " src="{{shipin.list[0].listComm[1].createrHead}} "></image>
+              </view>
+              <view>
+                <view class="flex">
+                  <view class="sp-pinglun-name">{{shipin.list[0].listComm[1].createrAlias}}</view>
+                  <view>
+                    <text class='card-text-content-time2'>{{shipin.list[0].listComm[1].strCreatetime}}</text>
+                  </view>
+                </view>
+                <view class="sp-pinglun-neirong ">{{shipin.list[0].listComm[1].comment}}
                 </view>
               </view>
             </view>
@@ -259,19 +271,23 @@
         <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx;">{{shipin.list[index].title}}</view>
         <view class="content-white">
           <view class=" sp-cu-bar cu-bar-radius bg-white  ">
-            <image class="sp-avatar round " data-id="{{item.author}}" bindtap="gerenziliao" src="{{shipin.list[index].authorHead}} "></image>
-            <view class="sp-avatar-name">{{shipin.list[index].authorAlias===null?'':shipin.list[index].authorAlias}}</view>
+            <image class="sp-avatar round " data-id="{{item.author}}" bindtap="gerenziliao"
+              src="{{shipin.list[index].authorHead}} "></image>
+            <view class="sp-avatar-name">{{shipin.list[index].authorAlias===null?'':shipin.list[index].authorAlias}}
+            </view>
             <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu"
               data-index="{{index}}" hidden="{{shipin.list[index].myFollow==1}}">关注</button>
             <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu"
               data-index="{{index}}" hidden="{{!shipin.list[index].myFollow==1}}">已关注</button>
           </view>
           <view>
-              <video id="video_{{index}}" src="{{shipin.list[index].shipinSRC}}" 
-             controls="{{true}}" style="width:100%;"  hidden="{{!shipin.list[index].yingChang}}" 
-              bindtap="video_change" data-index="{{index}}" custom-cache="{{false}}"></video>
-              <image id="video_{{index}}" src="{{shipin.list[index].cover?shipin.list[index].cover:defaultPoster}}" mode="{{shipin.list[index].cover?'scaleToFill':'center'}}"
-              style="width: 100%;height: 450rpx;background-color: black;" bindtap="yingChangShipin" data-index="{{index}}" hidden="{{shipin.list[index].yingChang}}"></image>
+            <video id="video_{{index}}" src="{{shipin.list[index].shipinSRC}}" controls="{{true}}" style="width:100%;"
+              hidden="{{!shipin.list[index].yingChang}}" bindtap="video_change" data-index="{{index}}"
+              custom-cache="{{false}}"></video>
+            <image id="video_{{index}}" src="{{shipin.list[index].cover?shipin.list[index].cover:defaultPoster}}"
+              mode="{{shipin.list[index].cover?'scaleToFill':'center'}}"
+              style="width: 100%;height: 450rpx;background-color: black;" bindtap="yingChangShipin"
+              data-index="{{index}}" hidden="{{shipin.list[index].yingChang}}"></image>
           </view>
           <view class="flex  margin-top ">
             <view class="sp-bofang-times ">播放{{shipin.list[index].playCnt}}次</view>
@@ -294,32 +310,40 @@
           </view>
 
           <view class=" sp-pinglun margin-top ">{{shipin.list[index].notes}}</view>
-          <view class="sp-hotpinglun margin-top " >热门评论</view>
+          <view class="sp-hotpinglun margin-top ">热门评论</view>
           <view class="margin-top" style="background-color: #fff;">
-
             <view class="margin-top sp-pinlun-content" bindtap="shipinChooseSezi" data-duixiang="{{50}}"
               data-dxid="{{shipin.list[index].id}}" data-index="{{index}}" wx:if="{{shipin.list[index].listComm[0]}}">
-              <image class="sp-pinglun-avatar round " src="{{shipin.list[index].listComm[0].createrHead}} "></image>
-              <view class="sp-pinglun-name ">{{shipin.list[index].listComm[0].createrAlias}}</view>
               <view>
-
-                <view class="sp-pinglun-neirong ">{{shipin.list[index].listComm[0].comment}}</view>
-                <view>
-                  <text class='card-text-content-time2'>{{shipin.list[index].listComm[0].strCreatetime}}</text>
+                <image class="sp-pinglun-avatar round " src="{{shipin.list[index].listComm[0].createrHead}} "></image>
+              </view>
+              <view>
+                <view class="flex">
+                  <view class="sp-pinglun-name">{{shipin.list[index].listComm[0].createrAlias}}</view>
+                  <view>
+                    <text class='card-text-content-time2'>{{shipin.list[index].listComm[0].strCreatetime}}</text>
+                  </view>
+                </view>
+                <view class="sp-pinglun-neirong ">{{shipin.list[index].listComm[0].comment}}
                 </view>
               </view>
             </view>
+
             <view class="margin-top sp-pinlun-content" bindtap="shipinChooseSezi" data-duixiang="{{50}}"
               data-dxid="{{shipin.list[index].id}}" data-index="{{index}}" wx:if="{{shipin.list[index].listComm[1]}}">
-              <image class="sp-pinglun-avatar round " src="{{shipin.list[index].listComm[1].createrHead}} "></image>
-              <view class="sp-pinglun-name ">{{shipin.list[index].listComm[1].createrAlias}}</view>
               <view>
-                <view class="sp-pinglun-neirong ">{{shipin.list[index].listComm[1].comment}}</view>
-                <view>
-                  <text class='card-text-content-time2'>{{shipin.list[index].listComm[1].strCreatetime}}</text>
+                <image class="sp-pinglun-avatar round " src="{{shipin.list[index].listComm[1].createrHead}} "></image>
+              </view>
+              <view>
+                <view class="flex">
+                  <view class="sp-pinglun-name">{{shipin.list[index].listComm[1].createrAlias}}</view>
+                  <view>
+                    <text class='card-text-content-time2'>{{shipin.list[index].listComm[1].strCreatetime}}</text>
+                  </view>
+                </view>
+                <view class="sp-pinglun-neirong ">{{shipin.list[index].listComm[1].comment}}
                 </view>
               </view>
-
             </view>
             <view style="height:10rpx;"></view>
 
@@ -396,15 +420,29 @@
       </view>
       <view wx:for="{{shipin.list[shipin_index].listComm}}" wx:for-index="index2" style="background-color:white;">
         <view class="margin-top sp-pinlun-content">
-          <image class="sp-pinglun-avatar-2 round " src="{{shipin.list[shipin_index].listComm[index2].createrHead}} ">
+          <!-- <image class="sp-pinglun-avatar-2 round " src="{{shipin.list[shipin_index].listComm[index2].createrHead}} ">
           </image>
           <view class="sp-pinglun-name ">{{shipin.list[shipin_index].listComm[index2].createrAlias}}</view>
           <view>
             <view class="sp-pinglun-neirong-2 ">{{shipin.list[shipin_index].listComm[index2].comment}}</view>
-              <text class='card-text-content-time2'>{{shipin.list[shipin_index].listComm[index2].strCreatetime}}</text>
-            
+            <text class='card-text-content-time2'>{{shipin.list[shipin_index].listComm[index2].strCreatetime}}</text> -->
+          <view>
+            <image class="sp-pinglun-avatar-2 round " src="{{shipin.list[shipin_index].listComm[index2].createrHead}} ">
+            </image>
           </view>
-          
+          <view>
+            <view class="flex">
+              <view class="sp-pinglun-name">{{shipin.list[shipin_index].listComm[index2].createrAlias}}</view>
+              <view>
+                <text
+                  class='card-text-content-time2'>{{shipin.list[shipin_index].listComm[index2].strCreatetime}}</text>
+              </view>
+            </view>
+            <view class="sp-pinglun-neirong-2 ">{{shipin.list[shipin_index].listComm[index2].comment}}
+            </view>
+            <!-- </view> -->
+          </view>
+
         </view>
       </view>
     </scroll-view>
