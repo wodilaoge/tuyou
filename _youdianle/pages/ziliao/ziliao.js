@@ -20,7 +20,7 @@ Page({
     ifguanzhu: 0,
     ifziji: 0,
     huodongshu: 0,
-
+    ifYouXiao:true,
     count: 0,
     comment: [],
     chooseSize: false,
@@ -801,6 +801,11 @@ Page({
       if (self.data.duiyuanDeatil.id == self.data.user.id) {
         self.setData({
           ifziji: 1,
+        })
+      }
+      if (res.data==null) {//////////////判断是否有数据
+        self.setData({
+         ifYouXiao:false
         })
       }
       /////////////修改age

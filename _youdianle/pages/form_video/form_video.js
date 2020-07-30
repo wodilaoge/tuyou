@@ -151,14 +151,13 @@ Page({
     }
   },
   DelImg(e) {
-    var t = e.currentTarget.dataset.id
     wx.showModal({
       title: '确定',
-      content: '确定要删除这张照片？',
+      content: '确定要删除这段视频？',
       cancelText: '取消',
       confirmText: '确认删除',
       success: res => {
-        if (res.confirm && t == 1) {
+        if (res.confirm) {
           this.setData({
             videonum: 0,
             video: ''
@@ -166,7 +165,22 @@ Page({
         }
       }
     })
-
+  },
+  DelImg2(e){
+    wx.showModal({
+      title: '确定',
+      content: '确定要删除这张封面图？',
+      cancelText: '取消',
+      confirmText: '确认删除',
+      success: res => {
+        if (res.confirm) {
+          this.setData({
+            imgList2: [],
+            other: ''
+          })
+        }
+      }
+    })
   },
   textareaAInput(e) {
     this.setData({

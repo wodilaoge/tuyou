@@ -429,17 +429,19 @@ page {
   color: #333;
   font-weight: normal;
   margin-left: 14rpx;
+  width: auto;
 }
 
 .sp-pinglun-neirong {
   margin-bottom: 10rpx;
   width: 600rpx;
+  /* width: auto; */
   font-size: 24rpx;
   /* height: 60rpx; */
   font-family: PingFang-SC-Medium;
   color: #666;
   font-weight: normal;
-  margin-left: 21rpx;
+  margin-left: 14rpx;
   /* display: flex; */
   /* 用来显示2行出现... */
   overflow: hidden;
@@ -451,7 +453,7 @@ page {
   /* white-space:overflow; */
 }
 .sp-pinglun-neirong-2 {
-  width: 550rpx;
+  width: auto;
   font-size: 24rpx;
   font-family: PingFang-SC-Medium;
   color: #666;
