@@ -2,7 +2,7 @@
 
 App({
   globalData: {
-    loadModal:true,
+    loadModal: true,
     tabbar: 1,
     userInfo: [],
     URL: 'https://api.udianle.com/kt',
@@ -65,14 +65,14 @@ App({
           'Accept': 'application/json',
         },
         dataType: 'json',
-        success: function (res) {
+        success: function(res) {
           if (res.data.code == '109') {
             console.log('appjs code 109', res.data)
             wx.showToast({
               title: '请重新登录！',
               image: '/img/fail.png',
               duration: 500,
-              success: function () {
+              success: function() {
                 wx.redirectTo({
                   url: '/pages/login/login',
                 })
@@ -81,29 +81,14 @@ App({
           }
           callback(res.data);
         },
-        fail: function (err) {
-          errFun(res);
+        fail: function(err) {
+          errFun(err);
         }
       })
     }
   },
   wxRequest(method, url, data, callback, errFun) {
-    var user = wx.getStorageSync('userInfo')
-    // var user = this.globalData.userInfo
-    // if (user == null) {
-    //   wx.showToast({
-    //     title: '登录失败！',
-    //     image: '/img/fail.png',
-    //     duration: 500,
-    //     success: function() {
-    //       setTimeout(function() {
-    //         wx.redirectTo({
-    //           url: '/pages/login/login',
-    //         })
-    //       }, 1000);
-    //     }
-    //   })
-    // } else 
+    var user = wx.getStorageSync('userInfo') 
     {
       user = 'Bearer ' + user.token;
       wx.request({
@@ -118,7 +103,7 @@ App({
         dataType: 'json',
         success: function(res) {
           if (res.data.code == '109') {
-            console.log('appjs code 109',res.data)
+            console.log('appjs code 109', res.data)
             wx.showToast({
               title: '请重新登录！',
               image: '/img/fail.png',
@@ -130,35 +115,7 @@ App({
               }
             })
           }
-          // if (res.data.code == '109') {
-          //   wx.login({ //匿名登录
-          //     success: function(res) {
-          //       console.log('login', res.code);
-          //       wx.request({
-          //         url: 'https://api.udianle.com/kt/auth/wcAnonLogin',
-          //         method: 'post',
-          //         data: {
-          //           code: res.code
-          //         },
-          //         header: {
-          //           'content-type': 'application/json',
-          //           'Accept': 'application/json'
-          //         },
-          //         dataType: 'json',
-          //         success: function(res) {
-          //           console.log(res.data)
-          //           that.globalData.userInfo = res.data.data
-          //           wx.setStorageSync('userInfo', res.data.data)
-          //           // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-          //           // 所以此处加入 callback 以防止这种情况
-          //           if (that.employIdCallback) {
-          //             that.employIdCallback(res);
-          //           }
-          //         }
-          //       })
-          //     }
-          //   })
-          // }
+
           callback(res.data);
         },
         fail: function(err) {
@@ -190,38 +147,38 @@ App({
     // })
     // var tmp = wx.getStorageSync('userInfo')
     // if (!tmp) {
-      wx.login({ //匿名登录
-        success: function(res) {
-          console.log('login', res.code);
-          wx.request({
-            url: 'https://api.udianle.com/kt/auth/wcAnonLogin',
-            method: 'get',
-            data: {
-              code: res.code
-            },
-            header: {
-              'content-type': 'application/json',
-              'Accept': 'application/json'
-            },
-            dataType: 'json',
-            success: function(res) {
-              console.log(res.data)
-              that.globalData.userInfo = res.data.data
-              wx.setStorageSync('userInfo', res.data.data)
-              console.log('userinfo sto ok',res.data.data)
+    wx.login({ //匿名登录
+      success: function(res) {
+        console.log('login', res.code);
+        wx.request({
+          url: 'https://api.udianle.com/kt/auth/wcAnonLogin',
+          method: 'get',
+          data: {
+            code: res.code
+          },
+          header: {
+            'content-type': 'application/json',
+            'Accept': 'application/json'
+          },
+          dataType: 'json',
+          success: function(res) {
+            console.log(res.data)
+            that.globalData.userInfo = res.data.data
+            wx.setStorageSync('userInfo', res.data.data)
+            console.log('userinfo sto ok', res.data.data)
 
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
+            // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+            // 所以此处加入 callback 以防止这种情况
 
-              // if (that.employIdCallback) {
-              //   that.employIdCallback(res);
-              // }
-            }
-          })
+            // if (that.employIdCallback) {
+            //   that.employIdCallback(res);
+            // }
+          }
+        })
 
-        }
-      })
-  // }
+      }
+    })
+    // }
 
     // 获取系统状态栏信息
     wx.getSystemInfo({
