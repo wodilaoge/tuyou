@@ -152,7 +152,8 @@ App({
       success: function(res) {
         console.log('login', res.code);
         wx.request({
-          url: 'https://api.udianle.com/kt/auth/wcAnonLogin',
+          // url: 'https://api.udianle.com/kt/auth/wcAnonLogin',
+          url: 'http://192.144.169.239/kt/auth/wcAnonLogin',
           method: 'get',
           data: {
             code: res.code
