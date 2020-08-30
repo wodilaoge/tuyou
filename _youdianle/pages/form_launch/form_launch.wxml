@@ -95,7 +95,7 @@
 
   <view class="cu-form-group">
     <view class="title">活动开始日期</view>
-    <picker mode="date" value="{{timenow}}" start="2020.5.1" end="2020.09.01" bindchange="DateChange">
+    <picker mode="date" value="{{timenow}}" start="2020.5.1" end="2025.09.01" bindchange="DateChange">
       <view class="picker text-grey">
         {{timenow}}
       </view>
@@ -112,7 +112,7 @@
   </view>
   <view class="cu-form-group">
     <view class="title">报名截止日期</view>
-    <picker mode="date" value="{{timenow}}" start="2015-09-01" end="2020-09-01" bindchange="DateChange2">
+    <picker mode="date" value="{{timenow}}" start="2020-08-01" end="2025-09-01" bindchange="DateChange2">
       <view class="picker text-grey">
         {{timenow2}}
       </view>

@@ -33,7 +33,7 @@ var uploadFile = function(path, wayto, t) {
     console.log(user)
     wx.request({
       method: 'GET',
-      url: 'https://api.udianle.com/kt/config/getCosSignature', // 重要！服务端签名，后续调整正式服务端确定后再修改。
+      url: 'http://192.144.169.239/kt/config/getCosSignature', // 重要！服务端签名，后续调整正式服务端确定后再修改。
       header: {
         'Authorization': user,
       },

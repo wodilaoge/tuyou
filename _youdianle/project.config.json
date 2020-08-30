@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"enhance": true,
 		"postcss": true,
@@ -17,11 +17,13 @@
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
 		},
+		"useIsolateContext": true,
 		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
@@ -253,6 +255,12 @@
 					"name": "pages/MyPages/my_video/my_video",
 					"pathName": "pages/MyPages/my_video/my_video",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/form/form",
+					"pathName": "pages/form/form",
 					"scene": null
 				}
 			]

@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isshowpart:false
+    isshowpart:true
   },
   toact: function (e) {
     wx.navigateTo({
