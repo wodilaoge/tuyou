@@ -358,7 +358,9 @@ Page({
     this.gethobbyinfo(); //爱好信息
     this.getvideoinfo(); //视频信息
     this.getuploadinfo(); //轮播图
-   
+    that.setData({
+      loadModal: false
+    })
   },
   onLoad: function (options) {
     this.startReportHeart()

@@ -70,7 +70,6 @@ App({
               }
             })
           }
-
           callback(res.data);
         },
         fail: function(err) {
@@ -102,7 +101,7 @@ App({
           header: {
             'content-type': 'application/json',
             'Accept': 'application/json',
-            'Authorization':'Bearer '+ wx.getStorageSync('userInfo').id,
+            'Authorization':'Bearer '+ wx.getStorageSync('userInfo').token,
           },
           dataType: 'json',
           success: function(res) {
