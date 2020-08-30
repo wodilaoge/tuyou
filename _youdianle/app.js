@@ -5,6 +5,7 @@ App({
     loadModal: true,
     tabbar: 1,
     userInfo: [],
+    // URL: 'https://api.udianle.com/kt',
     URL: 'http://192.144.169.239/kt',
     systemInfo: null, //客户端设备信息，
   },
@@ -91,6 +92,7 @@ App({
       success: function(res) {
         console.log('login', res.code);
         wx.request({
+          // url: 'https://api.udianle.com/kt/auth/wcAnonLogin',
           url: 'http://192.144.169.239/kt/auth/wcAnonLogin',
           method: 'get',
           data: {
