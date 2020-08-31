@@ -90,13 +90,13 @@ App({
     wx.login({ //匿名登录
       success: function(res) {
         console.log('login code', res.code);
-        console.log(wx.getStorageSync("userInfo").ids==undefined?null:'123')
+        var tmpid=wx.getStorageSync("userInfo").id
         wx.request({
           // url: 'https://api.udianle.com/kt/auth/wcAnonLogin',
           url: 'http://192.144.169.239/kt/auth/wcAnonLogin',
-          method: 'get',
+          method: 'post',
           data: {
-            id:wx.getStorageSync("userInfo").id,
+            id:tmpid==undefined?null:tmpid,
             code: res.code
           },
           header: {
