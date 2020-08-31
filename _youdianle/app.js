@@ -108,8 +108,11 @@ App({
             console.log('ini');
             console.log(res.data)
             that.globalData.userInfo = res.data.data
-            wx.setStorageSync('userInfo', res.data.data)
-            console.log('userinfo sto ok', res.data.data)
+            if(res.data.code==0)
+              {
+                wx.setStorageSync('userInfo', res.data.data)
+                console.log('userinfo sto ok', res.data.data)
+              }
 
           }
         })

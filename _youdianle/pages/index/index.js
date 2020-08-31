@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp()
 var util = require("../../utils/util.js");
+var limit=0
 Page({
   data: {
     isshowcampus: false,
@@ -328,6 +329,7 @@ Page({
    */
   onShow: function (e) {
     var n = wx.getStorageSync('school')
+    var that=this
     if (n) {
       this.setData({
         schoolname: n.name
@@ -420,7 +422,16 @@ Page({
     var timerTem = setTimeout(function () {
       if (app.globalData.userInfo.token == null) {
         that.startReportHeart()
-      } else {
+        limit++
+      } 
+      else if(limit==30)
+      {
+        that.setData({
+          loadModal: false
+        })
+        console.log('加载超时')
+      }
+      else {
         wx.showToast({
           title: '友点乐欢迎您！',
           duration: 2000,
