@@ -215,6 +215,7 @@ Page({
           })
           //统计加入天数
           url = app.globalData.URL + '/appuser/findUserByID';
+          console.log('sd',wx.getStorageSync('userInfo').sd)
           data = {
             id: wx.getStorageSync('userInfo').id,
           };

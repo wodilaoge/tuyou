@@ -33,7 +33,7 @@ App({
                 })
               }
             })
-          }
+          }                                               
           callback(res.data);
         },
         fail: function(err) {
@@ -89,7 +89,8 @@ App({
 
     wx.login({ //匿名登录
       success: function(res) {
-        console.log('login', res.code);
+        console.log('login code', res.code);
+        console.log(wx.getStorageSync("userInfo").ids==undefined?null:'123')
         wx.request({
           // url: 'https://api.udianle.com/kt/auth/wcAnonLogin',
           url: 'http://192.144.169.239/kt/auth/wcAnonLogin',
@@ -105,13 +106,13 @@ App({
           },
           dataType: 'json',
           success: function(res) {
-            console.log('ini');
+            console.log('initial');
             console.log(res.data)
-            that.globalData.userInfo = res.data.data
             if(res.data.code==0)
               {
+                that.globalData.userInfo = res.data.data
                 wx.setStorageSync('userInfo', res.data.data)
-                console.log('userinfo sto ok', res.data.data)
+                console.log('userinfo storage ok', res.data.data)
               }
 
           }

@@ -335,7 +335,6 @@ Page({
         schoolname: n.name
       })
     } else {
-      console.log('sdsd')
       n = wx.getStorageSync('city')
       if (n) {
         this.setData({
@@ -372,7 +371,6 @@ Page({
         schoolname: n.name
       })
     } else {
-      console.log('sdsd')
       n = wx.getStorageSync('city')
       if (n) {
         this.setData({
