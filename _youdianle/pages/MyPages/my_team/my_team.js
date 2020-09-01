@@ -15,8 +15,9 @@ Page({
   },
   tabSelect(e) {
     var that = this
+    var userId = wx.getStorageSync('userInfo').id
     this.setData({
-      TabCur: e.currentTarget.dataset.id,
+      TabCur: e.currentTarget.dataset.index,
       MainCur: e.currentTarget.dataset.id,
       VerticalNavTop: (e.currentTarget.dataset.id - 1) * 50
     })
@@ -67,7 +68,7 @@ Page({
   todetail(e) {
     console.log(e.currentTarget.dataset.item)
     wx.navigateTo({
-      url: '/pages/MyPages/my_team_detail/my_team_detail?id=' + e.currentTarget.dataset.item.id,
+      url: '/pages/MyPages/my_team_detail/my_team_detail?id=' + e.currentTarget.dataset.id,
     })
   },
   VerticalMain(e) {

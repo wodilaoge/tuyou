@@ -5,11 +5,10 @@
 </view>
 <view style=" background-color:#5454FF;height:300rpx;">
   <view class="flex" style="height:160rpx;padding-top:46rpx;">
-    <image style="padding-left:24rpx;height:160rpx;width:160rpx;" src="{{tdxxDeatil.logo}}"></image>
+    <image style="padding-left:24rpx;height:160rpx;width:160rpx; border-radius: 10rpx;" src="{{tdxxDeatil.logo}}"></image>
     <view style="margin-left:21rpx;">
       <view class="flex ">
         <view class="tdxx-duiming ">{{tdxxDeatil.name}}</view>
-        <view class="tdxx-leibie margin-left-sm">运动-篮球</view>
       </view>
       <view class="tdxx-xuanyan">{{tdxxDeatil.slogan}}</view>
     </view>
@@ -23,8 +22,8 @@
       <view class="tdxx-duizhnag-name ">{{tdxxDeatil.leader}}(队长)</view>
       <view class="tdxx-guanzhu align-center">关注</view>
     </view>
-    <view class=" ">
-      <image class="tdxx-img-icon" mode="aspectFit" src="/img/icon_add_friends.png"></image>
+    <view wx:if="{{!isCaptain}}">
+      <image class="tdxx-img-icon" mode="aspectFit" src="/img/icon_add_friends.png" bindtap="tojoin"></image>
     </view>
   </view>
 </view>
@@ -32,31 +31,31 @@
 <view class="flex bg-white">
   <view class="tdxx-xinxi-title">联系电话</view>
   <view class="tdxx-xinxi-neirong">{{tdxxDeatil.linktel}}</view>
-  <image class="tdxx-img-icon" mode="aspectFit" src="/img/icon_dial.png" bindtap="pinluntiaozhuan" style="width:37rpx;height:36rpx;margin-left:-273rpx;margin-top:32rpx;"></image>
+  <image class="tdxx-img-icon" mode="aspectFit" src="/img/icon_dial.png" bindtap="pinluntiaozhuan" style="width:37rpx;height:36rpx;margin-top:32rpx;"></image>
 </view>
 <view class="flex bg-white">
   <view class="tdxx-xinxi-title">团队介绍</view>
-  <view class="tdxx-xinxi-neirong">{{tdxxDeatil.summary}}</view>
+  <view class="tdxx-xinxi-neirong">{{tdxxDeatil.summary==null?"":tdxxDeatil.summary}}</view>
 </view>
 <view class="flex bg-white">
   <view class="tdxx-xinxi-title">地区</view>
-  <view class="tdxx-xinxi-neirong">{{tdxxDeatil.city}}</view>
+  <view class="tdxx-xinxi-neirong">{{tdxxDeatil.city==null?"":tdxxDeatil.city}}</view>
 </view>
 <view class="flex bg-white">
   <view class="tdxx-xinxi-title">隶属机构</view>
-  <view class="tdxx-xinxi-neirong">{{tdxxDeatil.superior}}</view>
+  <view class="tdxx-xinxi-neirong">{{tdxxDeatil.superior==null?"":tdxxDeatil.superior}}</view>
 </view>
 <view class="flex bg-white">
   <view class="tdxx-xinxi-title">Email</view>
-  <view class="tdxx-xinxi-neirong">{{tdxxDeatil.email}}</view>
+  <view class="tdxx-xinxi-neirong">{{tdxxDeatil.email==null?"":tdxxDeatil.email==null?"":tdxxDeatil.email}}</view>
 </view>
 <view class="flex bg-white">
   <view class="tdxx-xinxi-title">网址</view>
-  <view class="tdxx-xinxi-neirong" style="color:#5454FF;">{{tdxxDeatil.website}}</view>
+  <view class="tdxx-xinxi-neirong" style="color:#5454FF;">{{tdxxDeatil.website==null?"":tdxxDeatil.website}}</view>
 </view>
 <view class="flex bg-white">
   <view class="tdxx-xinxi-title">微信公众号</view>
-  <view class="tdxx-xinxi-neirong" style="color:#EC5D09;">{{tdxxDeatil.wcoa}}</view>
+  <view class="tdxx-xinxi-neirong" style="color:#EC5D09;">{{tdxxDeatil.wcoa==null?"":tdxxDeatil.wcoa}}</view>
 
 </view>
 <view class="bg-white" style="height:30rpx;"></view>
@@ -64,14 +63,19 @@
 <view class="flex align-end margin-top-sm bg-white" style="height:59rpx;padding-left:24rpx;">
   <view class="tdxx-liebiao">成员列表</view>
   <view class="tdxx-liebiao-num margin-left-sm">{{listmemberdeatil.length}}</view>
-  <image src="/img/add.png" class="icon"></image>
+  <!-- <image src="/img/add.png" class="icon"></image> -->
 </view>
-
+<view wx:for="{{listmemberdeatil}}" class="padding bg-white duiqi">
+  <view class="flex duiqi">
+    <image src="{{item.head}}" class="head"></image>
+    <text class="padding-left">{{item.nickname}}</text>
+  </view>
+</view>
 
 <view class="bg-white" style="height:50rpx;"></view>
 <view class="flex align-end margin-top-sm bg-white" style="height:59rpx;padding-left:24rpx;">
   <view class="tdxx-liebiao">历史活动</view>
-  <view class="tdxx-liebiao-num margin-left-sm">2</view>
+  <view class="tdxx-liebiao-num margin-left-sm">{{historyAct.length}}</view>
 </view>
 <view class="bg-white" style="height:30rpx;"></view>
 <view class="bg-white " style="height:259rpx;">
@@ -81,16 +85,10 @@
     <view class="paiming-paiming" style="margin-left:2rpx;width:180rpx;">日期</view>
     <view class="paiming-paiming" style="margin-left:2rpx;width:216rpx;">活动名称</view>
   </view>
-  <view class="flex" style="margin-top:44rpx;">
-    <text class="paiming-fenshu" style="padding-left:76rpx;">5</text>
-    <text class="paiming-fenshu" style="margin-left:129rpx;">80</text>
-    <text class="paiming-riqi" style="margin-left:97rpx;">2020/3/11</text>
-    <text class="paiming-huodong" style="margin-left:67rpx;margin-top:-13rpx;">XX篮球春季 赛第一轮</text>
-  </view>
-  <view class="flex" style="margin-top:50rpx;">
-    <text class="paiming-fenshu" style="padding-left:76rpx;">5</text>
-    <text class="paiming-fenshu" style="margin-left:129rpx;">80</text>
-    <text class="paiming-riqi" style="margin-left:97rpx;">2020/3/11</text>
-    <text class="paiming-huodong" style="margin-left:67rpx;margin-top:-13rpx;">XX篮球春季 赛第一轮</text>
+  <view class="flex" style="margin-top:44rpx;" wx:for="{{historyAct}}" wx:key="keys">
+    <text class="paiming-fenshu" style="padding-left:76rpx;">{{item.teamRank}}</text>
+    <text class="paiming-fenshu" style="margin-left:129rpx;">{{item.teamScore}}</text>
+    <text class="paiming-riqi" style="margin-left:97rpx;">{{item.fromtime}}</text>
+    <text class="paiming-huodong" style="margin-left:67rpx;margin-top:-13rpx;">{{item.actname}}</text>
   </view>
 </view>
