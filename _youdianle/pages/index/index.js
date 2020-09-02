@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp()
 var util = require("../../utils/util.js");
+var limit=0
 Page({
   data: {
     isshowcampus: false,
@@ -12,7 +13,6 @@ Page({
     isshow: false,
     schoolname: '',
     sectioninfo: [],
-    SwiperList: [],
     SportList: [],
     news: [],
     indexs: 0, //学校
@@ -328,12 +328,12 @@ Page({
    */
   onShow: function (e) {
     var n = wx.getStorageSync('school')
+    var that=this
     if (n) {
       this.setData({
         schoolname: n.name
       })
     } else {
-      console.log('sdsd')
       n = wx.getStorageSync('city')
       if (n) {
         this.setData({
@@ -358,7 +358,9 @@ Page({
     this.gethobbyinfo(); //爱好信息
     this.getvideoinfo(); //视频信息
     this.getuploadinfo(); //轮播图
-   
+    that.setData({
+      loadModal: false
+    })
   },
   onLoad: function (options) {
     this.startReportHeart()
@@ -368,7 +370,6 @@ Page({
         schoolname: n.name
       })
     } else {
-      console.log('sdsd')
       n = wx.getStorageSync('city')
       if (n) {
         this.setData({
@@ -418,7 +419,16 @@ Page({
     var timerTem = setTimeout(function () {
       if (app.globalData.userInfo.token == null) {
         that.startReportHeart()
-      } else {
+        limit++
+      } 
+      else if(limit==30)
+      {
+        that.setData({
+          loadModal: false
+        })
+        console.log('加载超时')
+      }
+      else {
         wx.showToast({
           title: '友点乐欢迎您！',
           duration: 2000,

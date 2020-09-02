@@ -1,19 +1,17 @@
 
 .menu-item {
 
-
-  width: 50%;
+  width: 32%;
   padding: 5px;
   box-sizing: border-box;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: column;
 }
 
 .menu-name {
-  /* text-align: center; */
   position: relative;
-  left: 160rpx;
+  left: 110rpx;
 }
 
 .menu-name2 {
@@ -25,8 +23,8 @@
   width: 180rpx;
   height: 180rpx;
   padding: 20rpx;
-  left: 40rpx;
-  margin-left: 80rpx;
+  left: 70rpx;
+
 }
 
 .menu {
@@ -34,6 +32,7 @@
   bottom: 0;
   display: flex; /*弹性布局*/
   flex-wrap: wrap; /*允许换行*/
+  justify-content: space-between;
 }
 page{
   background-color: white;

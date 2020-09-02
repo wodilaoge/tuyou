@@ -123,10 +123,10 @@
       <image class="icon" src="../../img/array.png"></image>
     </view>
   </view>
-  <view wx:for="{{SportList.list}}" wx:key>
+  <view wx:for="{{SportList.list}}" wx:key="key">
     <view class="cu-bar bg-white solid-bottom" style="display:fixed;position: relative;">
       <image class="cu-avatar round my margin-left" src="{{item.createrhead}}" mode="heightFix"></image>
-      <block wx:for="{{yundongxiaolei}}" wx:for-item="cell" wx:if="{{item.acid2==cell.code}}">
+      <block wx:for="{{yundongxiaolei}}" wx:for-item="cell" wx:if="{{item.acid2==cell.code}}" wx:key="key">
         <text style="position:absolute;left:110rpx;">{{cell.name}}</text>
       </block>
       <text class=" title-time" style="position:absolute;width:100%;left:250rpx;">
@@ -168,7 +168,7 @@
           </view>
           <view class="yundong-content margin-top">
             <view class="cu-avatar-group">
-              <view class="cu-avatar round my" wx:for="{{6}}" wx:key
+              <view class="cu-avatar round my" wx:for="{{6}}" wx:key="key"
                 style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{index+1}}.jpg);">
               </view>
             </view>
@@ -204,10 +204,10 @@
       </view>
     </view>
 
-    <view wx:for="{{wenyuList.list}}" wx:key>
+    <view wx:for="{{wenyuList.list}}" wx:key="key">
       <view class="cu-bar bg-white solid-bottom" style="display:fixed;position: relative;">
         <image class="cu-avatar round my margin-left" src="{{item.createrhead}}" mode="heightFix"></image>
-        <block wx:for="{{wenyuxiaolei}}" wx:for-item="cell" wx:if="{{item.acid2==cell.code}}">
+        <block wx:for="{{wenyuxiaolei}}" wx:for-item="cell" wx:if="{{item.acid2==cell.code}}" wx:key="key">
           <text style="position:absolute;left:110rpx;">{{cell.name}}</text>
         </block>
         <text class=" title-time" style="position:absolute;width:100%;left:250rpx;">
@@ -250,7 +250,7 @@
             </view>
             <view class="yundong-content margin-top">
               <view class="cu-avatar-group">
-                <view class="cu-avatar round my" wx:for="{{6}}" wx:key
+                <view class="cu-avatar round my" wx:for="{{6}}" wx:key="key"
                   style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{index+1}}.jpg);">
                 </view>
               </view>
@@ -269,10 +269,10 @@
       </view>
     </view>
 
-    <view wx:for="{{aihaoList.list}}" wx:key>
+    <view wx:for="{{aihaoList.list}}" wx:key="key">
       <view class="cu-bar bg-white solid-bottom" style="display:fixed;position: relative;">
         <image class="cu-avatar round my margin-left" src="{{item.createrhead}}" mode="heightFix"></image>
-        <block wx:for="{{aihaoxiaolei}}" wx:for-item="cell" wx:if="{{item.acid2==cell.code}}">
+        <block wx:for="{{aihaoxiaolei}}" wx:for-item="cell" wx:if="{{item.acid2==cell.code}}" wx:key="key">
           <text style="position:absolute;left:110rpx;">{{cell.name}}</text>
         </block>
         <text class=" title-time" style="position:absolute;width:100%;left:250rpx;">
@@ -315,7 +315,7 @@
             </view>
             <view class="yundong-content margin-top">
               <view class="cu-avatar-group">
-                <view class="cu-avatar round my" wx:for="{{6}}" wx:key
+                <view class="cu-avatar round my" wx:for="{{6}}" wx:key="key"
                   style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{index+1}}.jpg);">
                 </view>
               </view>

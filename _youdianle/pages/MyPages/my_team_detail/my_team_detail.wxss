@@ -151,3 +151,25 @@
   color: rgba(102, 102, 102, 1);
   margin-top: 20rpx;
 }
+.head{
+  height: 70rpx;
+  width: 70rpx;
+  border-radius: 50%;
+}
+.duiqi{
+  align-items: center;
+}
+
+.deleteicon{
+  height: 40rpx;
+  width: 40rpx;
+}
+.just{
+  justify-content: space-between;
+  display: flex;
+}
+.button{
+  height: 60rpx;
+  width: 120rpx;
+  font-size: small;
+}

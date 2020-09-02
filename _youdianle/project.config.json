@@ -17,11 +17,16 @@
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
 		},
+<<<<<<< HEAD
+=======
+		"useIsolateContext": true,
+>>>>>>> e4cd1a10cfe7d6c8148d1a70096f057c3124109b
 		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
@@ -60,139 +65,6 @@
 			"current": -1,
 			"list": [
 				{
-					"id": 0,
-					"name": "校园活动",
-					"pathName": "pages/xiaoyuan/xiaoyuan",
-					"query": "TabCur=1",
-					"scene": null
-				},
-				{
-					"id": 1,
-					"name": "校园活动详情",
-					"pathName": "pages/xiaoyuanxiangqing/xiaoyuanxiangqing",
-					"query": "categoryId=1025873553653760",
-					"scene": null
-				},
-				{
-					"id": 2,
-					"name": "报名",
-					"pathName": "pages/baoming/baoming",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 3,
-					"name": "评论列表",
-					"pathName": "pages/pinlunliebiao/pinlunliebiao",
-					"query": "categoryId= 23007374432272384&objtitle= 1",
-					"scene": null
-				},
-				{
-					"id": 4,
-					"name": "查看回复",
-					"pathName": "pages/chakanhuifu/chakanhuifu",
-					"query": "id=10427837156687872",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "首页",
-					"pathName": "pages/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 7,
-					"name": "我的",
-					"pathName": "pages/MyPages/my/my",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "发布报名",
-					"pathName": "pages/form_launch/form_launch",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 8,
-					"name": "运动详情",
-					"pathName": "pages/yundongxiangqing/yundongxiangqing",
-					"query": "categoryId= 31681827760504832&Title=运动详情&TabCur=5",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "补充信息",
-					"pathName": "pages/form_activity/form_activity",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "组团队",
-					"pathName": "pages/form_team/form_team",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 13,
-					"name": "选择团队1",
-					"pathName": "pages/xuanzetuandui1/xuanzetuandui1",
-					"query": "lid=11878394752925696",
-					"scene": null
-				},
-				{
-					"id": 13,
-					"name": "选择团队2",
-					"pathName": "pages/xuanzetuandui2/xuanzetuandui2",
-					"query": "id= 16937976625889280&name=123&logo=https://sys-1301681474.cos.ap-shanghai.myqcloud.com/comm/logo200.png",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "团队信息",
-					"pathName": "pages/tuanduixinxi/tuanduixinxi",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "资料",
-					"pathName": "pages/ziliao/ziliao",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 17,
-					"name": "地址",
-					"pathName": "pages/form_address/form_address",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "发布活动",
-					"pathName": "pages/form_launch/form_launch",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "按id发视频",
-					"pathName": "pages/form_actid_video/form_actid_video",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "搜索",
-					"pathName": "pages/sousuo/sousuo",
-					"query": "",
-					"scene": null
-				},
-				{
 					"id": -1,
 					"name": "我的团队",
 					"pathName": "pages/MyPages/my_team/my_team",
@@ -201,58 +73,8 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/baoming/baoming",
-					"pathName": "pages/baoming/baoming",
-					"query": "lid=11878394752925696",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "登录",
-					"pathName": "pages/login/login",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "form",
-					"pathName": "pages/form/form",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/form_picture/form_picture",
+					"name": "上传照片",
 					"pathName": "pages/form_picture/form_picture",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "关于",
-					"pathName": "pages/about/about",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/MyPages/my_activity/my_activity",
-					"pathName": "pages/MyPages/my_activity/my_activity",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "分享视频",
-					"pathName": "pages/fenxiangshipin/fenxiang",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 27,
-					"name": "pages/MyPages/my_video/my_video",
-					"pathName": "pages/MyPages/my_video/my_video",
-					"query": "",
 					"scene": null
 				}
 			]

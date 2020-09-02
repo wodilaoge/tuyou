@@ -202,6 +202,10 @@ Page({
       authorAlias:this.data.penname,
       authorHead: user.head,
       content:this.data.textareaAInput,
+      univ:wx.getStorageSync('school').code,
+      province:wx.getStorageSync('province').code,
+      city:wx.getStorageSync('city').code,
+
       status:10,
       creater:user.id,
       listPhoto:this.data.photo
