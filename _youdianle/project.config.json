@@ -65,6 +65,13 @@
 					"id": -1,
 					"name": "我的团队",
 					"pathName": "pages/MyPages/my_team/my_team",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "上传照片",
+					"pathName": "pages/form_picture/form_picture",
 					"scene": null
 				}
 			]

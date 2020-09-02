@@ -13,7 +13,6 @@ Page({
     isshow: false,
     schoolname: '',
     sectioninfo: [],
-    SwiperList: [],
     SportList: [],
     news: [],
     indexs: 0, //学校

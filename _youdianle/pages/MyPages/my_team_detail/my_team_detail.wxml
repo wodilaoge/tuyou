@@ -5,7 +5,8 @@
 </view>
 <view style=" background-color:#5454FF;height:300rpx;">
   <view class="flex" style="height:160rpx;padding-top:46rpx;">
-    <image style="padding-left:24rpx;height:160rpx;width:160rpx; border-radius: 10rpx;" src="{{tdxxDeatil.logo}}"></image>
+    <image style="padding-left:24rpx;height:160rpx;width:160rpx; border-radius: 10rpx;" src="{{tdxxDeatil.logo}}">
+    </image>
     <view style="margin-left:21rpx;">
       <view class="flex ">
         <view class="tdxx-duiming ">{{tdxxDeatil.name}}</view>
@@ -18,7 +19,8 @@
 <view class="tdxx-xinxi">
   <view class="tdxx-duizhang flex">
     <view class="flex align-center">
-      <image style="width:80rpx;height:80rpx;border-radius:50%;margin-left:24rpx;" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg"></image>
+      <image style="width:80rpx;height:80rpx;border-radius:50%;margin-left:24rpx;"
+        src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg"></image>
       <view class="tdxx-duizhnag-name ">{{tdxxDeatil.leader}}(队长)</view>
       <view class="tdxx-guanzhu align-center">关注</view>
     </view>
@@ -31,7 +33,8 @@
 <view class="flex bg-white">
   <view class="tdxx-xinxi-title">联系电话</view>
   <view class="tdxx-xinxi-neirong">{{tdxxDeatil.linktel}}</view>
-  <image class="tdxx-img-icon" mode="aspectFit" src="/img/icon_dial.png" bindtap="pinluntiaozhuan" style="width:37rpx;height:36rpx;margin-top:32rpx;"></image>
+  <image class="tdxx-img-icon" mode="aspectFit" src="/img/icon_dial.png" bindtap="pinluntiaozhuan"
+    style="width:37rpx;height:36rpx;margin-top:32rpx;"></image>
 </view>
 <view class="flex bg-white">
   <view class="tdxx-xinxi-title">团队介绍</view>
@@ -66,9 +69,18 @@
   <!-- <image src="/img/add.png" class="icon"></image> -->
 </view>
 <view wx:for="{{listmemberdeatil}}" class="padding bg-white duiqi">
-  <view class="flex duiqi">
-    <image src="{{item.head}}" class="head"></image>
-    <text class="padding-left">{{item.nickname}}</text>
+  <view class="duiqi just">
+    <view class="flex duiqi">
+      <image src="/img/icon_delete.png" class="deleteicon margin-right" wx:if="{{isCaptain}}" bindtap="deleteMem"
+        data-id="{{item.uid}}"></image>
+      <image src="{{item.head}}" class="head"></image>
+      <text class="padding-left">{{item.nickname}}</text>
+    </view>
+    <view class="flex duiqi">
+      <button wx:if="{{item.button.join}}" class="button" bindtap="pass" data-id="{{item.uid}}">通过</button>
+      <image src="/img/transfer_captain.png" class="deleteicon margin-left" wx:if="{{item.button.abdicate}}" bindtap="transfer"
+      data-id="{{item.uid}}"></image>
+    </view>
   </view>
 </view>
 
