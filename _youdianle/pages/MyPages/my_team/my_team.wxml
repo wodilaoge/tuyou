@@ -27,7 +27,7 @@
   <view class="VerticalBox">
 
     <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation wx:if="{{showAct.length!=0}}">
-      <view class="cu-item {{index==TabCur?'text-blue cur':''}} nav" wx:for="{{allAct}}" wx:key="keys" bindtap='tabSelect'
+      <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{allAct}}" wx:key="keys" bindtap='tabSelect'
         data-id="{{item.code}}" data-index="{{index}}">
         {{item.name}}
       </view>
