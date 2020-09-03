@@ -162,6 +162,8 @@ Page({
       this.change_sousuo()
     } else if (this.data.TabCur == 4) {
       this.sousuo_dalei_shipin()
+    } else if (this.data.TabCur == 5) {
+      this.sousuo_tuandui()
     } else {
       this.sousuo_dalei()
     }
@@ -198,7 +200,6 @@ Page({
     });
   },
   remen_sousuo_neirong: function (e) {
-    console.log(e)
     this.setData({
       change_if: 1,
       sousuo_neirong: this.data.hotWords[e.currentTarget.id].keyword,
@@ -208,7 +209,9 @@ Page({
       this.change_sousuo()
     } else if (this.data.TabCur == 4) {
       this.sousuo_dalei_shipin()
-    } else {
+    }else if (this.data.TabCur == 5) {
+      this.sousuo_tuandui()
+    }  else {
       this.sousuo_dalei()
     }
   },
