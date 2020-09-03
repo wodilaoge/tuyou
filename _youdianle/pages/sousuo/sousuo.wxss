@@ -1,6 +1,7 @@
 /* pages/sousuo/sousuo.wxss */
 @import "../xiaoyuan/xiaoyuan.wxss";
 @import "../index/index.wxss";
+
 .top {
   background-color: #5454ff;
   height: 80rpx;
@@ -120,10 +121,12 @@
   font-weight: 500;
   color: rgba(102, 102, 102, 1);
 }
+
 .ss_lishi_icon {
   width: 27rpx;
   height: 27rpx;
 }
+
 .video-item {
   width: 50%;
   padding: 5px;
@@ -132,6 +135,7 @@
   justify-content: center;
   flex-direction: column;
 }
+
 .menu {
   display: flex;
   /*弹性布局*/
@@ -139,19 +143,21 @@
   /*允许换行*/
   flex-direction: row;
 }
-.nothing{
+
+.nothing {
   width: 178rpx;
   height: 207rpx;
   margin-left: 270rpx;
   margin-top: 298rpx;
 }
-.nothing_words{
-margin-top: 50rpx;
-margin-left: 250rpx;
-font-size:36rpx;
-font-family:PingFang SC;
-font-weight:500;
-color:rgba(102,102,102,1);
+
+.nothing_words {
+  margin-top: 50rpx;
+  margin-left: 250rpx;
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: rgba(102, 102, 102, 1);
 }
 
 .video-list-photo {
@@ -162,3 +168,45 @@ color:rgba(102,102,102,1);
   background-color: black;
 }
 
+.tuanduiList1 {
+  width: 245rpx;
+}
+
+.tuanduiList2 {
+}
+
+.box_tuandui1 {
+  width: 245rpx;
+  height: 88rpx;
+  background-color: #E8E9ED;
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+}
+.box_tuandui2 {
+  width: 245rpx;
+  height: 88rpx;
+  background-color:#FFFFFF;
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #5454FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+}
+.box_tuandui3{
+  height: 120rpx;
+display: flex;
+padding-left: 30rpx;
+padding-top: 19rpx;
+}
+.tuandui-img{
+  height: 78rpx;
+  width: 78rpx;
+  border-radius: 10rpx;
+}

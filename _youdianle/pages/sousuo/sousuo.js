@@ -20,6 +20,9 @@ Page({
     isRefle: true,
     bkData: [],
     shipin: [],
+    activityClass1: [],
+    tuanduiCur: 0,
+    tuanduiList: [],
   },
   tabSelect(e) {
     this.setData({
@@ -27,16 +30,18 @@ Page({
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60,
       isRefle: true,
     })
-    if (this.data.change_if == 1&&this.data.TabCur<4) {
+    if (this.data.change_if == 1 && this.data.TabCur < 4) {
       this.sousuo_dalei()
-    }else if(this.data.change_if == 1&&this.data.TabCur==4){
+    } else if (this.data.change_if == 1 && this.data.TabCur == 4) {
       this.sousuo_dalei_shipin()
-    }else{
+    } else if (this.data.change_if == 1 && this.data.TabCur == 5) {
+      this.sousuo_tuandui()
+    } else {
       this.change_sousuo()
     }
   },
   sousuo_dalei() {
-    var self=this;
+    var self = this;
     wx.showLoading({
       title: '搜索中...',
       mask: true //显示触摸蒙层  防止事件穿透触发
@@ -47,7 +52,7 @@ Page({
       province: this.data.province === '不选' ? null : this.data.province,
       city: this.data.city === '不选' ? null : this.data.city,
       univ: this.data.univ === '不选' ? null : this.data.univ,
-      sid: this.data.bkData[this.data.TabCur-1].code,
+      sid: this.data.bkData[this.data.TabCur - 1].code,
     };
     console.log(data)
     app.wxRequest('POST', url, data, (res) => {
@@ -64,17 +69,17 @@ Page({
         sousuo_detail_dalei: res.data.list,
         daleiBorder: res.data.border,
       })
-    
+
     }, (err) => {
       wx.hideLoading({
         complete: (res) => {},
       })
       console.log(err.errMsg)
     });
-   
+
   },
-  sousuo_dalei_shipin(){
-    var self=this;
+  sousuo_dalei_shipin() {
+    var self = this;
     wx.showLoading({
       title: '搜索中...',
       mask: true //显示触摸蒙层  防止事件穿透触发
@@ -97,7 +102,7 @@ Page({
         shipin: res.data,
         daleiBorder: res.data.border,
       })
-      
+
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -115,49 +120,49 @@ Page({
         change_if: 0,
       })
     }
-    if (this.data.TabCur==6) {
-    wx.showLoading({
-      title: '搜索中...',
-      mask: true //显示触摸蒙层  防止事件穿透触发
-    });
-    let url = app.globalData.URL + '/search/listAll';
-    let data = {
-      keywords: this.data.sousuo_neirong,
-      province: this.data.province === '不选' ? null : this.data.province,
-      city: this.data.city === '不选' ? null : this.data.city,
-      univ: this.data.univ === '不选' ? null : this.data.univ,
-    };
-    console.log(data)
-    app.wxRequest('POST', url, data, (res) => {
-      console.log(res)
-      this.setData({
-        sousuo_detail: res.data,
+    if (this.data.TabCur == 6) {
+      wx.showLoading({
+        title: '搜索中...',
+        mask: true //显示触摸蒙层  防止事件穿透触发
+      });
+      let url = app.globalData.URL + '/search/listAll';
+      let data = {
+        keywords: this.data.sousuo_neirong,
+        province: this.data.province === '不选' ? null : this.data.province,
+        city: this.data.city === '不选' ? null : this.data.city,
+        univ: this.data.univ === '不选' ? null : this.data.univ,
+      };
+      console.log(data)
+      app.wxRequest('POST', url, data, (res) => {
+        console.log(res)
+        this.setData({
+          sousuo_detail: res.data,
+        })
+      }, (err) => {
+        console.log(err.errMsg)
+      });
+      this.setLishi()
+      this.getLishi()
+      wx.hideLoading({
+        complete: (res) => {},
       })
-    }, (err) => {
-      console.log(err.errMsg)
-    });
-    this.setLishi()
-    this.getLishi()
-    wx.hideLoading({
-      complete: (res) => {},
-    })
-      
-  }else if(this.data.TabCur==4){
-    this.sousuo_dalei_shipin()
-  }else{
-    this.sousuo_dalei()
-  }
+
+    } else if (this.data.TabCur == 4) {
+      this.sousuo_dalei_shipin()
+    } else {
+      this.sousuo_dalei()
+    }
   },
   change_sousuo_lishi: function (e) {
     this.setData({
       change_if: 1,
       sousuo_neirong: e.currentTarget.dataset.neirong,
     })
-    if(this.data.TabCur==6){
+    if (this.data.TabCur == 6) {
       this.change_sousuo()
-    }else if(this.data.TabCur==4){
+    } else if (this.data.TabCur == 4) {
       this.sousuo_dalei_shipin()
-    }else{
+    } else {
       this.sousuo_dalei()
     }
   },
@@ -198,12 +203,12 @@ Page({
       change_if: 1,
       sousuo_neirong: this.data.hotWords[e.currentTarget.id].keyword,
     })
-    if(this.data.TabCur==6){
+    if (this.data.TabCur == 6) {
 
       this.change_sousuo()
-    }else if(this.data.TabCur==4){
+    } else if (this.data.TabCur == 4) {
       this.sousuo_dalei_shipin()
-    }else{
+    } else {
       this.sousuo_dalei()
     }
   },
@@ -230,9 +235,9 @@ Page({
       wx.setStorageSync("lishi", array)
       that.getLishi()
     }
-    if(this.data.sousuo_lishi.length>7){
+    if (this.data.sousuo_lishi.length > 7) {
       var array = this.data.sousuo_lishi
-      array.splice(6, this.data.sousuo_lishi.length-5,)
+      array.splice(6, this.data.sousuo_lishi.length - 5, )
       wx.setStorageSync("lishi", array)
       that.getLishi()
     }
@@ -254,7 +259,7 @@ Page({
     wx.setStorageSync("lishi", array)
     that.getLishi()
   },
-  remHuanCun:function(){
+  remHuanCun: function () {
     var that = this;
     wx.getStorage({
       key: 'lishi',
@@ -266,10 +271,10 @@ Page({
         }
       },
     })
-      var array = this.data.sousuo_lishi
-      array.splice(6, 10)
-      wx.setStorageSync("lishi", array)
-    
+    var array = this.data.sousuo_lishi
+    array.splice(6, 10)
+    wx.setStorageSync("lishi", array)
+
   },
   /////////
   todetail(e) { //报名参加按钮跳转 带着活动id跳转 校园活动
@@ -279,7 +284,7 @@ Page({
   },
   yundongxiangqing(e) {
     wx.navigateTo({
-      url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.yundong.id+'&sousuo=1',
+      url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.yundong.id + '&sousuo=1',
     })
   },
   baomingtiaozhan(e) {
@@ -295,7 +300,7 @@ Page({
   },
   sousuo_fenye() {
     console.log('分页')
-    var self=this;
+    var self = this;
     wx.showLoading({
       title: '搜索中...',
       mask: true //显示触摸蒙层  防止事件穿透触发
@@ -318,12 +323,12 @@ Page({
       }
       let sousuotmp = this.data.sousuo_detail_dalei;
       for (let s of res.data.list)
-      sousuotmp.list.push(s)
+        sousuotmp.list.push(s)
       this.setData({
         sousuo_detail_dalei: sousuotmp,
         daleiBorder: res.data.border,
       })
-      
+
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -333,7 +338,7 @@ Page({
   },
   sousuo_shipin_fenye() {
     console.log('分页')
-    var self=this;
+    var self = this;
     wx.showLoading({
       title: '搜索中...',
       mask: true //显示触摸蒙层  防止事件穿透触发
@@ -355,12 +360,12 @@ Page({
       }
       let sousuotmp = this.data.sousuo_detail_dalei;
       for (let s of res.data.list)
-      sousuotmp.list.push(s)
+        sousuotmp.list.push(s)
       this.setData({
         shipin: sousuotmp,
         daleiBorder: res.data.border,
       })
-      
+
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -371,9 +376,9 @@ Page({
   getBankuai() {
     var self = this;
     let url = app.globalData.URL + '/config/getSections';
-    let data={};
+    let data = {};
     app.wxRequest('GET', url, data, (res) => {
-      console.log('/////////,',res.data)
+      console.log('/////////,', res.data)
       self.setData({
         bkData: res.data
       })
@@ -381,11 +386,11 @@ Page({
   },
   video_change: function (e) { ////视频切换
     //////////////////专门的转换为shipin
-    if(this.data.TabCur==6){
-      let shipintmp1=this.data.shipin;
-      shipintmp1.list=this.data.sousuo_detail.listVideo;
+    if (this.data.TabCur == 6) {
+      let shipintmp1 = this.data.shipin;
+      shipintmp1.list = this.data.sousuo_detail.listVideo;
       this.setData({
-        shipin:shipintmp1
+        shipin: shipintmp1
       })
     }
     var self = this;
@@ -411,7 +416,7 @@ Page({
         video_id: now_id,
         bofang_if_id: now_id
       })
-      console.log(prev_id,now_id)
+      console.log(prev_id, now_id)
       wx.createVideoContext(prev_id).pause();
       // setTimeout(function () {//自动播放不行因为视频下载没有加载完整
       //   wx.createVideoContext(now_id).play();
@@ -442,38 +447,98 @@ Page({
         })
       }
     }
-    if(this.data.TabCur==6){
-      let tmp=this.data.sousuo_detail;
-      tmp.listVideo=this.data.shipin.list;
+    if (this.data.TabCur == 6) {
+      let tmp = this.data.sousuo_detail;
+      tmp.listVideo = this.data.shipin.list;
       this.setData({
-        sousuo_detail:tmp
+        sousuo_detail: tmp
       })
     }
   },
-  yingChangShipin:function(e){
-    console.log(e,'/////',this.data.sousuo_detail)
-     //////////////////专门的转换为shipin
-     if(this.data.TabCur==6){
-      let shipintmp1=this.data.shipin;
-      shipintmp1.list=this.data.sousuo_detail.listVideo;
+  yingChangShipin: function (e) {
+    console.log(e, '/////', this.data.sousuo_detail)
+    //////////////////专门的转换为shipin
+    if (this.data.TabCur == 6) {
+      let shipintmp1 = this.data.shipin;
+      shipintmp1.list = this.data.sousuo_detail.listVideo;
       this.setData({
-        shipin:shipintmp1
+        shipin: shipintmp1
       })
     }
-    let shipintmp=this.data.shipin;
-    shipintmp.list[e.currentTarget.dataset.index].yingChang=1;
+    let shipintmp = this.data.shipin;
+    shipintmp.list[e.currentTarget.dataset.index].yingChang = 1;
     shipintmp.list[e.currentTarget.dataset.index].shipinSRC = shipintmp.list[e.currentTarget.dataset.index].fileId; /////////点击再加载
     this.setData({
       shipin: shipintmp
     })
-    if(this.data.TabCur==6){
-      let tmp=this.data.sousuo_detail;
-      tmp.listVideo=this.data.shipin.list;
+    if (this.data.TabCur == 6) {
+      let tmp = this.data.sousuo_detail;
+      tmp.listVideo = this.data.shipin.list;
       this.setData({
-        sousuo_detail:tmp
+        sousuo_detail: tmp
       })
     }
     this.video_change(e)
+  },
+  //////////sousuotuandui
+  sousuo_tuandui: function () {
+    console.log('搜索团队')
+    var self=this
+    this.getAllActivityClass1nfig()
+    let url = app.globalData.URL + '/search/listTeam';
+    let data = {
+      keywords: this.data.sousuo_neirong,
+      province: this.data.province === '不选' ? null : this.data.province,
+      city: this.data.city === '不选' ? null : this.data.city,
+      univ: this.data.univ === '不选' ? null : this.data.univ,
+      // acid1: null
+      // border: this.data.daleiBorder,
+    };
+    app.wxRequest('POST', url, data, (res) => {
+      self.setData({
+        tuanduiList: res.data.list
+      })
+    })
+  },
+  getAllActivityClass1nfig: function () {
+    var self = this;
+    let url = app.globalData.URL + '/config/findAllActivityClass1';
+    let data = {}
+    app.wxRequest('GET', url, data, (res) => {
+      res.data.splice(0, 0, {
+        "code": "0",
+        "name": "全部"
+      })
+      self.setData({
+        activityClass1: res.data
+      })
+    })
+  },
+  xuanzeClass1: function (e) {
+    var self = this
+    self.setData({
+      tuanduiCur: e.currentTarget.dataset.index
+    })
+    let url = app.globalData.URL + '/search/listTeam';
+    let data = {
+      keywords: this.data.sousuo_neirong,
+      province: this.data.province === '不选' ? null : this.data.province,
+      city: this.data.city === '不选' ? null : this.data.city,
+      univ: this.data.univ === '不选' ? null : this.data.univ,
+      acid1: this.data.activityClass1[this.data.tuanduiCur].code == "0" ? null : this.data.activityClass1[this.data.tuanduiCur].code
+      // border: this.data.daleiBorder,
+    };
+    app.wxRequest('POST', url, data, (res) => {
+      self.setData({
+        tuanduiList: res.data.list
+      })
+    })
+  },
+  nav_tuanduiXiangqing: function (e) {
+    console.log(e)
+    wx.navigateTo({
+      url: '/pages/MyPages/my_team_detail/my_team_detail?id=' + this.data.tuanduiList[e.currentTarget.dataset.index].id,
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -539,11 +604,11 @@ Page({
    */
   onReachBottom: function () {
     var self = this
-console.log('上拉刷新',this.data.isRefle)
-    if (this.data.isRefle == true&&this.data.TabCur<4) {
+    console.log('上拉刷新', this.data.isRefle)
+    if (this.data.isRefle == true && this.data.TabCur < 4) {
 
       this.sousuo_fenye()
-    }else if(this.data.isRefle == true&&this.data.TabCur==4){
+    } else if (this.data.isRefle == true && this.data.TabCur == 4) {
       this.sousuo_shipin_fenye()
     }
 

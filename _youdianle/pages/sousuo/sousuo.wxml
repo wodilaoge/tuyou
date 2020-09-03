@@ -33,6 +33,9 @@
   <view class="cu-item {{4==TabCur?'text-bold  text-blue cur':''}}" bindtap="tabSelect" data-id="4"> 视频
 
   </view>
+  <view class="cu-item {{5==TabCur?'text-bold  text-blue cur':''}}" bindtap="tabSelect" data-id="5"> 团队
+
+  </view>
   <!-- <view class="cu-item {{5==TabCur?'text-bold':''}}" bindtap="tabSelect" data-id="5"> 新闻
     <view class="tab_item_img">
       <block wx:if="{{TabCur==5}}">
@@ -303,7 +306,7 @@
                   </view>
                   <button class="cu-btn bg-orange round btn" style="margin-left:250rpx;margin-top:-30rpx;"
                     bindtap="baomingtiaozhan" data-yundong="{{item}}">报名挑战</button> -->
-                  <!-- <button class="cu-btn line-orange round btn" style="margin-left:30rpx;margin-top:-30rpx;">群聊（8）</button> -->
+                <!-- <button class="cu-btn line-orange round btn" style="margin-left:30rpx;margin-top:-30rpx;">群聊（8）</button> -->
                 <!-- </view> -->
               </view>
             </view>
@@ -390,13 +393,13 @@
             <text class="video_text">{{sousuo_detail.listVideo[index].title}}</text>
           </view>
         </navigator> -->
-       
+
         <view class="video-item" wx:for="{{sousuo_detail.listVideo}}">
           <video id="video_{{index}}" class="video-list-photo radius" src="{{item.shipinSRC}}"
             hidden="{{!item.yingChang}}" bindtap="video_change" data-index="{{index}}" custom-cache="{{false}}" />
-          <image id="video_{{index}}"  class="video-list-photo radius" src="{{item.cover?item.cover:defaultPoster}}"
+          <image id="video_{{index}}" class="video-list-photo radius" src="{{item.cover?item.cover:defaultPoster}}"
             mode="{{item.cover?'scaleToFill':'center'}}" bindtap="yingChangShipin" data-index="{{index}}"
-        hidden="{{item.yingChang}}" ></image>
+            hidden="{{item.yingChang}}"></image>
           <view class="video_text">{{item.title}}</view>
         </view>
       </view>
@@ -408,8 +411,9 @@
         </view>
       </view> -->
     </view>
-    
-    <view wx:if="{{sousuo_detail.listAct[0]==null&&sousuo_detail.listAmuse[0]==null&&sousuo_detail.listHobby[0]==null&&sousuo_detail.listVideo[0]==null}}" >
+
+    <view
+      wx:if="{{sousuo_detail.listAct[0]==null&&sousuo_detail.listAmuse[0]==null&&sousuo_detail.listHobby[0]==null&&sousuo_detail.listVideo[0]==null}}">
       <image class="nothing" src="/img/img_nothing.png"></image>
       <view class="nothing_words">页面还没有内容</view>
     </view>
@@ -504,7 +508,7 @@
         </view>
       </view>
     </view>
-    <view wx:else >
+    <view wx:else>
       <image class="nothing" src="/img/img_nothing.png"></image>
       <view class="nothing_words">页面还没有内容</view>
     </view>
@@ -619,7 +623,7 @@
         </view>
       </view> -->
     </view>
-    <view wx:else >
+    <view wx:else>
       <image class="nothing" src="/img/img_nothing.png"></image>
       <view class="nothing_words">页面还没有内容</view>
     </view>
@@ -688,7 +692,7 @@
         </view>
       </view>
     </view>
-    <view wx:else >
+    <view wx:else>
       <image class="nothing" src="/img/img_nothing.png"></image>
       <view class="nothing_words">页面还没有内容</view>
     </view>
@@ -712,16 +716,38 @@
         <view class="video-item" wx:for="{{shipin.list}}">
           <video id="video_{{index}}" class="video-list-photo radius" src="{{item.shipinSRC}}"
             hidden="{{!item.yingChang}}" bindtap="video_change" data-index="{{index}}" custom-cache="{{false}}" />
-          <image id="video_{{index}}"  class="video-list-photo radius" src="{{item.cover?item.cover:defaultPoster}}"
+          <image id="video_{{index}}" class="video-list-photo radius" src="{{item.cover?item.cover:defaultPoster}}"
             mode="{{item.cover?'scaleToFill':'center'}}" bindtap="yingChangShipin" data-index="{{index}}"
             hidden="{{item.yingChang}}"></image>
           <view class="video_text">{{item.title}}</view>
         </view>
       </view>
     </view>
-    <view wx:else >
+    <view wx:else>
       <image class="nothing" src="/img/img_nothing.png"></image>
       <view class="nothing_words">页面还没有内容</view>
+    </view>
+  </block>
+  <block wx:if="{{TabCur==5}}">
+    <view class="flex bg-white">
+      <view class="tuanduiList1">
+        <view class="{{tuanduiCur==index?'box_tuandui2':'box_tuandui1'}}" wx:for="{{activityClass1}}"
+          bindtap="xuanzeClass1" data-index="{{index}}">
+          {{ activityClass1[index].name}}
+        </view>
+      </view>
+      <view class="tuanduiList2">
+        <view class="box_tuandui3" wx:for="{{tuanduiList}}" bindtap="nav_tuanduiXiangqing" data-index="{{index}}">
+          <image class="tuandui-img" src="{{tuanduiList[index].logo}}">
+
+          </image>
+          <view>
+            <view style="margin-left: 20rpx;font-size: 32rpx;font-weight: bold;">{{tuanduiList[index].name}}</view>
+            <view style="margin-left: 20rpx;font-size: 28rpx;font-weight: 500;color: #FE6005;">
+              {{tuanduiList[index].mbrCount}}人</view>
+          </view>
+        </view>
+      </view>
     </view>
   </block>
 </block>
