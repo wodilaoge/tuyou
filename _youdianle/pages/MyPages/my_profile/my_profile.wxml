@@ -15,6 +15,8 @@
 		<image class="icon" src="/img/array.png"></image>
 	</view>
 	<view class="cu-form-group">
+		<view class=" text-red text-xl star ">*</view>
+
 		<view class="title">昵称</view>
 		<input class="input text-grey" placeholder="{{userinfo.nickname}}" type='text' name="name"
 			bindinput="getnick"></input>
@@ -29,16 +31,27 @@
 		</picker>
 	</view>
 	<view class="cu-form-group">
+		<view class=" text-red text-xl star ">*</view>
 		<view class="title">姓名</view>
 		<input class="input text-grey" placeholder="{{userinfo.name}}" type='text' name="name" bindinput="getname"></input>
 		<image class="icon" src="/img/write.png"></image>
 	</view>
 	<view class="cu-form-group">
+		<view class=" text-red text-xl star ">*</view>
 		<view class="title">手机号码</view>
 		<input class="input text-grey" placeholder="{{userinfo.mobile}}" type='text' name="name"
 			bindinput="getphone"></input>
 		<image class="icon" src="/img/write.png"></image>
 	</view>
+	<view class="cu-form-group">
+		<view class=" text-red text-xl star ">*</view>
+		<view class="title">Email</view>
+		<input class="input text-grey" placeholder="{{userinfo.email}}" type='text' name="name"
+			bindinput="getemail"></input>
+		<image class="icon" src="/img/write.png"></image>
+	</view>
+
+
 	<!-- <view class="cu-form-group">
 		<view class="title">证件类型</view>
 		<input class="input text-grey" placeholder="身份证" type='text' name="name" bindinput="name"></input>

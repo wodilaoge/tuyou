@@ -2,6 +2,11 @@
 .cu-form-group .title {
   min-width: calc(4em + 30rpx);
 }
+.star{
+  font-size: 50rpx;
+  position:relative ;
+  right: 20rpx;
+}
 .icon{
   position: relative;
   width: 40rpx;

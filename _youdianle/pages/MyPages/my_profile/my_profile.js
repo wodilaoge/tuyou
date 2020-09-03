@@ -96,6 +96,12 @@ Page({
       [t]: e.detail.value
     })
   },
+  getemail(e) {
+    let t = 'userinfo.email'
+    this.setData({
+      [t]: e.detail.value
+    })
+  },
   DateChange(e) {
     let t = 'userinfo.birthday'
     this.setData({
