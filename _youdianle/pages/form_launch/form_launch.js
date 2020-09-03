@@ -394,7 +394,7 @@ Page({
         if (res.authSetting['scope.userInfo']) {
           let url2 = app.globalData.URL + '/appuser/getPubPerm'
           util.gets(url2, {}).then(function (res) {
-            console.log('auth', res)
+            console.log('auth', res.data)
             that.setData({
               auth: res.data
             })
@@ -410,7 +410,19 @@ Page({
                   }, 2000);
                 }
               })
-            } else if (res.data.code) {
+            } else if (res.data.code==135) {
+              wx.showToast({
+                title:res.data.msg,
+                duration: 2000,
+                success: function () {
+                  setTimeout(function () {
+                    wx.navigateTo({
+                      url: '/pages/MyPages/my_profile/my_profile',
+                    })
+                  }, 2000);
+                }
+              })
+            }else if (res.data.code) {
               wx.showToast({
                 title: '请先绑定手机！',
                 duration: 2000,

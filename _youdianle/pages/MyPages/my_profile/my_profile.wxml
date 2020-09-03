@@ -39,6 +39,14 @@
 			bindinput="getphone"></input>
 		<image class="icon" src="/img/write.png"></image>
 	</view>
+	<view class="cu-form-group">
+		<view class="title">Email</view>
+		<input class="input text-grey" placeholder="{{userinfo.email}}" type='text' name="name"
+			bindinput="getemail"></input>
+		<image class="icon" src="/img/write.png"></image>
+	</view>
+
+
 	<!-- <view class="cu-form-group">
 		<view class="title">证件类型</view>
 		<input class="input text-grey" placeholder="身份证" type='text' name="name" bindinput="name"></input>
