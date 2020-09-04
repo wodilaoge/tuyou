@@ -3,8 +3,8 @@ var upload = require("../../utils/upload.js");
 var util = require("../../utils/util.js");
 Page({
   data: {
-    isagree:true,
-    hiddenmodalput:true,
+    isagree: true,
+    hiddenmodalput: true,
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
     group: 0,
@@ -20,7 +20,7 @@ Page({
     region: ['浙江省', '杭州市', '浙江大学'],
     place: ['浙江大学篮球场'],
     imgList: [],
-    photo:[],
+    photo: [],
     modalName: null,
     textareaAValue: '',
     textareaBValue: ''
@@ -54,55 +54,32 @@ Page({
   },
   onLoad: function (options) {
     var that = this
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          let url2 = app.globalData.URL + '/appuser/getPubPerm'
-          util.gets(url2, {}).then(function(res) {
-            console.log('auth', res)
-            that.setData({
-              auth: res.data
-            })
-            if (res.data.code) {
-              wx.showToast({
-                title: '请先绑定手机！',
-                duration: 2000,
-                success: function() {
-                  setTimeout(function() {
-                    wx.navigateTo({
-                      url: '/pages/MyPages/my_security/my_security',
-                    })
-                  }, 2000);
-                }
+    let url2 = app.globalData.URL + '/appuser/getPubPerm'
+    util.gets(url2, {}).then(function (res) {
+      console.log('auth', res)
+      that.setData({
+        auth: res.data
+      })
+      if (res.data.code) {
+        wx.showToast({
+          title: '请先绑定手机！',
+          duration: 2000,
+          success: function () {
+            setTimeout(function () {
+              wx.navigateTo({
+                url: '/pages/MyPages/my_security/my_security',
               })
-            }
-          })
-           console.log('wx auth finished')
-          } else {
-          console.log('no auth')
-          wx.showModal({
-            title: '友点乐',
-            content: '请先进行微信登录',
-            cancelText: '取消',
-            confirmText: '授权',
-            success: res => {
-              if (res.confirm) {
-                wx.navigateTo({
-                  url: '/pages/login/login',
-                })
-              } else {
-                wx.navigateBack({
-                  delta: 1
-                })
-              }
-            }
-          })
-        }
+            }, 2000);
+          }
+        })
       }
     })
+    console.log('wx auth finished')
+
+
 
     this.setData({
-      actid:options.actid
+      actid: options.actid
     })
 
   },
@@ -164,9 +141,9 @@ Page({
       })
     }
   },
-  getname(e){
+  getname(e) {
     this.setData({
-      title:e.detail.value
+      title: e.detail.value
     })
   },
   textareaAInput(e) {
@@ -174,7 +151,7 @@ Page({
       textareaAValue: e.detail.value
     })
   },
-  toForm_modify: function(e) {
+  toForm_modify: function (e) {
     wx.navigateTo({
       url: "../../pages/form_modify/form_modify"
     })
@@ -190,39 +167,39 @@ Page({
       hiddenmodalput: true
     });
   },
-  commit: function(e) {
+  commit: function (e) {
     var user = wx.getStorageSync('userInfo')
     let url = app.globalData.URL + '/photo/updateActPhoto';
     var data = this.data
     var data = {
-      id:'',
-      actid:this.data.actid,
-      title:this.data.title,
-      author:user.id,
-      authorAlias:this.data.penname,
+      id: '',
+      actid: this.data.actid,
+      title: this.data.title,
+      author: user.id,
+      authorAlias: this.data.penname,
       authorHead: user.head,
-      content:this.data.textareaAInput,
-      univ:wx.getStorageSync('school').code,
-      province:wx.getStorageSync('province').code,
-      city:wx.getStorageSync('city').code,
+      content: this.data.textareaAInput,
+      univ: wx.getStorageSync('school').code,
+      province: wx.getStorageSync('province').code,
+      city: wx.getStorageSync('city').code,
 
-      status:10,
-      creater:user.id,
-      listPhoto:this.data.photo
+      status: 10,
+      creater: user.id,
+      listPhoto: this.data.photo
     }
-    util.post_token(url, data).then(function(res) {
+    util.post_token(url, data).then(function (res) {
       console.log(res.data)
       if (res.data.code == 0) {
         wx.showToast({
           title: '提交成功',
           duration: 2000,
-          success: function() {
-            setTimeout(function() {
+          success: function () {
+            setTimeout(function () {
               // wx.reLaunch({
               //   url: '/pages/index/index',
               // })
               wx.navigateBack({
-                delta:1
+                delta: 1
               })
             }, 2000);
           }
@@ -235,7 +212,7 @@ Page({
           duration: 2000
         })
       }
-    }).catch(function(res) {
+    }).catch(function (res) {
       console.log(res)
       wx.showToast({
         title: '提交失败！',
@@ -247,7 +224,7 @@ Page({
       modalName: e.currentTarget.dataset.target
     })
   },
-  addicon: function(e) {
+  addicon: function (e) {
     var t = this.data.group
     console.log(t)
     t++

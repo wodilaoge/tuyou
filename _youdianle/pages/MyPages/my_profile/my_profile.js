@@ -338,6 +338,7 @@ Page({
       nickname: tmp.nickname,
       name: tmp.name,
       sex: tmp.sex,
+      mobile:tmp.mobile,
       email: tmp.email,
       idtype: tmp.idtype,
       idno: tmp.idno,

@@ -94,7 +94,6 @@ Page({
   },
   tovideo() {
     if (this.data.isauth)
-
     {
       console.log('to video')
       wx.navigateTo({
