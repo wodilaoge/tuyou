@@ -88,6 +88,7 @@ Page({
     city: '',
     univ: '',
     quanxianCode: -1,
+    swiper_current:0,
     swiperList_zhaopian: [{
       id: 0,
       type: 'image',
@@ -1276,7 +1277,6 @@ Page({
       console.log("照片", res)
       this.setData({
         zhaopian: res.data.list
-
       })
     }, (err) => {
       console.log(err.errMsg)
@@ -2107,8 +2107,7 @@ Page({
   /////////////////////////////zhaopian
   setChange_swiper: function (e) {
     this.setData({
-      // swiper_notes:this.dataset.zhaopian
-
+      swiper_current:e.detail.current
     })
   },
   /**
@@ -2284,7 +2283,7 @@ Page({
     } else if (e.target.dataset.duixiang == 60) {
       return {
         title: '友点乐',
-        path: 'pages/fenxiangshipin/fenxiang?Tabcur=' + that.data.TabCur + '&shipinID=' + that.data.zhaopian[e.target.dataset.index].id + '&duixiang=' + e.target.dataset.duixiang,
+        path: 'pages/fenxiangshipin/fenxiang?Tabcur=' + that.data.TabCur + '&zhaopianID=' + that.data.zhaopian[e.target.dataset.index].id + '&duixiang=' + e.target.dataset.duixiang,
         success: function (res) {
           console.log("转发成功:" + JSON.stringify(res));
           that.shareClick();
