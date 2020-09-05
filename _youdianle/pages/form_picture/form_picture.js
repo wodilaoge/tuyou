@@ -206,22 +206,21 @@ Page({
         })
       } else {
         wx.showToast({
-          title: '提交失败!',
+          title:res.data.msg,
           image: '/img/fail.png',
-          icon: 'success',
           duration: 2000
         })
       }
     }).catch(function (res) {
       console.log(res)
       wx.showToast({
-        title: '提交失败！',
-        icon: 'success',
+        title: res.data.msg,
         duration: 2000
       })
     })
     this.setData({
-      modalName: e.currentTarget.dataset.target
+      modalName: e.currentTarget.dataset.target,
+      hiddenmodalput:true
     })
   },
   addicon: function (e) {
