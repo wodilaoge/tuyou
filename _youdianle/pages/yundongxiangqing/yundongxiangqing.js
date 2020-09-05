@@ -836,37 +836,73 @@ Page({
   },
   shipinguanzhu: function (e) {
     if (this.data.quanxianCode == 0) {
-      var self = this;
-      let shipintmp = this.data.shipin;
-      if (shipintmp.list[e.currentTarget.dataset.index].myFollow == 1) {
-        shipintmp.list[e.currentTarget.dataset.index].myFollow = 0;
-        self.setData({
-          shipin: shipintmp
-        })
-        let url = app.globalData.URL + '/follow/updateFollow';
-        let data = {
-          objtype: 50,
-          objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
-          objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
-          creater: self.data.user.id,
-          status: 0,
-        };
-        app.wxRequest('POST', url, data, (res) => {}, (err) => {});
+      if (e.currentTarget.dataset.duixiang == 50) {
+        var self = this;
+        let shipintmp = this.data.shipin;
+        if (shipintmp.list[e.currentTarget.dataset.index].myFollow == 1) {
+          shipintmp.list[e.currentTarget.dataset.index].myFollow = 0;
+          self.setData({
+            shipin: shipintmp
+          })
+          let url = app.globalData.URL + '/follow/updateFollow';
+          let data = {
+            objtype: 50,
+            objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+            objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
+            creater: self.data.user.id,
+            status: 0,
+          };
+          app.wxRequest('POST', url, data, (res) => {}, (err) => {});
 
+        } else {
+          shipintmp.list[e.currentTarget.dataset.index].myFollow = 1;
+          self.setData({
+            shipin: shipintmp
+          })
+          let url = app.globalData.URL + '/follow/updateFollow';
+          let data = {
+            objtype: 50,
+            objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+            objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
+            creater: self.data.user.id,
+            status: 1,
+          };
+          app.wxRequest('POST', url, data, (res) => {}, (err) => {});
+        }
       } else {
-        shipintmp.list[e.currentTarget.dataset.index].myFollow = 1;
-        self.setData({
-          shipin: shipintmp
-        })
-        let url = app.globalData.URL + '/follow/updateFollow';
-        let data = {
-          objtype: 50,
-          objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
-          objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
-          creater: self.data.user.id,
-          status: 1,
-        };
-        app.wxRequest('POST', url, data, (res) => {}, (err) => {});
+        var self = this;
+        let shipintmp = {};
+        shipintmp.list = this.data.zhaopian;
+        if (shipintmp.list[e.currentTarget.dataset.index].myFollow == 1) {
+          shipintmp.list[e.currentTarget.dataset.index].myFollow = 0;
+          self.setData({
+            zhaopian: shipintmp.list
+          })
+          let url = app.globalData.URL + '/follow/updateFollow';
+          let data = {
+            objtype: 60,
+            objid: self.data.zhaopian[e.currentTarget.dataset.index].id,
+            objtitle: self.data.zhaopian[e.currentTarget.dataset.index].title,
+            creater: self.data.user.id,
+            status: 0,
+          };
+          app.wxRequest('POST', url, data, (res) => {}, (err) => {});
+
+        } else {
+          shipintmp.list[e.currentTarget.dataset.index].myFollow = 1;
+          self.setData({
+            zhaopian: shipintmp.list
+          })
+          let url = app.globalData.URL + '/follow/updateFollow';
+          let data = {
+            objtype: 60,
+            objid: self.data.zhaopian[e.currentTarget.dataset.index].id,
+            objtitle: self.data.zhaopian[e.currentTarget.dataset.index].title,
+            creater: self.data.user.id,
+            status: 1,
+          };
+          app.wxRequest('POST', url, data, (res) => {}, (err) => {});
+        }
       }
     } else {
       this.userPanduan()
@@ -874,43 +910,85 @@ Page({
   },
   shipinDianzan: function (e) {
     if (this.data.quanxianCode == 0) {
-      var self = this;
-      let shipintmp = this.data.shipin;
-      if (shipintmp.list[e.currentTarget.dataset.index].myApplaud == 1) {
-        shipintmp.list[e.currentTarget.dataset.index].myApplaud = 0;
-        shipintmp.list[e.currentTarget.dataset.index].applaudCnt--;
-        self.setData({
-          shipin: shipintmp
-        })
-        let url = app.globalData.URL + '/applaud/updateApplaud';
-        let data = {
-          objtype: 50,
-          objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
-          objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
-          creater: self.data.user.id,
-          status: 0,
-        };
-        app.wxRequest('POST', url, data, (res) => {
-          console.log(res)
-        }, (err) => {});
+      if (e.currentTarget.dataset.duixiang == 50) {
+        var self = this;
+        let shipintmp = this.data.shipin;
+        if (shipintmp.list[e.currentTarget.dataset.index].myApplaud == 1) {
+          shipintmp.list[e.currentTarget.dataset.index].myApplaud = 0;
+          shipintmp.list[e.currentTarget.dataset.index].applaudCnt--;
+          self.setData({
+            shipin: shipintmp
+          })
+          let url = app.globalData.URL + '/applaud/updateApplaud';
+          let data = {
+            objtype: 50,
+            objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+            objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
+            creater: self.data.user.id,
+            status: 0,
+          };
+          app.wxRequest('POST', url, data, (res) => {
+            console.log(res)
+          }, (err) => {});
 
+        } else {
+          shipintmp.list[e.currentTarget.dataset.index].myApplaud = 1;
+          shipintmp.list[e.currentTarget.dataset.index].applaudCnt++;
+          self.setData({
+            shipin: shipintmp
+          })
+          let url = app.globalData.URL + '/applaud/updateApplaud';
+          let data = {
+            objtype: 50,
+            objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+            objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
+            creater: self.data.user.id,
+            status: 1,
+          };
+          app.wxRequest('POST', url, data, (res) => {
+            console.log(res)
+          }, (err) => {});
+        }
       } else {
-        shipintmp.list[e.currentTarget.dataset.index].myApplaud = 1;
-        shipintmp.list[e.currentTarget.dataset.index].applaudCnt++;
-        self.setData({
-          shipin: shipintmp
-        })
-        let url = app.globalData.URL + '/applaud/updateApplaud';
-        let data = {
-          objtype: 50,
-          objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
-          objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
-          creater: self.data.user.id,
-          status: 1,
-        };
-        app.wxRequest('POST', url, data, (res) => {
-          console.log(res)
-        }, (err) => {});
+        var self = this;
+        let shipintmp = {};
+        shipintmp.list=this.data.zhaopian;
+        if (shipintmp.list[e.currentTarget.dataset.index].myApplaud == 1) {
+          shipintmp.list[e.currentTarget.dataset.index].myApplaud = 0;
+          shipintmp.list[e.currentTarget.dataset.index].applaudCnt--;
+          self.setData({
+            zhaopian : shipintmp.list
+          })
+          let url = app.globalData.URL + '/applaud/updateApplaud';
+          let data = {
+            objtype: 60,
+            objid: self.data.zhaopian [e.currentTarget.dataset.index].id,
+            objtitle: self.data.zhaopian[e.currentTarget.dataset.index].title,
+            creater: self.data.user.id,
+            status: 0,
+          };
+          app.wxRequest('POST', url, data, (res) => {
+            console.log(res)
+          }, (err) => {});
+
+        } else {
+          shipintmp.list[e.currentTarget.dataset.index].myApplaud = 1;
+          shipintmp.list[e.currentTarget.dataset.index].applaudCnt++;
+          self.setData({
+            zhaopian: shipintmp.list
+          })
+          let url = app.globalData.URL + '/applaud/updateApplaud';
+          let data = {
+            objtype:60,
+            objid: self.data.zhaopian[e.currentTarget.dataset.index].id,
+            objtitle: self.data.zhaopian[e.currentTarget.dataset.index].title,
+            creater: self.data.user.id,
+            status: 1,
+          };
+          app.wxRequest('POST', url, data, (res) => {
+            console.log(res)
+          }, (err) => {});
+        }
       }
     } else {
       this.userPanduan()
@@ -928,8 +1006,8 @@ Page({
     animation.translateY(200).step()
     that.setData({
       shipinAnimationData: animation.export(),
-      shipinChooseSize:e.currentTarget.dataset.duixiang==50? true:false,
-      zhaopianChooseSize:e.currentTarget.dataset.duixiang==60? true:false
+      shipinChooseSize: e.currentTarget.dataset.duixiang == 50 ? true : false,
+      zhaopianChooseSize: e.currentTarget.dataset.duixiang == 60 ? true : false
     })
     setTimeout(function () {
       animation.translateY(0).step()
@@ -978,7 +1056,7 @@ Page({
         }
         shipintmp[e.currentTarget.dataset.index].listComm = res.data.list;
         that.setData({
-          zhaopian : shipintmp,
+          zhaopian: shipintmp,
           shipinPinglunBorder: res.data.border,
         })
       }, (err) => {
@@ -1194,10 +1272,10 @@ Page({
     let data = {
       actid: this.data.categoryId
     };
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
       console.log("照片", res)
       this.setData({
-        zhaopian: res.data
+        zhaopian: res.data.list
 
       })
     }, (err) => {
@@ -2194,7 +2272,7 @@ Page({
     if (e.target.dataset.duixiang == 50) {
       return {
         title: '友点乐',
-        path: 'pages/fenxiangshipin/fenxiang?Tabcur=' + that.data.TabCur + '&shipinID=' + that.data.shipin.list[e.target.dataset.index].id,
+        path: 'pages/fenxiangshipin/fenxiang?Tabcur=' + that.data.TabCur + '&shipinID=' + that.data.shipin.list[e.target.dataset.index].id + '&duixiang=' + e.target.dataset.duixiang,
         success: function (res) {
           console.log("转发成功:" + JSON.stringify(res));
           that.shareClick();
@@ -2203,10 +2281,10 @@ Page({
           console.log("转发失败:" + JSON.stringify(res));
         }
       }
-    }else if (e.target.dataset.duixiang == 60) {
+    } else if (e.target.dataset.duixiang == 60) {
       return {
         title: '友点乐',
-        path: 'pages/fenxiangshipin/fenxiang?Tabcur=' + that.data.TabCur + '&shipinID=' + that.data.shipin.list[e.target.dataset.index].id,
+        path: 'pages/fenxiangshipin/fenxiang?Tabcur=' + that.data.TabCur + '&shipinID=' + that.data.zhaopian[e.target.dataset.index].id + '&duixiang=' + e.target.dataset.duixiang,
         success: function (res) {
           console.log("转发成功:" + JSON.stringify(res));
           that.shareClick();

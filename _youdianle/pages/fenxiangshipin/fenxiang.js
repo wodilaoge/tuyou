@@ -365,10 +365,13 @@ Page({
     this.setData({
       user: wx.getStorageSync('userInfo'),
     })
-    console.log(options)
-    this.getOneShipin(options.shipinID);
+    if (options.duixiang==50) {
+      this.getOneShipin(options.shipinID);
+    }else{
+      this.getOneShipin(options.shipinID);
+    }
+    
     this.tabCur=options.Tabcur;
-    console.log(this.tabCur,'onoa')
   },
 
   /**

@@ -226,8 +226,9 @@ swiper.round-dot .wx-swiper-dot.wx-swiper-dot-active::after {
 }
 
 .swiper-text {
-  min-height: 100rpx;
+  height: 800rpx;
   /* height: auto; */
+  padding-top: 700rpx;
   font-size: 29rpx;
   font-family: PingFang SC;
   font-weight: bold;

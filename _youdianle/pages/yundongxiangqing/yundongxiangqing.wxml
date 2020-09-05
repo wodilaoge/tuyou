@@ -550,9 +550,9 @@
               src="{{shipin.list[0].authorHead}}"></image>
             <view class="sp-avatar-name">{{shipin.list[0].authorAlias===null?'':shipin.list[0].authorAlias}}</view>
             <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu"
-              data-index="{{index}}" hidden="{{shipin.list[index].myFollow==1}}">关注</button>
+              data-index="{{index}}" hidden="{{shipin.list[index].myFollow==1}}" data-duixiang="50">关注</button>
             <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu"
-              data-index="{{index}}" hidden="{{!shipin.list[index].myFollow==1}}">已关注</button>
+              data-index="{{index}}" hidden="{{!shipin.list[index].myFollow==1}} " data-duixiang="50">已关注</button>
           </view>
 
           <view>
@@ -567,7 +567,7 @@
           <view class="flex  margin-top ">
             <view class="sp-bofang-times ">播放{{shipin.list[0].playCnt}}次</view>
             <image src="{{shipin.list[0].myApplaud!=0?'/img/icon_like_all.png':'/img/icon_like.png'}}"
-              style="width:44rpx;height:40rpx;margin-left:270rpx;" bindtap="shipinDianzan" data-index="{{index}}">
+              style="width:44rpx;height:40rpx;margin-left:270rpx;" bindtap="shipinDianzan" data-index="{{index}}" data-duixiang="50">
             </image>
             <view class=" align-center " style="margin-left:16rpx;font-size:32rpx;width:55rpx; ">
               {{shipin.list[0].applaudCnt}}</view>
@@ -750,9 +750,9 @@
           <view class="sp-avatar-name">{{item.authorAlias===null?'':item.authorAlias}}
           </view>
           <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu"
-            data-index="{{index}}" hidden="{{item.myFollow==1}}">关注</button>
+            data-index="{{index}}" hidden="{{item.myFollow==1}}" data-duixiang="60">关注</button>
           <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu"
-            data-index="{{index}}" hidden="{{!item.myFollow==1}}">已关注</button>
+            data-index="{{index}}" hidden="{{!item.myFollow==1}}" data-duixiang="60">已关注</button>
         </view>
 
         <!-- <view>
@@ -768,7 +768,7 @@
           <swiper-item wx:for="{{item.listPhoto}}" wx:for-item="this">
             <image src="{{this.path}}" mode="aspectFill" ></image>
           </swiper-item>
-          <view>啊啊啊啊啊啊啊啊啊啊啊</view>
+          <view class="swiper-text">啊啊啊啊啊啊啊啊啊啊啊</view>
         </swiper>
         <!-- <view wx:for="{{zhaopian.length}}"wx:for-item="swiper-items">{{zhaopian[index].listPhoto[]}}</view> -->
       
@@ -777,7 +777,7 @@
           <!-- <view class="sp-bofang-times ">播放{{item.playCnt}}次</view> -->
           <view class="sp-hotpinglun ">热门评论</view>
           <image src="{{item.myApplaud!=0?'/img/icon_like_all.png':'/img/icon_like.png'}}"
-            style="width:44rpx;height:40rpx;margin-left:360rpx;" bindtap="shipinDianzan" data-index="{{index}}"></image>
+            style="width:44rpx;height:40rpx;margin-left:360rpx;" bindtap="shipinDianzan" data-index="{{index}}" data-duixiang="60"></image>
           <view class=" align-center " style="margin-left:16rpx;font-size:32rpx;width:55rpx; ">
             {{item.applaudCnt}}</view>
           <image class="img-icon" mode="aspectFit " src="/img/icon_talk.png" bindtap="chooseSezi" data-duixiang="{{60}}"
