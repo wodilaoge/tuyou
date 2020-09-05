@@ -226,12 +226,19 @@ swiper.round-dot .wx-swiper-dot.wx-swiper-dot-active::after {
 }
 
 .swiper-text {
-  height: 800rpx;
-  /* height: auto; */
-  padding-top: 700rpx;
+  height: auto;
+  padding-top: 20rpx;
+  padding-left: 25rpx;
+  padding-bottom: 30rpx;
   font-size: 29rpx;
   font-family: PingFang SC;
   font-weight: bold;
   color: #343434;
-  background-color: red;
+  background-color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display:-webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient:vertical;
+  word-break: break-all;
 }

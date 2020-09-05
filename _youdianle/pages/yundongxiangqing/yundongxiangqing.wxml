@@ -768,10 +768,9 @@
           <swiper-item wx:for="{{item.listPhoto}}" wx:for-item="this">
             <image src="{{this.path}}" mode="aspectFill" ></image>
           </swiper-item>
-          <view class="swiper-text">啊啊啊啊啊啊啊啊啊啊啊</view>
         </swiper>
-        <!-- <view wx:for="{{zhaopian.length}}"wx:for-item="swiper-items">{{zhaopian[index].listPhoto[]}}</view> -->
-      
+        
+       <view class="swiper-text">{{item.listPhoto[swiper_current].notes==null?'':item.listPhoto[swiper_current].notes}} </view>
 
         <view class="flex  margin-top ">
           <!-- <view class="sp-bofang-times ">播放{{item.playCnt}}次</view> -->
