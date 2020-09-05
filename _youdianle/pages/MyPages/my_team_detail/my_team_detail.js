@@ -25,7 +25,6 @@ Page({
       objtype:10,
       objid:that.data.duizhangID,
       objtitle:that.data.tdxxDeatil.leader,
-      creater:wx.getStorageSync('userInfo').id,
       status:1
     }
     util.post_token(url, data).then(function (res) {

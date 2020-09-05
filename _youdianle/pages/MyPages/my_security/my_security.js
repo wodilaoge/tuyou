@@ -76,17 +76,12 @@ Page({
         console.log(res.data)
         wx.showToast({
           title: res.data.msg,
-          image: '/img/fail.png',
-          icon: 'success',
-          duration: 2000
         })
       }
     }).catch(function(res) {
       console.log(res)
       wx.showToast({
-        title: '提交失败！',
-        icon: 'success',
-        duration: 2000
+        title: res.data.msg,
       })
     })
   },
