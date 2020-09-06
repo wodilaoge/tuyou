@@ -81,8 +81,7 @@ Page({
   },
   //////////////////////
   towebview3(e) {
-    // console.log(e)
-    // if (e.currentTarget.dataset.item.link != null)
+    if (e.currentTarget.dataset.item.link != null)
       wx.navigateTo({
         url: '/pages/webview3/webview3?url=' + e.currentTarget.dataset.item.link,
       })
