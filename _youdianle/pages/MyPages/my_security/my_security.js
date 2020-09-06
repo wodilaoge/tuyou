@@ -72,7 +72,21 @@ Page({
             }, 2000);
           }
         })
-      } else {
+      } 
+      else if (res.data.code == 109) {
+        console.log('appjs code 109', res.data)
+        wx.showToast({
+          title: '请重新登录！',
+          image: '/img/fail.png',
+          duration: 500,
+          success: function() {
+            wx.redirectTo({
+              url: '/pages/login/login',
+            })
+          }
+        })
+      }
+      else {
         console.log(res.data)
         wx.showToast({
           title: res.data.msg,

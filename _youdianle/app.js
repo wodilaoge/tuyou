@@ -21,19 +21,33 @@ App({
         },
         dataType: 'json',
         success: function(res) {
-          if (res.data.code == '109') {
-            console.log('appjs code 109', res.data)
+          if (res.data.code == 0) {
+            resolve(res);
+          } 
+          else if (res.data.code == 109) {
+            console.log('utils code 109', res.data)
             wx.showToast({
               title: '请重新登录！',
               image: '/img/fail.png',
-              duration: 500,
+              duration: 2000,
               success: function() {
                 wx.redirectTo({
                   url: '/pages/login/login',
                 })
               }
             })
-          }                                               
+          }
+          else { //返回错误提示信息
+            wx.showToast({
+              title: res.data.msg,
+              duration: 2000,
+              success: function() {
+                wx.redirectTo({
+                  url: '/pages/login/login',
+                })
+              }
+            })
+          }                                         
           callback(res.data);
         },
         fail: function(err) {
@@ -57,12 +71,26 @@ App({
         },
         dataType: 'json',
         success: function(res) {
-          if (res.data.code == '109') {
-            console.log('appjs code 109', res.data)
+          if (res.data.code == 0) {
+            resolve(res);
+          } 
+          else if (res.data.code == 109) {
+            console.log('utils code 109', res.data)
             wx.showToast({
               title: '请重新登录！',
               image: '/img/fail.png',
-              duration: 500,
+              duration: 2000,
+              success: function() {
+                wx.redirectTo({
+                  url: '/pages/login/login',
+                })
+              }
+            })
+          }
+          else { //返回错误提示信息
+            wx.showToast({
+              title: res.data.msg,
+              duration: 2000,
               success: function() {
                 wx.redirectTo({
                   url: '/pages/login/login',

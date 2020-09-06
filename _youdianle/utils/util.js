@@ -85,23 +85,32 @@ const gets = (url, data) => {
           'Authorization': user
         },
         success: function(res) { //服务器返回数据
-          if (res.data.code == '109') {
+          if (res.data.code == 0) {
+            resolve(res);
+          } 
+          else if (res.data.code == 109) {
             console.log('utils code 109', res.data)
             wx.showToast({
               title: '请重新登录！',
               image: '/img/fail.png',
-              duration: 500,
+              duration: 2000,
               success: function() {
                 wx.redirectTo({
                   url: '/pages/login/login',
                 })
               }
             })
-          } else
-          if (res.statusCode == 200) {
-            resolve(res);
-          } else { //返回错误提示信息
-            reject(res.data);
+          }
+          else { //返回错误提示信息
+            wx.showToast({
+              title: res.data.msg,
+              duration: 2000,
+              success: function() {
+                wx.redirectTo({
+                  url: '/pages/login/login',
+                })
+              }
+            })
           }
         },
         error: function(e) {
@@ -124,24 +133,33 @@ const gets_notoken = (url, data) => {
           'content-type': 'application/json',
         },
         success: function (res) { //服务器返回数据
-          if (res.data.code == '109') {
+          if (res.data.code == 0) {
+            resolve(res);
+          } 
+          else if (res.data.code == 109) {
             console.log('utils code 109', res.data)
             wx.showToast({
               title: '请重新登录！',
               image: '/img/fail.png',
-              duration: 500,
-              success: function () {
+              duration: 2000,
+              success: function() {
                 wx.redirectTo({
                   url: '/pages/login/login',
                 })
               }
             })
-          } else
-            if (res.statusCode == 200) {
-              resolve(res);
-            } else { //返回错误提示信息
-              reject(res.data);
-            }
+          }
+          else { //返回错误提示信息
+            wx.showToast({
+              title: res.data.msg,
+              duration: 2000,
+              success: function() {
+                wx.redirectTo({
+                  url: '/pages/login/login',
+                })
+              }
+            })
+          }
         },
         error: function (e) {
           reject('网络出错');
