@@ -88,7 +88,7 @@ Page({
     city: '',
     univ: '',
     quanxianCode: -1,
-    swiper_current:0,
+    swiper_current: 0,
     swiperList_zhaopian: [{
       id: 0,
       type: 'image',
@@ -953,17 +953,17 @@ Page({
       } else {
         var self = this;
         let shipintmp = {};
-        shipintmp.list=this.data.zhaopian;
+        shipintmp.list = this.data.zhaopian;
         if (shipintmp.list[e.currentTarget.dataset.index].myApplaud == 1) {
           shipintmp.list[e.currentTarget.dataset.index].myApplaud = 0;
           shipintmp.list[e.currentTarget.dataset.index].applaudCnt--;
           self.setData({
-            zhaopian : shipintmp.list
+            zhaopian: shipintmp.list
           })
           let url = app.globalData.URL + '/applaud/updateApplaud';
           let data = {
             objtype: 60,
-            objid: self.data.zhaopian [e.currentTarget.dataset.index].id,
+            objid: self.data.zhaopian[e.currentTarget.dataset.index].id,
             objtitle: self.data.zhaopian[e.currentTarget.dataset.index].title,
             creater: self.data.user.id,
             status: 0,
@@ -980,7 +980,7 @@ Page({
           })
           let url = app.globalData.URL + '/applaud/updateApplaud';
           let data = {
-            objtype:60,
+            objtype: 60,
             objid: self.data.zhaopian[e.currentTarget.dataset.index].id,
             objtitle: self.data.zhaopian[e.currentTarget.dataset.index].title,
             creater: self.data.user.id,
@@ -1281,6 +1281,13 @@ Page({
     }, (err) => {
       console.log(err.errMsg)
     });
+  },
+  ViewImage(e) {
+    wx.previewImage({
+      urls: [e.currentTarget.dataset.url],
+      current: e.currentTarget.dataset.url
+    });
+
   },
   ////////////
   shipintiaozhuan() {
@@ -2107,7 +2114,7 @@ Page({
   /////////////////////////////zhaopian
   setChange_swiper: function (e) {
     this.setData({
-      swiper_current:e.detail.current
+      swiper_current: e.detail.current
     })
   },
   /**

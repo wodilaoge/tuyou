@@ -9,8 +9,12 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      url: options.url
+      // url: options.url
+      url:encodeURIComponent("https://api.udianle.com/bms/linkto.do?type=sec&amp;id=6516013478707211") 
+      // url:"https://api.udianle.com/bms/linkto.do?type=sec&amp;id=6516013478707211"
+
     })
+    console.log(this.data.url)
   },
 
   /**
