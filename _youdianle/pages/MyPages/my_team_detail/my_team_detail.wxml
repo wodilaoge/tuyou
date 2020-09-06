@@ -22,7 +22,7 @@
       <image style="width:80rpx;height:80rpx;border-radius:50%;margin-left:24rpx;"
         src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg"></image>
       <view class="tdxx-duizhnag-name ">{{tdxxDeatil.leader}}(队长)</view>
-      <view class="tdxx-guanzhu align-center">关注</view>
+      <view class="tdxx-guanzhu align-center" wx:if="{{!isCaptain}}" bindtap="follow">关注</view>
     </view>
     <view wx:if="{{!isCaptain}}">
       <image class="tdxx-img-icon" mode="aspectFit" src="/img/icon_add_friends.png" bindtap="tojoin"></image>

@@ -17,9 +17,24 @@ Page({
     listmemberdeatil: [],
     isCaptain:false
   },
-
-
-
+  follow(){
+    var that=this
+    console.log('关注')
+    var url = app.globalData.URL + '/follow/updateFollow';
+    var data = {
+      objtype:10,
+      objid:that.data.duizhangID,
+      objtitle:that.data.tdxxDeatil.leader,
+      status:1
+    }
+    util.post_token(url, data).then(function (res) {
+      console.log('关注成功', res.data)
+      wx.showToast({
+        title: res.data.msg,
+        duration: 1000,
+      })
+    })
+  },
   getXinxi() {
     let url = app.globalData.URL + '/team/findTeam';
     let data = {
@@ -44,7 +59,6 @@ Page({
     let url = app.globalData.URL + '/appuser/findUserByID';
     let data = {
       id: this.data.duizhangID,
-
     };
     app.wxRequest('GET', url, data, (res) => {
       console.log(res.data)

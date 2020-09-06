@@ -78,7 +78,13 @@ App({
       })
     }
   },
-
+  // 每个接口都有可能返回下面错误：
+  // -1, "未知错误"
+  // 51, "无权访问"
+  // 109, "请重新登录"
+  // 128, "无效账户"
+  // 129, "账户已冻结"
+  // 130, "账户已注销"
   onLaunch: function() {
     // 展示本地存储能力
     // this.hideTabBar();
@@ -114,7 +120,12 @@ App({
                 wx.setStorageSync('userInfo', res.data.data)
                 console.log('userinfo storage ok', res.data.data)
               }
-
+            else{
+              wx.showToast({
+                title: res.data.msg,
+                duration: 2000
+              })
+            }
           }
         })
 
