@@ -442,6 +442,7 @@ Page({
       id: this.data.categoryId
     };
     app.wxRequest('GET', url, data, (res) => {
+      console.log(res)
       this.setData({
         detail: res.data,
         zfpd: res.data.left != '进行中' && (res.data.lefttime.left.indexOf(':') < '0')
@@ -449,11 +450,13 @@ Page({
       this.setData({
         biaoti: res.data.actname
       })
-      if (res.data.auth != null)
-        if (res.data.auth.rights.indexOf("U") != -1)
-          this.setData({
-            shujuhide: false
-          })
+      if (res.data.creater == this.data.user.id)
+        // if (res.data.auth != null)
+        // if (res.data.auth.rights.indexOf("U") != -1)
+        this.setData({
+          shujuhide: false
+        })
+        console.log(this.data.shujuhide)
       if (this.data.detail.signupway == "30") {
         self.gerenpaiming()
         self.tuanduipaiming()
