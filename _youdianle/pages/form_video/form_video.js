@@ -333,7 +333,7 @@ Page({
     user = 'Bearer ' + user.token;
     wx.request({
       // url: 'https://api.udianle.com/kt/util/getVodSignatureV2',
-      url: ' http://192.144.169.239/kt/util/getVodSignatureV2',
+      url: ' http://192.144.169.239:8021/kt/util/getVodSignatureV2',
       dataType: 'json',
       header: {
         'content-type': 'application/json',

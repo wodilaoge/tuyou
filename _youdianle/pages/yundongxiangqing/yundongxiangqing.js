@@ -456,7 +456,6 @@ Page({
         this.setData({
           shujuhide: false
         })
-        console.log(this.data.shujuhide)
       if (this.data.detail.signupway == "30") {
         self.gerenpaiming()
         self.tuanduipaiming()
