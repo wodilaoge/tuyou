@@ -765,11 +765,11 @@
             hidden="{{shipin.list[index].yingChang}}"></image>
         </view> -->
         <swiper class="screen-swiper" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="setChange_swiper" data-index="{{current}}" data-item="{{index}}">
-          <swiper-item wx:for="{{item.listPhoto}}" wx:for-item="this">
+          <swiper-item wx:for="{{item.listPhoto}}" wx:for-item="this" bindtap="ViewImage" data-url="{{this.path}}">
             <image src="{{this.path}}" mode="aspectFill" ></image>
           </swiper-item>
         </swiper>
-        
+
        <view class="swiper-text">{{item.listPhoto[swiper_current].notes==null?'':item.listPhoto[swiper_current].notes}} </view>
 
         <view class="flex  margin-top ">
