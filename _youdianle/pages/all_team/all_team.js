@@ -41,7 +41,7 @@ Page({
     util.post_token(url, {}).then(function (res) {
       console.log('所有团队', res.data)
       that.setData({
-        showAct: res.data.list,
+        showAct: res.data.data.list,
         border:res.data.data.border
       })
     })
@@ -68,7 +68,7 @@ Page({
     util.post_token(url, data).then(function (res) {
       console.log('选择大类', res.data)
       that.setData({
-        showAct: res.data.list
+        showAct: res.data.data.list
       })
     })
   },
@@ -123,12 +123,12 @@ Page({
     util.post_token(url, data).then(function (res) {
       console.log('上拉刷新结果', res.data)
       var _data=that.data.showAct
-      for(let i of res.data.list)
+      for(let i of res.data.data.list)
       _data.push(i)
       that.setData({
         showAct: _data,
         border:res.data.data.border,
-        needflesh:res.data.list==[]
+        needflesh:res.data.data.list==[]
       })
     })
   }
