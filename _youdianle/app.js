@@ -5,8 +5,8 @@ App({
     loadModal: true,
     tabbar: 1,
     userInfo: [],
-    URL: 'https://api.udianle.com/kt',
-    // URL: 'http://192.144.169.239:8021/kt',
+    //URL: 'https://api.udianle.com/kt',
+     URL: 'http://192.144.169.239:8021/kt',
     systemInfo: null, //客户端设备信息，
   },
   wxRequest_notoken(method, url, data, callback, errFun) {
@@ -22,7 +22,7 @@ App({
         dataType: 'json',
         success: function(res) {
           if (res.data.code == 0) {
-            resolve(res);
+            callback(res.data);
           } 
           else if (res.data.code == 109) {
             console.log('utils code 109', res.data)
@@ -48,8 +48,8 @@ App({
               }
             })
           }                                         
-          callback(res.data);
-        },
+          // callback(res.data);      
+          },
         fail: function(err) {
           errFun(err);
         }
@@ -72,7 +72,7 @@ App({
         dataType: 'json',
         success: function(res) {
           if (res.data.code == 0) {
-            resolve(res);
+            callback(res.data);
           } 
           else if (res.data.code == 109) {
             console.log('utils code 109', res.data)
@@ -88,17 +88,10 @@ App({
             })
           }
           else { //返回错误提示信息
-            wx.showToast({
-              title: res.data.msg,
-              duration: 2000,
-              success: function() {
-                wx.redirectTo({
-                  url: '/pages/login/login',
-                })
-              }
-            })
+            console.log(res.data)
+            errFun(res);
           }
-          callback(res.data);
+          // callback(res.data);
         },
         fail: function(err) {
           errFun(res);
@@ -126,8 +119,9 @@ App({
         console.log('login code', res.code);
         var tmpid=wx.getStorageSync("userInfo").id
         wx.request({
-           url: 'https://api.udianle.com/kt/auth/wcAnonLogin',
-          //url: 'http://192.144.169.239:8021/kt/auth/wcAnonLogin',
+           //url: 'https://api.udianle.com/kt/auth/wcAnonLogin',
+
+          url: 'http://192.144.169.239:8021/kt/auth/wcAnonLogin',
           method: 'post',
           data: {
             id:tmpid==undefined?null:tmpid,

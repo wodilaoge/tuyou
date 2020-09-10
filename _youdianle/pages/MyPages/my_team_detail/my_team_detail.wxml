@@ -20,7 +20,7 @@
   <view class="tdxx-duizhang flex">
     <view class="flex align-center">
       <image style="width:80rpx;height:80rpx;border-radius:50%;margin-left:24rpx;"
-        src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg"></image>
+        src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg" bindtap="tocaptaindetail"></image>
       <view class="tdxx-duizhnag-name ">{{tdxxDeatil.leader}}(队长)</view>
       <view class="tdxx-guanzhu align-center" wx:if="{{!isCaptain}}" bindtap="follow">关注</view>
     </view>

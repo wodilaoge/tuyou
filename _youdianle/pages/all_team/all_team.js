@@ -46,10 +46,6 @@ Page({
       })
     })
 
-    this.setData({
-      list: list,
-      listCur: list[0]
-    })
   },
   onReady() {
     wx.hideLoading()

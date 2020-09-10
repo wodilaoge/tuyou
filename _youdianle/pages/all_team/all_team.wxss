@@ -1,4 +1,32 @@
 
+.menu-name {
+  text-align: center;
+  font-weight: bold;
+}
+.icon {
+  position: relative;
+  width: 40rpx;
+  height: 40rpx;
+  /* top: 64rpx;
+  left: 36rpx; */
+  right: -600rpx;
+}
+.duiqi{
+  align-items: center;
+}
+.num{
+  color: #F96300;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+}
+.avatar-round{
+  border-radius: 10rpx;
+}
+.logosize{
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 10rpx;
+}
 .VerticalNav.nav {
   width: 250rpx;
   white-space: initial;

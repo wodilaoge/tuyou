@@ -80,7 +80,11 @@ Page({
     })
 
   },
-
+  tocaptaindetail(){
+    wx.navigateTo({
+      url: '/pages/ziliao/ziliao?id=' +this.data.duizhangID,
+    })
+  },
   getListMember: function () {
     let url = app.globalData.URL + '/team/listMember';
     let data = {
@@ -195,10 +199,6 @@ Page({
         }
       }
     })
-
-
-
-
   },
   tojoin(){
     var that=this

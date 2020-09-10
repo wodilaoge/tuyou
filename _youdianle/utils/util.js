@@ -46,9 +46,9 @@ const post_token = (url, data) => {
         'Authorization': user
       },
       success: function(res) { //服务器返回数据
-        if (res.statusCode == 200) {
+        if (res.data.code == 0) {
           resolve(res);
-        } else { //返回错误提示信息
+        }  else { //返回错误提示信息
           reject(res.data);
         }
       },
@@ -102,15 +102,8 @@ const gets = (url, data) => {
             })
           }
           else { //返回错误提示信息
-            wx.showToast({
-              title: res.data.msg,
-              duration: 2000,
-              success: function() {
-                wx.redirectTo({
-                  url: '/pages/login/login',
-                })
-              }
-            })
+            console.log(res.data)
+            reject(res);
           }
         },
         error: function(e) {
@@ -150,14 +143,10 @@ const gets_notoken = (url, data) => {
             })
           }
           else { //返回错误提示信息
+            console.log(res.data)
             wx.showToast({
               title: res.data.msg,
               duration: 2000,
-              success: function() {
-                wx.redirectTo({
-                  url: '/pages/login/login',
-                })
-              }
             })
           }
         },
