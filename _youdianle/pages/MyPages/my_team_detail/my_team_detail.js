@@ -225,8 +225,6 @@ Page({
     this.getDuizhang();
     this.getListMember();
 
-
-    
     //历史活动
     var url = app.globalData.URL + '/team/listHisAct';
     var data = {

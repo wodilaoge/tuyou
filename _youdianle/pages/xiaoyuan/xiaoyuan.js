@@ -1162,9 +1162,6 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-
-
-
   onReachBottom: function () {
     console.log("上拉刷新")
     let self = this;
