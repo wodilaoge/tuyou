@@ -130,18 +130,18 @@
   </view>
   <view class="cu-form-group margin-top">
     <view class="title">Email</view>
-    <input class="input text-grey" bindinput="getemail" placeholder=""></input>
+    <input class="input text-grey" bindinput="getemail" placeholder="请输入Email"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group">
     <view class="title">网址</view>
-    <input class="input text-grey" bindinput="getweb" placeholder=""></input>
+    <input class="input text-grey" bindinput="getweb" placeholder="请输入网址"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group ">
     <view class="title">微信公众号</view>
     <input class="input text-grey" bindinput="getwx" placeholder="youdianle"></input>
-    <image class="icon2" src="../../img/copy.png"></image>
+    <image class="icon2" src="../../img/write.png"></image>
   </view>
   <view class="text-center margin-top3">
     <checkbox checked class="blue checkicon"></checkbox>

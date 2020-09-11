@@ -19,11 +19,28 @@ const post = (url, data) => {
         "Content-Type": "application/json"
       },
       success: function(res) { //服务器返回数据
-        if (res.statusCode == 200) {
-          resolve(res);
-        } else { //返回错误提示信息
-          reject(res.data);
+        if (res.data.code == 109) {
+          console.log('utils code 109', res.data)
+          wx.showToast({
+            title: '请重新登录！',
+            image: '/img/fail.png',
+            duration: 2000,
+            success: function() {
+              wx.redirectTo({
+                url: '/pages/login/login',
+              })
+            }
+          })
         }
+        else if(res.data.code!=0){  //返回错误提示信息
+          console.log(url+res.data.msg)
+          wx.showToast({
+            title: url+res.data.msg,
+            icon:'none',
+            duration: 2000,
+          })
+        }
+        resolve(res);
       },
       error: function(e) {
         reject('网络出错');
@@ -46,11 +63,28 @@ const post_token = (url, data) => {
         'Authorization': user
       },
       success: function(res) { //服务器返回数据
-        if (res.data.code == 0) {
-          resolve(res);
-        }  else { //返回错误提示信息
-          reject(res.data);
+        if (res.data.code == 109) {
+          console.log('utils code 109', res.data)
+          wx.showToast({
+            title: '请重新登录！',
+            image: '/img/fail.png',
+            duration: 2000,
+            success: function() {
+              wx.redirectTo({
+                url: '/pages/login/login',
+              })
+            }
+          })
         }
+        else if(res.data.code!=0){  //返回错误提示信息
+          console.log(url+res.data.msg)
+          wx.showToast({
+            title: url+res.data.msg,
+            icon:'none',
+            duration: 2000,
+          })
+        }
+        resolve(res);
       },
       error: function(e) {
         reject('网络出错');
@@ -61,18 +95,6 @@ const post_token = (url, data) => {
 }
 const gets = (url, data) => {
   var user = wx.getStorageSync('userInfo')
-  // if (user == null) {
-  //   wx.showToast({
-  //     title: '登录失败！',
-  //     image: '/img/fail.png',
-  //     duration: 500,
-  //     success: function() {
-  //       wx.redirectTo({
-  //         url: '/pages/login/login',
-  //       })
-  //     }
-  //   })
-  // } else
   {
     user = 'Bearer ' + user.token;
     var promise = new Promise((resolve, reject) => {
@@ -85,10 +107,7 @@ const gets = (url, data) => {
           'Authorization': user
         },
         success: function(res) { //服务器返回数据
-          if (res.data.code == 0) {
-            resolve(res);
-          } 
-          else if (res.data.code == 109) {
+          if (res.data.code == 109) {
             console.log('utils code 109', res.data)
             wx.showToast({
               title: '请重新登录！',
@@ -101,10 +120,15 @@ const gets = (url, data) => {
               }
             })
           }
-          else { //返回错误提示信息
-            console.log(res.data)
-            reject(res);
+          else if(res.data.code!=0){ //返回错误提示信息
+            console.log(url+res.data.msg)
+            wx.showToast({
+              title: url+res.data.msg,
+              icon:'none',
+              duration: 2000,
+            })
           }
+          resolve(res);
         },
         error: function(e) {
           reject('网络出错');
@@ -126,10 +150,7 @@ const gets_notoken = (url, data) => {
           'content-type': 'application/json',
         },
         success: function (res) { //服务器返回数据
-          if (res.data.code == 0) {
-            resolve(res);
-          } 
-          else if (res.data.code == 109) {
+          if (res.data.code == 109) {
             console.log('utils code 109', res.data)
             wx.showToast({
               title: '请重新登录！',
@@ -142,13 +163,15 @@ const gets_notoken = (url, data) => {
               }
             })
           }
-          else { //返回错误提示信息
-            console.log(res.data)
+          else if(res.data.code!=0){ //返回错误提示信息
+            console.log(url+res.data.msg)
             wx.showToast({
-              title: res.data.msg,
+              title: url+res.data.msg,
+              icon:'none',
               duration: 2000,
             })
           }
+          resolve(res);
         },
         error: function (e) {
           reject('网络出错');

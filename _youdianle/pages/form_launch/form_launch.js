@@ -367,7 +367,7 @@ Page({
     timestamp = timestamp / 1000;
     // console.log("当前时间戳为：" + timestamp);
     var n = timestamp * 1000;
-    var date = new Date(n);
+    var date = new Date(new Date().setDate(new Date().getDate()+1));
     //年  
     var Y = date.getFullYear();
     //月  
@@ -375,7 +375,7 @@ Page({
     //日  
     var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
     //时  
-    // var h = date.getHours();
+    var h = date.getHours();
     // //分  
     // var m = date.getMinutes();
     // //秒  
@@ -385,6 +385,8 @@ Page({
     this.setData({
       timenow: nowtime,
       timenow2: nowtime,
+      time1:h+":00",
+      time2:h+":00"
     })
     // 获取用户信息
     var that = this

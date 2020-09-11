@@ -94,6 +94,7 @@
   </view>
 
   <view class="cu-form-group">
+    <view class=" text-red text-xl star">*</view>
     <view class="title">活动开始日期</view>
     <picker mode="date" value="{{timenow}}" start="2020.5.1" end="2025.09.01" bindchange="DateChange">
       <view class="picker text-grey">
@@ -102,7 +103,7 @@
     </picker>
   </view>
   <view class="cu-form-group">
-
+    <view class=" text-red text-xl star">*</view>
     <view class="title">活动开始时间</view>
     <picker mode="time" value="{{time}}" start="06:00" end="24:00" bindchange="TimeChange">
       <view class="picker text-grey">
@@ -111,6 +112,7 @@
     </picker>
   </view>
   <view class="cu-form-group">
+    <view class=" text-red text-xl star">*</view>
     <view class="title">报名截止日期</view>
     <picker mode="date" value="{{timenow}}" start="2020-08-01" end="2025-09-01" bindchange="DateChange2">
       <view class="picker text-grey">
@@ -119,6 +121,7 @@
     </picker>
   </view>
   <view class="cu-form-group">
+    <view class=" text-red text-xl star">*</view>
     <view class="title">报名截止时间</view>
     <picker mode="time" value="{{time}}" start="06:00" end="24:00" bindchange="TimeChange2">
       <view class="picker text-grey">

@@ -38,14 +38,11 @@ App({
             })
           }
           else { //返回错误提示信息
+            console.log(url+res.data.msg)
             wx.showToast({
-              title: res.data.msg,
+              title: url+res.data.msg,
+              icon:'none',
               duration: 2000,
-              success: function() {
-                wx.redirectTo({
-                  url: '/pages/login/login',
-                })
-              }
             })
           }                                         
           // callback(res.data);      
@@ -88,7 +85,12 @@ App({
             })
           }
           else { //返回错误提示信息
-            console.log(res.data)
+            console.log(url+res.data.msg)
+            wx.showToast({
+              title: url+res.data.msg,
+              icon:'none',
+              duration: 2000,
+            })
             errFun(res);
           }
           // callback(res.data);
