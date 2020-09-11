@@ -91,7 +91,7 @@ App({
               icon:'none',
               duration: 2000,
             })
-            errFun(res);
+            callback(res);
           }
           // callback(res.data);
         },

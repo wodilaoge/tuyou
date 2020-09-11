@@ -347,11 +347,11 @@
       <image src="/img/index/news.png" class="menu-img"></image>
       <text class="menu-name text-bold">新闻</text>
     </view> -->
-    <view class="video-item">
-      <video class="video-list-photo radius" custom-cache="{{false}}" src="{{videolist.list[0].fileId}}" />
+    <view class="video-item" id="0" bindtap="video_play">
+      <video class="video-list-photo radius" custom-cache="{{false}}"  src="{{videolist.list[0].fileId}}" />
       <view class="video_text">{{videolist.list[0].title}}</view>
     </view>
-    <view class="video-item">
+    <view class="video-item" id="1" bindtap="video_play" >
       <video class="video-list-photo radius" custom-cache="{{false}}" src="{{videolist.list[1].fileId}}" />
       <view class="video_text">{{videolist.list[1].title}}</view>
     </view>
