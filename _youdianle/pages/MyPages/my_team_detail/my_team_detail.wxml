@@ -24,8 +24,11 @@
       <view class="tdxx-duizhnag-name ">{{tdxxDeatil.leader}}(队长)</view>
       <view class="tdxx-guanzhu align-center" wx:if="{{!isCaptain}}" bindtap="follow">关注</view>
     </view>
-    <view wx:if="{{!isCaptain}}">
+    <view wx:if="{{tdxxDeatil.button.join!=null}}">
       <image class="tdxx-img-icon" mode="aspectFit" src="/img/icon_add_friends.png" bindtap="tojoin"></image>
+    </view>
+    <view wx:if="{{tdxxDeatil.button.leave!=null}}">
+      <image class="tdxx-img-icon" mode="aspectFit" src="/img/team-out.png" bindtap="toout"></image>
     </view>
   </view>
 </view>

@@ -86,6 +86,7 @@ App({
           }
           else { //返回错误提示信息
             console.log(url+res.data.msg)
+            console.log(data)
             wx.showToast({
               title: url+res.data.msg,
               icon:'none',

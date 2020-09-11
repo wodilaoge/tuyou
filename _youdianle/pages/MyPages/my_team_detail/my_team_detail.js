@@ -221,6 +221,42 @@ Page({
       }
     })
   },
+  toout(){
+    var that = this
+    //退出小组
+    wx.showModal({
+      title: '确定要离开团队吗',
+      // content: '确定要删除这张照片吗',
+      cancelText: '取消',
+      confirmText: '确认',
+      success: res => {
+        if (res.confirm) {
+          console.log('离开团队 confirm')
+          var url = app.globalData.URL + '/team/leaveTeam';
+          var data = {
+            tid: that.data.tdxxId,
+            uid: wx.getStorageSync('userInfo').id,
+            type: "20",
+            creater: that.data.duizhangID
+          }
+          util.gets(url, data).then(function (res) {
+            console.log('离开团队', res.data)
+            if(res.data.code==0)
+            wx.showToast({
+              title: '成功退出',
+              duration: 2000,
+            })
+            else
+            wx.showToast({
+              title: res.data.msg,
+              duration: 2000,
+            })
+          })
+        }
+      }
+    })
+  },
+
   tojoin() {
     var that = this
     //加入小组
@@ -232,7 +268,7 @@ Page({
       console.log('加入小组', res.data)
       if (res.data.code == 0)
         wx.showToast({
-          title: '加入成功',
+          title: '已发送申请',
           duration: 1000,
         })
       else

@@ -389,7 +389,7 @@ Page({
             sid: res.data.data[i].code
           };
 
-          app.wxRequest('GET', url2, data, (res) => {
+          app.wxRequest('POST', url2, data, (res) => {
             self.setData({
               shipinSwiperList: res.data
             })
@@ -413,7 +413,7 @@ Page({
               sid: self.data.shipinid,
               acid1: self.data.shipinCur
             }
-            app.wxRequest('GET', url, data, (res) => {
+            app.wxRequest('POST', url, data, (res) => {
               self.setData({
                 shipinList: res.data
               })
