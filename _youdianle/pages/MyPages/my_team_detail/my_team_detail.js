@@ -64,6 +64,7 @@ Page({
           }
         }
       })
+      that.getDuizhang()
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -285,7 +286,7 @@ Page({
       tdxxId: options.id
     })
     this.getXinxi();
-    this.getDuizhang();
+    // this.getDuizhang();
     this.getListMember();
 
     //历史活动
