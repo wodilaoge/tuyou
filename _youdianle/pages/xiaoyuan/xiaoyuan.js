@@ -77,7 +77,7 @@ Page({
     ssss: '',
     dxindex: 0,
     defaultPoster: '../../img/login/poster.png',
-    quanxianCode: -1,//权限控制
+    quanxianCode: -1, //权限控制
   },
   //////////////////////
   towebview3(e) {
@@ -562,42 +562,42 @@ Page({
     this.video_change(e)
   },
   shipinguanzhu: function (e) {
-    if(this.data.quanxianCode==0){
-    var self = this;
-    let shipintmp = this.data.shipin;
-    if (shipintmp.list[e.currentTarget.dataset.index].myFollow == 1) {
-      shipintmp.list[e.currentTarget.dataset.index].myFollow = 0;
-      self.setData({
-        shipin: shipintmp
-      })
-      let url = app.globalData.URL + '/follow/updateFollow';
-      let data = {
-        objtype: 50,
-        objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
-        objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
-        creater: self.data.user.id,
-        status: 0,
-      };
-      app.wxRequest('POST', url, data, (res) => {}, (err) => {});
+    if (this.data.quanxianCode == 0) {
+      var self = this;
+      let shipintmp = this.data.shipin;
+      if (shipintmp.list[e.currentTarget.dataset.index].myFollow == 1) {
+        shipintmp.list[e.currentTarget.dataset.index].myFollow = 0;
+        self.setData({
+          shipin: shipintmp
+        })
+        let url = app.globalData.URL + '/follow/updateFollow';
+        let data = {
+          objtype: 50,
+          objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+          objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
+          creater: self.data.user.id,
+          status: 0,
+        };
+        app.wxRequest('POST', url, data, (res) => {}, (err) => {});
 
+      } else {
+        shipintmp.list[e.currentTarget.dataset.index].myFollow = 1;
+        self.setData({
+          shipin: shipintmp
+        })
+        let url = app.globalData.URL + '/follow/updateFollow';
+        let data = {
+          objtype: 50,
+          objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
+          objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
+          creater: self.data.user.id,
+          status: 1,
+        };
+        app.wxRequest('POST', url, data, (res) => {}, (err) => {});
+      }
     } else {
-      shipintmp.list[e.currentTarget.dataset.index].myFollow = 1;
-      self.setData({
-        shipin: shipintmp
-      })
-      let url = app.globalData.URL + '/follow/updateFollow';
-      let data = {
-        objtype: 50,
-        objid: self.data.shipin.list[e.currentTarget.dataset.index].id,
-        objtitle: self.data.shipin.list[e.currentTarget.dataset.index].title,
-        creater: self.data.user.id,
-        status: 1,
-      };
-      app.wxRequest('POST', url, data, (res) => {}, (err) => {});
+      this.userPanduan()
     }
-  }else{
-    this.userPanduan()
-  }
   },
   shipinDianzan: function (e) {
     // if(this.data.quanxianCode==0){
@@ -639,9 +639,9 @@ Page({
         console.log(res)
       }, (err) => {});
     }
-  // }else{
-  //   this.userPanduan()
-  // }
+    // }else{
+    //   this.userPanduan()
+    // }
   },
   getShipinfenlei() { //视频
     wx.showLoading({
@@ -866,75 +866,75 @@ Page({
     }
   },
   fasong() { //发送按钮
-    if(this.data.quanxianCode==0){
-    var self = this;
-    if (this.data.duixiang == '50') {
-      let url = app.globalData.URL + '/comm/addComment';
-      let data = {
-        pid: null,
-        objtype: 50,
-        objid: self.data.dxid,
-        objtitle: self.data.dxtitle,
-        comment: self.data.Input,
-        creater: self.data.user.id,
-        createrAlias: self.data.user.nickname,
-        createrHead: self.data.user.head
-      };
-      let inputtmp = self.data.Input;
-      let shipintmp = self.data.shipin
-      console.log(shipintmp)
-      console.log(self.data.dxindex)
-      app.wxRequest('POST', url, data, (res) => {
-        ///////////////////本地添加评论内容
-        shipintmp.list[self.data.dxindex].listComm.splice(0, 0, {
-          'createrHead': self.data.user.head,
-          'createrAlias': self.data.user.nickname,
-          'comment': inputtmp,
-          'strCreatetime': '刚刚',
-        })
-        shipintmp.list[self.data.dxindex].commCnt = shipintmp.list[self.data.dxindex].commCnt + 1,
-          self.setData({
-            shipin: shipintmp,
+    if (this.data.quanxianCode == 0) {
+      var self = this;
+      if (this.data.duixiang == '50') {
+        let url = app.globalData.URL + '/comm/addComment';
+        let data = {
+          pid: null,
+          objtype: 50,
+          objid: self.data.dxid,
+          objtitle: self.data.dxtitle,
+          comment: self.data.Input,
+          creater: self.data.user.id,
+          createrAlias: self.data.user.nickname,
+          createrHead: self.data.user.head
+        };
+        let inputtmp = self.data.Input;
+        let shipintmp = self.data.shipin
+        console.log(shipintmp)
+        console.log(self.data.dxindex)
+        app.wxRequest('POST', url, data, (res) => {
+          ///////////////////本地添加评论内容
+          shipintmp.list[self.data.dxindex].listComm.splice(0, 0, {
+            'createrHead': self.data.user.head,
+            'createrAlias': self.data.user.nickname,
+            'comment': inputtmp,
+            'strCreatetime': '刚刚',
           })
-        wx.showToast({
-          title: '评论成功！', // 标题
-          icon: 'success', // 图标类型，默认success
-          duration: 1500 // 提示窗停留时间，默认1500ms
-        })
+          shipintmp.list[self.data.dxindex].commCnt = shipintmp.list[self.data.dxindex].commCnt + 1,
+            self.setData({
+              shipin: shipintmp,
+            })
+          wx.showToast({
+            title: '评论成功！', // 标题
+            icon: 'success', // 图标类型，默认success
+            duration: 1500 // 提示窗停留时间，默认1500ms
+          })
 
-      }, (err) => {
-        console.log(err.errMsg)
-      });
+        }, (err) => {
+          console.log(err.errMsg)
+        });
+      } else {
+        let url = app.globalData.URL + '/comm/addComment';
+        let data = {
+          pid: null,
+          objtype: 30,
+          objid: self.data.categoryId,
+          objtitle: "",
+          comment: self.data.Input,
+          creater: self.data.user.id,
+          createrAlias: self.data.user.nickname,
+          createrHead: self.data.user.head
+        };
+        app.wxRequest('POST', url, data, (res) => {
+          self.onLoad();
+          wx.showToast({
+            title: '评论成功！', // 标题
+            icon: 'success', // 图标类型，默认success
+            duration: 1500 // 提示窗停留时间，默认1500ms
+          })
+        }, (err) => {
+          console.log(err.errMsg)
+        });
+      }
+      self.setData({
+        Input: '',
+      })
+      self.hideModal()
     } else {
-      let url = app.globalData.URL + '/comm/addComment';
-      let data = {
-        pid: null,
-        objtype: 30,
-        objid: self.data.categoryId,
-        objtitle: "",
-        comment: self.data.Input,
-        creater: self.data.user.id,
-        createrAlias: self.data.user.nickname,
-        createrHead: self.data.user.head
-      };
-      app.wxRequest('POST', url, data, (res) => {
-        self.onLoad();
-        wx.showToast({
-          title: '评论成功！', // 标题
-          icon: 'success', // 图标类型，默认success
-          duration: 1500 // 提示窗停留时间，默认1500ms
-        })
-      }, (err) => {
-        console.log(err.errMsg)
-      });
+      this.userPanduan()
     }
-    self.setData({
-      Input: '',
-    })
-    self.hideModal()
-  }else{
-    this.userPanduan()
-  }
   },
   ////////////
 
@@ -943,14 +943,14 @@ Page({
       url: '../sousuo/sousuo',
     })
   },
-  userPanduan:function() {
-    var self=this;
+  userPanduan: function () {
+    var self = this;
     //判断是否登录
     let url = app.globalData.URL + '/appuser/getSpeakPerm';
     util.gets(url, {}).then(function (res) {
       console.log('auth--mypage', res)
       self.setData({
-        quanxianCode:res.data.code
+        quanxianCode: res.data.code
       })
       if (res.data.code == 0) {
         console.log("已授权")
@@ -1002,45 +1002,37 @@ Page({
     })
 
   },
-  userPanduan2:function() {
+  userPanduan2: function () {
     //刚进入赋值权限code
-    var self=this;
+    var self = this;
     let url = app.globalData.URL + '/appuser/getSpeakPerm';
     util.gets(url, {}).then(function (res) {
       console.log(res)
       self.setData({
-        quanxianCode:res.data.code
+        quanxianCode: res.data.code
       })
     })
 
   },
   onLoad: function (options) {
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          console.log('wx auth finished')
-        } else {
-          console.log('no auth')
-          wx.showModal({
-            title: '友点乐',
-            content: '请先进行微信登录',
-            cancelText: '取消',
-            confirmText: '授权',
-            success: res => {
-              if (res.confirm) {
-                wx.navigateTo({
-                  url: '/pages/login/login?',
-                })
-              } else {
-                wx.navigateBack({
-                  delta: 1
-                })
-              }
-            }
-          })
-        }
-      }
-    })
+    // console.log('no auth')
+    // wx.showModal({
+    //   title: '友点乐',
+    //   content: '请先进行微信登录',
+    //   cancelText: '取消',
+    //   confirmText: '授权',
+    //   success: res => {
+    //     if (res.confirm) {
+    //       wx.navigateTo({
+    //         url: '/pages/login/login?',
+    //       })
+    //     } else {
+    //       wx.navigateBack({
+    //         delta: 1
+    //       })
+    //     }
+    //   }
+    // })
     this.setData({
       user: wx.getStorageSync('userInfo'),
       city: wx.getStorageSync('city').code ? wx.getStorageSync('city').code : null,
@@ -1049,7 +1041,7 @@ Page({
     })
 
     this.xuanran(); //初始化
-    this.userPanduan2();////权限赋初值
+    this.userPanduan2(); ////权限赋初值
     this.getShipin();
     this.setData({ //读取从首页转来活动对应的tabcur tabbar不能传参 把首页传来的参数放在globalData
       TabCur: app.globalData.tabbar
@@ -1170,9 +1162,6 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-
-
-
   onReachBottom: function () {
     console.log("上拉刷新")
     let self = this;

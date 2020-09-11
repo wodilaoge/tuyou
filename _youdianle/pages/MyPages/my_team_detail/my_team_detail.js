@@ -17,16 +17,32 @@ Page({
     listmemberdeatil: [],
     isCaptain:false
   },
-
-
-
+  follow(){
+    var that=this
+    console.log('关注')
+    var url = app.globalData.URL + '/follow/updateFollow';
+    var data = {
+      objtype:10,
+      objid:that.data.duizhangID,
+      objtitle:that.data.tdxxDeatil.leader,
+      status:1
+    }
+    util.post_token(url, data).then(function (res) {
+      console.log('关注成功', res.data)
+      wx.showToast({
+        title: res.data.msg,
+        duration: 1000,
+      })
+    })
+  },
   getXinxi() {
     let url = app.globalData.URL + '/team/findTeam';
     let data = {
       id: this.data.tdxxId
     };
+    console.log(data)
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res.data)
+      console.log(res)
       this.setData({
         tdxxDeatil: res.data,
         duizhangID: res.data.lid,
@@ -44,7 +60,6 @@ Page({
     let url = app.globalData.URL + '/appuser/findUserByID';
     let data = {
       id: this.data.duizhangID,
-
     };
     app.wxRequest('GET', url, data, (res) => {
       console.log(res.data)
@@ -66,7 +81,11 @@ Page({
     })
 
   },
-
+  tocaptaindetail(){
+    wx.navigateTo({
+      url: '/pages/ziliao/ziliao?id=' +this.data.duizhangID,
+    })
+  },
   getListMember: function () {
     let url = app.globalData.URL + '/team/listMember';
     let data = {
@@ -181,10 +200,6 @@ Page({
         }
       }
     })
-
-
-
-
   },
   tojoin(){
     var that=this
@@ -217,8 +232,6 @@ Page({
     this.getDuizhang();
     this.getListMember();
 
-
-    
     //历史活动
     var url = app.globalData.URL + '/team/listHisAct';
     var data = {

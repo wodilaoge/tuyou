@@ -1049,6 +1049,12 @@ Page({
       url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.yundong.id+'&ziliaoID='+this.data.duiyuanID,
     })
   },
+  yundongxiangqing2(e) {
+    console.log(e)
+    wx.navigateTo({
+      url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.id+'&ziliaoID='+this.data.duiyuanID,
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

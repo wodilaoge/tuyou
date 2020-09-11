@@ -105,7 +105,7 @@ Page({
     this.setData({
       indexs: e.detail.value,
       [t]: this.data.school[this.data.indexs].code,
-      schoolname:this.data.school[this.data.indexs].name
+      schoolname: this.data.school[this.data.indexs].name
     })
   },
   gettwo(code) {
@@ -369,52 +369,52 @@ Page({
   },
   onLoad() {
     var that = this
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          let url2 = app.globalData.URL + '/appuser/getPubPerm'
-          util.gets(url2, {}).then(function (res) {
-            console.log('auth', res)
-            that.setData({
-              auth: res.data
-            })
-            if (res.data.code) {
-              wx.showToast({
-                title: '请先绑定手机！',
-                duration: 2000,
-                success: function () {
-                  setTimeout(function () {
-                    wx.navigateTo({
-                      url: '/pages/MyPages/my_security/my_security',
-                    })
-                  }, 2000);
-                }
+    let url2 = app.globalData.URL + '/appuser/getPubPerm'
+    util.gets(url2, {}).then(function (res) {
+      console.log('auth', res)
+      that.setData({
+        auth: res.data
+      })
+      if (res.data.code == 43) {
+        wx.showToast({
+          title: '您已被禁言',
+          duration: 2000,
+          success: function () {
+            setTimeout(function () {
+              wx.switchTab({
+                url: '/pages/index/index',
               })
-            }
-          })
-          console.log('wx auth finished')
-        } else {
-          console.log('no auth')
-          wx.showModal({
-            title: '友点乐',
-            content: '请先进行微信登录',
-            cancelText: '取消',
-            confirmText: '授权',
-            success: res => {
-              if (res.confirm) {
-                wx.navigateTo({
-                  url: '/pages/login/login',
-                })
-              } else {
-                wx.navigateBack({
-                  delta: 1
-                })
-              }
-            }
-          })
-        }
+            }, 2000);
+          }
+        })
+      } else if (res.data.code == 117) {
+        wx.showToast({
+          title: res.data.msg,
+          duration: 2000,
+          success: function () {
+            setTimeout(function () {
+              wx.navigateTo({
+                url: '/pages/MyPages/my_profile/my_profile',
+              })
+            }, 2000);
+          }
+        })
+      } else if (res.data.code) {
+        wx.showToast({
+          title: '请先绑定手机！',
+          duration: 2000,
+          success: function () {
+            setTimeout(function () {
+              wx.navigateTo({
+                url: '/pages/MyPages/my_security/my_security',
+              })
+            }, 2000);
+          }
+        })
       }
     })
+    console.log('wx auth finished')
+
 
     this.province();
 

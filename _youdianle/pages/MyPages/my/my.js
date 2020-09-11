@@ -93,9 +93,7 @@ Page({
     })
   },
   tovideo() {
-    if (this.data.isauth)
-
-    {
+    if (this.data.isauth) {
       console.log('to video')
       wx.navigateTo({
         url: '/pages/MyPages/my_video/my_video',
@@ -138,6 +136,28 @@ Page({
       })
     }
   },
+  toteam() {
+    if (this.data.isauth) {
+      console.log('to team')
+      wx.navigateTo({
+        url: '/pages/MyPages/my_team/my_team',
+      })
+    } else {
+      wx.showModal({
+        title: '友点乐',
+        content: '请先进行微信登录',
+        cancelText: '取消',
+        confirmText: '授权',
+        success: res => {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/login/login',
+            })
+          }
+        }
+      })
+    }
+  },
   tosecurity() {
     if (this.data.isauth)
       wx.navigateTo({
@@ -160,92 +180,92 @@ Page({
     }
   },
   onLoad: function () {
-    
     var that = this
     console.log('onload')
     //判断是否登录
     let url = app.globalData.URL + '/appuser/getMyinfoPerm';
     util.gets(url, {}).then(function (res) {
       console.log('auth--mypage', res.data)
-      if (res.data.data == false || res.data.data == null) {
+      if (res.data.data === false||res.data.data===null) {
         console.log('no auth')
         that.setData({
           isauth: false
         })
       }
+      else{
+        that.setData({
+          isauth: true
+        })
+      }
     }).then(function (res) {
-      wx.getSetting({
-        success: res => {
-          console.log('auth success')
-            //查询个人活动数（发起和参与的）
-            let url = app.globalData.URL + '/appuser/countByUser';
-            let data = {};
-            util.gets(url, data).then(function (res) {
-              console.log('activitynum', res.data)
-              that.setData({
-                activitynum: res.data.data
-              })
-            })
-            //统计评论数
-            url = app.globalData.URL + '/comm/countCommByObj';
-            data = {
-              objid: wx.getStorageSync('userInfo').id,
-              objtype: 10
-            };
-            util.gets(url, data).then(function (res) {
-              console.log('commentNum', res.data)
-              that.setData({
-                commentNum: res.data.data
-              })
-            })
-            //统计关注数
-            url = app.globalData.URL + '/follow/countByObj';
-            data = {
-              objid: wx.getStorageSync('userInfo').id,
-              objtype: 10
-            };
-            util.gets(url, data).then(function (res) {
-              console.log('attentiontNum', res.data)
-              that.setData({
-                attentiontNum: res.data.data
-              })
-            })
-            //统计加入天数
-            url = app.globalData.URL + '/appuser/findUserByID';
-            data = {
-              id: wx.getStorageSync('userInfo').id == undefined ? null : wx.getStorageSync('userInfo').id,
-            };
-            util.gets(url, data).then(function (res) {
-              console.log('welcome', res.data)
-              that.setData({
-                welcome: res.data.data.welcome,
-                userinfototaol: res.data.data
-              })
-            })
-            console.log('wx auth finished')
-
-          
-          //  else {
-          //   console.log('no auth')
-          //   wx.showModal({
-          //     title: '友点乐',
-          //     content: '请先进行微信登录',
-          //     cancelText: '取消',
-          //     confirmText: '授权',
-          //     success: res => {
-          //       if (res.confirm) {
-          //         wx.navigateTo({
-          //           url: '/pages/login/login',
-          //         })
-          //       }
-          //     }
-          //   })
-          // }
-        }
+      console.log('auth success')
+      //查询个人活动数（发起和参与的）
+      let url = app.globalData.URL + '/appuser/countByUser';
+      let data = {};
+      util.gets(url, data).then(function (res) {
+        console.log('activitynum', res.data)
+        that.setData({
+          activitynum: res.data.data
+        })
       })
+      //统计评论数
+      url = app.globalData.URL + '/comm/countCommByObj';
+      data = {
+        objid: wx.getStorageSync('userInfo').id,
+        objtype: 10
+      };
+      util.gets(url, data).then(function (res) {
+        console.log('commentNum', res.data)
+        that.setData({
+          commentNum: res.data.data
+        })
+      })
+      //统计关注数
+      url = app.globalData.URL + '/follow/countByObj';
+      data = {
+        objid: wx.getStorageSync('userInfo').id,
+        objtype: 10
+      };
+      util.gets(url, data).then(function (res) {
+        console.log('attentiontNum', res.data)
+        that.setData({
+          attentiontNum: res.data.data
+        })
+      })
+      //统计加入天数
+      url = app.globalData.URL + '/appuser/findUserByID';
+      data = {
+        id: wx.getStorageSync('userInfo').id == undefined ? null : wx.getStorageSync('userInfo').id,
+      };
+      util.gets(url, data).then(function (res) {
+        console.log('welcome', res.data)
+        that.setData({
+          welcome: res.data.data.welcome,
+          userinfototaol: res.data.data
+        })
+      })
+      console.log('wx auth finished')
+
+
+      //  else {
+      //   console.log('no auth')
+      //   wx.showModal({
+      //     title: '友点乐',
+      //     content: '请先进行微信登录',
+      //     cancelText: '取消',
+      //     confirmText: '授权',
+      //     success: res => {
+      //       if (res.confirm) {
+      //         wx.navigateTo({
+      //           url: '/pages/login/login',
+      //         })
+      //       }
+      //     }
+      //   })
+      // }
+
+
     })
-
-
 
     this.setData({
       userInfoAll: wx.getStorageSync('userInfo')
@@ -337,5 +357,6 @@ Page({
   onShow() {
     this.onLoad()
     console.log('onshow')
+    
   }
 })

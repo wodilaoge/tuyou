@@ -243,8 +243,8 @@
         <view class="paiming-paiming" style="margin-left:2rpx;width:180rpx;">日期</view>
         <view class="paiming-paiming" style="margin-left:2rpx;width:216rpx;">活动名称</view>
       </view>
-      <view wx:for="paimingDetail">
-        <view class="flex" style="margin-top:44rpx;">
+      <view wx:for="paimingDetail" >
+        <view class="flex" style="margin-top:44rpx;" bindtap="yundongxiangqing2" data-id="{{paimingDetail[index].actid}}">
           <text class="paiming-fenshu" style="margin-left:24rpx;width:120rpx;">{{paimingDetail[index].mbrRank}}</text>
           <text class="paiming-fenshu" style="margin-left:2rpx;width:180rpx;">{{paimingDetail[index].mbrScore?paimingDetail[index].mbrScore:''}}</text>
           <text class="paiming-riqi" style="margin-left:2rpx;width:180rpx;">{{paimingDetail[index].acttime}}</text>

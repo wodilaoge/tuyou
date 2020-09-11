@@ -12,6 +12,7 @@
     "pages/form_modify/form_modify",
     "pages/form_address/form_address",
     "pages/form_school/form_school",
+    "pages/all_team/all_team",
     "pages/MyPages/my/my",
     "pages/MyPages/my_profile/my_profile",
     "pages/MyPages/my_security/my_security",
@@ -84,6 +85,12 @@
         "iconPath": "/img/tabbar/add2.png",
         "selectedIconPath": "/img/tabbar/add2.png",
         "text": "发布"
+      },
+      {
+        "pagePath": "pages/all_team/all_team",
+        "iconPath": "/img/tabbar/team-off.png",
+        "selectedIconPath": "/img/tabbar/team-on.png",
+        "text": "团队"
       },
       {
         "pagePath": "pages/MyPages/my/my",

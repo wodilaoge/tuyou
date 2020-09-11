@@ -166,7 +166,7 @@ Page({
       }
     })
   },
-  DelImg2(e){
+  DelImg2(e) {
     wx.showModal({
       title: '确定',
       content: '确定要删除这张封面图？',
@@ -200,34 +200,27 @@ Page({
 
   firstcommit() {
     var that = this
-    if(!that.data.information.sid)
-    {
+    if (!that.data.information.sid) {
       wx.showToast({
         title: '请选择板块',
         duration: 2000
       })
-    }
-    else if(!that.data.information.acid1)
-    {
+    } else if (!that.data.information.acid1) {
       wx.showToast({
         title: '请选择大类',
         duration: 2000
       })
-    }
-    else if (!that.data.title) {
+    } else if (!that.data.title) {
       wx.showToast({
         title: '请先输入标题',
         duration: 2000
       })
-    } 
-    else if(!that.data.video)
-    {
+    } else if (!that.data.video) {
       wx.showToast({
         title: '请上传视频',
         duration: 2000
       })
-    }
-    else {
+    } else {
       that.setData({
         hiddenmodalput: !this.data.hiddenmodalput
       })
@@ -261,7 +254,7 @@ Page({
       if (this.data.title) {
         let url = app.globalData.URL + '/video/updateActVideo';
         var data = this.data
-        let tmp=this.data.videosize
+        let tmp = this.data.videosize
         // console.log(tmp)
         // tmp=tmp.toFixed(1).toString()+'M'
         // console.log(tmp)
@@ -276,8 +269,8 @@ Page({
           authorAlias: user.nickname,
           authorHead: user.head,
           fileId: this.data.video,
-          cover:this.data.other,
-          size:this.data.videosize.toFixed(1).toString()+'M',
+          cover: this.data.other,
+          size: this.data.videosize.toFixed(1).toString() + 'M',
           notes: this.data.notes,
           univ: school.code,
           province: pro.code,
@@ -339,8 +332,8 @@ Page({
     console.log(this.data.authurl)
     user = 'Bearer ' + user.token;
     wx.request({
-      // url: 'https://api.udianle.com/kt/util/getVodSignatureV2',
-      url: ' http://192.144.169.239/kt/util/getVodSignatureV2',
+      //url: 'https://api.udianle.com/kt/util/getVodSignatureV2',
+      url: ' http://192.144.169.239:8021/kt/util/getVodSignatureV2',
       dataType: 'json',
       header: {
         'content-type': 'application/json',
@@ -420,19 +413,19 @@ Page({
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], //从相册选择
       success: (res) => {
-          if (this.data.imgList2.length != 0) {
-            this.setData({
-              imgList2: this.data.imgList2.concat(res.tempFilePaths)
-            })
-          } else {
-            this.setData({
-              imgList2: res.tempFilePaths
-            })
-          }
-          upload.uploadFile(this.data.imgList2[this.data.imgList2.length - 1], 'other', that)
+        if (this.data.imgList2.length != 0) {
           this.setData({
-            loadModal: true
+            imgList2: this.data.imgList2.concat(res.tempFilePaths)
           })
+        } else {
+          this.setData({
+            imgList2: res.tempFilePaths
+          })
+        }
+        upload.uploadFile(this.data.imgList2[this.data.imgList2.length - 1], 'other', that)
+        this.setData({
+          loadModal: true
+        })
       }
     });
   },
@@ -471,10 +464,10 @@ Page({
             })
             return;
           }
-          let sizevideo=res.size
-          sizevideo=sizevideo/1024/1024
+          let sizevideo = res.size
+          sizevideo = sizevideo / 1024 / 1024
           that.setData({
-            videosize:sizevideo,
+            videosize: sizevideo,
             imgList: res.tempFilePath,
             videonum: 1
           })
@@ -488,53 +481,51 @@ Page({
   },
   onLoad() {
     var that = this
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          let url2 = app.globalData.URL + '/appuser/getPubPerm'
-          util.gets(url2, {}).then(function (res) {
-            console.log('auth', res)
-            that.setData({
-              auth: res.data
-            })
-            if (res.data.code) {
-              wx.showToast({
-                title: '请先绑定手机！',
-                duration: 2000,
-                success: function () {
-                  setTimeout(function () {
-                    wx.navigateTo({
-                      url: '/pages/MyPages/my_security/my_security',
-                    })
-                  }, 2000);
-                }
+    let url2 = app.globalData.URL + '/appuser/getPubPerm'
+    util.gets(url2, {}).then(function (res) {
+      console.log('auth', res)
+      that.setData({
+        auth: res.data
+      })
+      if (res.data.code == 43) {
+        wx.showToast({
+          title: '您已被禁言',
+          duration: 2000,
+          success: function () {
+            setTimeout(function () {
+              wx.switchTab({
+                url: '/pages/index/index',
               })
-            }
-          })
-          console.log('wx auth finished')
-        } else {
-          console.log('no auth')
-          wx.showModal({
-            title: '友点乐',
-            content: '请先进行微信登录',
-            cancelText: '取消',
-            confirmText: '授权',
-            success: res => {
-              if (res.confirm) {
-                wx.navigateTo({
-                  url: '/pages/login/login',
-                })
-              } else {
-                wx.navigateBack({
-                  delta: 1
-                })
-              }
-            }
-          })
-        }
+            }, 2000);
+          }
+        })
+      } else if (res.data.code == 117) {
+        wx.showToast({
+          title: res.data.msg,
+          duration: 2000,
+          success: function () {
+            setTimeout(function () {
+              wx.navigateTo({
+                url: '/pages/MyPages/my_profile/my_profile',
+              })
+            }, 2000);
+          }
+        })
+      } else if (res.data.code) {
+        wx.showToast({
+          title: '请先绑定手机！',
+          duration: 2000,
+          success: function () {
+            setTimeout(function () {
+              wx.navigateTo({
+                url: '/pages/MyPages/my_security/my_security',
+              })
+            }, 2000);
+          }
+        })
       }
     })
-
+    console.log('wx auth finished')
     let url = app.globalData.URL + '/config/findVodParam'
     util.gets(url, {}).then(function (res) {
       console.log('authurl', res.data)
@@ -542,7 +533,7 @@ Page({
         authurl: res.data.data.authUrl
       })
     })
-    let url2 = app.globalData.URL + '/config/getActivitySection';
+    url2 = app.globalData.URL + '/config/getActivitySection';
     util.gets(url2, {}).then(function (res) {
       that.setData({
         pickerbig: res.data.data

@@ -1,0 +1,32 @@
+<cu-custom bgColor="bg-blue" isBack="{{true}}">
+  <view slot="content">团队</view>
+</cu-custom>
+
+<view class="VerticalBox">
+  <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation  >
+    <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{allAct}}" wx:key bindtap='tabSelect' data-id="{{item.code}}" data-index="{{index}}">
+      {{item.name}}
+    </view>
+  </scroll-view>
+
+  <scroll-view class="VerticalMain" scroll-y scroll-with-animation scroll-into-view="main-{{TabCur}}">
+    <view class=" " wx:for="{{showAct}}" wx:key="keys" id="main-{{index}}">
+      <view class='cu-bar solid-bottom bg-white'>
+        <view class='action' bindtap="toTeamDetail" data-id="{{item.id}}" data-index="{{index}}">
+          <view class="flex  duiqi">
+            <image src="{{item.logo}}" class="logosize margin"> </image>
+            <view class="desc">
+              <text class="text-bold">{{item.name}}</text>
+              <view class="flex">
+                <text>人数</text>
+                <text class="num">{{item.mbrCount==null?"0":item.mbrCount}}</text>
+                <text>活动数</text>
+                <text class="num">{{item.actCount==null?"0":item.actCount}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

@@ -485,7 +485,7 @@ Page({
   },
   //////////sousuotuandui
   sousuo_tuandui: function () {
-    console.log('搜索团队')
+    console.log('搜索团队1')
     var self=this
     this.getAllActivityClass1nfig()
     let url = app.globalData.URL + '/search/listTeam';
@@ -517,7 +517,8 @@ Page({
       })
     })
   },
-  xuanzeClass1: function (e) {
+  xuanzeClass1: function (e) {///////////////点击大类搜索
+    console.log('搜索团队2')
     var self = this
     self.setData({
       tuanduiCur: e.currentTarget.dataset.index
@@ -539,6 +540,7 @@ Page({
   },
   nav_tuanduiXiangqing: function (e) {
     console.log(e)
+    console.log( this.data.tuanduiList[e.currentTarget.dataset.index].id)
     wx.navigateTo({
       url: '/pages/MyPages/my_team_detail/my_team_detail?id=' + this.data.tuanduiList[e.currentTarget.dataset.index].id,
     })
