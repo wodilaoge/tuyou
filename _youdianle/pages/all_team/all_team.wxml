@@ -13,11 +13,11 @@
     <view class=" " wx:for="{{showAct}}" wx:key="keys" id="main-{{index}}">
       <view class='cu-bar solid-bottom bg-white'>
         <view class='action' bindtap="toTeamDetail" data-id="{{item.id}}" data-index="{{index}}">
-          <view class="flex  duiqi">
+          <view class="flex duiqi">
             <image src="{{item.logo}}" class="logosize margin"> </image>
             <view class="desc">
               <text class="text-bold">{{item.name}}</text>
-              <view class="flex">
+              <view class="flex duiqi">
                 <text>人数</text>
                 <text class="num">{{item.mbrCount==null?"0":item.mbrCount}}</text>
                 <text>活动数</text>
