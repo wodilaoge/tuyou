@@ -107,7 +107,7 @@ Page({
   },
 
   onReachBottom: function () {
-    if(!needflesh)
+    if(!this.data.needflesh)
       return
     console.log("上拉刷新")
     var that = this

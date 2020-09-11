@@ -42,7 +42,7 @@
 </view>
 <view class="flex bg-white">
   <view class="tdxx-xinxi-title">地区</view>
-  <view class="tdxx-xinxi-neirong">{{tdxxDeatil.city==null?"":tdxxDeatil.city}}</view>
+  <view class="tdxx-xinxi-neirong">{{tdxxDeatil.province==null?"":tdxxDeatil.province}}</view>
 </view>
 <view class="flex bg-white">
   <view class="tdxx-xinxi-title">隶属机构</view>
@@ -73,7 +73,7 @@
     <view class="flex duiqi">
       <image src="/img/icon_delete.png" class="deleteicon margin-right" wx:if="{{isCaptain}}" bindtap="deleteMem"
         data-id="{{item.uid}}"></image>
-      <image src="{{item.head}}" class="head"></image>
+      <image src="{{item.head}}" class="head" bindtap="toViewPre" data-id="{{item.uid}}"></image>
       <text class="padding-left">{{item.nickname}}</text>
     </view>
     <view class="flex duiqi">

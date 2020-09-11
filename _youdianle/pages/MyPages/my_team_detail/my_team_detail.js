@@ -15,17 +15,17 @@ Page({
     duiyuanid: '',
     duizhangDeatil: [],
     listmemberdeatil: [],
-    isCaptain:false
+    isCaptain: false
   },
-  follow(){
-    var that=this
+  follow() {
+    var that = this
     console.log('关注')
     var url = app.globalData.URL + '/follow/updateFollow';
     var data = {
-      objtype:10,
-      objid:that.data.duizhangID,
-      objtitle:that.data.tdxxDeatil.leader,
-      status:1
+      objtype: 10,
+      objid: that.data.duizhangID,
+      objtitle: that.data.tdxxDeatil.leader,
+      status: 1
     }
     util.post_token(url, data).then(function (res) {
       console.log('关注成功', res.data)
@@ -36,6 +36,7 @@ Page({
     })
   },
   getXinxi() {
+    var that = this
     let url = app.globalData.URL + '/team/findTeam';
     let data = {
       id: this.data.tdxxId
@@ -46,9 +47,23 @@ Page({
       this.setData({
         tdxxDeatil: res.data,
         duizhangID: res.data.lid,
-        isCaptain:res.data.lid==wx.getStorageSync('userInfo').id
+        isCaptain: res.data.lid == wx.getStorageSync('userInfo').id
       })
+      url = app.globalData.URL + '/config/getProvince';
 
+      util.gets(url, {}).then(function (res) {
+        console.log('省份', res.data)
+        for (let i of res.data.data) {
+          if (that.data.tdxxDeatil.province == i.code) {
+            console.log(i)
+            var t = 'tdxxDeatil.province'
+            that.setData({
+              [t]: i.name
+            })
+            break
+          }
+        }
+      })
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -62,7 +77,7 @@ Page({
       id: this.data.duizhangID,
     };
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res.data)
+      console.log('findUserByID', res.data)
       this.setData({
         duizhangDeatil: res.data,
       })
@@ -81,9 +96,15 @@ Page({
     })
 
   },
-  tocaptaindetail(){
+
+  toViewPre(e){
     wx.navigateTo({
-      url: '/pages/ziliao/ziliao?id=' +this.data.duizhangID,
+      url: '/pages/ziliao/ziliao?id=' + e.currentTarget.dataset.id
+    })
+  },
+  tocaptaindetail() {
+    wx.navigateTo({
+      url: '/pages/ziliao/ziliao?id=' + this.data.duizhangID,
     })
   },
   getListMember: function () {
@@ -100,8 +121,8 @@ Page({
       console.log(err.errMsg)
     });
   },
-  transfer(e){
-    var that=this
+  transfer(e) {
+    var that = this
     wx.showModal({
       title: '确定转让队长？',
       // content: '确定要删除这张照片吗',
@@ -112,9 +133,9 @@ Page({
           console.log('转让队长通过')
           var url = app.globalData.URL + '/team/changeLeader';
           var data = {
-            id:that.data.tdxxId,
-            lid_old:this.data.duizhangID,
-            lid_new:e.currentTarget.dataset.id
+            id: that.data.tdxxId,
+            lid_old: this.data.duizhangID,
+            lid_new: e.currentTarget.dataset.id
           }
           util.post_token(url, data).then(function (res) {
             console.log('转让队长确定通过', res.data)
@@ -124,13 +145,13 @@ Page({
             })
           })
         }
-  
+
       }
     })
   },
 
-  pass(e){
-    var that=this
+  pass(e) {
+    var that = this
     wx.showModal({
       title: '确定通过申请？',
       // content: '确定要删除这张照片吗',
@@ -141,9 +162,9 @@ Page({
           console.log('通过申请通过')
           var url = app.globalData.URL + '/team/auditJoin';
           var data = {
-            tid:that.data.tdxxId,
-            uid:e.currentTarget.dataset.id,
-            result:10
+            tid: that.data.tdxxId,
+            uid: e.currentTarget.dataset.id,
+            result: 10
           }
           util.gets(url, data).then(function (res) {
             console.log('通过申请确定通过', res.data)
@@ -152,13 +173,12 @@ Page({
               duration: 1000,
             })
           })
-        }
-        else{
+        } else {
           var url = app.globalData.URL + '/team/auditJoin';
           var data = {
-            tid:that.data.tdxxId,
-            uid:e.currentTarget.dataset.id,
-            result:30
+            tid: that.data.tdxxId,
+            uid: e.currentTarget.dataset.id,
+            result: 30
           }
           util.gets(url, data).then(function (res) {
             console.log('拒绝申请', res.data)
@@ -171,8 +191,8 @@ Page({
       }
     })
   },
-  deleteMem(e){
-    var that=this
+  deleteMem(e) {
+    var that = this
     //退出小组
     wx.showModal({
       title: '确定要删除该成员吗',
@@ -184,11 +204,11 @@ Page({
           console.log('delete confirm')
           var url = app.globalData.URL + '/team/leaveTeam';
           var data = {
-            tid:that.data.tdxxId,
-            uid:e.currentTarget.dataset.id,
-            type:"30",
-            creater:that.data.duizhangID
-            
+            tid: that.data.tdxxId,
+            uid: e.currentTarget.dataset.id,
+            type: "30",
+            creater: that.data.duizhangID
+
           }
           util.gets(url, data).then(function (res) {
             console.log('退出小组', res.data)
@@ -201,8 +221,8 @@ Page({
       }
     })
   },
-  tojoin(){
-    var that=this
+  tojoin() {
+    var that = this
     //加入小组
     var url = app.globalData.URL + '/team/joinTeam';
     var data = {
@@ -210,23 +230,23 @@ Page({
     }
     util.gets(url, data).then(function (res) {
       console.log('加入小组', res.data)
-      if(res.data.code==0)
-      wx.showToast({
-        title: '加入成功',
-        duration: 1000,
-      })
+      if (res.data.code == 0)
+        wx.showToast({
+          title: '加入成功',
+          duration: 1000,
+        })
       else
-      wx.showToast({
-        title: res.data.msg,
-        duration: 1000,
-      })
+        wx.showToast({
+          title: res.data.msg,
+          duration: 1000,
+        })
     })
   },
   onLoad: function (options) {
     console.log(options.id)
-    var that=this
+    var that = this
     this.setData({
-      tdxxId:options.id
+      tdxxId: options.id
     })
     this.getXinxi();
     this.getDuizhang();
