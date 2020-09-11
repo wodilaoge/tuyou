@@ -11,7 +11,6 @@
 		<view class="title">头像</view>
 		<view class="cu-avatar xl round margin-r" bindtap="ChooseImage" style="background-image:url({{userinfo.head}})">
 		</view>
-
 		<image class="icon" src="/img/array.png"></image>
 	</view>
 	<view class="cu-form-group">

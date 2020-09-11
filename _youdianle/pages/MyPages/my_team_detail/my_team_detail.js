@@ -195,6 +195,12 @@ Page({
     }
     util.gets(url, data).then(function (res) {
       console.log('加入小组', res.data)
+      if(res.data.code==0)
+      wx.showToast({
+        title: '加入成功',
+        duration: 1000,
+      })
+      else
       wx.showToast({
         title: res.data.msg,
         duration: 1000,
