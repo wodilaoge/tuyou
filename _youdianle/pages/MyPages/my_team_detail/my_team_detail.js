@@ -15,7 +15,8 @@ Page({
     duiyuanid: '',
     duizhangDeatil: [],
     listmemberdeatil: [],
-    isCaptain: false
+    isCaptain: false,
+    isshare:0,
   },
   follow() {
     var that = this
@@ -153,7 +154,7 @@ Page({
   onShareAppMessage: function () {
     return {
       title:  '友点乐',
-      path: 'pages/MyPages/my_team_detail/my_team_detail?id='+this.dada.tdxxId
+      path: 'pages/MyPages/my_team_detail/my_team_detail?isshare=1&&id='+this.data.tdxxId
     }
   },
   pass(e) {
@@ -290,8 +291,19 @@ Page({
         })
     })
   },
+  backHome(){
+    wx.switchTab({
+      url: '/pages/index/index',
+    })
+  },
   onLoad: function (options) {
     console.log(options.id)
+    if (options.isshare == 1) {
+      console.log('是分享进入');
+      this.setData({
+        'isshare': options.isshare
+      })
+    }
     var that = this
     this.setData({
       tdxxId: options.id
