@@ -150,7 +150,12 @@ Page({
       }
     })
   },
-
+  onShareAppMessage: function () {
+    return {
+      title:  '友点乐',
+      path: 'pages/MyPages/my_team_detail/my_team_detail?id='+this.dada.tdxxId
+    }
+  },
   pass(e) {
     var that = this
     wx.showModal({
