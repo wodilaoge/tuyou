@@ -135,7 +135,7 @@ Page({
           var url = app.globalData.URL + '/team/changeLeader';
           var data = {
             id: that.data.tdxxId,
-            lid_old: this.data.duizhangID,
+            lid_old: that.data.duizhangID,
             lid_new: e.currentTarget.dataset.id
           }
           util.post_token(url, data).then(function (res) {
@@ -169,10 +169,16 @@ Page({
           }
           util.gets(url, data).then(function (res) {
             console.log('通过申请确定通过', res.data)
-            wx.showToast({
-              title: res.data.msg,
-              duration: 1000,
-            })
+            if(res.data.code==0)
+              wx.showToast({
+                title: '通过申请',
+                duration: 1000,
+              })
+            else
+              wx.showToast({
+                title: res.data.msg,
+                duration: 1000,
+              })
           })
         } else {
           var url = app.globalData.URL + '/team/auditJoin';

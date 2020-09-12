@@ -23,33 +23,12 @@ Page({
     sport: "1dwad ",
     tabbar: {},
     swiperList: [],
-    items: [{
-        "id": "1",
-        "imageUrl": "https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg",
-        "content": "南昌校区图书馆"
-      },
-      {
-        "id": "2",
-        "imageUrl": 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg',
-        "content": "抚州校区的西湖"
-      },
-      {
-        "id": "3",
-        "imageUrl": 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg',
-        "content": "新生军训"
-      },
-      {
-        "id": "4",
-        "imageUrl": 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg',
-        "content": "樱花广场"
-      },
-    ]
-
+    indexCurrent:null,
   },
   video_play(e) {
     var curIdx = e.currentTarget.id;
     // 没有播放时播放视频
-    // console.log(curIdx)
+    console.log(curIdx)
     if (!this.data.indexCurrent) {
       this.setData({
         indexCurrent: curIdx
@@ -59,6 +38,7 @@ Page({
     } else { // 有播放时先将prev暂停，再播放当前点击的current
       var videoContextPrev = wx.createVideoContext(this.data.indexCurrent,this)//this是在自定义组件下，当前组件实例的this，以操作组件内 video 组件（在自定义组件中药加上this，如果是普通页面即不需要加）
       if (this.data.indexCurrent != curIdx) {
+        // console.log('123')
         videoContextPrev.pause()
         this.setData({
           indexCurrent: curIdx
