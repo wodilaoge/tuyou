@@ -784,7 +784,7 @@ Page({
       let data = {
         id: this.data.shipin.list[e.currentTarget.dataset.index].id,
       };
-      app.wxRequest('GET', url, data, (res) => {})
+      app.wxRequest('POST', url, data, (res) => {})
       shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
       self.setData({
         shipin: shipintmp
@@ -817,7 +817,7 @@ Page({
         let data = {
           id: this.data.shipin.list[e.currentTarget.dataset.index].id,
         };
-        app.wxRequest('GET', url, data, (res) => {
+        app.wxRequest('POST', url, data, (res) => {
           console.log(res)
         })
         shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
@@ -2194,6 +2194,7 @@ Page({
         if (self.data.shiminghide == false)
           self.ifshiming()
       }, 1500)
+      self.getZhaopian()
   },
 
   /**

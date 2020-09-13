@@ -22,7 +22,7 @@
       </image>
       <view>
         <view class="flex">
-          <text class="duiming">{{duiyuanDeatil.defaultTeam===null?'暂无':duiyuanDeatil.defaultTeam}}</text>
+          <text class="duiming">{{duiyuanDeatil.nickname===null?'暂无':duiyuanDeatil.defaultTeam}}</text>
           <view class="weizhi-left"></view>
           <view class="weizhi ">{{duiyuanDeatil.defaultRole===null?'暂无':duiyuanDeatil.defaultRole}}</view>
           <view class="weizhi-right"></view>
@@ -62,7 +62,7 @@
       </image>
       <view>
         <view class="flex">
-          <text class="duiming">{{duiyuanDeatil.defaultTeam===null?'暂无':duiyuanDeatil.defaultTeam}}</text>
+          <text class="duiming">{{duiyuanDeatil.nickname===null?'暂无':duiyuanDeatil.defaultTeam}}</text>
           <view class="weizhi-left"></view>
           <view class="weizhi ">{{duiyuanDeatil.defaultRole===null?'暂无':duiyuanDeatil.defaultRole}}</view>
           <view class="weizhi-right"></view>

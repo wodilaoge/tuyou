@@ -485,7 +485,7 @@ Page({
   },
   //////////sousuotuandui
   sousuo_tuandui: function () {
-    console.log('搜索团队1')
+    
     var self=this
     this.getAllActivityClass1nfig()
     let url = app.globalData.URL + '/search/listTeam';
@@ -497,6 +497,7 @@ Page({
       // acid1: null
       // border: this.data.daleiBorder,
     };
+    console.log('搜索团队1',data)
     app.wxRequest('POST', url, data, (res) => {
       self.setData({
         tuanduiList: res.data.list
@@ -518,7 +519,6 @@ Page({
     })
   },
   xuanzeClass1: function (e) {///////////////点击大类搜索
-    console.log('搜索团队2')
     var self = this
     self.setData({
       tuanduiCur: e.currentTarget.dataset.index
@@ -532,6 +532,7 @@ Page({
       acid1: this.data.activityClass1[this.data.tuanduiCur].code == "0" ? null : this.data.activityClass1[this.data.tuanduiCur].code
       // border: this.data.daleiBorder,
     };
+    console.log('搜索团队2',data)
     app.wxRequest('POST', url, data, (res) => {
       self.setData({
         tuanduiList: res.data.list

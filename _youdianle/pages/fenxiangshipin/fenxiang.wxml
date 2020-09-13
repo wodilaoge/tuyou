@@ -24,7 +24,7 @@
       <view class="flex  margin-top ">
         <view class="sp-bofang-times ">播放{{shipin.list[0].playCnt}}次</view>
         <image src="{{shipin.list[0].myApplaud!=0?'/img/icon_like_all.png':'/img/icon_like.png'}}"
-          style="width:44rpx;height:40rpx;margin-left:270rpx;" bindtap="shipinDianzan" data-index="{{index}}"></image>
+          style="width:44rpx;height:40rpx;margin-left:270rpx;" bindtap="shipinDianzan" data-index="{{index}}" data-duixiang="{{50}}"></image>
         <view class=" align-center " style="margin-left:16rpx;font-size:32rpx;width:55rpx; ">
           {{shipin.list[0].applaudCnt}}</view>
         <image class="img-icon" mode="aspectFit " src="/img/icon_talk.png" bindtap="chooseSezi" data-duixiang="{{50}}"
@@ -102,7 +102,7 @@
       <view class="flex  margin-top ">
         <view class="sp-bofang-times ">播放{{shipin.list[index].playCnt}}次</view>
         <image src="{{shipin.list[index].myApplaud!=0?'/img/icon_like_all.png':'/img/icon_like.png'}}"
-          style="width:44rpx;height:40rpx;margin-left:270rpx;" bindtap="shipinDianzan" data-index="{{index}}"></image>
+          style="width:44rpx;height:40rpx;margin-left:270rpx;" bindtap="shipinDianzan" data-index="{{index}}" data-duixiang="{{50}}"></image>
         <view class=" align-center " style="margin-left:16rpx;font-size:32rpx;width:55rpx; ">
           {{shipin.list[index].applaudCnt}}</view>
         <image class="img-icon" mode="aspectFit " src="/img/icon_talk.png" bindtap="chooseSezi" data-duixiang="{{50}}"
