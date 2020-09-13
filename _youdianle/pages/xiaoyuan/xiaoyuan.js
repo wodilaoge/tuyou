@@ -511,7 +511,7 @@ Page({
       let data = {
         id: this.data.shipin.list[e.currentTarget.dataset.index].id,
       };
-      app.wxRequest('POST', url, data, (res) => {})
+      app.wxRequest('GET', url, data, (res) => {})
       shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
       self.setData({
         shipin: shipintmp

@@ -18,7 +18,7 @@
   <view class="cu-form-group margin-top">
     <view class=" text-red text-xl star">*</view>
     <view class="title">图片标题</view>
-    <input class="input text-grey" placeholder="春季篮球赛" bindinput="getname"></input>
+    <input class="input text-grey" placeholder="春季篮球赛" bindinput="gettitle"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group ">
@@ -38,29 +38,33 @@
       {{imgList.length}}/9
     </view>
   </view>
-  <view class="cu-form-group">
-    <view class="grid col-4 grid-square flex-sub">
-      <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-id="1"
-        data-url="{{imgList[index]}}">
-        <image src='{{imgList[index]}}' mode='aspectFill'></image>
-        <view class="cu-tag bg-red" catchtap="DelImg" data-id='1' data-index="{{index}}">
-          <text class="cuIcon-close"></text>
+
+  <view wx:for="{{imgList.length+1}}" wx:key="{{index}}">
+    <view class="cu-form-group">
+      <view class="grid col-4 grid-square flex-sub">
+        <view class="bg-img" bindtap="ViewImage"  wx:key="{{index}}" wx:if="{{imgList[index]}}"
+          data-url="{{imgList[index]}}">
+          <image src='{{imgList[index]}}' wx:if="{{imgList[index]}}" mode='aspectFill'></image>
+          <view class="cu-tag bg-red" catchtap="DelImg"  data-index="{{index}}">
+            <text class="cuIcon-close"></text>
+          </view>
+        </view>
+        <view class="solids" bindtap="ChooseImage" wx:if="{{!imgList[index]&&index<9}}">
+          <text class="cuIcon-cameraadd"></text>
         </view>
       </view>
-      <view class="solids" bindtap="ChooseImage" data-id='1' wx:if="{{photo.length<4}}">
-        <text class="cuIcon-cameraadd"></text>
+    </view>
+    <view class="cu-form-group2" wx:if="{{index<9}}">
+      <image class="icon" src="../../img/write.png"></image>
+      <input class="text-grey input"  value="{{photo[index].notes}}" type='text' bindinput="getname" data-index="{{index}}"></input>
+    </view>
+    <view class="container" wx:if="{{index<9}}">
+      <view class="divLine">
       </view>
+      <view class="white"></view>
     </view>
   </view>
-  <view class="cu-form-group2">
-    <image class="icon" src="../../img/write.png"></image>
-    <input class="text-grey input" placeholder="" type='text' name="name" bindinput="name"></input>
-  </view>
-  <view class="container">
-    <view class="divLine">
-    </view>
-    <view class="white"></view>
-  </view>
+
   <!-- <view class="cu-bar bg-white margin-top">
     <view class="action">
       照片2
@@ -127,13 +131,14 @@
     <view class='gray-text'>加载中...</view>
   </view>
   <view class="text-center margin-top3">
-    <checkbox  checked="{{isagree}}" bindtap="isagree"  class="blue checkicon"></checkbox>
+    <checkbox checked="{{isagree}}" bindtap="isagree" class="blue checkicon"></checkbox>
     <text class="text-grey">我已阅读并同意</text>
     <text class="text-blue" bindtap="toagreepage">《友点乐用户协议》</text>
   </view>
 </form>
 <view class="padding flex flex-direction justify-between ">
-  <button class="cu-btn bg-orange margin-tb-sm lg round" disabled="{{!isagree}}"  bindtap="firstcommit" data-target="Modal">提交</button>
+  <button class="cu-btn bg-orange margin-tb-sm lg round" disabled="{{!isagree}}" bindtap="firstcommit"
+    data-target="Modal">提交</button>
 </view>
 <modal hidden="{{hiddenmodalput}}" title="友点乐" confirm-text="提交" cancel-text='取消' bindcancel="cancel2"
   bindconfirm="commit">

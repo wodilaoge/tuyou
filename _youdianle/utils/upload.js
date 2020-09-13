@@ -4,7 +4,7 @@ var Bucket = 'kt-1301681474';
 var Region = 'ap-shanghai';
 var ForcePathStyle = false; // 是否使用后缀式，涉及签名计算和域名白名单配置，后缀式说明看上文
 
-var uploadFile = function(path, wayto, t) {
+var uploadFile = function (path, wayto, t) {
 
   // 请求用到的参数
   var prefix = 'https://' + Bucket + '.cos.' + Region + '.myqcloud.com/';
@@ -12,7 +12,7 @@ var uploadFile = function(path, wayto, t) {
     prefix = 'https://cos.' + Region + '.myqcloud.com/' + Bucket + '/';
   }
 
-  var camSafeUrlEncode = function(str) {
+  var camSafeUrlEncode = function (str) {
     return encodeURIComponent(str)
       .replace(/!/g, '%21')
       .replace(/'/g, '%27')
@@ -23,7 +23,7 @@ var uploadFile = function(path, wayto, t) {
 
   // 获取临时密钥
   var stsCache;
-  var getCredentials = function(callback) {
+  var getCredentials = function (callback) {
     if (stsCache && Date.now() / 1000 + 30 < stsCache.expiredTime) {
       callback(data.credentials);
       return;
@@ -34,12 +34,12 @@ var uploadFile = function(path, wayto, t) {
     wx.request({
       method: 'GET',
       //url: 'https://api.udianle.com/kt/config/getCosSignature', // 重要！服务端签名，后续调整正式服务端确定后再修改。
-       url: 'http://192.144.169.239:8021/kt/config/getCosSignature',
+      url: 'http://192.144.169.239:8021/kt/config/getCosSignature',
       header: {
         'Authorization': user,
       },
       dataType: 'json',
-      success: function(result) {
+      success: function (result) {
         console.log(result)
         var data = result.data.data;
         var credentials = data.credentials;
@@ -55,7 +55,7 @@ var uploadFile = function(path, wayto, t) {
         }
         callback(stsCache && stsCache.credentials);
       },
-      error: function(err) {
+      error: function (err) {
         console.log('fail2')
         wx.showModal({
           title: '临时密钥获取失败',
@@ -67,8 +67,8 @@ var uploadFile = function(path, wayto, t) {
   };
 
   // 计算签名
-  var getAuthorization = function(options, callback) {
-    getCredentials(function(credentials) {
+  var getAuthorization = function (options, callback) {
+    getCredentials(function (credentials) {
       callback({
         XCosSecurityToken: credentials.sessionToken,
         Authorization: CosAuth({
@@ -80,14 +80,14 @@ var uploadFile = function(path, wayto, t) {
       });
     });
   };
-  var S4 = function() {
+  var S4 = function () {
     return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
   }
-  var getuuid = function() {
+  var getuuid = function () {
     return (S4() + S4() + S4() + S4() + S4() + S4() + S4() + S4());
   }
   //create uuid
-  var wxuuid = function() {
+  var wxuuid = function () {
     var s = [];
     var hexDigits = "0123456789abcdef";
     for (var i = 0; i < 36; i++) {
@@ -100,7 +100,7 @@ var uploadFile = function(path, wayto, t) {
     return uuid
   }
   // 上传文件
-  var uploadFile = function(filePath, way) {
+  var uploadFile = function (filePath, way) {
     var that = t;
     var uuid = getuuid();
     var Key = 'app/' + way + '/10.' + uuid + filePath.substr(filePath.lastIndexOf('.'));;
@@ -139,7 +139,7 @@ var uploadFile = function(path, wayto, t) {
     getAuthorization({
       Method: 'POST',
       Pathname: signPathname
-    }, function(AuthData) {
+    }, function (AuthData) {
       var requestTask = wx.uploadFile({
         url: prefix,
         name: 'file',
@@ -151,7 +151,7 @@ var uploadFile = function(path, wayto, t) {
           'x-cos-security-token': AuthData.XCosSecurityToken,
           'Content-Type': '',
         },
-        success: function(res) {
+        success: function (res) {
           var url = prefix + camSafeUrlEncode(Key).replace(/%2F/g, '/');
           console.log('url', url);
           if (/^2\d\d$/.test('' + res.statusCode)) {
@@ -164,14 +164,24 @@ var uploadFile = function(path, wayto, t) {
                 [tmpway]: stoway
               })
             } else if (tmpway == "photo") {
-              var obj = {};
-              obj.id = '';
-              obj.path = url;
-              obj.status = 10;
-              stoway.push(obj);
-              that.setData({
-                [tmpway]: stoway
-              })
+              var test = that.data.photo[that.data.photo.length - 1]
+              if (test&&!test.path) {
+                test.id = '';
+                test.path = url;
+                test.status = 10;
+                that.setData({
+                  [tmpway]: stoway
+                })
+              } else {
+                var obj = {};
+                obj.id = '';
+                obj.path = url;
+                obj.status = 10;
+                stoway.push(obj);
+                that.setData({
+                  [tmpway]: stoway
+                })
+              }
             } else {
               if (stoway) {
                 that.setData({
@@ -192,20 +202,20 @@ var uploadFile = function(path, wayto, t) {
             });
           }
         },
-        fail: function(res) {
+        fail: function (res) {
           wx.showModal({
             title: '上传失败',
             content: JSON.stringify(res),
             showCancel: false
           });
         },
-        complete: function() {
+        complete: function () {
           that.setData({
             loadModal: false
           })
         }
       });
-      requestTask.onProgressUpdate(function(res) {
+      requestTask.onProgressUpdate(function (res) {
         console.log('进度:', res);
       });
     });

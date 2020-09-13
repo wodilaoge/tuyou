@@ -75,9 +75,6 @@ Page({
       }
     })
     console.log('wx auth finished')
-
-
-
     this.setData({
       actid: options.actid
     })
@@ -91,7 +88,6 @@ Page({
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], //从相册选择
       success: (res) => {
-        if (t == 1) {
           if (this.data.imgList.length != 0) {
             this.setData({
               imgList: this.data.imgList.concat(res.tempFilePaths)
@@ -105,29 +101,25 @@ Page({
           this.setData({
             loadModal: true
           })
-        }
       }
     });
   },
   ViewImage(e) {
     var t = e.currentTarget.dataset.id
-    if (t == 1) {
       wx.previewImage({
         urls: this.data.imgList,
         current: e.currentTarget.dataset.url
       });
-    }
   },
   DelImg(e) {
     var t = e.currentTarget.dataset.id
-    if (t == 1) {
       wx.showModal({
         title: '确定',
         content: '确定要删除这张照片？',
         cancelText: '取消',
         confirmText: '确认删除',
         success: res => {
-          if (res.confirm && t == 1) {
+          if (res.confirm ) {
             this.data.photo.splice(e.currentTarget.dataset.index, 1);
             this.setData({
               photo: this.data.photo
@@ -139,12 +131,18 @@ Page({
           }
         }
       })
-    }
   },
   getname(e) {
+    var t='photo['+e.currentTarget.dataset.index+'].notes'
+    // console.log(t)
     this.setData({
-      title: e.detail.value
+      [t]: e.detail.value
     })
+  },
+  gettitle(e){
+      this.setData({
+        title:e.detail.value
+      })
   },
   textareaAInput(e) {
     this.setData({

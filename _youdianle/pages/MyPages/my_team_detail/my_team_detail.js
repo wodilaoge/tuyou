@@ -139,15 +139,20 @@ Page({
             lid_old: that.data.duizhangID,
             lid_new: e.currentTarget.dataset.id
           }
-          util.post_token(url, data).then(function (res) {
+          util.gets(url, data).then(function (res) {
             console.log('转让队长确定通过', res.data)
+            if(res.data.code==0)
+            wx.showToast({
+              title: '转让成功',
+              duration: 1000,
+            })
+          else
             wx.showToast({
               title: res.data.msg,
               duration: 1000,
             })
           })
         }
-
       }
     })
   },
@@ -221,14 +226,21 @@ Page({
             uid: e.currentTarget.dataset.id,
             type: "30",
             creater: that.data.duizhangID
-
           }
           util.gets(url, data).then(function (res) {
             console.log('退出小组', res.data)
-            wx.showToast({
-              title: res.data.msg,
-              duration: 1000,
-            })
+            if(res.data.code==0)
+            {
+              wx.showToast({
+                title: '删除成功',
+              })
+              that.secondLoad()
+            }
+            else
+              wx.showToast({
+                title: res.data.msg,
+                duration: 1000,
+              })
           })
         }
       }
@@ -296,6 +308,25 @@ Page({
       url: '/pages/index/index',
     })
   },
+  secondLoad(){
+    var that = this
+    this.getXinxi();
+    // this.getDuizhang();
+    this.getListMember();
+
+    //历史活动
+    var url = app.globalData.URL + '/team/listHisAct';
+    var data = {
+      id: that.data.tdxxId
+    }
+    util.gets(url, data).then(function (res) {
+      console.log('历史活动', res.data)
+      that.setData({
+        historyAct: res.data.data
+      })
+    })
+  },
+
   onLoad: function (options) {
     console.log(options.id)
     if (options.isshare == 1) {
