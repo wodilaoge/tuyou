@@ -17,6 +17,59 @@ Page({
     listmemberdeatil: [],
     isCaptain: false,
     isshare:0,
+    hiddenmodalput:true
+  },
+  shutdown(){
+    this.setData({
+      hiddenmodalput: false
+    });
+  },
+  
+  //取消按钮  
+  cancel: function () {
+    this.setData({
+      hiddenmodalput: true
+    });
+  },
+  getreason(e){
+    this.setData({
+      reason:e.detail.value
+    })
+  },
+  //确认  
+  confirm: function () {
+    var that = this
+    let url = app.globalData.URL + '/team/cancelTeam';
+    var data = {
+      id: this.data.tdxxId,
+      reason: this.data.reason,
+      creater: this.data.duizhangID
+    }
+    util.gets(url, data).then(function (res) {
+      console.log(res.data)
+      if (res.data.code == 0) {
+        wx.showToast({
+          title: '解散成功',
+          duration: 1000,
+          success: function() { 
+            setTimeout(function() { 
+              wx.navigateBack({
+                delta: 1,
+              })
+            }, 1000); 
+          }
+        })
+        that.setData({
+          hiddenmodalput: true,
+          reason:''
+        })
+      }
+    })
+  },
+  modify(){
+    wx.navigateTo({
+      url: '/pages/form_team/form_team?modify=1&&id='+this.data.tdxxId,
+    })
   },
   follow() {
     var that = this
@@ -30,12 +83,19 @@ Page({
     }
     util.post_token(url, data).then(function (res) {
       console.log('关注成功', res.data)
+      if(res.data.code==0)
+      wx.showToast({
+        title: '关注成功',
+        duration: 1000,
+      })
+    else
       wx.showToast({
         title: res.data.msg,
         duration: 1000,
       })
     })
   },
+
   getXinxi() {
     var that = this
     let url = app.globalData.URL + '/team/findTeam';

@@ -24,7 +24,7 @@ Page({
     website: '',
     wcoa: '',
     univid: '',
-    province: '',
+    province: '00333',
     city: '',
     indexp: 0, //省
     indexc: 0, //市
@@ -33,14 +33,16 @@ Page({
     citys: [],
     school: [],
     pickerbig: [],
-    picker2: ['篮球', '足球', '羽毛球', '乒乓球', '网球'],
-    picker4: ['篮球', '足球', '羽毛球', '乒乓球', '网球'],
+    picker2: [],
     imgList: [],
     modalName: null,
     other: [],
     information: [],
-    sid: '',
-    acid1: ''
+    sid: '076003',
+    acid1: '',
+    teamInfo: {
+      'rssort': '50'
+    }
   },
   toagreepage() {
     wx.navigateTo({
@@ -189,8 +191,9 @@ Page({
     })
   },
   getname(e) {
+    let t = 'teamInfo.name'
     this.setData({
-      name: e.detail.value
+      [t]: e.detail.value
     })
   },
   getcaptain(e) {
@@ -199,39 +202,45 @@ Page({
     })
   },
   getphone(e) {
+    let t = 'teamInfo.linktel'
     this.setData({
-      linktel: e.detail.value
+      [t]: e.detail.value
     })
   },
   gettdslogan(e) {
+    let t = 'teamInfo.slogan'
     this.setData({
-      tdslogan: e.detail.value
+      [t]: e.detail.value
     })
   },
   getemail(e) {
+    let t = 'teamInfo.email'
     this.setData({
-      email: e.detail.value
+      [t]: e.detail.value
     })
   },
   getweb(e) {
+    let t = 'teamInfo.website'
     this.setData({
-      website: e.detail.value
+      [t]: e.detail.value
     })
   },
   getwx(e) {
+    let t = 'teamInfo.wcoa'
     this.setData({
-      wcoa: e.detail.value
+      [t]: e.detail.value
     })
   },
   num(e) {
+    let t = 'teamInfo.rssort'
     this.setData({
-      number: e.detail.value
+      [t]: e.detail.value
     })
   },
   ChooseImage(e) {
     var that = this;
     wx.chooseImage({
-      count: 4, //默认9
+      count: 1, //默认9
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], //从相册选择
       success: (res) => {
@@ -280,8 +289,9 @@ Page({
     }
   },
   textareaAInput(e) {
+    let t = 'teamInfo.summary'
     this.setData({
-      article: e.detail.value
+      [t]: e.detail.value
     })
   },
   toForm_modify: function (e) {
@@ -301,6 +311,7 @@ Page({
     });
   },
   commit: function (e) {
+    var that = this.data.teamInfo
     var user = wx.getStorageSync('userInfo')
     let url = app.globalData.URL + '/team/updateTeam';
     var data = this.data
@@ -308,20 +319,22 @@ Page({
       lid: user.id,
       sid: data.sid,
       acid1: data.acid1,
-      name: data.name,
+      name: that.name,
       lid: user.id,
-      summary: data.article,
+      summary: that.summary,
       logo: data.other[0],
-      linktel: data.linktel,
-      slogan: data.tdslogan,
+      linktel: that.linktel,
+      slogan: that.slogan,
+
       province: data.province,
       city: data.city,
       univ: data.univid,
-      superior: data.superior,
-      rssort: data.number,
-      email: data.email,
-      website: data.website,
-      wcoa: data.wcoa,
+
+      superior: that.superior,
+      rssort: that.rssort,
+      email: that.email,
+      website: that.website,
+      wcoa: that.wcoa,
     }
     util.post_token(url, data).then(function (res) {
       console.log(res.data)
@@ -358,16 +371,18 @@ Page({
     })
   },
   prevNum() {
+    let t = 'teamInfo.rssort'
     this.setData({
-      number: this.data.number + 1
+      [t]: this.data.number + 1
     });
   },
   nextNum() {
+    let t = 'teamInfo.rssort'
     this.setData({
-      number: this.data.number - 1
+      [t]: this.data.number - 1
     });
   },
-  onLoad() {
+  onLoad(options) {
     var that = this
     let url2 = app.globalData.URL + '/appuser/getPubPerm'
     util.gets(url2, {}).then(function (res) {
@@ -416,6 +431,7 @@ Page({
     console.log('wx auth finished')
 
 
+
     this.province();
 
     let url = app.globalData.URL + '/config/getActivitySection';
@@ -425,5 +441,39 @@ Page({
       })
     })
 
+    if (options.modify == 1) {
+      //查团队详情
+      var _url = app.globalData.URL + '/team/findTeam';
+      var data = {
+        id: options.id
+      }
+      util.gets(_url, data).then(function (res) {
+        console.log('团队详情', res.data)
+        let t = 'imgList[0]'
+        let t2 = 'other[0]'
+        that.setData({
+          teamInfo: res.data.data,
+          [t]: res.data.data.logo,
+          [t2]: res.data.data.logo,
+          sid: res.data.data.sid,
+          acid1: res.data.data.acid1,
+          province: res.data.data.province,
+          city: res.data.data.city,
+          univid: res.data.data.univid,
+        })
+        let _bigtmp
+        if (res.data.data.sid == '076003')
+          _bigtmp = 0
+        else if (res.data.data.sid == '076004')
+          _bigtmp = 1
+        else if (res.data.data.sid == '076005')
+          _bigtmp = 2
+        else
+          _bigtmp = 3
+        that.setData({
+          indexbig:_bigtmp
+        })
+      })
+    }
   },
 })

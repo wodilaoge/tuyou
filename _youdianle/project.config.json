@@ -76,10 +76,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/form_picture/form_picture",
-					"pathName": "pages/form_picture/form_picture",
-					"query": "id=60715101275029504",
+					"id": 2,
+					"name": "pages/MyPages/my_team_detail/my_team_detail",
+					"pathName": "pages/MyPages/my_team_detail/my_team_detail",
+					"query": "id= 60478579007291392",
 					"scene": null
 				}
 			]
