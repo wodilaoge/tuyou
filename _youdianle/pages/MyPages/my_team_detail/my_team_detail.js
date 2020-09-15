@@ -17,7 +17,8 @@ Page({
     listmemberdeatil: [],
     isCaptain: false,
     isshare: 0,
-    hiddenmodalput: true
+    hiddenmodalput: true,
+    reason:''
   },
   shutdown() {
     this.setData({
@@ -39,6 +40,12 @@ Page({
   //确认  
   confirm: function () {
     var that = this
+    if(that.data.reason==''){
+    wx.showToast({
+      title: '请填写解散理由',
+    })
+    return
+  }
     let url = app.globalData.URL + '/team/cancelTeam';
     var data = {
       id: this.data.tdxxId,

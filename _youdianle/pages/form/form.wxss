@@ -20,7 +20,7 @@
 }
 
 .menu-img {
-  width: 180rpx;
+  width: 185rpx;
   height: 180rpx;
   padding: 20rpx;
   left: 70rpx;

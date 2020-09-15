@@ -4,6 +4,7 @@ var upload = require("../../utils/upload.js");
 
 Page({
   data: {
+    isagree: true,
     hiddenmodalput: true,
     isaddress: false,
     group: 0,
@@ -43,6 +44,12 @@ Page({
     teamInfo: {
       'rssort': '50'
     }
+  },
+  isagree(e) {
+    console.log('fuck')
+    this.setData({
+      isagree: !this.data.isagree
+    })
   },
   toagreepage() {
     wx.navigateTo({
@@ -186,8 +193,9 @@ Page({
     })
   },
   getsuperior(e) {
+    let t = 'teamInfo.superior'
     this.setData({
-      superior: e.detail.value
+      [t]: e.detail.value
     })
   },
   getname(e) {
@@ -282,7 +290,7 @@ Page({
             this.data.imgList.splice(e.currentTarget.dataset.index, 1);
             this.setData({
               imgList: this.data.imgList,
-              other:[]
+              other: []
             })
           }
         }
@@ -301,7 +309,33 @@ Page({
     })
   },
   firstcommit() {
+
     var that = this
+    if (!that.data.sid){
+      wx.showToast({
+        title: '请选择活动版块',
+      })
+      return
+    }
+    if (!that.data.acid1){
+      wx.showToast({
+        title: '请选择活动大类',
+      })
+      return
+    }
+    if (!that.data.teamInfo.name){
+      wx.showToast({
+        title: '请填写团队名称',
+      })
+      return
+    }
+    if (that.data.imgList.length == 0){
+      wx.showToast({
+        title: '请上传队徽',
+      })
+      return
+    }
+
     that.setData({
       hiddenmodalput: !this.data.hiddenmodalput
     })
@@ -317,7 +351,7 @@ Page({
     let url = app.globalData.URL + '/team/updateTeam';
     var data = this.data
     var data = {
-      id:that.id,
+      id: that.id,
       lid: user.id,
       sid: data.sid,
       acid1: data.acid1,
@@ -415,7 +449,7 @@ Page({
             }, 2000);
           }
         })
-      } else if (res.data.code==135) {
+      } else if (res.data.code == 135) {
         wx.showToast({
           title: '请先绑定手机！',
           duration: 2000,
@@ -472,7 +506,7 @@ Page({
         else
           _bigtmp = 3
         that.setData({
-          indexbig:_bigtmp
+          indexbig: _bigtmp
         })
       })
     }

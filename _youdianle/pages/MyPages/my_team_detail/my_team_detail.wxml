@@ -37,7 +37,7 @@
 
 <view class="flex bg-white">
   <view class="tdxx-xinxi-title">联系电话</view>
-  <view class="tdxx-xinxi-neirong">{{tdxxDeatil.linktel}}</view>
+  <view class="tdxx-xinxi-neirong">{{tdxxDeatil.linktel==null?"":tdxxDeatil.linktel}}</view>
   <image class="tdxx-img-icon" mode="aspectFit" src="/img/icon_dial.png" bindtap="pinluntiaozhuan"
     style="width:37rpx;height:36rpx;margin-top:32rpx;"></image>
 </view>
@@ -115,8 +115,8 @@
   <button  class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="modify">修改信息</button>
 </view>
 
-<modal hidden="{{hiddenmodalput}}" title="解散原因：{{reason}}" confirm-text="提交" cancel-text='取消' bindcancel="cancel" bindconfirm="confirm">
-	<input type='text' bindinput="getreason" placeholder="请输入答案" auto-focus />
+<modal hidden="{{hiddenmodalput}}" title="解散原因" confirm-text="提交" cancel-text='取消' bindcancel="cancel" bindconfirm="confirm">
+	<input type='text' bindinput="getreason" placeholder="请输入解散原因" auto-focus />
 </modal>
 
 <image wx:if="{{isshare}}" bindtap='backHome' class='d-back-home' src='http://cdn.xcx.pemarket.com.cn/icon-Return%20to%20the%20home%20page.png' lazy-load></image>

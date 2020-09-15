@@ -32,8 +32,8 @@
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group ">
-    <text class="text">正文</text>
-    <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput"  value="{{teamInfo.summary}}" placeholder="请输入正文"></textarea>
+    <text class="text">团队简介</text>
+    <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput"  value="{{teamInfo.summary}}" placeholder="请输入团队简介"></textarea>
   </view>
   <!-- <view class="cu-form-group margin-top">
     <view class="title">队长</view>
@@ -63,7 +63,7 @@
   </view>
   <view class="cu-form-group margin-top">
     <view class="title">联系电话</view>
-    <input class="input text-grey" bindinput="getphone" value="{{teamInfo.linktel}}" placeholder="请输入联系对话"></input>
+    <input class="input text-grey" bindinput="getphone" value="{{teamInfo.linktel}}" placeholder="请输入联系电话"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group">
@@ -115,7 +115,7 @@
   </view> -->
    <view class="cu-form-group">
     <view class="title">隶属机构</view>
-    <input class="input text-grey" bindinput="getsuperior"  value="{{teamInfo.superior}}" placeholder=""></input>
+    <input class="input text-grey" bindinput="getsuperior"  value="{{teamInfo.superior}}" placeholder="请输入隶属机构"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <!-- <view class="cu-form-group">
@@ -140,17 +140,17 @@
   </view>
   <view class="cu-form-group ">
     <view class="title">微信公众号</view>
-    <input class="input text-grey" bindinput="getwx"  value="{{teamInfo.wcoa}}" placeholder="youdianle"></input>
+    <input class="input text-grey" bindinput="getwx"  value="{{teamInfo.wcoa}}" placeholder="请输入微信公众号"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="text-center margin-top3">
-    <checkbox checked class="blue checkicon"></checkbox>
+    <checkbox class="blue checkicon" checked="{{isagree}}" bindtap="isagree"></checkbox>
     <text class="text-grey">我已阅读并同意</text>
     <text class="text-blue" bindtap="toagreepage">《友点乐用户协议》</text>
   </view>
 </form>
 <view class="padding flex flex-direction justify-between ">
-  <button class="cu-btn bg-orange margin-tb-sm lg round" bindtap="firstcommit" data-target="Modal">提交</button>
+  <button class="cu-btn bg-orange margin-tb-sm lg round" bindtap="firstcommit" disabled="{{!isagree}}" data-target="Modal">提交</button>
 </view>
 
 

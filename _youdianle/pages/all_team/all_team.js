@@ -16,7 +16,9 @@ Page({
     load: true,
     needflesh:true,
   },
-
+  onShow(){
+    this.onLoad()
+  },
   onLoad(options) {
     wx.showLoading({
       title: '加载中...',
