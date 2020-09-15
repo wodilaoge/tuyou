@@ -29,10 +29,10 @@ Page({
         uid: userId,
         acid1: e.currentTarget.dataset.id
       }
-      util.gets(url, data).then(function (res) {
+      util.post_token(url, data).then(function (res) {
         console.log('参加', res.data)
         that.setData({
-          showAct: res.data.data
+          showAct: res.data.data.list
         })
       })
     } else if (this.data.options == 2) {
@@ -113,10 +113,10 @@ Page({
     var data = {
       uid: userId
     }
-    util.gets(url, data).then(function (res) {
+    util.post_token(url, data).then(function (res) {
       console.log('参加', res.data)
       that.setData({
-        showAct: res.data.data
+        showAct: res.data.data.list
       })
     })
 
@@ -186,11 +186,11 @@ Page({
     data = {
       uid: userId
     }
-    util.gets(url, data).then(function (res) {
+    util.post_token(url, data).then(function (res) {
       console.log('参加', res.data)
       that.setData({
-        joinnum: res.data.data.length,
-        showAct: res.data.data
+        joinnum: res.data.data.list.length,
+        showAct: res.data.data.list
       })
     })
 

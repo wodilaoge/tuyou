@@ -77,7 +77,19 @@
   text-align: center;
   align-items: center;
 }
-
+.tdxx-guanzhu-after {
+  margin-left: 18rpx;
+  width: 120rpx;
+  height: 40rpx;
+  border: 2rpx solid rgba(236, 93, 9, 1);
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: rgba(236, 93, 9, 1);
+  text-align: center;
+  align-items: center;
+}
 .tdxx-img-icon {
   display: flex;
   float: right;

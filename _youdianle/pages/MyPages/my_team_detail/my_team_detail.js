@@ -16,24 +16,24 @@ Page({
     duizhangDeatil: [],
     listmemberdeatil: [],
     isCaptain: false,
-    isshare:0,
-    hiddenmodalput:true
+    isshare: 0,
+    hiddenmodalput: true
   },
-  shutdown(){
+  shutdown() {
     this.setData({
       hiddenmodalput: false
     });
   },
-  
+
   //取消按钮  
   cancel: function () {
     this.setData({
       hiddenmodalput: true
     });
   },
-  getreason(e){
+  getreason(e) {
     this.setData({
-      reason:e.detail.value
+      reason: e.detail.value
     })
   },
   //确认  
@@ -51,26 +51,53 @@ Page({
         wx.showToast({
           title: '解散成功',
           duration: 1000,
-          success: function() { 
-            setTimeout(function() { 
+          success: function () {
+            setTimeout(function () {
               wx.navigateBack({
                 delta: 1,
               })
-            }, 1000); 
+            }, 1000);
           }
         })
         that.setData({
           hiddenmodalput: true,
-          reason:''
+          reason: ''
         })
       }
     })
   },
-  modify(){
+  modify() {
     wx.navigateTo({
-      url: '/pages/form_team/form_team?modify=1&&id='+this.data.tdxxId,
+      url: '/pages/form_team/form_team?modify=1&&id=' + this.data.tdxxId,
     })
   },
+  followteam() {
+    var that = this
+    console.log('关注')
+    var url = app.globalData.URL + '/follow/updateFollow';
+    var data = {
+      objtype: 20,
+      objid: that.data.tdxxId,
+      objtitle: that.data.tdxxDeatil.name,
+      status: 1
+    }
+    util.post_token(url, data).then(function (res) {
+      console.log('关注成功', res.data)
+      if (res.data.code == 0) {
+        wx.showToast({
+          title: '关注成功',
+          duration: 1000,
+        })
+
+        that.secondLoad()
+      } else
+        wx.showToast({
+          title: res.data.msg,
+          duration: 1000,
+        })
+    })
+  },
+
   follow() {
     var that = this
     console.log('关注')
@@ -83,16 +110,16 @@ Page({
     }
     util.post_token(url, data).then(function (res) {
       console.log('关注成功', res.data)
-      if(res.data.code==0)
-      wx.showToast({
-        title: '关注成功',
-        duration: 1000,
-      })
-    else
-      wx.showToast({
-        title: res.data.msg,
-        duration: 1000,
-      })
+      if (res.data.code == 0)
+        wx.showToast({
+          title: '关注成功',
+          duration: 1000,
+        })
+      else
+        wx.showToast({
+          title: res.data.msg,
+          duration: 1000,
+        })
     })
   },
 
@@ -110,21 +137,31 @@ Page({
         duizhangID: res.data.lid,
         isCaptain: res.data.lid == wx.getStorageSync('userInfo').id
       })
-      url = app.globalData.URL + '/config/getProvince';
-
-      util.gets(url, {}).then(function (res) {
+      var region
+      url = app.globalData.URL + '/config/findDictName';
+      //按code查name
+      util.gets(url, {
+        code: that.data.tdxxDeatil.province
+      }).then(function (res) {
         console.log('省份', res.data)
-        for (let i of res.data.data) {
-          if (that.data.tdxxDeatil.province == i.code) {
-            console.log(i)
-            var t = 'tdxxDeatil.province'
-            that.setData({
-              [t]: i.name
-            })
-            break
-          }
-        }
-      })
+        region = res.data.data==null?'':res.data.data
+      }).then(() => util.gets(url, {
+        code: that.data.tdxxDeatil.city
+      }).then(function (res) {
+        console.log('城市', res.data)
+        region += res.data.data==null?'':res.data.data
+      }).then(() => {
+        util.gets(url, {
+          code: that.data.tdxxDeatil.univ
+        }).then(function (res) {
+          console.log('学校', res.data)
+          region += res.data.data==null?'':res.data.data
+          let t = 'tdxxDeatil.province'
+          that.setData({
+            [t]: region
+          })
+        })
+      }))
       that.getDuizhang()
     }, (err) => {
       console.log(err.errMsg)
@@ -159,7 +196,7 @@ Page({
 
   },
 
-  toViewPre(e){
+  toViewPre(e) {
     wx.navigateTo({
       url: '/pages/ziliao/ziliao?id=' + e.currentTarget.dataset.id
     })
@@ -201,16 +238,16 @@ Page({
           }
           util.gets(url, data).then(function (res) {
             console.log('转让队长确定通过', res.data)
-            if(res.data.code==0)
-            wx.showToast({
-              title: '转让成功',
-              duration: 1000,
-            })
-          else
-            wx.showToast({
-              title: res.data.msg,
-              duration: 1000,
-            })
+            if (res.data.code == 0)
+              wx.showToast({
+                title: '转让成功',
+                duration: 1000,
+              })
+            else
+              wx.showToast({
+                title: res.data.msg,
+                duration: 1000,
+              })
           })
         }
       }
@@ -218,8 +255,8 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title:  '友点乐',
-      path: 'pages/MyPages/my_team_detail/my_team_detail?isshare=1&&id='+this.data.tdxxId
+      title: '友点乐',
+      path: 'pages/MyPages/my_team_detail/my_team_detail?isshare=1&&id=' + this.data.tdxxId
     }
   },
   pass(e) {
@@ -240,7 +277,7 @@ Page({
           }
           util.gets(url, data).then(function (res) {
             console.log('通过申请确定通过', res.data)
-            if(res.data.code==0)
+            if (res.data.code == 0)
               wx.showToast({
                 title: '通过申请',
                 duration: 1000,
@@ -289,14 +326,12 @@ Page({
           }
           util.gets(url, data).then(function (res) {
             console.log('退出小组', res.data)
-            if(res.data.code==0)
-            {
+            if (res.data.code == 0) {
               wx.showToast({
                 title: '删除成功',
               })
               that.secondLoad()
-            }
-            else
+            } else
               wx.showToast({
                 title: res.data.msg,
                 duration: 1000,
@@ -306,7 +341,7 @@ Page({
       }
     })
   },
-  toout(){
+  toout() {
     var that = this
     //退出小组
     wx.showModal({
@@ -326,16 +361,16 @@ Page({
           }
           util.gets(url, data).then(function (res) {
             console.log('离开团队', res.data)
-            if(res.data.code==0)
-            wx.showToast({
-              title: '成功退出',
-              duration: 2000,
-            })
+            if (res.data.code == 0)
+              wx.showToast({
+                title: '成功退出',
+                duration: 2000,
+              })
             else
-            wx.showToast({
-              title: res.data.msg,
-              duration: 2000,
-            })
+              wx.showToast({
+                title: res.data.msg,
+                duration: 2000,
+              })
           })
         }
       }
@@ -363,12 +398,12 @@ Page({
         })
     })
   },
-  backHome(){
+  backHome() {
     wx.switchTab({
       url: '/pages/index/index',
     })
   },
-  secondLoad(){
+  secondLoad() {
     var that = this
     this.getXinxi();
     // this.getDuizhang();
