@@ -40,7 +40,7 @@
             <view class="flex  duiqi">
               <image src="{{item.logo}}" class="logosize margin"> </image>
               <view class="desc">
-                <text class="text-bold">{{item.name}}</text>
+                <text class="text-bold">{{options=='3'?item.objtitle:item.name}}</text>
                 <view class="flex">
                   <text>人数</text>
                   <text class="num">{{item.mbrCount==null?"0":item.mbrCount}}</text>

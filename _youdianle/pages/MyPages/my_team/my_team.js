@@ -219,8 +219,6 @@ Page({
       })
     })
 
-
-
     let list = [{}];
     for (let i in this.data.YundongList) {
       list[i] = {};
