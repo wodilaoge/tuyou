@@ -35,34 +35,32 @@ Page({
           showAct: res.data.data
         })
       })
-    }
-    else if(this.data.options == 2){
-          // 获取数据 发起的数量
-    var url = app.globalData.URL + '/team/listSimpleTeam';
-    var data = {
-      uid: userId,
-      acid1: e.currentTarget.dataset.id
-    }
-    util.post_token(url, data).then(function (res) {
-      console.log('发起', res.data)
-      that.setData({
-        showAct: res.data.data.list
+    } else if (this.data.options == 2) {
+      // 获取数据 发起的数量
+      var url = app.globalData.URL + '/team/listSimpleTeam';
+      var data = {
+        uid: userId,
+        acid1: e.currentTarget.dataset.id
+      }
+      util.post_token(url, data).then(function (res) {
+        console.log('发起', res.data)
+        that.setData({
+          showAct: res.data.data.list
+        })
       })
-    })
-    }
-    else{
-          // 获取数据 关注的数量
-    var url = app.globalData.URL + '/follow/listFollowByUserType';
-    var data = {
-      uid: userId,
-      objtype: "20"
-    }
-    util.gets(url, data).then(function (res) {
-      console.log('关注', res.data)
-      that.setData({
-        showAct: res.data.data.list
+    } else {
+      // 获取数据 关注的数量
+      var url = app.globalData.URL + '/follow/listFollowByUserType';
+      var data = {
+        uid: userId,
+        objtype: "20"
+      }
+      util.gets(url, data).then(function (res) {
+        console.log('关注', res.data)
+        that.setData({
+          showAct: res.data.data.list
+        })
       })
-    })
     }
   },
   todetail(e) {
