@@ -108,4 +108,13 @@
   </view>
 </view>
 
+<view class="flex margin-top" wx:if="{{isCaptain}}">
+  <button  class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="shutdown">解散团队</button>
+  <button  class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="modify">修改信息</button>
+</view>
+
+<modal hidden="{{hiddenmodalput}}" title="解散原因：{{reason}}" confirm-text="提交" cancel-text='取消' bindcancel="cancel" bindconfirm="confirm">
+	<input type='text' bindinput="getreason" placeholder="请输入答案" auto-focus />
+</modal>
+
 <image wx:if="{{isshare}}" bindtap='backHome' class='d-back-home' src='http://cdn.xcx.pemarket.com.cn/icon-Return%20to%20the%20home%20page.png' lazy-load></image>
