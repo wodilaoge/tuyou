@@ -60,14 +60,38 @@ Page({
       that.setData({
         auth: res.data
       })
-      if (res.data.code) {
+      if (res.data.code == 43) {
+        wx.showToast({
+          title: '您已被禁言',
+          duration: 2000,
+          success: function () {
+            setTimeout(function () {
+              wx.switchTab({
+                url: '/pages/index/index',
+              })
+            }, 2000);
+          }
+        })
+      } else if (res.data.code == 117) {
+        wx.showToast({
+          title: res.data.msg,
+          duration: 2000,
+          success: function () {
+            setTimeout(function () {
+              wx.navigateTo({
+                url: '/pages/MyPages/my_security/my_security',
+              })
+            }, 2000);
+          }
+        })
+      } else if (res.data.code==135) {
         wx.showToast({
           title: '请先绑定手机！',
           duration: 2000,
           success: function () {
             setTimeout(function () {
               wx.navigateTo({
-                url: '/pages/MyPages/my_security/my_security',
+                url: '/pages/MyPages/my_profile/my_profile',
               })
             }, 2000);
           }

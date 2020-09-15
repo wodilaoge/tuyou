@@ -281,7 +281,8 @@ Page({
           if (res.confirm && t == 1) {
             this.data.imgList.splice(e.currentTarget.dataset.index, 1);
             this.setData({
-              imgList: this.data.imgList
+              imgList: this.data.imgList,
+              other:[]
             })
           }
         }
@@ -316,11 +317,11 @@ Page({
     let url = app.globalData.URL + '/team/updateTeam';
     var data = this.data
     var data = {
+      id:that.id,
       lid: user.id,
       sid: data.sid,
       acid1: data.acid1,
       name: that.name,
-      lid: user.id,
       summary: that.summary,
       logo: data.other[0],
       linktel: that.linktel,
@@ -331,7 +332,7 @@ Page({
       univ: data.univid,
 
       superior: that.superior,
-      rssort: that.rssort,
+      // rssort: that.rssort,
       email: that.email,
       website: that.website,
       wcoa: that.wcoa,
@@ -409,19 +410,19 @@ Page({
           success: function () {
             setTimeout(function () {
               wx.navigateTo({
-                url: '/pages/MyPages/my_profile/my_profile',
+                url: '/pages/MyPages/my_security/my_security',
               })
             }, 2000);
           }
         })
-      } else if (res.data.code) {
+      } else if (res.data.code==135) {
         wx.showToast({
           title: '请先绑定手机！',
           duration: 2000,
           success: function () {
             setTimeout(function () {
               wx.navigateTo({
-                url: '/pages/MyPages/my_security/my_security',
+                url: '/pages/MyPages/my_profile/my_profile',
               })
             }, 2000);
           }

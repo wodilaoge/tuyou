@@ -506,19 +506,19 @@ Page({
           success: function () {
             setTimeout(function () {
               wx.navigateTo({
-                url: '/pages/MyPages/my_profile/my_profile',
+                url: '/pages/MyPages/my_security/my_security',
               })
             }, 2000);
           }
         })
-      } else if (res.data.code) {
+      } else if (res.data.code==135) {
         wx.showToast({
           title: '请先绑定手机！',
           duration: 2000,
           success: function () {
             setTimeout(function () {
               wx.navigateTo({
-                url: '/pages/MyPages/my_security/my_security',
+                url: '/pages/MyPages/my_profile/my_profile',
               })
             }, 2000);
           }

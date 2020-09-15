@@ -118,7 +118,7 @@
     <input class="input text-grey" bindinput="getsuperior"  value="{{teamInfo.superior}}" placeholder=""></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
-  <view class="cu-form-group">
+  <!-- <view class="cu-form-group">
     <view class="title">人数上限</view>
     <view class="tui-gallery-list">
       <view class="tui-number-group">
@@ -127,7 +127,7 @@
         <button class="tui-number-cell" bindtap="prevNum">+</button>
       </view>
     </view>
-  </view>
+  </view> -->
   <view class="cu-form-group margin-top">
     <view class="title">Email</view>
     <input class="input text-grey" bindinput="getemail"  value="{{teamInfo.email}}" placeholder="请输入Email"></input>
