@@ -12,6 +12,7 @@ Page({
     user: [],
     type: 50,
     zhaopian: [],
+    swiper_current: 0,
   },
   tabCur: 0,
   getOneShipin: function (e) {
@@ -41,18 +42,19 @@ Page({
   },
   getOneZhaopian: function (e) {
     var self = this;
-    let url = app.globalData.URL + '/photo/findPhotoDetail';
+    let url = app.globalData.URL + '/photo/listActPhotoFirst';
     let data = {
       id: e,
     };
-    app.wxRequest('GET', url, data, (res) => {
+    console.log(data)
+    app.wxRequest('POST', url, data, (res) => {
       console.log(res)
       // let shipintt = {};
       // shipintt.border = 0;
       // shipintt.list = [];
       // shipintt.list.splice(0, 0, res.data)
       // console.log(shipintt)
-      let shipintmp = JSON.stringify(res.data);
+      let shipintmp = JSON.stringify(res.data.list[0]);
       console.log(shipintmp)
       var jsonObj = JSON.parse(shipintmp);
       let zhaopiantmp = [jsonObj];
@@ -118,7 +120,8 @@ Page({
       animation.translateY(0).step()
       that.setData({
         shipinAnimationData: animation.export(),
-        shipinChooseSize: false
+        shipinChooseSize: false,
+        zhaopianChooseSize: false
       })
     }, 100)
   },
@@ -581,6 +584,11 @@ Page({
       }
     })
 
+  },
+  setChange_swiper: function (e) {
+    this.setData({
+      swiper_current: e.detail.current
+    })
   },
   /**
    * 生命周期函数--监听页面加载

@@ -174,7 +174,7 @@
       </swiper-item>
     </swiper>
     
-   <view class="swiper-text">{{item.listPhoto[swiper_current].notes==null?'':item.listPhoto[swiper_current].notes}} </view>
+    <view class="swiper-text">{{item.listPhoto[swiper_current].notes==null?'':item.listPhoto[swiper_current].notes}} </view>
 
     <view class="flex  margin-top ">
       <!-- <view class="sp-bofang-times ">播放{{item.playCnt}}次</view> -->

@@ -1155,11 +1155,12 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (e) {
+    console.log(e)
     var that = this;
     if (e.target.dataset.duixiang == 50) {
       return {
         title: '友点乐',
-        path: 'pages/fenxiangshipin/fenxiang?Tabcur=' + that.data.TabCur + '&shipinID=' + that.data.shipin.list[e.target.dataset.index].id,
+        path: 'pages/fenxiangshipin/fenxiang?Tabcur=' + that.data.TabCur + '&shipinID=' + that.data.shipin.list[e.target.dataset.index].id + '&duixiang=' + e.target.dataset.duixiang,
         success: function (res) {
           console.log("转发成功:" + JSON.stringify(res));
           that.shareClick();

@@ -30,14 +30,16 @@ Page({
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60,
       isRefle: true,
     })
-    if (this.data.change_if == 1 && this.data.TabCur < 4) {
-      this.sousuo_dalei()
-    } else if (this.data.change_if == 1 && this.data.TabCur == 4) {
-      this.sousuo_dalei_shipin()
-    } else if (this.data.change_if == 1 && this.data.TabCur == 5) {
-      this.sousuo_tuandui()
-    } else {
-      this.change_sousuo()
+    if (this.data.sousuo_neirong != '') {
+      if (this.data.change_if == 1 && this.data.TabCur < 4) {
+        this.sousuo_dalei()
+      } else if (this.data.change_if == 1 && this.data.TabCur == 4) {
+        this.sousuo_dalei_shipin()
+      } else if (this.data.change_if == 1 && this.data.TabCur == 5) {
+        this.sousuo_tuandui()
+      } else {
+        this.change_sousuo()
+      }
     }
   },
   sousuo_dalei() {
@@ -138,6 +140,9 @@ Page({
         this.setData({
           sousuo_detail: res.data,
         })
+        // if (res.data.listAct[0] == null && res.data.listAmuse[0] == null && res.data.listHobby[0] == null && res.data.listVideo[0] == null) {
+        //   this.tiShiNothing()
+        // }
       }, (err) => {
         console.log(err.errMsg)
       });
@@ -209,9 +214,9 @@ Page({
       this.change_sousuo()
     } else if (this.data.TabCur == 4) {
       this.sousuo_dalei_shipin()
-    }else if (this.data.TabCur == 5) {
+    } else if (this.data.TabCur == 5) {
       this.sousuo_tuandui()
-    }  else {
+    } else {
       this.sousuo_dalei()
     }
   },
@@ -485,8 +490,8 @@ Page({
   },
   //////////sousuotuandui
   sousuo_tuandui: function () {
-    
-    var self=this
+
+    var self = this
     this.getAllActivityClass1nfig()
     let url = app.globalData.URL + '/search/listTeam';
     let data = {
@@ -497,7 +502,7 @@ Page({
       // acid1: null
       // border: this.data.daleiBorder,
     };
-    console.log('搜索团队1',data)
+    console.log('搜索团队1', data)
     app.wxRequest('POST', url, data, (res) => {
       self.setData({
         tuanduiList: res.data.list
@@ -518,7 +523,7 @@ Page({
       })
     })
   },
-  xuanzeClass1: function (e) {///////////////点击大类搜索
+  xuanzeClass1: function (e) { ///////////////点击大类搜索
     var self = this
     self.setData({
       tuanduiCur: e.currentTarget.dataset.index
@@ -532,7 +537,7 @@ Page({
       acid1: this.data.activityClass1[this.data.tuanduiCur].code == "0" ? null : this.data.activityClass1[this.data.tuanduiCur].code
       // border: this.data.daleiBorder,
     };
-    console.log('搜索团队2',data)
+    console.log('搜索团队2', data)
     app.wxRequest('POST', url, data, (res) => {
       self.setData({
         tuanduiList: res.data.list
@@ -541,11 +546,18 @@ Page({
   },
   nav_tuanduiXiangqing: function (e) {
     console.log(e)
-    console.log( this.data.tuanduiList[e.currentTarget.dataset.index].id)
+    console.log(this.data.tuanduiList[e.currentTarget.dataset.index].id)
     wx.navigateTo({
       url: '/pages/MyPages/my_team_detail/my_team_detail?id=' + this.data.tuanduiList[e.currentTarget.dataset.index].id,
     })
   },
+  // tiShiNothing() {
+  //   wx.showToast({
+  //     title: '请在尝试首页调整区域范围！',
+  //     image: '/img/fail.png',
+  //     duration: 3000
+  //   })
+  // },
   /**
    * 生命周期函数--监听页面加载
    */

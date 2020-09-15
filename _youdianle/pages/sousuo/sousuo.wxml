@@ -419,6 +419,7 @@
       wx:if="{{sousuo_detail.listAct[0]==null&&sousuo_detail.listAmuse[0]==null&&sousuo_detail.listHobby[0]==null&&sousuo_detail.listVideo[0]==null}}">
       <image class="nothing" src="/img/img_nothing.png"></image>
       <view class="nothing_words">页面还没有内容</view>
+      <view class="nothing_words">尝试在首页调整区域范围</view>
     </view>
   </block>
 
@@ -514,6 +515,7 @@
     <view wx:else>
       <image class="nothing" src="/img/img_nothing.png"></image>
       <view class="nothing_words">页面还没有内容</view>
+      <view class="nothing_words">尝试在首页调整区域范围</view>
     </view>
   </block>
   <block wx:if="{{TabCur==2}}">
@@ -629,6 +631,7 @@
     <view wx:else>
       <image class="nothing" src="/img/img_nothing.png"></image>
       <view class="nothing_words">页面还没有内容</view>
+      <view class="nothing_words">尝试在首页调整区域范围</view>
     </view>
   </block>
   <block wx:if="{{TabCur==3}}">
@@ -698,6 +701,7 @@
     <view wx:else>
       <image class="nothing" src="/img/img_nothing.png"></image>
       <view class="nothing_words">页面还没有内容</view>
+      <view class="nothing_words">尝试在首页调整区域范围</view>
     </view>
   </block>
   <block wx:if="{{TabCur==4}}">
@@ -729,6 +733,7 @@
     <view wx:else>
       <image class="nothing" src="/img/img_nothing.png"></image>
       <view class="nothing_words">页面还没有内容</view>
+      <view class="nothing_words">尝试在首页调整区域范围</view>
     </view>
   </block>
   <block wx:if="{{TabCur==5}}">
