@@ -119,8 +119,8 @@ Page({
     let t = 'univid'
     this.setData({
       indexs: e.detail.value,
-      [t]: this.data.school[this.data.indexs].code,
-      schoolname: this.data.school[this.data.indexs].name
+      [t]: this.data.school[e.detail.value].code,
+      schoolname: this.data.school[e.detail.value].name
     })
   },
   gettwo(code) {
