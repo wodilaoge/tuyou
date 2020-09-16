@@ -108,23 +108,26 @@ Page({
   },
   getinfo() {
     var self=this
-    var url = app.globalData.URL + '/act/listCampusActivityHome';
+
+    var url,data
+    //  url = app.globalData.URL + '/act/listCampusActivityHome';
     // let t= wx.getStorageSync('province').code?wx.getStorageSync('province').code:null
     // console.log('t',t)
-    var data = {
-      sid: '076002',
-      province: wx.getStorageSync('province').code ? wx.getStorageSync('province').code : null,
-      city: wx.getStorageSync('city').code ? wx.getStorageSync('city').code : null,
-      univ: wx.getStorageSync('school').code ? wx.getStorageSync('school').code : null,
-      pageSize: 5
-    };
-    app.wxRequest_notoken('POST', url, data, (res) => {
-      this.setData({
-        ActList: res.data
-      })
-    }, (err) => {
-      console.log(err.errMsg)
-    });
+    // data = {
+    //   sid: '076002',
+    //   province: wx.getStorageSync('province').code ? wx.getStorageSync('province').code : null,
+    //   city: wx.getStorageSync('city').code ? wx.getStorageSync('city').code : null,
+    //   univ: wx.getStorageSync('school').code ? wx.getStorageSync('school').code : null,
+    //   pageSize: 5
+    // };
+    // app.wxRequest_notoken('POST', url, data, (res) => {
+    //   this.setData({
+    //     ActList: res.data
+    //   })
+    // }, (err) => {
+    //   console.log(err.errMsg)
+    // });
+
     url = app.globalData.URL + '/config/getActivityClass2'
     data = {
       cid: '076003001'
