@@ -13,7 +13,7 @@
         <view class="tdxx-guanzhu align-center" wx:if="{{!isCaptain&&tdxxDeatil.button.follow}}" bindtap="followteam">关注</view>
         <view class="tdxx-guanzhu-after align-center" wx:if="{{!isCaptain&&tdxxDeatil.button.unfollow}}">已关注</view>
       </view>
-      <view class="tdxx-xuanyan">{{tdxxDeatil.slogan}}</view>
+      <view class="tdxx-xuanyan">{{tdxxDeatil.slogan==null?'':tdxxDeatil.slogan}}</view>
     </view>
   </view>
 </view>
@@ -76,7 +76,7 @@
 <view wx:for="{{listmemberdeatil}}" class="padding bg-white duiqi">
   <view class="duiqi just">
     <view class="flex duiqi">
-      <image src="/img/icon_delete.png" class="deleteicon margin-right" wx:if="{{isCaptain}}" bindtap="deleteMem"
+      <image src="/img/icon_delete.png" class="deleteicon margin-right" wx:if="{{item.button.leave}}" bindtap="deleteMem"
         data-id="{{item.uid}}"></image>
       <image src="{{item.head}}" class="head" bindtap="toViewPre" data-id="{{item.uid}}"></image>
       <text class="padding-left">{{item.nickname}}</text>

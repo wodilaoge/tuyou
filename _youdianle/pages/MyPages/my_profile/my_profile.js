@@ -292,6 +292,11 @@ Page({
       }
     });
   },
+  tophone(e){
+    wx.navigateTo({
+      url: '/pages/MyPages/my_security/my_security',
+    })
+  },
   ViewImage(e) {
     wx.previewImage({
       urls: this.data.imgList,
