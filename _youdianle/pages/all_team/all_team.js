@@ -46,12 +46,11 @@ Page({
         showAct: res.data.data.list,
         border:res.data.data.border
       })
+      wx.hideLoading()
     })
 
   },
-  onReady() {
-    wx.hideLoading()
-  },
+
   tabSelect(e) {
     this.setData({
       TabCur: e.currentTarget.dataset.index,
@@ -126,7 +125,7 @@ Page({
       that.setData({
         showAct: _data,
         border:res.data.data.border,
-        needflesh:res.data.data.list==[]
+        needflesh:res.data.data.list.length!=0
       })
     })
   }

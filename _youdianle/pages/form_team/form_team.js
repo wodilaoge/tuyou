@@ -7,6 +7,9 @@ Page({
     isagree: true,
     hiddenmodalput: true,
     isaddress: false,
+    modify:false,
+    showsection: '运动',
+    showtype: '',
     group: 0,
     indexbig: 0,
     index: 0,
@@ -27,6 +30,9 @@ Page({
     univid: '',
     province: '00333',
     city: '',
+    showpro: '浙江',
+    showcity: '',
+    showuni: '',
     indexp: 0, //省
     indexc: 0, //市
     indexs: 0, //学校
@@ -311,25 +317,25 @@ Page({
   firstcommit() {
 
     var that = this
-    if (!that.data.sid){
+    if (!that.data.sid) {
       wx.showToast({
         title: '请选择活动版块',
       })
       return
     }
-    if (!that.data.acid1){
+    if (!that.data.acid1) {
       wx.showToast({
         title: '请选择活动大类',
       })
       return
     }
-    if (!that.data.teamInfo.name){
+    if (!that.data.teamInfo.name) {
       wx.showToast({
         title: '请填写团队名称',
       })
       return
     }
-    if (that.data.imgList.length == 0){
+    if (that.data.imgList.length == 0) {
       wx.showToast({
         title: '请上传队徽',
       })
@@ -465,10 +471,7 @@ Page({
     })
     console.log('wx auth finished')
 
-
-
     this.province();
-
     let url = app.globalData.URL + '/config/getActivitySection';
     util.gets(url, {}).then(function (res) {
       that.setData({
@@ -478,6 +481,9 @@ Page({
 
     if (options.modify == 1) {
       //查团队详情
+      that.setData({
+        modify:true
+      })
       var _url = app.globalData.URL + '/team/findTeam';
       var data = {
         id: options.id
@@ -494,7 +500,65 @@ Page({
           acid1: res.data.data.acid1,
           province: res.data.data.province,
           city: res.data.data.city,
-          univid: res.data.data.univid,
+          univid: res.data.data.univ,
+        })
+        that.gettwo(res.data.data.sid)
+        that.city(res.data.data.province)
+        that.school(res.data.data.city)
+        //按code查name
+        var url = app.globalData.URL + '/config/findDictName';
+        var data = {
+          code: res.data.data.sid
+        }
+        util.gets(url, data).then(function (res) {
+          console.log('板块', res.data)
+          that.setData({
+            showsection: res.data.data
+          })
+        })
+        //按code查name
+        var url = app.globalData.URL + '/config/findDictName';
+        var data = {
+          code: res.data.data.acid1
+        }
+        util.gets(url, data).then(function (res) {
+          console.log('板块', res.data)
+          that.setData({
+            showtype: res.data.data
+          })
+        })
+        //按code查name
+        var url = app.globalData.URL + '/config/findDictName';
+        var data = {
+          code: res.data.data.province
+        }
+        util.gets(url, data).then(function (res) {
+          console.log('省份', res.data)
+          that.setData({
+            showpro: res.data.data
+          })
+        })
+        //按code查name
+        var url = app.globalData.URL + '/config/findDictName';
+        var data = {
+          code: res.data.data.city
+        }
+        util.gets(url, data).then(function (res) {
+          console.log('城市', res.data)
+          that.setData({
+            showcity: res.data.data==null?'':res.data.data
+          })
+        })
+        //按code查name
+        var url = app.globalData.URL + '/config/findDictName';
+        var data = {
+          code: res.data.data.univ
+        }
+        util.gets(url, data).then(function (res) {
+          console.log('学校', res.data)
+          that.setData({
+            showuni:res.data.data==null?'':res.data.data
+          })
         })
         let _bigtmp
         if (res.data.data.sid == '076003')

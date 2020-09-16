@@ -1,17 +1,19 @@
 const app = getApp();
 var util = require("../../../utils/util.js");
+const r = require("../../../utils/cos-auth.min.js");
 Page({
   data: {
     TabCur: 0,
     VerticalNavTop: 0,
-    MainCur: 0,
+    MainCur: '',
     list: [],
     activitylist: [],
-
+    border: '',
     options: 1,
     joinnum: '0',
     createnum: '0',
     attentionnum: '0',
+    needflesh: true,
   },
   tabSelect(e) {
     var that = this
@@ -116,7 +118,8 @@ Page({
     util.post_token(url, data).then(function (res) {
       console.log('参加', res.data)
       that.setData({
-        showAct: res.data.data.list
+        showAct: res.data.data.list,
+        needflesh: true
       })
     })
 
@@ -170,9 +173,10 @@ Page({
     })
     var userId = wx.getStorageSync('userInfo').id
 
+    var url,data
     //大类列表
-    var url = app.globalData.URL + '/team/listAcid1ByLeader';
-    var data = {
+    url = app.globalData.URL + '/team/listAcid1ByLeader';
+    data = {
       lid: userId
     }
     util.gets(url, data).then(function (res) {
@@ -181,16 +185,16 @@ Page({
         allAct: res.data.data
       })
     })
-    //参加的团队 初始化
+    // 获取数据 参与的数量
     url = app.globalData.URL + '/team/listByUser';
     data = {
-      uid: userId
+      uid: userId,
     }
     util.post_token(url, data).then(function (res) {
       console.log('参加', res.data)
       that.setData({
         joinnum: res.data.data.list.length,
-        showAct: res.data.data.list
+        showAct:res.data.data.list
       })
     })
 
@@ -231,4 +235,50 @@ Page({
     })
   },
 
+  onReachBottom: function () {
+    if (!this.data.needflesh)
+      return
+    console.log("上拉刷新")
+    var that = this
+    var url, data
+    var userId = wx.getStorageSync('userInfo').id
+    if (that.data.options == 1) { //参加的团队 初始化
+      url = app.globalData.URL + '/team/listByUser';
+      data = {
+        uid: userId,
+        border: that.data.border,
+        acid1: that.data.MainCur
+      }
+      util.post_token(url, data).then(function (res) {
+        console.log('参加', res.data)
+        var _data = that.data.showAct
+        for (let i of res.data.data.list)
+          _data.push(i)
+        that.setData({
+          showAct: _data,
+          border: res.data.data.border,
+          needflesh: res.data.data.list.length != 0
+        })
+      })
+    } else if (that.data.options == 2) {
+      // 获取数据 发起的数量
+      url = app.globalData.URL + '/team/listSimpleTeam';
+      data = {
+        uid: userId,
+        border: that.data.border,
+        acid1: that.data.MainCur
+      }
+      util.post_token(url, data).then(function (res) {
+        console.log('发起', res.data)
+        var _data = that.data.showAct
+        for (let i of res.data.data.list)
+          _data.push(i)
+        that.setData({
+          showAct: _data,
+          border: res.data.data.border,
+          needflesh: res.data.data.list.length != 0
+        })
+      })
+    }
+  }
 })

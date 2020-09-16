@@ -12,7 +12,7 @@
     <view class="title">活动板块</view>
     <picker bindchange="PickerChangebig" value="{{indexbig}}" range="{{pickerbig}}" range-key="{{'name'}}">
       <view class="picker text-blue">
-        {{indexbig?pickerbig[indexbig].name:'运动'}}
+        {{!modify?pickerbig[indexbig].name:showsection}}
       </view>
     </picker>
   </view>
@@ -21,7 +21,7 @@
     <view class="title">活动大类</view>
     <picker bindchange="PickerChange2" value="{{index}}" range="{{picker2}}" range-key="{{'name'}}">
       <view class="picker text-blue">
-        {{picker2[index].name}}
+        {{!modify?picker2[index].name:showtype}}
       </view>
     </picker>
   </view>
@@ -76,7 +76,7 @@
     <view class="title">省</view>
     <picker bindchange="PickerPro" value="{{indexp}}" range="{{provinceList}}" range-key="name">
       <view class="picker text-grey">
-        {{indexp?provinceList[indexp].name:'浙江'}}
+        {{!modify?provinceList[indexp].name:showpro}}
       </view>
     </picker>
   </view>
@@ -84,7 +84,7 @@
     <view class="title">市</view>
     <picker bindchange="PickerCity" value="{{indexc}}" range="{{citys}}" range-key="name">
       <view class="picker text-grey">
-        {{citys[indexc].name}}
+        {{!modify?citys[indexc].name:showcity}}
       </view>
     </picker>
   </view>
@@ -92,7 +92,7 @@
     <view class="title">学校</view>
     <picker bindchange="PickerSchool" value="{{indexs}}" range="{{school}}" range-key="name">
       <view class="picker text-grey">
-        {{school[indexs].name}}
+        {{!modify?school[indexs].name:showuni}}
       </view>
     </picker>
   </view>
