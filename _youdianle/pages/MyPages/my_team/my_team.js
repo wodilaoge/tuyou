@@ -29,7 +29,7 @@ Page({
       var url = app.globalData.URL + '/team/listByUser';
       var data = {
         uid: userId,
-        acid1: e.currentTarget.dataset.id=='000'?null: e.currentTarget.dataset.id
+        acid1: e.currentTarget.dataset.id == '000' ? null : e.currentTarget.dataset.id
       }
       util.post_token(url, data).then(function (res) {
         console.log('参加', res.data)
@@ -42,7 +42,7 @@ Page({
       var url = app.globalData.URL + '/team/listSimpleTeam';
       var data = {
         uid: userId,
-        acid1: e.currentTarget.dataset.id=='000'?null: e.currentTarget.dataset.id
+        acid1: e.currentTarget.dataset.id == '000' ? null : e.currentTarget.dataset.id
       }
       util.post_token(url, data).then(function (res) {
         console.log('发起', res.data)
@@ -173,7 +173,7 @@ Page({
     })
     var userId = wx.getStorageSync('userInfo').id
 
-    var url,data
+    var url, data
     //大类列表
     url = app.globalData.URL + '/team/listAcid1ByLeader';
     data = {
@@ -189,6 +189,7 @@ Page({
         allAct: tmp
       })
     })
+    
     // 获取数据 参与的数量
     url = app.globalData.URL + '/team/listByUser';
     data = {
@@ -197,35 +198,33 @@ Page({
     util.post_token(url, data).then(function (res) {
       console.log('参加', res.data)
       that.setData({
-        joinnum: res.data.data.list.length,
-        showAct:res.data.data.list
+        showAct: res.data.data.list
       })
     })
 
-    // 获取数据 发起的数量
-    url = app.globalData.URL + '/team/listSimpleTeam';
-    data = {
-      uid: userId
-    }
-    util.post_token(url, data).then(function (res) {
-      console.log('发起', res.data)
+    // 获取数据 各类数量
+    url = app.globalData.URL + '/team/countMyTeam';
+    util.gets(url, {}).then(function (res) {
+      console.log('各类数量', res.data)
       that.setData({
-        createnum: res.data.data.list.length,
+        joinnum:res.data.data.join,
+        createnum: res.data.data.pub,
+        attentionnum:res.data.data.follow
       })
     })
 
-    // 获取数据 关注的数量
-    url = app.globalData.URL + '/follow/listFollowByUserType';
-    data = {
-      uid: userId,
-      objtype: "20"
-    }
-    util.gets(url, data).then(function (res) {
-      console.log('关注', res.data)
-      that.setData({
-        attentionnum: res.data.data.count,
-      })
-    })
+    // // 获取数据 关注的数量
+    // url = app.globalData.URL + '/follow/listFollowByUserType';
+    // data = {
+    //   uid: userId,
+    //   objtype: "20"
+    // }
+    // util.gets(url, data).then(function (res) {
+    //   console.log('关注', res.data)
+    //   that.setData({
+    //     attentionnum: res.data.data.count,
+    //   })
+    // })
 
     let list = [{}];
     for (let i in this.data.YundongList) {

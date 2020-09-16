@@ -3,13 +3,13 @@
 </cu-custom>
 
 <view class="VerticalBox">
-  <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation  >
+  <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation style="height:calc(100vh)" >
     <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{allAct}}" wx:key bindtap='tabSelect' data-id="{{item.code}}" data-index="{{index}}">
       {{item.name}}
     </view>
   </scroll-view>
 
-  <scroll-view class="VerticalMain" scroll-y scroll-with-animation scroll-into-view="main-{{TabCur}}">
+  <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(100vh)" scroll-into-view="main-{{TabCur}}">
     <view class=" " wx:for="{{showAct}}" wx:key="keys" id="main-{{index}}">
       <view class='cu-bar solid-bottom bg-white'>
         <view class='action' bindtap="toTeamDetail" data-id="{{item.id}}" data-index="{{index}}">
