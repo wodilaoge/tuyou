@@ -29,7 +29,7 @@ Page({
       var url = app.globalData.URL + '/team/listByUser';
       var data = {
         uid: userId,
-        acid1: e.currentTarget.dataset.id
+        acid1: e.currentTarget.dataset.id=='000'?null: e.currentTarget.dataset.id
       }
       util.post_token(url, data).then(function (res) {
         console.log('参加', res.data)
@@ -42,7 +42,7 @@ Page({
       var url = app.globalData.URL + '/team/listSimpleTeam';
       var data = {
         uid: userId,
-        acid1: e.currentTarget.dataset.id
+        acid1: e.currentTarget.dataset.id=='000'?null: e.currentTarget.dataset.id
       }
       util.post_token(url, data).then(function (res) {
         console.log('发起', res.data)
@@ -180,9 +180,13 @@ Page({
       lid: userId
     }
     util.gets(url, data).then(function (res) {
-      console.log('大类', res.data)
+      var tmp = res.data.data
+      tmp.unshift({
+        code: '000',
+        name: '全部'
+      })
       that.setData({
-        allAct: res.data.data
+        allAct: tmp
       })
     })
     // 获取数据 参与的数量
