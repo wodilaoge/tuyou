@@ -639,9 +639,9 @@
             <view class="sp-avatar-name">{{shipin.list[index].authorAlias===null?'':shipin.list[index].authorAlias}}
             </view>
             <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu"
-              data-index="{{index}}" hidden="{{shipin.list[index].myFollow==1}}">关注</button>
+              data-index="{{index}}" hidden="{{shipin.list[index].myFollow==1}}" data-duixiang="50">关注</button>
             <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu"
-              data-index="{{index}}" hidden="{{!shipin.list[index].myFollow==1}}">已关注</button>
+              data-index="{{index}}" hidden="{{!shipin.list[index].myFollow==1}}" data-duixiang="50">已关注</button>
           </view>
 
           <view>
@@ -656,7 +656,7 @@
           <view class="flex  margin-top ">
             <view class="sp-bofang-times ">播放{{shipin.list[index].playCnt}}次</view>
             <image src="{{shipin.list[index].myApplaud!=0?'/img/icon_like_all.png':'/img/icon_like.png'}}"
-              style="width:44rpx;height:40rpx;margin-left:270rpx;" bindtap="shipinDianzan" data-index="{{index}}">
+              style="width:44rpx;height:40rpx;margin-left:270rpx;" bindtap="shipinDianzan" data-index="{{index}}"data-duixiang="50">
             </image>
             <view class=" align-center " style="margin-left:16rpx;font-size:32rpx;width:55rpx; ">
               {{shipin.list[index].applaudCnt}}</view>

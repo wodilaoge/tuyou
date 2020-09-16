@@ -359,7 +359,7 @@ Page({
     if (e.target.dataset.duixiang == 50) {
       return {
         title: '友点乐',
-        path: '/pages/fenxiangshipin/fenxiang?&shipinID=' + self.data.shipin.list[e.target.dataset.index].id,
+        path: '/pages/fenxiangshipin/fenxiang?&shipinID=' + self.data.shipin.list[e.target.dataset.index].id+ '&duixiang=' + e.target.dataset.duixiang,
         success: function (res) {
           console.log("转发成功:" + JSON.stringify(res));
           self.shareClick();

@@ -23,6 +23,8 @@ Page({
     activityClass1: [],
     tuanduiCur: 0,
     tuanduiList: [],
+    ifFlushTuandui:true,
+    tuanduiBorder:0,
   },
   tabSelect(e) {
     this.setData({
@@ -504,9 +506,11 @@ Page({
     };
     console.log('搜索团队1', data)
     app.wxRequest('POST', url, data, (res) => {
+      console.log(res)
       self.setData({
         tuanduiList: res.data.list
       })
+
     })
   },
   getAllActivityClass1nfig: function () {
