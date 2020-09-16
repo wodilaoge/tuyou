@@ -97,7 +97,7 @@ App({
           // callback(res.data);
         },
         fail: function(err) {
-          errFun(res);
+          errFun(err);
         }
       })
     }
