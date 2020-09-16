@@ -67,7 +67,7 @@ Page({
       data = {
         acid1: _code
       }
-    console.log(data)
+    // console.log(data)
     util.post_token(url, data).then(function (res) {
       console.log('选择大类', res.data)
       that.setData({
@@ -124,7 +124,7 @@ Page({
       acid1: that.data.MainCur=='000'?null:that.data.MainCur,
       border:that.data.border
     }
-    console.log(data)
+    // console.log(data)
     util.post_token(url, data).then(function (res) {
       console.log('上拉刷新结果', res.data)
       var _data=that.data.showAct
