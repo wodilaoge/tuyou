@@ -116,7 +116,6 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
     wx.login({ //匿名登录
       success: function(res) {
         console.log('login code', res.code);
