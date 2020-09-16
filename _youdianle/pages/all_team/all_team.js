@@ -55,17 +55,24 @@ Page({
     this.setData({
       TabCur: e.currentTarget.dataset.index,
       MainCur: e.currentTarget.dataset.id,
+      needflesh:true
     })
     var that = this
     var url = app.globalData.URL + '/team/listSimpleTeam';
     let _code=e.currentTarget.dataset.id
-    var data = {
-      acid1: _code=="000"||_code==''?null:_code
-    }
+    var data
+    if(_code=='000')
+      data={}
+    else
+      data = {
+        acid1: _code
+      }
+    console.log(data)
     util.post_token(url, data).then(function (res) {
       console.log('选择大类', res.data)
       that.setData({
-        showAct: res.data.data.list
+        showAct: res.data.data.list,
+        border:res.data.data.border
       })
     })
   },
@@ -114,9 +121,10 @@ Page({
     var that = this
     var url = app.globalData.URL + '/team/listSimpleTeam';
     var data = {
-      acid1: that.data.MainCur,
+      acid1: that.data.MainCur=='000'?null:that.data.MainCur,
       border:that.data.border
     }
+    console.log(data)
     util.post_token(url, data).then(function (res) {
       console.log('上拉刷新结果', res.data)
       var _data=that.data.showAct
