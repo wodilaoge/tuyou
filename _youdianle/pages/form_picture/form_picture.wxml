@@ -18,16 +18,16 @@
   <view class="cu-form-group margin-top">
     <view class=" text-red text-xl star">*</view>
     <view class="title">图片标题</view>
-    <input class="input text-grey" placeholder="春季篮球赛" bindinput="gettitle"></input>
+    <input class="input text-grey" placeholder="请输入图片标题" bindinput="gettitle"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group ">
-    <text class="text">正文</text>
-    <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="春季篮球赛"></textarea>
+    <text class="text">简介</text>
+    <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="请输入简介"></textarea>
   </view>
   <view class="cu-form-group margin-top">
     <view class="title">笔名</view>
-    <input class="input text-grey" bindinput="getpenname" placeholder="胡小心"></input>
+    <input class="input text-grey" bindinput="getpenname" placeholder="请输入笔名"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-bar bg-white margin-top">
