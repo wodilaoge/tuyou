@@ -138,7 +138,7 @@ Page({
     util.gets(url, data).then(function (res) {
       that.setData({
         picker2: res.data.data,
-        acid1:res.data.data[0].code
+        acid1: res.data.data[0].code
       })
     })
   },
@@ -348,7 +348,28 @@ Page({
       })
       return
     }
-
+    ///手机号码验证：
+    if (that.data.teamInfo.linktel) {
+      if (!(/^((13[0-9])|(14[0-9])|(15[0-9])|(17[0-9])|(18[0-9]))\d{8}$/.test(that.data.teamInfo.linktel))) {
+        wx.showToast({
+          title: '手机号码有误',
+          duration: 2000,
+          icon: 'none'
+        });
+      }
+      return
+    }
+    //邮箱验证
+    if (that.data.teamInfo.email) {
+      if (!(/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/.test(that.data.teamInfo.email))) {
+        wx.showToast({
+          title: '邮箱输入有误！',
+          duration: 2000,
+          icon: 'none'
+        });
+        return
+      }
+    }
     that.setData({
       hiddenmodalput: !this.data.hiddenmodalput
     })

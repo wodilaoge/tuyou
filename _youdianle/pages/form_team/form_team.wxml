@@ -28,12 +28,12 @@
   <view class="cu-form-group margin-top">
     <view class=" text-red text-xl star">*</view>
     <view class="title">团队名称</view>
-    <input class="input text-grey" bindinput="getname" value="{{teamInfo.name}}" placeholder="请输入团队名称"></input>
+    <input class="input text-grey" bindinput="getname" maxlength='15' value="{{teamInfo.name}}" placeholder="请输入团队名称"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group ">
     <text class="text">团队简介</text>
-    <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput"  value="{{teamInfo.summary}}" placeholder="请输入团队简介"></textarea>
+    <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" maxlength='100' value="{{teamInfo.summary}}" placeholder="请输入团队简介"></textarea>
   </view>
   <!-- <view class="cu-form-group margin-top">
     <view class="title">队长</view>
@@ -68,7 +68,7 @@
   </view>
   <view class="cu-form-group">
     <view class="title">团队口号</view>
-    <input class="input text-grey" bindinput="gettdslogan" value="{{teamInfo.slogan}}"  placeholder="请输入团队签名"></input>
+    <input class="input text-grey" bindinput="gettdslogan" maxlength='15' value="{{teamInfo.slogan}}"  placeholder="请输入团队签名"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
 
