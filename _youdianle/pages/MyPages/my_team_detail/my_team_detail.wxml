@@ -5,13 +5,13 @@
 </view>
 <view style=" background-color:#5454FF;height:300rpx;">
   <view class="flex" style="height:160rpx;padding-top:46rpx;">
-    <image style="padding-left:24rpx;height:160rpx;width:160rpx; border-radius: 10rpx;" src="{{tdxxDeatil.logo}}">
+    <image style="padding-left:24rpx;height:160rpx;width:160rpx; border-radius: 10rpx;flex-shrink: 0;" src="{{tdxxDeatil.logo}}">
     </image>
     <view style="margin-left:21rpx;">
       <view class="flex justify-between">
-        <view class="tdxx-duiming ">{{tdxxDeatil.name}}</view>
+        <view class="tdxx-duiming">{{tdxxDeatil.name}}</view>
         <view class="tdxx-guanzhu align-center" wx:if="{{!isCaptain&&tdxxDeatil.button.follow}}" bindtap="followteam">关注</view>
-        <view class="tdxx-guanzhu-after align-center" wx:if="{{!isCaptain&&tdxxDeatil.button.unfollow}}">已关注</view>
+        <view class="tdxx-guanzhu-after align-center" wx:if="{{!isCaptain&&tdxxDeatil.button.unfollow}}" bindtap="cancelfollow">已关注</view>
       </view>
       <view class="tdxx-xuanyan text-cut">{{tdxxDeatil.slogan==null?'':tdxxDeatil.slogan}}</view>
     </view>

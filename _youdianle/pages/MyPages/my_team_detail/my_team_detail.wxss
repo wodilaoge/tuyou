@@ -76,6 +76,7 @@
   color: rgba(236, 93, 9, 1);
   text-align: center;
   align-items: center;
+  flex-shrink: 0;
 }
 .tdxx-guanzhu-after {
   margin-left: 18rpx;
@@ -89,6 +90,7 @@
   color: rgba(236, 93, 9, 1);
   text-align: center;
   align-items: center;
+  flex-shrink: 0;
 }
 .tdxx-img-icon {
   display: flex;

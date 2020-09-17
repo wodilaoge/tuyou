@@ -23,15 +23,15 @@
   <view wx:if="{{showAct.length==0}}" class="text-center text-blue text-bold padding">
     暂无此类团队
   </view>
-
+  <view class="div"></view>
   <view class="VerticalBox">
 
-    <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation wx:if="{{showAct.length!=0}}">
+    <!-- <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation wx:if="{{showAct.length!=0}}">
       <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{allAct}}" wx:key="keys" bindtap='tabSelect'
         data-id="{{item.code}}" data-index="{{index}}">
         {{item.name}}
       </view>
-    </scroll-view>
+    </scroll-view> -->
 
     <scroll-view class="VerticalMain" scroll-y scroll-with-animation scroll-into-view="main-{{TabCur}}">
       <view class=" " wx:for="{{showAct}}" wx:key="keys" id="main-{{index}}">

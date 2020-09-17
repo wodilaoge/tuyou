@@ -8,7 +8,7 @@ Page({
     CustomBar: app.globalData.CustomBar,
     userInfoAll: [],
     userinfo: [],
-    other:0,
+    other: 0,
     index: null,
     name: '',
     index3: 0,
@@ -174,7 +174,7 @@ Page({
       [t]: e.detail.value
     })
   },
-  getspeciality(e){
+  getspeciality(e) {
     let t = 'userinfo.speciality'
     this.setData({
       [t]: e.detail.value
@@ -292,7 +292,7 @@ Page({
       }
     });
   },
-  tophone(e){
+  tophone(e) {
     wx.navigateTo({
       url: '/pages/MyPages/my_security/my_security',
     })
@@ -334,16 +334,41 @@ Page({
 
   },
   commit: function (e) {
-    var that=this
+    var that = this
     let url = app.globalData.URL + '/appuser/updateMyInfo';
     var tmp = this.data.userinfo
+    if (!tmp.nickname) {
+      wx.showToast({
+        title: '请填写昵称',
+        duration: 2000,
+        icon: 'none'
+      });
+      return false;
+    }
+    if (!tmp.name) {
+      wx.showToast({
+        title: '请填写姓名',
+        duration: 2000,
+        icon: 'none'
+      });
+      return false;
+    }
+    //邮箱验证
+    if (!(/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/.test(tmp.email))) {
+      wx.showToast({
+        title: '邮箱输入有误！',
+        duration: 2000,
+        icon: 'none'
+      });
+      return
+    }
     var data = {
       id: wx.getStorageSync('userInfo').id,
-      head: that.data.other==0?tmp.head:that.data.other,
+      head: that.data.other == 0 ? tmp.head : that.data.other,
       nickname: tmp.nickname,
       name: tmp.name,
       sex: tmp.sex,
-      mobile:tmp.mobile,
+      mobile: tmp.mobile,
       email: tmp.email,
       idtype: tmp.idtype,
       idno: tmp.idno,
@@ -369,9 +394,9 @@ Page({
     util.post_token(url, data).then(function (res) {
       console.log(res.data)
       if (res.data.code == 0) {
-        var obj=wx.getStorageSync('userInfo')
-        obj.nickname=that.data.userinfo.nickname
-        obj.head=that.data.other==0?tmp.head:that.data.other
+        var obj = wx.getStorageSync('userInfo')
+        obj.nickname = that.data.userinfo.nickname
+        obj.head = that.data.other == 0 ? tmp.head : that.data.other
         wx.setStorageSync('userInfo', obj)
         wx.showToast({
           title: '修改成功',
@@ -379,7 +404,7 @@ Page({
           success: function () {
             setTimeout(function () {
               wx.navigateBack({
-               delta:1
+                delta: 1
               })
             }, 1000);
           }

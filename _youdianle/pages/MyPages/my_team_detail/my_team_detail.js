@@ -78,6 +78,31 @@ Page({
       url: '/pages/form_team/form_team?modify=1&&id=' + this.data.tdxxId,
     })
   },
+  cancelfollow(){
+    var that = this
+    console.log('取消关注')
+    var url = app.globalData.URL + '/follow/updateFollow';
+    var data = {
+      objtype: 20,
+      objid: that.data.tdxxId,
+      objtitle: that.data.tdxxDeatil.name,
+      status: 0
+    }
+    util.post_token(url, data).then(function (res) {
+      console.log('取消关注', res.data)
+      if (res.data.code == 0) {
+        wx.showToast({
+          title: '取消关注成功',
+          duration: 1000,
+        })
+        that.secondLoad()
+      } else
+        wx.showToast({
+          title: res.data.msg,
+          duration: 1000,
+        })
+    })
+  },
   followteam() {
     var that = this
     console.log('关注')

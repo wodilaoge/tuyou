@@ -41,6 +41,11 @@
 .duiqi{
   align-items: center;
 }
+.div{
+  background-color: #f1f1f1;
+  height: 15rpx;
+  width: 100%;
+}
 .logosize{
   height: 100rpx;
   width: 100rpx;

@@ -43,12 +43,13 @@
 		<image class="icon" src="/img/iphone.png" bindtap="tophone"></image>
 	</view>
 	<view class="cu-form-group">
-		<view class=" text-red text-xl star ">*</view>
+		<!-- <view class=" text-red text-xl star ">*</view> -->
 		<view class="title">Email</view>
 		<input class="input text-grey" placeholder="{{userinfo.email}}" type='text' name="name"
 			bindinput="getemail"></input>
 		<image class="icon" src="/img/write.png"></image>
 	</view>
+	<view class="remind">重要提醒：Email可用于找回账户，请准确填写</view>
 
 
 	<!-- <view class="cu-form-group">

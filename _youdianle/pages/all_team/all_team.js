@@ -15,6 +15,7 @@ Page({
     list: [],
     load: true,
     needflesh:true,
+    MainCur:'000'
   },
   onShow(){
     this.onLoad()
@@ -40,7 +41,7 @@ Page({
     })
     //所有团队
     url = app.globalData.URL + '/team/listSimpleTeam';
-    util.post_token(url, {}).then(function (res) {
+    util.post_token(url, {acid1:null}).then(function (res) {
       console.log('所有团队', res.data)
       that.setData({
         showAct: res.data.data.list,
@@ -124,7 +125,7 @@ Page({
       acid1: that.data.MainCur=='000'?null:that.data.MainCur,
       border:that.data.border
     }
-    // console.log(data)
+    console.log(data)
     util.post_token(url, data).then(function (res) {
       console.log('上拉刷新结果', res.data)
       var _data=that.data.showAct

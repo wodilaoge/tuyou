@@ -175,20 +175,20 @@ Page({
 
     var url, data
     //大类列表
-    url = app.globalData.URL + '/team/listAcid1ByLeader';
-    data = {
-      lid: userId
-    }
-    util.gets(url, data).then(function (res) {
-      var tmp = res.data.data
-      tmp.unshift({
-        code: '000',
-        name: '全部'
-      })
-      that.setData({
-        allAct: tmp
-      })
-    })
+    // url = app.globalData.URL + '/team/listAcid1ByLeader';
+    // data = {
+    //   lid: userId
+    // }
+    // util.gets(url, data).then(function (res) {
+    //   var tmp = res.data.data
+    //   tmp.unshift({
+    //     code: '000',
+    //     name: '全部'
+    //   })
+    //   that.setData({
+    //     allAct: tmp
+    //   })
+    // })
     
     // 获取数据 参与的数量
     url = app.globalData.URL + '/team/listByUser';

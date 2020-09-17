@@ -23,6 +23,11 @@
   left: 36rpx; */
   right: 20rpx;
 }
+.remind{
+  background-color: white;
+  color: grey;
+  padding-left: 20rpx;
+}
 .input{
    text-align: right
 }

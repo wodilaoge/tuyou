@@ -422,7 +422,7 @@ Page({
         })
       } else if (res.data.code==135) {
         wx.showToast({
-          title: '请先绑定手机！',
+          title: res.data.msg,
           duration: 2000,
           success: function () {
             setTimeout(function () {
@@ -435,9 +435,6 @@ Page({
       }
     })
     console.log('wx auth finished')
-
-
-
     this.province();
     var that = this
     let t1 = 'information.province'
