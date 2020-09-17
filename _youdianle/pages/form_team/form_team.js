@@ -137,7 +137,8 @@ Page({
     };
     util.gets(url, data).then(function (res) {
       that.setData({
-        picker2: res.data.data
+        picker2: res.data.data,
+        acid1:res.data.data[0].code
       })
     })
   },
