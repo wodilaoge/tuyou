@@ -108,7 +108,8 @@ Page({
     var userId = wx.getStorageSync('userInfo').id
     this.setData({
       options: 1,
-      needflesh: true
+      needflesh: true,
+      border: ''
     })
     //参加的团队
     var url = app.globalData.URL + '/team/listByUser';
@@ -130,7 +131,8 @@ Page({
     var userId = wx.getStorageSync('userInfo').id
     this.setData({
       options: 2,
-      needflesh: true
+      needflesh: true,
+      border: ''
     })
 
     // 获取数据 发起的数量
@@ -151,7 +153,8 @@ Page({
     var userId = wx.getStorageSync('userInfo').id
     this.setData({
       options: 3,
-      needflesh: true
+      needflesh: true,
+      border: ''
     })
     // 获取数据 关注的数量
     var url = app.globalData.URL + '/follow/listFollowByUserType';
@@ -189,7 +192,7 @@ Page({
     //     allAct: tmp
     //   })
     // })
-    
+
     // 获取数据 参与的数量
     url = app.globalData.URL + '/team/listByUser';
     data = {
@@ -207,9 +210,9 @@ Page({
     util.gets(url, {}).then(function (res) {
       console.log('各类数量', res.data)
       that.setData({
-        joinnum:res.data.data.join,
+        joinnum: res.data.data.join,
         createnum: res.data.data.pub,
-        attentionnum:res.data.data.follow
+        attentionnum: res.data.data.follow
       })
     })
 
@@ -245,12 +248,11 @@ Page({
     var that = this
     var url, data
     var userId = wx.getStorageSync('userInfo').id
-    if (that.data.options == 1) { //参加的团队 初始化
+    if (that.data.options == 1) { //参加的团队
       url = app.globalData.URL + '/team/listByUser';
       data = {
         uid: userId,
         border: that.data.border,
-        acid1: that.data.MainCur
       }
       util.post_token(url, data).then(function (res) {
         console.log('参加', res.data)
@@ -269,7 +271,6 @@ Page({
       data = {
         uid: userId,
         border: that.data.border,
-        acid1: that.data.MainCur
       }
       util.post_token(url, data).then(function (res) {
         console.log('发起', res.data)
@@ -281,6 +282,24 @@ Page({
           border: res.data.data.border,
           needflesh: res.data.data.list.length != 0
         })
+      })
+    } else {
+      // 获取数据 关注的数量
+      var url = app.globalData.URL + '/follow/listFollowByUserType';
+      var data = {
+        uid: userId,
+        objtype: "20",
+        border: that.data.border
+      }
+      util.gets(url, data).then(function (res) {
+        console.log('关注', res.data)
+        for (let i of res.data.data.list)
+          _data.push(i)
+          that.setData({
+            showAct: _data,
+            border: res.data.data.border,
+            needflesh: res.data.data.list.length != 0
+          })
       })
     }
   }

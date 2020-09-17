@@ -7,8 +7,12 @@
 	<view slot="content">个人资料</view>
 </cu-custom>
 <form>
-	<view class="cu-form-group margin-top">
-		<view class="title">头像</view>
+	<view class="cu-form-group margin-top justify-between">
+		<!-- <view class="text-red text-xl ">*</view> -->
+		<view class="flex">
+			<view class=" text-red text-xl star ">*</view>
+			<view class="title">头像</view>
+		</view>
 		<view class="cu-avatar xl round margin-r" bindtap="ChooseImage" style="background-image:url({{userinfo.head}})">
 		</view>
 		<image class="icon" src="/img/array.png"></image>
@@ -30,7 +34,7 @@
 		</picker>
 	</view>
 	<view class="cu-form-group">
-		<view class=" text-red text-xl star ">*</view>
+		<!-- <view class=" text-red text-xl star ">*</view> -->
 		<view class="title">姓名</view>
 		<input class="input text-grey" placeholder="{{userinfo.name}}" type='text' name="name" bindinput="getname"></input>
 		<image class="icon" src="/img/write.png"></image>
@@ -38,7 +42,8 @@
 	<view class="cu-form-group">
 		<view class=" text-red text-xl star ">*</view>
 		<view class="title">手机号码</view>
-		<input class="input text-grey" disabled="false" placeholder="{{userinfo.mobile==null||userinfo.mobile==''?'请绑定手机':userinfo.mobile}}" type='text' name="name"
+		<input class="input text-grey" disabled="false"
+			placeholder="{{userinfo.mobile==null||userinfo.mobile==''?'请绑定手机':userinfo.mobile}}" type='text' name="name"
 			bindinput="getphone"></input>
 		<image class="icon" src="/img/iphone.png" bindtap="tophone"></image>
 	</view>
@@ -49,7 +54,7 @@
 			bindinput="getemail"></input>
 		<image class="icon" src="/img/write.png"></image>
 	</view>
-	<view class="remind">重要提醒：Email可用于找回账户，请准确填写</view>
+	<view class="remind">（重要提醒：Email可用于找回账户，请准确填写）</view>
 
 
 	<!-- <view class="cu-form-group">
@@ -85,7 +90,7 @@
 			bindinput="getenrolyear"></input>
 		<image class="icon" src="/img/write.png"></image>
 	</view>
-	
+
 	<view class="cu-form-group">
 		<view class="title">毕业年份</view>
 		<input class="input text-grey" placeholder="{{userinfo.graduateyear}}" type='text' name="name"

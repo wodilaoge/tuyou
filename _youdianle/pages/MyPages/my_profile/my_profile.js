@@ -345,18 +345,20 @@ Page({
       });
       return false;
     }
-    if (!tmp.name) {
+
+    //邮箱验证
+    if(!tmp.email)
+    {
       wx.showToast({
-        title: '请填写姓名',
+        title: '请输入邮箱',
         duration: 2000,
         icon: 'none'
       });
       return false;
     }
-    //邮箱验证
     if (!(/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/.test(tmp.email))) {
       wx.showToast({
-        title: '邮箱输入有误！',
+        title: 'Email输入格式不规范',
         duration: 2000,
         icon: 'none'
       });
