@@ -13,7 +13,7 @@
         <view class="tdxx-guanzhu align-center" wx:if="{{!isCaptain&&tdxxDeatil.button.follow}}" bindtap="followteam">关注</view>
         <view class="tdxx-guanzhu-after align-center" wx:if="{{!isCaptain&&tdxxDeatil.button.unfollow}}">已关注</view>
       </view>
-      <view class="tdxx-xuanyan">{{tdxxDeatil.slogan==null?'':tdxxDeatil.slogan}}</view>
+      <view class="tdxx-xuanyan text-cut">{{tdxxDeatil.slogan==null?'':tdxxDeatil.slogan}}</view>
     </view>
   </view>
 </view>

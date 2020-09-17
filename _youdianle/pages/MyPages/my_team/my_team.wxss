@@ -45,6 +45,7 @@
   height: 100rpx;
   width: 100rpx;
   border-radius: 10rpx;
+  flex-shrink: 0;
 }
 .num{
   color: #F96300;

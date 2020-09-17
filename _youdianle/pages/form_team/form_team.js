@@ -7,7 +7,7 @@ Page({
     isagree: true,
     hiddenmodalput: true,
     isaddress: false,
-    modify:false,
+    modify: false,
     showsection: '运动',
     showtype: '',
     group: 0,
@@ -99,7 +99,10 @@ Page({
       indexc: 0,
       indexs: 0,
       [t]: this.data.provinceList[this.data.indexp].code,
-      proname: this.data.provinceList[this.data.indexp].name
+      proname: this.data.provinceList[this.data.indexp].name,
+      showpro: this.data.provinceList[this.data.indexp].name,
+      showcity: '请选择',
+      showuni: '请选择'
     })
     this.city(this.data.province)
   },
@@ -111,7 +114,9 @@ Page({
     })
     this.setData({
       [t]: this.data.citys[this.data.indexc].code,
-      cityname: this.data.citys[this.data.indexc].name
+      cityname: this.data.citys[this.data.indexc].name,
+      showcity: this.data.citys[this.data.indexc].name,
+      showuni: '请选择'
     })
     this.school(this.data.city)
   },
@@ -120,7 +125,8 @@ Page({
     this.setData({
       indexs: e.detail.value,
       [t]: this.data.school[e.detail.value].code,
-      schoolname: this.data.school[e.detail.value].name
+      schoolname: this.data.school[e.detail.value].name,
+      showuni: this.data.school[e.detail.value].name,
     })
   },
   gettwo(code) {
@@ -482,7 +488,7 @@ Page({
     if (options.modify == 1) {
       //查团队详情
       that.setData({
-        modify:true
+        modify: true
       })
       var _url = app.globalData.URL + '/team/findTeam';
       var data = {
@@ -546,7 +552,7 @@ Page({
         util.gets(url, data).then(function (res) {
           console.log('城市', res.data)
           that.setData({
-            showcity: res.data.data==null?'':res.data.data
+            showcity: res.data.data == null ? '' : res.data.data
           })
         })
         //按code查name
@@ -557,7 +563,7 @@ Page({
         util.gets(url, data).then(function (res) {
           console.log('学校', res.data)
           that.setData({
-            showuni:res.data.data==null?'':res.data.data
+            showuni: res.data.data == null ? '' : res.data.data
           })
         })
         let _bigtmp

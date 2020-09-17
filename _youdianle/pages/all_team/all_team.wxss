@@ -10,6 +10,7 @@
   /* top: 64rpx;
   left: 36rpx; */
   right: -600rpx;
+  flex-shrink: 0;
 }
 .duiqi{
   align-items: center;
@@ -26,6 +27,7 @@
   height: 100rpx;
   width: 100rpx;
   border-radius: 10rpx;
+  flex-shrink: 0;
 }
 .VerticalNav.nav {
   width: 250rpx;

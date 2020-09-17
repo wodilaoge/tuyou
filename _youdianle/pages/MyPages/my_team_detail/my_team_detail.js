@@ -263,7 +263,7 @@ Page({
   onShareAppMessage: function () {
     return {
       title: '友点乐',
-      path: 'pages/MyPages/my_team_detail/my_team_detail?isshare=1&&id=' + this.data.tdxxId
+      path: '/pages/MyPages/my_team_detail/my_team_detail?isshare=1&&id=' + this.data.tdxxId
     }
   },
   pass(e) {
