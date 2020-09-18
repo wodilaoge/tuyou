@@ -57,7 +57,7 @@ Page({
         uid: userId,
         objtype: "20"
       }
-      util.gets(url, data).then(function (res) {
+      util.post_token(url, data).then(function (res) {
         console.log('关注', res.data)
         that.setData({
           showAct: res.data.data.list
@@ -109,7 +109,7 @@ Page({
     this.setData({
       options: 1,
       needflesh: true,
-      border: ''
+      border: '',
     })
     //参加的团队
     var url = app.globalData.URL + '/team/listByUser';
@@ -120,7 +120,7 @@ Page({
       console.log('参加', res.data)
       that.setData({
         showAct: res.data.data.list,
-        needflesh: true
+        border: res.data.data.border,
       })
     })
 
@@ -143,7 +143,8 @@ Page({
     util.post_token(url, data).then(function (res) {
       console.log('发起', res.data)
       that.setData({
-        showAct: res.data.data.list
+        showAct: res.data.data.list,
+        border: res.data.data.border,
       })
     })
   },
@@ -162,9 +163,10 @@ Page({
       uid: userId,
       objtype: "20"
     }
-    util.gets(url, data).then(function (res) {
+    util.post_token(url, data).then(function (res) {
       console.log('关注', res.data)
       that.setData({
+        border: res.data.data.border,
         showAct: res.data.data.list
       })
     })
@@ -291,15 +293,15 @@ Page({
         objtype: "20",
         border: that.data.border
       }
-      util.gets(url, data).then(function (res) {
+      util.post_token(url, data).then(function (res) {
         console.log('关注', res.data)
         for (let i of res.data.data.list)
           _data.push(i)
-          that.setData({
-            showAct: _data,
-            border: res.data.data.border,
-            needflesh: res.data.data.list.length != 0
-          })
+        that.setData({
+          showAct: _data,
+          border: res.data.data.border,
+          needflesh: res.data.data.list.length != 0
+        })
       })
     }
   }

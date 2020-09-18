@@ -1,6 +1,18 @@
 /* pages/tuanduixinxi/tuanduixinxi.wxss */
 @import "../../ziliao/ziliao.wxss";
 
+.logo {
+  padding-left: 24rpx;
+  height: 160rpx;
+  width: 160rpx;
+  border-radius: 10rpx;
+  flex-shrink: 0;
+  
+}
+.nextline{
+  word-wrap:break-word;
+  word-break:break-all;
+}
 .tdxx-duiming {
   font-size: 36rpx;
   font-family: PingFang SC;
@@ -29,13 +41,15 @@
   line-height: 36rpx;
   margin-top: 22rpx;
 }
-.icon{
+
+.icon {
   position: relative;
   width: 45rpx;
   height: 45rpx;
   left: 530rpx;
   top: 10rpx;
 }
+
 .tdxx-xinxi {
   height: 100rpx;
   background-color: white;
@@ -53,7 +67,7 @@
   justify-content: space-between;
   display: flex;
   position: absolute;
-  
+
 }
 
 .tdxx-duizhnag-name {
@@ -68,30 +82,32 @@
   margin-left: 18rpx;
   width: 80rpx;
   height: 40rpx;
-  border: 2rpx solid rgba(236, 93, 9, 1);
+  border: 2rpx solid white;
   border-radius: 20rpx;
   font-size: 24rpx;
   font-family: PingFang SC;
   font-weight: 500;
-  color: rgba(236, 93, 9, 1);
+  color: white;
   text-align: center;
   align-items: center;
   flex-shrink: 0;
 }
+
 .tdxx-guanzhu-after {
   margin-left: 18rpx;
   width: 120rpx;
   height: 40rpx;
-  border: 2rpx solid rgba(236, 93, 9, 1);
+  border: 2rpx solid white;
   border-radius: 20rpx;
   font-size: 24rpx;
   font-family: PingFang SC;
   font-weight: 500;
-  color: rgba(236, 93, 9, 1);
+  color: white;
   text-align: center;
   align-items: center;
   flex-shrink: 0;
 }
+
 .tdxx-img-icon {
   display: flex;
   float: right;
@@ -99,7 +115,7 @@
   height: 44rpx;
   margin-right: 40rpx;
   /* margin-left: 265rpx; */
-  
+
 
 }
 
@@ -165,28 +181,33 @@
   color: rgba(102, 102, 102, 1);
   margin-top: 20rpx;
 }
-.head{
+
+.head {
   height: 70rpx;
   width: 70rpx;
   border-radius: 50%;
 }
-.duiqi{
+
+.duiqi {
   align-items: center;
 }
 
-.deleteicon{
+.deleteicon {
   height: 40rpx;
   width: 40rpx;
 }
-.just{
+
+.just {
   justify-content: space-between;
   display: flex;
 }
-.button{
+
+.button {
   height: 60rpx;
   width: 120rpx;
   font-size: small;
 }
+
 /* 回到首页,固定定位,悬浮 */
 .d-back-home {
   position: fixed;

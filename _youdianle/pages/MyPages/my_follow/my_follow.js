@@ -64,7 +64,7 @@ Page({
       'uid':t.id,
       'objtype':30
     }
-    util.gets(url, data).then(function (res) {
+    util.post_token(url, data).then(function (res) {
       that.setData({
         infoall: res.data.data
       })

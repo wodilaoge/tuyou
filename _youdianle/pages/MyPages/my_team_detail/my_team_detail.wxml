@@ -5,7 +5,7 @@
 </view>
 <view style=" background-color:#5454FF;height:300rpx;">
   <view class="flex" style="height:160rpx;padding-top:46rpx;">
-    <image style="padding-left:24rpx;height:160rpx;width:160rpx; border-radius: 10rpx;flex-shrink: 0;" src="{{tdxxDeatil.logo}}">
+    <image class="logo" mode='aspectFill' src="{{tdxxDeatil.logo}}">
     </image>
     <view style="margin-left:21rpx;">
       <view class="flex justify-between">
@@ -13,7 +13,7 @@
         <view class="tdxx-guanzhu align-center" wx:if="{{!isCaptain&&tdxxDeatil.button.follow}}" bindtap="followteam">关注</view>
         <view class="tdxx-guanzhu-after align-center" wx:if="{{!isCaptain&&tdxxDeatil.button.unfollow}}" bindtap="cancelfollow">已关注</view>
       </view>
-      <view class="tdxx-xuanyan text-cut">{{tdxxDeatil.slogan==null?'':tdxxDeatil.slogan}}</view>
+      <view class="tdxx-xuanyan text-cut ">{{tdxxDeatil.slogan==null?'':tdxxDeatil.slogan}}</view>
     </view>
   </view>
 </view>
@@ -38,16 +38,15 @@
 <view class="flex bg-white">
   <view class="tdxx-xinxi-title">联系电话</view>
   <view class="tdxx-xinxi-neirong">{{tdxxDeatil.linktel==null?"":tdxxDeatil.linktel}}</view>
-  <image class="tdxx-img-icon" mode="aspectFit" src="/img/icon_dial.png" bindtap="pinluntiaozhuan"
-    style="width:37rpx;height:36rpx;margin-top:32rpx;"></image>
+  <!-- <image class="tdxx-img-icon" mode="aspectFit" src="/img/icon_dial.png" bindtap="pinluntiaozhuan" style="width:37rpx;height:36rpx;margin-top:32rpx;"></image> -->
 </view>
 <view class="flex bg-white">
   <view class="tdxx-xinxi-title">团队介绍</view>
-  <view class="tdxx-xinxi-neirong">{{tdxxDeatil.summary==null?"":tdxxDeatil.summary}}</view>
+  <view class="tdxx-xinxi-neirong nextline">{{tdxxDeatil.summary==null?"":tdxxDeatil.summary}}</view>
 </view>
 <view class="flex bg-white">
   <view class="tdxx-xinxi-title">地区</view>
-  <view class="tdxx-xinxi-neirong">{{tdxxDeatil.province==null?"":tdxxDeatil.province}}</view>
+  <view class="tdxx-xinxi-neirong">{{tdxxDeatil.region==null?"":tdxxDeatil.region}}</view>
 </view>
 <view class="flex bg-white">
   <view class="tdxx-xinxi-title">隶属机构</view>
