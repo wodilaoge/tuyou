@@ -63,7 +63,10 @@
 <view class="flex bg-white">
   <view class="tdxx-xinxi-title">微信公众号</view>
   <view class="tdxx-xinxi-neirong" style="color:#EC5D09;">{{tdxxDeatil.wcoa==null?"":tdxxDeatil.wcoa}}</view>
-
+</view>
+<view class="flex bg-white">
+  <view class="tdxx-xinxi-title">状态</view>
+  <view class="tdxx-xinxi-neirong" >{{tdxxDeatil.status==null?"":tdxxDeatil.status}}</view>
 </view>
 <view class="bg-white" style="height:30rpx;"></view>
 

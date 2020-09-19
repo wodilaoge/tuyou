@@ -162,44 +162,26 @@ Page({
       id: this.data.tdxxId
     };
     console.log(data)
-    app.wxRequest('GET', url, data, (res) => {
-      console.log(res)
-      this.setData({
-        tdxxDeatil: res.data,
-        duizhangID: res.data.lid,
-        isCaptain: res.data.lid == wx.getStorageSync('userInfo').id
+    util.gets(url, data).then(function (res) {
+      console.log('findTeam', res.data)
+      that.setData({
+        tdxxDeatil: res.data.data,
+        duizhangID: res.data.data.lid,
+        isCaptain: res.data.data.lid == wx.getStorageSync('userInfo').id
       })
-      // var region
-      // url = app.globalData.URL + '/config/findDictName';
-      // //按code查name
-      // util.gets(url, {
-      //   code: that.data.tdxxDeatil.province
-      // }).then(function (res) {
-      //   console.log('省份', res.data)
-      //   region = res.data.data==null?'':res.data.data
-      // }).then(() => util.gets(url, {
-      //   code: that.data.tdxxDeatil.city
-      // }).then(function (res) {
-      //   console.log('城市', res.data)
-      //   region += res.data.data==null?'':res.data.data
-      // }).then(() => {
-      //   util.gets(url, {
-      //     code: that.data.tdxxDeatil.univ
-      //   }).then(function (res) {
-      //     console.log('学校', res.data)
-      //     region += res.data.data==null?'':res.data.data
-      //     let t = 'tdxxDeatil.province'
-      //     that.setData({
-      //       [t]: region
-      //     })
-      //   })
-      // }))
+    }).then(()=>{
       that.getDuizhang()
-    }, (err) => {
-      console.log(err.errMsg)
-    });
-
-
+    })
+    // app.wxRequest('GET', url, data, (res) => {
+    //   console.log(res)
+    //   this.setData({
+    //     tdxxDeatil: res.data,
+    //     duizhangID: res.data.lid,
+    //     isCaptain: res.data.lid == wx.getStorageSync('userInfo').id
+    //   })
+    // }, (err) => {
+    //   console.log(err.errMsg)
+    // });
   },
 
   getDuizhang() {

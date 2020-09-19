@@ -25,7 +25,7 @@
     </picker>
   </view>
   <view class="cu-form-group ">
-    <view class=" text-red text-xl star ">*</view>
+    <!-- <view class=" text-red text-xl star ">*</view> -->
     <view class="title">活动大类</view>
     <picker bindchange="PickerChange2" disabled="{{!picker2.length}}" value="{{index}}" range="{{picker2}}"
       range-key="{{'name'}}">
@@ -35,7 +35,7 @@
     </picker>
   </view>
   <view class="cu-form-group ">
-    <view class=" text-red text-xl star ">*</view>
+    <!-- <view class=" text-red text-xl star ">*</view> -->
     <view class="title">活动小类</view>
     <picker bindchange="PickerChangetiny" disabled="{{!pickertiny.length}}" value="{{indextiny}}" range="{{pickertiny}}"
       range-key="{{'name'}}">
@@ -48,7 +48,7 @@
   <view class="cu-form-group">
     <view class=" text-red text-xl star ">*</view>
     <view class="title">标题</view>
-    <input class="input text-grey" bindinput="getname" placeholder="请输入活动名称"></input>
+    <input class="input text-grey" bindinput="getname" placeholder="请输入视频标题"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <!-- <view class="cu-form-group">

@@ -18,7 +18,7 @@
     </picker>
   </view>
   <view class="cu-form-group ">
-    <view class=" text-red text-xl star">*</view>
+    <!-- <view class=" text-red text-xl star">*</view> -->
     <view class="title">活动大类</view>
     <picker bindchange="PickerChange2" disabled="{{!picker2.length}}" value="{{index}}" range="{{picker2}}"
       range-key="{{'name'}}">
@@ -28,8 +28,7 @@
     </picker>
   </view>
   <view class="cu-form-group ">
-    <view class=" text-red text-xl star">*</view>
-
+    <!-- <view class=" text-red text-xl star">*</view> -->
     <view class="title">活动小类</view>
     <picker bindchange="PickerChangetiny" disabled="{{!pickertiny.length}}" value="{{indextiny}}" range="{{pickertiny}}"
       range-key="{{'name'}}">

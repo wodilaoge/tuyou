@@ -7,8 +7,8 @@
   <view slot="content">组团队</view>
 </cu-custom>
 <form>
- <view class="cu-form-group margin-top">
-  <view class=" text-red text-xl star">*</view>
+  <view class="cu-form-group margin-top">
+    <view class=" text-red text-xl star">*</view>
     <view class="title">活动板块</view>
     <picker bindchange="PickerChangebig" value="{{indexbig}}" range="{{pickerbig}}" range-key="{{'name'}}">
       <view class="picker text-blue">
@@ -17,7 +17,7 @@
     </picker>
   </view>
   <view class="cu-form-group ">
-    <view class=" text-red text-xl star">*</view>
+    <!-- <view class=" text-red text-xl star">*</view> -->
     <view class="title">活动大类</view>
     <picker bindchange="PickerChange2" value="{{index}}" range="{{picker2}}" range-key="{{'name'}}">
       <view class="picker text-blue">
@@ -28,29 +28,34 @@
   <view class="cu-form-group margin-top">
     <view class=" text-red text-xl star">*</view>
     <view class="title">团队名称</view>
-    <input class="input text-grey" bindinput="getname" maxlength='15' value="{{teamInfo.name}}" placeholder="请输入团队名称"></input>
+    <input class="input text-grey" bindinput="getname" maxlength='15' value="{{teamInfo.name}}"
+      placeholder="请输入团队名称"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group ">
     <text class="text">团队简介</text>
-    <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" maxlength='100' value="{{teamInfo.summary}}" placeholder="请输入团队简介"></textarea>
+    <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" maxlength='100'
+      value="{{teamInfo.summary}}" placeholder="请输入团队简介"></textarea>
   </view>
   <!-- <view class="cu-form-group margin-top">
     <view class="title">队长</view>
     <input class="input text-grey" bindinput="getcaptain" placeholder="请输入队长"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view> -->
-  <view class="cu-bar bg-white">
-    <view class="action">
-      队徽
+
+  <view class="bg-white justify-between flex padding-sm">
+    <view class="flex">
+      <view class=" text-red text-xl star2 padding-right-sm">*</view>
+      <view>队徽</view>
     </view>
-    <view class="action">
+    <view class="">
       {{imgList.length}}/1
     </view>
   </view>
   <view class="cu-form-group">
     <view class="grid col-4 grid-square flex-sub">
-      <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-id="1" data-url="{{imgList[index]}}">
+      <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-id="1"
+        data-url="{{imgList[index]}}">
         <image src='{{imgList[index]}}' mode='aspectFill'></image>
         <view class="cu-tag bg-red" catchtap="DelImg" data-id='1' data-index="{{index}}">
           <text class="cuIcon-close"></text>
@@ -68,7 +73,8 @@
   </view>
   <view class="cu-form-group">
     <view class="title">团队口号</view>
-    <input class="input text-grey" bindinput="gettdslogan" maxlength='15' value="{{teamInfo.slogan}}"  placeholder="请输入团队签名"></input>
+    <input class="input text-grey" bindinput="gettdslogan" maxlength='15' value="{{teamInfo.slogan}}"
+      placeholder="请输入团队签名"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
 
@@ -113,9 +119,9 @@
     <input class="input text-grey" placeholder=""></input>
     <image class="icon" src="../../img/write.png"></image>
   </view> -->
-   <view class="cu-form-group">
+  <view class="cu-form-group">
     <view class="title">隶属机构</view>
-    <input class="input text-grey" bindinput="getsuperior"  value="{{teamInfo.superior}}" placeholder="请输入隶属机构"></input>
+    <input class="input text-grey" bindinput="getsuperior" value="{{teamInfo.superior}}" placeholder="请输入隶属机构"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <!-- <view class="cu-form-group">
@@ -130,17 +136,17 @@
   </view> -->
   <view class="cu-form-group margin-top">
     <view class="title">Email</view>
-    <input class="input text-grey" bindinput="getemail"  value="{{teamInfo.email}}" placeholder="请输入Email"></input>
+    <input class="input text-grey" bindinput="getemail" value="{{teamInfo.email}}" placeholder="请输入Email"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group">
     <view class="title">网址</view>
-    <input class="input text-grey" bindinput="getweb"  value="{{teamInfo.website}}" placeholder="请输入网址"></input>
+    <input class="input text-grey" bindinput="getweb" value="{{teamInfo.website}}" placeholder="请输入网址"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="cu-form-group ">
     <view class="title">微信公众号</view>
-    <input class="input text-grey" bindinput="getwx"  value="{{teamInfo.wcoa}}" placeholder="请输入微信公众号"></input>
+    <input class="input text-grey" bindinput="getwx" value="{{teamInfo.wcoa}}" placeholder="请输入微信公众号"></input>
     <image class="icon" src="../../img/write.png"></image>
   </view>
   <view class="text-center margin-top3">
@@ -150,7 +156,8 @@
   </view>
 </form>
 <view class="padding flex flex-direction justify-between ">
-  <button class="cu-btn bg-orange margin-tb-sm lg round" bindtap="firstcommit" disabled="{{!isagree}}" data-target="Modal">提交</button>
+  <button class="cu-btn bg-orange margin-tb-sm lg round" bindtap="firstcommit" disabled="{{!isagree}}"
+    data-target="Modal">提交</button>
 </view>
 
 

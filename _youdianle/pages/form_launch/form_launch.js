@@ -209,15 +209,25 @@ Page({
 
   commit: function (e) {
     var that = this.data
+    if (!this.data.information.sid) {
+      wx.showToast({
+        title: '请选择活动板块',
+      })
+      return
+    }
+    if (!this.data.information.acid1&&this.data.information.sid!='076%999') {
+      wx.showToast({
+        title: '请选择活动大类',
+      })
+      return
+    }
     if (!this.data.information.actname) {
       wx.showToast({
         title: '请填写活动名称',
       })
-    } else if (!this.data.information.sid || !this.data.information.acid1) {
-      wx.showToast({
-        title: '请选择活动类型',
-      })
-    } else if (!this.data.information.province) {
+      return
+    }
+    if (!this.data.information.province) {
       wx.showToast({
         title: '请先选择地区',
         duration: 2000,
@@ -584,15 +594,25 @@ Page({
   },
   finish: function (e) {
     var that = this
+    if (!this.data.information.sid) {
+      wx.showToast({
+        title: '请选择活动板块',
+      })
+      return
+    }
+    if (!this.data.information.acid1&&this.data.information.sid!='076%999') {
+      wx.showToast({
+        title: '请选择活动大类',
+      })
+      return
+    }
     if (!this.data.information.actname) {
       wx.showToast({
         title: '请填写活动名称',
       })
-    } else if (!this.data.information.sid) {
-      wx.showToast({
-        title: '请选择活动类型',
-      })
-    } else if (!this.data.information.province) {
+      return
+    }
+    if (!this.data.information.province) {
       wx.showToast({
         title: '请先选择地区',
         duration: 2000,
