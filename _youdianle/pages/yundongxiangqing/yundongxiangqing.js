@@ -2194,7 +2194,7 @@ Page({
         if (self.data.shiminghide == false)
           self.ifshiming()
       }, 1500)
-      self.getZhaopian()
+    self.getZhaopian()
   },
 
   /**

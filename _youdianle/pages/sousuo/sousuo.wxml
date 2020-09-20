@@ -738,12 +738,15 @@
   </block>
   <block wx:if="{{TabCur==5}}">
     <view class="flex bg-white">
+      <scroll-view scroll-y="true">
       <view class="tuanduiList1">
         <view class="{{tuanduiCur==index?'box_tuandui2':'box_tuandui1'}}" wx:for="{{activityClass1}}"
           bindtap="xuanzeClass1" data-index="{{index}}">
           {{ activityClass1[index].name}}
         </view>
       </view>
+    </scroll-view>
+    <scroll-view scroll-y="true">
       <view class="tuanduiList2">
         <view class="box_tuandui3" wx:for="{{tuanduiList}}" bindtap="nav_tuanduiXiangqing" data-index="{{index}}">
           <image class="tuandui-img" src="{{tuanduiList[index].logo}}">
@@ -756,6 +759,8 @@
           </view>
         </view>
       </view>
+      
+    </scroll-view>
     </view>
   </block>
 </block>

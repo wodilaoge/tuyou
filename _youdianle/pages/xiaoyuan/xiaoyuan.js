@@ -269,7 +269,9 @@ Page({
               city: self.data.city,
               province: self.data.province
             };
+            console.log(data)
             util.post_token(url, data).then(function (res) {
+              console.log(res)
               self.setData({
                 yundongList: res.data.data
               })
