@@ -14,7 +14,7 @@ Page({
     hiddenmodalput: true,
     //可以通过hidden是否掩藏弹出框的属性，来指定那个弹出框  
     scrollLeft: 0,
-    needflesh:true,
+    needflesh: true,
     initialcode: '076003001'
   },
   modalinput: function (e) {
@@ -36,7 +36,7 @@ Page({
   tabSelect(e) {
     this.setData({
       TabCur: e.currentTarget.dataset.id,
-      needflesh:true
+      needflesh: true
     })
     this.flesh(e.currentTarget.dataset.id)
   },
@@ -55,7 +55,21 @@ Page({
         console.log('join', res.data)
         that.setData({
           Myjoin: res.data.data,
-          nowActNum: res.data.data.list.length
+        })
+      })
+
+      url = app.globalData.URL + '/act/countMyActivity';
+      data = {
+        'type': 20,
+        'univ': wx.getStorageSync('school').code,
+        'province': wx.getStorageSync('province').code,
+        'city': wx.getStorageSync('city').code,
+        'acid1': that.data.AllActivity[tab].code
+      };
+      util.post_token(url, data).then(function (res) {
+        console.log('joinnum', res.data)
+        that.setData({
+          nowActNum: res.data.data
         })
       })
     }
@@ -70,7 +84,20 @@ Page({
         console.log('create', res.data)
         that.setData({
           Mycreate: res.data.data,
-          nowActNum: res.data.data.list.length
+        })
+      })
+      url = app.globalData.URL + '/act/countMyActivity';
+      data = {
+        'type': 10,
+        'univ': wx.getStorageSync('school').code,
+        'province': wx.getStorageSync('province').code,
+        'city': wx.getStorageSync('city').code,
+        'acid1': that.data.AllActivity[tab].code
+      };
+      util.post_token(url, data).then(function (res) {
+        console.log('joinnum', res.data)
+        that.setData({
+          nowActNum: res.data.data
         })
       })
     }
@@ -85,7 +112,20 @@ Page({
         console.log('attention', res.data)
         that.setData({
           Myattention: res.data.data,
-          nowActNum: res.data.data.list.length
+        })
+      })
+      url = app.globalData.URL + '/act/countMyActivity';
+      data = {
+        'type': 30,
+        'univ': wx.getStorageSync('school').code,
+        'province': wx.getStorageSync('province').code,
+        'city': wx.getStorageSync('city').code,
+        'acid1': that.data.AllActivity[tab].code
+      };
+      util.post_token(url, data).then(function (res) {
+        console.log('joinnum', res.data)
+        that.setData({
+          nowActNum: res.data.data
         })
       })
     }
@@ -94,22 +134,72 @@ Page({
    * 生命周期函数--监听页面加载
    */
   select1() {
+    var that = this
+    var url = app.globalData.URL + '/act/countMyActivity';
+    var data = {
+      'type': 20,
+      'univ': wx.getStorageSync('school').code,
+      'province': wx.getStorageSync('province').code,
+      'city': wx.getStorageSync('city').code,
+      "acid1": '076003001'
+    };
+    util.post_token(url, data).then(function (res) {
+      console.log('joinnum', res.data)
+      that.setData({
+        nowActNum: res.data.data
+      })
+    })
+
     this.setData({
       options: 1,
-      needflesh:true
+      needflesh: true,
+      TabCur: 0
     })
   },
 
   select2() {
+    var that = this
+    var url = app.globalData.URL + '/act/countMyActivity';
+    var data = {
+      'type': 10,
+      'univ': wx.getStorageSync('school').code,
+      'province': wx.getStorageSync('province').code,
+      'city': wx.getStorageSync('city').code,
+      "acid1": '076003001'
+    };
+    util.post_token(url, data).then(function (res) {
+      console.log('createnum', res.data)
+      that.setData({
+        nowActNum: res.data.data
+      })
+    })
+
     this.setData({
       options: 2,
-      needflesh:true
+      needflesh: true,
+      TabCur: 0
     })
   },
   select3() {
+    var that = this
+    var url = app.globalData.URL + '/act/countMyActivity';
+    var data = {
+      'type': 30,
+      'univ': wx.getStorageSync('school').code,
+      'province': wx.getStorageSync('province').code,
+      'city': wx.getStorageSync('city').code,
+      "acid1": '076003001'
+    };
+    util.post_token(url, data).then(function (res) {
+      console.log('follownum', res.data)
+      that.setData({
+        nowActNum: res.data.data
+      })
+    })
     this.setData({
       options: 3,
-      needflesh:true
+      needflesh: true,
+      TabCur: 0
     })
   },
   cancelact(e) {
@@ -156,7 +246,7 @@ Page({
   yundongxiangqing(e) {
     app.globalData.tabbar = 1;
     wx.navigateTo({
-      url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&Title=' + e.currentTarget.dataset.yundong.actname + '&categoryId=' + e.currentTarget.dataset.yundong.id+'&yes='+'yes',
+      url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&Title=' + e.currentTarget.dataset.yundong.actname + '&categoryId=' + e.currentTarget.dataset.yundong.id + '&yes=' + 'yes',
     })
   },
   baomingtiaozhan(e) {
@@ -214,13 +304,6 @@ Page({
       console.log('Mycreate', res.data)
       that.setData({
         Mycreate: res.data.data
-      })
-      for (i of res.data.data.list) {
-        if (i.status == 20)
-          num++
-      }
-      that.setData({
-        createnum: num
       })
     })
     //我参加的
@@ -298,7 +381,7 @@ Page({
     var that = this
     // console.log(that.data.AllActivity[that.data.options].code)
     //我参与的
-    if (that.data.options == 1&&that.data.needflesh==true) {
+    if (that.data.options == 1 && that.data.needflesh == true) {
       console.log('join')
       let url = app.globalData.URL + '/act/listMyActivity';
       let data = {
@@ -316,20 +399,20 @@ Page({
             tmp.list.push(s)
           that.setData({
             Myjoin: tmp,
-            nowActNum: res.data.data.list.length + that.data.nowActNum
+            // nowActNum: res.data.data.list.length + that.data.nowActNum
           })
         }
         //无数据传回
-        else{
+        else {
           that.setData({
-            needflesh:false
+            needflesh: false
           })
         }
         wx.hideLoading()
       })
     }
     //我创建的
-    else if (that.data.options == 2&&that.data.needflesh==true) {
+    else if (that.data.options == 2 && that.data.needflesh == true) {
       let url = app.globalData.URL + '/act/listMyActivity';
       let data = {
         'type': 10,
@@ -346,20 +429,20 @@ Page({
             tmp.list.push(s)
           that.setData({
             Mycreate: tmp,
-            nowActNum: res.data.data.list.length + that.data.nowActNum
+            // nowActNum: res.data.data.list.length + that.data.nowActNum
           })
         }
         //无数据传回
-        else{
+        else {
           that.setData({
-            needflesh:false
+            needflesh: false
           })
         }
         wx.hideLoading()
       })
     }
     //我关注的
-    else if (that.data.options == 3&&that.data.needflesh==true) {
+    else if (that.data.options == 3 && that.data.needflesh == true) {
       wx.showLoading({
         title: '加载中...',
         mask: true //显示触摸蒙层  防止事件穿透触发
@@ -380,13 +463,13 @@ Page({
             tmp.list.push(s)
           that.setData({
             Myattention: tmp,
-            nowActNum: res.data.data.list.length + that.data.nowActNum
+            // nowActNum: res.data.data.list.length + that.data.nowActNum
           })
         }
         //无数据传回
-        else{
+        else {
           that.setData({
-            needflesh:false
+            needflesh: false
           })
         }
         wx.hideLoading()

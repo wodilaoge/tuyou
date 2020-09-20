@@ -295,6 +295,7 @@ Page({
       }
       util.post_token(url, data).then(function (res) {
         console.log('关注', res.data)
+        var _data = that.data.showAct
         for (let i of res.data.data.list)
           _data.push(i)
         that.setData({
