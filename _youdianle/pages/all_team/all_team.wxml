@@ -10,7 +10,7 @@
   </scroll-view>
 
   <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(100vh)" scroll-into-view="main-{{TabCur}}">
-    <view class=" " wx:for="{{showAct}}" wx:key="keys" id="main-{{index}}">
+    <view  wx:for="{{showAct}}" wx:if="{{showAct.length!=0}}" wx:key="keys" id="main-{{index}}">
       <view class='cu-bar solid-bottom bg-white'>
         <view class='action' bindtap="toTeamDetail" data-id="{{item.id}}" data-index="{{index}}">
           <view class="flex duiqi">
@@ -28,5 +28,6 @@
         </view>
       </view>
     </view>
+    <view wx:if="{{showAct.length==0}}" class="nu">暂无此类团队</view>
   </scroll-view>
 </view>

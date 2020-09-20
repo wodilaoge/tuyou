@@ -1,8 +1,17 @@
-
 .menu-name {
   text-align: center;
   font-weight: bold;
 }
+
+.nu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 35rpx;
+  font-size: 50rpx;
+
+}
+
 .icon {
   position: relative;
   width: 40rpx;
@@ -12,23 +21,28 @@
   right: -600rpx;
   flex-shrink: 0;
 }
-.duiqi{
+
+.duiqi {
   align-items: center;
 }
-.num{
+
+.num {
   color: #F96300;
   padding-left: 10rpx;
   padding-right: 10rpx;
 }
-.avatar-round{
+
+.avatar-round {
   border-radius: 10rpx;
 }
-.logosize{
+
+.logosize {
   height: 100rpx;
   width: 100rpx;
   border-radius: 10rpx;
   flex-shrink: 0;
 }
+
 .VerticalNav.nav {
   width: 250rpx;
   white-space: initial;
@@ -47,6 +61,7 @@
 .VerticalNav.nav .cu-item.cur {
   background-color: #ffffff;
 }
+
 .VerticalNav.nav .cu-item.cur::after {
   content: "";
   width: 8rpx;
@@ -59,9 +74,11 @@
   bottom: 0;
   margin: auto;
 }
-.VerticalBox{
+
+.VerticalBox {
   display: flex;
 }
-.VerticalMain{
+
+.VerticalMain {
   background-color: #f1f1f1;
 }

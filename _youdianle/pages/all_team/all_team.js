@@ -18,7 +18,7 @@ Page({
     MainCur:'000'
   },
   onShow(){
-    this.onLoad()
+    // this.onLoad()
   },
   onLoad(options) {
     wx.showLoading({
