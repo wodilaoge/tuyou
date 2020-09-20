@@ -60,9 +60,14 @@ Page({
           duration: 1000,
           success: function () {
             setTimeout(function () {
-              wx.navigateBack({
-                delta: 1,
-              })
+              wx.switchTab({
+                url: '/pages/all_team/all_team',
+                success:function () {
+                    var page = getCurrentPages().pop();
+                    if (page == undefined || page == null) return;
+                    page.onLoad();   //重新刷新页面
+                }
+            })
             }, 1000);
           }
         })
@@ -262,6 +267,7 @@ Page({
                 title: res.data.msg,
                 duration: 1000,
               })
+            that.secondLoad()
           })
         }
       }

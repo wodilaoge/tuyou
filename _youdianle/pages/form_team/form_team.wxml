@@ -9,19 +9,19 @@
 <form>
   <view class="cu-form-group margin-top">
     <view class=" text-red text-xl star">*</view>
-    <view class="title">活动板块</view>
+    <view class="title">团队板块</view>
     <picker bindchange="PickerChangebig" value="{{indexbig}}" range="{{pickerbig}}" range-key="{{'name'}}">
       <view class="picker text-blue">
-        {{!modify?pickerbig[indexbig].name:showsection}}
+        {{!modify?indexbig?pickerbig[indexbig].name:"请选择团队板块":showsection}}
       </view>
     </picker>
   </view>
   <view class="cu-form-group ">
     <!-- <view class=" text-red text-xl star">*</view> -->
-    <view class="title">活动大类</view>
+    <view class="title">团队大类</view>
     <picker bindchange="PickerChange2" value="{{index}}" range="{{picker2}}" range-key="{{'name'}}">
       <view class="picker text-blue">
-        {{!modify?picker2[index].name:showtype}}
+        {{!modify?index?picker2[index].name:"请选择团队大类":showtype}}
       </view>
     </picker>
   </view>
@@ -82,7 +82,7 @@
     <view class="title">省</view>
     <picker bindchange="PickerPro" value="{{indexp}}" range="{{provinceList}}" range-key="name">
       <view class="picker text-grey">
-        {{!modify?provinceList[indexp].name:showpro}}
+        {{!modify?indexp?provinceList[indexp].name:"选择省份":showpro}}
       </view>
     </picker>
   </view>
@@ -90,7 +90,7 @@
     <view class="title">市</view>
     <picker bindchange="PickerCity" value="{{indexc}}" range="{{citys}}" range-key="name">
       <view class="picker text-grey">
-        {{!modify?citys[indexc].name:showcity}}
+        {{!modify?indexc?citys[indexc].name:"选择城区":showcity}}
       </view>
     </picker>
   </view>
@@ -98,7 +98,7 @@
     <view class="title">学校</view>
     <picker bindchange="PickerSchool" value="{{indexs}}" range="{{school}}" range-key="name">
       <view class="picker text-grey">
-        {{!modify?school[indexs].name:showuni}}
+        {{!modify?indexs?school[indexs].name:"选择院校":showuni}}
       </view>
     </picker>
   </view>

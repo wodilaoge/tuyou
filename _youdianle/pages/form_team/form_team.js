@@ -28,7 +28,7 @@ Page({
     website: '',
     wcoa: '',
     univid: '',
-    province: '00333',
+    province: '',
     city: '',
     showpro: '浙江',
     showcity: '',
@@ -45,7 +45,7 @@ Page({
     modalName: null,
     other: [],
     information: [],
-    sid: '076003',
+    sid: '',
     acid1: '',
     teamInfo: {
       'rssort': '50'

@@ -18,7 +18,7 @@ Page({
     MainCur:'000'
   },
   onShow(){
-    this.onLoad()
+    // this.onLoad()
   },
   onLoad(options) {
     wx.showLoading({
@@ -119,6 +119,10 @@ Page({
     if(!this.data.needflesh)
       return
     console.log("上拉刷新")
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     var that = this
     var url = app.globalData.URL + '/team/listSimpleTeam';
     var data = {
@@ -136,6 +140,7 @@ Page({
         border:res.data.data.border,
         needflesh:res.data.data.list.length!=0
       })
+      wx.hideLoading()
     })
   }
 })

@@ -104,6 +104,10 @@ Page({
   },
 
   select1() {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     var that = this
     var userId = wx.getStorageSync('userInfo').id
     this.setData({
@@ -122,11 +126,17 @@ Page({
         showAct: res.data.data.list,
         border: res.data.data.border,
       })
+      wx.hideLoading()
+
     })
 
   },
 
   select2() {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     var that = this
     var userId = wx.getStorageSync('userInfo').id
     this.setData({
@@ -146,10 +156,16 @@ Page({
         showAct: res.data.data.list,
         border: res.data.data.border,
       })
+      wx.hideLoading()
+
     })
   },
 
   select3() {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     var that = this
     var userId = wx.getStorageSync('userInfo').id
     this.setData({
@@ -169,9 +185,15 @@ Page({
         border: res.data.data.border,
         showAct: res.data.data.list
       })
+      wx.hideLoading()
+
     })
   },
   onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     let that = this;
     that.setData({
       lid: options.lid
@@ -216,6 +238,8 @@ Page({
         createnum: res.data.data.pub,
         attentionnum: res.data.data.follow
       })
+      wx.hideLoading()
+
     })
 
     // // 获取数据 关注的数量
@@ -250,6 +274,10 @@ Page({
     var that = this
     var url, data
     var userId = wx.getStorageSync('userInfo').id
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     if (that.data.options == 1) { //参加的团队
       url = app.globalData.URL + '/team/listByUser';
       data = {
@@ -295,6 +323,7 @@ Page({
       }
       util.post_token(url, data).then(function (res) {
         console.log('关注', res.data)
+        var _data = that.data.showAct
         for (let i of res.data.data.list)
           _data.push(i)
         that.setData({
@@ -304,5 +333,6 @@ Page({
         })
       })
     }
+    wx.hideLoading()
   }
 })
