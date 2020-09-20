@@ -41,6 +41,10 @@ Page({
     this.flesh(e.currentTarget.dataset.id)
   },
   flesh(tab) {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     console.log('flesh')
     var that = this
     console.log(that.data.AllActivity[tab].code)
@@ -129,11 +133,16 @@ Page({
         })
       })
     }
+    wx.hideLoading()
   },
   /**
    * 生命周期函数--监听页面加载
    */
   select1() {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     var that = this
     var url = app.globalData.URL + '/act/countMyActivity';
     var data = {
@@ -148,6 +157,7 @@ Page({
       that.setData({
         nowActNum: res.data.data
       })
+      wx.hideLoading()
     })
 
     this.setData({
@@ -158,6 +168,10 @@ Page({
   },
 
   select2() {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     var that = this
     var url = app.globalData.URL + '/act/countMyActivity';
     var data = {
@@ -172,6 +186,7 @@ Page({
       that.setData({
         nowActNum: res.data.data
       })
+      wx.hideLoading()
     })
 
     this.setData({
@@ -181,6 +196,10 @@ Page({
     })
   },
   select3() {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     var that = this
     var url = app.globalData.URL + '/act/countMyActivity';
     var data = {
@@ -195,6 +214,7 @@ Page({
       that.setData({
         nowActNum: res.data.data
       })
+      wx.hideLoading()
     })
     this.setData({
       options: 3,
@@ -285,6 +305,10 @@ Page({
     })
   },
   onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     var that = this
     let url = app.globalData.URL + '/config/findAllActivityClass1';
     // 所有活动
@@ -373,6 +397,7 @@ Page({
       that.setData({
         attentionnum: res.data.data
       })
+      wx.hideLoading()
     })
   },
 
@@ -381,6 +406,7 @@ Page({
     var that = this
     // console.log(that.data.AllActivity[that.data.options].code)
     //我参与的
+    
     if (that.data.options == 1 && that.data.needflesh == true) {
       console.log('join')
       let url = app.globalData.URL + '/act/listMyActivity';
@@ -423,7 +449,7 @@ Page({
         console.log('Mycreate flesh', res.data)
         //有数据传回
         if (res.data.data.border != null) {
-          var tmp = that.data.Myjoin
+          var tmp = that.data.Mycreate
           tmp.border = res.data.data.border
           for (let s of res.data.data.list)
             tmp.list.push(s)
