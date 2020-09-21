@@ -45,7 +45,6 @@
   </view>
   <view class="ziliao-back" wx:if="{{ifFX==1}}">
     <view class="cuIcon-back lg text-white shouye" bindtap="navshouye">首页</view>
-
     <view class="flex">
       <text class="ziliao-name">{{duiyuanDeatil.name}}</text>
       <block wx:if="{{ifguanzhu==0&&ifziji==0}}">

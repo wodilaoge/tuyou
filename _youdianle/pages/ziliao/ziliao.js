@@ -735,8 +735,8 @@ Page({
     })
     self.hideModal()
   },
-  pinglunFasong(){
-    let self=this;
+  pinglunFasong() {
+    let self = this;
     let url = app.globalData.URL + '/comm/addComment';
     let data = {
       pid: null,
@@ -770,7 +770,7 @@ Page({
       console.log(err.errMsg)
     });
 
-    
+
     self.setData({
       Input: '',
     })
@@ -1140,7 +1140,7 @@ Page({
       duiyuanID: options.id,
       user: wx.getStorageSync('userInfo'),
       options: options,
-      ifFX: options.ifFX,
+      ifFX: options.ifFX ? options.ifFX : '0',
     })
     this.getHuodongDetail(options)
     this.getDuiyuan()
@@ -1232,12 +1232,13 @@ Page({
   onShareAppMessage: function (e) {
     console.log(e)
     var that = this;
-    if (e.target.dataset.duixiang == 50) {
+    if (e.from == "menu") {
       return {
         title: '友点乐',
-        path: 'pages/fenxiangshipin/fenxiang?Tabcur=' + that.data.TabCur + '&shipinID=' + that.data.shipin.list[e.target.dataset.index].id + '&duixiang=' + e.target.dataset.duixiang,
+        path: 'pages/ziliao/ziliao?ifFX=' + that.data.ifTrue + '&id=' + that.data.options.id,
         success: function (res) {
           console.log("转发成功:" + JSON.stringify(res));
+
           that.shareClick();
         },
         fail: function (res) {
@@ -1245,21 +1246,37 @@ Page({
         }
       }
     } else {
-      return {
-        title: '友点乐',
-        path: 'pages/ziliao/ziliao?ifFX=' + that.data.ifTrue + '&id=' + that.data.options.id,
-        success: function (res) {
-          console.log("转发成功:" + JSON.stringify(res));
-          that.shareClick();
-        },
-        fail: function (res) {
-          console.log("转发失败:" + JSON.stringify(res));
+      if (e.target.dataset.duixiang == 50) {
+        return {
+          title: '友点乐',
+          path: 'pages/fenxiangshipin/fenxiang?Tabcur=' + that.data.TabCur + '&shipinID=' + that.data.shipin.list[e.target.dataset.index].id + '&duixiang=' + e.target.dataset.duixiang,
+          success: function (res) {
+            console.log("转发成功:" + JSON.stringify(res));
+            that.shareClick();
+          },
+          fail: function (res) {
+            console.log("转发失败:" + JSON.stringify(res));
+          }
+        }
+      } else {
+        return {
+          title: '友点乐',
+          path: 'pages/ziliao/ziliao?ifFX=' + that.data.ifTrue + '&id=' + that.data.options.id,
+          success: function (res) {
+            console.log("转发成功:" + JSON.stringify(res));
+
+            that.shareClick();
+          },
+          fail: function (res) {
+            console.log("转发失败:" + JSON.stringify(res));
+          }
         }
       }
     }
 
   },
   navshouye() {
+    console.log("首页")
     wx.reLaunch({
       url: '../index/index'
     })
