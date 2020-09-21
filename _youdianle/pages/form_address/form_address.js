@@ -24,6 +24,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   province() {
+    var that = this
     let url = app.globalData.URL + '/config/getProvince';
     let data = '';
     app.wxRequest('GET', url, data, (res) => {
@@ -36,6 +37,30 @@ Page({
       this.setData({
         provinceList: tmp
       })
+      let pro = wx.getStorageSync('province')
+      if (pro) {
+        for (let i = 0; i < tmp.length; i++) {
+          if (pro.code == tmp[i].code) {
+            that.city(pro.code)
+            that.setData({
+              TabCur: i
+            })
+            break
+          }
+        }
+        // let city = wx.getStorageSync('city')
+        // if(city)
+        // {
+        //   for (let i = 0; i < tmp.length; i++) {
+        //     if (pro.code == tmp[i].code) {
+        //       that.setData({
+        //         TabCur: i
+        //       })
+        //       break
+        //     }
+        //   }
+        // }
+      }
     }, (err) => {
       console.log(err.errMsg)
     });
@@ -85,16 +110,7 @@ Page({
       title: '加载中...',
       mask: true
     });
-    let list = [{}];
-    for (let i = 0; i < 26; i++) {
-      list[i] = {};
-      list[i].name = String.fromCharCode(65 + i);
-      list[i].id = i;
-    }
-    this.setData({
-      list: list,
-      listCur: list[0]
-    })
+
   },
   onReady() {
     wx.hideLoading()
@@ -117,15 +133,13 @@ Page({
         wx.switchTab({
           url: '/pages/index/index',
         })
-      } 
-      else if(mode=="2"){
+      } else if (mode == "2") {
         wx.navigateTo({
           url: '/pages/form_video/form_video',
-        })   
-      }
-      else {
+        })
+      } else {
         wx.navigateBack({
-          delta:1
+          delta: 1
         })
       }
     } else {
@@ -165,21 +179,18 @@ Page({
         wx.switchTab({
           url: '/pages/index/index',
         })
-      } 
-      else if(mode=="2"){
+      } else if (mode == "2") {
         wx.navigateTo({
           url: '/pages/form_video/form_video',
-        })   
-      }
-      else {
+        })
+      } else {
         wx.navigateBack({
-          delta:1
+          delta: 1
         })
       }
-    }
-     else{
+    } else {
       this.city(e.currentTarget.dataset.id)
-     }
+    }
   },
   VerticalMain(e) {
     let that = this;
