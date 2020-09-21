@@ -175,6 +175,7 @@
 }
 
 .tuanduiList2 {
+  margin-left: 0rpx;
 }
 
 .box_tuandui1 {
@@ -212,3 +213,5 @@ padding-top: 19rpx;
   width: 78rpx;
   border-radius: 10rpx;
 }
+
+

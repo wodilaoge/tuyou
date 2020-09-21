@@ -20,7 +20,7 @@ Page({
     ifguanzhu: 0,
     ifziji: 0,
     huodongshu: 0,
-    ifYouXiao:true,
+    ifYouXiao: true,
     count: 0,
     comment: [],
     chooseSize: false,
@@ -36,8 +36,8 @@ Page({
     /////////////活动
     scrollLeft: 0,
     AllActivity: [],
-    TabCur2: 0,//////////huodong
-    TabCur3: 0,//////////shipin
+    TabCur2: 0, //////////huodong
+    TabCur3: 0, //////////shipin
     createnum: 0,
     initialcode: '076003001',
     Mycreate: [],
@@ -46,7 +46,7 @@ Page({
     nowActNum2: 0,
     huodongBorder: 0,
     isRefleshHuodong: true,
-    huodongXiaoleiIndex:0,
+    huodongXiaoleiIndex: 0,
     //////////////
     shipin: [],
     uid: '',
@@ -85,7 +85,7 @@ Page({
       self.setData({
         shipin: shipintmp,
         shipinBorder: res.data.border,
-        nowActNum2: self.data.nowActNum2+res.data.list.length,
+        nowActNum2: self.data.nowActNum2 + res.data.list.length,
       })
 
     }, (err) => {
@@ -144,10 +144,10 @@ Page({
       }
     }
   },
-  yingChangShipin:function(e){
+  yingChangShipin: function (e) {
     console.log(e)
-    let shipintmp=this.data.shipin;
-    shipintmp.list[e.currentTarget.dataset.index].yingChang=1;
+    let shipintmp = this.data.shipin;
+    shipintmp.list[e.currentTarget.dataset.index].yingChang = 1;
     shipintmp.list[e.currentTarget.dataset.index].shipinSRC = shipintmp.list[e.currentTarget.dataset.index].fileId; /////////点击再加载
     this.setData({
       shipin: shipintmp
@@ -358,7 +358,7 @@ Page({
     url = app.globalData.URL + '/act/listActivity';
     let num
     let data = {
-      uid:e.id,
+      uid: e.id,
       acid1: '076003001',
 
     };
@@ -374,10 +374,10 @@ Page({
       that.setData({
         Mycreate: res.data.data,
         nowActNum: res.data.data.list.length,
-        huodongBorder:res.data.data.border,
+        huodongBorder: res.data.data.border,
       })
       console.log('Mycreate', that.data.Mycreate)
-     
+
     })
   },
   getHuodongDetailXiaolei(e) {
@@ -386,7 +386,7 @@ Page({
     let url = app.globalData.URL + '/act/listActivity';
     let num
     let data = {
-      uid:self.data.duiyuanID,
+      uid: self.data.duiyuanID,
       acid1: that.data.AllActivity[e].code,
 
     };
@@ -402,10 +402,10 @@ Page({
       that.setData({
         Mycreate: res.data.data,
         nowActNum: res.data.data.list.length,
-        huodongBorder:res.data.data.border,
+        huodongBorder: res.data.data.border,
       })
       console.log('Mycreate', that.data.Mycreate)
-     
+
     })
   },
   getHuodongDetailXiaoleiFenye() {
@@ -415,7 +415,7 @@ Page({
     let url = app.globalData.URL + '/act/listActivity';
     let num
     let data = {
-      uid:self.data.duiyuanID,
+      uid: self.data.duiyuanID,
       acid1: that.data.AllActivity[self.data.huodongXiaoleiIndex].code,
       border: that.data.huodongBorder,
     };
@@ -430,14 +430,14 @@ Page({
       }
       let huodongtmp = self.data.Mycreate;
       for (let s of res.data.data.list)
-      huodongtmp.list.push(s)
+        huodongtmp.list.push(s)
       that.setData({
         Mycreate: huodongtmp,
-        nowActNum: that.data.nowActNum+res.data.data.list.length,
+        nowActNum: that.data.nowActNum + res.data.data.list.length,
         huodongBorder: res.data.data.border,
       })
       console.log('Mycreate', that.data.Mycreate)
-     
+
     })
   },
   flesh(tab) {
@@ -514,23 +514,23 @@ Page({
       });
 
     }
-    if(that.data.TabCur==4)(
+    if (that.data.TabCur == 4)(
       this.getHuodongDetailXiaolei(tab)
     )
   },
   tabSelect2(e) {
     console.log(e)
-    if(this.data.TabCur==4){
+    if (this.data.TabCur == 4) {
       this.setData({
         TabCur2: e.currentTarget.dataset.id,
-        huodongXiaoleiIndex:e.currentTarget.dataset.id,
+        huodongXiaoleiIndex: e.currentTarget.dataset.id,
       })
-    }else if(this.data.TabCur==5){
+    } else if (this.data.TabCur == 5) {
       this.setData({
         TabCur3: e.currentTarget.dataset.id,
       })
     }
-    
+
     this.flesh(e.currentTarget.dataset.id)
   },
   ///////////评论
@@ -645,7 +645,7 @@ Page({
   },
 
   //评论
-  pd_fasong() {
+  pd_fasong(e) {
     if (this.data.Input == "") {
       wx.showToast({
         title: '请输入回复内容', // 标题
@@ -653,7 +653,10 @@ Page({
         duration: 1500 // 提示窗停留时间，默认1500ms
       })
     } else {
-      this.fasong()
+      if (e.currentTarget.dataset.duixiang == 10) {
+        this.pinglunFasong()
+      } else
+        this.fasong()
     }
   },
   fasong() { //发送按钮
@@ -680,10 +683,10 @@ Page({
           'comment': inputtmp,
           'strCreatetime': '刚刚',
         })
-        shipintmp.list[self.data.dxindex].commCnt=shipintmp.list[self.data.dxindex].commCnt+1,
-        self.setData({
-          shipin: shipintmp,
-        })
+        shipintmp.list[self.data.dxindex].commCnt = shipintmp.list[self.data.dxindex].commCnt + 1,
+          self.setData({
+            shipin: shipintmp,
+          })
         wx.showToast({
           title: '评论成功！', // 标题
           icon: 'success', // 图标类型，默认success
@@ -732,12 +735,80 @@ Page({
     })
     self.hideModal()
   },
+  pinglunFasong(){
+    let self=this;
+    let url = app.globalData.URL + '/comm/addComment';
+    let data = {
+      pid: null,
+      objtype: 10,
+      objid: self.data.duiyuanID,
+      objtitle: "",
+      comment: self.data.Input,
+      creater: self.data.user.id,
+      createrAlias: self.data.user.nickname,
+      createrHead: self.data.user.head
+    };
+    console.log(data)
+    app.wxRequest('POST', url, data, (res) => {
+      self.comment();
+      console.log(res)
+      if (res.code == 0)
+        wx.showToast({
+          title: '评论成功！', // 标题
+          icon: 'success', // 图标类型，默认success
+          duration: 1500 // 提示窗停留时间，默认1500ms
+        })
+      else {
+        console.log(res.data)
+        wx.showToast({
+          title: res.data.msg, // 标题
+          image: '/img/fail.png', // 图标类型，默认success
+          duration: 1000 // 提示窗停留时间，默认1500ms
+        })
+      }
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+
+    
+    self.setData({
+      Input: '',
+    })
+    self.hideModal()
+  },
   pinluntiaozhuan(e) { //评论跳转
     wx.navigateTo({
       url: '/pages/pinlunliebiao/pinlunliebiao?categoryId=' + this.data.duiyuanID + '&objtitle=' + '',
     })
   },
-
+  ifzan() { //是否点赞
+    self = this;
+    let url = app.globalData.URL + '/applaud/findApplaud';
+    let url2 = app.globalData.URL + '/applaud/countByObj'; //活动点赞数
+    let data = {
+      objtype: 10,
+      objid: self.data.duiyuanID,
+      uid: self.data.user.id,
+    };
+    app.wxRequest('GET', url, data, (res) => {
+      self.setData({
+        ifzan: res.data
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+    data = {
+      objid: this.data.categoryId,
+      objtype: 10
+    };
+    app.wxRequest('GET', url2, data, (res) => {
+      this.setData({
+        likecount: res.data
+      });
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
   zan() { //活动点赞或取消
     self = this;
     let url = app.globalData.URL + '/applaud/updateApplaud';
@@ -757,7 +828,10 @@ Page({
         creater: self.data.user.id,
         status: 1,
       };
+    console.log(self.data.ifzan)
+    console.log(data)
     app.wxRequest('POST', url, data, (res) => {
+      console.log(res)
       if (self.data.ifzan)
         self.setData({
           ifzan: false,
@@ -781,7 +855,7 @@ Page({
     this.setData({
       TabCur: e.currentTarget.dataset.id,
     })
-    
+
   },
 
   getDuiyuan() {
@@ -803,9 +877,9 @@ Page({
           ifziji: 1,
         })
       }
-      if (res.data==null) {//////////////判断是否有数据
+      if (res.data == null) { //////////////判断是否有数据
         self.setData({
-         ifYouXiao:false
+          ifYouXiao: false
         })
       }
       /////////////修改age
@@ -974,7 +1048,7 @@ Page({
         acid1: res.data[0].code
       }
       app.wxRequest('GET', url, data, (res) => {
-     
+
         self.setData({
           paimingDetail: res.data
         })
@@ -1046,13 +1120,13 @@ Page({
   },
   yundongxiangqing(e) {
     wx.navigateTo({
-      url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.yundong.id+'&ziliaoID='+this.data.duiyuanID,
+      url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.yundong.id + '&ziliaoID=' + this.data.duiyuanID,
     })
   },
   yundongxiangqing2(e) {
     console.log(e)
     wx.navigateTo({
-      url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.id+'&ziliaoID='+this.data.duiyuanID,
+      url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.id + '&ziliaoID=' + this.data.duiyuanID,
     })
   },
 
@@ -1078,6 +1152,7 @@ Page({
     this.comment()
     this.getFensiDetail()
     this.getPaimingDalei()
+    this.ifzan()
   },
 
   /**
@@ -1139,7 +1214,7 @@ Page({
         complete: (res) => {},
       })
     }
-    if(self.data.TabCur == 4 && self.data.isRefleshHuodong){
+    if (self.data.TabCur == 4 && self.data.isRefleshHuodong) {
       wx.showLoading({
         title: '加载中...',
         mask: true //显示触摸蒙层  防止事件穿透触发

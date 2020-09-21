@@ -203,14 +203,14 @@
       <view class="cu-bar input foot padding">
         <image class="img-input" mode="scaleToFill" src="/img/input.png" bindtap="chooseSezi"></image>
         <view class="action">
-          <image class="img-icon" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
+          <image class="img-icon"style="margin-right:20rpx;height: 60rpx;width: 60rpx;background-color: white;" mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
         </view>
         <view class="action">
-          <image class="img-icon" mode="aspectFit" style="margin-right:10rpx"
+          <image class="img-icon" mode="aspectFit" style="margin-right:10rpx;height: 60rpx;width: 60rpx;"
             src="{{false==ifzan?'/img/icon_fabulous.png':'/img/icon_fabulous_z.png'}}" bindtap="zan"></image>
         </view>
         <view class="action" bindtap="share">
-          <button class="cu-btn round  buttonshare" open-type="share">
+          <button class="cu-btn img-icon" open-type="share" style="height: 80rpx;width: 80rpx;background-color: white;">
             <image class="img-icon" mode="aspectFit" src="/img/icon_share.png"></image>
           </button>
         </view>
@@ -744,7 +744,7 @@
     <view class="bottom-dialog-body bottom-pos " animation="{{animationData}}" style="display:block">
       <view>
         <text class="cu-bar-title " style="margin-left:300rpx ">写评论</text>
-        <button class="cu-btn bg-orange shadow-blur padding-sm margin-left-sm btn-fasong " bindtap="pd_fasong"
+        <button class="cu-btn bg-orange shadow-blur padding-sm margin-left-sm btn-fasong " bindtap="pd_fasong" data-duixiang="10"
           style="margin-left:100rpx ">发送</button>
       </view>
       <textarea class="form-text2 margin-top-sm margin-buttom " style="height:160rpx;width:100% " value="{{Input}}"

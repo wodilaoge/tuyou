@@ -145,8 +145,7 @@
           <text style="position:absolute;left:110rpx;">{{item.acid2}}</text>
           <!-- <text class=" title-time" style="position:absolute;width:100%;left:180rpx;"
             wx:if="{{item.lefttime!=null}}">{{item.lefttime.day}} 天 {{item.lefttime.hr}}:{{item.lefttime.min}} </text> -->
-             <text class=" title-time" style="position:absolute;width:100%;left:180rpx;"
-            >{{item.status}}</text>
+          <text class=" title-time" style="position:absolute;width:100%;left:180rpx;">{{item.status}}</text>
         </view>
         <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-yundong="{{item}}">
           <view class="cu-card article ">
@@ -738,29 +737,29 @@
   </block>
   <block wx:if="{{TabCur==5}}">
     <view class="flex bg-white">
-      <scroll-view scroll-y="true">
-      <view class="tuanduiList1">
-        <view class="{{tuanduiCur==index?'box_tuandui2':'box_tuandui1'}}" wx:for="{{activityClass1}}"
-          bindtap="xuanzeClass1" data-index="{{index}}">
-          {{ activityClass1[index].name}}
-        </view>
-      </view>
-    </scroll-view>
-    <scroll-view scroll-y="true">
-      <view class="tuanduiList2">
-        <view class="box_tuandui3" wx:for="{{tuanduiList}}" bindtap="nav_tuanduiXiangqing" data-index="{{index}}">
-          <image class="tuandui-img" src="{{tuanduiList[index].logo}}">
-
-          </image>
-          <view>
-            <view style="margin-left: 20rpx;font-size: 32rpx;font-weight: bold;">{{tuanduiList[index].name}}</view>
-            <view style="margin-left: 20rpx;font-size: 28rpx;font-weight: 500;color: #FE6005;">
-              {{tuanduiList[index].mbrCount}}人</view>
+      <scroll-view scroll-y  style="height:calc(100vh)">
+        <view class="tuanduiList1">
+          <view class="{{tuanduiCur==index?'box_tuandui2':'box_tuandui1'}}" wx:for="{{activityClass1}}"
+            bindtap="xuanzeClass1" data-index="{{index}}">
+            {{ activityClass1[index].name}}
           </view>
         </view>
-      </view>
-      
-    </scroll-view>
+      </scroll-view>
+      <scroll-view scroll-y  style="height:calc(100vh)">
+        <view class="tuanduiList2">
+          <view class="box_tuandui3" wx:for="{{tuanduiList}}" bindtap="nav_tuanduiXiangqing" data-index="{{index}}">
+            <image class="tuandui-img" src="{{tuanduiList[index].logo}}">
+
+            </image>
+            <view>
+              <view style="margin-left: 20rpx;font-size: 32rpx;font-weight: bold;">{{tuanduiList[index].name}}</view>
+              <view style="margin-left: 20rpx;font-size: 28rpx;font-weight: 500;color: #FE6005;">
+                {{tuanduiList[index].mbrCount}}人</view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+
     </view>
   </block>
 </block>

@@ -23,8 +23,10 @@ Page({
     activityClass1: [],
     tuanduiCur: 0,
     tuanduiList: [],
-    ifFlushTuandui:true,
-    tuanduiBorder:0,
+    tuanduiListBorder: 0,
+    tuanduiListFlush: false,
+    ifFlushTuandui: true,
+    tuanduiBorder: 0,
   },
   tabSelect(e) {
     this.setData({
@@ -510,7 +512,16 @@ Page({
       self.setData({
         tuanduiList: res.data.list
       })
-
+      if (res.data.border == null) {
+        self.setData({
+          tuanduiListFlush: false
+        })
+      } else {
+        self.setData({
+          tuanduiListFlush: true,
+          tuanduiListBorder: res.data.border
+        })
+      }
     })
   },
   getAllActivityClass1nfig: function () {
@@ -546,8 +557,60 @@ Page({
       self.setData({
         tuanduiList: res.data.list
       })
+
+      if (res.data.border == null) {
+        self.setData({
+          tuanduiListFlush: false
+        })
+      } else {
+        self.setData({
+          tuanduiListFlush: true,
+          tuanduiListBorder: res.data.border
+        })
+      }
     })
   },
+  tuanduiListFenye() {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true //显示触摸蒙层  防止事件穿透触发
+    });
+    let self=this;
+    let url = app.globalData.URL + '/search/listTeam';
+    let data = {
+      keywords: this.data.sousuo_neirong,
+      province: this.data.province === '不选' ? null : this.data.province,
+      city: this.data.city === '不选' ? null : this.data.city,
+      univ: this.data.univ === '不选' ? null : this.data.univ,
+      acid1: this.data.activityClass1[this.data.tuanduiCur].code == "0" ? null : this.data.activityClass1[this.data.tuanduiCur].code,
+      border: this.data.tuanduiListBorder,
+    };
+    console.log('搜索团队分页', data)
+    app.wxRequest('POST', url, data, (res) => {
+      console.log('搜索团队分页', res)
+      let sousuotmp = self.data.tuanduiList;
+      for (let s of res.data.list)
+        sousuotmp.list.push(s)
+      this.setData({
+        tuanduiList: sousuotmp,
+        tuanduiBorder: res.data.border,
+      })
+      if (res.data.border == null) {
+        self.setData({
+          tuanduiListFlush: false
+        })
+      } else {
+        self.setData({
+          tuanduiListFlush: true,
+          tuanduiListBorder: res.data.border
+        })
+      }
+    })
+    wx.hideLoading({
+      complete: (res) => {},
+    })
+  },
+
   nav_tuanduiXiangqing: function (e) {
     console.log(e)
     console.log(this.data.tuanduiList[e.currentTarget.dataset.index].id)
@@ -632,6 +695,10 @@ Page({
       this.sousuo_fenye()
     } else if (this.data.isRefle == true && this.data.TabCur == 4) {
       this.sousuo_shipin_fenye()
+    }
+    if (this.data.tuanduiListFlush == true) {
+      console.log("团队刷新")
+      this.tuanduiListFenye()
     }
 
   },
