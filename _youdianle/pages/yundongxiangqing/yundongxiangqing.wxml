@@ -1201,12 +1201,12 @@
    <view fixed class="modals modals-bottom-dialog" hidden="{{!zhaopianChooseSize}}">
     <view class="modals-cancel" bindtap="shipinHideModal" catchtouchmove="true"></view>
     <scroll-view class="shipin-bottom-dialog-body bottom-pos" animation="{{shipinAnimationData}}" style="display:block"
-      scroll-y="true">
+      scroll-y="true" bindscrolltolower="getZhaopianPinglunFenye">
       <view>
         <text class="cuIcon-close lg text-black" bindtap="shipinHideModal"></text>
-        <text class="sp-quanbupinglun2">全部评论({{zhaopian[shipin_index].commCnt}})</text>
+        <text class="sp-quanbupinglun2">全部评论({{zhaopian[zhaopian_index].commCnt}})</text>
       </view>
-      <view wx:for="{{zhaopian[shipin_index].listComm}}" wx:for-index="index2" style="background-color:white;">
+      <view wx:for="{{zhaopian[zhaopian_index].listComm}}" wx:for-index="index2" style="background-color:white;">
         <view class="margin-top-xs sp-pinlun-content">
           <!-- <image class="sp-pinglun-avatar-2 round " src="{{shipin.list[shipin_index].listComm[index2].createrHead}} ">
           </image>
@@ -1215,18 +1215,18 @@
             <view class="sp-pinglun-neirong-2 ">{{shipin.list[shipin_index].listComm[index2].comment}}</view>
             <text class='card-text-content-time2'>{{shipin.list[shipin_index].listComm[index2].strCreatetime}}</text> -->
           <view>
-            <image class="sp-pinglun-avatar-2 round " src="{{zhaopian[shipin_index].listComm[index2].createrHead}} ">
+            <image class="sp-pinglun-avatar-2 round " src="{{zhaopian[zhaopian_index].listComm[index2].createrHead}} ">
             </image>
           </view>
           <view>
             <view class="flex">
-              <view class="sp-pinglun-name">{{zhaopian[shipin_index].listComm[index2].createrAlias}}</view>
+              <view class="sp-pinglun-name">{{zhaopian[zhaopian_index].listComm[index2].createrAlias}}</view>
               <view>
                 <text
-                  class='card-text-content-time2'>{{zhaopian[shipin_index].listComm[index2].strCreatetime}}</text>
+                  class='card-text-content-time2'>{{zhaopian[zhaopian_index].listComm[index2].strCreatetime}}</text>
               </view>
             </view>
-            <view class="sp-pinglun-neirong-2 ">{{zhaopian[shipin_index].listComm[index2].comment}}
+            <view class="sp-pinglun-neirong-2 ">{{zhaopian[zhaopian_index].listComm[index2].comment}}
             </view>
             <!-- </view> -->
           </view>
