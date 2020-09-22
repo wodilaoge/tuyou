@@ -234,7 +234,6 @@ Page({
           console.log('quit group confirm')
           var that = this
           let url = app.globalData.URL + '/act/cancelActivity';
-          let tmp = wx.getStorageSync('userInfo')
           let data = {
             actid: that.data.tmpactid,
             reason: that.data.ans
@@ -252,7 +251,7 @@ Page({
             } else {
               console.log('delete success')
               console.log(res.data)
-              that.onLoad()
+              that.flesh(that.data.TabCur)
               wx.showToast({
                 title: '取消成功',
                 duration: 2000,

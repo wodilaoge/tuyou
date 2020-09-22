@@ -617,6 +617,7 @@ Page({
         title: '请先选择地区',
         duration: 2000,
         success: function () {
+          wx.setStorageSync('addressMode', '3')
           setTimeout(function () {
             wx.navigateTo({
               url: '/pages/form_address/form_address',
