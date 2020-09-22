@@ -449,7 +449,7 @@ Page({
       console.log(res)
       this.setData({
         detail: res.data,
-        zfpd: res.data.left != '进行中' && (res.data.lefttime.left.indexOf(':') < '0')
+        // zfpd: res.data.left != '进行中' && (res.data.lefttime.left.indexOf(':') < '0')
       })
       this.setData({
         biaoti: res.data.actname
@@ -2027,14 +2027,14 @@ Page({
     var self = this
     var url = app.globalData.URL + '/act/stopActivity' //结束活动
     let data = {
-      actid: self.data.cate
+      actid: self.data.detail.id
     }
     app.wxRequest('GET', url, data, (res) => {
       if (res.code == 0)
         wx.showToast({
           title: '操作成功！', // 标题
           icon: 'success', // 图标类型，默认success
-          duration: 500 // 提示窗停留时间，默认1500ms
+          duration: 2000 // 提示窗停留时间，默认1500ms
         })
       else
         console.log(res.data)

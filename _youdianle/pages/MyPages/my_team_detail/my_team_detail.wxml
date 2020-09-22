@@ -84,7 +84,7 @@
       <text class="padding-left">{{item.nickname}}</text>
     </view>
     <view class="flex duiqi">
-      <button wx:if="{{item.button.join}}" class="button" bindtap="pass" data-id="{{item.uid}}">通过</button>
+      <button wx:if="{{item.button.join}}" class="button cu-btn round flex-sub lines-orange" bindtap="pass" data-id="{{item.uid}}">通过</button>
       <image src="/img/transfer_captain.png" class="deleteicon margin-left" wx:if="{{item.button.abdicate}}" bindtap="transfer"
       data-id="{{item.uid}}"></image>
     </view>
@@ -112,9 +112,9 @@
   </view>
 </view>
 
-<view class="flex margin-top" wx:if="{{isCaptain}}">
-  <button  class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="shutdown">解散团队</button>
-  <button  class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="modify">修改信息</button>
+<view class="flex margin-top" >
+  <button wx:if="{{tdxxDeatil.button.cancel}}" class="cu-btn round flex-sub lines-orange padding margin-xs" bindtap="shutdown">解散团队</button>
+  <button wx:if="{{tdxxDeatil.button.modify}}" class="cu-btn round flex-sub bg-orange padding margin-xs" bindtap="modify">修改信息</button>
 </view>
 
 <modal hidden="{{hiddenmodalput}}" title="解散原因" confirm-text="提交" cancel-text='取消' bindcancel="cancel" bindconfirm="confirm">
