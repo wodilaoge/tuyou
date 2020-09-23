@@ -307,22 +307,24 @@ Page({
                 title: res.data.msg,
                 duration: 1000,
               })
+            that.secondLoad()
           })
-        } else {
-          var url = app.globalData.URL + '/team/auditJoin';
-          var data = {
-            tid: that.data.tdxxId,
-            uid: e.currentTarget.dataset.id,
-            result: 30
-          }
-          util.gets(url, data).then(function (res) {
-            console.log('拒绝申请', res.data)
-            wx.showToast({
-              title: res.data.msg,
-              duration: 1000,
-            })
-          })
-        }
+        } 
+        // else {
+        //   var url = app.globalData.URL + '/team/auditJoin';
+        //   var data = {
+        //     tid: that.data.tdxxId,
+        //     uid: e.currentTarget.dataset.id,
+        //     result: 30
+        //   }
+        //   util.gets(url, data).then(function (res) {
+        //     console.log('拒绝申请', res.data)
+        //     wx.showToast({
+        //       title: res.data.msg,
+        //       duration: 1000,
+        //     })
+        //   })
+        // }
       }
     })
   },
