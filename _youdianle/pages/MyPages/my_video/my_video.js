@@ -310,10 +310,9 @@ Page({
       mask: true //显示触摸蒙层  防止事件穿透触发
     });
     var that = this
-    let url = app.globalData.URL + '/video/listActVideo';
+    let url = app.globalData.URL + '/video/listMyVideo';
     let tmp = wx.getStorageSync('userInfo')
     let data = {
-      'uid': tmp.id,
       'city': wx.getStorageSync('city').code,
       'univ': wx.getStorageSync('school').code
     };

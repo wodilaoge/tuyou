@@ -453,6 +453,10 @@ Page({
     });
   },
   onLoad(options) {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true //显示触摸蒙层  防止事件穿透触发
+    });
     var that = this
     let url2 = app.globalData.URL + '/appuser/getPubPerm'
     util.gets(url2, {}).then(function (res) {
@@ -506,6 +510,7 @@ Page({
       that.setData({
         pickerbig: res.data.data
       })
+      wx.hideLoading()
     })
 
     if (options.modify == 1) {
