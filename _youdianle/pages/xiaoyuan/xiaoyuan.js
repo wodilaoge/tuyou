@@ -149,7 +149,24 @@ Page({
       self.setData({
         yundongxiaolei: res.data.data
       })
+    }).then(function(){
+      url = app.globalData.URL + '/act/listActivity';
+      data = {
+        sid: self.data.yundongid,
+        acid1:self.data.yundongCur,
+        univ: self.data.univ,
+        city: self.data.city,
+        province: self.data.province
+      };
+      util.post_token(url, data).then(function (res) {
+        console.log(res)
+        self.setData({
+          yundongList: res.data.data
+        })
+      })
     })
+
+
   },
   wenyuTabSelect(e) { //文娱内导航栏
     this.setData({
@@ -169,6 +186,21 @@ Page({
     util.gets(url, data).then(function (res) {
       self.setData({
         wenyuxiaolei: res.data.data
+      })
+    }).then(function(){
+      url = app.globalData.URL + '/act/listActivity';
+      data = {
+        sid: self.data.wenyuid,
+        acid1:self.data.wenyuCur,
+        univ: self.data.univ,
+        city: self.data.city,
+        province: self.data.province
+      };
+      util.post_token(url, data).then(function (res) {
+        console.log(res)
+        self.setData({
+          wenyuList: res.data.data
+        })
       })
     })
   },
@@ -190,6 +222,21 @@ Page({
     util.gets(url, data).then(function (res) {
       self.setData({
         aihaoxiaolei: res.data.data
+      })
+    }).then(function(){
+      url = app.globalData.URL + '/act/listActivity';
+      data = {
+        sid: self.data.aihaoid,
+        acid1:self.data.aihaoCur,
+        univ: self.data.univ,
+        city: self.data.city,
+        province: self.data.province
+      };
+      util.post_token(url, data).then(function (res) {
+        console.log(res)
+        self.setData({
+          aihaoList: res.data.data
+        })
       })
     })
   },
@@ -285,6 +332,7 @@ Page({
           }).then(function () {
             data = {
               sid: self.data.yundongid,
+              acid1:self.data.yundongCur,
               univ: self.data.univ,
               city: self.data.city,
               province: self.data.province
@@ -333,6 +381,7 @@ Page({
           }).then(function () {
             data = {
               sid: self.data.wenyuid,
+              acid1:self.data.wenyuCur,
               univ: self.data.univ,
               city: self.data.city,
               province: self.data.province
@@ -382,6 +431,7 @@ Page({
           }).then(function () {
             data = {
               sid: self.data.aihaoid,
+              acid1:self.data.aihaoCur,
               univ: self.data.univ,
               city: self.data.city,
               province: self.data.province
@@ -1102,7 +1152,7 @@ Page({
       this.setData({
         univ: null,
       })
-    this.xuanran();
+    // this.xuanran();
     //this.news()
     //this.news_detail()
     this.setData({
