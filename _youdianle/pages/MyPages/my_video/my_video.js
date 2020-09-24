@@ -8,6 +8,7 @@ Page({
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '0', ///1表示有一个播放，0表示无播放
+    needflesh:true
   },
   tabSelect(e) {
     this.setData({
@@ -392,9 +393,8 @@ Page({
       title: '加载中',
       mask: true
     })
-    let url = app.globalData.URL + '/video/listActVideo';
+    let url = app.globalData.URL + '/video/listMyVideo';
     let data = {
-      'uid': wx.getStorageSync('userInfo').id,
       'city': wx.getStorageSync('city').code,
       'univ': wx.getStorageSync('school').code,
       'border':that.data.shipin.border
@@ -408,6 +408,7 @@ Page({
         _data.list.push(i)
       }
       that.setData({
+        needflesh:res.data.data.list.length!=0,
         shipin: _data
       })
       wx.hideLoading()
