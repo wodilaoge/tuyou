@@ -266,6 +266,7 @@ Page({
     })
   },
   shipinChooseSezi: function (e) {
+    console.log('456')
     var self = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -294,7 +295,7 @@ Page({
       objtype: 50,
       objid: e.currentTarget.dataset.dxid,
     };
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
       shipintmp.list[e.currentTarget.dataset.index].listComm = res.data.list;
       this.setData({
         shipin: shipintmp,
@@ -304,6 +305,45 @@ Page({
     });
 
 
+  },
+  shipinHideModal: function (e) {
+    var self = this;
+    var animation = wx.createAnimation({
+      duration: 100,
+      timingFunction: 'linear'
+    })
+    self.animation = animation
+    animation.translateY(200).step()
+    self.setData({
+      shipinAnimationData: animation.export()
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      self.setData({
+        shipinAnimationData: animation.export(),
+        shipinChooseSize: false
+      })
+    }, 100)
+  },
+  hideModal: function (e) {
+    var self = this;
+    var animation = wx.createAnimation({
+      duration: 100,
+      timingFunction: 'linear'
+    })
+    self.animation = animation
+    animation.translateY(200).step()
+    self.setData({
+      animationData: animation.export()
+
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      self.setData({
+        animationData: animation.export(),
+        chooseSize: false
+      })
+    }, 100)
   },
   onLoad: function (options) {
     wx.showLoading({

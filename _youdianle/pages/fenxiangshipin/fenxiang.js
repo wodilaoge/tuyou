@@ -319,7 +319,7 @@ Page({
         objtype: 50,
         objid: e.currentTarget.dataset.dxid,
       };
-      app.wxRequest('GET', url, data, (res) => {
+      app.wxRequest('POST', url, data, (res) => {
         if (res.data.border == null) {
           that.setData({
             isRefleshshipinPinglun: false
@@ -340,7 +340,7 @@ Page({
         objtype: 60,
         objid: e.currentTarget.dataset.dxid,
       };
-      app.wxRequest('GET', url, data, (res) => {
+      app.wxRequest('POST', url, data, (res) => {
         if (res.data.border == null) {
           that.setData({
             isRefleshshipinPinglun: false

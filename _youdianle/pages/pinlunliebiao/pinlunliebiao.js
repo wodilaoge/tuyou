@@ -86,7 +86,7 @@ Page({
       console.log(err.errMsg)
     });
     url = app.globalData.URL + '/comm/listCommByObj';
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
       self.setData({
         comment: res.data
       });
@@ -286,7 +286,7 @@ Page({
         border: self.data.comment.border
       };
       let url = app.globalData.URL + '/comm/listCommByObj';
-      app.wxRequest('GET', url, data, (res) => {
+      app.wxRequest('POST', url, data, (res) => {
         console.log(res.data)
         if (res.data.border == null) {
           self.setData({

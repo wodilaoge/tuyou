@@ -841,7 +841,7 @@ Page({
       objtype: 50,
       objid: e.currentTarget.dataset.dxid,
     };
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
       shipintmp.list[e.currentTarget.dataset.index].listComm = res.data.list;
       this.setData({
         shipin: shipintmp,

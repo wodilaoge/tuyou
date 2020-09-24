@@ -131,7 +131,7 @@ Page({
       objtype: 50,
       objid: e.currentTarget.dataset.dxid,
     };
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
       console.log(res)
       shipintmp.list[e.currentTarget.dataset.index].listComm = res.data.list;
       this.setData({
@@ -152,7 +152,7 @@ Page({
       objid: this.data.shipin.list[this.data.shipin_index].id,
       border: this.data.shipinPinglunBorder,
     };
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
       console.log(res)
       if (res.data.border == null) {
         self.setData({
@@ -518,7 +518,7 @@ Page({
       console.log(err.errMsg)
     });
     url = app.globalData.URL + '/comm/listCommByObj';
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
       this.setData({
         comment: res.data
       });
@@ -1754,7 +1754,7 @@ Page({
         border: self.data.comment.border
       };
       let url = app.globalData.URL + '/comm/listCommByObj';
-      app.wxRequest('GET', url, data, (res) => {
+      app.wxRequest('POST', url, data, (res) => {
         console.log(res.data)
         if (res.data.border == null) {
           self.setData({

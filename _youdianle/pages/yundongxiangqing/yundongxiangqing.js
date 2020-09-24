@@ -509,7 +509,7 @@ Page({
       console.log(err.errMsg)
     });
     url = app.globalData.URL + '/comm/listCommByObj';
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
       console.log("评论  " + res.data)
       this.setData({
         comment: res.data
@@ -756,7 +756,7 @@ Page({
       objid: this.data.shipin.list[this.data.shipin_index].id,
       border: this.data.shipinPinglunBorder,
     };
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
       console.log(res)
       if (res.data.border == null) {
         self.setData({
@@ -784,7 +784,7 @@ Page({
       border: this.data.zhaopianPinglunBorder,
     };
     console.log(data)
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
       console.log("照片评论分页",res);
       if (res.data.border == null||res.data.list.length<10) {
         that.setData({
@@ -1062,7 +1062,7 @@ Page({
         objtype: 50,
         objid: e.currentTarget.dataset.dxid,
       };
-      app.wxRequest('GET', url, data, (res) => {
+      app.wxRequest('POST', url, data, (res) => {
         if (res.data.border == null) {
           that.setData({
             isRefleshshipinPinglun: false
@@ -1083,7 +1083,7 @@ Page({
         objtype: 60,
         objid: e.currentTarget.dataset.dxid,
       };
-      app.wxRequest('GET', url, data, (res) => {
+      app.wxRequest('POST', url, data, (res) => {
         console.log(res)
         if (res.data.border == null) {
           that.setData({
@@ -2295,7 +2295,7 @@ Page({
         border: self.data.comment.border
       };
       let url = app.globalData.URL + '/comm/listCommByObj';
-      app.wxRequest('GET', url, data, (res) => {
+      app.wxRequest('POST', url, data, (res) => {
         console.log(res.data)
         if (res.data.border == null) {
           self.setData({
