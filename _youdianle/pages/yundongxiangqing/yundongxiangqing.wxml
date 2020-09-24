@@ -990,7 +990,7 @@
               <text class="paiming-name " decode="{{true}} ">&ensp;{{members.mbrAlias}}</text>
             </view>
             <view class="view-active" style="margin-left:114rpx;width:160rpx;height:42rpx;" wx:if="{{lurushuju==10}}">
-              <input placeholder="{{members.mbrRank==null?'':members.mbrRank}}" bindinput="paimingInput" data-flag="0"
+              <input placeholder="{{members.mbrRank==null?'':members.mbrRank}}" bindinput="paimingInput" data-flag="0" type="number"
                 data-index2="{{index2}}" data-index="{{index}}" />
             </view>
             <view class="view-active" style="margin-left:114rpx;width:160rpx;height:42rpx;" wx:if="{{lurushuju==20}}">
@@ -1024,7 +1024,7 @@
               <text class="paiming-name " decode="{{true}} ">&ensp;{{members.mbrAlias}}</text>
             </view>
             <view class="view-active" style="margin-left:64rpx;width:60rpx;height:42rpx;">
-              <input placeholder="{{members.mbrRank==null?'':members.mbrRank}}" bindinput="paimingInput" data-flag="1"
+              <input placeholder="{{members.mbrRank==null?'':members.mbrRank}}" bindinput="paimingInput" data-flag="1" type="number"
                 data-index2="{{index2}}" data-index="{{index}}" />
             </view>
             <view class="view-active" style="margin-left:150rpx;width:60rpx;height:42rpx;">
