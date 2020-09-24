@@ -204,9 +204,11 @@
 }
 .box_tuandui3{
   height: 120rpx;
+  width: 450rpx;
 display: flex;
 padding-left: 30rpx;
 padding-top: 19rpx;
+margin-right: 35rpx;
 }
 .tuandui-img{
   height: 78rpx;

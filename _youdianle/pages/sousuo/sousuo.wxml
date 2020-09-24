@@ -253,94 +253,33 @@
     </view>
 
 
-    <view wx:if="{{sousuo_detail.listAmuse[0]}}">
-      <view wx:if="{{sousuo_detail.listAmuse[0]}}">
-        <view class="bg-white padding margin-top ">
-          <view bindtap="jump" data-id="{{2}}">
-            <text class="cu-bar-title text-bold text-black ">文娱</text>
-            <image class="icon" src="../../img/array.png"></image>
-          </view>
-        </view>
-        <view wx:for="{{sousuo_detail.listAmuse}}" wx:key="key">
-          <view class="cu-bar bg-white solid-bottom">
-            <image class="cu-avatar my margin-left" src="{{item.logo}}" mode="heightFix"></image>
-            <!-- <text>吉他</text>
-            <text class=" title-time margin-right">1 天 01: 02 </text> -->
-          </view>
-          <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-yundong="{{item}}">
-            <view class="cu-card article ">
-              <view class="cu-item">
-                <view class="yundong-content title-text-content" style="margin-top:28rpx;">
-                  <image class="icon-size" src="/img/icon_title.png" mode="heightFix"></image>
-                  <text decode="{{true}}">{{item.slogan}}</text>
-                </view>
-                <view class="shadow" style="background-color:#F8F9FD;padding:19rpx 0 19rpx 0;">
-                  <view class="yundong-content">
-                    <view class="desc">
-                      <view class="title-limit">{{item.actname}}</view>
-                      <view class="text-content">
-                        <image class="icon-size" src="/img/icon_location.png" mode="heightFix"></image>
-                        <text decode="{{true}}">\t{{item.city}}{{item.address}}</text>
-                      </view>
-                      <view class="text-content">
-                        <image class="icon-size"></image>
-                        <text decode="{{true}}">\t{{item.venue}}</text>
-                      </view>
-                      <view class="time-text-content">
-                        <image class="icon-size" src="/img/icon_time.png" mode="heightFix"></image>
-                        {{item.fromtime}}开始
-                      </view>
-                    </view>
-                    <image src="{{item.logo}}" mode="aspectFill"></image>
-                  </view>
-                </view>
-                <!-- <view class="yundong-content yibaoming-margin-top">
-                  <text class="yibaoming-text-content">已报名</text>
-                  <text class="yibaoming-text-content"
-                    style="color:var(--blue)">{{item.signupcnt}}/{{item.signupmax}}</text>
-                  <text class="yibaoming-text-content">人</text>
-                </view> -->
-                <!-- <view class="yundong-content margin-top">
-                  <view class="cu-avatar-group">
-                    <view class="cu-avatar round my " wx:for="{{6}}" wx:key="key"
-                      style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{index+1}}.jpg);">
-                    </view>
-                  </view>
-                  <button class="cu-btn bg-orange round btn" style="margin-left:250rpx;margin-top:-30rpx;"
-                    bindtap="baomingtiaozhan" data-yundong="{{item}}">报名挑战</button> -->
-                <!-- <button class="cu-btn line-orange round btn" style="margin-left:30rpx;margin-top:-30rpx;">群聊（8）</button> -->
-                <!-- </view> -->
-              </view>
-            </view>
-          </view>
-        </view>
-      </view>
-    </view>
 
-    <view wx:if="{{sousuo_detail.listHobby[0]}}">
+
+
+    <view wx:if="{{sousuo_detail.listAmuse[0]}}">
       <view class="bg-white padding margin-top ">
-        <view bindtap="jump" data-id="{{3}}">
-          <text class="cu-bar-title text-bold text-black ">爱好</text>
+        <view bindtap="jump" data-id="{{2}}">
+          <text class="cu-bar-title text-bold text-black ">文娱</text>
           <image class="icon" src="../../img/array.png"></image>
         </view>
       </view>
-      <view wx:for="{{sousuo_detail.listHobby}}" wx:key="key">
-        <view class="cu-bar bg-white solid-bottom">
-          <image class="cu-avatar my margin-left" src="{{item.logo}}" mode="heightFix"></image>
-          <!-- <text style="">英雄联盟</text>
-          <text class=" title-time margin-right">1 天 01: 02 </text> -->
+      <view wx:for="{{sousuo_detail.listAmuse}}" wx:key="key">
+        <view class="cu-bar bg-white solid-bottom" style="display:fixed;position: relative;">
+          <image class="cu-avatar round my margin-left" src="{{item.createrhead}}" mode="heightFix"></image>
+          <!-- <block wx:for="{{yundongxiaolei}}" wx:for-item="cell" wx:if="{{item.acid2==cell.code}}">
+              <text style="position:absolute;left:110rpx;">{{cell.name}}</text>
+            </block> -->
+          <text style="position:absolute;left:110rpx;">{{item.acid2}}</text>
+          <!-- <text class=" title-time" style="position:absolute;width:100%;left:180rpx;"
+              wx:if="{{item.lefttime!=null}}">{{item.lefttime.day}} 天 {{item.lefttime.hr}}:{{item.lefttime.min}} </text> -->
+          <text class=" title-time" style="position:absolute;width:100%;left:180rpx;">{{item.status}}</text>
         </view>
         <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-yundong="{{item}}">
-          <view class="cu-card article no-card">
+          <view class="cu-card article ">
             <view class="cu-item">
-              <view class="yundong-content title-text-content" style="margin-bottom:20rpx;">
-                <image class="icon-size" src="/img/icon_title.png" mode="heightFix" style=""></image>
-                <text decode="{{true}}"> {{item.slogan}}</text>
-              </view>
-              <view class="shadow" style="background-color:var(--white);">
-                <image class="padding-left" src="{{item.logo}}" mode="aspectFill" style="height:200rpx;width:699rpx;">
-                </image>
+              <view class="shadow" style="background-color:#F8F9FD;padding:19rpx 0 19rpx 0;">
                 <view class="yundong-content">
+                  <image src="{{item.logo}}" mode="aspectFill"></image>
                   <view class="desc">
                     <view class="title-limit">{{item.actname}}</view>
                     <view class="text-content">
@@ -353,11 +292,85 @@
                     </view>
                     <view class="time-text-content">
                       <image class="icon-size" src="/img/icon_time.png" mode="heightFix"></image>
-                      {{item.fromtime}}开战
+                      {{item.fromtime}}开赛
                     </view>
                   </view>
                 </view>
               </view>
+              <view class="yundong-content title-text-content" style="margin-top:28rpx;">
+                <image class="icon-size" src="/img/icon_title.png" mode="heightFix"></image>
+                <text decode="{{true}}">{{item.slogan}}</text>
+              </view>
+
+              <!-- <view class="yundong-content yibaoming-margin-top">
+                  <text class="yibaoming-text-content">已报名</text>
+                  <text class="yibaoming-text-content"
+                    style="color:var(--blue)">{{item.signupcnt}}/{{item.signupmax}}</text>
+                  <text class="yibaoming-text-content">人</text>
+                </view> -->
+              <!-- <view class="yundong-content margin-top">
+                  <view class="cu-avatar-group">
+                    <view class="cu-avatar round my" wx:for="{{6}}" wx:key="key"
+                      style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{index+1}}.jpg);">
+                    </view>
+                  </view>
+                  <button class="cu-btn bg-orange round btn" style="margin-left:250rpx;margin-top:-30rpx;"
+                    bindtap="baomingtiaozhan" data-yundong="{{item}}">报名挑战</button>
+                </view> -->
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+
+    <view wx:if="{{sousuo_detail.listHobby[0]}}">
+      <view class="bg-white padding margin-top ">
+        <view bindtap="jump" data-id="{{3}}">
+          <text class="cu-bar-title text-bold text-black ">爱好</text>
+          <image class="icon" src="../../img/array.png"></image>
+        </view>
+      </view>
+      <view wx:for="{{sousuo_detail.listHobby}}" wx:key="key">
+        <view class="cu-bar bg-white solid-bottom" style="display:fixed;position: relative;">
+          <image class="cu-avatar round my margin-left" src="{{item.createrhead}}" mode="heightFix"></image>
+          <!-- <block wx:for="{{yundongxiaolei}}" wx:for-item="cell" wx:if="{{item.acid2==cell.code}}">
+            <text style="position:absolute;left:110rpx;">{{cell.name}}</text>
+          </block> -->
+          <text style="position:absolute;left:110rpx;">{{item.acid2}}</text>
+          <!-- <text class=" title-time" style="position:absolute;width:100%;left:180rpx;"
+            wx:if="{{item.lefttime!=null}}">{{item.lefttime.day}} 天 {{item.lefttime.hr}}:{{item.lefttime.min}} </text> -->
+          <text class=" title-time" style="position:absolute;width:100%;left:180rpx;">{{item.status}}</text>
+        </view>
+        <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-yundong="{{item}}">
+          <view class="cu-card article ">
+            <view class="cu-item">
+              <view class="shadow" style="background-color:#F8F9FD;padding:19rpx 0 19rpx 0;">
+                <view class="yundong-content">
+                  <image src="{{item.logo}}" mode="aspectFill"></image>
+                  <view class="desc">
+                    <view class="title-limit">{{item.actname}}</view>
+                    <view class="text-content">
+                      <image class="icon-size" src="/img/icon_location.png" mode="heightFix"></image>
+                      <text decode="{{true}}">\t{{item.city}}{{item.address}}</text>
+                    </view>
+                    <view class="text-content">
+                      <image class="icon-size"></image>
+                      <text decode="{{true}}">\t{{item.venue}}</text>
+                    </view>
+                    <view class="time-text-content">
+                      <image class="icon-size" src="/img/icon_time.png" mode="heightFix"></image>
+                      {{item.fromtime}}开赛
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class="yundong-content title-text-content" style="margin-top:28rpx;">
+                <image class="icon-size" src="/img/icon_title.png" mode="heightFix"></image>
+                <text decode="{{true}}">{{item.slogan}}</text>
+              </view>
+
               <!-- <view class="yundong-content yibaoming-margin-top">
                 <text class="yibaoming-text-content">已报名</text>
                 <text class="yibaoming-text-content"
@@ -366,14 +379,13 @@
               </view> -->
               <!-- <view class="yundong-content margin-top">
                 <view class="cu-avatar-group">
-                  <view class="cu-avatar round my tinyright" wx:for="{{6}}" wx:key="key" y
+                  <view class="cu-avatar round my" wx:for="{{6}}" wx:key="key"
                     style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{index+1}}.jpg);">
                   </view>
                 </view>
                 <button class="cu-btn bg-orange round btn" style="margin-left:250rpx;margin-top:-30rpx;"
                   bindtap="baomingtiaozhan" data-yundong="{{item}}">报名挑战</button>
               </view> -->
-              <view class="white"></view>
             </view>
           </view>
         </view>
@@ -460,8 +472,9 @@
           <block wx:for="{{yundongxiaolei}}" wx:for-item="cell" wx:if="{{item.acid2==cell.code}}">
             <text style="position:absolute;left:110rpx;">{{cell.name}}</text>
           </block>
-          <text class=" title-time" style="position:absolute;width:100%;left:180rpx;"
-            wx:if="{{item.lefttime!=null}}">{{item.lefttime.day}} 天 {{item.lefttime.hr}}:{{item.lefttime.min}} </text>
+          <!-- <text class=" title-time" style="position:absolute;width:100%;left:180rpx;"
+            wx:if="{{item.lefttime!=null}}">{{item.lefttime.day}} 天 {{item.lefttime.hr}}:{{item.lefttime.min}} </text> -->
+          <text class=" title-time" style="position:absolute;width:100%;left:180rpx;">{{item.status}}</text>
         </view>
         <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-yundong="{{item}}">
           <view class="cu-card article ">
@@ -526,20 +539,21 @@
         </view>
       </view>
       <view wx:for="{{sousuo_detail_dalei}}" wx:key="key">
-        <view class="cu-bar bg-white solid-bottom">
-          <image class="cu-avatar my margin-left" src="{{item.logo}}" mode="heightFix"></image>
-          <!-- <text>吉他</text>
-          <text class=" title-time margin-right">1 天 01: 02 </text> -->
+        <view class="cu-bar bg-white solid-bottom" style="display:fixed;position: relative;">
+          <image class="cu-avatar round my margin-left" src="{{item.createrhead}}" mode="heightFix"></image>
+          <block wx:for="{{yundongxiaolei}}" wx:for-item="cell" wx:if="{{item.acid2==cell.code}}">
+            <text style="position:absolute;left:110rpx;">{{cell.name}}</text>
+          </block>
+          <!-- <text class=" title-time" style="position:absolute;width:100%;left:180rpx;"
+            wx:if="{{item.lefttime!=null}}">{{item.lefttime.day}} 天 {{item.lefttime.hr}}:{{item.lefttime.min}} </text> -->
+          <text class=" title-time" style="position:absolute;width:100%;left:180rpx;">{{item.status}}</text>
         </view>
         <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-yundong="{{item}}">
           <view class="cu-card article ">
             <view class="cu-item">
-              <view class="yundong-content title-text-content" style="margin-top:28rpx;">
-                <image class="icon-size" src="/img/icon_title.png" mode="heightFix"></image>
-                <text decode="{{true}}">{{item.slogan}}</text>
-              </view>
               <view class="shadow" style="background-color:#F8F9FD;padding:19rpx 0 19rpx 0;">
                 <view class="yundong-content">
+                  <image src="{{item.logo}}" mode="aspectFill"></image>
                   <view class="desc">
                     <view class="title-limit">{{item.actname}}</view>
                     <view class="text-content">
@@ -552,12 +566,16 @@
                     </view>
                     <view class="time-text-content">
                       <image class="icon-size" src="/img/icon_time.png" mode="heightFix"></image>
-                      {{item.fromtime}}开始
+                      {{item.fromtime}}开赛
                     </view>
                   </view>
-                  <image src="{{item.logo}}" mode="aspectFill"></image>
                 </view>
               </view>
+              <view class="yundong-content title-text-content" style="margin-top:28rpx;">
+                <image class="icon-size" src="/img/icon_title.png" mode="heightFix"></image>
+                <text decode="{{true}}">{{item.slogan}}</text>
+              </view>
+
               <!-- <view class="yundong-content yibaoming-margin-top">
                 <text class="yibaoming-text-content">已报名</text>
                 <text class="yibaoming-text-content"
@@ -566,7 +584,7 @@
               </view> -->
               <!-- <view class="yundong-content margin-top">
                 <view class="cu-avatar-group">
-                  <view class="cu-avatar round my " wx:for="{{6}}" wx:key="key"
+                  <view class="cu-avatar round my" wx:for="{{6}}" wx:key="key"
                     style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{index+1}}.jpg);">
                   </view>
                 </view>
@@ -642,22 +660,21 @@
         </view>
       </view>
       <view wx:for="{{sousuo_detail_dalei}}" wx:key="key">
-        <view class="cu-bar bg-white solid-bottom">
-          <image class="cu-avatar my margin-left" src="{{item.logo}}" mode="heightFix"></image>
-          <!-- <text style="">英雄联盟</text>
-          <text class=" title-time margin-right">1 天 01: 02 </text> -->
+        <view class="cu-bar bg-white solid-bottom" style="display:fixed;position: relative;">
+          <image class="cu-avatar round my margin-left" src="{{item.createrhead}}" mode="heightFix"></image>
+          <block wx:for="{{yundongxiaolei}}" wx:for-item="cell" wx:if="{{item.acid2==cell.code}}">
+            <text style="position:absolute;left:110rpx;">{{cell.name}}</text>
+          </block>
+          <!-- <text class=" title-time" style="position:absolute;width:100%;left:180rpx;"
+            wx:if="{{item.lefttime!=null}}">{{item.lefttime.day}} 天 {{item.lefttime.hr}}:{{item.lefttime.min}} </text> -->
+          <text class=" title-time" style="position:absolute;width:100%;left:180rpx;">{{item.status}}</text>
         </view>
         <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-yundong="{{item}}">
-          <view class="cu-card article no-card">
+          <view class="cu-card article ">
             <view class="cu-item">
-              <view class="yundong-content title-text-content" style="margin-bottom:20rpx;">
-                <image class="icon-size" src="/img/icon_title.png" mode="heightFix" style=""></image>
-                <text decode="{{true}}"> {{item.slogan}}</text>
-              </view>
-              <view class="shadow" style="background-color:var(--white);">
-                <image class="padding-left" src="{{item.logo}}" mode="aspectFill" style="height:200rpx;width:699rpx;">
-                </image>
+              <view class="shadow" style="background-color:#F8F9FD;padding:19rpx 0 19rpx 0;">
                 <view class="yundong-content">
+                  <image src="{{item.logo}}" mode="aspectFill"></image>
                   <view class="desc">
                     <view class="title-limit">{{item.actname}}</view>
                     <view class="text-content">
@@ -670,28 +687,31 @@
                     </view>
                     <view class="time-text-content">
                       <image class="icon-size" src="/img/icon_time.png" mode="heightFix"></image>
-                      {{item.fromtime}}开战
+                      {{item.fromtime}}开赛
                     </view>
                   </view>
                 </view>
               </view>
-              <view class="yundong-content yibaoming-margin-top">
+              <view class="yundong-content title-text-content" style="margin-top:28rpx;">
+                <image class="icon-size" src="/img/icon_title.png" mode="heightFix"></image>
+                <text decode="{{true}}">{{item.slogan}}</text>
+              </view>
+
+              <!-- <view class="yundong-content yibaoming-margin-top">
                 <text class="yibaoming-text-content">已报名</text>
                 <text class="yibaoming-text-content"
                   style="color:var(--blue)">{{item.signupcnt}}/{{item.signupmax}}</text>
                 <text class="yibaoming-text-content">人</text>
-              </view>
-              <view class="yundong-content margin-top">
+              </view> -->
+              <!-- <view class="yundong-content margin-top">
                 <view class="cu-avatar-group">
-                  <view class="cu-avatar round my tinyright" wx:for="{{6}}" wx:key="key" y
+                  <view class="cu-avatar round my" wx:for="{{6}}" wx:key="key"
                     style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{index+1}}.jpg);">
                   </view>
                 </view>
                 <button class="cu-btn bg-orange round btn" style="margin-left:250rpx;margin-top:-30rpx;"
                   bindtap="baomingtiaozhan" data-yundong="{{item}}">报名挑战</button>
-                <!-- <button class="cu-btn line-orange round btn" style="margin-left:50rpx;margin-top:-30rpx;">群聊（8）</button> -->
-              </view>
-              <view class="white"></view>
+              </view> -->
             </view>
           </view>
         </view>
@@ -737,7 +757,7 @@
   </block>
   <block wx:if="{{TabCur==5}}">
     <view class="flex bg-white">
-      <scroll-view scroll-y  style="height:calc(100vh)">
+      <scroll-view scroll-y style="height:calc(100vh)">
         <view class="tuanduiList1">
           <view class="{{tuanduiCur==index?'box_tuandui2':'box_tuandui1'}}" wx:for="{{activityClass1}}"
             bindtap="xuanzeClass1" data-index="{{index}}">
@@ -745,7 +765,7 @@
           </view>
         </view>
       </scroll-view>
-      <scroll-view scroll-y  style="height:calc(100vh)">
+      <scroll-view scroll-y style="height:calc(100vh);">
         <view class="tuanduiList2">
           <view class="box_tuandui3" wx:for="{{tuanduiList}}" bindtap="nav_tuanduiXiangqing" data-index="{{index}}">
             <image class="tuandui-img" src="{{tuanduiList[index].logo}}">
@@ -753,8 +773,18 @@
             </image>
             <view>
               <view style="margin-left: 20rpx;font-size: 32rpx;font-weight: bold;">{{tuanduiList[index].name}}</view>
-              <view style="margin-left: 20rpx;font-size: 28rpx;font-weight: 500;color: #FE6005;">
-                {{tuanduiList[index].mbrCount}}人</view>
+              <view class="flex" style="margin-left: 20rpx;font-size: 28rpx;font-weight: 500;color: #FE6005;">
+                <view style="color: black;">
+                  人数
+                </view>
+                <view style="margin-left: 10rpx;"> {{tuanduiList[index].mbrCount}}</view>
+
+                <view style="color: black;margin-left: 20rpx;">
+                  活动数
+                </view>
+                <view style="margin-left: 10rpx;"> {{tuanduiList[index].actCount}}</view>
+
+              </view>
             </view>
           </view>
         </view>

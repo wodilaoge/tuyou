@@ -78,7 +78,7 @@
       <text class="ziliao-shuzi flex-sub text-center">{{dianzanshu}}</text>
     </view>
     <view class="flex" style="margin-top:26rpx;">
-      <view class="ziliao-fensi flex-sub text-center">活动</view>
+      <view class="ziliao-fensi flex-sub text-center">发起</view>
       <view class="ziliao-fensi flex-sub text-center">粉丝</view>
       <view class="ziliao-fensi flex-sub text-center">点赞</view>
     </view>

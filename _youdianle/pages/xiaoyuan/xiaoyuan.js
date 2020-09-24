@@ -444,13 +444,14 @@ Page({
       pageSize: 5,
     }
     app.wxRequest('POST', url, data, (res) => {
+
       if (res.data.border == null) {
         self.setData({
           isRefleshshipin: false,
         })
       }
       let shipintmp = res.data;
-      console.log(shipintmp)
+      console.log("视频全部",shipintmp)
       this.setData({
         shipin: shipintmp,
         shipinBorder: res.data.border,
@@ -659,6 +660,7 @@ Page({
       pageSize: 5,
     };
     app.wxRequest('POST', url, data, (res) => {
+      console.log("视频大类",res)
       let shipintmp = res.data;
       if (res.data.border == null) {
         self.setData({

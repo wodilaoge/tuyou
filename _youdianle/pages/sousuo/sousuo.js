@@ -158,7 +158,10 @@ Page({
 
     } else if (this.data.TabCur == 4) {
       this.sousuo_dalei_shipin()
-    } else {
+    }else if(this.data.TabCur == 5){
+      this.sousuo_tuandui()
+    }
+     else {
       this.sousuo_dalei()
     }
   },
@@ -554,6 +557,8 @@ Page({
     };
     console.log('搜索团队2', data)
     app.wxRequest('POST', url, data, (res) => {
+      
+    console.log('搜索团队2', res)
       self.setData({
         tuanduiList: res.data.list
       })
