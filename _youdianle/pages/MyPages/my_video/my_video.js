@@ -383,4 +383,35 @@ Page({
     }
 
   },
+
+  onReachBottom: function () {
+    if (!this.data.needflesh)
+      return
+    console.log("上拉刷新")
+    var that = this
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    let url = app.globalData.URL + '/video/listActVideo';
+    let data = {
+      'uid': wx.getStorageSync('userInfo').id,
+      'city': wx.getStorageSync('city').code,
+      'univ': wx.getStorageSync('school').code,
+      'border':that.data.shipin.border
+    };
+    util.post_token(url, data).then(function (res) {
+      console.log('video add', res.data)
+      let _data=that.data.shipin
+      _data.border=res.data.data.border
+      for(let i of res.data.data.list)
+      {
+        _data.list.push(i)
+      }
+      that.setData({
+        shipin: _data
+      })
+      wx.hideLoading()
+    })
+  }
 })

@@ -98,6 +98,11 @@ Page({
       TabCur: e.currentTarget.dataset.id,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
+    this.setData({
+      isRefleshyundong:true,
+      isRefleshwenyu: true,
+      isRefleshaihao: true,
+    })
   },
   /*news() { //活动新闻
     let url = app.globalData.URL + '/news/listNews';
@@ -130,6 +135,11 @@ Page({
       yundongCur: e.currentTarget.dataset.cur,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
+    this.setData({
+      isRefleshyundong: true,
+      isRefleshwenyu: true,
+      isRefleshaihao: true,
+    })
     var self = this
     let url = app.globalData.URL + '/config/getActivityClass2'
     let data = {
@@ -146,6 +156,11 @@ Page({
       wenyuCur: e.currentTarget.dataset.cur,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
+    this.setData({
+      isRefleshyundong: true,
+      isRefleshwenyu: true,
+      isRefleshaihao: true,
+    })
     var self = this
     let url = app.globalData.URL + '/config/getActivityClass2'
     let data = {
@@ -161,6 +176,11 @@ Page({
     this.setData({
       aihaoCur: e.currentTarget.dataset.cur,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
+    })
+    this.setData({
+      isRefleshyundong: true,
+      isRefleshwenyu: true,
+      isRefleshaihao: true,
     })
     var self = this
     let url = app.globalData.URL + '/config/getActivityClass2'
@@ -1053,6 +1073,11 @@ Page({
     this.towerSwiper('xiaoyuanSwiperList')
   },
   onShow: function () {
+    this.setData({
+      isRefleshyundong: true,
+      isRefleshwenyu: true,
+      isRefleshaihao: true,
+    })
     if (wx.getStorageSync('city') != "")
       this.setData({
         city: wx.getStorageSync('city').code,

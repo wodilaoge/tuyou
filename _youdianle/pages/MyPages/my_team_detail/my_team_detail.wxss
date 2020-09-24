@@ -203,8 +203,8 @@
 }
 
 .button {
-  height: 60rpx;
-  width: 120rpx;
+  height: 50rpx;
+  width: 105rpx;
   font-size: small;
 }
 
