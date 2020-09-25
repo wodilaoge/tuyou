@@ -13,6 +13,8 @@ Page({
     type: 50,
     zhaopian: [],
     swiper_current: 0,
+    zhaopianPinglunBorder:'',
+    shipinPinglunBorder:'',
   },
   tabCur: 0,
   getOneShipin: function (e) {
@@ -309,6 +311,7 @@ Page({
     }, 100)
     that.setData({
       shipin_index: e.currentTarget.dataset.index,
+      zhaopian_index: e.currentTarget.dataset.index,
     })
 
     /////
@@ -319,7 +322,7 @@ Page({
         objtype: 50,
         objid: e.currentTarget.dataset.dxid,
       };
-      app.wxRequest('GET', url, data, (res) => {
+      app.wxRequest('POST', url, data, (res) => {
         if (res.data.border == null) {
           that.setData({
             isRefleshshipinPinglun: false
@@ -340,7 +343,7 @@ Page({
         objtype: 60,
         objid: e.currentTarget.dataset.dxid,
       };
-      app.wxRequest('GET', url, data, (res) => {
+      app.wxRequest('POST', url, data, (res) => {
         if (res.data.border == null) {
           that.setData({
             isRefleshshipinPinglun: false
@@ -349,12 +352,67 @@ Page({
         shipintmp[e.currentTarget.dataset.index].listComm = res.data.list;
         that.setData({
           zhaopian: shipintmp,
-          shipinPinglunBorder: res.data.border,
+          zhaopianPinglunBorder: res.data.border,
         })
       }, (err) => {
         console.log(err.errMsg)
       });
     }
+  },
+  getZhaopianPinglunFenye:function(e){
+    var that=this;
+    var zhaopiantmp = this.data.zhaopian;
+    let url = app.globalData.URL + '/comm/listCommByObj';
+    let data = {
+      objtype: 60,
+      objid: this.data.zhaopian[this.data.zhaopian_index].id,
+      border: this.data.zhaopianPinglunBorder,
+    };
+    console.log(data)
+    app.wxRequest('POST', url, data, (res) => {
+      console.log("照片评论分页",res);
+      if (res.data.border == null||res.data.list.length<10) {
+        that.setData({
+          isRefleshZhaopianPinglun: false
+        })
+      }
+      for (let s of res.data.list) {
+        zhaopiantmp[this.data.zhaopian_index].listComm.push(s);
+      }
+      that.setData({
+        zhaopian: zhaopiantmp,
+        zhaopianPinglunBorder: res.data.border,
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  getShipinPinglunFenye: function (e) {
+    var self=this;
+    var shipintmp = this.data.shipin;
+    let url = app.globalData.URL + '/comm/listCommByObj';
+    let data = {
+      objtype: 50,
+      objid: this.data.shipin.list[this.data.shipin_index].id,
+      border: this.data.shipinPinglunBorder,
+    };
+    app.wxRequest('POST', url, data, (res) => {
+      console.log(res)
+      if (res.data.border == null) {
+        self.setData({
+          isRefleshshipinPinglun: false
+        })
+      }
+      for (let s of res.data.list) {
+        shipintmp.list[this.data.shipin_index].listComm.push(s);
+      }
+      this.setData({
+        shipin: shipintmp,
+        shipinPinglunBorder: res.data.border,
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
   },
   chooseSezi: function (e) {
     var that = this;

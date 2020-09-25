@@ -413,7 +413,7 @@
   <view fixed class="modals modals-bottom-dialog" hidden="{{!shipinChooseSize}}">
     <view class="modals-cancel" bindtap="shipinHideModal" catchtouchmove="true"></view>
     <scroll-view class="shipin-bottom-dialog-body bottom-pos" animation="{{shipinAnimationData}}" style="display:block"
-      scroll-y="true">
+      scroll-y="true" bindscrolltolower="getShipinPinglunFenye">
       <view>
         <text class="cuIcon-close lg text-black" bindtap="shipinHideModal"></text>
         <text class="sp-quanbupinglun2">全部评论({{shipin.list[shipin_index].commCnt}})</text>

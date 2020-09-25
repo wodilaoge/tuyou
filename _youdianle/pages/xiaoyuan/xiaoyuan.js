@@ -8,6 +8,7 @@ Page({
     isRefleshaihao: true,
     isRefleshshipin: true,
     isRefleshshipinPinglun: true,
+    shipinPinglunBorder: '',
     bt: '校园活动',
     btdata: [{
         id: 0,
@@ -791,10 +792,11 @@ Page({
       objtype: 50,
       objid: e.currentTarget.dataset.dxid,
     };
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
       shipintmp.list[e.currentTarget.dataset.index].listComm = res.data.list;
       this.setData({
         shipin: shipintmp,
+        shipinPinglunBorder: res.data.border,
       })
     }, (err) => {
       console.log(err.errMsg)
@@ -1187,6 +1189,33 @@ Page({
       }
     }
 
+  },
+  getShipinPinglunFenye: function (e) {
+    var self=this;
+    var shipintmp = this.data.shipin;
+    let url = app.globalData.URL + '/comm/listCommByObj';
+    let data = {
+      objtype: 50,
+      objid: this.data.shipin.list[this.data.shipin_index].id,
+      border: this.data.shipinPinglunBorder,
+    };
+    app.wxRequest('POST', url, data, (res) => {
+      console.log(res)
+      if (res.data.border == null) {
+        self.setData({
+          isRefleshshipinPinglun: false
+        })
+      }
+      for (let s of res.data.list) {
+        shipintmp.list[this.data.shipin_index].listComm.push(s);
+      }
+      this.setData({
+        shipin: shipintmp,
+        shipinPinglunBorder: res.data.border,
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
