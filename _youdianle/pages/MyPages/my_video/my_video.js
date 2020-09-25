@@ -8,7 +8,8 @@ Page({
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '0', ///1表示有一个播放，0表示无播放
-    needflesh:true
+    needflesh:true,
+    isRefleshshipinPinglun:true
   },
   tabSelect(e) {
     this.setData({
@@ -299,12 +300,11 @@ Page({
       shipintmp.list[e.currentTarget.dataset.index].listComm = res.data.list;
       this.setData({
         shipin: shipintmp,
+        shipinPinglunBorder: res.data.border,
       })
     }, (err) => {
       console.log(err.errMsg)
     });
-
-
   },
   shipinHideModal: function (e) {
     var self = this;
@@ -325,25 +325,34 @@ Page({
       })
     }, 100)
   },
-  hideModal: function (e) {
-    var self = this;
-    var animation = wx.createAnimation({
-      duration: 100,
-      timingFunction: 'linear'
-    })
-    self.animation = animation
-    animation.translateY(200).step()
-    self.setData({
-      animationData: animation.export()
-
-    })
-    setTimeout(function () {
-      animation.translateY(0).step()
-      self.setData({
-        animationData: animation.export(),
-        chooseSize: false
+  getShipinPinglunFenye: function (e) {
+    if(!this.data.isRefleshshipinPinglun)
+      return;
+    var self=this;
+    var shipintmp = this.data.shipin;
+    let url = app.globalData.URL + '/comm/listCommByObj';
+    let data = {
+      objtype: 50,
+      objid: this.data.shipin.list[this.data.shipin_index].id,
+      border: this.data.shipinPinglunBorder,
+    };
+    app.wxRequest('POST', url, data, (res) => {
+      console.log(res)
+      if (res.data.border == null) {
+        self.setData({
+          isRefleshshipinPinglun: false
+        })
+      }
+      for (let s of res.data.list) {
+        shipintmp.list[this.data.shipin_index].listComm.push(s);
+      }
+      this.setData({
+        shipin: shipintmp,
+        shipinPinglunBorder: res.data.border,
       })
-    }, 100)
+    }, (err) => {
+      console.log(err.errMsg)
+    });
   },
   onLoad: function (options) {
     wx.showLoading({

@@ -1241,6 +1241,8 @@ Page({
 
   },
   getShipinPinglunFenye: function (e) {
+    if(!this.data.isRefleshshipinPinglun)
+      return;
     var self=this;
     var shipintmp = this.data.shipin;
     let url = app.globalData.URL + '/comm/listCommByObj';
