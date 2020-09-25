@@ -13,8 +13,11 @@ Page({
     type: 50,
     zhaopian: [],
     swiper_current: 0,
-    zhaopianPinglunBorder:'',
-    shipinPinglunBorder:'',
+    zhaopianPinglunBorder: '',
+    shipinPinglunBorder: '',
+    isRefleshshipinPinglun:true,
+    isRefleshZhaopianPinglun:true
+
   },
   tabCur: 0,
   getOneShipin: function (e) {
@@ -291,6 +294,7 @@ Page({
 
 
   shipinChooseSezi: function (e) {
+
     var that = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -359,8 +363,10 @@ Page({
       });
     }
   },
-  getZhaopianPinglunFenye:function(e){
-    var that=this;
+  getZhaopianPinglunFenye: function (e) {
+    if (!this.data.isRefleshZhaopianPinglun)
+      return
+    var that = this;
     var zhaopiantmp = this.data.zhaopian;
     let url = app.globalData.URL + '/comm/listCommByObj';
     let data = {
@@ -370,8 +376,8 @@ Page({
     };
     console.log(data)
     app.wxRequest('POST', url, data, (res) => {
-      console.log("照片评论分页",res);
-      if (res.data.border == null||res.data.list.length<10) {
+      console.log("照片评论分页", res);
+      if (res.data.border == null || res.data.list.length < 10) {
         that.setData({
           isRefleshZhaopianPinglun: false
         })
@@ -388,7 +394,9 @@ Page({
     });
   },
   getShipinPinglunFenye: function (e) {
-    var self=this;
+    if(!this.data.isRefleshshipinPinglun)
+      return
+    var self = this;
     var shipintmp = this.data.shipin;
     let url = app.globalData.URL + '/comm/listCommByObj';
     let data = {

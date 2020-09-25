@@ -775,6 +775,8 @@ Page({
     });
   },
   getZhaopianPinglunFenye:function(e){
+    if(!this.data.isRefleshZhaopianPinglun)
+      return
     var that=this;
     var zhaopiantmp = this.data.zhaopian;
     let url = app.globalData.URL + '/comm/listCommByObj';
