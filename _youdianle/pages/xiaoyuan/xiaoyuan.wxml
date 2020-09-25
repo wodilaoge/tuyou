@@ -226,7 +226,7 @@
           <view class="sp-hotpinglun margin-top ">热门评论</view>
           <view class="margin-top" style="background-color: #fff;">
 
-            <view class="margin-top sp-pinlun-content" bindtap="shipinChooseSezi" data-duixiang="{{50}}"
+            <view class=" sp-pinlun-content" bindtap="shipinChooseSezi" data-duixiang="{{50}}"
               data-dxid="{{shipin.list[0].id}}" data-index="{{0}}" wx:if="{{shipin.list[0].listComm[0]}}">
               <view>
                 <image class="sp-pinglun-avatar round " src="{{shipin.list[0].listComm[0].createrHead}} "></image>
@@ -243,7 +243,7 @@
               </view>
             </view>
 
-            <view class="margin-top sp-pinlun-content" bindtap="shipinChooseSezi" data-duixiang="{{50}}"
+            <view class=" sp-pinlun-content" bindtap="shipinChooseSezi" data-duixiang="{{50}}"
               data-dxid="{{shipin.list[0].id}}" data-index="{{0}}" wx:if="{{shipin.list[0].listComm[1]}}">
               <view>
                 <image class="sp-pinglun-avatar round " src="{{shipin.list[0].listComm[1].createrHead}} "></image>
@@ -312,7 +312,7 @@
           <view class=" sp-pinglun margin-top ">{{shipin.list[index].notes}}</view>
           <view class="sp-hotpinglun margin-top ">热门评论</view>
           <view class="margin-top" style="background-color: #fff;">
-            <view class="margin-top sp-pinlun-content" bindtap="shipinChooseSezi" data-duixiang="{{50}}"
+            <view class=" sp-pinlun-content" bindtap="shipinChooseSezi" data-duixiang="{{50}}"
               data-dxid="{{shipin.list[index].id}}" data-index="{{index}}" wx:if="{{shipin.list[index].listComm[0]}}">
               <view>
                 <image class="sp-pinglun-avatar round " src="{{shipin.list[index].listComm[0].createrHead}} "></image>
@@ -329,7 +329,7 @@
               </view>
             </view>
 
-            <view class="margin-top sp-pinlun-content" bindtap="shipinChooseSezi" data-duixiang="{{50}}"
+            <view class=" sp-pinlun-content" bindtap="shipinChooseSezi" data-duixiang="{{50}}"
               data-dxid="{{shipin.list[index].id}}" data-index="{{index}}" wx:if="{{shipin.list[index].listComm[1]}}">
               <view>
                 <image class="sp-pinglun-avatar round " src="{{shipin.list[index].listComm[1].createrHead}} "></image>
@@ -419,7 +419,7 @@
         <text class="sp-quanbupinglun2">全部评论({{shipin.list[shipin_index].commCnt}})</text>
       </view>
       <view wx:for="{{shipin.list[shipin_index].listComm}}" wx:for-index="index2" style="background-color:white;">
-        <view class="margin-top sp-pinlun-content">
+        <view class="sp-pinlun-content">
           <!-- <image class="sp-pinglun-avatar-2 round " src="{{shipin.list[shipin_index].listComm[index2].createrHead}} ">
           </image>
           <view class="sp-pinglun-name ">{{shipin.list[shipin_index].listComm[index2].createrAlias}}</view>

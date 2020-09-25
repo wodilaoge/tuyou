@@ -73,7 +73,9 @@ Page({
       // city: this.data.city,
       // univ: this.data.univ,
     };
+    console.log("视频分页",data)
     app.wxRequest('POST', url, data, (res) => {
+      console.log("视频分页",res)
       if (res.data.border == null) {
         self.setData({
           isRefleshshipin: false,

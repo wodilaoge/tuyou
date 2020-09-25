@@ -418,7 +418,7 @@
                   <view class="title-limit">{{item.actname}}</view>
                   <view class="text-content">
                     <image class="icon-size" src="/img/icon_location.png" mode="heightFix"></image>
-                    <text decode="{{true}}">\t{{item.city}}{{item.address}}</text>
+                    <text decode="{{true}}">\t{{item.city}}{{item.univ}}{{item.address}}</text>
                   </view>
                   <view class="text-content">
                     <image class="icon-size"></image>
@@ -434,7 +434,7 @@
             <view class="yundong-content title-text-content" style="margin-top:28rpx;" wx:if="{{item.slogan!=''||null}}"
               bindtap="yundongxiangqing" data-yundong="{{item}}">
               <image class="icon-size" src="/img/icon_title.png" mode="heightFix"></image>
-              <text decode="{{true}}">{{item.slogan}}</text>
+              <text decode="{{true}}">{{item.slogan===null?'':item.slogan}}</text>
             </view>
             <view class="yundong-content yibaoming-margin-top">
               <text class="yibaoming-text-content">已报名</text>
