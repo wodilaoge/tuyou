@@ -137,6 +137,7 @@ Page({
       this.setData({
         shipin: shipintmp,
         shipinPinglunBorder: res.data.border,
+        isRefleshshipinPinglun:true
       })
     }, (err) => {
       console.log(err.errMsg)

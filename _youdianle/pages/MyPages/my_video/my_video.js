@@ -8,8 +8,9 @@ Page({
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '0', ///1表示有一个播放，0表示无播放
-    needflesh:true,
-    isRefleshshipinPinglun:true
+    needflesh: true,
+    isRefleshshipinPinglun: true,
+    isshare: 0
   },
   tabSelect(e) {
     this.setData({
@@ -84,7 +85,7 @@ Page({
         video_id: now_id,
         bofang_if_id: now_id
       })
-      console.log(prev_id,now_id)
+      console.log(prev_id, now_id)
       wx.createVideoContext(prev_id).pause();
       wx.createVideoContext(now_id).play();
 
@@ -113,10 +114,10 @@ Page({
       }
     }
   },
-  yingChangShipin:function(e){
-    console.log(e,'/////')
-    let shipintmp=this.data.shipin;
-    shipintmp.list[e.currentTarget.dataset.index].yingChang=1;
+  yingChangShipin: function (e) {
+    console.log(e, '/////')
+    let shipintmp = this.data.shipin;
+    shipintmp.list[e.currentTarget.dataset.index].yingChang = 1;
     shipintmp.list[e.currentTarget.dataset.index].shipinSRC = shipintmp.list[e.currentTarget.dataset.index].fileId; /////////点击再加载
     this.setData({
       shipin: shipintmp
@@ -301,6 +302,7 @@ Page({
       this.setData({
         shipin: shipintmp,
         shipinPinglunBorder: res.data.border,
+        isRefleshshipinPinglun: true
       })
     }, (err) => {
       console.log(err.errMsg)
@@ -326,9 +328,9 @@ Page({
     }, 100)
   },
   getShipinPinglunFenye: function (e) {
-    if(!this.data.isRefleshshipinPinglun)
+    if (!this.data.isRefleshshipinPinglun)
       return;
-    var self=this;
+    var self = this;
     var shipintmp = this.data.shipin;
     let url = app.globalData.URL + '/comm/listCommByObj';
     let data = {
@@ -354,11 +356,23 @@ Page({
       console.log(err.errMsg)
     });
   },
+  backHome() {
+    wx.switchTab({
+      url: '/pages/index/index',
+    })
+  },
   onLoad: function (options) {
     wx.showLoading({
       title: '加载中...',
       mask: true //显示触摸蒙层  防止事件穿透触发
     });
+    console.log(options.isshare)
+    if (options.isshare == 1) {
+      console.log('是分享进入');
+      this.setData({
+        'isshare': options.isshare
+      })
+    }
     var that = this
     let url = app.globalData.URL + '/video/listMyVideo';
     let tmp = wx.getStorageSync('userInfo')
@@ -374,9 +388,8 @@ Page({
       })
     })
   },
-  delvideo(e)
-  {
-    var that=this
+  delvideo(e) {
+    var that = this
     console.log(e.currentTarget.dataset.id)
     let url = app.globalData.URL + '/video/cancelActVideo';
     var data = {
@@ -392,10 +405,10 @@ Page({
           console.log('delete video confirm')
           util.gets(url, data).then(function (res) {
             console.log(res)
-            if(res.data.code==0)
-            wx.showToast({
-              title: '删除成功',
-            })
+            if (res.data.code == 0)
+              wx.showToast({
+                title: '删除成功',
+              })
             that.onLoad()
           })
         }
@@ -405,22 +418,11 @@ Page({
   onShareAppMessage: function (e) {
     var self = this;
     console.log(e)
-    if (e.target.dataset.duixiang == 50) {
+    if (e.from === 'menu') {
+      console.log('menu share')
       return {
         title: '友点乐',
-        path: '/pages/fenxiangshipin/fenxiang?&shipinID=' + self.data.shipin.list[e.target.dataset.index].id+ '&duixiang=' + e.target.dataset.duixiang,
-        success: function (res) {
-          console.log("转发成功:" + JSON.stringify(res));
-          self.shareClick();
-        },
-        fail: function (res) {
-          console.log("转发失败:" + JSON.stringify(res));
-        }
-      }
-    } else {
-      return {
-        title: '友点乐',
-        path: 'pages/xiaoyuan/xiaoyuan',
+        path: '/pages/MyPages/my_video/my_video?isshare=1',
         success: function (res) {
           console.log("转发成功:" + JSON.stringify(res));
           self.shareClick();
@@ -430,7 +432,19 @@ Page({
         }
       }
     }
-
+    else if (e.target.dataset.duixiang == 50) {
+      return {
+        title: '友点乐',
+        path: '/pages/fenxiangshipin/fenxiang?&shipinID=' + self.data.shipin.list[e.target.dataset.index].id + '&duixiang=' + e.target.dataset.duixiang,
+        success: function (res) {
+          console.log("转发成功:" + JSON.stringify(res));
+          self.shareClick();
+        },
+        fail: function (res) {
+          console.log("转发失败:" + JSON.stringify(res));
+        }
+      }
+    }
   },
 
   onReachBottom: function () {
@@ -446,18 +460,17 @@ Page({
     let data = {
       'city': wx.getStorageSync('city').code,
       'univ': wx.getStorageSync('school').code,
-      'border':that.data.shipin.border
+      'border': that.data.shipin.border
     };
     util.post_token(url, data).then(function (res) {
       console.log('video add', res.data)
-      let _data=that.data.shipin
-      _data.border=res.data.data.border
-      for(let i of res.data.data.list)
-      {
+      let _data = that.data.shipin
+      _data.border = res.data.data.border
+      for (let i of res.data.data.list) {
         _data.list.push(i)
       }
       that.setData({
-        needflesh:res.data.data.list.length!=0,
+        needflesh: res.data.data.list.length != 0,
         shipin: _data
       })
       wx.hideLoading()
