@@ -256,7 +256,7 @@ Page({
       objtype: 50,
       objid: e.currentTarget.dataset.dxid,
     };
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
       if (res.data.border == null) {
         that.setData({
           isRefleshshipinPinglun: false
@@ -281,7 +281,7 @@ Page({
       objid: this.data.shipin.list[this.data.shipin_index].id,
       border: this.data.shipinPinglunBorder,
     };
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
       if (res.data.border == null) {
         self.setData({
           isRefleshshipinPinglun: false
@@ -550,7 +550,7 @@ Page({
       console.log(err.errMsg)
     });
     url = app.globalData.URL + '/comm/listCommByObj';
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
       console.log(res)
       this.setData({
         comment: res.data

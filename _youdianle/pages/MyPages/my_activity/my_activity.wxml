@@ -49,7 +49,7 @@
                 <view class="title-limit">{{item.actname}}</view>
                 <view class="text-content">
                   <image class="icon-size" src="/img/icon_location.png" mode="aspectFill"></image>
-                  <text decode="{{true}}">\t{{item.city}}{{item.address}}</text>
+                  <text decode="{{true}}">\t{{item.city}}{{item.univ}}{{item.address}}</text>
                 </view>
                 <view class="text-content">
                   <image class="icon-size"></image>
@@ -106,7 +106,7 @@
                 <view class="title-limit">{{item.actname}}</view>
                 <view class="text-content">
                   <image class="icon-size" src="/img/icon_location.png" mode="aspectFill"></image>
-                  <text decode="{{true}}">\t{{item.city}}{{item.address}}</text>
+                  <text decode="{{true}}">\t{{item.city}}{{item.univ}}{{item.address}}</text>
                 </view>
                 <view class="text-content">
                   <image class="icon-size"></image>
@@ -167,7 +167,7 @@
                 <view class="title-limit">{{item.actname}}</view>
                 <view class="text-content">
                   <image class="icon-size" src="/img/icon_location.png" mode="aspectFill"></image>
-                  <text decode="{{true}}">\t{{item.city}}{{item.address}}</text>
+                  <text decode="{{true}}">\t{{item.city}}{{item.univ}}{{item.address}}</text>
                 </view>
                 <view class="text-content">
                   <image class="icon-size"></image>

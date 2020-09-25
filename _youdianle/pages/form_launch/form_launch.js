@@ -44,7 +44,7 @@ Page({
     picker: ['个人报名'],
     pickertiny: [],
     pickerbig: [],
-    picker2: ['篮球', '足球', '羽毛球', '乒乓球', '网球'],
+    picker2: [],
     multiIndex: [0, 0, 0],
     region: ['浙江省', '杭州市', '浙江大学'],
     pro: '',
@@ -373,6 +373,10 @@ Page({
     }
   },
   onLoad() {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true //显示触摸蒙层  防止事件穿透触发
+    });
     var timestamp = Date.parse(new Date());
     timestamp = timestamp / 1000;
     // console.log("当前时间戳为：" + timestamp);
@@ -469,6 +473,8 @@ Page({
       that.setData({
         pickerbig: res.data.data
       })
+      wx.hideLoading()
+
     })
   },
   prevNum() {

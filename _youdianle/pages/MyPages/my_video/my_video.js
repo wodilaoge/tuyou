@@ -8,6 +8,7 @@ Page({
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '0', ///1表示有一个播放，0表示无播放
+    needflesh:true
   },
   tabSelect(e) {
     this.setData({
@@ -265,6 +266,7 @@ Page({
     })
   },
   shipinChooseSezi: function (e) {
+    console.log('456')
     var self = this;
     var animation = wx.createAnimation({
       duration: 100,
@@ -293,7 +295,7 @@ Page({
       objtype: 50,
       objid: e.currentTarget.dataset.dxid,
     };
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
       shipintmp.list[e.currentTarget.dataset.index].listComm = res.data.list;
       this.setData({
         shipin: shipintmp,
@@ -304,16 +306,54 @@ Page({
 
 
   },
+  shipinHideModal: function (e) {
+    var self = this;
+    var animation = wx.createAnimation({
+      duration: 100,
+      timingFunction: 'linear'
+    })
+    self.animation = animation
+    animation.translateY(200).step()
+    self.setData({
+      shipinAnimationData: animation.export()
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      self.setData({
+        shipinAnimationData: animation.export(),
+        shipinChooseSize: false
+      })
+    }, 100)
+  },
+  hideModal: function (e) {
+    var self = this;
+    var animation = wx.createAnimation({
+      duration: 100,
+      timingFunction: 'linear'
+    })
+    self.animation = animation
+    animation.translateY(200).step()
+    self.setData({
+      animationData: animation.export()
+
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      self.setData({
+        animationData: animation.export(),
+        chooseSize: false
+      })
+    }, 100)
+  },
   onLoad: function (options) {
     wx.showLoading({
       title: '加载中...',
       mask: true //显示触摸蒙层  防止事件穿透触发
     });
     var that = this
-    let url = app.globalData.URL + '/video/listActVideo';
+    let url = app.globalData.URL + '/video/listMyVideo';
     let tmp = wx.getStorageSync('userInfo')
     let data = {
-      'uid': tmp.id,
       'city': wx.getStorageSync('city').code,
       'univ': wx.getStorageSync('school').code
     };
@@ -393,9 +433,8 @@ Page({
       title: '加载中',
       mask: true
     })
-    let url = app.globalData.URL + '/video/listActVideo';
+    let url = app.globalData.URL + '/video/listMyVideo';
     let data = {
-      'uid': wx.getStorageSync('userInfo').id,
       'city': wx.getStorageSync('city').code,
       'univ': wx.getStorageSync('school').code,
       'border':that.data.shipin.border
@@ -409,6 +448,7 @@ Page({
         _data.list.push(i)
       }
       that.setData({
+        needflesh:res.data.data.list.length!=0,
         shipin: _data
       })
       wx.hideLoading()

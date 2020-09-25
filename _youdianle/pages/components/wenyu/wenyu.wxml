@@ -68,6 +68,7 @@
               <view class="text-content" hidden="{{(item.city==''||item.city==null)&&(item.address==''||item.address==null)}}">
                 <image class="icon-size" src="/img/icon_location.png" mode="heightFix"></image>
                 <text decode="{{true}}" hidden="{{item.city==''||item.city==null}}">\t{{item.city}}</text>
+                <text decode="{{true}}" hidden="{{item.univ==''||item.univ==null}}">{{item.univ}}</text>
                 <text decode="{{true}}" hidden="{{item.address==''||item.address==null}}">{{item.address}}</text>
               </view>
               <view class="text-content" hidden="{{item.venue==''||item.venue==null}}">
@@ -81,7 +82,7 @@
             </view>
           </view>
         </view>
-        <view class="yundong-content title-text-content" style="margin-top:28rpx;" wx:if="{{item.slogan!=''||null}}"  bindtap="yundongxiangqing" data-wenyu="{{item}}">
+        <view class="yundong-content title-text-content" style="margin-top:28rpx;" wx:if="{{item.slogan!=''&&item.slogan!=null}}"  bindtap="yundongxiangqing" data-wenyu="{{item}}">
           <image class="icon-size" src="/img/icon_title.png" mode="heightFix"></image>
           <text decode="{{true}}">{{item.slogan}}</text>
         </view>
