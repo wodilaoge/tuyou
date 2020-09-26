@@ -278,6 +278,8 @@ Page({
 
   },
   getShipinPinglunFenye: function (e) {
+    if (!this.data.isRefleshshipinPinglun)
+      return;
     var shipintmp = this.data.shipin;
     let url = app.globalData.URL + '/comm/listCommByObj';
     let data = {
@@ -286,6 +288,7 @@ Page({
       border: this.data.shipinPinglunBorder,
     };
     app.wxRequest('POST', url, data, (res) => {
+      console.log(res)
       if (res.data.border == null) {
         self.setData({
           isRefleshshipinPinglun: false
@@ -528,10 +531,12 @@ Page({
       this.setData({
         TabCur2: e.currentTarget.dataset.id,
         huodongXiaoleiIndex: e.currentTarget.dataset.id,
+        isRefleshHuodong:true,
       })
     } else if (this.data.TabCur == 5) {
       this.setData({
         TabCur3: e.currentTarget.dataset.id,
+        isRefleshshipin:true,
       })
     }
 
@@ -1208,16 +1213,16 @@ Page({
       wx.hideLoading()
 
     }
-    if (this.data.isRefleshshipinPinglun == true && this.data.shipinChooseSize == true) {
-      wx.showLoading({
-        title: '加载中...',
-        mask: true //显示触摸蒙层  防止事件穿透触发
-      });
-      this.getShipinPinglunFenye()
-      wx.hideLoading({
-        complete: (res) => {},
-      })
-    }
+    // if (this.data.isRefleshshipinPinglun == true && this.data.shipinChooseSize == true) {
+    //   wx.showLoading({
+    //     title: '加载中...',
+    //     mask: true //显示触摸蒙层  防止事件穿透触发
+    //   });
+    //   this.getShipinPinglunFenye()
+    //   wx.hideLoading({
+    //     complete: (res) => {},
+    //   })
+    // }
     if (self.data.TabCur == 4 && self.data.isRefleshHuodong) {
       wx.showLoading({
         title: '加载中...',
