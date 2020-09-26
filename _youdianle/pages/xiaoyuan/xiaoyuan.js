@@ -833,6 +833,8 @@ Page({
     }, 100)
     self.setData({
       shipin_index: e.currentTarget.dataset.index,
+      isRefleshshipinPinglun:true,
+      isRefleshZhaopianPinglun:true,
     })
 
     /////

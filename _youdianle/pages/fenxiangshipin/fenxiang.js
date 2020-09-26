@@ -316,6 +316,8 @@ Page({
     that.setData({
       shipin_index: e.currentTarget.dataset.index,
       zhaopian_index: e.currentTarget.dataset.index,
+      isRefleshshipinPinglun:true,
+      isRefleshZhaopianPinglun:true,
     })
 
     /////

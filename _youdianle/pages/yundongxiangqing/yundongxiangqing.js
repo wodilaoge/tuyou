@@ -70,7 +70,7 @@ Page({
     shipinListComm: [],
     ifshipinListComm: 0,
     shipinBorder: '',
-    zhaopianBorder:'',
+    zhaopianBorder: '',
     shipinPinglunBorder: '',
     isRefleshshipin: true,
     isRefleshZhaopian: true,
@@ -120,9 +120,9 @@ Page({
       type: 'image',
       path: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
     }],
-    zhaopian_index:0,
-    isRefleshZhaopianPinglun:true,
-    zhaopianPinglunBorder:'',
+    zhaopian_index: 0,
+    isRefleshZhaopianPinglun: true,
+    zhaopianPinglunBorder: '',
 
 
   },
@@ -749,6 +749,8 @@ Page({
     });
   },
   getShipinPinglunFenye: function (e) {
+    if (!this.data.isRefleshshipinPinglun)
+      return;
     var shipintmp = this.data.shipin;
     let url = app.globalData.URL + '/comm/listCommByObj';
     let data = {
@@ -774,10 +776,10 @@ Page({
       console.log(err.errMsg)
     });
   },
-  getZhaopianPinglunFenye:function(e){
-    if(!this.data.isRefleshZhaopianPinglun)
+  getZhaopianPinglunFenye: function (e) {
+    if (!this.data.isRefleshZhaopianPinglun)
       return
-    var that=this;
+    var that = this;
     var zhaopiantmp = this.data.zhaopian;
     let url = app.globalData.URL + '/comm/listCommByObj';
     let data = {
@@ -787,8 +789,8 @@ Page({
     };
     console.log(data)
     app.wxRequest('POST', url, data, (res) => {
-      console.log("照片评论分页",res);
-      if (res.data.border == null||res.data.list.length<10) {
+      console.log("照片评论分页", res);
+      if (res.data.border == null || res.data.list.length < 10) {
         that.setData({
           isRefleshZhaopianPinglun: false
         })
@@ -1054,6 +1056,8 @@ Page({
     }, 100)
     that.setData({
       shipin_index: e.currentTarget.dataset.index,
+      isRefleshshipinPinglun:true,
+      isRefleshZhaopianPinglun:true,
     })
 
     /////
@@ -1096,7 +1100,7 @@ Page({
         that.setData({
           zhaopian: shipintmp,
           zhaopianPinglunBorder: res.data.border,
-          zhaopian_index:e.currentTarget.dataset.index
+          zhaopian_index: e.currentTarget.dataset.index
         })
       }, (err) => {
         console.log(err.errMsg)
@@ -1326,11 +1330,11 @@ Page({
       console.log(err.errMsg)
     });
   },
-  getZhaopianFenye(){
+  getZhaopianFenye() {
     let url = app.globalData.URL + '/photo/listActPhoto';
     let data = {
       actid: this.data.categoryId,
-      border:this.data.zhaopianBorder
+      border: this.data.zhaopianBorder
     };
     app.wxRequest('POST', url, data, (res) => {
       console.log("照片fenye", res)
@@ -1339,9 +1343,9 @@ Page({
           isRefleshZhaopian: false,
         })
       }
-      let zhaopiantmp=this.data.zhaopian;
-      for(let s of res.data.list)
-       zhaopiantmp.push(s)
+      let zhaopiantmp = this.data.zhaopian;
+      for (let s of res.data.list)
+        zhaopiantmp.push(s)
       this.setData({
         zhaopian: zhaopiantmp,
         zhaopianBorder: res.data.border,
@@ -2317,7 +2321,7 @@ Page({
         console.log(err.errMsg)
       });
     }
-    if (this.data.isRefleshshipin == true&&this.data.TabCur==2) {
+    if (this.data.isRefleshshipin == true && this.data.TabCur == 2) {
       wx.showLoading({
         title: '加载中...',
         mask: true //显示触摸蒙层  防止事件穿透触发
@@ -2337,7 +2341,7 @@ Page({
     //     complete: (res) => {},
     //   })
     // }
-    if(this.data.isRefleshZhaopian==true&&this.data.TabCur==3){
+    if (this.data.isRefleshZhaopian == true && this.data.TabCur == 3) {
       this.getZhaopianFenye()
     }
     //  console.log(this.data.isRefleshZhaopianPinglun,this.data.zhaopianChooseSize)
