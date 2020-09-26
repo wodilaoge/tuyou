@@ -455,47 +455,7 @@ Page({
     console.log('flesh')
     var that = this
     console.log(that.data.AllActivity[tab].code)
-    //我创建的活动
-    // if (that.data.huodongXuanze == 1) {
-    //   let url = app.globalData.URL + '/act/listMyActivity';
-    //   let data = {
-    //     'type': 20,
-    //     'acid1': that.data.AllActivity[tab].code
-    //   };
-    //   util.post_token(url, data).then(function (res) {
-    //     console.log('join', res.data)
-    //     that.setData({
-    //       Myjoin: res.data.data,
-    //       nowActNum: res.data.data.list.length
-    //     })
-    //   })
-    // } else if (that.data.huodongXuanze == 2) {
-    //   let url = app.globalData.URL + '/act/listMyActivity';
-    //   let data = {
-    //     'type': 10,
-    //     'acid1': that.data.AllActivity[tab].code
-    //   };
-    //   util.post_token(url, data).then(function (res) {
-    //     console.log('create', res.data)
-    //     that.setData({
-    //       Mycreate: res.data.data,
-    //       nowActNum: res.data.data.list.length
-    //     })
-    //   })
-    // } else if (that.data.huodongXuanze == 3) {
-    //   let url = app.globalData.URL + '/act/listMyActivity';
-    //   let data = {
-    //     'type': 30,
-    //     'acid1': that.data.AllActivity[tab].code
-    //   };
-    //   util.post_token(url, data).then(function (res) {
-    //     console.log('attention', res.data)
-    //     that.setData({
-    //       Myattention: res.data.data,
-    //       nowActNum: res.data.data.list.length
-    //     })
-    //   })
-    // }
+    
     ////////////视频
     if (that.data.TabCur == 5) {
       let url = app.globalData.URL + '/video/listActVideo';

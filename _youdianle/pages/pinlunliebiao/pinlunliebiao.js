@@ -93,38 +93,7 @@ Page({
       self.setData({
         loading: false
       });
-      /*if (res.data == null || res.data.length == 0) {} else {
-        let list = self.data.comment.list
-        if (list.length == 0)
-          self.setData({
-            loading: false,
-            comment_detail: list
-          });
-        for (let i in list) {
-          let url2 = app.globalData.URL + '/applaud/findApplaud'; //点赞情况
-
-          data = {
-            objtype: this.data.objtype,
-            objid: list[i].id,
-            uid: self.data.user.id,
-          };
-          util.gets(url2, data).then(function(res) {
-            list[i]['ifzan'] = res.data.data
-          });
-          url2 = app.globalData.URL + '/applaud/countByObj'; //点赞数
-          data = {
-            objid: list[i].id,
-            objtype: this.data.objtype
-          };
-          util.gets(url2, data).then(function(res) {
-            list[i].praiseCnt = res.data.data
-            self.setData({
-              comment_detail: list,
-              loading: false
-            });
-          });
-        }
-      }*/
+      
     }, (err) => {
       console.log(err.errMsg)
     });
