@@ -1095,24 +1095,7 @@ Page({
 
   },
   onLoad: function (options) {
-    // console.log('no auth')
-    // wx.showModal({
-    //   title: '友点乐',
-    //   content: '请先进行微信登录',
-    //   cancelText: '取消',
-    //   confirmText: '授权',
-    //   success: res => {
-    //     if (res.confirm) {
-    //       wx.navigateTo({
-    //         url: '/pages/login/login?',
-    //       })
-    //     } else {
-    //       wx.navigateBack({
-    //         delta: 1
-    //       })
-    //     }
-    //   }
-    // })
+   
     this.setData({
       user: wx.getStorageSync('userInfo'),
       city: wx.getStorageSync('city').code ? wx.getStorageSync('city').code : null,

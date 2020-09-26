@@ -204,7 +204,7 @@
           <image class="img-input" mode="scaleToFill" src="/img/input.png" bindtap="chooseSezi"></image>
           <view class="action">
             <image class="img-icon" style="margin-right:20rpx;height: 60rpx;width: 60rpx;background-color: white;"
-              mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan"></image>
+              mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan" data-objtype="10"></image>
           </view>
           <view class="action">
             <image class="img-icon" mode="aspectFit" style="margin-right:10rpx;height: 60rpx;width: 60rpx;"
@@ -248,7 +248,7 @@
         <view wx:for="paimingDetail">
           <view class="flex" style="margin-top:44rpx;" bindtap="yundongxiangqing2"
             data-id="{{paimingDetail[index].actid}}">
-            <text class="paiming-fenshu" style="margin-left:24rpx;width:120rpx;">{{paimingDetail[index].mbrRank}}</text>
+            <text class="paiming-fenshu" style="margin-left:24rpx;width:120rpx;">{{paimingDetail[index].mbrRank?paimingDetail[index].mbrRank:''}}</text>
             <text class="paiming-fenshu"
               style="margin-left:2rpx;width:180rpx;">{{paimingDetail[index].mbrScore?paimingDetail[index].mbrScore:''}}</text>
             <text class="paiming-riqi" style="margin-left:2rpx;width:180rpx;">{{paimingDetail[index].acttime}}</text>
@@ -674,12 +674,7 @@
         </view>
         <view wx:for="{{shipin.list[shipin_index].listComm}}" wx:for-index="index2" style="background-color:white;">
           <view class="margin-top sp-pinlun-content">
-            <!-- <image class="sp-pinglun-avatar-2 round " src="{{shipin.list[shipin_index].listComm[index2].createrHead}} ">
-          </image>
-          <view class="sp-pinglun-name ">{{shipin.list[shipin_index].listComm[index2].createrAlias}}</view>
-          <view>
-            <view class="sp-pinglun-neirong-2 ">{{shipin.list[shipin_index].listComm[index2].comment}}</view>
-            <text class='card-text-content-time2'>{{shipin.list[shipin_index].listComm[index2].strCreatetime}}</text> -->
+           
             <view>
               <image class="sp-pinglun-avatar-2 round "
                 src="{{shipin.list[shipin_index].listComm[index2].createrHead}} ">

@@ -241,7 +241,7 @@ Page({
   },
   pinluntiaozhuan(e) { //评论跳转
     wx.navigateTo({
-      url: '/pages/pinlunliebiao/pinlunliebiao?categoryId=' + this.data.categoryId + '&objtitle=' + this.data.detail.actname,
+      url: '/pages/pinlunliebiao/pinlunliebiao?categoryId=' + this.data.categoryId + '&objtitle=' + this.data.detail.actname+'&objtype='+e.currentTarget.dataset.objtype,
     })
   },
   guanliSelect(e) {
@@ -2105,7 +2105,6 @@ Page({
         }
       })
   },
-  ///////////////////////////
   dianjifangda(e) {
     wx.previewImage({
       current: e.currentTarget.dataset.imgurl, // 当前显示图片的http链接
@@ -2145,9 +2144,6 @@ Page({
         })
         return "{code:126}";
       } else {
-        // wx.navigateTo({
-        //   url: '/pages/MyPages/my_profile/my_profile',
-        // })
         console.log('no speak')
         wx.showModal({
           title: '友点乐',
@@ -2183,7 +2179,6 @@ Page({
     })
 
   },
-  /////////////////////////////zhaopian
   setChange_swiper: function (e) {
     this.setData({
       swiper_current: e.detail.current
@@ -2214,12 +2209,7 @@ Page({
         tzpd: '/pages/xiaoyuan/xiaoyuan'
       })
     }
-    // else if(options.tzpd=='ziliao'){
-    //   console.log(options.tzpd)
-    //   self.setData({
-    //     tzpd:'/pages/ziliao/ziliao?'
-    //   })
-    // }
+ 
     else
       self.setData({
         tzpd: '/pages/index/index'
@@ -2331,24 +2321,11 @@ Page({
         complete: (res) => {},
       })
     }
-    // if (this.data.isRefleshshipinPinglun == true && this.data.shipinChooseSize == true) {
-    //   wx.showLoading({
-    //     title: '加载中...',
-    //     mask: true //显示触摸蒙层  防止事件穿透触发
-    //   });
-    //   this.getShipinPinglunFenye()
-    //   wx.hideLoading({
-    //     complete: (res) => {},
-    //   })
-    // }
+   
     if (this.data.isRefleshZhaopian == true && this.data.TabCur == 3) {
       this.getZhaopianFenye()
     }
-    //  console.log(this.data.isRefleshZhaopianPinglun,this.data.zhaopianChooseSize)
-    // if(this.data.isRefleshZhaopianPinglun == true && this.data.zhaopianChooseSize == true){
-    //   this.getZhaopianPinglunFenye()
-    // }
-
+   
   },
 
   /**

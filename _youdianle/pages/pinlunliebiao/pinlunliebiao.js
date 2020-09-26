@@ -76,7 +76,7 @@ Page({
     let url = app.globalData.URL + '/comm/countCommByObj';
     let data = {
       objid: self.data.categoryId,
-      objtype: 30
+      objtype: this.data.objtype
     };
     app.wxRequest('GET', url, data, (res) => {
       self.setData({
@@ -104,7 +104,7 @@ Page({
           let url2 = app.globalData.URL + '/applaud/findApplaud'; //点赞情况
 
           data = {
-            objtype: 30,
+            objtype: this.data.objtype,
             objid: list[i].id,
             uid: self.data.user.id,
           };
@@ -114,7 +114,7 @@ Page({
           url2 = app.globalData.URL + '/applaud/countByObj'; //点赞数
           data = {
             objid: list[i].id,
-            objtype: 30
+            objtype: this.data.objtype
           };
           util.gets(url2, data).then(function(res) {
             list[i].praiseCnt = res.data.data
@@ -134,7 +134,7 @@ Page({
     let url = app.globalData.URL + '/applaud/updateApplaud';
     if (e.currentTarget.dataset.ifzan)
       var data = {
-        objtype: 30,
+        objtype: this.data.objtype,
         objid: e.currentTarget.dataset.objid,
         objtitle: '',
         creater: self.data.user.id,
@@ -142,7 +142,7 @@ Page({
       };
     else
       var data = {
-        objtype: 30,
+        objtype: this.data.objtype,
         objid: e.currentTarget.dataset.objid,
         objtitle: '',
         creater: self.data.user.id,
@@ -188,7 +188,7 @@ Page({
     let url = app.globalData.URL + '/comm/addComment';
     let data = {
       pid: null,
-      objtype: 30,
+      objtype: this.data.objtype,
       objid: self.data.categoryId,
       objtitle: self.data.objtitle,
       comment: self.data.Input,
@@ -232,7 +232,8 @@ Page({
       option: option,
       categoryId: option.categoryId,
       objtitle: option.objtitle,
-      user: wx.getStorageSync('userInfo')
+      user: wx.getStorageSync('userInfo'),
+      objtype:option.objtype
     })
     self.comment();
     await self.TBcontroll();
@@ -282,7 +283,7 @@ Page({
       });
       let data = {
         objid: self.data.categoryId,
-        objtype: 30,
+        objtype: this.data.objtype,
         border: self.data.comment.border
       };
       let url = app.globalData.URL + '/comm/listCommByObj';

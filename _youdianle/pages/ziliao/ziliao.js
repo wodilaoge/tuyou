@@ -791,7 +791,7 @@ Page({
   },
   pinluntiaozhuan(e) { //评论跳转
     wx.navigateTo({
-      url: '/pages/pinlunliebiao/pinlunliebiao?categoryId=' + this.data.duiyuanID + '&objtitle=' + '',
+      url: '/pages/pinlunliebiao/pinlunliebiao?categoryId=' + this.data.duiyuanID + '&objtitle=' + ''+'&objtype='+e.currentTarget.dataset.objtype,
     })
   },
   ifzan() { //是否点赞
@@ -979,8 +979,10 @@ Page({
       objid: this.data.duiyuanID,
       objtype: 10,
     };
+    console.log("第一次粉丝",data)
     app.wxRequest('POST', url, data, (res) => {
-      if (res.data.list.length < 10) {
+      console.log("第一次粉丝",res)
+      if (res.data.border ==null) {
         this.setData({
           isRefleshFensi: false
         })
@@ -1000,8 +1002,10 @@ Page({
       objtype: 10,
       border: this.data.fensiBorder
     };
+    console.log("粉丝分页",data)
     app.wxRequest('POST', url, data, (res) => {
-      if (res.data.list.length < 10) {
+      console.log("粉丝分页",res)
+      if (res.data.border ==null) {
         this.setData({
           isRefleshFensi: false
         })
@@ -1091,9 +1095,9 @@ Page({
         uid: self.data.duiyuanID,
         acid1: res.data[0].code
       }
-      app.wxRequest('GET', url, data, (res) => {
+      app.wxRequest('POST', url, data, (res) => {
         console.log("排名", res)
-        if (res.data.list.length < 10) {
+        if (res.data.border ==null) {
           self.setData({
             isRefleshPaiming: false
           })
@@ -1120,9 +1124,9 @@ Page({
       uid: self.data.duiyuanID,
       acid1: self.data.ziliaoDaleiCur
     }
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
       console.log("排名", res)
-      if (res.data.list.length < 10) {
+      if (res.data.border ==null) {
         self.setData({
           isRefleshPaiming: false
         })
@@ -1133,11 +1137,6 @@ Page({
       })
 
     })
-    // if (this.data.shipinCur == '0') {
-    //   this.getShipin()
-    // } else {
-    //   this.getShipinfenlei()
-    // }
   },
   paimingFenye() {
     if (this.data.isRefleshPaiming == false)
@@ -1152,7 +1151,7 @@ Page({
     console.log("排名分页", data)
     app.wxRequest('POST', url, data, (res) => {
       console.log("排名分页", res)
-      if (res.data.list.length < 10) {
+      if (res.data.border ==null) {
         self.setData({
           isRefleshPaiming: false
         })
