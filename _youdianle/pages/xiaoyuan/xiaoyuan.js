@@ -813,32 +813,7 @@ Page({
       dxindex: e.currentTarget.dataset.index,
     })
   },
-  chooseSeziCeshi: function (e) {
-    var self = this;
-    var animation = wx.createAnimation({
-      duration: 100,
-      timingFunction: 'linear'
-    })
-    self.animation = animation
-    animation.translateY(200).step()
-    self.setData({
-      animationData: animation.export(),
-      chooseSizeCeshi: true
-    })
-    setTimeout(function () {
-      animation.translateY(0).step()
-      self.setData({
-        animationData: animation.export()
-      })
-    }, 100)
 
-    self.setData({
-      duixiang: e.currentTarget.dataset.duixiang,
-      dxid: e.currentTarget.dataset.dxid,
-      dxtitle: e.currentTarget.dataset.dxtitle,
-      dxindex: e.currentTarget.dataset.index,
-    })
-  },
   shipinChooseSezi: function (e) {
     var self = this;
     var animation = wx.createAnimation({
@@ -900,7 +875,6 @@ Page({
       self.setData({
         animationData: animation.export(),
         chooseSize: false,
-        chooseSizeCeshi: false,
       })
     }, 100)
   },

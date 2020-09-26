@@ -54,12 +54,16 @@ Page({
     univ: '',
     shipinBorder: 0,
     isRefleshshipin: true,
+    isRefleshPaiming: true,
+    isRefleshFensi: true,
+    fensiBorder: null,
     isRefleshshipinPinglun: true,
     video_id: 'video_0', ///用于切换视频
     bofang_if_id: 'video_0', /////用数字来表示匹配
     bofang_pid: '0', ///1表示有一个播放，0表示无播放
     shipin_xiaolei: 0,
     defaultPoster: '../../img/login/poster.png',
+    paimingBorder: '',
   },
   /////////////////////视频
   getShipinFenye() { //视频分页
@@ -73,9 +77,9 @@ Page({
       // city: this.data.city,
       // univ: this.data.univ,
     };
-    console.log("视频分页",data)
+    console.log("视频分页", data)
     app.wxRequest('POST', url, data, (res) => {
-      console.log("视频分页",res)
+      console.log("视频分页", res)
       if (res.data.border == null) {
         self.setData({
           isRefleshshipin: false,
@@ -249,8 +253,8 @@ Page({
     }, 100)
     that.setData({
       shipin_index: e.currentTarget.dataset.index,
-      isRefleshshipinPinglun:true,
-      isRefleshZhaopianPinglun:true,
+      isRefleshshipinPinglun: true,
+      isRefleshZhaopianPinglun: true,
     })
 
     /////
@@ -531,12 +535,12 @@ Page({
       this.setData({
         TabCur2: e.currentTarget.dataset.id,
         huodongXiaoleiIndex: e.currentTarget.dataset.id,
-        isRefleshHuodong:true,
+        isRefleshHuodong: true,
       })
     } else if (this.data.TabCur == 5) {
       this.setData({
         TabCur3: e.currentTarget.dataset.id,
-        isRefleshshipin:true,
+        isRefleshshipin: true,
       })
     }
 
@@ -975,9 +979,40 @@ Page({
       objid: this.data.duiyuanID,
       objtype: 10,
     };
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
+      if (res.data.list.length < 10) {
+        this.setData({
+          isRefleshFensi: false
+        })
+      }
       this.setData({
-        fensiDetail: res.data,
+        fensiDetail: res.data.list,
+        fensiBorder: res.data.border
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
+  getFensiFenye() {
+    let url = app.globalData.URL + '/follow/listUserByObj';
+    let data = {
+      objid: this.data.duiyuanID,
+      objtype: 10,
+      border: this.data.fensiBorder
+    };
+    app.wxRequest('POST', url, data, (res) => {
+      if (res.data.list.length < 10) {
+        this.setData({
+          isRefleshFensi: false
+        })
+      }
+      let tmp = this.data.fensiDetail;
+      for (var s of res.data.list) {
+        tmp.push(s)
+      }
+      this.setData({
+        fensiDetail: tmp,
+        fensiBorder: res.data.border
       })
     }, (err) => {
       console.log(err.errMsg)
@@ -1057,9 +1092,15 @@ Page({
         acid1: res.data[0].code
       }
       app.wxRequest('GET', url, data, (res) => {
-
+        console.log("排名", res)
+        if (res.data.list.length < 10) {
+          self.setData({
+            isRefleshPaiming: false
+          })
+        }
         self.setData({
-          paimingDetail: res.data
+          paimingDetail: res.data.list,
+          paimingBorder: res.data.border
         })
       })
 
@@ -1071,6 +1112,7 @@ Page({
     this.setData({
       ziliaoDaleiCur: e.currentTarget.dataset.cur,
       // scrollLeft: (e.currentTarget.dataset.id - 1) * 60
+      isRefleshPaiming: true,
     })
     var self = this
     let url = app.globalData.URL + '/act/listMyRank'
@@ -1079,16 +1121,52 @@ Page({
       acid1: self.data.ziliaoDaleiCur
     }
     app.wxRequest('GET', url, data, (res) => {
-      console.log(res)
+      console.log("排名", res)
+      if (res.data.list.length < 10) {
+        self.setData({
+          isRefleshPaiming: false
+        })
+      }
       self.setData({
-        paimingDetail: res.data
+        paimingDetail: res.data.list,
+        paimingBorder: res.data.border
       })
+
     })
     // if (this.data.shipinCur == '0') {
     //   this.getShipin()
     // } else {
     //   this.getShipinfenlei()
     // }
+  },
+  paimingFenye() {
+    if (this.data.isRefleshPaiming == false)
+      return;
+    var self = this
+    let url = app.globalData.URL + '/act/listMyRank'
+    let data = {
+      uid: self.data.duiyuanID,
+      acid1: self.data.ziliaoDaleiCur,
+      border: self.data.paimingBorder
+    }
+    console.log("排名分页", data)
+    app.wxRequest('POST', url, data, (res) => {
+      console.log("排名分页", res)
+      if (res.data.list.length < 10) {
+        self.setData({
+          isRefleshPaiming: false
+        })
+      }
+      let tmp = self.data.paimingDetail;
+      for (var s of res.data.list)
+        tmp.push(s)
+      self.setData({
+        paimingDetail: tmp,
+        paimingBorder: res.data.border
+      })
+
+    })
+
   },
   changeGuanzhu: function (e) {
 
@@ -1232,6 +1310,12 @@ Page({
       wx.hideLoading({
         complete: (res) => {},
       })
+    }
+    if (self.data.TabCur == 1 && self.data.isRefleshPaiming) {
+      this.paimingFenye()
+    }
+    if (self.data.TabCur == 2 && self.data.isRefleshFensi) {
+      this.getFensiFenye()
     }
   },
 

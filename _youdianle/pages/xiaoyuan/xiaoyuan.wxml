@@ -219,11 +219,6 @@
                   style="width:44rpx;height:40rpx;margin-left:16rpx; margin-right:20rpx; "></image>
               </button>
             </view>
-            <!---评论测试-->
-            <!-- <image class="img-icon" mode="aspectFit " src="/img/icon_talk.png" bindtap="chooseSeziCeshi"
-              data-duixiang="{{50}}" data-index="{{0}}" data-dxid="{{shipin.list[0].id}}"
-              data-dxtitle="{{shipin.list[0].title}}"></image> -->
-
           </view>
 
           <view class=" sp-pinglun margin-top ">{{shipin.list[0].notes}}</view>
@@ -408,8 +403,7 @@
         <button class="cu-btn bg-orange shadow-blur padding-sm margin-left-sm btn-fasong " bindtap="pd_fasong"
           style="margin-left:100rpx ">发送</button>
       </view>
-      <textarea class="form-text2 margin-top-sm margin-buttom " style="height:160rpx;width:100% " value="{{Input}}"
-        maxlength="4000 " bindinput="emailInput" cursor-spacing="65" fixed="true"></textarea>
+      <input class="form-text2 margin-top-sm margin-buttom " style="height:160rpx;width:100% " value="{{Input}}" bindinput="emailInput" fixed="true" focus></input>
     </view>
   </view>
 
@@ -451,20 +445,5 @@
       </view>
     </scroll-view>
   </view>
-
- <!--隐藏区域ceshi  -->
- <view fixed class="modals modals-bottom-dialog" hidden="{{!chooseSizeCeshi}}">
-   1111
-  <view class="modals-cancel" bindtap="hideModal" catchtouchmove="true"></view>
-  <view class="bottom-dialog-body bottom-pos " animation="{{animationData}}" style="display:block">
-    <view>
-      <text class="cu-bar-title " style="margin-left:300rpx ">写评论ce</text>
-      <button class="cu-btn bg-orange shadow-blur padding-sm margin-left-sm btn-fasong " bindtap="pd_fasong"
-        style="margin-left:100rpx ">发送</button>
-    </view>
-    <textarea class="margin-top-sm margin-buttom " style="height:160rpx;width:100% " value="{{Input}}"focus="true" bindconfirm="emailInput"  adjust-position="true" cursor-spacing="200" fixed></textarea>
-  </view>
-</view>
-
 
 </view>
