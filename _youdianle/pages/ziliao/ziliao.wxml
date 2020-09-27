@@ -245,8 +245,7 @@
           <view class="paiming-paiming" style="margin-left:2rpx;width:216rpx;">活动名称</view>
         </view>
 
-        <view wx:for="paimingDetail">
-          <view class="flex" style="margin-top:44rpx;" bindtap="yundongxiangqing2"
+          <view wx:for="{{paimingDetail}}" class="flex" style="margin-top:44rpx;" bindtap="yundongxiangqing2"
             data-id="{{paimingDetail[index].actid}}">
             <text class="paiming-fenshu" style="margin-left:24rpx;width:120rpx;">{{paimingDetail[index].mbrRank?paimingDetail[index].mbrRank:''}}</text>
             <text class="paiming-fenshu"
@@ -254,7 +253,8 @@
             <text class="paiming-riqi" style="margin-left:2rpx;width:180rpx;">{{paimingDetail[index].acttime}}</text>
             <text class="paiming-huodong" style="margin-left:2rpx;width:216rpx;">{{paimingDetail[index].actname}}</text>
           </view>
-        </view>
+
+        
       </view>
 
     </block>
@@ -658,8 +658,8 @@
           <button class="cu-btn bg-orange shadow-blur padding-sm margin-left-sm btn-fasong " bindtap="pd_fasong"
             data-duixiang="10" style="margin-left:100rpx ">发送</button>
         </view>
-        <textarea class="form-text2 margin-top-sm margin-buttom " style="height:160rpx;width:100% " value="{{Input}}"
-          maxlength="4000 " bindinput="emailInput" cursor-spacing="65" fixed="true"></textarea>
+        <input class="form-text2 margin-top-sm margin-buttom " style="height:160rpx;width:100% " value="{{Input}}"
+          maxlength="4000 " bindinput="emailInput"  fixed="true"></input>
       </view>
     </view>
 
