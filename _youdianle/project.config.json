@@ -66,9 +66,9 @@
       "current": -1,
       "list": [
         {
-          "id": -1,
-          "name": "我的团队",
-          "pathName": "pages/MyPages/my_team/my_team",
+          "id": 0,
+          "name": "pages/all_team/all_team",
+          "pathName": "pages/all_team/all_team",
           "query": "",
           "scene": null
         },

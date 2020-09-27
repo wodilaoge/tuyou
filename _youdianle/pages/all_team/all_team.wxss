@@ -2,7 +2,10 @@
   text-align: center;
   font-weight: bold;
 }
-
+.down{
+  overflow-y:scroll;
+  
+}
 .nu {
   display: flex;
   align-items: center;
