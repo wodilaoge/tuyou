@@ -907,7 +907,7 @@
         style="margin-left:100rpx ">发送</button>
     </view>
     <input class="form-text2 margin-top-sm margin-buttom " style="height:160rpx;width:100% " value="{{Input}}"
-      maxlength="4000 " bindinput="emailInput" cursor-spacing="65" fixed="true"></input>
+      maxlength="4000 " bindinput="emailInput"  fixed="true"></input>
   </view>
 </view>
 
