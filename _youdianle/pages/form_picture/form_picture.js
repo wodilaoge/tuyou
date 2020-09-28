@@ -55,6 +55,29 @@ Page({
   onLoad: function (options) {
     var that = this
     let url2 = app.globalData.URL + '/appuser/getPubPerm'
+
+    let url = app.globalData.URL + '/appuser/getActPubPerm'
+    util.gets(url, {
+      actid: options.actid
+    }).then(function (res) {
+      console.log('权限检验', res.data.code)
+      if (res.data.code) {
+        wx.showToast({
+          title: res.data.msg,
+          duration: 2000,
+          icon: 'none',
+          success: function () {
+            setTimeout(function () {
+              wx.navigateBack({
+                delta: 1,
+              })
+            }, 1000);
+          }
+        })
+      }
+    })
+
+
     util.gets(url2, {}).then(function (res) {
       console.log('auth', res)
       that.setData({

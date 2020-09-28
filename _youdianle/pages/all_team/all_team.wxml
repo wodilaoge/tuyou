@@ -3,14 +3,14 @@
 </cu-custom>
 
 <view class="VerticalBox">
-  <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation style="height:calc(100vh)" >
+  <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation style="height:100%" >
     <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{allAct}}" wx:key bindtap='tabSelect' data-id="{{item.code}}" data-index="{{index}}">
       {{item.name}}
     </view>
   </scroll-view>
 
-  <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(100vh)" scroll-into-view="main-{{TabCur}}">
-    <view  wx:for="{{showAct}}" wx:if="{{showAct.length!=0}}" wx:key="keys" id="main-{{index}}">
+  <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:100%" scroll-into-view="main-{{TabCur}}">
+    <view wx:for="{{showAct}}" wx:if="{{showAct.length!=0}}" wx:key="keys" id="main-{{index}}">
       <view class='cu-bar solid-bottom bg-white'>
         <view class='action' bindtap="toTeamDetail" data-id="{{item.id}}" data-index="{{index}}">
           <view class="flex duiqi">
@@ -30,4 +30,5 @@
     </view>
     <view wx:if="{{showAct.length==0}}" class="nu">暂无此类团队</view>
   </scroll-view>
+
 </view>

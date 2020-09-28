@@ -162,6 +162,6 @@
     </view>
   </scroll-view>
 </view>
-<!-- <view class="text-center text-bold text-xxl padding-xl" wx:if="{{!shipin.list.length}}">您暂未发布视频</view> -->
+<view class="text-center text-bold text-xxl padding-xl" wx:if="{{!shipin.list.length}}">您暂未发布视频</view>
 
 <image wx:if="{{isshare}}" bindtap='backHome' class='d-back-home' src='http://cdn.xcx.pemarket.com.cn/icon-Return%20to%20the%20home%20page.png' lazy-load></image>

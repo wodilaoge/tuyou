@@ -199,7 +199,7 @@ Page({
       })
     }
   },
-  DelImg2(e){
+  DelImg2(e) {
     wx.showModal({
       title: '确定',
       content: '确定要删除这张封面图？',
@@ -269,7 +269,29 @@ Page({
   },
   onLoad: function (options) {
     var that = this
-    let url = app.globalData.URL + '/config/findVodParam'
+    let url, data
+    url = app.globalData.URL + '/appuser/getActPubPerm'
+    util.gets(url, {
+      actid: options.actid
+    }).then(function (res) {
+      console.log('权限检验', res.data.code)
+      if (res.data.code) {
+        wx.showToast({
+          title: res.data.msg,
+          duration: 2000,
+          icon: 'none',
+          success: function () {
+            setTimeout(function () {
+              wx.navigateBack({
+                delta: 1,
+              })
+            }, 1000);
+          }
+        })
+      }
+    })
+
+    url = app.globalData.URL + '/config/findVodParam'
     util.gets(url, {}).then(function (res) {
       console.log('authurl', res.data.data.authUrl)
       that.setData({
