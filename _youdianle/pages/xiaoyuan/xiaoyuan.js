@@ -246,6 +246,7 @@ Page({
       shipinCur: e.currentTarget.dataset.cur,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60,
       shipinBorder: 0,
+      isRefleshshipin:true
     })
     var self = this
     let url = app.globalData.URL + '/config/getActivityClass2'
@@ -754,6 +755,7 @@ Page({
 
   },
   getShipinfenleiFenye() { //视频
+    var self=this;
     wx.showLoading({
       title: '加载中...',
       mask: true //显示触摸蒙层  防止事件穿透触发
