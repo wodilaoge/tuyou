@@ -388,6 +388,22 @@ Page({
       })
     })
   },
+  secendLoad(){
+    var that = this
+    let url = app.globalData.URL + '/video/listMyVideo';
+    let tmp = wx.getStorageSync('userInfo')
+    let data = {
+      'city': wx.getStorageSync('city').code,
+      'univ': wx.getStorageSync('school').code
+    };
+    util.post_token(url, data).then(function (res) {
+      console.log('video', res.data)
+      wx.hideLoading()
+      that.setData({
+        shipin: res.data.data
+      })
+    })
+  },
   delvideo(e) {
     var that = this
     console.log(e.currentTarget.dataset.id)
@@ -409,7 +425,7 @@ Page({
               wx.showToast({
                 title: '删除成功',
               })
-            that.onLoad()
+            that.secendLoad()
           })
         }
       }
