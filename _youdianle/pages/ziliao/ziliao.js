@@ -55,7 +55,7 @@ Page({
     shipinBorder: 0,
     isRefleshshipin: true,
     isRefleshPaiming: true,
-    isRefleshPinglun:true,
+    isRefleshPinglun: true,
     isRefleshFensi: true,
     fensiBorder: null,
     isRefleshshipinPinglun: true,
@@ -456,7 +456,7 @@ Page({
     console.log('flesh')
     var that = this
     console.log(that.data.AllActivity[tab].code)
-    
+
     ////////////视频
     if (that.data.TabCur == 5) {
       let url = app.globalData.URL + '/video/listActVideo';
@@ -526,14 +526,14 @@ Page({
     url = app.globalData.URL + '/comm/listCommByObj';
     app.wxRequest('POST', url, data, (res) => {
       console.log(res)
-      if(res.data.border==null){
+      if (res.data.border == null) {
         self.setData({
-          isRefleshshipinPinglun:false
+          isRefleshshipinPinglun: false
         })
       }
       this.setData({
         comment: res.data,
-        PinglunBorder:res.data.border
+        PinglunBorder: res.data.border
       });
       self.setData({
         loading: false
@@ -573,33 +573,33 @@ Page({
       console.log(err.errMsg)
     });
   },
-PinglunFenye(){
-  var self = this
-  let   url = app.globalData.URL + '/comm/listCommByObj';
-  let data = {
-    objid: this.data.duiyuanID,
-    objtype: 10,
-    border:self.data.PinglunBorder
-  };
-  app.wxRequest('POST', url, data, (res) => {
-    console.log(res)
-    if(res.data.border==null){
+  PinglunFenye() {
+    var self = this
+    let url = app.globalData.URL + '/comm/listCommByObj';
+    let data = {
+      objid: this.data.duiyuanID,
+      objtype: 10,
+      border: self.data.PinglunBorder
+    };
+    app.wxRequest('POST', url, data, (res) => {
+      console.log(res)
+      if (res.data.border == null) {
+        self.setData({
+          isRefleshPinglun: false
+        })
+      }
+      let tmp = self.data.comment;
+      for (let s of res.data.list)
+        tmp.list.push(s)
+      this.setData({
+        comment: tmp,
+        PinglunBorder: res.data.border
+      });
       self.setData({
-        isRefleshPinglun:false
-      })
-    }
-    let tmp=self.data.comment;
-    for(let s of res.data.list)
-    tmp.list.push(s)
-    this.setData({
-      comment: tmp,
-      PinglunBorder:res.data.border
-    });
-    self.setData({
-      loading: false
-    });
-  })
-},
+        loading: false
+      });
+    })
+  },
 
   chooseSezi: function (e) {
     var that = this;
@@ -786,7 +786,7 @@ PinglunFenye(){
   },
   pinluntiaozhuan(e) { //评论跳转
     wx.navigateTo({
-      url: '/pages/pinlunliebiao/pinlunliebiao?categoryId=' + this.data.duiyuanID + '&objtitle=' + ''+'&objtype='+e.currentTarget.dataset.objtype,
+      url: '/pages/pinlunliebiao/pinlunliebiao?categoryId=' + this.data.duiyuanID + '&objtitle=' + '' + '&objtype=' + e.currentTarget.dataset.objtype,
     })
   },
   ifzan() { //是否点赞
@@ -974,10 +974,10 @@ PinglunFenye(){
       objid: this.data.duiyuanID,
       objtype: 10,
     };
-    console.log("第一次粉丝",data)
+    console.log("第一次粉丝", data)
     app.wxRequest('POST', url, data, (res) => {
-      console.log("第一次粉丝",res)
-      if (res.data.border ==null) {
+      console.log("第一次粉丝", res)
+      if (res.data.border == null) {
         this.setData({
           isRefleshFensi: false
         })
@@ -997,10 +997,10 @@ PinglunFenye(){
       objtype: 10,
       border: this.data.fensiBorder
     };
-    console.log("粉丝分页",data)
+    console.log("粉丝分页", data)
     app.wxRequest('POST', url, data, (res) => {
-      console.log("粉丝分页",res)
-      if (res.data.border ==null) {
+      console.log("粉丝分页", res)
+      if (res.data.border == null) {
         this.setData({
           isRefleshFensi: false
         })
@@ -1092,7 +1092,7 @@ PinglunFenye(){
       }
       app.wxRequest('POST', url, data, (res) => {
         console.log("排名", res)
-        if (res.data.border ==null) {
+        if (res.data.border == null) {
           self.setData({
             isRefleshPaiming: false
           })
@@ -1121,7 +1121,7 @@ PinglunFenye(){
     }
     app.wxRequest('POST', url, data, (res) => {
       console.log("排名", res)
-      if (res.data.border ==null) {
+      if (res.data.border == null) {
         self.setData({
           isRefleshPaiming: false
         })
@@ -1146,7 +1146,7 @@ PinglunFenye(){
     console.log("排名分页", data)
     app.wxRequest('POST', url, data, (res) => {
       console.log("排名分页", res)
-      if (res.data.border ==null) {
+      if (res.data.border == null) {
         self.setData({
           isRefleshPaiming: false
         })
@@ -1311,7 +1311,7 @@ PinglunFenye(){
     if (self.data.TabCur == 2 && self.data.isRefleshFensi) {
       this.getFensiFenye()
     }
-    if(self.data.TabCur==0&&self.data.isRefleshPinglun){
+    if (self.data.TabCur == 0 && self.data.isRefleshPinglun) {
       this.PinglunFenye()
     }
   },
