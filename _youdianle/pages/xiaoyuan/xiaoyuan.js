@@ -937,12 +937,13 @@ Page({
   },
   //评论
   pd_fasong() {
-    if (this.data.Input == "") {
+    if (this.data.Input =="") {
       wx.showToast({
         title: '请输入回复内容', // 标题
         icon: 'none',
         duration: 1500 // 提示窗停留时间，默认1500ms
       })
+      return ;
     } else {
       this.fasong()
     }

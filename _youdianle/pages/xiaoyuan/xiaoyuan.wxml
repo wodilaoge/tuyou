@@ -403,7 +403,7 @@
         <button class="cu-btn bg-orange shadow-blur padding-sm margin-left-sm btn-fasong " bindtap="pd_fasong"
           style="margin-left:100rpx ">发送</button>
       </view>
-      <input class="form-text2 margin-top-sm margin-buttom " style="height:160rpx;width:100%; " value="{{Input}}" bindinput="emailInput" fixed="true" focus="true"></input>
+      <input class="form-text2 margin-top-sm margin-buttom " style="height:160rpx;width:100%;-webkit-user-select:text !important;" value="{{Input}}" bindinput="emailInput" fixed="true" focus="true"></input>
     </view>
   </view>
 
