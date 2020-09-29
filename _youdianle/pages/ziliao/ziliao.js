@@ -55,6 +55,7 @@ Page({
     shipinBorder: 0,
     isRefleshshipin: true,
     isRefleshPaiming: true,
+    isRefleshPinglun:true,
     isRefleshFensi: true,
     fensiBorder: null,
     isRefleshshipinPinglun: true,
@@ -525,8 +526,14 @@ Page({
     url = app.globalData.URL + '/comm/listCommByObj';
     app.wxRequest('POST', url, data, (res) => {
       console.log(res)
+      if(res.data.border==null){
+        self.setData({
+          isRefleshshipinPinglun:false
+        })
+      }
       this.setData({
-        comment: res.data
+        comment: res.data,
+        PinglunBorder:res.data.border
       });
       self.setData({
         loading: false
@@ -566,6 +573,34 @@ Page({
       console.log(err.errMsg)
     });
   },
+PinglunFenye(){
+  var self = this
+  let   url = app.globalData.URL + '/comm/listCommByObj';
+  let data = {
+    objid: this.data.duiyuanID,
+    objtype: 10,
+    border:self.data.PinglunBorder
+  };
+  app.wxRequest('POST', url, data, (res) => {
+    console.log(res)
+    if(res.data.border==null){
+      self.setData({
+        isRefleshPinglun:false
+      })
+    }
+    let tmp=self.data.comment;
+    for(let s of res.data.list)
+    tmp.list.push(s)
+    this.setData({
+      comment: tmp,
+      PinglunBorder:res.data.border
+    });
+    self.setData({
+      loading: false
+    });
+  })
+},
+
   chooseSezi: function (e) {
     var that = this;
     var animation = wx.createAnimation({
@@ -1275,6 +1310,9 @@ Page({
     }
     if (self.data.TabCur == 2 && self.data.isRefleshFensi) {
       this.getFensiFenye()
+    }
+    if(self.data.TabCur==0&&self.data.isRefleshPinglun){
+      this.PinglunFenye()
     }
   },
 
