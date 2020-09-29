@@ -974,7 +974,7 @@
                 data-index2="{{index2}}" data-index="{{index}}" />
             </view>
             <view class="view-active" style="margin-left:114rpx;width:160rpx;height:42rpx;" wx:if="{{lurushuju==20}}">
-              <input placeholder="{{members.mbrScore==null?'':members.mbrScore}}" bindinput="defenInput" data-flag="0"
+              <input placeholder="{{members.mbrScore==null?'':members.mbrScore}}" bindinput="defenInput" data-flag="0" type="number"
                 data-index2="{{index2}}" data-index="{{index}}" />
             </view>
           </view>
@@ -1008,7 +1008,7 @@
                 data-index2="{{index2}}" data-index="{{index}}" />
             </view>
             <view class="view-active" style="margin-left:150rpx;width:60rpx;height:42rpx;">
-              <input placeholder="{{members.mbrScore==null?'':members.mbrScore}}" bindinput="defenInput" data-flag="1"
+              <input placeholder="{{members.mbrScore==null?'':members.mbrScore}}" bindinput="defenInput" data-flag="1" type="number"
                 data-index2="{{index2}}" data-index="{{index}}" />
             </view>
           </view>
