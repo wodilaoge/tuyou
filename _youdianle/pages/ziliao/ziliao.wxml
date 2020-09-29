@@ -201,7 +201,7 @@
       </block>
       <view wx:if="{{!chooseSize}}">
         <view class="cu-bar input foot padding">
-          <image class="img-input" mode="scaleToFill" src="/img/input.png" bindtap="chooseSezi"></image>
+          <image class="img-input" mode="scaleToFill" src="/img/input.png" bindtap="chooseSezi" data-duixiang="10"></image>
           <view class="action">
             <image class="img-icon" style="margin-right:20rpx;height: 60rpx;width: 60rpx;background-color: white;"
               mode="aspectFit" src="/img/icon_talk.png" bindtap="pinluntiaozhuan" data-objtype="10"></image>
