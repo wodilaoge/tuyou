@@ -626,7 +626,7 @@ Page({
         duration: 1500 // 提示窗停留时间，默认1500ms
       })
     } else {
-      if (e.currentTarget.dataset.duixiang == 10) {
+      if (this.data.duixiang == 10) {
         this.pinglunFasong()
       } else
         this.fasong()
