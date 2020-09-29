@@ -17,17 +17,29 @@
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
+<<<<<<< HEAD
+=======
+		"compileHotReLoad": false,
+		"useMultiFrameRuntime": false,
+		"useApiHook": true,
+>>>>>>> e99936e3cbc2e4236cd45487ca49056cf029bc2d
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
 		},
+<<<<<<< HEAD
 		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false,
 		"compileHotReLoad": false,
 		"useMultiFrameRuntime": false,
 		"useApiHook": true,
 		"useIsolateContext": true,
+=======
+		"useIsolateContext": true,
+		"useCompilerModule": true,
+		"userConfirmedUseCompilerModuleSwitch": false,
+>>>>>>> e99936e3cbc2e4236cd45487ca49056cf029bc2d
 		"packNpmManually": false,
 		"packNpmRelationList": []
 	},
