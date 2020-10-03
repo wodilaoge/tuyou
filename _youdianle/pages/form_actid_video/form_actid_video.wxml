@@ -31,7 +31,7 @@
     <textarea maxlength="-1" disabled="{{modalName!=null}}"  placeholder="请输入视频说明" bindinput="textareaAInput" ></textarea>
   </view>
 
-  <view class="cu-bar bg-white margin-top">
+  <!-- <view class="cu-bar bg-white margin-top">
 		<view class="action">
 			封面图
 		</view>
@@ -51,7 +51,7 @@
 				<text class="cuIcon-cameraadd"></text>
 			</view>
 		</view>    
-  </view>
+  </view> -->
   
   <view class="cu-bar bg-white margin-top">
     <view class="action">

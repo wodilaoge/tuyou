@@ -63,7 +63,7 @@
     <image class="icon2" src="../../img/write.png"></image>
   </view>
 
-  <view class="cu-bar bg-white margin-top">
+  <!-- <view class="cu-bar bg-white margin-top">
     <view class="action">
       封面图
     </view>
@@ -84,7 +84,8 @@
         <text class="cuIcon-cameraadd"></text>
       </view>
     </view>
-  </view>
+  </view> -->
+
   <view class="cu-bar bg-white margin-top">
 
     <view class="action">

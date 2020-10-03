@@ -150,7 +150,7 @@ Page({
         authorAlias: user.nickname,
         authorHead: user.head,
         fileId: this.data.video,
-        cover: this.data.other,
+        // cover: this.data.other,
         size: this.data.videosize.toFixed(1).toString() + 'M',
         notes: this.data.notes,
         univ: school.code,

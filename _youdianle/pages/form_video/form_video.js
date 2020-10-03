@@ -269,7 +269,7 @@ Page({
           authorAlias: user.nickname,
           authorHead: user.head,
           fileId: this.data.video,
-          cover: this.data.other,
+          // cover: this.data.other,
           size: this.data.videosize.toFixed(1).toString() + 'M',
           notes: this.data.notes,
           univ: school.code,
@@ -332,8 +332,8 @@ Page({
     console.log(this.data.authurl)
     user = 'Bearer ' + user.token;
     wx.request({
-      url: 'https://api.udianle.com/kt/util/getVodSignatureV2',
-      // url: ' http://192.144.169.239:8021/kt/util/getVodSignatureV2',
+      //url: 'https://api.udianle.com/kt/util/getVodSignatureV2',
+      url: ' http://192.144.169.239:8021/kt/util/getVodSignatureV2',
       dataType: 'json',
       header: {
         'content-type': 'application/json',
