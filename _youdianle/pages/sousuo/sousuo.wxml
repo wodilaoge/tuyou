@@ -145,7 +145,7 @@
           <text style="position:absolute;left:110rpx;">{{item.acid2}}</text>
           <!-- <text class=" title-time" style="position:absolute;width:100%;left:180rpx;"
             wx:if="{{item.lefttime!=null}}">{{item.lefttime.day}} 天 {{item.lefttime.hr}}:{{item.lefttime.min}} </text> -->
-          <text class=" title-time" style="position:absolute;width:100%;left:180rpx;">{{item.status}}</text>
+          <text class=" title-time" style="position:absolute;width:100%;left:180rpx;">{{item.statusText}}</text>
         </view>
         <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-yundong="{{item}}">
           <view class="cu-card article ">
@@ -272,7 +272,7 @@
           <text style="position:absolute;left:110rpx;">{{item.acid2}}</text>
           <!-- <text class=" title-time" style="position:absolute;width:100%;left:180rpx;"
               wx:if="{{item.lefttime!=null}}">{{item.lefttime.day}} 天 {{item.lefttime.hr}}:{{item.lefttime.min}} </text> -->
-          <text class=" title-time" style="position:absolute;width:100%;left:180rpx;">{{item.status}}</text>
+          <text class=" title-time" style="position:absolute;width:100%;left:180rpx;">{{item.statusText}}</text>
         </view>
         <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-yundong="{{item}}">
           <view class="cu-card article ">
@@ -341,7 +341,7 @@
           <text style="position:absolute;left:110rpx;">{{item.acid2}}</text>
           <!-- <text class=" title-time" style="position:absolute;width:100%;left:180rpx;"
             wx:if="{{item.lefttime!=null}}">{{item.lefttime.day}} 天 {{item.lefttime.hr}}:{{item.lefttime.min}} </text> -->
-          <text class=" title-time" style="position:absolute;width:100%;left:180rpx;">{{item.status}}</text>
+          <text class=" title-time" style="position:absolute;width:100%;left:180rpx;">{{item.statusText}}</text>
         </view>
         <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-yundong="{{item}}">
           <view class="cu-card article ">
@@ -474,7 +474,7 @@
           </block>
           <!-- <text class=" title-time" style="position:absolute;width:100%;left:180rpx;"
             wx:if="{{item.lefttime!=null}}">{{item.lefttime.day}} 天 {{item.lefttime.hr}}:{{item.lefttime.min}} </text> -->
-          <text class=" title-time" style="position:absolute;width:100%;left:180rpx;">{{item.status}}</text>
+          <text class=" title-time" style="position:absolute;width:100%;left:180rpx;">{{item.statusText}}</text>
         </view>
         <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-yundong="{{item}}">
           <view class="cu-card article ">
@@ -546,7 +546,7 @@
           </block>
           <!-- <text class=" title-time" style="position:absolute;width:100%;left:180rpx;"
             wx:if="{{item.lefttime!=null}}">{{item.lefttime.day}} 天 {{item.lefttime.hr}}:{{item.lefttime.min}} </text> -->
-          <text class=" title-time" style="position:absolute;width:100%;left:180rpx;">{{item.status}}</text>
+          <text class=" title-time" style="position:absolute;width:100%;left:180rpx;">{{item.statusText}}</text>
         </view>
         <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-yundong="{{item}}">
           <view class="cu-card article ">
@@ -667,7 +667,7 @@
           </block>
           <!-- <text class=" title-time" style="position:absolute;width:100%;left:180rpx;"
             wx:if="{{item.lefttime!=null}}">{{item.lefttime.day}} 天 {{item.lefttime.hr}}:{{item.lefttime.min}} </text> -->
-          <text class=" title-time" style="position:absolute;width:100%;left:180rpx;">{{item.status}}</text>
+          <text class=" title-time" style="position:absolute;width:100%;left:180rpx;">{{item.statusText}}</text>
         </view>
         <view class="background" style="margin-bottom:20rpx;" bindtap="yundongxiangqing" data-yundong="{{item}}">
           <view class="cu-card article ">

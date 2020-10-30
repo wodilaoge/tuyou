@@ -159,6 +159,7 @@ Page({
         city: self.data.city,
         province: self.data.province
       };
+      console.log(data)
       util.post_token(url, data).then(function (res) {
         console.log(res)
         self.setData({
@@ -327,6 +328,7 @@ Page({
           };
           var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
           util.gets(urldalei, data).then(function (res) {
+            console.log(res)
             self.setData({
               yundongdalei: res.data.data,
               yundongCur: res.data.data[0].code

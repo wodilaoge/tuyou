@@ -1050,7 +1050,7 @@ Page({
     let data = {
       uid: this.data.duiyuanID,
     };
-    app.wxRequest('GET', url, data, (res) => {
+    app.wxRequest('POST', url, data, (res) => {
       console.log(res)
       this.setData({
         huodongshu: res.data,
