@@ -1,4 +1,6 @@
-<view wx:for="{{yundongList.list}}" wx:key wx:if="{{item.acid1==yundongCur}}">
+<view wx:for="{{yundongList.list}}" wx:key >
+  <!-- <view wx:for="{{yundongList.list}}" wx:key wx:if="{{item.acid1==yundongCur}}"></view> -->
+  <!-- 朱：因为“全部”没有acid1所以这个判断取消 -->
   <view class="cu-bar bg-white solid-bottom" style="display:fixed;position: relative;">
     <image class="cu-avatar round my margin-left" src="{{item.createrhead}}" mode="heightFix" data-id="{{item.creater}}" bindtap="gerenziliao"></image>
     <block wx:for="{{yundongxiaolei}}" wx:for-item="cell" wx:if="{{item.acid2==cell.code}}">
