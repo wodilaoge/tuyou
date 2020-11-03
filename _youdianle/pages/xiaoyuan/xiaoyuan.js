@@ -329,6 +329,8 @@ Page({
           var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
           util.gets(urldalei, data).then(function (res) {
             console.log(res)
+            var daleitmp={code:null,name:"全部"};
+            res.data.data.unshift(daleitmp);
             self.setData({
               yundongdalei: res.data.data,
               yundongCur: res.data.data[0].code
@@ -378,6 +380,9 @@ Page({
           });
           var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
           util.gets(urldalei, data).then(function (res) {
+            
+            var daleitmp={code:null,name:"全部"};
+            res.data.data.unshift(daleitmp);
             self.setData({
               wenyudalei: res.data.data,
               wenyuCur: res.data.data[0].code,
@@ -428,6 +433,8 @@ Page({
 
           var urldalei = app.globalData.URL + '/config/getActivityClass1'; //查询大类
           util.gets(urldalei, data).then(function (res) {
+            var daleitmp={code:null,name:"全部"};
+            res.data.data.unshift(daleitmp);
             self.setData({
               aihaodalei: res.data.data,
               aihaoCur: res.data.data[0].code

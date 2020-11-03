@@ -49,7 +49,7 @@
   </view>
 </view>-->
 
-<view wx:for="{{wenyuList.list}}" wx:key wx:if="{{item.acid1==wenyuCur}}">
+<view wx:for="{{wenyuList.list}}" wx:key>
   <view class="cu-bar bg-white solid-bottom" style="display:fixed;position: relative;">
     <image class="cu-avatar round my margin-left" src="{{item.createrhead}}" mode="heightFix" data-id="{{item.creater}}" bindtap="gerenziliao"></image>
     <block wx:for="{{wenyuxiaolei}}" wx:for-item="cell" wx:if="{{item.acid2==cell.code}}">
@@ -95,7 +95,7 @@
           <view class="cu-avatar-group">
             <view class="cu-avatar round my" wx:for="{{6}}" wx:key style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{index+1}}.jpg);"></view>
           </view>
-          <button class="cu-btn bg-orange round btn" style="margin-left:280rpx;margin-top:-30rpx;" bindtap="baomingtiaozhan" data-yundong="{{item}}" hidden="{{item.button.signup==null}}">{{item.button.signup}}</button>
+          <button class="cu-btn bg-orange round btn" style="margin-left:280rpx;margin-top:-30rpx;" bindtap="baomingtiaozhan" data-wenyu="{{item}}" hidden="{{item.button.signup==null}}">{{item.button.signup}}</button>
         </view>
       </view>
     </view>
