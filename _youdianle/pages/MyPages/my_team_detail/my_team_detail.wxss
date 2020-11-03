@@ -1,6 +1,6 @@
 /* pages/tuanduixinxi/tuanduixinxi.wxss */
 @import "../../ziliao/ziliao.wxss";
-
+@import "../../xiaoyuanxiangqing/xiaoyuanxiangqing.wxss";
 .logo {
   padding-left: 24rpx;
   height: 160rpx;
@@ -207,6 +207,9 @@
   width: 105rpx;
   font-size: small;
 }
+.img-input {
+  height: 60rpx;
+}
 
 /* 回到首页,固定定位,悬浮 */
 .d-back-home {
@@ -216,4 +219,12 @@
   right: 30rpx;
   bottom: 166rpx;
   z-index: 10000;
+}
+.img-icon {
+  width: 45rpx;
+  height: 45rpx;
+}
+.img-icon {
+  width: 60rpx;
+  height: 60rpx;
 }
