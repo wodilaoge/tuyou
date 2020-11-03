@@ -168,6 +168,7 @@ Page({
         success: res => {
           if (res.confirm ) {
             this.data.photo.splice(e.currentTarget.dataset.index, 1);
+            
             this.setData({
               photo: this.data.photo
             })
