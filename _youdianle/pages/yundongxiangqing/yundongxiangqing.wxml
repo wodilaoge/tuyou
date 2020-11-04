@@ -62,6 +62,10 @@
                   <image class="icon-size" src="/img/icon_time.png" mode="heightFix"></image>
                   {{detail.fromtime}}
                 </view>
+                <view class="time-text-content">
+                  <image class="icon-size" src="/img/icon_time.png" mode="heightFix"></image>
+                  {{detail.signupdeadline}}
+                </view>
               </view>
               <view hidden="true">
                 <image class="icon_add" src="/img/icon_add.png" mode="aspectFill"

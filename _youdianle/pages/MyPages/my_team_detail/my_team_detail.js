@@ -18,8 +18,9 @@ Page({
     isCaptain: false,
     isshare: 0,
     hiddenmodalput: true,
-    reason:''
+    reason:'',
   },
+
   shutdown() {
     this.setData({
       hiddenmodalput: false

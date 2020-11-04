@@ -1473,6 +1473,7 @@ Page({
       lid: self.data.user.id
     }
     util.gets(url, data).then(function (res) {
+      console.log(res)
       if (res.data.data == null) {} else if (res.data.data.status == 10)
         self.setData({
           isbaomingtuandui: 1
