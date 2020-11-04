@@ -205,7 +205,8 @@
         <view class="cu-bar-title">报名</view>
       </view>
     </view>
-    <block wx:if="{{detail.lefttime.left!='已结束'&& detail.lefttime.left!='进行中'}}">
+    <!-- <block wx:if="{{detail.lefttime.left!='已结束'&& detail.lefttime.left!='进行中'}}">朱修改 -->
+      <block wx:if="{{detail.button.signup=='报名参加'}}">
       <view style="background-color:var(--white)" hidden="{{signupway}}">
         <view class=" padding " style="margin-left:175rpx;">
           <button class="cu-btn {{baomingCur==0?'bg-orange':'bg-grey2 text-grey'}} btn-paiming-left"
