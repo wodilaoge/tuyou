@@ -12,7 +12,7 @@ Page({
     index: null,
     name: '',
     index3: 0,
-    picker: ['男', '女'],
+    picker: ['女','男'],
     picker2: ['匿名参赛', '实名参赛'],
     picker3: ['身份证'],
     picker4: ['篮球', '足球', '排球', '羽毛球', '乒乓球', '其他'],

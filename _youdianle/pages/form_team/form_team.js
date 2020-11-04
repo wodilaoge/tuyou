@@ -382,6 +382,9 @@ Page({
   },
   commit: function (e) {
     var that = this.data.teamInfo
+    let pro = wx.getStorageSync('province').code
+    let city = wx.getStorageSync('city').code
+    let school = wx.getStorageSync('school').code
     var user = wx.getStorageSync('userInfo')
     let url = app.globalData.URL + '/team/updateTeam';
     var data = this.data
@@ -396,15 +399,16 @@ Page({
       linktel: that.linktel,
       slogan: that.slogan,
 
-      province: data.province,
-      city: data.city,
-      univ: data.univid,
+      province: this.data.province,
+      city: this.data.city,
+      univ: this.data.univid,
 
       superior: that.superior,
       // rssort: that.rssort,
       email: that.email,
       website: that.website,
       wcoa: that.wcoa,
+      status:this.data.modify==false?10:this.data.teamInfo.inStatus,
     }
     util.post_token(url, data).then(function (res) {
       console.log(res.data)

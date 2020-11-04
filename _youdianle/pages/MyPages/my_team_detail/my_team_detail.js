@@ -26,7 +26,112 @@ Page({
       hiddenmodalput: false
     });
   },
+  getInput(e) {
+    this.setData({
+      Input: e.detail.value
+    });
+  },
+  sentComment() {
+    var that = this
+    console.log('发布评论')
+    var userInfo = wx.getStorageSync('userInfo')
+    var url = app.globalData.URL + '/comm/addComment';
+    var data = {
+      objtype: 20,
+      objid: that.data.tdxxId,
+      objtitle: that.data.tdxxDeatil.name,
+      comment: this.data.Input,
+      creater: userInfo.id,
+      createrAlias: userInfo.nickname,
+      createrHead: userInfo.head,
 
+    }
+    util.post_token(url, data).then(function (res) {
+      console.log('发布评论', res.data)
+      if (res.data.code == 0) {
+        wx.showToast({
+          title: '评论成功',
+          duration: 1000,
+        })
+        that.secondLoad()
+      } else
+        wx.showToast({
+          title: res.data.msg,
+          duration: 1000,
+        })
+        that.setData({
+          chooseSize:false
+        })
+    })
+  },
+  zan() {
+    var that = this
+    var userInfo = wx.getStorageSync('userInfo')
+    var url = app.globalData.URL + '/applaud/updateApplaud';
+    var data = {
+      objtype: 20,
+      objid: that.data.tdxxId,
+      objtitle: that.data.tdxxDeatil.name,
+      creater: userInfo.id,
+      status: that.data.iszan==false?1:0
+    }
+    util.post_token(url, data).then(function (res) {
+      console.log('点赞', res.data)
+      if (res.data.code == 0) {
+        that.secondLoad()
+      } else
+        wx.showToast({
+          title: res.data.msg,
+          duration: 1000,
+        })
+    })
+  },
+  hideModal: function (e) {
+    var that = this;
+    var animation = wx.createAnimation({
+      duration: 100,
+      timingFunction: 'linear'
+    })
+    that.animation = animation
+    animation.translateY(200).step()
+    that.setData({
+      animationData: animation.export()
+
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      that.setData({
+        animationData: animation.export(),
+        chooseSize: false
+      })
+    }, 100)
+  },
+  //弹框
+  chooseSezi: function (e) {
+    var that = this;
+    var animation = wx.createAnimation({
+      duration: 100,
+      timingFunction: 'linear'
+    })
+    that.animation = animation
+    animation.translateY(200).step()
+    that.setData({
+      animationData: animation.export(),
+      chooseSize: true
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      that.setData({
+        animationData: animation.export()
+      })
+    }, 100)
+    that.setData({
+      duixiang: e.currentTarget.dataset.duixiang,
+      dxid: e.currentTarget.dataset.dxid,
+      dxtitle: e.currentTarget.dataset.dxtitle,
+      dxindex: e.currentTarget.dataset.index,
+    })
+  },
   //取消按钮  
   cancel: function () {
     this.setData({
@@ -41,12 +146,12 @@ Page({
   //确认  
   confirm: function () {
     var that = this
-    if(that.data.reason==''){
-    wx.showToast({
-      title: '请填写解散理由',
-    })
-    return
-  }
+    if (that.data.reason == '') {
+      wx.showToast({
+        title: '请填写解散理由',
+      })
+      return
+    }
     let url = app.globalData.URL + '/team/cancelTeam';
     var data = {
       id: this.data.tdxxId,
@@ -63,12 +168,12 @@ Page({
             setTimeout(function () {
               wx.switchTab({
                 url: '/pages/all_team/all_team',
-                success:function () {
-                    var page = getCurrentPages().pop();
-                    if (page == undefined || page == null) return;
-                    page.onLoad();   //重新刷新页面
+                success: function () {
+                  var page = getCurrentPages().pop();
+                  if (page == undefined || page == null) return;
+                  page.onLoad(); //重新刷新页面
                 }
-            })
+              })
             }, 1000);
           }
         })
@@ -84,7 +189,7 @@ Page({
       url: '/pages/form_team/form_team?modify=1&&id=' + this.data.tdxxId,
     })
   },
-  cancelfollow(){
+  cancelfollow() {
     var that = this
     console.log('取消关注')
     var url = app.globalData.URL + '/follow/updateFollow';
@@ -175,8 +280,21 @@ Page({
         duizhangID: res.data.data.lid,
         isCaptain: res.data.data.lid == wx.getStorageSync('userInfo').id
       })
-    }).then(()=>{
+    }).then(() => {
       that.getDuizhang()
+      //查询是否点赞
+      url = app.globalData.URL + '/applaud/findApplaud';
+      data = {
+        objtype: 20,
+        objid: this.data.tdxxId,
+        uid: wx.getStorageSync('userInfo').id
+      }
+      util.gets(url, data).then(function (res) {
+        console.log('查询是否点赞', res.data)
+        that.setData({
+          iszan: res.data.data
+        })
+      })
     })
     // app.wxRequest('GET', url, data, (res) => {
     //   console.log(res)
@@ -310,7 +428,7 @@ Page({
               })
             that.secondLoad()
           })
-        } 
+        }
         // else {
         //   var url = app.globalData.URL + '/team/auditJoin';
         //   var data = {
@@ -472,6 +590,8 @@ Page({
         historyAct: res.data.data
       })
     })
+
+
   },
 
 })

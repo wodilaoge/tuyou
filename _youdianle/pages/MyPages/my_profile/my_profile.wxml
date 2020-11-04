@@ -29,7 +29,7 @@
 		<view class="title">性别</view>
 		<picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
 			<view class="picker text-grey">
-				{{userinfo.sex==1?'女':'男'}}
+				{{userinfo.sex==0?'女':'男'}}
 			</view>
 		</picker>
 	</view>
