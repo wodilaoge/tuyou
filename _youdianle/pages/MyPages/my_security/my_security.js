@@ -86,6 +86,21 @@ Page({
           }
         })
       }
+      else if (res.data.code == 124) {
+        console.log('appjs code 124', res.data)
+        wx.showToast({
+          title: '请注销登录后重试',
+          icon:'none',
+          duration: 1000,
+          success: function() {
+            setTimeout(function() { 
+              wx.redirectTo({
+                url: '/pages/MyPages/my_setting/my_setting',
+              })
+            }, 2000); 
+          }
+        })
+      }
       else {
         console.log(res.data)
         wx.showToast({
