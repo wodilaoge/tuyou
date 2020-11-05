@@ -31,6 +31,11 @@ Page({
       Input: e.detail.value
     });
   },
+  pinluntiaozhuan(e) { //评论跳转
+    wx.navigateTo({
+      url: '/pages/pinlunliebiao/pinlunliebiao?categoryId=' + this.data.tdxxId + '&objtitle=' + this.data.tdxxDeatil.name+'&objtype='+e.currentTarget.dataset.objtype,
+    })
+  },
   sentComment() {
     var that = this
     console.log('发布评论')

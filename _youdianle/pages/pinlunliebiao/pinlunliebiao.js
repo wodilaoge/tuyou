@@ -88,6 +88,7 @@ Page({
     url = app.globalData.URL + '/comm/listCommByObj';
     app.wxRequest('POST', url, data, (res) => {
       self.setData({
+        chooseSize:false,
         comment: res.data
       });
       self.setData({
