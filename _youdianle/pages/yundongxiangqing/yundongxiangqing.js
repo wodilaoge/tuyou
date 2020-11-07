@@ -123,6 +123,7 @@ Page({
     zhaopian_index: 0,
     isRefleshZhaopianPinglun: true,
     zhaopianPinglunBorder: '',
+    baomingButton: '',
 
 
   },
@@ -241,7 +242,7 @@ Page({
   },
   pinluntiaozhuan(e) { //评论跳转
     wx.navigateTo({
-      url: '/pages/pinlunliebiao/pinlunliebiao?categoryId=' + this.data.categoryId + '&objtitle=' + this.data.detail.actname+'&objtype='+e.currentTarget.dataset.objtype,
+      url: '/pages/pinlunliebiao/pinlunliebiao?categoryId=' + this.data.categoryId + '&objtitle=' + this.data.detail.actname + '&objtype=' + e.currentTarget.dataset.objtype,
     })
   },
   guanliSelect(e) {
@@ -1056,8 +1057,8 @@ Page({
     }, 100)
     that.setData({
       shipin_index: e.currentTarget.dataset.index,
-      isRefleshshipinPinglun:true,
-      isRefleshZhaopianPinglun:true,
+      isRefleshshipinPinglun: true,
+      isRefleshZhaopianPinglun: true,
     })
 
     /////
@@ -1485,10 +1486,15 @@ Page({
       uid: self.data.user.id
     }
     util.gets(url, data).then(function (res) {
-      if (res.data.data == null) {} else if (res.data.data.status == 10)
+      console.log(res)
+      if (res.data.data == null) {}
+       else if (res.data.data.status == 10){
         self.setData({
           isbaominggeren: 1
-        })
+        })}
+      // self.setData({
+      //   baomingButton: res.data.data
+      // })
     })
   },
   lijibaoming() {
@@ -1582,6 +1588,7 @@ Page({
             isbaominggeren: 1
           })
           self.yibaoming()
+          // self.baomingzhuangtai()
         } else
           wx.showToast({
             title: res.data.msg,
@@ -1639,6 +1646,7 @@ Page({
               isbaomingtuandui: 1
             })
             self.yibaoming()
+            // self.baomingzhuangtai()
           } else
             wx.showToast({
               title: '报名失败！',
@@ -1694,6 +1702,7 @@ Page({
             isbaominggeren: 1
           })
           self.yibaoming()
+          // self.baomingzhuangtai()
         } else
           wx.showToast({
             title: '报名失败！',
@@ -1750,6 +1759,7 @@ Page({
               isbaomingtuandui: 1
             })
             self.yibaoming()
+            // self.baomingzhuangtai()
           } else
             wx.showToast({
               title: '报名失败！',
@@ -2209,9 +2219,7 @@ Page({
       self.setData({
         tzpd: '/pages/xiaoyuan/xiaoyuan'
       })
-    }
- 
-    else
+    } else
       self.setData({
         tzpd: '/pages/index/index'
       })
@@ -2322,11 +2330,11 @@ Page({
         complete: (res) => {},
       })
     }
-   
+
     if (this.data.isRefleshZhaopian == true && this.data.TabCur == 3) {
       this.getZhaopianFenye()
     }
-   
+
   },
 
   /**

@@ -197,7 +197,7 @@
               hidden="{{!shipin.list[0].yingChang}}" bindtap="video_change" data-index="{{index}}"
               custom-cache="{{false}}"></video>
             <image id="video_{{index}}" src="{{shipin.list[0].cover?shipin.list[0].cover:defaultPoster}}"
-              mode="{{shipin.list[0].cover?'scaleToFill':'center'}}"
+              mode="{{shipin.list[0].cover?'aspectFit':'center'}}"
               style="background-color: black; width: 100% ;height: 450rpx;" bindtap="yingChangShipin"
               data-index="{{index}}" hidden="{{shipin.list[0].yingChang}}"></image>
           </view>
@@ -284,7 +284,7 @@
               hidden="{{!shipin.list[index].yingChang}}" bindtap="video_change" data-index="{{index}}"
               custom-cache="{{false}}"></video>
             <image id="video_{{index}}" src="{{shipin.list[index].cover?shipin.list[index].cover:defaultPoster}}"
-              mode="{{shipin.list[index].cover?'scaleToFill':'center'}}"
+              mode="{{shipin.list[index].cover?'aspectFit':'center'}}"
               style="width: 100%;height: 450rpx;background-color: black;" bindtap="yingChangShipin"
               data-index="{{index}}" hidden="{{shipin.list[index].yingChang}}"></image>
           </view>

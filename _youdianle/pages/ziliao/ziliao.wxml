@@ -28,8 +28,7 @@
             <view class="weizhi-right"></view>
           </view>
           <view class="flex">
-            <text class="ziliao-ziliao">{{duiyuanAge}}岁 | {{duiyuanDeatil.height===null?'':duiyuanDeatil.height}}cm |
-              {{duiyuanDeatil.weight===null?'':duiyuanDeatil.weight}}公斤</text>
+            <text class="ziliao-ziliao">{{duiyuanAge}}岁 | {{duiyuanDeatil.height===null?'':duiyuanDeatil.height}}cm | {{duiyuanDeatil.weight===null?'':duiyuanDeatil.weight}}公斤</text>
           </view>
         </view>
       </view>
@@ -105,7 +104,7 @@
       <view style="margin-top:20rpx;background-color:white;">
         <view class="ziliao-content justify-between" style="height:73rpx;">
           <view class="ziliao-content1">性别</view>
-          <view class="ziliao-content2">{{duiyuanDeatil.sex==0?'男':(duiyuanDeatil.sex==1?'女':'暂无')}}</view>
+          <view class="ziliao-content2">{{duiyuanDeatil.sex==1?'男':(duiyuanDeatil.sex==0?'女':'暂无')}}</view>
         </view>
       </view>
       <!-- <view style="margin-top:20rpx;background-color:white;">
@@ -247,7 +246,8 @@
 
           <view wx:for="{{paimingDetail}}" class="flex" style="margin-top:44rpx;" bindtap="yundongxiangqing2"
             data-id="{{paimingDetail[index].actid}}">
-            <text class="paiming-fenshu" style="margin-left:24rpx;width:120rpx;">{{paimingDetail[index].mbrRank?paimingDetail[index].mbrRank:''}}</text>
+            <image class="icon-paiming " mode="aspectFit " src="{{paimingDetail[index].mbrRankLogo}}" hidden="{{!paimingDetail[index].mbrRankLogo}}" style="margin-left: 60rpx;"></image>
+            <text class="paiming-fenshu" style="margin-left:24rpx;width:120rpx;" hidden="{{paimingDetail[index].mbrRankLogo}}">{{paimingDetail[index].mbrRank?paimingDetail[index].mbrRank:''}}</text>
             <text class="paiming-fenshu"
               style="margin-left:2rpx;width:180rpx;">{{paimingDetail[index].mbrScore?paimingDetail[index].mbrScore:''}}</text>
             <text class="paiming-riqi" style="margin-left:2rpx;width:180rpx;">{{paimingDetail[index].acttime}}</text>
