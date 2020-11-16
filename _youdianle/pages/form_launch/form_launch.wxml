@@ -10,7 +10,6 @@
   <view class="cu-form-group margin-top">
     <view class=" text-red text-xl star ">*</view>
     <view class="title">活动板块</view>
-
     <picker bindchange="PickerChangebig" value="{{indexbig}}" range="{{pickerbig}}" range-key="{{'name'}}">
       <view class="picker text-blue">
         {{indexbig?pickerbig[indexbig].name:'选择活动版块'}}

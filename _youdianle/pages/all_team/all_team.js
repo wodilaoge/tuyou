@@ -1,5 +1,8 @@
 const util = require("../../utils/util.js");
 const app = getApp();
+var provinceCode = wx.getStorageSync('province').code
+var cityCode = wx.getStorageSync('city').code
+var schoolCode = wx.getStorageSync('school').code
 Page({
   data: {
     provinceList: [],
@@ -9,15 +12,15 @@ Page({
     Custom: app.globalData.Custom,
     TabCur: 0,
     VerticalNavTop: 0,
-    border:'',
+    border: '',
     options: 1,
     allAct: [],
     list: [],
     load: true,
-    needflesh:true,
-    MainCur:'000'
+    needflesh: true,
+    MainCur: '000'
   },
-  onShow(){
+  onShow() {
     // this.onLoad()
   },
   onLoad(options) {
@@ -39,13 +42,19 @@ Page({
         allAct: tmp
       })
     })
+
     //所有团队
     url = app.globalData.URL + '/team/listSimpleTeam';
-    util.post_token(url, {acid1:null}).then(function (res) {
+    util.post_token(url, {
+      acid1: null,
+      province: provinceCode,
+      city: cityCode,
+      school: schoolCode
+    }).then(function (res) {
       console.log('所有团队', res.data)
       that.setData({
         showAct: res.data.data.list,
-        border:res.data.data.border
+        border: res.data.data.border
       })
       wx.hideLoading()
     })
@@ -56,29 +65,36 @@ Page({
     this.setData({
       TabCur: e.currentTarget.dataset.index,
       MainCur: e.currentTarget.dataset.id,
-      needflesh:true
+      needflesh: true
     })
     var that = this
     var url = app.globalData.URL + '/team/listSimpleTeam';
-    let _code=e.currentTarget.dataset.id
+    let _code = e.currentTarget.dataset.id
     var data
-    if(_code=='000')
-      data={}
+    if (_code == '000')
+      data = {
+        province: provinceCode,
+        city: cityCode,
+        school: schoolCode
+      }
     else
       data = {
-        acid1: _code
+        acid1: _code,
+        province: provinceCode,
+        city: cityCode,
+        school: schoolCode
       }
     // console.log(data)
     util.post_token(url, data).then(function (res) {
       console.log('选择大类', res.data)
       that.setData({
         showAct: res.data.data.list,
-        border:res.data.data.border
+        border: res.data.data.border
       })
     })
   },
 
-  toTeamDetail(e){
+  toTeamDetail(e) {
     wx.navigateTo({
       url: '/pages/MyPages/my_team_detail/my_team_detail?id=' + e.currentTarget.dataset.id,
     })
@@ -116,7 +132,7 @@ Page({
   },
 
   onReachBottom: function () {
-    if(!this.data.needflesh)
+    if (!this.data.needflesh)
       return
     console.log("上拉刷新")
     wx.showLoading({
@@ -126,19 +142,22 @@ Page({
     var that = this
     var url = app.globalData.URL + '/team/listSimpleTeam';
     var data = {
-      acid1: that.data.MainCur=='000'?null:that.data.MainCur,
-      border:that.data.border
+      province: provinceCode,
+      city: cityCode,
+      school: schoolCode,
+      acid1: that.data.MainCur == '000' ? null : that.data.MainCur,
+      border: that.data.border
     }
     console.log(data)
     util.post_token(url, data).then(function (res) {
       console.log('上拉刷新结果', res.data)
-      var _data=that.data.showAct
-      for(let i of res.data.data.list)
-      _data.push(i)
+      var _data = that.data.showAct
+      for (let i of res.data.data.list)
+        _data.push(i)
       that.setData({
         showAct: _data,
-        border:res.data.data.border,
-        needflesh:res.data.data.list.length!=0
+        border: res.data.data.border,
+        needflesh: res.data.data.list.length != 0
       })
       wx.hideLoading()
     })
