@@ -35,7 +35,7 @@
       <!-- <block wx:for="{{AllActivity}}" wx:for-item="cell" wx:if="{{item.acid2==cell.code}}">
         <text style="position:absolute;left:110rpx;">{{cell.name}}</text>
       </block> -->
-      <text class="title-time" >
+      <text class="title-time" wx:if="{{item.lefttime.left!=null}}">
         {{item.lefttime.left}} </text>
     </view>
     <view class="background" style="margin-bottom:20rpx;">
@@ -92,7 +92,7 @@
       <!-- <block wx:for="{{AllActivity}}" wx:for-item="cell" wx:if="{{item.acid2==cell.code}}">
         <text style="position:absolute;left:110rpx;">{{cell.name}}</text>
       </block> -->
-      <text class="title-time" >
+      <text class="title-time" wx:if="{{item.lefttime.left!=null}}">
         {{item.lefttime.left}} </text>
     </view>
     <view class="background" style="margin-bottom:20rpx;">
@@ -153,7 +153,7 @@
       <!-- <block wx:for="{{AllActivity}}" wx:for-item="cell" wx:if="{{item.acid2==cell.code}}">
         <text style="position:absolute;left:110rpx;">{{cell.name}}</text>
       </block> -->
-      <text class="title-time" >
+      <text class="title-time" wx:if="{{item.lefttime.left!=null}}">
         {{item.lefttime.left}} </text>
     </view>
     <view class="background" style="margin-bottom:20rpx;">

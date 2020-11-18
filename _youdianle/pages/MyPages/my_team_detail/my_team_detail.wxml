@@ -105,10 +105,10 @@
     <view class="paiming-paiming" style="margin-left:2rpx;width:216rpx;">活动名称</view>
   </view>
   <view class="flex" style="margin-top:44rpx;" wx:for="{{historyAct}}" wx:key="keys">
-    <text class="paiming-fenshu" style="padding-left:76rpx;">{{item.teamRank}}</text>
-    <text class="paiming-fenshu" style="margin-left:129rpx;">{{item.teamScore}}</text>
-    <text class="paiming-riqi" style="margin-left:97rpx;">{{item.fromtime}}</text>
-    <text class="paiming-huodong" style="margin-left:67rpx;margin-top:-13rpx;">{{item.actname}}</text>
+    <text class="paiming-fenshu" style="padding-left:76rpx;">{{item.teamRank==null?'':item.teamRank}}</text>
+    <text class="paiming-fenshu" style="margin-left:129rpx;">{{item.teamScore==null?'':item.teamScore}}</text>
+    <text class="paiming-riqi" style="margin-left:97rpx;">{{item.fromtime==null?'':item.fromtime}}</text>
+    <text class="paiming-huodong" style="margin-left:67rpx;margin-top:-13rpx;">{{item.actname==null?'':item.actname}}</text>
   </view>
 </view>
 
