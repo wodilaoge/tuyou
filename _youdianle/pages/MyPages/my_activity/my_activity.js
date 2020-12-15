@@ -53,7 +53,7 @@ Page({
       let url = app.globalData.URL + '/act/listMyActivity';
       let data = {
         'type': 20,
-        'acid1': that.data.AllActivity[tab].code
+        'acid1': that.data.AllActivity[tab].code=='000'?null: that.data.AllActivity[tab].code
       };
       util.post_token(url, data).then(function (res) {
         console.log('join', res.data)
@@ -82,7 +82,7 @@ Page({
       let url = app.globalData.URL + '/act/listMyActivity';
       let data = {
         'type': 10,
-        'acid1': that.data.AllActivity[tab].code
+        'acid1': that.data.AllActivity[tab].code=='000'?null: that.data.AllActivity[tab].code
       };
       util.post_token(url, data).then(function (res) {
         console.log('create', res.data)
@@ -110,7 +110,7 @@ Page({
       let url = app.globalData.URL + '/act/listMyActivity';
       let data = {
         'type': 30,
-        'acid1': that.data.AllActivity[tab].code
+        'acid1': that.data.AllActivity[tab].code=='000'?null: that.data.AllActivity[tab].code
       };
       util.post_token(url, data).then(function (res) {
         console.log('attention', res.data)
@@ -150,7 +150,7 @@ Page({
       'univ': wx.getStorageSync('school').code,
       'province': wx.getStorageSync('province').code,
       'city': wx.getStorageSync('city').code,
-      "acid1": '076003001'
+      // "acid1": '076003001'
     };
     util.post_token(url, data).then(function (res) {
       console.log('joinnum', res.data)
@@ -179,7 +179,7 @@ Page({
       'univ': wx.getStorageSync('school').code,
       'province': wx.getStorageSync('province').code,
       'city': wx.getStorageSync('city').code,
-      "acid1": '076003001'
+      // "acid1": '076003001'
     };
     util.post_token(url, data).then(function (res) {
       console.log('createnum', res.data)
@@ -207,7 +207,7 @@ Page({
       'univ': wx.getStorageSync('school').code,
       'province': wx.getStorageSync('province').code,
       'city': wx.getStorageSync('city').code,
-      "acid1": '076003001'
+      // "acid1": '076003001'
     };
     util.post_token(url, data).then(function (res) {
       console.log('follownum', res.data)
@@ -312,8 +312,13 @@ Page({
     let url = app.globalData.URL + '/config/findAllActivityClass1';
     // 所有活动
     util.gets(url, {}).then(function (res) {
+      let tmp=res.data.data
+      tmp.unshift({
+        code: '000',
+        name: '全部'
+      })
       that.setData({
-        AllActivity: res.data.data
+        AllActivity: tmp
       })
     })
     //我创建的
@@ -321,7 +326,7 @@ Page({
     let num
     let data = {
       'type': 10,
-      'acid1': that.data.initialcode
+      // 'acid1': that.data.initialcode
     };
     util.post_token(url, data).then(function (res) {
       console.log('Mycreate', res.data)
@@ -333,7 +338,7 @@ Page({
     url = app.globalData.URL + '/act/listMyActivity';
     data = {
       'type': 20,
-      'acid1': that.data.initialcode
+      // 'acid1': that.data.initialcode
     };
     util.post_token(url, data).then(function (res) {
       console.log('Myjoin', res.data)
@@ -346,7 +351,7 @@ Page({
     url = app.globalData.URL + '/act/listMyActivity';
     data = {
       'type': 30,
-      'acid1': that.data.initialcode
+      // 'acid1': that.data.initialcode
     };
     util.post_token(url, data).then(function (res) {
       console.log('Myattention', res.data)
@@ -411,7 +416,7 @@ Page({
       let url = app.globalData.URL + '/act/listMyActivity';
       let data = {
         'type': 20,
-        'acid1': that.data.AllActivity[that.data.TabCur].code,
+        'acid1': that.data.AllActivity[that.data.TabCur].code=='000'?null:that.data.AllActivity[that.data.TabCur].code,
         'border': that.data.Myjoin.border
       };
       util.post_token(url, data).then(function (res) {
@@ -441,7 +446,7 @@ Page({
       let url = app.globalData.URL + '/act/listMyActivity';
       let data = {
         'type': 10,
-        'acid1': that.data.AllActivity[that.data.TabCur].code,
+        'acid1': that.data.AllActivity[that.data.TabCur].code=='000'?null:that.data.AllActivity[that.data.TabCur].code,
         'border': that.data.Mycreate.border
       };
       util.post_token(url, data).then(function (res) {
@@ -475,7 +480,7 @@ Page({
       let url = app.globalData.URL + '/act/listMyActivity';
       let data = {
         'type': 30,
-        'acid1': that.data.AllActivity[that.data.TabCur].code,
+        'acid1': that.data.AllActivity[that.data.TabCur].code=='000'?null:that.data.AllActivity[that.data.TabCur].code,
         'border': that.data.Myattention.border
       };
       util.post_token(url, data).then(function (res) {
