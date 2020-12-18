@@ -1461,9 +1461,14 @@ Page({
 
   ///////////////////////////////
   gerenziliao(e) {
+    if(this.data.detail.signupway==10){
     wx.navigateTo({
       url: '/pages/ziliao/ziliao?id=' + e.currentTarget.dataset.id,
-    })
+    })}else{
+      wx.navigateTo({
+        url: '/pages/MyPages/my_team_detail/my_team_detail?id=' + e.currentTarget.dataset.id,
+      })
+    }
   },
   ////////////////////////
   baomingzhuangtai() { //报名状态

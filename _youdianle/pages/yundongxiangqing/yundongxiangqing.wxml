@@ -94,8 +94,10 @@
         <view class="bg-white">
           <view class="yibaoming-margin-top margin-left " style="display: flex;position: relative;">
             <text class="yibaoming-text-content margin-top">已报名</text>
+            <!-- <text class="yibaoming-text-content margin-top"
+              style="color:var(--blue)">{{gerenshuju.count}}/{{detail.signupmax}}</text> -->
             <text class="yibaoming-text-content margin-top"
-              style="color:var(--blue)">{{gerenshuju.count}}/{{detail.signupmax}}</text>
+            style="color:var(--blue)">{{detail.signupcnt}}/{{detail.signupmax}}</text>
             <text class="yibaoming-text-content margin-top">人</text>
             <button class="cu-btn bg-orange round btn-baomingtiaozhan margin-top-sm" bindtap="bmtz"
               hidden="{{detail.button.signup==null}}">{{detail.button.signup}}</button>
@@ -759,7 +761,7 @@
           </swiper-item>
         </swiper>
 
-       <view class="swiper-text">{{item.listPhoto[swiper_current].notes==null?'':item.listPhoto[swiper_current].notes}} </view>
+       <view class="swiper-text">{{item.listPhoto[swiper_current%zhaopian[index].photoCnt].notes==null?'':item.listPhoto[swiper_current%zhaopian[index].photoCnt].notes}} </view>
 
         <view class="flex  margin-top ">
           <!-- <view class="sp-bofang-times ">播放{{item.playCnt}}次</view> -->
