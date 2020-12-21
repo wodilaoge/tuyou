@@ -1,3 +1,6 @@
+@import "../../xiaoyuanxiangqing/xiaoyuanxiangqing.wxss";
+
+
 .width {
   width: 130rpx;
 }
@@ -5,4 +8,242 @@
 .pad {
   padding-left: 20rpx;
   padding-right: 20rpx;
+}
+
+page {
+  /*页面布局*/
+  padding-bottom: 150rpx;
+  letter-spacing: 2rpx;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.hidden {
+  overflow-x: hidden;
+}
+
+.icon_add {
+  width: 58rpx;
+  height: 76rpx;
+}
+
+.yibaoming-text-content {
+  overflow: hidden;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.title-text-content {
+  color: black;
+  overflow: visible;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  font-weight: normal;
+}
+
+.yibaoming-margin-top {
+  margin-top: 2rpx;
+}
+
+.btn-guanzhu {
+  margin-left: auto;
+  margin-top: 10rpx;
+  width: 122rpx;
+  height: 48rpx;
+}
+
+.btn-baomingtiaozhan {
+  position: absolute;
+  /* 要约束所在位置的子元素的位置要设置成绝对 */
+  right: 30rpx;
+  /* 靠右调节 */
+  width: 168rpx;
+  height: 54rpx;
+}
+
+.cu-bar-title {
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.text-guize {
+  padding: 0 10rpx;
+  font-size: 28rpx;
+  color: #666;
+  line-height: 56rpx;
+  margin-bottom: 30rpx;
+}
+
+.btn-hot {
+  width: 50rpx;
+  height: 30rpx;
+  font-size: 20rpx;
+  border-radius: 33.5rpx;
+}
+
+.img-icon {
+  width: 45rpx;
+  height: 45rpx;
+}
+
+
+.yundong-sp-center {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.paiming-name {
+  font-size: 32rpx;
+  font-weight: normal;
+  line-height: 32rpx;
+}
+
+.shuju-btn1 {
+  font-size: 32rpx;
+  width: 320rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  border: 2rpx solid;
+}
+
+.btn-paiming-left {
+  width: 200rpx;
+  height: 56rpx;
+  font-size: 28rpx;
+  border-top-left-radius: 30rpx;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 30rpx;
+  border-bottom-right-radius: 0;
+}
+
+.btn-paiming-right {
+  width: 200rpx;
+  height: 56rpx;
+  font-size: 28rpx;
+  border-top-left-radius: 0;
+  border-top-right-radius: 30rpx;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 30rpx;
+}
+
+.tp-select {
+  margin-left: 26rpx;
+  color: #333;
+  font-size: 32rpx;
+  font-weight: normal;
+}
+
+.form-text {
+  text-align: right;
+  background-color: #f8f9fd;
+  border-radius: 36rpx;
+}
+
+.queren {
+  font-size: 24rpx;
+  font-weight: normal;
+}
+
+.text-28 {
+  font-size: 28rpx;
+  font-weight: normal;
+}
+
+.btn-bm {
+  width: 320rpx;
+  height: 80rpx;
+  font-size: 32rpx;
+}
+
+/* shipin */
+
+.shipin-title {
+  display: flex;
+  height: 100rpx;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: rgba(51, 51, 51, 1);
+  background-color: white;
+}
+
+/* zhaopian */
+
+swiper.round-dot .wx-swiper-dot.wx-swiper-dot-active::after {
+  content: "";
+  position: relative;
+  width: 10rpx;
+  height: 10rpx;
+  top: 0rpx;
+  left: 0rpx;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: #5454ff;
+  border-radius: 20rpx;
+}
+
+.zhaopian-tupian-pinglun {
+  width: 616rpx;
+  padding-top: 21rpx;
+  padding-left: 23rpx;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: rgba(51, 51, 51, 1);
+}
+
+.card-swiper {
+  height: 536rpx !important;
+}
+
+.card-swiper swiper-item {
+  width: 100% !important;
+  left: 0rpx;
+  box-sizing: border-box;
+  padding: 40rpx 0rpx 70rpx;
+  overflow: initial;
+}
+
+.card-swiper swiper-item .swiper-item {
+  width: 100%;
+  display: block;
+  height: 100%;
+  border-radius: 10rpx;
+  transform: scale(0.9);
+  transition: all 0.2s ease-in 0s;
+  overflow: hidden;
+}
+
+.card-swiper swiper-item.cur .swiper-item {
+  transform: none;
+  transition: all 0.2s ease-in 0s;
+}
+
+.img-input {
+  height: 60rpx;
+}
+
+.swiper-text {
+  height: auto;
+  padding-top: 20rpx;
+  padding-left: 25rpx;
+  padding-bottom: 30rpx;
+  font-size: 29rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #343434;
+  background-color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display:-webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient:vertical;
+  word-break: break-all;
 }

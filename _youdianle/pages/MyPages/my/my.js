@@ -179,6 +179,27 @@ Page({
       })
     }
   },
+  topic(){
+    if (this.data.isauth)
+    wx.navigateTo({
+      url: '/pages/MyPages/my_pic/my_pic',
+    })
+  else {
+    wx.showModal({
+      title: '友点乐',
+      content: '请先进行微信登录',
+      cancelText: '取消',
+      confirmText: '授权',
+      success: res => {
+        if (res.confirm) {
+          wx.navigateTo({
+            url: '/pages/login/login',
+          })
+        }
+      }
+    })
+  }
+  },
   onLoad: function () {
     var that = this
     console.log('onload')

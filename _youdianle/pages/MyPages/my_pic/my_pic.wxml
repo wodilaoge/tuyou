@@ -2,8 +2,152 @@
   <view slot="backText">返回</view>
   <view slot="content">图片</view>
 </cu-custom>
-<view class="grid col-5 pad bg-white">
-  <view class="margin-tb-sm " wx:for="{{Lists}}" wx:key bindtap="tabSelect" data-id="{{index}}">
-    <button class="cu-btn  round bg-{{index==TabCur?'orange':'grey'}} width">{{item}}</button>
+<scroll-view scroll-x class="bg-white nav" scroll-with-animation scroll-left="{{scrollLeft}}">
+  <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{AllActivity}}" wx:key="key"
+    bindtap="tabSelect" data-id="{{index}}" data-actid='{{item.code}}'>
+    {{item.name}}
   </view>
-</view>
+</scroll-view>
+
+
+<block >
+  <view wx:for="{{zhaopian}}" wx:if="{{zhaopian.length>0}}">
+    <view class="shipin-title margin-top-sm " style="margin-bottom: 2rpx;">{{item.title}}</view>
+    <view class="content-white">
+      <view class=" sp-cu-bar cu-bar-radius bg-white  ">
+        <image class="sp-avatar round " data-id="{{item.author}}" bindtap="gerenziliao"
+          src="{{item.authorHead}} "></image>
+        <view class="sp-avatar-name">{{item.authorAlias===null?'':item.authorAlias}}
+        </view>
+        <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu"
+          data-index="{{index}}" hidden="{{item.myFollow==1}}" data-duixiang="60">关注</button>
+        <button class="cu-btn round lines-orange " style="width:120rpx;height:48rpx;" bindtap="shipinguanzhu"
+          data-index="{{index}}" hidden="{{!item.myFollow==1}}" data-duixiang="60">已关注</button>
+      </view>
+
+     
+      <swiper class="screen-swiper" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="setChange_swiper" data-index="{{current}}" data-item="{{index}}">
+        <swiper-item wx:for="{{item.listPhoto}}" wx:for-item="this" bindtap="ViewImage" data-url="{{this.path}}">
+          <image src="{{this.path}}" mode="aspectFill" ></image>
+        </swiper-item>
+      </swiper>
+
+     <view class="swiper-text">{{item.listPhoto[swiper_current].notes==null?'':item.listPhoto[swiper_current].notes}} </view>
+
+      <view class="flex  margin-top ">
+        <!-- <view class="sp-bofang-times ">播放{{item.playCnt}}次</view> -->
+        <view class="sp-hotpinglun ">热门评论</view>
+        <image src="{{item.myApplaud!=0?'/img/icon_like_all.png':'/img/icon_like.png'}}"
+          style="width:44rpx;height:40rpx;margin-left:360rpx;" bindtap="shipinDianzan" data-index="{{index}}" data-duixiang="60"></image>
+        <view class=" align-center " style="margin-left:16rpx;font-size:32rpx;width:55rpx; ">
+          {{item.applaudCnt}}</view>
+        <image class="img-icon" mode="aspectFit " src="/img/icon_talk.png" bindtap="chooseSezi" data-duixiang="{{60}}"
+          data-index="{{index}}" data-dxid="{{item.id}}" data-dxtitle="{{item.title}}">
+        </image>
+        <view bindtap="share">
+          <button class="cu-btn round  buttonshare"
+            style="background-color: white; margin-left: 20rpx;margin-top: -8rpx;" open-type="share"
+            data-index="{{index}}" data-duixiang="{{60}}">
+            <image class="img-icon" src="/img/icon_share_more.png "
+              style="width:44rpx;height:40rpx;margin-left:16rpx; margin-right:20rpx; "></image>
+          </button>
+        </view>
+      </view>
+
+     
+      <view class="margin-top" style="background-color: #fff;">
+        <view class="margin-top-xs sp-pinlun-content" bindtap="shipinChooseSezi" data-duixiang="{{50}}"
+          data-dxid="{{item.id}}" data-index="{{index}}" wx:if="{{item.listComm[0]}}">
+          <view>
+            <image class="sp-pinglun-avatar round " src="{{item.listComm[0].createrHead}} "></image>
+          </view>
+          <view>
+            <view class="flex">
+              <view class="sp-pinglun-name">{{item.listComm[0].createrAlias}}</view>
+              <view>
+                <text class='card-text-content-time2'>{{item.listComm[0].strCreatetime}}</text>
+              </view>
+            </view>
+            <view class="sp-pinglun-neirong ">{{item.listComm[0].comment}}
+            </view>
+          </view>
+        </view>
+
+        <view class="margin-top-xs sp-pinlun-content" bindtap="shipinChooseSezi" data-duixiang="{{50}}"
+          data-dxid="{{item.id}}" data-index="{{index}}" wx:if="{{item.listComm[1]}}">
+          <view>
+            <image class="sp-pinglun-avatar round " src="{{item.listComm[1].createrHead}} "></image>
+          </view>
+          <view>
+            <view class="flex">
+              <view class="sp-pinglun-name">{{item.listComm[1].createrAlias}}</view>
+              <view>
+                <text class='card-text-content-time2'>{{item.listComm[1].strCreatetime}}</text>
+              </view>
+            </view>
+            <view class="sp-pinglun-neirong ">{{item.listComm[1].comment}}
+            </view>
+          </view>
+        </view>
+        <view style="height:10rpx;"></view>
+
+      </view>
+      <view class="sp-quanbupinglun margin-top-sm" bindtap="shipinChooseSezi" data-duixiang="{{60}}"
+        data-dxid="{{item.id}}" data-index="{{index}}">全部评论({{item.commCnt}})</view>
+    </view>
+  </view>
+  <view class="text-center text-grey padding" wx:if="{{zhaopian.length==0}}">暂无此类</view>
+</block>
+
+  <!--隐藏区域  -->
+  <view fixed class="modals modals-bottom-dialog" hidden="{{!chooseSize}}">
+    <view class="modals-cancel" bindtap="hideModal" catchtouchmove="true"></view>
+    <view class="bottom-dialog-body bottom-pos " animation="{{animationData}}" style="display:block">
+      <view>
+        <text class="cu-bar-title " style="margin-left:300rpx ">写评论</text>
+        <button class="cu-btn bg-orange shadow-blur padding-sm margin-left-sm btn-fasong " bindtap="pd_fasong"
+          style="margin-left:100rpx ">发送</button>
+      </view>
+      <input class="form-text2 margin-top-sm margin-buttom " style="height:160rpx;width:100% " value="{{Input}}"
+        maxlength="4000 " bindinput="emailInput"  fixed="true"></input>
+    </view>
+  </view>
+
+     <!--zhaopian隐藏区域  -->
+   <view fixed class="modals modals-bottom-dialog" hidden="{{!zhaopianChooseSize}}">
+    <view class="modals-cancel" bindtap="shipinHideModal" catchtouchmove="true"></view>
+    <scroll-view class="shipin-bottom-dialog-body bottom-pos" animation="{{shipinAnimationData}}" style="display:block"
+      scroll-y="true" bindscrolltolower="getZhaopianPinglunFenye">
+      <view>
+        <text class="cuIcon-close lg text-black" bindtap="shipinHideModal"></text>
+        <text class="sp-quanbupinglun2">全部评论({{zhaopian[zhaopian_index].commCnt}})</text>
+      </view>
+      <view wx:for="{{zhaopian[zhaopian_index].listComm}}" wx:for-index="index2" style="background-color:white;">
+        <view class="margin-top-xs sp-pinlun-content">
+          <!-- <image class="sp-pinglun-avatar-2 round " src="{{shipin.list[shipin_index].listComm[index2].createrHead}} ">
+          </image>
+          <view class="sp-pinglun-name ">{{shipin.list[shipin_index].listComm[index2].createrAlias}}</view>
+          <view>
+            <view class="sp-pinglun-neirong-2 ">{{shipin.list[shipin_index].listComm[index2].comment}}</view>
+            <text class='card-text-content-time2'>{{shipin.list[shipin_index].listComm[index2].strCreatetime}}</text> -->
+          <view>
+            <image class="sp-pinglun-avatar-2 round " src="{{zhaopian[zhaopian_index].listComm[index2].createrHead}} ">
+            </image>
+          </view>
+          <view>
+            <view class="flex">
+              <view class="sp-pinglun-name">{{zhaopian[zhaopian_index].listComm[index2].createrAlias}}</view>
+              <view>
+                <text
+                  class='card-text-content-time2'>{{zhaopian[zhaopian_index].listComm[index2].strCreatetime}}</text>
+              </view>
+            </view>
+            <view class="sp-pinglun-neirong-2 ">{{zhaopian[zhaopian_index].listComm[index2].comment}}
+            </view>
+            <!-- </view> -->
+          </view>
+
+        </view>
+      </view>
+    </scroll-view>
+  </view>

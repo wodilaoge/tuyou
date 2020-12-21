@@ -92,11 +92,13 @@
     <image src="/img/my/11.png" class="menu-img"></image>
     <text class="menu-name">视频</text>
   </view> 
-  <!-- 
-  <navigator url="/pages/MyPages/my_pic/my_pic" class="menu-item">
+
+  <view bindtap="topic" class="menu-item">
     <image src="/img/my/12.png" class="menu-img"></image>
     <text class="menu-name">照片</text>
-  </navigator>
+  </view>
+
+    <!-- 
 <navigator url="/pages/MyPages/my_news/my_news" class="menu-item">
     <image src="/img/my/13.png" class="menu-img"></image>
     <text class="menu-name">新闻</text>

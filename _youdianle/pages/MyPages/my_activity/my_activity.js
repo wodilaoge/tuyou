@@ -68,7 +68,7 @@ Page({
         'univ': wx.getStorageSync('school').code,
         'province': wx.getStorageSync('province').code,
         'city': wx.getStorageSync('city').code,
-        'acid1': that.data.AllActivity[tab].code
+        'acid1': that.data.AllActivity[tab].code=='000'?null: that.data.AllActivity[tab].code
       };
       util.post_token(url, data).then(function (res) {
         console.log('joinnum', res.data)
@@ -96,7 +96,7 @@ Page({
         'univ': wx.getStorageSync('school').code,
         'province': wx.getStorageSync('province').code,
         'city': wx.getStorageSync('city').code,
-        'acid1': that.data.AllActivity[tab].code
+        'acid1': that.data.AllActivity[tab].code=='000'?null: that.data.AllActivity[tab].code
       };
       util.post_token(url, data).then(function (res) {
         console.log('joinnum', res.data)
@@ -124,7 +124,7 @@ Page({
         'univ': wx.getStorageSync('school').code,
         'province': wx.getStorageSync('province').code,
         'city': wx.getStorageSync('city').code,
-        'acid1': that.data.AllActivity[tab].code
+        'acid1': that.data.AllActivity[tab].code=='000'?null: that.data.AllActivity[tab].code
       };
       util.post_token(url, data).then(function (res) {
         console.log('joinnum', res.data)
