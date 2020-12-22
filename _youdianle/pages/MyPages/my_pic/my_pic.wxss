@@ -4,12 +4,18 @@
 .width {
   width: 130rpx;
 }
-
+.duiqi{
+  justify-items: center;
+  align-items: center;
+}
 .pad {
   padding-left: 20rpx;
   padding-right: 20rpx;
 }
-
+.del{
+  font-size: 40rpx;
+  
+}
 page {
   /*页面布局*/
   padding-bottom: 150rpx;

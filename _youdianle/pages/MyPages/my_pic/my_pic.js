@@ -7,184 +7,216 @@ Page({
    */
   data: {
     Lists: [],
-    TabCur:0,
+    TabCur: 0,
     chooseSize: false,
-    needflesh:true
+    needflesh: true
   },
   emailInput: function (e) { //input输入
     this.setData({
       Input: e.detail.value
     });
   },
-    //评论
-    pd_fasong() {
-      let self = this
-      if (this.data.Input == "") {
-        wx.showToast({
-          title: '请输入回复内容', // 标题
-          icon: 'none',
-          duration: 1500 // 提示窗停留时间，默认1500ms
-        })
-      } else {
-        let urlq = app.globalData.URL + '/appuser/getSpeakPerm';
-        util.gets(urlq, {}).then(function (res) {
-          if (res.data.code == 43) {
-            wx.showToast({
-              title: '暂无发言权限',
-              image: '/img/fail.png',
-              duration: 1000
-            })
-          } else if (res.data.code == 126) {
-            wx.showToast({
-              title: '请重新登录！',
-              image: '/img/fail.png',
-              duration: 500,
-              success: function () {
-                wx.redirectTo({
-                  url: '/pages/login/login',
-                })
-              }
-            })
-          } else {
-            self.fasong()
-          }
-        })
-      }
-    },
-    fasong() { //发送按钮
-      if (this.data.quanxianCode == 0) {
-        var self = this;
-        if (this.data.duixiang == '50') {
-          let url = app.globalData.URL + '/comm/addComment';
-          let data = {
-            pid: null,
-            objtype: 50,
-            objid: self.data.dxid,
-            objtitle: self.data.dxtitle,
-            comment: self.data.Input,
-            creater: self.data.user.id,
-            createrAlias: self.data.user.nickname,
-            createrHead: self.data.user.head
-          };
-          let inputtmp = self.data.Input;
-          let shipintmp = self.data.shipin
-          console.log(shipintmp)
-          console.log(self.data.dxindex)
-          app.wxRequest('POST', url, data, (res) => {
-            ///////////////////本地添加评论内容
-            shipintmp.list[self.data.dxindex].listComm.splice(0, 0, {
-              'createrHead': self.data.user.head,
-              'createrAlias': self.data.user.nickname,
-              'comment': inputtmp,
-              'strCreatetime': '刚刚',
-            })
-            shipintmp.list[self.data.dxindex].commCnt = shipintmp.list[self.data.dxindex].commCnt + 1,
-              self.setData({
-                shipin: shipintmp,
+  //评论
+  pd_fasong() {
+    let self = this
+    if (this.data.Input == "") {
+      wx.showToast({
+        title: '请输入回复内容', // 标题
+        icon: 'none',
+        duration: 1500 // 提示窗停留时间，默认1500ms
+      })
+    } else {
+      let urlq = app.globalData.URL + '/appuser/getSpeakPerm';
+      util.gets(urlq, {}).then(function (res) {
+        if (res.data.code == 43) {
+          wx.showToast({
+            title: '暂无发言权限',
+            image: '/img/fail.png',
+            duration: 1000
+          })
+        } else if (res.data.code == 126) {
+          wx.showToast({
+            title: '请重新登录！',
+            image: '/img/fail.png',
+            duration: 500,
+            success: function () {
+              wx.redirectTo({
+                url: '/pages/login/login',
               })
-            wx.showToast({
-              title: '评论成功！', // 标题
-              icon: 'success', // 图标类型，默认success
-              duration: 1500 // 提示窗停留时间，默认1500ms
-            })
-  
-          }, (err) => {
-            console.log(err.errMsg)
-          });
-        } else if (this.data.duixiang == '60') {
-          let url = app.globalData.URL + '/comm/addComment';
-          let data = {
-            pid: null,
-            objtype: 60,
-            objid: self.data.dxid,
-            objtitle: self.data.dxtitle,
-            comment: self.data.Input,
-            creater: self.data.user.id,
-            createrAlias: self.data.user.nickname,
-            createrHead: self.data.user.head
-          };
-          let inputtmp = self.data.Input;
-          let shipintmp = self.data.zhaopian
-          app.wxRequest('POST', url, data, (res) => {
-            ///////////////////本地添加评论内容
-            shipintmp[self.data.dxindex].listComm.splice(0, 0, {
-              'createrHead': self.data.user.head,
-              'createrAlias': self.data.user.nickname,
-              'comment': inputtmp,
-              'strCreatetime': '刚刚',
-            })
-            shipintmp[self.data.dxindex].commCnt = shipintmp[self.data.dxindex].commCnt + 1,
-              self.setData({
-                zhaopian: shipintmp,
-              })
-            wx.showToast({
-              title: '评论成功！', // 标题
-              icon: 'success', // 图标类型，默认success
-              duration: 1500 // 提示窗停留时间，默认1500ms
-            })
-  
-          }, (err) => {
-            console.log(err.errMsg)
-          });
+            }
+          })
         } else {
-          let url = app.globalData.URL + '/comm/addComment';
-          let data = {
-            pid: null,
-            objtype: 30,
-            objid: self.data.categoryId,
-            objtitle: "",
-            comment: self.data.Input,
-            creater: self.data.user.id,
-            createrAlias: self.data.user.nickname,
-            createrHead: self.data.user.head
-          };
-          app.wxRequest('POST', url, data, (res) => {
-            self.comment();
-            wx.showToast({
-              title: '评论成功！', // 标题
-              icon: 'success', // 图标类型，默认success
-              duration: 1500 // 提示窗停留时间，默认1500ms
-            })
-          }, (err) => {
-            console.log(err.errMsg)
-          });
+          self.fasong()
         }
-        self.setData({
-          Input: '',
-        })
-        self.hideModal()
+      })
+    }
+  },
+  fasong() { //发送按钮
+    if (this.data.quanxianCode == 0) {
+      var self = this;
+      if (this.data.duixiang == '50') {
+        let url = app.globalData.URL + '/comm/addComment';
+        let data = {
+          pid: null,
+          objtype: 50,
+          objid: self.data.dxid,
+          objtitle: self.data.dxtitle,
+          comment: self.data.Input,
+          creater: self.data.user.id,
+          createrAlias: self.data.user.nickname,
+          createrHead: self.data.user.head
+        };
+        let inputtmp = self.data.Input;
+        let shipintmp = self.data.shipin
+        console.log(shipintmp)
+        console.log(self.data.dxindex)
+        app.wxRequest('POST', url, data, (res) => {
+          ///////////////////本地添加评论内容
+          shipintmp.list[self.data.dxindex].listComm.splice(0, 0, {
+            'createrHead': self.data.user.head,
+            'createrAlias': self.data.user.nickname,
+            'comment': inputtmp,
+            'strCreatetime': '刚刚',
+          })
+          shipintmp.list[self.data.dxindex].commCnt = shipintmp.list[self.data.dxindex].commCnt + 1,
+            self.setData({
+              shipin: shipintmp,
+            })
+          wx.showToast({
+            title: '评论成功！', // 标题
+            icon: 'success', // 图标类型，默认success
+            duration: 1500 // 提示窗停留时间，默认1500ms
+          })
+
+        }, (err) => {
+          console.log(err.errMsg)
+        });
+      } else if (this.data.duixiang == '60') {
+        let url = app.globalData.URL + '/comm/addComment';
+        let data = {
+          pid: null,
+          objtype: 60,
+          objid: self.data.dxid,
+          objtitle: self.data.dxtitle,
+          comment: self.data.Input,
+          creater: self.data.user.id,
+          createrAlias: self.data.user.nickname,
+          createrHead: self.data.user.head
+        };
+        let inputtmp = self.data.Input;
+        let shipintmp = self.data.zhaopian
+        app.wxRequest('POST', url, data, (res) => {
+          ///////////////////本地添加评论内容
+          shipintmp[self.data.dxindex].listComm.splice(0, 0, {
+            'createrHead': self.data.user.head,
+            'createrAlias': self.data.user.nickname,
+            'comment': inputtmp,
+            'strCreatetime': '刚刚',
+          })
+          shipintmp[self.data.dxindex].commCnt = shipintmp[self.data.dxindex].commCnt + 1,
+            self.setData({
+              zhaopian: shipintmp,
+            })
+          wx.showToast({
+            title: '评论成功！', // 标题
+            icon: 'success', // 图标类型，默认success
+            duration: 1500 // 提示窗停留时间，默认1500ms
+          })
+
+        }, (err) => {
+          console.log(err.errMsg)
+        });
       } else {
-        this.userPanduan()
+        let url = app.globalData.URL + '/comm/addComment';
+        let data = {
+          pid: null,
+          objtype: 30,
+          objid: self.data.categoryId,
+          objtitle: "",
+          comment: self.data.Input,
+          creater: self.data.user.id,
+          createrAlias: self.data.user.nickname,
+          createrHead: self.data.user.head
+        };
+        app.wxRequest('POST', url, data, (res) => {
+          self.comment();
+          wx.showToast({
+            title: '评论成功！', // 标题
+            icon: 'success', // 图标类型，默认success
+            duration: 1500 // 提示窗停留时间，默认1500ms
+          })
+        }, (err) => {
+          console.log(err.errMsg)
+        });
       }
-    },
+      self.setData({
+        Input: '',
+      })
+      self.hideModal()
+    } else {
+      this.userPanduan()
+    }
+  },
   tabSelect(e) {
     this.setData({
       TabCur: e.currentTarget.dataset.id,
-      needflesh: true
+      needflesh: true,
+      nowactid:e.currentTarget.dataset.actid
     })
     this.flesh(e.currentTarget.dataset.actid)
   },
-  flesh(actid){
+  delpic(e) {
+    var that = this
+    console.log(e.currentTarget.dataset.id)
+    let url = app.globalData.URL + '/photo/cancelPhoto';
+    var data = {
+      id: that.data.zhaopian[e.currentTarget.dataset.id].id,
+    }
+    wx.showModal({
+      title: '删除照片',
+      content: '确定要删除这张照片吗',
+      cancelText: '取消',
+      confirmText: '确认',
+      success: res => {
+        if (res.confirm) {
+          console.log('delete video confirm')
+          util.gets(url, data).then(function (res) {
+            console.log(res)
+            if (res.data.code == 0)
+              wx.showToast({
+                title: '删除成功',
+              })
+            var tmp = that.data.zhaopian
+            tmp.splice(e.currentTarget.dataset.id, 1)
+            that.setData({
+              zhaopian: tmp
+            })
+          })
+        }
+      }
+    })
+  },
+  flesh(actid) {
     wx.showLoading({
       title: '加载中',
       mask: true
     })
-    var that=this
+    var that = this
     var url = app.globalData.URL + '/photo/listUserPhoto';
-    var data={
-      uid:wx.getStorageSync('userInfo').id,
-      acid1:actid
+    var data = {
+      uid: wx.getStorageSync('userInfo').id,
+      acid1: actid
     }
     util.post_token(url, data).then(function (res) {
       console.log(res)
       that.setData({
         zhaopian: res.data.data.list
       })
-       wx.showLoading({
-      title: '加载中',
-      mask: true
-    })
-    wx.hideLoading()
+      wx.showLoading({
+        title: '加载中',
+        mask: true
+      })
+      wx.hideLoading()
     })
   },
   setChange_swiper: function (e) {
@@ -575,7 +607,7 @@ Page({
       console.log(res)
       that.setData({
         userinfo: res.data.data,
-        user:wx.getStorageSync('userInfo')
+        user: wx.getStorageSync('userInfo')
       })
     })
 
@@ -586,7 +618,7 @@ Page({
     url = app.globalData.URL + '/config/findAllActivityClass1';
     // 所有活动
     util.gets(url, {}).then(function (res) {
-      let tmp=res.data.data
+      let tmp = res.data.data
       tmp.unshift({
         code: null,
         name: '全部'
@@ -596,13 +628,43 @@ Page({
       })
     })
     url = app.globalData.URL + '/photo/listUserPhoto';
-    data={
-      uid:wx.getStorageSync('userInfo').id
+    data = {
+      uid: wx.getStorageSync('userInfo').id
     }
     util.post_token(url, data).then(function (res) {
       console.log(res)
       that.setData({
-        zhaopian: res.data.data.list
+        zhaopian: res.data.data.list,
+        border: res.data.data.border
+      })
+      wx.hideLoading()
+    })
+  },
+  onReachBottom: function () {
+    if (!this.data.needflesh)
+      return
+    console.log("上拉刷新")
+    var that = this
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    let url = app.globalData.URL + '/photo/listUserPhoto';
+    let data = {
+      'uid':that.data.user.id,
+      'acid1':that.data.nowactid,
+      'border': that.data.border
+    };
+    util.post_token(url, data).then(function (res) {
+      console.log('add pic', res.data)
+      let _data = that.data.zhaopian
+      for (let i of res.data.data.list) {
+        _data.push(i)
+      }
+      that.setData({
+        needflesh: res.data.data.list.length != 0,
+        zhaopian: _data,
+        border:res.data.data.border
       })
       wx.hideLoading()
     })
