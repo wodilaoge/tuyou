@@ -161,6 +161,7 @@ Page({
     this.setData({
       TabCur: e.currentTarget.dataset.id,
       needflesh: true,
+      border:null,
       nowactid:e.currentTarget.dataset.actid
     })
     this.flesh(e.currentTarget.dataset.actid)
@@ -210,7 +211,8 @@ Page({
     util.post_token(url, data).then(function (res) {
       console.log(res)
       that.setData({
-        zhaopian: res.data.data.list
+        zhaopian: res.data.data.list,
+        border:res.data.data.border
       })
       wx.showLoading({
         title: '加载中',
