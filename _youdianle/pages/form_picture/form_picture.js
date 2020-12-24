@@ -216,7 +216,6 @@ Page({
   commit: function (e) {
     var user = wx.getStorageSync('userInfo')
     let url = app.globalData.URL + '/photo/updateActPhoto';
-    var data = this.data
     var data = {
       id: '',
       actid: this.data.actid,
@@ -224,7 +223,7 @@ Page({
       author: user.id,
       authorAlias: this.data.penname,
       authorHead: user.head,
-      content: this.data.textareaAInput,
+      content: this.data.textareaAValue,
       univ: wx.getStorageSync('school').code,
       province: wx.getStorageSync('province').code,
       city: wx.getStorageSync('city').code,
@@ -233,6 +232,7 @@ Page({
       creater: user.id,
       listPhoto: this.data.photo
     }
+    console.log(data)
     util.post_token(url, data).then(function (res) {
       console.log(res.data)
       if (res.data.code == 0) {
