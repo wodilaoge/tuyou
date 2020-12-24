@@ -567,7 +567,12 @@ Page({
       })
     })
   },
-
+  toact(e){
+    app.globalData.tabbar = 1;
+    wx.navigateTo({
+      url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&Title=' + e.currentTarget.dataset.yundong.actname + '&categoryId=' + e.currentTarget.dataset.yundong.actid + '&yes=' + 'yes',
+    })
+  },
   onLoad: function (options) {
     console.log(options.id)
     if (options.isshare == 1) {

@@ -92,23 +92,24 @@
 </view>
 
 <view class="bg-white" style="height:50rpx;"></view>
+
 <view class="flex align-end margin-top-sm bg-white" style="height:59rpx;padding-left:24rpx;">
   <view class="tdxx-liebiao">历史活动</view>
   <view class="tdxx-liebiao-num margin-left-sm">{{historyAct.length}}</view>
 </view>
 <view class="bg-white" style="height:30rpx;"></view>
-<view class="bg-white " style="height:259rpx;">
+<view class="bg-white padding-bottom" >
   <view class="flex" style="height:42rpx;">
     <view class="paiming-paiming" style="margin-left:24rpx;width:120rpx;">排名</view>
     <view class="paiming-paiming" style="margin-left:2rpx;width:180rpx;">得分</view>
     <view class="paiming-paiming" style="margin-left:2rpx;width:180rpx;">日期</view>
     <view class="paiming-paiming" style="margin-left:2rpx;width:216rpx;">活动名称</view>
   </view>
-  <view class="flex" style="margin-top:44rpx;" wx:for="{{historyAct}}" wx:key="keys">
-    <text class="paiming-fenshu" style="padding-left:76rpx;">{{item.teamRank==null?'':item.teamRank}}</text>
-    <text class="paiming-fenshu" style="margin-left:129rpx;">{{item.teamScore==null?'':item.teamScore}}</text>
-    <text class="paiming-riqi" style="margin-left:97rpx;">{{item.fromtime==null?'':item.fromtime}}</text>
-    <text class="paiming-huodong" style="margin-left:67rpx;margin-top:-13rpx;">{{item.actname==null?'':item.actname}}</text>
+  <view class="flex justify-between" style="margin-top:44rpx;" wx:for="{{historyAct}}" wx:key="keys">
+    <text class="menu-item" >{{item.teamRank==null?'':item.teamRank}}</text>
+    <text class="menu-item2" >{{item.teamScore==null?'':item.teamScore}}</text>
+    <text class="menu-item2" >{{item.fromtime==null?'':item.fromtime}}</text>
+    <text class="menu-item3 text-blue" bindtap="toact" data-yundong="{{item}}">{{item.actname==null?'':item.actname}}</text>
   </view>
 </view>
 
