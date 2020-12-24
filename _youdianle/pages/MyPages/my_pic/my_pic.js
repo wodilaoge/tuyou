@@ -9,6 +9,7 @@ Page({
     Lists: [],
     TabCur: 0,
     chooseSize: false,
+    swiper_current: 0,
     needflesh: true
   },
   emailInput: function (e) { //input输入
