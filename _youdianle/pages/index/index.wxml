@@ -17,7 +17,7 @@
     <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000"
       duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#FE538F">
       <swiper-item wx:for="{{swiperList}}" wx:key="key">
-        <view class="swiper-item" bindtap="towebview" data-url="{{item.link}}">
+        <view class="swiper-item" bindtap="towebview" data-link="{{item.link}}" data-path="{{item.path}}" data-type="{{item.linktype}}">
           <image src="{{item.path}}" mode="aspectFill"></image>
         </view>
       </swiper-item>

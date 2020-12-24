@@ -35,6 +35,7 @@
     <view class="cu-bar bg-white solid-bottom margin-top-sm" style="display:fixed;position: relative;">
       <image class="cu-avatar round my" src="{{detail.createrhead}}" mode="heightFix" data-id="{{detail.creater}}"
         bindtap="gerenziliao"></image>
+        <text style="position:absolute;width:100%;left:110rpx;" class="text-bold">{{detail.createralias}}</text>
       <text class=" title-time" style="position:absolute;width:100%;left:310rpx;"
         wx:if="{{detail.lefttime.left!=null}}">{{detail.lefttime.left}}</text>
     </view>

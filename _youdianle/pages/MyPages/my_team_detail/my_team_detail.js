@@ -236,7 +236,7 @@ Page({
           title: '关注成功',
           duration: 1000,
         })
-
+        
         that.secondLoad()
       } else
         wx.showToast({

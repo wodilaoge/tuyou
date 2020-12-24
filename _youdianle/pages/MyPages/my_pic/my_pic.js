@@ -197,6 +197,36 @@ Page({
       }
     })
   },
+  getZhaopianPinglunFenye: function (e) {
+    if (!this.data.isRefleshZhaopianPinglun)
+      return
+    var that = this;
+    var zhaopiantmp = this.data.zhaopian;
+    let url = app.globalData.URL + '/comm/listCommByObj';
+    let data = {
+      objtype: 60,
+      objid: this.data.zhaopian[this.data.zhaopian_index].id,
+      border: this.data.zhaopianPinglunBorder,
+    };
+    console.log(data)
+    app.wxRequest('POST', url, data, (res) => {
+      console.log("照片评论分页", res);
+      if (res.data.border == null || res.data.list.length < 10) {
+        that.setData({
+          isRefleshZhaopianPinglun: false
+        })
+      }
+      for (let s of res.data.list) {
+        zhaopiantmp[this.data.zhaopian_index].listComm.push(s);
+      }
+      that.setData({
+        zhaopian: zhaopiantmp,
+        zhaopianPinglunBorder: res.data.border,
+      })
+    }, (err) => {
+      console.log(err.errMsg)
+    });
+  },
   flesh(actid) {
     wx.showLoading({
       title: '加载中',

@@ -79,16 +79,30 @@ Page({
       url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=1&categoryId=' + e.currentTarget.dataset.yundong.id,
     })
   },
+  ViewImage(path) {
+    var t = []
+    t.push(path)
+
+      wx.previewImage({
+        urls: t,
+        current: path
+      });
+  },
   towebview(e) {
-    let t = e.currentTarget.dataset.url
-    if (t.length > 20) {
+    let type=e.currentTarget.dataset.type
+    if (type == 20) {
       wx.navigateTo({
-        url: '/pages/webview3/webview3?url=' + e.currentTarget.dataset.url,
+        url: '/pages/webview3/webview3?url=' + e.currentTarget.dataset.link,
       })
-    } else
+    } else if (type == 10){
       wx.navigateTo({
-        url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.url,
+        url: '/pages/yundongxiangqing/yundongxiangqing?TabCur=0&categoryId=' + e.currentTarget.dataset.link,
       })
+    }
+    else if (type == null){
+      console.log('swiper null')
+      this.ViewImage(e.currentTarget.dataset.path)
+    }
   },
   getuploadinfo() {
     var that = this
