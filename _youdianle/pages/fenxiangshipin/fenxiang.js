@@ -8,7 +8,9 @@ Page({
    */
   data: {
     shipin: '',
-    bofang_pid: '0',
+    video_id: 'video_0', ///用于切换视频
+    bofang_if_id: 'video_0', /////用数字来表示匹配
+    bofang_pid: '0', ///1表示有一个播放，0表示无播放
     user: [],
     type: 50,
     zhaopian: [],
@@ -84,29 +86,88 @@ Page({
     }
 
   },
+  // video_change: function (e) { ////视频切换
+  //   var self = this;
+  //   var shipintmp = this.data.shipin;
+  //   var now_id = e.currentTarget.id;
+  //   if (this.data.bofang_pid == '1') {
+  //     wx.createVideoContext(e.currentTarget.id).pause();
+  //     this.setData({
+  //       bofang_pid: '0'
+  //     })
+  //   } else {
+  //     wx.createVideoContext(e.currentTarget.id).play();
+  //     this.setData({
+  //       bofang_pid: '1'
+  //     })
+  //     let url = app.globalData.URL + '/video/updatePlayCnt';
+  //     let data = {
+  //       id: this.data.shipin.list[e.currentTarget.dataset.index].id,
+  //     };
+  //     app.wxRequest('GET', url, data, (res) => {})
+  //     shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
+  //     self.setData({
+  //       shipin: shipintmp
+  //     })
+  //   }
+  // },
   video_change: function (e) { ////视频切换
-    var self = this;
+    var self=this;
     var shipintmp = this.data.shipin;
-    let now_id = e.currentTarget.id;
-    if (this.data.bofang_pid == '1') {
-      wx.createVideoContext(e.currentTarget.id).pause();
-      this.setData({
-        bofang_pid: '0'
-      })
-    } else {
-      wx.createVideoContext(e.currentTarget.id).play();
-      this.setData({
-        bofang_pid: '1'
-      })
+    shipintmp.list[e.currentTarget.dataset.index].src2 = shipintmp.list[e.currentTarget.dataset.index].fileId;
+    console.log(e.currentTarget.id)
+    if (this.data.bofang_if_id != e.currentTarget.id) { ///相等表示点击和播放不匹配
+      if (this.data.bofang_pid == '0') {
+        self.setData({
+          bofang_pid: '1'
+        })
+      }
       let url = app.globalData.URL + '/video/updatePlayCnt';
+      console.log(e.currentTarget.dataset.index)
       let data = {
-        id: this.data.shipin.list[e.currentTarget.dataset.index].id,
+        id: self.data.shipin.list[e.currentTarget.dataset.index].id,
       };
       app.wxRequest('GET', url, data, (res) => {})
       shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
       self.setData({
         shipin: shipintmp
       })
+
+      var now_id = e.currentTarget.id;
+      var prev_id = self.data.video_id;
+      self.setData({
+        video_id: now_id,
+        bofang_if_id: now_id
+      })
+      wx.createVideoContext(prev_id).pause();
+      wx.createVideoContext(now_id).play();
+
+
+    } else { //////////当点击同一个，一次播放一次暂停
+      if (this.data.bofang_pid == '1') {
+        wx.createVideoContext(e.currentTarget.id).pause();
+        self.setData({
+          bofang_pid: '0'
+        })
+      } else {
+        wx.createVideoContext(e.currentTarget.id).play();
+        self.setData({
+          bofang_pid: '1'
+        })
+
+        let url = app.globalData.URL + '/video/updatePlayCnt';
+        console.log(self.data.shipin.list[e.currentTarget.dataset.index].id)
+        let data = {
+          id: self.data.shipin.list[e.currentTarget.dataset.index].id,
+        };
+        app.wxRequest('GET', url, data, (res) => {
+          console.log(res)
+        })
+        shipintmp.list[e.currentTarget.dataset.index].playCnt = shipintmp.list[e.currentTarget.dataset.index].playCnt + 1;
+        self.setData({
+          shipin: shipintmp
+        })
+      }
     }
   },
 
