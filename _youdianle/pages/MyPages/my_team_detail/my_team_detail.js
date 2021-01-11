@@ -350,7 +350,7 @@ Page({
     })
   },
   getListMember: function () {
-    let url = app.globalData.URL + '/team/listMember';
+    let url = app.globalData.URL + '/team/listAllMember';
     let data = {
       id: this.data.tdxxId
     };
