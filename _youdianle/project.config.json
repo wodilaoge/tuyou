@@ -1,82 +1,82 @@
 {
-  "description": "项目配置文件",
-  "packOptions": {
-    "ignore": []
-  },
-  "setting": {
-    "urlCheck": false,
-    "es6": true,
-    "enhance": true,
-    "postcss": true,
-    "minified": true,
-    "newFeature": true,
-    "coverView": true,
-    "autoAudits": false,
-    "showShadowRootInWxmlPanel": true,
-    "scopeDataCheck": false,
-    "checkInvalidKey": true,
-    "checkSiteMap": true,
-    "uploadWithSourceMap": true,
-    "compileHotReLoad": false,
-    "useMultiFrameRuntime": true,
-    "useApiHook": true,
-    "babelSetting": {
-      "ignore": [],
-      "disablePlugins": [],
-      "outputPath": ""
-    },
-    "useIsolateContext": true,
-    "useCompilerModule": false,
-    "userConfirmedUseCompilerModuleSwitch": false,
-    "packNpmManually": false,
-    "packNpmRelationList": [],
-    "minifyWXSS": true,
-    "bundle": false,
-    "useApiHostProcess": false
-  },
-  "compileType": "miniprogram",
-  "libVersion": "2.11.2",
-  "appid": "wxe28bb23826f3d9d8",
-  "projectname": "youdianle",
-  "debugOptions": {
-    "hidedInDevtools": []
-  },
-  "isGameTourist": false,
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
-  "condition": {
-    "plugin": {
-      "list": []
-    },
-    "game": {
-      "list": []
-    },
-    "gamePlugin": {
-      "list": []
-    },
-    "miniprogram": {
-      "list": [
-        {
-          "id": 0,
-          "name": "pages/all_team/all_team",
-          "pathName": "pages/all_team/all_team",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "上传照片",
-          "pathName": "pages/form_picture/form_picture",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/MyPages/my_pic/my_pic",
-          "pathName": "pages/MyPages/my_pic/my_pic",
-          "query": "id= 60478579007291392",
-          "scene": null
-        }
-      ]
-    }
-  }
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"enhance": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"bundle": false,
+		"useCompilerModule": true,
+		"userConfirmedUseCompilerModuleSwitch": false,
+		"compileHotReLoad": false,
+		"useMultiFrameRuntime": true,
+		"useApiHook": true,
+		"useIsolateContext": true,
+		"packNpmManually": false,
+		"packNpmRelationList": [],
+		"minifyWXSS": true,
+		"useApiHostProcess": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.11.2",
+	"appid": "wxe28bb23826f3d9d8",
+	"projectname": "youdianle",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"plugin": {
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"gamePlugin": {
+			"list": []
+		},
+		"miniprogram": {
+			"list": [
+				{
+					"id": 0,
+					"name": "pages/all_team/all_team",
+					"pathName": "pages/all_team/all_team",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "上传照片",
+					"pathName": "pages/form_picture/form_picture",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "pages/MyPages/my_pic/my_pic",
+					"pathName": "pages/MyPages/my_pic/my_pic",
+					"query": "id= 60478579007291392",
+					"scene": null
+				}
+			]
+		}
+	}
 }

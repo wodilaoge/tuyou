@@ -267,6 +267,7 @@ Page({
       self.ifshiming()
   },
   tabSelect(e) {
+    console.log(e)
     var self = this
     var op = this.data.options
     op.TabCur = e.currentTarget.dataset.id
@@ -274,9 +275,19 @@ Page({
       TabCur: e.currentTarget.dataset.id,
       options: op
     })
-    if (e.currentTarget.dataset.id == 1)
+    if (e.currentTarget.dataset.id == 1) {
       if (self.data.shiminghide == false)
         self.ifshiming()
+      if (self.data.baomingCur == 1) {
+        wx.showModal({
+          title:"提示",
+          content:"此活动为团队报名，请到APP中报名参加",
+          confirmText:"确定",
+          showCancel:false,
+          confirmColor:"#5454FF",
+        })
+      }
+    }
     if (e.currentTarget.dataset.id == 4)
       self.gerenpaiming()
   },
@@ -389,6 +400,7 @@ Page({
       type: 20
     };
     app.wxRequest('GET', url, data, (res) => {
+      console.log(res.data)
       this.setData({
         gerenpaiming: res.data,
       })
@@ -1461,10 +1473,11 @@ Page({
 
   ///////////////////////////////
   gerenziliao(e) {
-    if(this.data.detail.signupway==10){
-    wx.navigateTo({
-      url: '/pages/ziliao/ziliao?id=' + e.currentTarget.dataset.id,
-    })}else{
+    if (this.data.detail.signupway == 10) {
+      wx.navigateTo({
+        url: '/pages/ziliao/ziliao?id=' + e.currentTarget.dataset.id,
+      })
+    } else {
       wx.navigateTo({
         url: '/pages/MyPages/my_team_detail/my_team_detail?id=' + e.currentTarget.dataset.id,
       })
@@ -1492,11 +1505,11 @@ Page({
     }
     util.gets(url, data).then(function (res) {
       console.log(res)
-      if (res.data.data == null) {}
-       else if (res.data.data.status == 10){
+      if (res.data.data == null) {} else if (res.data.data.status == 10) {
         self.setData({
           isbaominggeren: 1
-        })}
+        })
+      }
       // self.setData({
       //   baomingButton: res.data.data
       // })
@@ -1819,6 +1832,7 @@ Page({
         uid: self.data.user.id
       }
       util.gets(url, data).then(function (res) {
+        console.log(res)
         wx.hideLoading()
         if (res.data.code == 0) {
           wx.showToast({
@@ -1925,6 +1939,7 @@ Page({
     }
     console.log(data)
     util.post_token(url, data).then(function (res) {
+      console.log(res)
       if (res.data.code == 0) {
         wx.showToast({
           title: '操作成功！', // 标题
