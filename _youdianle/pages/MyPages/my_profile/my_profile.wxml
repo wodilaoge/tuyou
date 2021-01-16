@@ -49,7 +49,10 @@
 	</view>
 	<view class="cu-form-group">
 		<!-- <view class=" text-red text-xl star ">*</view> -->
-		<view class="title">Email</view>
+		<view class="flex">
+			<view class=" text-red text-xl star ">*</view>
+			<view class="title">Email</view>
+		</view>
 		<input class="input text-grey" placeholder="{{userinfo.email}}" type='text' name="name"
 			bindinput="getemail"></input>
 		<image class="icon" src="/img/write.png"></image>
