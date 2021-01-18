@@ -35,7 +35,7 @@ const post = (url, data) => {
         else if(res.data.code!=0){  //返回错误提示信息
           console.log(url+res.data.msg)
           wx.showToast({
-            title: url+res.data.msg,
+            title: res.data.msg,
             icon:'none',
             duration: 2000,
           })
@@ -76,10 +76,25 @@ const post_token = (url, data) => {
             }
           })
         }
+        else if(res.data.code==135){ //返回错误提示信息
+          console.log('code35'+url+res.data.code)
+          wx.showToast({ 
+            title:res.data.msg,
+            icon:'none',
+            duration: 2000,
+             success: function() { 
+              setTimeout(function() { 
+                wx.navigateTo({
+                  url: '/pages/MyPages/my_profile/my_profile',
+                }) 
+              }, 1000); 
+            }
+          })
+        }
         else if(res.data.code!=0){  //返回错误提示信息
           console.log(url+res.data.msg)
           wx.showToast({
-            title: url+res.data.msg,
+            title: res.data.msg,
             icon:'none',
             duration: 2000,
           })
@@ -120,10 +135,31 @@ const gets = (url, data) => {
               }
             })
           }
+          else if(res.data.code==135){ //返回错误提示信息
+            console.log('code35'+url+res.data.code)
+            wx.showModal({
+              title: '补充个人信息',
+              content: res.data.msg,
+              cancelText: '取消',
+              confirmText: '去填写',
+              success: res => {
+                if (res.confirm) {
+                  wx.navigateTo({
+                    url: '/pages/MyPages/my_profile/my_profile',
+                  })
+                }
+                else{
+                  wx.navigateBack({
+                    delta: 1
+                  })
+                }
+              }
+            })
+          }
           else if(res.data.code!=0){ //返回错误提示信息
-            console.log(url+res.data.msg)
+            console.log(url+res.data.code)
             wx.showToast({
-              title: url+res.data.msg,
+              title: res.data.msg,
               icon:'none',
               duration: 2000,
             })

@@ -1199,7 +1199,22 @@ Page({
             image: '/img/fail.png',
             duration: 1000
           })
-        } else if (res.data.code == 126) {
+        } 
+        else if(res.data.code==35){ //返回错误提示信息
+          console.log('code35'+url+res.data.code)
+          wx.showToast({ 
+            title:res.data.msg,
+            icon:'none',
+            duration: 1000,
+             success: function() { 
+              setTimeout(function() { 
+                wx.navigateTo({
+                  url: '/pages/MyPages/my_profile/my_profile',
+                }) 
+              }, 1000); 
+            }
+          })
+        }else if (res.data.code == 126) {
           wx.showToast({
             title: '请重新登录！',
             image: '/img/fail.png',
@@ -2249,7 +2264,6 @@ Page({
     self.rotation()
     self.baomingzhuangtai()
     self.ifguanzhu()
-    self.userPanduan2()
     self.ifzan()
     self.comment()
     self.fenzu()
@@ -2278,6 +2292,12 @@ Page({
    */
   onShow: function () {
     var self = this
+    self.userPanduan2()
+
+    // let url = app.globalData.URL + '/appuser/getSpeakPerm';
+    // util.gets(url, {}).then(function (res) {
+    //   console.log(res)
+    // })
     self.yonghuxinxi()
     if (self.data.TabCur == 1)
       setTimeout(function () {

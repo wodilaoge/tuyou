@@ -5,8 +5,8 @@ App({
     loadModal: true,
     tabbar: 1,
     userInfo: [],
-    URL: 'https://api.udianle.com/kt',
-    //  URL: 'http://192.144.169.239/kt',
+    //URL: 'https://api.udianle.com/kt',
+    URL: 'http://192.144.169.239/kt',
     systemInfo: null, //客户端设备信息，
   },
   wxRequest_notoken(method, url, data, callback, errFun) {
@@ -121,9 +121,9 @@ App({
         console.log('login code', res.code);
         var tmpid=wx.getStorageSync("userInfo").id
         wx.request({
-          url: 'https://api.udianle.com/kt/auth/wcAnonLogin',
+          //url: 'https://api.udianle.com/kt/auth/wcAnonLogin',
 
-          //url: 'http://192.144.169.239/kt/auth/wcAnonLogin',
+          url: 'http://192.144.169.239/kt/auth/wcAnonLogin',
           method: 'post',
           data: {
             id:tmpid==undefined?null:tmpid,
